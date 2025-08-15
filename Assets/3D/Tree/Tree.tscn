@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ba3jme10raq"]
+
+[ext_resource type="PackedScene" uid="uid://dyd3hcf6kb854" path="res://Assets/3D/Tree/dead_tree.fbx" id="1_q1urc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_q1urc"]
+height = 2.94644
+radius = 0.87793
+
+[node name="Tree" type="Node3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="dead_tree" parent="." instance=ExtResource("1_q1urc")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="dead_tree"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="dead_tree/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57167, 0.0754507)
+shape = SubResource("CylinderShape3D_q1urc")
