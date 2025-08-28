@@ -1,6 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dli7ll75pfolr"]
-
-[ext_resource type="Texture2D" uid="uid://2wdxpmv3uyr4" path="res://Assets/2D/Textures/TreeTex/Bark.png" id="1_2ttet"]
-
-[resource]
-albedo_texture = ExtResource("1_2ttet")
