@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dwpo6a7lu68jh"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sense" type="HSlider" parent="Main"]
+layout_mode = 2
+anchor_left = 0.412
+anchor_top = 0.617
+anchor_right = 0.5
+anchor_bottom = 0.642
+offset_left = 0.375977
+offset_top = 0.18396
+offset_bottom = -0.0160217
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 0.1
+max_value = 5.0
+step = 0.5
+value = 5.0
+
+[node name="Label" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.417
+anchor_top = 0.523
+anchor_right = 0.494
+anchor_bottom = 0.559
+offset_left = -0.384033
+offset_top = 0.0960083
+offset_right = -0.0880127
+offset_bottom = -0.231995
+text = "Cam Sense"

@@ -3,19 +3,23 @@ using System;
 
 public partial class Player3d : CharacterBody3D
 {
-	public const float Speed = 5.0f; //Player speed
-	public const float JumpVelocity = 4.5f; //Jump power
-	public const float CamSense = 0.006f; //Sensitivity
+	public const float Speed = 10.0f; //Player speed
+	public const float JumpVelocity = 6.5f; //Jump power
+	public float CamSense = 0.002f; //Sensitivity
 
 	private Node3D _head;
 	private Camera3D _cam;
+	private Control _interface;
+	private Slider _senseBar;
 
 	public override void _Ready()
 	{
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		_head = GetNode<Node3D>("Head"); //Declares the head componant
 		_cam = GetNode<Camera3D>("Head/Camera3D"); //Declares the camera componant
-    }
+		_interface = GetNode<Control>("UI/Main");
+		_senseBar = GetNode<Slider>("UI/Main/Sense");
+	}
 
 	public override void _Input(InputEvent @event) //When the player does any input
 	{
@@ -33,15 +37,27 @@ public partial class Player3d : CharacterBody3D
 			if (Input.MouseMode == Input.MouseModeEnum.Captured)
 			{
 				Input.MouseMode = Input.MouseModeEnum.Visible; //Make the mouse visible
+				_interface.Visible = true;
+				_senseBar.Value = CamSense * 1000;
+				GD.Print(_interface.Visible);
 			}
 			else
+			{
 				Input.MouseMode = Input.MouseModeEnum.Captured; //Make the mouse invisible
+				_interface.Visible = false;
+				GD.Print(_interface.Visible);
+			}
+
 		}
-    }
+	}
 
 	public override void _PhysicsProcess(double delta) //Event tick; happens every frame
 	{
 		Vector3 velocity = Velocity;
+
+		if (_interface.Visible == true){
+			CamSense = Convert.ToSingle(_senseBar.Value/1000);
+		}
 
 		// Add the gravity.
 		if (!IsOnFloor())
