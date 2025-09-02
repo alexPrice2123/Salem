@@ -11,14 +11,16 @@ public partial class Player3d : CharacterBody3D
 	private Camera3D _cam;
 	private Control _interface;
 	private Slider _senseBar;
+	private MeshInstance3D _sword;
 
 	public override void _Ready()
 	{
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		_head = GetNode<Node3D>("Head"); //Declares the head componant
 		_cam = GetNode<Camera3D>("Head/Camera3D"); //Declares the camera componant
-		_interface = GetNode<Control>("UI/Main");
-		_senseBar = GetNode<Slider>("UI/Main/Sense");
+		_interface = GetNode<Control>("UI/Main"); //Delcares the main UI
+		_senseBar = GetNode<Slider>("UI/Main/Sense"); //Declares the camera slider
+		_sword = GetNode<MeshInstance3D>("Head/Camera3D/Handle"); //Declares the sword
 	}
 
 	public override void _Input(InputEvent @event) //When the player does any input
@@ -48,6 +50,10 @@ public partial class Player3d : CharacterBody3D
 				GD.Print(_interface.Visible);
 			}
 
+		}
+		else if (@event is InputEventMouseButton click && Input.MouseMode == Input.MouseModeEnum.Captured && click.Pressed)
+		{
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing");
 		}
 	}
 

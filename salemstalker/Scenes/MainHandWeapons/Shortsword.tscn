@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://j6uelknlee1h"]
+
+[ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="1_m087h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jo16x"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3h2ph"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_c1cqh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m4ngj"]
+size = Vector3(1, 2.29657, 1)
+
+[sub_resource type="Animation" id="Animation_m087h"]
+resource_name = "Swing"
+length = 0.3
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.166667, 1, -0.5, 0, 0, 0.866, 0.3, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_jo16x"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
+_data = {
+&"RESET": SubResource("Animation_jo16x"),
+&"Swing": SubResource("Animation_m087h")
+}
+
+[node name="Handle" type="MeshInstance3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 0, 0)
+material_override = ExtResource("1_m087h")
+mesh = SubResource("BoxMesh_jo16x")
+
+[node name="Hilt" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.53029, 0, 0, 0, 0.0341431, 0, 0, 0, 2.53029, 0, 0.466943, 0)
+mesh = SubResource("CylinderMesh_3h2ph")
+
+[node name="Blade" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.11362, 0, 0, 0, 3.09967, 0, 0, 0, 0.79099, 0, 1.9992, 0)
+mesh = SubResource("PrismMesh_c1cqh")
+
+[node name="Hitbox" type="Area3D" parent="."]
+transform = Transform3D(0.998992, 0, 0, 0, 0.998992, 0, 0, 0, 0.998992, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1.52903, 0, 0, 0, 1.52904, 0, 0, 0, 1.52903, 0, 1.89803, 0)
+shape = SubResource("BoxShape3D_m4ngj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3h2ph")
+}
