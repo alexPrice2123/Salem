@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=5 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_r3g0q"]
+[ext_resource type="PackedScene" uid="uid://dwpo6a7lu68jh" path="res://Scenes/ui.tscn" id="2_1hilh"]
+[ext_resource type="PackedScene" uid="uid://j6uelknlee1h" path="res://Scenes/MainHandWeapons/Shortsword.tscn" id="3_df3ch"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
@@ -15,3 +17,9 @@ shape = SubResource("CapsuleShape3D_6lgym")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673132, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="Handle" parent="Head/Camera3D" instance=ExtResource("3_df3ch")]
+transform = Transform3D(0.037423, 0, 0, 0, 0.0935574, 0, 0, 0, 0.037423, 0.180032, -0.202996, -0.247056)
+skeleton = NodePath("../../..")
+
+[node name="UI" parent="." instance=ExtResource("2_1hilh")]
