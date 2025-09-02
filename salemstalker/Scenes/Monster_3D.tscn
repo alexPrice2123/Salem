@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://u7yct1quu07a"]
+[gd_scene load_steps=6 format=3 uid="uid://u7yct1quu07a"]
 
 [ext_resource type="Script" uid="uid://ckmn7j07x5ubl" path="res://Scripts/Monster3d.cs" id="1_ayuld"]
 
@@ -7,6 +7,12 @@ radius = 0.25
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ayuld"]
 albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfqb8"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yfqb8"]
 radius = 0.25
@@ -19,4 +25,5 @@ shape = SubResource("CapsuleShape3D_6lgym")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_ayuld")
+material_overlay = SubResource("StandardMaterial3D_yfqb8")
 mesh = SubResource("CapsuleMesh_yfqb8")

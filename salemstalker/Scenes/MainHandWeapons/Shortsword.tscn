@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://j6uelknlee1h"]
+[gd_scene load_steps=11 format=3 uid="uid://j6uelknlee1h"]
 
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="1_m087h"]
 
@@ -9,6 +9,13 @@
 [sub_resource type="PrismMesh" id="PrismMesh_c1cqh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m4ngj"]
+size = Vector3(3.625, 2.85678, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m087h"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.490196)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m087h"]
 size = Vector3(3.625, 2.85678, 1)
 
 [sub_resource type="Animation" id="Animation_m087h"]
@@ -57,6 +64,11 @@ transform = Transform3D(0.998992, 0, 0, 0, 0.998992, 0, 0, 0, 0.998992, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 transform = Transform3D(1.52899, 0, 0, 0, 1.52903, 0, 0, 0, 1.52903, 0, 2.32632, 0)
 shape = SubResource("BoxShape3D_m4ngj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox"]
+transform = Transform3D(1.55974, 0, 0, 0, 1.4669, 0, 0, 0, 1.48978, -0.0183298, 2.21624, 0)
+material_override = SubResource("StandardMaterial3D_m087h")
+mesh = SubResource("BoxMesh_m087h")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
