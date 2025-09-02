@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl3y8nfncided"]
+
+[ext_resource type="Script" uid="uid://cqm83otrgcv18" path="res://Scripts/NpcVillager.cs" id="1_x81n3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n6gic"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_x81n3"]
+
+[node name="npc_villager" type="CharacterBody3D"]
+script = ExtResource("1_x81n3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -0.412637, 0)
+shape = SubResource("CapsuleShape3D_n6gic")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_x81n3")
