@@ -24,6 +24,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="SalemStalker"
 
+[global_group]
+
+Monster=""
+
 [input]
 
 jump={

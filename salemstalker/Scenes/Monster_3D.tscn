@@ -17,7 +17,7 @@ emission = Color(1, 1, 1, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yfqb8"]
 radius = 0.25
 
-[node name="Monster_3d" type="CharacterBody3D"]
+[node name="Monster_3d" type="CharacterBody3D" groups=["Monster"]]
 script = ExtResource("1_ayuld")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

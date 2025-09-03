@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://j6uelknlee1h"]
+[gd_scene load_steps=15 format=3 uid="uid://j6uelknlee1h"]
 
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="1_m087h"]
 
@@ -8,15 +8,48 @@
 
 [sub_resource type="PrismMesh" id="PrismMesh_c1cqh"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_m4ngj"]
-size = Vector3(3.625, 2.85678, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jo16x"]
+albedo_color = Color(1, 0, 0, 1)
+roughness = 0.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m087h"]
-transparency = 1
-albedo_color = Color(1, 0, 0, 0.490196)
+[sub_resource type="Curve" id="Curve_3h2ph"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="BoxMesh" id="BoxMesh_m087h"]
-size = Vector3(3.625, 2.85678, 1)
+[sub_resource type="CurveTexture" id="CurveTexture_c1cqh"]
+curve = SubResource("Curve_3h2ph")
+
+[sub_resource type="Curve" id="Curve_m4ngj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ag22c"]
+curve = SubResource("Curve_m4ngj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o56aj"]
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 1.99998
+radial_velocity_curve = SubResource("CurveTexture_c1cqh")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_ag22c")
+
+[sub_resource type="SphereMesh" id="SphereMesh_h8xwj"]
+
+[sub_resource type="Animation" id="Animation_jo16x"]
+length = 0.1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_m087h"]
 resource_name = "Swing"
@@ -28,16 +61,6 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.166667, 1, -0.5, 0, 0, 0.866, 0.3, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_jo16x"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
 _data = {
@@ -58,17 +81,13 @@ mesh = SubResource("CylinderMesh_3h2ph")
 transform = Transform3D(0.11362, 0, 0, 0, 3.09967, 0, 0, 0, 0.79099, 0, 1.9992, 0)
 mesh = SubResource("PrismMesh_c1cqh")
 
-[node name="Hitbox" type="Area3D" parent="."]
-transform = Transform3D(0.998992, 0, 0, 0, 0.998992, 0, 0, 0, 0.998992, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1.52899, 0, 0, 0, 1.52903, 0, 0, 0, 1.52903, 0, 2.32632, 0)
-shape = SubResource("BoxShape3D_m4ngj")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox"]
-transform = Transform3D(1.55974, 0, 0, 0, 1.4669, 0, 0, 0, 1.48978, -0.0183298, 2.21624, 0)
-material_override = SubResource("StandardMaterial3D_m087h")
-mesh = SubResource("BoxMesh_m087h")
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Blade"]
+material_override = SubResource("StandardMaterial3D_jo16x")
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_o56aj")
+draw_pass_1 = SubResource("SphereMesh_h8xwj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -23,6 +23,14 @@ public partial class Player3d : CharacterBody3D
 		_sword = GetNode<MeshInstance3D>("Head/Camera3D/Handle"); //Declares the sword
 	}
 
+	private void _on_hitbox_body_entered(Node3D body)
+	{
+		if (body.IsInGroup("Monster"))
+		{
+			
+		}
+	}
+	
 	public override void _Input(InputEvent @event) //When the player does any input
 	{
 		if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured) //When the input is mouse movment
@@ -51,9 +59,9 @@ public partial class Player3d : CharacterBody3D
 			}
 
 		}
-		else if (@event is InputEventMouseButton click && Input.MouseMode == Input.MouseModeEnum.Captured && click.Pressed)
+		else if (@event is InputEventMouseButton click && Input.MouseMode == Input.MouseModeEnum.Captured && click.Pressed && _sword.GetNode<AnimationPlayer>("AnimationPlayer").IsPlaying() == false)
 		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing");
+			Swing();
 		}
 	}
 
@@ -61,8 +69,8 @@ public partial class Player3d : CharacterBody3D
 	{
 		Vector3 velocity = Velocity;
 
-		if (_interface.Visible == true){
-			CamSense = Convert.ToSingle(_senseBar.Value/1000);
+		if (_interface.Visible == true) {
+			CamSense = Convert.ToSingle(_senseBar.Value / 1000);
 		}
 
 		// Add the gravity.
@@ -95,4 +103,15 @@ public partial class Player3d : CharacterBody3D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
+	//Custom Functions
+
+	async void Swing()
+	{
+		_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing");
+		_cam.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
+		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+		_cam.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
+		}
 }
+
