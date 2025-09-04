@@ -7,18 +7,19 @@ public partial class Monster3d : CharacterBody3D
 	public const float JumpVelocity = 6.5f; //Jump power
 
 	private Player3d _player;
+	private StandardMaterial3D _material;
 
 
 	public override void _Ready()
 	{
 		_player = this.GetParent().GetNode<Player3d>("Player_3d");
-		StandardMaterial3D material = GetNode<MeshInstance3D>("MeshInstance3D").MaterialOverlay as StandardMaterial3D;
-		GetNode<MeshInstance3D>("MeshInstance3D").SetSurfaceOverrideMaterial(0, material);
-		material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
-		material.EmissionEnabled = true;
-		Color basecolor = material.AlbedoColor;
-		basecolor.A = 1.0f;
-		material.AlbedoColor = basecolor;
+		_material = GetNode<MeshInstance3D>("MeshInstance3D").MaterialOverlay as StandardMaterial3D;
+		GetNode<MeshInstance3D>("MeshInstance3D").SetSurfaceOverrideMaterial(0, _material);
+		_material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+		_material.EmissionEnabled = true;
+		Color basecolor = _material.AlbedoColor;
+		basecolor.A = 0.0f;
+		_material.AlbedoColor = basecolor;
 	}
 
 	public override void _PhysicsProcess(double delta) //Event tick; happens every frame
@@ -28,7 +29,7 @@ public partial class Monster3d : CharacterBody3D
 
 		direction.Y = 0;
 
-		
+
 
 		// Add the gravity.
 		if (!IsOnFloor())
@@ -39,3 +40,6 @@ public partial class Monster3d : CharacterBody3D
 		MoveAndSlide();
 	}
 }
+	//Color basecolor = _material.AlbedoColor;
+	//	basecolor.A = 1.0f;
+	//	_material.AlbedoColor = basecolor;
