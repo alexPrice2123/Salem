@@ -92,7 +92,7 @@ script = ExtResource("1_ayuld")
 shape = SubResource("CapsuleShape3D_ayuld")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.799944, 0)
+transform = Transform3D(0.450913, 0, 0, 0, 2.30314, 0, 0, 0, 0.120771, -0.00637412, -0.982033, 0.0185248)
 material_override = SubResource("StandardMaterial3D_ayuld")
 material_overlay = SubResource("StandardMaterial3D_yfqb8")
 mesh = SubResource("ArrayMesh_l68c8")
