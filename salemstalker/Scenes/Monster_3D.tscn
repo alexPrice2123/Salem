@@ -103,4 +103,6 @@ mesh = SubResource("ArrayMesh_l68c8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00115597, -0.0428574, -0.00184101)
 shape = SubResource("CapsuleShape3D_yfqb8")
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
