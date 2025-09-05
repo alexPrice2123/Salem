@@ -13,6 +13,7 @@ public partial class Player3d : CharacterBody3D
 	private Slider _senseBar;
 	private MeshInstance3D _sword;
 	public float _damage = 0.0f;
+	public float _knockbackStrength = 15.0f;
 
 
 	public override void _Ready()
