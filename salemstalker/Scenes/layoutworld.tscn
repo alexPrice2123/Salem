@@ -3,6 +3,7 @@
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="1_oykm3"]
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="2_w7a5n"]
 [ext_resource type="Material" uid="uid://ciyou2jfanira" path="res://Assets/Materials/Grass_Mat.tres" id="3_8nta7"]
+[ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monster_3D.tscn" id="4_yy5so"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a02cp"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
