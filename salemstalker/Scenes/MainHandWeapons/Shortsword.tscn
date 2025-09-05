@@ -7,6 +7,7 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_3h2ph"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_c1cqh"]
+size = Vector3(0.08, 3.02, 0.69)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jo16x"]
 albedo_color = Color(1, 0, 0, 1)
@@ -20,23 +21,26 @@ point_count = 2
 curve = SubResource("Curve_3h2ph")
 
 [sub_resource type="Curve" id="Curve_m4ngj"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_ag22c"]
 curve = SubResource("Curve_m4ngj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o56aj"]
+lifetime_randomness = 1.0
 angle_min = 1.07288e-05
 angle_max = 360.0
 direction = Vector3(0, 0, 0)
 spread = 0.0
-radial_velocity_min = 0.999978
-radial_velocity_max = 1.99998
+radial_velocity_min = 2.99998
+radial_velocity_max = 5.99998
 radial_velocity_curve = SubResource("CurveTexture_c1cqh")
-gravity = Vector3(0, 0, 0)
-scale_min = 0.1
-scale_max = 0.2
+gravity = Vector3(0, -2, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_min = 0.05
+scale_max = 0.1
 scale_curve = SubResource("CurveTexture_ag22c")
 
 [sub_resource type="SphereMesh" id="SphereMesh_h8xwj"]
@@ -78,14 +82,15 @@ transform = Transform3D(2.53029, 0, 0, 0, 0.0341431, 0, 0, 0, 2.53029, 0, 0.4669
 mesh = SubResource("CylinderMesh_3h2ph")
 
 [node name="Blade" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.11362, 0, 0, 0, 3.09967, 0, 0, 0, 0.79099, 0, 1.9992, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9992, 0)
 mesh = SubResource("PrismMesh_c1cqh")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Blade"]
+[node name="Blood" type="GPUParticles3D" parent="Blade"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0698854, 1.28004, 0.000148448)
 material_override = SubResource("StandardMaterial3D_jo16x")
 emitting = false
-one_shot = true
-explosiveness = 1.0
+amount = 100
+lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_o56aj")
 draw_pass_1 = SubResource("SphereMesh_h8xwj")
 

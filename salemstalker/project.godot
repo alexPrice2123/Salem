@@ -27,6 +27,7 @@ project/assembly_name="SalemStalker"
 [global_group]
 
 Monster=""
+Player=""
 
 [input]
 
