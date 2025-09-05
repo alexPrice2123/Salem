@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b0cwtorxc33gy"
-path="res://.godot/imported/flalchoin.blend-f52262267420f0b9bbaf46d3632d21a8.scn"
+uid="uid://bgbqme06le1v"
+path="res://.godot/imported/rat.blend-0d2a91cc4d42691a6df9f2cd4b537974.scn"
 
 [deps]
 
-source_file="res://Assets/Weapons/flalchoin.blend"
-dest_files=["res://.godot/imported/flalchoin.blend-f52262267420f0b9bbaf46d3632d21a8.scn"]
+source_file="res://Assets/3D/Rat/rat.blend"
+dest_files=["res://.godot/imported/rat.blend-0d2a91cc4d42691a6df9f2cd4b537974.scn"]
 
 [params]
 
