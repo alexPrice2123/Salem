@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://0vyelfu4cohx"]
+[gd_scene load_steps=11 format=3 uid="uid://0vyelfu4cohx"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_8j60k"]
 [ext_resource type="Material" uid="uid://ciyou2jfanira" path="res://Assets/Materials/Grass_Mat.tres" id="3_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monster_3D.tscn" id="4_8j60k"]
+[ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="5_fo5ed"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a02cp"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -18,7 +19,19 @@ sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_5ukr8"]
+vertices = PackedVector3Array(-4.67981, -0.14685, 33.8711, -2.67981, -0.14685, 35.3711, -1.42981, -0.14685, 35.8711, 3.07019, -0.14685, -14.6289, 1.32019, -0.14685, -15.3789, -1.42981, -0.14685, -15.3789, -4.42981, -0.14685, -13.6289, -5.92981, -0.14685, -11.8789, 6.57019, -0.14685, -10.8789, 2.07019, -0.14685, 35.6211, 3.82019, -0.14685, 34.6211, 6.07019, -0.14685, 32.1211, -6.42981, -0.14685, 31.6211, -11.1798, -0.14685, 15.3711, -9.67981, -0.14685, 23.8711, 11.0702, -0.14685, 16.3711, 11.0702, -0.14685, 4.12106, -11.1798, -0.14685, 5.12106, 9.32019, -0.14685, 25.1211, 9.82019, -0.14685, -2.87894, -9.67981, -0.14685, -3.37894, -7.92981, -0.14685, -8.37894)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 7), PackedInt32Array(7, 3, 8), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 2), PackedInt32Array(11, 2, 0), PackedInt32Array(11, 0, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(11, 12, 15), PackedInt32Array(15, 12, 13), PackedInt32Array(15, 13, 17), PackedInt32Array(15, 17, 16), PackedInt32Array(15, 18, 11), PackedInt32Array(19, 16, 8), PackedInt32Array(8, 16, 7), PackedInt32Array(7, 16, 20), PackedInt32Array(20, 16, 17), PackedInt32Array(20, 21, 7)]
+agent_height = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o06y3"]
+
 [node name="World" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(1000, 1, 1000)
+material = ExtResource("3_5a7ea")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -0.0833254, -0.0357208, 2.38419e-07)
@@ -52,12 +65,19 @@ use_collision = true
 size = Vector3(1, 1, 53.2356)
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.30074e-05, 3.99224, 6.13928e-06)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-use_collision = true
-size = Vector3(1000, 1, 1000)
-material = ExtResource("3_5a7ea")
+transform = Transform3D(-0.0633305, 0, -0.997993, 0, 1, 0, 0.997993, 0, -0.0633305, 2.30074e-05, 3.99224, 3.31487)
 
 [node name="Monster_3d" parent="." instance=ExtResource("4_8j60k")]
 transform = Transform3D(0.999995, -0.00326376, 0, 0.00326376, 0.999995, 0, 0, 0, 1, 3.35548, 1.98066, 0)
+
+[node name="VillageRegion" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14694, 35.5207)
+navigation_mesh = SubResource("NavigationMesh_5ukr8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VillageRegion"]
+transform = Transform3D(23.3596, 0, 0, 0, 1, 0, 0, 0, 52.2341, 0, -1.64685, 10.2381)
+visible = false
+mesh = SubResource("CylinderMesh_o06y3")
+
+[node name="npc_villager" parent="." instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.21037, 27.7851)
