@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://j6uelknlee1h"]
+[gd_scene load_steps=14 format=3 uid="uid://j6uelknlee1h"]
 
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="1_m087h"]
 
@@ -46,16 +46,6 @@ scale_curve = SubResource("CurveTexture_ag22c")
 [sub_resource type="SphereMesh" id="SphereMesh_h8xwj"]
 
 [sub_resource type="Animation" id="Animation_jo16x"]
-length = 0.1
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_m087h"]
 resource_name = "Swing"
 length = 0.3
 tracks/0/type = "rotation_3d"
@@ -64,12 +54,18 @@ tracks/0/enabled = true
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.166667, 1, -0.5, 0, 0, 0.866, 0.3, 1, 0, 0, 0, 1)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.133333, 1, -0.413, 0.492, -0.492, 0.587, 0.200688, 1, -0.557, 0.663, -0.321, 0.383, 0.3, 1, 0, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.133333, 1, 0.3, 0, -0.5, 0.200688, 1, -0.3, 0, -1, 0.3, 1, 0, 0, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
 _data = {
-&"RESET": SubResource("Animation_jo16x"),
-&"Swing": SubResource("Animation_m087h")
+&"Swing": SubResource("Animation_jo16x")
 }
 
 [node name="Handle" type="MeshInstance3D"]

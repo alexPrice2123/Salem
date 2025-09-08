@@ -23,7 +23,7 @@ public partial class Player3d : CharacterBody3D
 		_cam = GetNode<Camera3D>("Head/Camera3D"); //Declares the camera componant
 		_interface = GetNode<Control>("UI/Main"); //Delcares the main UI
 		_senseBar = GetNode<Slider>("UI/Main/Sense"); //Declares the camera slider
-		_sword = GetNode<MeshInstance3D>("Head/Camera3D/Handle"); //Declares the sword
+		_sword = GetNode<MeshInstance3D>("Head/Camera3D/Sword/Handle"); //Declares the sword
 		_damage = 1.0f;
 	}
 	

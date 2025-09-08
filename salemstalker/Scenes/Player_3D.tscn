@@ -21,10 +21,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673132, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
-[node name="Handle" parent="Head/Camera3D" instance=ExtResource("3_df3ch")]
-transform = Transform3D(0.037423, 0, 0, 0, 0.0935574, 0, 0, 0, 0.037423, 0.180032, -0.202996, -0.247056)
-skeleton = NodePath("../../..")
-
 [node name="Hitbox" type="Area3D" parent="Head/Camera3D" groups=["Player"]]
 transform = Transform3D(0.998992, 0, 0, 0, 0.998992, 0, 0, 0, 0.998992, 0, 0, 0)
 
@@ -32,6 +28,13 @@ transform = Transform3D(0.998992, 0, 0, 0, 0.998992, 0, 0, 0, 0.998992, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0179219, -0.810296)
 shape = SubResource("BoxShape3D_df3ch")
 disabled = true
+
+[node name="Sword" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.231209, -0.298717)
+
+[node name="Handle" parent="Head/Camera3D/Sword" instance=ExtResource("3_df3ch")]
+transform = Transform3D(0.037423, 0, 0, 0, 0.0935574, 0, 0, 0, 0.037423, 0, 0, 0)
+skeleton = NodePath("../../../..")
 
 [node name="UI" parent="." instance=ExtResource("2_1hilh")]
 
