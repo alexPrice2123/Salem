@@ -12,6 +12,9 @@ public partial class Player3d : CharacterBody3D
 	private Control _interface;
 	private Slider _senseBar;
 	private MeshInstance3D _sword;
+	public float _damage = 0.0f;
+	public float _knockbackStrength = 15.0f;
+
 
 	public override void _Ready()
 	{
@@ -21,16 +24,18 @@ public partial class Player3d : CharacterBody3D
 		_interface = GetNode<Control>("UI/Main"); //Delcares the main UI
 		_senseBar = GetNode<Slider>("UI/Main/Sense"); //Declares the camera slider
 		_sword = GetNode<MeshInstance3D>("Head/Camera3D/Handle"); //Declares the sword
+		_damage = 1.0f;
 	}
-
-	private void _on_hitbox_body_entered(Node3D body)
+	
+	private async void _on_hitbox_body_entered(Node3D body)
 	{
 		if (body.IsInGroup("Monster"))
 		{
-			
+			_sword.GetNode<MeshInstance3D>("Blade").GetNode<GpuParticles3D>("Blood").Emitting = true;
+			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+			_sword.GetNode<MeshInstance3D>("Blade").GetNode<GpuParticles3D>("Blood").Emitting = false;
 		}
 	}
-	
 	public override void _Input(InputEvent @event) //When the player does any input
 	{
 		if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured) //When the input is mouse movment
@@ -49,13 +54,11 @@ public partial class Player3d : CharacterBody3D
 				Input.MouseMode = Input.MouseModeEnum.Visible; //Make the mouse visible
 				_interface.Visible = true;
 				_senseBar.Value = CamSense * 1000;
-				GD.Print(_interface.Visible);
 			}
 			else
 			{
 				Input.MouseMode = Input.MouseModeEnum.Captured; //Make the mouse invisible
 				_interface.Visible = false;
-				GD.Print(_interface.Visible);
 			}
 
 		}
@@ -112,6 +115,6 @@ public partial class Player3d : CharacterBody3D
 		_cam.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		_cam.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
-		}
+	}
 }
 
