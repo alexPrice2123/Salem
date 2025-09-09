@@ -25,3 +25,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06121, -1.07706)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.581923, 0)
 shape = SubResource("CapsuleShape3D_n6gic")
+
+[node name="QuestPrompt" type="Label3D" parent="."]
+transform = Transform3D(-0.999347, 0, 0.036138, 0, 1, 0, -0.036138, 0, -0.999347, 0, 2.04831, 0)
+billboard = 1
+text = "Hey! Could you help me out? This rat is attatched to me!"
+font_size = 20
+autowrap_mode = 1
+width = 320.0
