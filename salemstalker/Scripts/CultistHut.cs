@@ -36,6 +36,7 @@ public partial class CultistHut : Node3D
             foreach (CharacterBody3D monster in _holder.GetChildren())
             {
                 monster.QueueFree();
+                _number = 0;
            }
         }
 

@@ -106,6 +106,7 @@ public partial class Monster3d : CharacterBody3D
             // Face the player while chasing
             Vector3 playerPos = _player.GlobalPosition;
             LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
+            _player._inCombat = true;
         }
         else // If the player is out of range, wander randomly
         {

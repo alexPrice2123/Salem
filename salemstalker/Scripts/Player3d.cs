@@ -14,6 +14,9 @@ public partial class Player3d : CharacterBody3D
     private MeshInstance3D _sword; // Reference to the sword mesh in the player's hand
     public float _damage = 0.0f; // Player's attack damage
     public float _knockbackStrength = 15.0f; // Strength of knockback when hitting an enemy
+    public bool _inCombat = false;
+    private float _combatCounter = 0;
+    private Control _combatNotif;
 
     // Called when the node enters the scene tree
     public override void _Ready()
@@ -26,6 +29,7 @@ public partial class Player3d : CharacterBody3D
         _senseBar = GetNode<Slider>("UI/Main/Sense"); // Declares the slider for adjusting camera sensitivity
         _sword = GetNode<MeshInstance3D>("Head/Camera3D/Sword/Handle"); // Declares the sword object under the camera
         _damage = 1.0f; // Initializes the damage value
+        _combatNotif = GetNode<Control>("UI/Combat");
     }
 
     // Called when any input event occurs (e.g., key presses, mouse movements)
@@ -70,6 +74,20 @@ public partial class Player3d : CharacterBody3D
     public override void _PhysicsProcess(double delta)
     {
         Vector3 velocity = Velocity; // Get the current velocity
+        if (_inCombat == true)
+        {
+            _combatNotif.Visible = true;
+        }
+        else
+        {
+           _combatNotif.Visible = false; 
+        }
+        _combatCounter += 1;
+        if (_combatCounter >= 250)
+        {
+            _combatCounter = 0;
+            _inCombat = false;
+        }
 
         // If the UI is visible, update camera sensitivity from the slider
         if (_interface.Visible == true)
