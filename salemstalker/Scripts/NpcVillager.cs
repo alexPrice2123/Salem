@@ -1,22 +1,31 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 public partial class NpcVillager : CharacterBody3D
 {
-	private NavigationAgent3D _navigationAgent; 
-	
-    public const float speed = 5.0f ;
-	private Vector3 _movementTargetPosition = new Vector3(-3.0f, 0.0f, 2.0f);
-	
-	public Vector3 MovementTarget
+    // - Constants -
+	public const float Speed = 3.0f;     
+	public const float Range = 5.0f;    
+
+    // - Variables -
+    private Player3d _player;                                                   // Reference to the player object
+    private RandomNumberGenerator _rng = new() ;          // RNG for idle times
+    private bool moveStatus = true ;
+	private NavigationAgent3D _navigationAgent ;
+    private Vector3 WanderTarget ;
+    public Vector3 MovementTarget
     {
         get { return _navigationAgent.TargetPosition; }
         set { _navigationAgent.TargetPosition = value; }
     }
 
+   
+
 	public override void _Ready()
     {
-        base._Ready();
+        // Get reference to the player
+		_player = this.GetParent().GetNode<Player3d>("Player_3d");
 
         _navigationAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
 
@@ -26,27 +35,36 @@ public partial class NpcVillager : CharacterBody3D
 
     public override void _PhysicsProcess(double delta) //Event tick; happens every frame
 	{
-		if (NavigationServer3D.MapGetIterationId(_navigationAgent.GetNavigationMap()) == 0)
+        float distance = (_player.GlobalPosition - GlobalPosition).Length();
+        Vector3 velocity = new();
+        if (_navigationAgent.IsNavigationFinished())
         {
-            return;
+            GD.Print("Getting new target and idling.");
+            WanderTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 1, false);
+            WanderIdle();
         }
-		if (_navigationAgent.IsNavigationFinished())
+        if (distance <= Range) // If player is close enough
         {
-			GD.Print(MovementTarget);
-            MovementTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 1, false);
+            // Face the player
+            Vector3 playerPos = _player.GlobalPosition;
+			LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
+            moveStatus = false ;
+            Velocity = Vector3.Zero;
         }
-		Vector3 velocity = Velocity;
-        Vector3 currentAgentPosition = GlobalTransform.Origin;
-        Vector3 nextPathPosition = _navigationAgent.GetNextPathPosition();
-        // Add the gravity.
-        if (! IsOnFloor())
-		{
-			velocity += GetGravity() * (float)delta;
-		}
-		
-		
-		Velocity = velocity + currentAgentPosition.DirectionTo(nextPathPosition) * speed;
-		MoveAndSlide();
+        
+        if (moveStatus)
+        {
+            GD.Print("Moving.");
+            MovementTarget = WanderTarget ;
+            Vector3 nextPoint = _navigationAgent.GetNextPathPosition() ;
+            velocity += (nextPoint - GlobalTransform.Origin).Normalized() * Speed ;
+
+            // Face wander target
+			LookAt(new Vector3(WanderTarget.X, GlobalPosition.Y, WanderTarget.Z), Vector3.Up);
+        }
+        
+        Velocity = velocity;
+        MoveAndSlide();
 	}
 
 	private async void ActorSetup()
@@ -55,8 +73,13 @@ public partial class NpcVillager : CharacterBody3D
         await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
 
         // Now that the navigation map is no longer empty, set the movement target.
-        MovementTarget = _movementTargetPosition;
+        MovementTarget = GlobalPosition;
     }
 
-	
+    private async void WanderIdle()
+    {
+        GD.Print("Idle start");
+        await ToSignal(GetTree().CreateTimer(_rng.RandfRange(0.0f,10.0f)), "timeout");
+        GD.Print("Idle end");
+    }
 }

@@ -9,14 +9,19 @@
 [node name="npc_villager" type="CharacterBody3D"]
 script = ExtResource("1_x81n3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.659027, 0)
-shape = SubResource("CapsuleShape3D_n6gic")
-
 [node name="villagerblank" parent="." instance=ExtResource("2_8tk1i")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_height_offset = -1.0
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+path_height_offset = 1.0
+navigation_layers = 2
+max_speed = 5.0
 
 [node name="rat2" parent="." instance=ExtResource("3_820w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.962848)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06121, -1.07706)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.581923, 0)
+shape = SubResource("CapsuleShape3D_n6gic")
