@@ -24,10 +24,6 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="SalemStalker"
 
-[filesystem]
-
-import/blender/enabled=false
-
 [global_group]
 
 Monster=""
