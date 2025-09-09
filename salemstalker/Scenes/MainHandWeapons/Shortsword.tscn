@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://j6uelknlee1h"]
+[gd_scene load_steps=16 format=3 uid="uid://j6uelknlee1h"]
 
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="1_m087h"]
+[ext_resource type="Script" uid="uid://bia85ihgc8h1y" path="res://Scripts/Blood.cs" id="2_jo16x"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jo16x"]
 
@@ -68,10 +69,14 @@ _data = {
 &"Swing": SubResource("Animation_jo16x")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_m087h"]
+size = Vector3(9.94419, 6.06387, 9.97197)
+
 [node name="Handle" type="MeshInstance3D"]
 transform = Transform3D(0.2, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 0, 0)
 material_override = ExtResource("1_m087h")
 mesh = SubResource("BoxMesh_jo16x")
+script = ExtResource("2_jo16x")
 
 [node name="Hilt" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.53029, 0, 0, 0, 0.0341431, 0, 0, 0, 2.53029, 0, 0.466943, 0)
@@ -94,3 +99,13 @@ draw_pass_1 = SubResource("SphereMesh_h8xwj")
 libraries = {
 &"": SubResource("AnimationLibrary_3h2ph")
 }
+
+[node name="Hitbox" type="Area3D" parent="." groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0246143, -0.00856304, 0.0413209)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" groups=["Player"]]
+transform = Transform3D(0.999931, 0, 0, 0, 1, 0, 0, 0, 0.999931, 0.00569105, 3.05682, 0.00147738)
+shape = SubResource("BoxShape3D_m087h")
+disabled = true
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

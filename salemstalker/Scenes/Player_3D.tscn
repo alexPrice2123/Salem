@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=5 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_r3g0q"]
 [ext_resource type="PackedScene" uid="uid://dwpo6a7lu68jh" path="res://Scenes/ui.tscn" id="2_1hilh"]
@@ -6,9 +6,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_df3ch"]
-size = Vector3(1, 1, 1.27197)
 
 [node name="Player_3d" type="CharacterBody3D"]
 script = ExtResource("1_r3g0q")
@@ -21,14 +18,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673132, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
-[node name="Hitbox" type="Area3D" parent="Head/Camera3D" groups=["Player"]]
-transform = Transform3D(0.998992, 0, 0, 0, 0.998992, 0, 0, 0, 0.998992, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/Hitbox" groups=["Player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0179219, -0.810296)
-shape = SubResource("BoxShape3D_df3ch")
-disabled = true
-
 [node name="Sword" type="Node3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.231209, -0.298717)
 
@@ -37,5 +26,3 @@ transform = Transform3D(0.037423, 0, 0, 0, 0.0935574, 0, 0, 0, 0.037423, 0, 0, 0
 skeleton = NodePath("../../../..")
 
 [node name="UI" parent="." instance=ExtResource("2_1hilh")]
-
-[connection signal="body_entered" from="Head/Camera3D/Hitbox" to="." method="_on_hitbox_body_entered"]
