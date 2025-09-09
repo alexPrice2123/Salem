@@ -25,7 +25,8 @@ public partial class Monster3d : CharacterBody3D
 	public override void _Ready()
 	{
 		// Get reference to the player
-		_player = this.GetParent().GetNode<Player3d>("Player_3d");
+		GD.Print(this.GetParent().GetParent().GetParent().Name);
+		_player = this.GetParent().GetParent().GetParent().GetNode<Player3d>("Player_3d");
 
 		// Get and configure material overlay for damage effects
 		_material = GetNode<MeshInstance3D>("MeshInstance3D").MaterialOverlay as StandardMaterial3D;
