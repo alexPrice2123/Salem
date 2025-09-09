@@ -21,26 +21,28 @@ public partial class Monster3d : CharacterBody3D
     private Vector3 startPos;                  // Starting position of the monster, used for wandering area
     private Node3D _hitFX;                     // FX node for visual effects when the monster gets hit
     private Node3D _body;                      // Main body node of the monster
-	private bool _canBeHit = true;					   //Checks to make sure the monster isnt double hit
+	private bool _canBeHit = true;                     //Checks to make sure the monster isnt double hit
+    private Vector3 _currentRot;
 
     // Called when the node enters the scene tree
-	public override void _Ready()
-	{
-		// Setup references and initialize variables when the monster is ready
-		_player = this.GetParent().GetParent().GetParent().GetNode<Player3d>("Player_3d");
-		_rng.Randomize();
-		_navAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
-		startPos = GlobalPosition;
+    public override void _Ready()
+    {
+        // Setup references and initialize variables when the monster is ready
+        _player = this.GetParent().GetParent().GetParent().GetParent().GetNode<Player3d>("Player_3d");
+        _rng.Randomize();
+        _navAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
+        startPos = GlobalPosition;
 
-		// Set initial wandering target
-		float randZ = GlobalPosition.Z + _rng.RandiRange(-50, 50);
-		float randX = GlobalPosition.X + _rng.RandiRange(-50, 50);
-		_wanderPos = new Vector3(randX, 0f, randZ);
+        // Set initial wandering target
+        float randZ = GlobalPosition.Z + _rng.RandiRange(-50, 50);
+        float randX = GlobalPosition.X + _rng.RandiRange(-50, 50);
+        _wanderPos = new Vector3(randX, 0f, randZ);
 
-		// Get references to visual effect and body node
-		_hitFX = GetNode<Node3D>("HitFX");
-		_body = GetNode<Node3D>("Body");
-	}
+        // Get references to visual effect and body node
+        _hitFX = GetNode<Node3D>("HitFX");
+        _body = GetNode<Node3D>("Body");
+        _currentRot = GlobalRotation;
+    }
 
     // Triggered when the monster's hitbox collides with an Area3D
     private async void _on_hitbox_area_entered(Area3D body)
@@ -82,6 +84,9 @@ public partial class Monster3d : CharacterBody3D
     {
         // Update wander behavior every 250 frames
         _count += 1;
+
+        // Check distance between monster and player
+        float distance = (_player.GlobalPosition - GlobalPosition).Length();
         if (_count >= 250)
         {
             _count = _rng.RandiRange(-100, 50); // Randomize timing for wander
@@ -89,10 +94,6 @@ public partial class Monster3d : CharacterBody3D
             float randX = startPos.X + _rng.RandiRange(-50, 50); // Random wander position on X axis
             _wanderPos = new Vector3(randX, 0f, randZ); // Set new wander target
         }
-
-        // Check distance between monster and player
-        float distance = (_player.GlobalPosition - GlobalPosition).Length();
-
         // If the player is within range, chase the player
         if (distance <= Range)
         {

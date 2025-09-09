@@ -63,4 +63,6 @@ material = ExtResource("1_cnigr")
 
 [node name="SpawnTime" type="Timer" parent="."]
 
+[node name="MonsterHolder" type="Node3D" parent="."]
+
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
