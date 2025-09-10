@@ -7,17 +7,26 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n6gic"]
 
 [node name="npc_villager" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_x81n3")
 
 [node name="villagerblank" parent="." instance=ExtResource("2_8tk1i")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 5.0
-target_desired_distance = 5.0
 path_height_offset = 1.0
+path_max_distance = 7.01
 navigation_layers = 2
+path_postprocessing = 2
+avoidance_enabled = true
+height = 2.0
+radius = 1.0
+time_horizon_agents = 3.0
 max_speed = 5.0
+keep_y_velocity = false
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
 
 [node name="rat2" parent="." instance=ExtResource("3_820w5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06121, -1.07706)
