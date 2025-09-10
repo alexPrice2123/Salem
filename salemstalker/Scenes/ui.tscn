@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=8 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
+[ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
+[ext_resource type="PackedScene" uid="uid://dufmkp4txcmvx" path="res://Scenes/inv_world.tscn" id="3_nf4gj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wviqb"]
 line_spacing = 3.08
@@ -30,10 +32,14 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Main" type="Control" parent="."]
+[node name="PauseMenu" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -42,7 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sense" type="HSlider" parent="Main"]
+[node name="Sense" type="HSlider" parent="PauseMenu"]
 layout_mode = 2
 anchor_left = 0.437
 anchor_top = 0.778
@@ -59,7 +65,7 @@ max_value = 5.0
 step = 0.5
 value = 5.0
 
-[node name="Label" type="Label" parent="Main"]
+[node name="CamSense" type="Label" parent="PauseMenu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.639
@@ -68,12 +74,13 @@ anchor_bottom = 0.758
 offset_top = -0.072052
 offset_right = 1.0
 offset_bottom = -0.184021
+theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "Camera Sensitivity"
 label_settings = SubResource("LabelSettings_wviqb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BackgroundBlur" type="ColorRect" parent="Main"]
+[node name="BackgroundBlur" type="ColorRect" parent="PauseMenu"]
 z_index = -100
 material = SubResource("ShaderMaterial_jxero")
 layout_mode = 1
@@ -88,7 +95,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label2" type="Label" parent="Main"]
+[node name="Title" type="Label" parent="PauseMenu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.054
@@ -97,10 +104,51 @@ anchor_bottom = 0.173
 offset_top = 0.00799942
 offset_right = 1.0
 offset_bottom = -0.104004
+theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "PAUSE"
 label_settings = SubResource("LabelSettings_jxero")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Inv" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Inv"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.054
+anchor_right = 1.0
+anchor_bottom = 0.173
+offset_top = 0.00799942
+offset_right = 1.0
+offset_bottom = -0.104004
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Inventory"
+label_settings = SubResource("LabelSettings_jxero")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Inv"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.002
+offset_right = -4.0
+offset_bottom = -0.296082
+
+[node name="SubViewport" type="SubViewport" parent="Inv/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1150, 650)
+render_target_update_mode = 0
+
+[node name="InvWorld" parent="Inv/SubViewportContainer/SubViewport" instance=ExtResource("3_nf4gj")]
 
 [node name="Combat" type="Label" parent="."]
 visible = false
@@ -113,7 +161,25 @@ offset_left = 1.0
 offset_top = -0.296021
 offset_right = -0.304077
 offset_bottom = 0.23999
+theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "In Combat"
 label_settings = SubResource("LabelSettings_qdvrb")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="InvButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011
+anchor_top = 0.019
+anchor_right = 0.137
+anchor_bottom = 0.096
+offset_left = 0.327999
+offset_top = -0.312001
+offset_right = 0.175995
+offset_bottom = -0.208
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_qdvrb")
+theme_override_font_sizes/font_size = 30
+text = "i for Inventory"

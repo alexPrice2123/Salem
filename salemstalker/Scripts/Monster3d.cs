@@ -1,127 +1,116 @@
 using Godot;
 using System;
-using System.Security.Cryptography.X509Certificates;
 
 public partial class Monster3d : CharacterBody3D
 {
     // --- CONSTANTS ---
-    public const float Speed = 5.0f;           // Movement speed of the monster
-    public const float JumpVelocity = 6.5f;    // Jump power (currently not used in this script)
-    public const float MaxHealth = 5.0f;       // Maximum health of the monster
-    public const float Range = 25.0f;          // Detection range for the player (when to start chasing)
+    public const float Speed = 5.0f;            // Movement speed
+    public const float JumpVelocity = 6.5f;     // Jump strength (unused)
+    public const float MaxHealth = 5.0f;        // Maximum health
+    public const float Range = 25.0f;           // Detection range for chasing
 
     // --- VARIABLES ---
-    private Player3d _player;                  // Reference to the player object
-    public float _health = MaxHealth;          // Current health, starts at MaxHealth
-    private Vector3 _knockbackVelocity = Vector3.Zero; // Stores knockback velocity when hit
-    private Vector3 _wanderPos;                // Target position for wandering behavior
-    private float _count;                      // Counter for random wander behavior
-    private RandomNumberGenerator _rng = new RandomNumberGenerator(); // RNG instance for randomizing positions
-    private NavigationAgent3D _navAgent;       // Navigation agent to control monster movement
-    private Vector3 startPos;                  // Starting position of the monster, used for wandering area
-    private Node3D _hitFX;                     // FX node for visual effects when the monster gets hit
-    private Node3D _body;                      // Main body node of the monster
-	private bool _canBeHit = true;                     //Checks to make sure the monster isnt double hit
-    private Vector3 _currentRot;
+    private Player3d _player;                   // Reference to the player
+    public float _health = MaxHealth;           // Current monster health
+    private Vector3 _knockbackVelocity = Vector3.Zero; // Knockback velocity applied when hit
+    private Vector3 _wanderPos;                 // Current target position for wandering
+    private float _count;                       // Frame counter for wander timing
+    private RandomNumberGenerator _rng = new(); // RNG for randomizing wander positions
+    private NavigationAgent3D _navAgent;        // Navigation/pathfinding component
+    private Vector3 startPos;                   // Starting position, used as wander center
+    private Node3D _hitFX;                      // Visual effect node shown when hit
+    private Node3D _body;                       // Monster body mesh
+    private bool _canBeHit = true;              // Prevents being hit multiple times in quick succession
+    private Vector3 _currentRot;                // Tracks current rotation
 
-    // Called when the node enters the scene tree
+    // --- READY ---
     public override void _Ready()
     {
-        // Setup references and initialize variables when the monster is ready
         _player = this.GetParent().GetParent().GetParent().GetParent().GetNode<Player3d>("Player_3d");
         _rng.Randomize();
         _navAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
         startPos = GlobalPosition;
 
-        // Set initial wandering target
         float randZ = GlobalPosition.Z + _rng.RandiRange(-50, 50);
         float randX = GlobalPosition.X + _rng.RandiRange(-50, 50);
         _wanderPos = new Vector3(randX, 0f, randZ);
 
-        // Get references to visual effect and body node
         _hitFX = GetNode<Node3D>("HitFX");
         _body = GetNode<Node3D>("Body");
         _currentRot = GlobalRotation;
     }
 
-    // Triggered when the monster's hitbox collides with an Area3D
+    // --- DAMAGE HANDLER ---
     private async void _on_hitbox_area_entered(Area3D body)
     {
-		// If the monster is hit by the player, process damage and knockback
-		if (body.IsInGroup("Player") && _canBeHit == true)
-		{
-			_canBeHit = false;
-			float _damage = _player._damage;  // Get damage from the player
+        if (body.IsInGroup("Player") && _canBeHit)
+        {
+            _canBeHit = false;
+            float _damage = _player._damage; // Damage dealt by the player
 
-			// Show hit effect and hide body for a short time
-			_hitFX.Visible = true;
-			_body.Visible = false;
+            _hitFX.Visible = true;
+            _body.Visible = false;
 
-			// Calculate knockback direction and apply it
-			Vector3 knockbackDirection = (GlobalPosition - _player.Position).Normalized();
-			_knockbackVelocity = knockbackDirection * _player._knockbackStrength;
+            Vector3 knockbackDirection = (GlobalPosition - _player.Position).Normalized();
+            _knockbackVelocity = knockbackDirection * _player._knockbackStrength;
 
-			// Wait for a short time to show hit effect
-			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+            await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 
-			// Reset hit effect visibility and update health
-			_hitFX.Visible = false;
-			_body.Visible = true;
+            _hitFX.Visible = false;
+            _body.Visible = true;
 
-			// Reduce health and destroy monster if health is zero or less
-			_health -= _damage;
-			if (_health <= 0)
-			{
-				QueueFree(); // Remove the monster from the scene
-			}
-			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
-			_canBeHit = true;
+            _health -= _damage;
+            if (_health <= 0)
+            {
+                QueueFree(); // Destroy monster if health reaches zero
+            }
+
+            await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
+            _canBeHit = true;
         }
     }
 
-    // Physics loop: runs every frame to update movement and behavior
+    // --- PHYSICS LOOP ---
     public override void _PhysicsProcess(double delta)
     {
-        // Update wander behavior every 250 frames
         _count += 1;
-
-        // Check distance between monster and player
         float distance = (_player.GlobalPosition - GlobalPosition).Length();
+
+        // Update wander target every ~250 frames
         if (_count >= 250)
         {
-            _count = _rng.RandiRange(-100, 50); // Randomize timing for wander
-            float randZ = startPos.Z + _rng.RandiRange(-50, 50); // Random wander position on Z axis
-            float randX = startPos.X + _rng.RandiRange(-50, 50); // Random wander position on X axis
-            _wanderPos = new Vector3(randX, 0f, randZ); // Set new wander target
+            _count = _rng.RandiRange(-100, 50);
+            float randZ = startPos.Z + _rng.RandiRange(-50, 50);
+            float randX = startPos.X + _rng.RandiRange(-50, 50);
+            _wanderPos = new Vector3(randX, 0f, randZ);
         }
-        // If the player is within range, chase the player
+
+        // --- Chase Player ---
         if (distance <= Range)
         {
-            _navAgent.TargetPosition = _player.GlobalPosition;  // Set target position to player's location
-            Vector3 nextPoint = _navAgent.GetNextPathPosition();  // Get next path position for movement
-
-            // Move towards the player, applying knockback if necessary
+            _navAgent.TargetPosition = _player.GlobalPosition;
+            Vector3 nextPoint = _navAgent.GetNextPathPosition();
             Velocity = ((nextPoint - GlobalTransform.Origin).Normalized() * Speed) + _knockbackVelocity;
 
-            // Face the player while chasing
             Vector3 playerPos = _player.GlobalPosition;
             LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
             _player._inCombat = true;
         }
-        else // If the player is out of range, wander randomly
+        // --- Wander ---
+        else
         {
-            _navAgent.TargetPosition = _wanderPos;  // Set target position to random wander point
-            Vector3 nextPoint = _navAgent.GetNextPathPosition();  // Get next path position for wandering
-
-            // Move towards the wander point, applying knockback if necessary
+            _navAgent.TargetPosition = _wanderPos;
+            Vector3 nextPoint = _navAgent.GetNextPathPosition();
             Velocity = ((nextPoint - GlobalTransform.Origin).Normalized() * Speed) + _knockbackVelocity;
 
-            // Face the wander target while moving
             LookAt(new Vector3(_wanderPos.X, GlobalPosition.Y, _wanderPos.Z), Vector3.Up);
         }
 
-        // Apply movement and update knockback velocity over time
-        MoveAndSlide();
+        // --- Movement ---
+        if (_player._inv.Visible == false)
+        {
+            MoveAndSlide(); 
+        }
         _knockbackVelocity = _knockbackVelocity.Lerp(Vector3.Zero, (float)delta * 5.0f);
     }
 }
