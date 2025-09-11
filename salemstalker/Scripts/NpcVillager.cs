@@ -62,6 +62,7 @@ public partial class NpcVillager : CharacterBody3D
 			Vector3 playerPos = _player.GlobalPosition;
 			LookAt(new Vector3(playerPos.X, GlobalPosition.Y + 0.001f, playerPos.Z), Vector3.Up);
 			moveStatus = false ;
+			idleStatus = false ;
 			velocity = Vector3.Zero;
 			
 			_questPrompt.Show();
