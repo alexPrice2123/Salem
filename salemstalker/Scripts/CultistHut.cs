@@ -4,63 +4,66 @@ using System;
 public partial class CultistHut : Node3D
 {
     // --- CONSTANTS ---
-    private double _spawnDistance = 100;        // Maximum distance from player before monsters despawn or spawning stops
+    private const double SpawnDistance = 100;        // Maximum distance from player before monsters despawn or spawning stops
 
     // --- VARIABLES ---
-    private PackedScene _monsterScene = GD.Load<PackedScene>("res://Scenes/Monster_3D.tscn"); // PackedScene for spawning monsters
-    private CsgBox3D _spawn;                   // Spawn point where monsters appear
-    private Timer _countdown;                  // Timer that triggers spawn events
-    private float _number;                     // Current number of spawned monsters
-    private Player3d _player;           // Reference to the player
-    private Node3D _holder;                    // Parent node that holds all spawned monsters
+    private PackedScene _monsterScene = GD.Load<PackedScene>("res://Scenes/Monster_3D.tscn"); // Scene reference for the monster prefab
+    private CsgBox3D _spawn;                   // Spawn point node where monsters will appear
+    private Timer _countdown;                  // Timer node that triggers monster spawn events
+    private float _number;                     // Tracks the current number of spawned monsters
+    private Player3d _player;                  // Reference to the player node
+    private Node3D _holder;                    // Node that holds all spawned monsters as children
 
     // --- READY ---
     public override void _Ready()
     {
-        _spawn = GetNode<CsgBox3D>("Spawn");
-        _countdown = GetNode<Timer>("SpawnTime");
-        _countdown.Start();
+        _spawn = GetNode<CsgBox3D>("Spawn");             // Get the spawn point node
+        _countdown = GetNode<Timer>("SpawnTime");        // Get the timer node
+        _countdown.Start();                              // Start the spawn timer
 
-        _player = this.GetParent().GetParent().GetNode<Player3d>("Player_3d");
-        _holder = GetNode<Node3D>("MonsterHolder");
+        _player = this.GetParent().GetParent().GetNode<Player3d>("Player_3d"); // Get the player node (two parents up in the scene tree)
+        _holder = GetNode<Node3D>("MonsterHolder");      // Get the monster holder node
     }
 
     // --- SPAWN HANDLER ---
     private void _on_spawn_time_timeout()
     {
+        // Prevent spawning if player is in inventory
         if (_player._inv.Visible == true)
         {
             return;
         }
+
+        // Distance between player and hut
         float distance = (_player.GlobalPosition - GlobalPosition).Length();
     
-        // --- Despawn monsters if player is too far ---
-        if (distance >= _spawnDistance)
+        // --- Recount monsters if player is too far away (despawn management) ---
+        if (distance >= SpawnDistance)
         {
+            _number = 0;
             foreach (CharacterBody3D monster in _holder.GetChildren())
             {
-                monster.QueueFree();
-                _number = 0;
+                _number += 1;
             }
         }
 
         // --- Prevent spawning if at max count or player too far ---
-        if (_number >= 25 || distance >= _spawnDistance)
+        if (_number >= 25 || distance >= SpawnDistance)
         {
             return;
         }
 
         // --- Spawn new monster ---
-        CharacterBody3D monsterInstance = _monsterScene.Instantiate<CharacterBody3D>();
-        _holder.AddChild(monsterInstance);
-        monsterInstance.Position = _spawn.Position;
+        CharacterBody3D monsterInstance = _monsterScene.Instantiate<CharacterBody3D>(); // Create monster instance
+        _holder.AddChild(monsterInstance);                                             // Add monster to holder node
+        monsterInstance.Position = _spawn.Position;                                    // Set monster spawn position
 
-        _number += 1;
+        _number += 1; // Increase monster count
     }
 
     // --- PROCESS LOOP ---
     public override void _Process(double delta)
     {
-        // 
+        //
     }
 }
