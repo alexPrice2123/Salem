@@ -5,18 +5,18 @@ using System.Runtime.CompilerServices;
 public partial class NpcVillager : CharacterBody3D
 {
 	// - Constants -
-	public const float Speed = 5.0f;     
-	public const float Range = 5.0f;    
+	public const float Speed = 5.0f;     					// The AI's speed
+	public const float Range = 5.0f;    					// The max range between player and AI
 
 	// - Variables -
-	private Player3d _player;                                                   // Reference to the player object
-	private RandomNumberGenerator _rng = new() ;          // RNG for idle times
-	private bool moveStatus = true ;
-    private bool idleStatus = false;
-    private NavigationAgent3D _navigationAgent ;
-	private Label3D _questPrompt ;
-	private Vector3 WanderTarget ;
-    public Vector3 MovementTarget
+	private Player3d _player;                               // Reference to the player object
+	private RandomNumberGenerator _rng = new() ;            // RNG for idle times
+	private bool moveStatus = true ;						// Whether the AI is in movement state or not
+    private bool idleStatus = false;						// Whether the AI is idling or not 
+    private NavigationAgent3D _navigationAgent ;			// Reference to the agent object
+	private Label3D _questPrompt ;							// Reference to the prompt object
+	private Vector3 WanderTarget ;							// The target for the AI to wander to whenever it is moving
+    public Vector3 MovementTarget							// The target for the AI to pathfind to
 	{
 		get { return _navigationAgent.TargetPosition; }
 		set { _navigationAgent.TargetPosition = value; }
@@ -40,18 +40,23 @@ public partial class NpcVillager : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta) //Event tick; happens every frame
 	{
+		// Get the distance between the player and AI
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
+		// Add a temp variable for velocity
 		Vector3 velocity = new();
 
-		if (_navigationAgent.IsNavigationFinished())
+		if (_navigationAgent.IsNavigationFinished()) // If the AI is close enough to pathfinding target
 		{
-			GD.Print("Getting new target and idling.");
-            
+			// Get a new target position
             WanderTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 2, false);
-			MovementTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 2, false);
+            MovementTarget = WanderTarget;
+
+            // Make the AI stop moving
             moveStatus = false ;
             idleStatus = true ;
             velocity = Vector3.Zero;
+
+			// Make the AI idle
             WanderIdle();
 			
 		}
@@ -60,29 +65,44 @@ public partial class NpcVillager : CharacterBody3D
 		{
 			// Face the player
 			Vector3 playerPos = _player.GlobalPosition;
-			LookAt(new Vector3(playerPos.X, GlobalPosition.Y + 0.001f, playerPos.Z), Vector3.Up);
-			moveStatus = false ;
+            if (GlobalPosition.DistanceTo(playerPos) > 0.01f)
+            {
+                LookAt(new Vector3(playerPos.X, GlobalPosition.Y + 0.001f, playerPos.Z), Vector3.Up);
+            }
+
+			// Make the AI stop moving
+            moveStatus = false ;
 			idleStatus = false ;
 			velocity = Vector3.Zero;
 			
+			// Make the quest prompt appear 
 			_questPrompt.Show();
 		}
 		
 		if (moveStatus)
-		{
-			GD.Print("Moving.");
+		{	
+			// Calculate movement to next point
 			MovementTarget = WanderTarget ;
 			Vector3 nextPoint = _navigationAgent.GetNextPathPosition() ;
 			velocity += (nextPoint - GlobalTransform.Origin).Normalized() * Speed ;
+
+			// Make sure the quest prompt is hidden whenever player is not near
 			_questPrompt.Hide();
-			// Face wander target
-			LookAt(new Vector3(nextPoint.X, GlobalPosition.Y, nextPoint.Z), Vector3.Up);
-		}
+
+            // Face wander target
+            if (GlobalPosition.DistanceTo(nextPoint) > 0.01f)
+            {
+                LookAt(new Vector3(nextPoint.X, GlobalPosition.Y, nextPoint.Z), Vector3.Up);
+            }
+        }
         
+		// Allow the AI to move when not idling
 		if (!idleStatus)
 		{
             moveStatus = true;
         }
+
+		// Add safe velocity and move the AI
 		Velocity = velocity;
 		MoveAndSlide();
 	}
@@ -99,9 +119,9 @@ public partial class NpcVillager : CharacterBody3D
 
 	private async void WanderIdle()
 	{
-		GD.Print("Idle start");
-		await ToSignal(GetTree().CreateTimer(_rng.RandfRange(4.0f,10.0f)), "timeout");
+		// Make the villager wait for 4-10 seconds before moving again
+		await ToSignal(GetTree().CreateTimer(_rng.RandfRange(4.0f,10.0f)), "timeout"); 
 		moveStatus = true;
-		GD.Print("Idle end");
-	}
+        idleStatus = false;
+    }
 }
