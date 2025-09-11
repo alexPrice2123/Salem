@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dl3y8nfncided"]
 
 [ext_resource type="Script" uid="uid://cqm83otrgcv18" path="res://Scripts/NpcVillager.cs" id="1_x81n3"]
-[ext_resource type="PackedScene" uid="uid://c6jmp7jqyytkw" path="res://Assets/charatermodel/villagerblank.blend" id="2_8tk1i"]
+[ext_resource type="PackedScene" uid="uid://c6jmp7jqyytkw" path="res://Assets/3D/charatermodel/villagerblank.blend" id="2_8tk1i"]
 [ext_resource type="PackedScene" uid="uid://bgbqme06le1v" path="res://Assets/3D/Rat/rat.blend" id="3_820w5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n6gic"]

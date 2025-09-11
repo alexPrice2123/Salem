@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkw7kgrers2pn"]
 
-[ext_resource type="PackedScene" uid="uid://brcrxhmik065b" path="res://Assets/charatermodel/charaterblank.blend" id="1_b4gsv"]
+[ext_resource type="PackedScene" uid="uid://brcrxhmik065b" path="res://Assets/3D/charatermodel/charaterblank.blend" id="1_b4gsv"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="2_43ig0"]
 
 [node name="HitFX" instance=ExtResource("1_b4gsv")]

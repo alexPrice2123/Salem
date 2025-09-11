@@ -168,6 +168,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InvButton" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.011

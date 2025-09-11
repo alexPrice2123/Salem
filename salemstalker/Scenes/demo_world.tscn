@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmhgitq1fwfst"]
+[gd_scene load_steps=14 format=3 uid="uid://bmhgitq1fwfst"]
 
 [ext_resource type="Material" uid="uid://ciyou2jfanira" path="res://Assets/Materials/Grass_Mat.tres" id="1_hnokw"]
-[ext_resource type="PackedScene" uid="uid://bqagxxac2m8ci" path="res://Assets/buildings/house1.fbx" id="1_s37ah"]
+[ext_resource type="PackedScene" uid="uid://bqagxxac2m8ci" path="res://Assets/3D/buildings/house1.fbx" id="1_s37ah"]
+[ext_resource type="Material" uid="uid://b1lnqpgrdkyn7" path="res://Assets/Materials/Dirt_Mat.tres" id="2_wt1c4"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_btrko"]
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="3_xm5dv"]
-[ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="5_wt1c4"]
+[ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Assets/3D/buildings/Player_3D.tscn" id="5_wt1c4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xm5dv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -47,20 +48,24 @@ use_collision = true
 size = Vector3(1000, 1, 1000)
 metadata/_edit_lock_ = true
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+[node name="Path" type="CSGBox3D" parent="."]
 transform = Transform3D(-0.999998, 0, 0.00176271, 0, 1, 0, -0.00176271, 0, -0.999998, 87.5317, 0.180307, 9.94968)
+material_override = ExtResource("2_wt1c4")
 size = Vector3(45.1628, 0.268066, 3.47571)
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+[node name="Path2" type="CSGBox3D" parent="."]
 transform = Transform3D(0.00535824, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.00535824, 24.2945, 0.12936, -90.8407)
+material_override = ExtResource("2_wt1c4")
 size = Vector3(66.9026, 0.268066, 3.47571)
 
-[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+[node name="Path3" type="CSGBox3D" parent="."]
 transform = Transform3D(0.9997, 0, 0.024781, 0, 1, 0, -0.024781, 0, 0.9997, 8.34547, 0.13715, -122.079)
+material_override = ExtResource("2_wt1c4")
 size = Vector3(34.9948, 0.268066, 3.47571)
 
-[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+[node name="Path4" type="CSGBox3D" parent="."]
 transform = Transform3D(0.0274154, 0, -0.999632, 0, 1, 0, 0.999632, 0, 0.0274154, -7.80797, 0.13715, -137.425)
+material_override = ExtResource("2_wt1c4")
 size = Vector3(34.9948, 0.268066, 3.47571)
 
 [node name="Player_3d" parent="." instance=ExtResource("5_wt1c4")]

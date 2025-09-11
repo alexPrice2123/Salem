@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://u7yct1quu07a"]
 
 [ext_resource type="Script" uid="uid://ckmn7j07x5ubl" path="res://Scripts/Monster3d.cs" id="1_ayuld"]
-[ext_resource type="PackedScene" uid="uid://brcrxhmik065b" path="res://Assets/charatermodel/charaterblank.blend" id="2_yfqb8"]
+[ext_resource type="PackedScene" uid="uid://brcrxhmik065b" path="res://Assets/3D/charatermodel/charaterblank.blend" id="2_yfqb8"]
 [ext_resource type="PackedScene" uid="uid://bkw7kgrers2pn" path="res://Assets/HitFX/Villager/hit_fx.tscn" id="3_ci7oq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ayuld"]
