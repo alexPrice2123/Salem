@@ -5,14 +5,15 @@ using System.Runtime.CompilerServices;
 public partial class NpcVillager : CharacterBody3D
 {
 	// - Constants -
-	public const float Speed = 3.0f;     
+	public const float Speed = 5.0f;     
 	public const float Range = 5.0f;    
 
 	// - Variables -
 	private Player3d _player;                                                   // Reference to the player object
 	private RandomNumberGenerator _rng = new() ;          // RNG for idle times
 	private bool moveStatus = true ;
-	private NavigationAgent3D _navigationAgent ;
+    private bool idleStatus = false;
+    private NavigationAgent3D _navigationAgent ;
 	private Label3D _questPrompt ;
 	private Vector3 WanderTarget ;
     public Vector3 MovementTarget
@@ -41,18 +42,20 @@ public partial class NpcVillager : CharacterBody3D
 	{
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
 		Vector3 velocity = new();
+
 		if (_navigationAgent.IsNavigationFinished())
 		{
 			GD.Print("Getting new target and idling.");
             
             WanderTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 2, false);
-            if (!_navigationAgent.IsTargetReachable())
-            {
-                MovementTarget = GlobalPosition;
-            }
+			MovementTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 2, false);
+            moveStatus = false ;
+            idleStatus = true ;
+            velocity = Vector3.Zero;
             WanderIdle();
 			
 		}
+
 		if (distance <= Range) // If player is close enough
 		{
 			// Face the player
@@ -75,7 +78,10 @@ public partial class NpcVillager : CharacterBody3D
 			LookAt(new Vector3(nextPoint.X, GlobalPosition.Y, nextPoint.Z), Vector3.Up);
 		}
         
-		moveStatus = true;
+		if (!idleStatus)
+		{
+            moveStatus = true;
+        }
 		Velocity = velocity;
 		MoveAndSlide();
 	}
@@ -93,7 +99,8 @@ public partial class NpcVillager : CharacterBody3D
 	private async void WanderIdle()
 	{
 		GD.Print("Idle start");
-		await ToSignal(GetTree().CreateTimer(_rng.RandfRange(0.0f,10.0f)), "timeout");
+		await ToSignal(GetTree().CreateTimer(_rng.RandfRange(4.0f,10.0f)), "timeout");
+		moveStatus = true;
 		GD.Print("Idle end");
 	}
 }

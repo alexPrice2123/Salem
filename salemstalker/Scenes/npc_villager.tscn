@@ -22,14 +22,12 @@ avoidance_enabled = true
 height = 2.0
 radius = 1.0
 time_horizon_agents = 3.0
-max_speed = 5.0
 keep_y_velocity = false
-debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
 [node name="rat2" parent="." instance=ExtResource("3_820w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06121, -1.07706)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.06586, 0.00273705, 1.06121, -0.463509)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.581923, 0)
