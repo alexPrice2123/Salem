@@ -12,7 +12,12 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jxero"]
 shader = ExtResource("1_jxero")
-shader_parameter/lod = 3.0
+shader_parameter/blur_amount = 1.0
+shader_parameter/mix_amount = 0.0
+shader_parameter/color_over = Color(0, 0, 0, 1)
+shader_parameter/r_displacement = Vector2(0, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxero"]
 line_spacing = 3.08
