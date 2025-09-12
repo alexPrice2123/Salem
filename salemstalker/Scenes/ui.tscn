@@ -1,8 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=12 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="PackedScene" uid="uid://dufmkp4txcmvx" path="res://Scenes/inv_world.tscn" id="3_nf4gj"]
+[ext_resource type="Shader" uid="uid://2qgp3gkiyw40" path="res://Shaders/ui.gdshader" id="3_q7pk6"]
+[ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2246s"]
+shader = ExtResource("3_q7pk6")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.05
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 3.0
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.07
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wviqb"]
 line_spacing = 3.08
@@ -32,6 +51,15 @@ font_color = Color(1, 0, 0, 1)
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7pk6"]
+shader = ExtResource("4_2246s")
+shader_parameter/change_color_depth = true
+shader_parameter/target_color_depth = 4
+shader_parameter/dithering = true
+shader_parameter/scale_resolution = true
+shader_parameter/target_resolution_scale = 2
+shader_parameter/enable_recolor = false
+
 [node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -46,12 +74,15 @@ grow_vertical = 2
 
 [node name="PauseMenu" type="Control" parent="."]
 visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_2246s")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.998655, 0.994391)
 
 [node name="Sense" type="HSlider" parent="PauseMenu"]
 layout_mode = 2
@@ -125,6 +156,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="Label" parent="Inv"]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.054
@@ -150,7 +182,7 @@ offset_bottom = -0.296082
 [node name="SubViewport" type="SubViewport" parent="Inv/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1150, 650)
+size = Vector2i(1079, 606)
 render_target_update_mode = 0
 
 [node name="InvWorld" parent="Inv/SubViewportContainer/SubViewport" instance=ExtResource("3_nf4gj")]
@@ -189,3 +221,19 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_qdvrb")
 theme_override_font_sizes/font_size = 30
 text = "i for Inventory"
+
+[node name="Dither" type="ColorRect" parent="."]
+z_index = -101
+material = SubResource("ShaderMaterial_q7pk6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -57.0
+offset_right = 179.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.994303, 1.00415)
+mouse_filter = 2

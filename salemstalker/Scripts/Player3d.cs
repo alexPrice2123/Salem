@@ -4,8 +4,11 @@ using System;
 public partial class Player3d : CharacterBody3D
 {
     // --- CONSTANTS ---
-    public const float Speed = 10.0f;                 // Player base movement speed
+    public const float Speed = 4.5f;                 // Player base movement speed
+    public const float RunSpeed = 6.5f;                 // Player run movement speed
     public const float JumpVelocity = 6.5f;           // Player jump strength
+    public const float BobFreq = 2.0f;
+    public const float BobAmp = 0.06f;
     public float CamSense = 0.002f;                   // Mouse sensitivity for camera
 
     // --- NODE REFERENCES ---
@@ -14,7 +17,8 @@ public partial class Player3d : CharacterBody3D
     private Control _interface;                       // Pause menu UI
     private Slider _senseBar;                         // Sensitivity slider in pause menu
     public Control _inv;                              // Inventory UI
-    private MeshInstance3D _sword;                    // Sword mesh in hand
+    private MeshInstance3D _sword;                    // Actual sword hitbox that deals damage
+    private MeshInstance3D _fakeSword;                    // Sword mesh in hand
     private Control _combatNotif;                     // Combat notification UI
 
     // --- COMBAT VARIABLES ---
@@ -23,8 +27,10 @@ public partial class Player3d : CharacterBody3D
     public bool _inCombat = false;                    // Tracks if player is in combat
     private float _combatCounter = 0;                 // Frame counter for combat timeout
     private bool _inInv;                              // True if player is viewing inventory
-    private float _dashVelocity = 0f;                 // Current dash velocity boost
+    private float _dashVelocity = 0f;                 // Current dash velocity boost    
     private float _fullDashValue = 10.0f;             // Max dash velocity
+    private bool _running = false;
+    private float _bobTime = 0.0f;
 
     // --- READY ---
     public override void _Ready()
@@ -35,6 +41,7 @@ public partial class Player3d : CharacterBody3D
         _interface = GetNode<Control>("UI/PauseMenu");
         _senseBar = GetNode<Slider>("UI/PauseMenu/Sense");
         _sword = GetNode<MeshInstance3D>("Head/Camera3D/Sword/Handle");
+        _fakeSword = GetNode<MeshInstance3D>("FakeSword/Handle");
         _combatNotif = GetNode<Control>("UI/Combat");
         _inv = GetNode<Control>("UI/Inv");
 
@@ -105,6 +112,19 @@ public partial class Player3d : CharacterBody3D
                 _dashVelocity = _fullDashValue;
             }
         }
+
+        // --- Run (Shift key) ---
+        else if (@event is InputEventKey shiftKey && shiftKey.Keycode == Key.Shift)
+        {
+            if (shiftKey.Pressed)
+            {
+                _running = true;
+            }
+            else
+            {
+               _running = false;  
+            }
+        }
     }
 
     // --- PHYSICS LOOP ---
@@ -157,28 +177,52 @@ public partial class Player3d : CharacterBody3D
         // --- Movement input ---
         Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_forward", "move_back");
         Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-
+        GD.Print(Convert.ToInt32(_running));
         if (direction != Vector3.Zero)
         {
             _fullDashValue = 10f;
-            velocity.X = direction.X * (Speed + _dashVelocity);
-            velocity.Z = direction.Z * (Speed + _dashVelocity);
+            velocity.X = direction.X * (Speed+RunSpeed*Convert.ToInt32(_running) + _dashVelocity);
+            velocity.Z = direction.Z * (Speed+RunSpeed*Convert.ToInt32(_running) + _dashVelocity);
         }
         else
         {
-            _fullDashValue = 25f;
+            _fullDashValue = 15f;
             velocity = velocity.Lerp(_cam.GlobalTransform.Basis.Z * -1 * _dashVelocity, (float)delta * 10f);
             velocity = new Vector3(velocity.X, 0f, velocity.Z);
         }
 
         // --- Dash decay ---
         float lerpDash = _dashVelocity;
-        lerpDash = Mathf.Lerp(lerpDash, 0f, (float)delta * 3f);
+        lerpDash = Mathf.Lerp(lerpDash, 0f, (float)delta * 6f);
         _dashVelocity = lerpDash;
 
         // --- Camera FOV scaling ---
         float fovGoal = Mathf.Lerp(_cam.Fov, Velocity.Length() + 80, (float)delta * 10f);
         _cam.Fov = fovGoal;
+
+
+
+
+        if (_dashVelocity <= 1.0)
+        {
+            Transform3D camTransformGoal = _cam.Transform;
+            _bobTime += (float)delta * velocity.Length() * (Convert.ToInt32(IsOnFloor()) + 0.2f);
+            camTransformGoal.Origin = new Vector3(
+                HeadBob(_bobTime).X,
+                HeadBob(_bobTime).Y,
+                HeadBob(_bobTime).Z
+            );
+            Transform3D swordTransformGoal = _sword.Transform;
+            _sword.Transform = swordTransformGoal;
+            swordTransformGoal.Origin = new Vector3(
+                SwordBob(_bobTime).X,
+                SwordBob(_bobTime).Y,
+                SwordBob(_bobTime).Z
+            );
+            _sword.Transform = swordTransformGoal;
+        }
+        //_fakeSword.GlobalTransform.Origin.Lerp(_sword.GlobalTransform.Origin, (float)delta * 25f);
+        
 
         // --- Apply movement ---
         Velocity = velocity;
@@ -195,6 +239,22 @@ public partial class Player3d : CharacterBody3D
         _sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
         await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
         _sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
+    }
+
+    private Vector3 HeadBob(float _bobTime)
+    {
+        Vector3 pos = Vector3.Zero;
+        pos.Y = Mathf.Sin(_bobTime * BobFreq) * BobAmp;
+        pos.X = Mathf.Cos(_bobTime * BobFreq/2) * BobAmp;
+        return pos;
+    }
+
+    private Vector3 SwordBob(float _bobTime)
+    {
+        Vector3 pos = Vector3.Zero;
+        pos.Y = Mathf.Sin(_bobTime * BobFreq/1.5f) * BobAmp/4;
+        pos.X = Mathf.Cos(_bobTime * BobFreq/2.5f) * BobAmp/4;
+        return pos;
     }
 
     public Vector3 GetMousePos()

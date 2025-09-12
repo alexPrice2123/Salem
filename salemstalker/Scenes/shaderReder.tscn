@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1q5rxnbgsd4w"]
+[gd_scene load_steps=4 format=3 uid="uid://c33h640ws53o2"]
 
 [ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/demo_world.tscn" id="1_fn5sd"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="1_nea72"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1dyl7"]
 shader = ExtResource("1_nea72")
-shader_parameter/enabled = true
+shader_parameter/change_color_depth = true
+shader_parameter/target_color_depth = 4
 shader_parameter/dithering = true
-shader_parameter/colors = 16
-shader_parameter/dither_size = 3
+shader_parameter/scale_resolution = true
+shader_parameter/target_resolution_scale = 6
+shader_parameter/enable_recolor = false
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
 material = SubResource("ShaderMaterial_1dyl7")

@@ -11,14 +11,16 @@ config_version=5
 [application]
 
 config/name="SalemStalker"
-run/main_scene="uid://b1q5rxnbgsd4w"
+run/main_scene="uid://bmhgitq1fwfst"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/mode=2
-window/stretch/mode="canvas_items"
+window/size/viewport_width=1079
+window/size/viewport_height=606
+window/size/mode=3
+window/stretch/mode="viewport"
 
 [dotnet]
 
