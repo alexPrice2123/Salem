@@ -212,6 +212,7 @@ public partial class Player3d : CharacterBody3D
                 HeadBob(_bobTime).Y,
                 HeadBob(_bobTime).Z
             );
+            _cam.Transform = camTransformGoal;
             Transform3D swordTransformGoal = _sword.Transform;
             _sword.Transform = swordTransformGoal;
             swordTransformGoal.Origin = new Vector3(
