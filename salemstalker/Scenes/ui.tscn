@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=15 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="PackedScene" uid="uid://dufmkp4txcmvx" path="res://Scenes/inv_world.tscn" id="3_nf4gj"]
 [ext_resource type="Shader" uid="uid://2qgp3gkiyw40" path="res://Shaders/ui.gdshader" id="3_q7pk6"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
+[ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2246s"]
 shader = ExtResource("3_q7pk6")
@@ -40,8 +41,8 @@ shader_parameter/b_displacement = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxero"]
 line_spacing = 3.08
-font_size = 50
-outline_size = 25
+font_size = 40
+outline_size = 20
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qdvrb"]
@@ -60,7 +61,17 @@ shader_parameter/scale_resolution = true
 shader_parameter/target_resolution_scale = 2
 shader_parameter/enable_recolor = false
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m78vo"]
+shader = ExtResource("5_q7pk6")
+
+[sub_resource type="LabelSettings" id="LabelSettings_m78vo"]
+line_spacing = 3.08
+font_size = 30
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
 [node name="UI" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -187,6 +198,38 @@ render_target_update_mode = 0
 
 [node name="InvWorld" parent="Inv/SubViewportContainer/SubViewport" instance=ExtResource("3_nf4gj")]
 
+[node name="Quest" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.244
+anchor_bottom = 0.497
+offset_right = -0.276031
+offset_bottom = -0.182007
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Quest"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.065
+anchor_top = 0.027
+anchor_right = 1.068
+anchor_bottom = 0.243
+offset_left = -0.0950012
+offset_top = -0.127
+offset_right = 0.115967
+offset_bottom = -0.143005
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Quests"
+label_settings = SubResource("LabelSettings_jxero")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestBox" type="VBoxContainer" parent="Quest"]
+offset_top = 84.0
+offset_right = 295.0
+offset_bottom = 605.0
+
 [node name="Combat" type="Label" parent="."]
 visible = false
 layout_mode = 1
@@ -237,3 +280,50 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
 mouse_filter = 2
+
+[node name="Mouse" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_m78vo")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.5
+offset_top = -1.0
+offset_right = 1.5
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1.5, 1)
+
+[node name="Container" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 100.0
+offset_top = -398.0
+offset_right = 742.0
+offset_bottom = -101.0
+
+[node name="QuestTemplate" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+offset_top = 84.0
+offset_right = 295.0
+offset_bottom = 181.0
+
+[node name="Quest" type="Label" parent="Container/QuestTemplate"]
+z_index = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Quest"
+label_settings = SubResource("LabelSettings_jxero")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Number" type="Label" parent="Container/QuestTemplate"]
+z_index = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Number"
+label_settings = SubResource("LabelSettings_m78vo")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl3y8nfncided"]
+[gd_scene load_steps=5 format=3 uid="uid://dl3y8nfncided"]
 
 [ext_resource type="Script" uid="uid://cqm83otrgcv18" path="res://Scripts/NpcVillager.cs" id="1_x81n3"]
 [ext_resource type="PackedScene" uid="uid://c6jmp7jqyytkw" path="res://Assets/3D/charatermodel/villagerblank.blend" id="2_8tk1i"]
-[ext_resource type="PackedScene" uid="uid://bgbqme06le1v" path="res://Assets/3D/Rat/rat.blend" id="3_820w5"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="4_l2tj8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n6gic"]
+height = 3.13692
 
-[node name="npc_villager" type="CharacterBody3D"]
+[node name="npc_villager" type="CharacterBody3D" groups=["Interactable"]]
 collision_layer = 2
 script = ExtResource("1_x81n3")
 
@@ -27,19 +27,18 @@ keep_y_velocity = false
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
-[node name="rat2" parent="." instance=ExtResource("3_820w5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.06586, 0.00273705, 1.06121, -0.463509)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.581923, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.90732, 0)
 shape = SubResource("CapsuleShape3D_n6gic")
 
 [node name="QuestPrompt" type="Label3D" parent="."]
 transform = Transform3D(-0.999347, 0, 0.036138, 0, 1, 0, -0.036138, 0, -0.999347, 0, 2.04831, 0)
 billboard = 1
+no_depth_test = true
 texture_filter = 0
-text = "Hello young blud, wanna run the block on the opps in my 1698 Honda Civic."
+text = "Text"
 font = ExtResource("4_l2tj8")
-font_size = 20
-autowrap_mode = 1
+font_size = 25
+outline_size = 8
+autowrap_mode = 3
 width = 320.0

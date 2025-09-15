@@ -14,9 +14,21 @@ public partial class NpcVillager : CharacterBody3D
 	private bool moveStatus = true ;						// Whether the AI is in movement state or not
     private bool idleStatus = false;						// Whether the AI is idling or not 
     private NavigationAgent3D _navigationAgent ;			// Reference to the agent object
-	private Label3D _questPrompt ;							// Reference to the prompt object
+	public Label3D _questPrompt ;							// Reference to the prompt object
 	private Vector3 WanderTarget ;							// The target for the AI to wander to whenever it is moving
-    public Vector3 MovementTarget							// The target for the AI to pathfind to
+	[Export]
+	public string InitialDialouge;
+	[Export]
+	public string QuestDialouge;
+	[Export]
+	public string AcceptedDialouge;
+	[Export]
+	public string WaitingDialouge;
+	[Export]
+	public string DoneDialouge;
+	public bool _questComplete = false;
+
+    public Vector3 MovementTarget                           // The target for the AI to pathfind to
 	{
 		get { return _navigationAgent.TargetPosition; }
 		set { _navigationAgent.TargetPosition = value; }
@@ -30,6 +42,8 @@ public partial class NpcVillager : CharacterBody3D
         _player = this.GetParent().GetNode<Player3d>("Player_3d");
         _navigationAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
 		_questPrompt = GetNode<Label3D>("QuestPrompt");
+
+		_questPrompt.Text = InitialDialouge;
 
 		// Hide the quest prompt
 		_questPrompt.Hide();
@@ -45,20 +59,25 @@ public partial class NpcVillager : CharacterBody3D
 		// Add a temp variable for velocity
 		Vector3 velocity = new();
 
+		if (_questComplete == true)
+		{
+			_questPrompt.Text = DoneDialouge;
+		}
+
 		if (_navigationAgent.IsNavigationFinished()) // If the AI is close enough to pathfinding target
 		{
 			// Get a new target position
-            WanderTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 2, false);
-            MovementTarget = WanderTarget;
+			WanderTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 2, false);
+			MovementTarget = WanderTarget;
 
-            // Make the AI stop moving
-            moveStatus = false ;
-            idleStatus = true ;
-            velocity = Vector3.Zero;
+			// Make the AI stop moving
+			moveStatus = false;
+			idleStatus = true;
+			velocity = Vector3.Zero;
 
 			// Make the AI idle
-            WanderIdle();
-			
+			WanderIdle();
+
 		}
 
 		if (distance <= Range) // If player is close enough

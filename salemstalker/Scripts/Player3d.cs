@@ -4,38 +4,44 @@ using System;
 public partial class Player3d : CharacterBody3D
 {
     // --- CONSTANTS ---
-    public const float Speed = 4.5f;                 // Player base movement speed
-    public const float RunSpeed = 6.5f;                 // Player run movement speed
-    public const float JumpVelocity = 6.5f;           // Player jump strength
-    public const float BobFreq = 2.0f;
-    public const float BobAmp = 0.06f;
-    public float CamSense = 0.002f;                   // Mouse sensitivity for camera
+    public const float Speed = 4.5f;                 // Base player movement speed
+    public const float RunSpeed = 6.5f;              // Running movement speed
+    public const float JumpVelocity = 6.5f;          // Player jump strength
+    public const float BobFreq = 2.0f;               // Frequency of camera head-bob
+    public const float BobAmp = 0.06f;               // Amplitude of camera head-bob
+    public float CamSense = 0.002f;                  // Camera mouse sensitivity
 
     // --- NODE REFERENCES ---
-    private Node3D _head;                             // Player head node (handles rotation)
-    private Camera3D _cam;                            // Player camera
-    private Control _interface;                       // Pause menu UI
-    private Slider _senseBar;                         // Sensitivity slider in pause menu
-    public Control _inv;                              // Inventory UI
-    private MeshInstance3D _sword;                    // Actual sword hitbox that deals damage
-    private MeshInstance3D _fakeSword;                    // Sword mesh in hand
-    private Control _combatNotif;                     // Combat notification UI
+    private Node3D _head;                            // Player head node (handles rotation)
+    private Camera3D _cam;                           // Player camera node
+    private Control _interface;                      // Pause menu UI
+    private Slider _senseBar;                        // Sensitivity slider in pause menu
+    public Control _inv;                             // Inventory UI
+    private MeshInstance3D _sword;                   // Sword hitbox mesh (damages enemies)
+    private MeshInstance3D _fakeSword;               // Cosmetic sword mesh in hand
+    private Control _combatNotif;                    // Combat notification UI
+    private RayCast3D _ray;                          // Forward raycast (for NPC interaction)
+    private Control _questBox;                       // Quest display UI container
+    private VBoxContainer _questTemplate;            // Template node for quests
 
     // --- COMBAT VARIABLES ---
-    public float _damage = 0.0f;                      // Player attack damage
-    public float _knockbackStrength = 15.0f;          // Knockback strength applied to enemies
-    public bool _inCombat = false;                    // Tracks if player is in combat
-    private float _combatCounter = 0;                 // Frame counter for combat timeout
-    private bool _inInv;                              // True if player is viewing inventory
-    private float _dashVelocity = 0f;                 // Current dash velocity boost    
-    private float _fullDashValue = 10.0f;             // Max dash velocity
-    private bool _running = false;
-    private float _bobTime = 0.0f;
+    public float _damage = 0.0f;                     // Attack damage value
+    public float _knockbackStrength = 15.0f;         // Knockback force applied to enemies
+    public bool _inCombat = false;                   // Tracks if player is currently in combat
+    private float _combatCounter = 0;                // Frame counter for combat cooldown
+    private bool _inInv;                             // Tracks if inventory is open
+    private float _dashVelocity = 0f;                // Current dash boost velocity
+    private float _fullDashValue = 10.0f;            // Maximum dash velocity
+    private bool _running = false;                   // True if player is holding run input
+    private float _bobTime = 0.0f;                   // Time accumulator for head-bob effect
+    private string _originalDialouge;                // Stores NPC dialogue before player interacts
+    private CharacterBody3D _lastSeen;               // Last seen NPC in interaction range
+    private int _monstersKilled = 0;                 // Monster kill counter (for quests)
 
     // --- READY ---
     public override void _Ready()
     {
-        Input.MouseMode = Input.MouseModeEnum.Captured;      // Capture mouse on start
+        Input.MouseMode = Input.MouseModeEnum.Captured;      // Capture mouse cursor at start
         _head = GetNode<Node3D>("Head");
         _cam = GetNode<Camera3D>("Head/Camera3D");
         _interface = GetNode<Control>("UI/PauseMenu");
@@ -44,6 +50,9 @@ public partial class Player3d : CharacterBody3D
         _fakeSword = GetNode<MeshInstance3D>("FakeSword/Handle");
         _combatNotif = GetNode<Control>("UI/Combat");
         _inv = GetNode<Control>("UI/Inv");
+        _ray = GetNode<RayCast3D>("Head/Camera3D/Ray");
+        _questBox = GetNode<Control>("UI/Quest/QuestBox");
+        _questTemplate = GetNode<VBoxContainer>("UI/Container/QuestTemplate");
 
         _damage = 1.0f;                                     // Default starting damage
     }
@@ -81,8 +90,11 @@ public partial class Player3d : CharacterBody3D
         }
 
         // --- Sword attack ---
-        else if (@event is InputEventMouseButton click && Input.MouseMode == Input.MouseModeEnum.Captured && click.Pressed
-                 && _sword.GetNode<AnimationPlayer>("AnimationPlayer").IsPlaying() == false)
+        else if (@event is InputEventMouseButton click 
+                 && Input.MouseMode == Input.MouseModeEnum.Captured 
+                 && click.Pressed 
+                 && _sword.GetNode<AnimationPlayer>("AnimationPlayer").IsPlaying() == false 
+                 && _lastSeen == null)
         {
             Swing();
         }
@@ -107,22 +119,42 @@ public partial class Player3d : CharacterBody3D
         // --- Dash (Space key) ---
         else if (@event is InputEventKey spaceKey && spaceKey.Keycode == Key.Space && spaceKey.Pressed)
         {
-            if (_dashVelocity <= 0.1f)
-            {
-                _dashVelocity = _fullDashValue;
-            }
+            if (_dashVelocity <= 0.1f) { _dashVelocity = _fullDashValue; }
         }
 
         // --- Run (Shift key) ---
         else if (@event is InputEventKey shiftKey && shiftKey.Keycode == Key.Shift)
         {
-            if (shiftKey.Pressed)
+            _running = shiftKey.Pressed;
+        }
+
+        // --- Interact (E key) ---
+        else if (@event is InputEventKey eKey && eKey.Keycode == Key.E && eKey.Pressed)
+        {
+            if (_lastSeen != null && _lastSeen is NpcVillager villager)
             {
-                _running = true;
-            }
-            else
-            {
-               _running = false;  
+                if (villager._questComplete == true) { return; } //if the quest is done the player can't interact
+
+                if (villager._questPrompt.Text.Contains("E to Accept")) //changes dialouge from the quest dialouge to accepted dialouge
+                {
+                    villager._questPrompt.Text = villager.AcceptedDialouge;
+                    _monstersKilled = 0;
+                    GetQuest("KillMonsters", "Kill 5 Monsters", "0/5");
+                }
+                else if (villager._questPrompt.Text.Contains("E to Talk") && _monstersKilled < 5 && _questBox.FindChild("KillMonsters") == null) //changes dialouge from the initial dialouge to quest dialouge 
+                {
+                    villager._questPrompt.Text = villager.QuestDialouge + "\n" + "E to Accept";
+                }
+                else if (villager._questPrompt.Text.Contains("E to Talk") && _monstersKilled >= 5) //what happens when the player talks to him after completing the quest
+                {
+                    villager._questPrompt.Text = villager.DoneDialouge;
+                    villager._questComplete = true;
+                    RemoveQuest("KillMonsters");
+                }
+                else if (villager._questPrompt.Text.Contains("E to Talk") && _monstersKilled < 5) //what happens when the player talks to him before completing the quest
+                {
+                    villager._questPrompt.Text = villager.WaitingDialouge;
+                }
             }
         }
     }
@@ -133,9 +165,7 @@ public partial class Player3d : CharacterBody3D
         Vector3 velocity = Velocity;
 
         // --- Combat handling ---
-        if (_inCombat == true) { _combatNotif.Visible = true; }
-        else { _combatNotif.Visible = false; }
-
+        _combatNotif.Visible = _inCombat;
         _combatCounter += 1;
         if (_combatCounter >= 250)
         {
@@ -163,26 +193,19 @@ public partial class Player3d : CharacterBody3D
         }
 
         // --- Update sensitivity from pause menu ---
-        if (_interface.Visible == true)
-        {
-            CamSense = Convert.ToSingle(_senseBar.Value / 1000);
-        }
+        if (_interface.Visible == true) { CamSense = Convert.ToSingle(_senseBar.Value / 1000); }
 
         // --- Gravity ---
-        if (!IsOnFloor())
-        {
-            velocity += GetGravity() * (float)delta;
-        }
+        if (!IsOnFloor()) { velocity += GetGravity() * (float)delta; }
 
         // --- Movement input ---
         Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_forward", "move_back");
         Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-        GD.Print(Convert.ToInt32(_running));
         if (direction != Vector3.Zero)
         {
             _fullDashValue = 10f;
-            velocity.X = direction.X * (Speed+RunSpeed*Convert.ToInt32(_running) + _dashVelocity);
-            velocity.Z = direction.Z * (Speed+RunSpeed*Convert.ToInt32(_running) + _dashVelocity);
+            velocity.X = direction.X * (Speed + RunSpeed * Convert.ToInt32(_running) + _dashVelocity);
+            velocity.Z = direction.Z * (Speed + RunSpeed * Convert.ToInt32(_running) + _dashVelocity);
         }
         else
         {
@@ -192,45 +215,46 @@ public partial class Player3d : CharacterBody3D
         }
 
         // --- Dash decay ---
-        float lerpDash = _dashVelocity;
-        lerpDash = Mathf.Lerp(lerpDash, 0f, (float)delta * 6f);
-        _dashVelocity = lerpDash;
+        _dashVelocity = Mathf.Lerp(_dashVelocity, 0f, (float)delta * 6f);
 
         // --- Camera FOV scaling ---
         float fovGoal = Mathf.Lerp(_cam.Fov, Velocity.Length() + 80, (float)delta * 10f);
         _cam.Fov = fovGoal;
 
+        // --- NPC Interaction detection ---
+        if (GetMouseCollision() != null && _originalDialouge == null)
+        {
+            CharacterBody3D targetNode = GetMouseCollision();
+            if (targetNode is NpcVillager villager && villager._questComplete == false) // if the node that the player is looking at (argument 1), has a script attached to it named (argument 2) then set that to the variable (argument 3)
+            {
+                _lastSeen = villager;
+                _originalDialouge = villager._questPrompt.Text;
+                villager._questPrompt.Text = villager._questPrompt.Text + "\n" + "E to Talk";
+            }
+        }
+        else if (GetMouseCollision() == null && _originalDialouge != null) //set the NPC's dialouge back to the original
+        {
+            if (_lastSeen is NpcVillager villager) { villager._questPrompt.Text = _originalDialouge; }
+            _lastSeen = null;
+            _originalDialouge = null;
+        }
 
-
-
+        // --- Head bob + sword bob ---
         if (_dashVelocity <= 1.0)
         {
             Transform3D camTransformGoal = _cam.Transform;
             _bobTime += (float)delta * velocity.Length() * (Convert.ToInt32(IsOnFloor()) + 0.2f);
-            camTransformGoal.Origin = new Vector3(
-                HeadBob(_bobTime).X,
-                HeadBob(_bobTime).Y,
-                HeadBob(_bobTime).Z
-            );
+            camTransformGoal.Origin = HeadBob(_bobTime);
             _cam.Transform = camTransformGoal;
+
             Transform3D swordTransformGoal = _sword.Transform;
-            _sword.Transform = swordTransformGoal;
-            swordTransformGoal.Origin = new Vector3(
-                SwordBob(_bobTime).X,
-                SwordBob(_bobTime).Y,
-                SwordBob(_bobTime).Z
-            );
+            swordTransformGoal.Origin = SwordBob(_bobTime);
             _sword.Transform = swordTransformGoal;
         }
-        //_fakeSword.GlobalTransform.Origin.Lerp(_sword.GlobalTransform.Origin, (float)delta * 25f);
-        
 
         // --- Apply movement ---
         Velocity = velocity;
-        if (_inv.Visible == false)
-        {
-            MoveAndSlide();
-        }
+        if (_inv.Visible == false) { MoveAndSlide(); }
     }
 
     // --- CUSTOM FUNCTIONS ---
@@ -242,39 +266,59 @@ public partial class Player3d : CharacterBody3D
         _sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
     }
 
-    private Vector3 HeadBob(float _bobTime)
+    private Vector3 HeadBob(float bobTime)
     {
         Vector3 pos = Vector3.Zero;
-        pos.Y = Mathf.Sin(_bobTime * BobFreq) * BobAmp;
-        pos.X = Mathf.Cos(_bobTime * BobFreq/2) * BobAmp;
+        pos.Y = Mathf.Sin(bobTime * BobFreq) * BobAmp;
+        pos.X = Mathf.Cos(bobTime * BobFreq / 2) * BobAmp;
         return pos;
     }
 
-    private Vector3 SwordBob(float _bobTime)
+    private Vector3 SwordBob(float bobTime)
     {
         Vector3 pos = Vector3.Zero;
-        pos.Y = Mathf.Sin(_bobTime * BobFreq/1.5f) * BobAmp/4;
-        pos.X = Mathf.Cos(_bobTime * BobFreq/2.5f) * BobAmp/4;
+        pos.Y = Mathf.Sin(bobTime * BobFreq / 1.5f) * BobAmp / 4;
+        pos.X = Mathf.Cos(bobTime * BobFreq / 2.5f) * BobAmp / 4;
         return pos;
     }
 
-    public Vector3 GetMousePos()
+    public CharacterBody3D GetMouseCollision()
     {
-        var viewport = GetViewport();
-        var mousePosition = viewport.GetMousePosition();
-        var camera = viewport.GetCamera3D();
-        var rayOrigin = camera.ProjectRayOrigin(mousePosition);
-        var rayDirection = camera.ProjectRayNormal(mousePosition);
-        float rayLength = camera.Far;
-        var rayEnd = rayOrigin + rayDirection * rayLength;
-        var spaceState = GetWorld3D().DirectSpaceState;
-        var query = PhysicsRayQueryParameters3D.Create(rayOrigin, rayEnd);
-        var result = spaceState.IntersectRay(query);
-
-        if (result.ContainsKey("position"))
+        if (_ray.IsColliding())
         {
-            return (Vector3)result["position"];
+            if (_ray.GetCollider().GetClass() == "CharacterBody3D" && _ray.GetCollider() != this)
+            {
+                return (CharacterBody3D)_ray.GetCollider();
+            }
         }
-        return new Vector3(0, 0, 0);
+        return null;
+    }
+
+    public void MonsterKilled(string MonsterType)
+    {
+        _monstersKilled += 1;
+        if (_questBox.FindChild("KillMonsters") != null)
+        {
+            if (_monstersKilled >= 5) { (_questBox.GetNode("KillMonsters/Number") as Label).Text = "Complete!"; }
+            else { (_questBox.GetNode("KillMonsters/Number") as Label).Text = _monstersKilled + "/5"; }
+        }
+    }
+
+    public void RemoveQuest(string QuestName)
+    {
+        if (_questBox.FindChild(QuestName) != null)
+        {
+            _questBox.FindChild(QuestName).QueueFree();
+        }
+    }
+    
+    public void GetQuest(string QuestName, string QuestTitle, string QuestGoal)
+    {
+        Control questText = (VBoxContainer)_questTemplate.Duplicate();
+        _questBox.AddChild(questText);
+        questText.Owner = _questBox;
+        questText.Name = QuestName;
+        questText.GetNode<Label>("Quest").Text = QuestTitle;
+        questText.GetNode<Label>("Number").Text = QuestGoal;
     }
 }

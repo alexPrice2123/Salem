@@ -30,6 +30,7 @@ project/assembly_name="SalemStalker"
 
 Monster=""
 Player=""
+Interactable=""
 
 [input]
 
