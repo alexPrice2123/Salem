@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dufmkp4txcmvx"]
+[gd_scene load_steps=8 format=3 uid="uid://dufmkp4txcmvx"]
 
 [ext_resource type="Texture2D" uid="uid://qmxayi6pgeck" path="res://Assets/2D/Grass.png" id="1_e7ttb"]
+[ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_qv3mo"]
+[ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="3_2gl02"]
+[ext_resource type="PackedScene" uid="uid://323vl4kctpsr" path="res://Assets/Weapons/short sword.blend" id="4_xsxfx"]
+[ext_resource type="PackedScene" uid="uid://b4y5ian205sds" path="res://Assets/Weapons/rapier.blend" id="5_0o872"]
+[ext_resource type="PackedScene" uid="uid://catkfqrbkq6x4" path="res://Assets/Weapons/stake gun.blend" id="6_qit4k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4to0"]
 albedo_color = Color(0.376806, 0.372505, 0.312032, 1)
@@ -15,13 +20,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
 far = 10.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00281227, 0, -0.00021404)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164883, -0.0730438, -1.23657)
 light_color = Color(1, 1, 0.901961, 1)
-light_energy = 2.0
-omni_range = 3.0
+light_energy = 1.646
+omni_range = 3.285
 omni_attenuation = 0.5
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, -1.688)
 material_override = SubResource("StandardMaterial3D_h4to0")
 size = Vector3(4.15332, 2.15918, 0.185547)
+
+[node name="dagger" parent="." instance=ExtResource("2_qv3mo")]
+transform = Transform3D(-8.37676e-06, 0, -0.08, 0, 0.08, 0, 0.08, 0, -8.37676e-06, -1.10659, 99.3571, -1.50713)
+
+[node name="falchion" parent="." instance=ExtResource("3_2gl02")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -1.81136, 99.3548, -1.54662)
+
+[node name="short sword" parent="." instance=ExtResource("4_xsxfx")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.343, 99.3331, -1.51692)
+
+[node name="rapier" parent="." instance=ExtResource("5_0o872")]
+transform = Transform3D(-0.00147493, -0.0597482, 0.00528891, -0.0553763, -0.000676653, -0.023087, 0.0230498, -0.00544887, -0.0551273, 0.047, 99.211, -1.37427)
+
+[node name="stake gun" parent="." instance=ExtResource("6_qit4k")]
+transform = Transform3D(0.234803, 0.0286468, 0.0405843, 0.0433257, -0.0221709, -0.235013, -0.0243024, 0.23725, -0.0268622, 1.14676, 100.415, -1.79272)
