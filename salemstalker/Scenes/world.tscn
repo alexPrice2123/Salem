@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
-[ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
+[ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/cultistHut.tscn" id="3_8j60k"]
 [ext_resource type="PackedScene" uid="uid://bqagxxac2m8ci" path="res://Assets/3D/buildings/house1.fbx" id="4_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
@@ -118,6 +118,10 @@ metadata/_edit_lock_ = false
 
 [node name="npc_villager" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.209202, 0.0547366, -6.8643)
+QuestTitle = "Kill 5 Monsters"
+QuestGoal = "0/5"
 
 [node name="npc_villager2" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.209202, 1.87694, 6.9192)
+QuestTitle = "Kill 5 Monsters"
+QuestGoal = "0/5"
