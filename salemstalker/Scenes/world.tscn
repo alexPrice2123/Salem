@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ici31oveud84"]
+[gd_scene load_steps=32 format=3 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -10,9 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://vya3rlkh7tjw" path="res://Assets/2D/dirt.png" id="7_c5t2i"]
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Scenes/World/Heightmap_0_0.res" id="9_7yui6"]
+[ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="9_kn0ld"]
+[ext_resource type="Texture2D" uid="uid://dmh2un6hlv2hg" path="res://Assets/3D/plants/nushwhitetest.png" id="10_0pcbe"]
 [ext_resource type="Texture2D" uid="uid://brgdqertk6qk0" path="res://Scenes/World/Splatmap_0_0_0.res" id="10_c5t2i"]
+[ext_resource type="Script" uid="uid://d33x21vao7tj2" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="10_hgpy0"]
 [ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="11_e0ngr"]
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="12_kn0ld"]
+[ext_resource type="Texture2D" uid="uid://dw2dxasfcx3dn" path="res://Scenes/World/Foliage_0_0_0.res" id="12_t2t4p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c5t2i"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -54,12 +58,59 @@ script = ExtResource("8_c5t2i")
 TextureSets = [SubResource("Resource_e0ngr"), SubResource("Resource_c5t2i")]
 metadata/_custom_type_script = "uid://043vjblb04jf"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgpy0"]
+transparency = 3
+alpha_hash_scale = 2.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.784314)
+albedo_texture = ExtResource("10_0pcbe")
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 16.0
+grow_amount = -16.0
+proximity_fade_distance = 500.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_hgpy0"]
+lightmap_size_hint = Vector2i(7, 7)
+material = SubResource("StandardMaterial3D_hgpy0")
+flip_faces = true
+size = Vector2(2, 1)
+center_offset = Vector3(0, 0.2, 0)
+
+[sub_resource type="Resource" id="Resource_0pcbe"]
+script = ExtResource("9_kn0ld")
+Strategy = 1
+Mesh = SubResource("QuadMesh_hgpy0")
+MeshScale = Vector3(1, 1, 1)
+WindStrength = 0.1
+VisualInstanceLayers = 1
+LODLevels = 3
+LODRowsPerLevel = 50
+LODInitialCellWidth = 1.0
+Albedo = Color(1, 1, 1, 1)
+AlbedoTextures = [ExtResource("10_0pcbe")]
+NearestTextureFilter = true
+UseGroundColor = true
+CastShadow = true
+UseBrushScale = true
+RandomPlacementRange = 3.0
+ApplyOnTextureIndexes = PackedInt32Array()
+MaximumRenderDistance = 50
+EditorMaximumRenderDistance = 50
+metadata/_custom_type_script = "uid://dgf8vwa2n8r11"
+
+[sub_resource type="Resource" id="Resource_axeuq"]
+script = ExtResource("10_hgpy0")
+Definition = SubResource("Resource_0pcbe")
+metadata/_custom_type_script = "uid://d33x21vao7tj2"
+
 [sub_resource type="Resource" id="Resource_hgpy0"]
 script = ExtResource("11_e0ngr")
 ZonePosition = Vector2i(0, 0)
 HeightMapTexture = ExtResource("9_7yui6")
 SplatmapsTexture = [ExtResource("10_c5t2i")]
-FoliagesTexture = []
+FoliagesTexture = [ExtResource("12_t2t4p")]
 ObjectsTexture = []
 
 [sub_resource type="Resource" id="Resource_t2t4p"]
@@ -109,12 +160,12 @@ script = ExtResource("6_5ukr8")
 ZonesSize = 2560
 DataPath = "res://Scenes/World"
 TextureSets = SubResource("Resource_kn0ld")
-Foliages = []
+Foliages = [SubResource("Resource_axeuq")]
 Objects = []
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_t2t4p")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = false
+metadata/_edit_lock_ = true
 
 [node name="npc_villager" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.209202, 0.0547366, -6.8643)
