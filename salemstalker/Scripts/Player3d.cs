@@ -26,7 +26,9 @@ public partial class Player3d : CharacterBody3D
 
 	// --- COMBAT VARIABLES ---
 	public float _damage = 0.0f;                     // Attack damage value
-	public float _knockbackStrength = 15.0f;         // Knockback force applied to enemies
+	private ulong _lastHit = 0;                      // Time of the last time a player hit
+	private int _comboNum = 0;
+    public float _knockbackStrength = 15.0f;         // Knockback force applied to enemies
 	public bool _inCombat = false;                   // Tracks if player is currently in combat
 	private float _combatCounter = 0;                // Frame counter for combat cooldown
 	private bool _inInv;                             // Tracks if inventory is open
@@ -54,7 +56,7 @@ public partial class Player3d : CharacterBody3D
 		_questBox = GetNode<Control>("UI/Quest/QuestBox");
 		_questTemplate = GetNode<VBoxContainer>("UI/Container/QuestTemplate");
 
-		_damage = 1.0f;                                     // Default starting damage
+		_damage = 5.0f;                                     // Default starting damage
 	}
 
 	// --- INPUT HANDLER ---
@@ -100,7 +102,7 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		// --- Inventory toggle ---
-		else if (@event is InputEventKey iKey && iKey.Keycode == Key.I && iKey.Pressed && false == true)
+		else if (@event is InputEventKey iKey && iKey.Keycode == Key.I && iKey.Pressed)
 		{
 			if (_inCombat == true) { return; }
 
@@ -239,8 +241,30 @@ public partial class Player3d : CharacterBody3D
 	// --- CUSTOM FUNCTIONS ---
 	private async void Swing()
 	{
-		_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing");
+		if (Time.GetTicksMsec() - _lastHit < 700 && _comboNum == 0 || _comboNum == 1)
+		{
+			_comboNum++;
+		}
+		else
+        {
+			_comboNum = 0;
+        }
+		if (_comboNum == 0)
+		{
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
+		}
+		else if (_comboNum == 1)
+		{
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
+		}
+		else if (_comboNum == 2)
+        {
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
+			_comboNum = 0;
+        }
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
+		
+		_lastHit = Time.GetTicksMsec();
 		await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
 	}
