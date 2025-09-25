@@ -21,7 +21,7 @@ public partial class Player3d : CharacterBody3D
 	private MeshInstance3D _fakeSword;               // Cosmetic sword mesh in hand
 	private Control _combatNotif;                    // Combat notification UI
 	private RayCast3D _ray;                          // Forward raycast (for NPC interaction)
-	private Control _questBox;                       // Quest display UI container
+	public Control _questBox;                       // Quest display UI container
 	private VBoxContainer _questTemplate;            // Template node for quests
 
 	// --- COMBAT VARIABLES ---
@@ -36,7 +36,7 @@ public partial class Player3d : CharacterBody3D
 	private float _bobTime = 0.0f;                   // Time accumulator for head-bob effect
 	private string _originalDialouge;                // Stores NPC dialogue before player interacts
 	private CharacterBody3D _lastSeen;               // Last seen NPC in interaction range
-	private int _monstersKilled = 0;                 // Monster kill counter (for quests)
+	public int _monstersKilled = 0;                 // Monster kill counter (for quests)
 
 	// --- READY ---
 	public override void _Ready()
@@ -133,28 +133,7 @@ public partial class Player3d : CharacterBody3D
 		{
 			if (_lastSeen != null && _lastSeen is NpcVillager villager)
 			{
-				if (villager._questComplete == true) { return; } //if the quest is done the player can't interact
-
-				if (villager._questPrompt.Text.Contains("E to Accept")) //changes dialouge from the quest dialouge to accepted dialouge
-				{
-					villager._questPrompt.Text = villager.AcceptedDialouge;
-					_monstersKilled = 0;
-					GetQuest("KillMonsters", "Kill 5 Monsters", "0/5");
-				}
-				else if (villager._questPrompt.Text.Contains("E to Talk") && _monstersKilled < 5 && _questBox.FindChild("KillMonsters") == null) //changes dialouge from the initial dialouge to quest dialouge 
-				{
-					villager._questPrompt.Text = villager.QuestDialouge + "\n" + "E to Accept";
-				}
-				else if (villager._questPrompt.Text.Contains("E to Talk") && _monstersKilled >= 5) //what happens when the player talks to him after completing the quest
-				{
-					villager._questPrompt.Text = villager.DoneDialouge;
-					villager._questComplete = true;
-					RemoveQuest("KillMonsters");
-				}
-				else if (villager._questPrompt.Text.Contains("E to Talk") && _monstersKilled < 5) //what happens when the player talks to him before completing the quest
-				{
-					villager._questPrompt.Text = villager.WaitingDialouge;
-				}
+				villager.Talk();
 			}
 		}
 	}
@@ -312,12 +291,12 @@ public partial class Player3d : CharacterBody3D
 		}
 	}
 	
-	public void GetQuest(string QuestName, string QuestTitle, string QuestGoal)
+	public void GetQuest( string QuestTitle, string QuestGoal)
 	{
 		Control questText = (VBoxContainer)_questTemplate.Duplicate();
 		_questBox.AddChild(questText);
 		questText.Owner = _questBox;
-		questText.Name = QuestName;
+		questText.Name = QuestTitle;
 		questText.GetNode<Label>("Quest").Text = QuestTitle;
 		questText.GetNode<Label>("Number").Text = QuestGoal;
 	}
