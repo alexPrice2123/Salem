@@ -30,6 +30,14 @@ target_position = Vector3(0, 0, -5)
 collision_mask = 3
 collide_with_areas = true
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera3D"]
+light_color = Color(1, 0.616467, 0.320204, 1)
+light_energy = 2.0
+spot_range = 200.0
+spot_attenuation = 0.75
+spot_angle = 75.0
+spot_angle_attenuation = 1.7411
+
 [node name="InvCam" type="CSGBox3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.39412)
 visible = false

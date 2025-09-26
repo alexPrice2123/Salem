@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ici31oveud84"]
+[gd_scene load_steps=36 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -9,33 +9,58 @@
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="7_7yui6"]
 [ext_resource type="Texture2D" uid="uid://vya3rlkh7tjw" path="res://Assets/2D/dirt.png" id="7_c5t2i"]
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
+[ext_resource type="Texture2D" uid="uid://dxxey6dq8cds1" path="res://Assets/3D/plants/bush_bushtextures.png" id="9_0pcbe"]
 [ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Scenes/World/Heightmap_0_0.res" id="9_7yui6"]
 [ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="9_kn0ld"]
-[ext_resource type="Texture2D" uid="uid://dmh2un6hlv2hg" path="res://Assets/3D/plants/nushwhitetest.png" id="10_0pcbe"]
 [ext_resource type="Texture2D" uid="uid://brgdqertk6qk0" path="res://Scenes/World/Splatmap_0_0_0.res" id="10_c5t2i"]
 [ext_resource type="Script" uid="uid://d33x21vao7tj2" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="10_hgpy0"]
 [ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="11_e0ngr"]
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="12_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://dw2dxasfcx3dn" path="res://Scenes/World/Foliage_0_0_0.res" id="12_t2t4p"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c5t2i"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_e0ngr"]
-sky_material = SubResource("ProceduralSkyMaterial_c5t2i")
-
-[sub_resource type="Environment" id="Environment_kn0ld"]
-background_mode = 2
-sky = SubResource("Sky_e0ngr")
-tonemap_mode = 2
-glow_enabled = true
-
 [sub_resource type="NavigationMesh" id="NavigationMesh_5a7ea"]
 agent_height = 2.0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_8j60k"]
 cell_size = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cagxu"]
+resource_name = "Material.002"
+transparency = 4
+cull_mode = 2
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jnr5c"]
+_surfaces = [{
+"aabb": AABB(-0.219658, -0.114665, -0.379157, 0.439315, 0.211707, 0.758313),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAAAEAAEAAgADAAUAAgAFAAAAAAAGAAQAAAAFAAYABAAHAAEAAQAHAAMABAAGAAcABQADAAcABQAHAAYA"),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("7u1gvp/V6r3UIMI+7u1gPp/V6r3UIMK+7u1gPp/V6r3UIMI+7u1gPty9xj3UIMI+7u1gvp/V6r3UIMK+7u1gvty9xj3UIMI+7u1gvty9xj3UIMK+7u1gPty9xj3UIMK+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t2t4p"]
+resource_name = "bush_Plane"
+_surfaces = [{
+"aabb": AABB(-0.219658, -0.114665, -0.379157, 0.439315, 0.211707, 0.758313),
+"attribute_data": PackedByteArray("OP4zPpBzpz0xH0Q/grdDPzj+Mz6Ct0M/MR9EP5Bzpz04/jM+kHOnPTEfRD+Ct0M/MR9EP5Bzpz04/jM+grdDPzj+Mz6Qc6c9MR9EP5Bzpz0xH0Q/kHOnPTj+Mz6Qc6c9OP4zPoK3Qz84/jM+kHOnPTj+Mz6Qc6c9OP4zPoK3Qz8xH0Q/grdDPzj+Mz6Ct0M/OP4zPoK3Qz8xH0Q/grdDPzEfRD+Qc6c9MR9EP4K3Qz8xH0Q/grdDPzEfRD+Qc6c9"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_cagxu"),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("7u1gvp/V6r3UIMI+7u1gPp/V6r3UIMK+7u1gPp/V6r3UIMI+7u1gvp/V6r3UIMK+7u1gvty9xj3UIMI+7u1gPty9xj3UIMK+7u1gvty9xj3UIMK+7u1gPty9xj3UIMI+7u1gvp/V6r3UIMI+7u1gvty9xj3UIMK+7u1gvp/V6r3UIMK+7u1gvty9xj3UIMI+7u1gPp/V6r3UIMI+7u1gvty9xj3UIMI+7u1gvp/V6r3UIMI+7u1gPty9xj3UIMI+7u1gPp/V6r3UIMK+7u1gPty9xj3UIMI+7u1gPp/V6r3UIMI+7u1gPty9xj3UIMK+7u1gvp/V6r3UIMK+7u1gPty9xj3UIMK+7u1gPp/V6r3UIMK+7u1gvty9xj3UIMK+/3//////////f/////////9//////////3//////////fwAA//8AAP9/AAD//wAA/38AAP//AAD/fwAA//8AAP///3////+/////f////7////9/////v////3////+//////////z//////////P/////////8//////////z8AAP9/////vwAA/3////+/AAD/f////78AAP9/////v/9//3////8//3//f////z//f/9/////P/9//3////8/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_jnr5c")
 
 [sub_resource type="Resource" id="Resource_e0ngr"]
 script = ExtResource("7_7yui6")
@@ -58,40 +83,59 @@ script = ExtResource("8_c5t2i")
 TextureSets = [SubResource("Resource_e0ngr"), SubResource("Resource_c5t2i")]
 metadata/_custom_type_script = "uid://043vjblb04jf"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgpy0"]
-transparency = 3
-alpha_hash_scale = 2.0
-alpha_antialiasing_mode = 0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2t4p"]
+resource_name = "Material.002"
+transparency = 4
 cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 0.784314)
-albedo_texture = ExtResource("10_0pcbe")
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 16.0
-grow_amount = -16.0
-proximity_fade_distance = 500.0
+albedo_texture = ExtResource("9_0pcbe")
+roughness = 0.5
 
-[sub_resource type="QuadMesh" id="QuadMesh_hgpy0"]
-lightmap_size_hint = Vector2i(7, 7)
-material = SubResource("StandardMaterial3D_hgpy0")
-flip_faces = true
-size = Vector2(2, 1)
-center_offset = Vector3(0, 0.2, 0)
+[sub_resource type="ArrayMesh" id="ArrayMesh_0pcbe"]
+_surfaces = [{
+"aabb": AABB(-1, -0.0677842, -1, 2, 1.37746, 2),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP9/AAD//////38AAP//AAD/fwAAAAD///9/AAD/fwAA//8AAP9///8AAAAA/38AAAAAAAD/f/////8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_80jdq"]
+resource_name = "bush_Plane_002"
+_surfaces = [{
+"aabb": AABB(-1, -0.0677842, -1, 2, 1.37746, 2),
+"attribute_data": PackedByteArray("viFUxtbShA3W0lTGviGEDRUsNMRkzVITZM00xBUsUhM="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_t2t4p"),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP9/AID//////38AgP//AAD/fwCAAAD///9/AID/fwAA////v/9///8AAP+//38AAAAA/7//f///////v/9/////f////3////9/////fwAA/38AAP9/AAD/fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0pcbe")
 
 [sub_resource type="Resource" id="Resource_0pcbe"]
 script = ExtResource("9_kn0ld")
 Strategy = 1
-Mesh = SubResource("QuadMesh_hgpy0")
+Mesh = SubResource("ArrayMesh_80jdq")
 MeshScale = Vector3(1, 1, 1)
 WindStrength = 0.1
 VisualInstanceLayers = 1
 LODLevels = 3
 LODRowsPerLevel = 50
 LODInitialCellWidth = 1.0
-Albedo = Color(1, 1, 1, 1)
-AlbedoTextures = [ExtResource("10_0pcbe")]
+Albedo = Color(0.418809, 0.588644, 0.472147, 1)
+AlbedoTextures = [ExtResource("9_0pcbe")]
 NearestTextureFilter = true
-UseGroundColor = true
+UseGroundColor = false
 CastShadow = true
 UseBrushScale = true
 RandomPlacementRange = 3.0
@@ -117,14 +161,25 @@ ObjectsTexture = []
 script = ExtResource("12_kn0ld")
 Zones = [SubResource("Resource_hgpy0")]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t2t4p"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_go701"]
+sky_material = SubResource("ProceduralSkyMaterial_t2t4p")
+
+[sub_resource type="Environment" id="Environment_0pcbe"]
+background_mode = 2
+sky = SubResource("Sky_go701")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_length = 1024.0
+
 [node name="World" type="Node3D"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_kn0ld")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.166687, 0.857805, 6.13928e-06)
@@ -138,6 +193,11 @@ navigation_mesh = SubResource("NavigationMesh_5a7ea")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 440.916, 0, 0)
 navigation_mesh = SubResource("NavigationMesh_8j60k")
 navigation_layers = 2
+
+[node name="Plane" type="MeshInstance3D" parent="VillageRegion"]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -590.172, 1.20143, 0.657704)
+mesh = SubResource("ArrayMesh_t2t4p")
+skeleton = NodePath("")
 
 [node name="house1" parent="VillageRegion" instance=ExtResource("4_5ukr8")]
 transform = Transform3D(-0.576061, 0, -0.817406, 0, 1, 0, 0.817406, 0, -0.576061, -445.167, 0, -19.6599)
@@ -165,10 +225,18 @@ Objects = []
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_t2t4p")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = true
+metadata/_edit_lock_ = false
 
 [node name="npc_villager" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.209202, 0.0547366, -6.8643)
 
 [node name="npc_villager2" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.209202, 1.87694, 6.9192)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -0.0833254, -0.0357208, 2.38419e-07)
+visible = false
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0pcbe")
