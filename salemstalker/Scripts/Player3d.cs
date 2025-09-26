@@ -22,6 +22,7 @@ public partial class Player3d : CharacterBody3D
 	private MeshInstance3D _fakeSword;               // Cosmetic sword mesh in hand
 	private Control _combatNotif;                    // Combat notification UI
 	private RayCast3D _ray;                          // Forward raycast (for NPC interaction)
+	private Control _questBook;                      // Parent node for all quest UI
 	public Control _questBox;                        // Quest display UI container
 	private VBoxContainer _questTemplate;            // Template node for quests
 
@@ -29,7 +30,7 @@ public partial class Player3d : CharacterBody3D
 	public float _damage = 0.0f;                     // Attack damage value
 	private ulong _lastHit = 0;                      // Time of the last time a player hit
 	private int _comboNum = 0;
-    public float _knockbackStrength = 15.0f;         // Knockback force applied to enemies
+	public float _knockbackStrength = 15.0f;         // Knockback force applied to enemies
 	public bool _inCombat = false;                   // Tracks if player is currently in combat
 	private float _combatCounter = 0;                // Frame counter for combat cooldown
 	private bool _inInv;                             // Tracks if inventory is open
@@ -54,6 +55,7 @@ public partial class Player3d : CharacterBody3D
 		_combatNotif = GetNode<Control>("UI/Combat");
 		_inv = GetNode<Control>("UI/Inv");
 		_ray = GetNode<RayCast3D>("Head/Camera3D/Ray");
+		_questBook = GetNode<Control>("UI/Quest");
 		_questBox = GetNode<Control>("UI/Quest/QuestBox");
 		_questTemplate = GetNode<VBoxContainer>("UI/Container/QuestTemplate");
 
@@ -118,7 +120,24 @@ public partial class Player3d : CharacterBody3D
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 			}
 		}
+		
+		// --- Questbook toggle ---
+		else if (@event is InputEventKey lKey && lKey.Keycode == Key.L && lKey.Pressed)
+		{
+			if (_inCombat == true) { return; }
 
+			if (_questBook.Visible == true)
+			{
+				_questBook.Visible = false;
+				Input.MouseMode = Input.MouseModeEnum.Captured;
+			}
+			else if (_inv.Visible == false)
+			{
+				_questBook.Visible = true;
+				Input.MouseMode = Input.MouseModeEnum.Visible;
+			}
+		}
+		
 		// --- Dash (Space key) ---
 		else if (@event is InputEventKey spaceKey && spaceKey.Keycode == Key.Space && spaceKey.Pressed)
 		{
@@ -264,10 +283,10 @@ public partial class Player3d : CharacterBody3D
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
 		}
 		else if (_comboNum == 2)
-        {
+		{
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
 			_swingTime += 0.3f;
-        }
+		}
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
 		
 		_lastHit = Time.GetTicksMsec();
