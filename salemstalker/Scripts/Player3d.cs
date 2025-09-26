@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 public partial class Player3d : CharacterBody3D
 {
@@ -21,7 +22,7 @@ public partial class Player3d : CharacterBody3D
 	private MeshInstance3D _fakeSword;               // Cosmetic sword mesh in hand
 	private Control _combatNotif;                    // Combat notification UI
 	private RayCast3D _ray;                          // Forward raycast (for NPC interaction)
-	public Control _questBox;                       // Quest display UI container
+	public Control _questBox;                        // Quest display UI container
 	private VBoxContainer _questTemplate;            // Template node for quests
 
 	// --- COMBAT VARIABLES ---
@@ -38,7 +39,7 @@ public partial class Player3d : CharacterBody3D
 	private float _bobTime = 0.0f;                   // Time accumulator for head-bob effect
 	private string _originalDialouge;                // Stores NPC dialogue before player interacts
 	private CharacterBody3D _lastSeen;               // Last seen NPC in interaction range
-	public int _monstersKilled = 0;                 // Monster kill counter (for quests)
+	public int _monstersKilled = 0;                  // Monster kill counter (for quests)
 
 	// --- READY ---
 	public override void _Ready()
@@ -56,7 +57,7 @@ public partial class Player3d : CharacterBody3D
 		_questBox = GetNode<Control>("UI/Quest/QuestBox");
 		_questTemplate = GetNode<VBoxContainer>("UI/Container/QuestTemplate");
 
-		_damage = 5.0f;                                     // Default starting damage
+		_damage = 15.0f;                                     // Default starting damage
 	}
 
 	// --- INPUT HANDLER ---
@@ -241,14 +242,19 @@ public partial class Player3d : CharacterBody3D
 	// --- CUSTOM FUNCTIONS ---
 	private async void Swing()
 	{
-		if (Time.GetTicksMsec() - _lastHit < 700 && _comboNum == 0 || _comboNum == 1)
+		float _swingTime = 0.3f;
+		if (Time.GetTicksMsec() - _lastHit < 700 && _comboNum == 2)
+		{
+			_comboNum = 0;
+		}
+		else if (Time.GetTicksMsec() - _lastHit < 700 && _comboNum == 0 || _comboNum == 1)
 		{
 			_comboNum++;
 		}
 		else
-        {
+		{
 			_comboNum = 0;
-        }
+		}
 		if (_comboNum == 0)
 		{
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
@@ -260,12 +266,12 @@ public partial class Player3d : CharacterBody3D
 		else if (_comboNum == 2)
         {
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
-			_comboNum = 0;
+			_swingTime += 0.3f;
         }
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
 		
 		_lastHit = Time.GetTicksMsec();
-		await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
+		await ToSignal(GetTree().CreateTimer(_swingTime), "timeout");
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
 	}
 

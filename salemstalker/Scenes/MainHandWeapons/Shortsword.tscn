@@ -83,21 +83,21 @@ tracks/1/keys = PackedFloat32Array(0, 1, -0.4, 0, 0, 0.133333, 1, -0.24, 0, -0.5
 
 [sub_resource type="Animation" id="Animation_c1cqh"]
 resource_name = "Swing3"
-length = 0.3
+length = 0.6
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.133333, 1, -0.413, 0.492, -0.492, 0.587, 0.200688, 1, -0.557, 0.663, -0.321, 0.383, 0.3, 1, 0, 0, 0, 1)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.133333, 1, -0.413, 0.492, -0.492, 0.587, 0.366667, 1, -0.557, 0.663, -0.321, 0.383, 0.6, 1, 0, 0, 0, 1)
 tracks/1/type = "position_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.133333, 1, 0.3, 0, 1.04, 0.200688, 1, 1.02, 0, -3.13, 0.3, 1, 0, 0, 0)
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.2, 1, 0.3, 0, 1.04, 0.4, 1, 1.02, 0, -3.13, 0.6, 1, 0, 0, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
 _data = {
@@ -140,6 +140,8 @@ libraries = {
 
 [node name="Hitbox" type="Area3D" parent="." groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0246143, -0.00856304, 0.0413209)
+disable_mode = 2
+priority = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" groups=["Player"]]
 transform = Transform3D(0.999894, 0, 0, 0, 1, 0, 0, 0, 0.999894, -0.245588, 3.53304, -0.0641638)
