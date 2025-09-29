@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=37 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
 [ext_resource type="Texture2D" uid="uid://qmxayi6pgeck" path="res://Assets/2D/Grass.png" id="6_ikia7"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="7_7yui6"]
+[ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="7_axeuq"]
 [ext_resource type="Texture2D" uid="uid://vya3rlkh7tjw" path="res://Assets/2D/dirt.png" id="7_c5t2i"]
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://dxxey6dq8cds1" path="res://Assets/3D/plants/bush_bushtextures.png" id="9_0pcbe"]
@@ -17,6 +18,8 @@
 [ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="11_e0ngr"]
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="12_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://dw2dxasfcx3dn" path="res://Scenes/World/Foliage_0_0_0.res" id="12_t2t4p"]
+[ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="14_1cojt"]
+[ext_resource type="Texture2D" uid="uid://bmgn0uf61ja1u" path="res://Scenes/World/Water_0_0.res" id="18_1cojt"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_5a7ea"]
 vertices = PackedVector3Array(0.5, 1.75, 23.75, 18.75, 1.75, 24, 18.75, 1.75, 22.5, 20.5, 1.75, 22.25, 20.25, 1.75, 0.5, 0.5, 1.75, 0.5, 22.5, 1.75, 22.25, 22.75, 1.75, 0.5, 24, 1.75, 22.25, 24.25, 1.75, 24, 49.5, 1.75, 23.75, 49.5, 1.75, 0.5, 0.5, 1.75, 26, 18.75, 1.75, 25.75, 24.25, 1.75, 25.75, 49.5, 1.75, 26, 19.75, 6.5, 24.5, 19.75, 6.5, 26.5, 23.25, 6.5, 26.5, 23.25, 6.5, 24.5, 18.75, 1.75, 27.25, 19.25, 1.75, 27.5, 0.5, 7.25, 49.5, 19.25, 4.25, 49.5, 19.25, 1.75, 36.3, 0.5, 2.75, 33.3438, 0.5, 6, 43.625, 10.5962, 4.5, 49.5, 10.491, 2.25, 37.493, 9.01565, 1.75, 34.5183, 3.01517, 2.25, 29.9788, 5.98519, 1.75, 30.0008, 7.48064, 2.25, 34.5073, 5.97548, 2, 33.0145, 24.25, 1.75, 27.25, 23.75, 1.75, 27.5, 23.75, 4, 49.5, 49.5, 1.75, 49.5, 23.75, 1.75, 37.7667, 27.0164, 1.75, 38.9775, 37.5022, 2.25, 45.0076, 38.9771, 1.75, 43.4928, 20.75, 1.75, 27, 20.5, 1.75, 27.5, 20, 1.75, 36.3)
@@ -46,9 +49,7 @@ background_mode = 2
 sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
-fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
-volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 volumetric_fog_length = 1024.0
 
@@ -56,6 +57,7 @@ volumetric_fog_length = 1024.0
 script = ExtResource("7_7yui6")
 Name = ""
 AlbedoTexture = ExtResource("6_ikia7")
+NormalTexture = ExtResource("7_axeuq")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
@@ -64,6 +66,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 script = ExtResource("7_7yui6")
 Name = ""
 AlbedoTexture = ExtResource("7_c5t2i")
+NormalTexture = ExtResource("7_axeuq")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
@@ -139,6 +142,29 @@ script = ExtResource("10_hgpy0")
 Definition = SubResource("Resource_0pcbe")
 metadata/_custom_type_script = "uid://d33x21vao7tj2"
 
+[sub_resource type="Resource" id="Resource_yq1aw"]
+script = ExtResource("14_1cojt")
+WaterFactor = 1.0
+WaterInnerOffset = 0.2
+WaterColor = Color(1, 1, 1, 1)
+WaterFresnelColor = Color(1, 1, 1, 1)
+WaterMetallic = 0.0
+WaterRoughness = 0.0
+WaterTimeScale = 0.1
+WaterStrength = 0.4
+WaterNoiseScale = 10.0
+WaterHeightScale = 0.15
+WaterColorDeep = Color(1, 1, 1, 1)
+WaterColorShallow = Color(1, 1, 1, 1)
+WaterBeersLaw = 2.0
+WaterDepthOffset = -0.75
+WaterEdgeScale = 0.1
+WaterNear = 0.5
+WaterFar = 100.0
+WaterEdgeColor = Color(1, 1, 1, 1)
+VisualInstanceLayers = 1
+metadata/_custom_type_script = "uid://k2tvfxm6feg5"
+
 [sub_resource type="Resource" id="Resource_hgpy0"]
 script = ExtResource("11_e0ngr")
 ZonePosition = Vector2i(0, 0)
@@ -146,6 +172,7 @@ HeightMapTexture = ExtResource("9_7yui6")
 SplatmapsTexture = [ExtResource("10_c5t2i")]
 FoliagesTexture = [ExtResource("12_t2t4p")]
 ObjectsTexture = []
+WaterTexture = ExtResource("18_1cojt")
 
 [sub_resource type="Resource" id="Resource_t2t4p"]
 script = ExtResource("12_kn0ld")
@@ -206,7 +233,8 @@ CollisionMask = -1
 TextureSets = SubResource("Resource_kn0ld")
 Foliages = [SubResource("Resource_axeuq")]
 Objects = []
+WaterDefinition = SubResource("Resource_yq1aw")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_t2t4p")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = false
+metadata/_edit_lock_ = true
