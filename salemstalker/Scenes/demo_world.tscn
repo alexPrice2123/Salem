@@ -4,18 +4,17 @@
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_keuyo"]
+[sub_resource type="Sky" id="Sky_go701"]
 sky_material = SubResource("ProceduralSkyMaterial_keuyo")
 
 [sub_resource type="Environment" id="Environment_s37ah"]
 background_mode = 2
-sky = SubResource("Sky_keuyo")
+sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.02
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 volumetric_fog_length = 1024.0
 
