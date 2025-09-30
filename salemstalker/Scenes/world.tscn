@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=50 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -44,6 +44,7 @@ filter_baking_aabb = AABB(0, 0, 0, 70.99, 19.98, 50.01)
 script = ExtResource("7_7yui6")
 Name = ""
 AlbedoTexture = ExtResource("6_ikia7")
+NormalTexture = ExtResource("7_axeuq")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
@@ -52,6 +53,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 script = ExtResource("7_7yui6")
 Name = ""
 AlbedoTexture = ExtResource("8_1cojt")
+NormalTexture = ExtResource("7_axeuq")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
@@ -250,6 +252,24 @@ WaterTexture = ExtResource("18_1cojt")
 script = ExtResource("12_kn0ld")
 Zones = [SubResource("Resource_hgpy0")]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_no8kt"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_keuyo"]
+sky_material = SubResource("ProceduralSkyMaterial_no8kt")
+
+[sub_resource type="Environment" id="Environment_xbk3s"]
+background_mode = 2
+sky = SubResource("Sky_keuyo")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_length = 1024.0
+
 [node name="World" type="Node3D"]
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
@@ -302,4 +322,11 @@ WaterDefinition = SubResource("Resource_yq1aw")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_t2t4p")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = true
+metadata/_edit_lock_ = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -0.0833254, -0.0357208, 2.38419e-07)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xbk3s")
