@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=47 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -8,17 +8,20 @@
 [ext_resource type="Texture2D" uid="uid://qmxayi6pgeck" path="res://Assets/2D/Grass.png" id="6_ikia7"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="7_7yui6"]
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="7_axeuq"]
-[ext_resource type="Texture2D" uid="uid://vya3rlkh7tjw" path="res://Assets/2D/dirt.png" id="7_c5t2i"]
+[ext_resource type="Texture2D" uid="uid://cue53ophptm25" path="res://Assets/2D/dirt.jpg" id="8_1cojt"]
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://dxxey6dq8cds1" path="res://Assets/3D/plants/bush_bushtextures.png" id="9_0pcbe"]
 [ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Scenes/World/Heightmap_0_0.res" id="9_7yui6"]
 [ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="9_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://brgdqertk6qk0" path="res://Scenes/World/Splatmap_0_0_0.res" id="10_c5t2i"]
 [ext_resource type="Script" uid="uid://d33x21vao7tj2" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="10_hgpy0"]
+[ext_resource type="Texture2D" uid="uid://duyqji6d5wl4n" path="res://Assets/3D/plants/bush_goodtreebkgdless_kat_px.png" id="10_yq1aw"]
 [ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="11_e0ngr"]
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="12_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://dw2dxasfcx3dn" path="res://Scenes/World/Foliage_0_0_0.res" id="12_t2t4p"]
 [ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="14_1cojt"]
+[ext_resource type="Texture2D" uid="uid://canhbg83j2nyd" path="res://Assets/3D/plants/grass_graass.png" id="14_no8kt"]
+[ext_resource type="Texture2D" uid="uid://dhiq8g2oi7i8y" path="res://Scenes/World/Foliage_0_0_1.res" id="17_pyn1s"]
 [ext_resource type="Texture2D" uid="uid://bmgn0uf61ja1u" path="res://Scenes/World/Water_0_0.res" id="18_1cojt"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_5a7ea"]
@@ -30,34 +33,17 @@ geometry_source_group_name = &"Terrain"
 filter_baking_aabb = AABB(0, 0, 0, 50, 20, 50)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_8j60k"]
-vertices = PackedVector3Array(0.5, 4.75, 0.5, 0.5, 4.75, 49.5, 70.5, 10.75, 49.5, 70.5, 13.25, 0.5, 68.2419, 12.75, 0.5, 63.7258, 11.25, 0.5, 59.2097, 9.25, 0.5, 52.4355, 5.25, 0.5, 50.1774, 4.75, 0.5, 25.3387, 4.75, 49.5, 65.9839, 10.5, 49.5, 70.5, 11.5, 43.1774, 70.5, 11.5, 33.6936, 70.5, 12.5, 21.0484, 70.5, 12.25, 5.24194, 63.0216, 9.75, 31.4836, 39.0086, 6, 23.9808, 55.4832, 7.5, 22.4962, 32.9869, 4.75, 19.5206, 58.4766, 8, 4.50332, 64.4772, 10.75, 6.00268, 58.506, 8.5, 29.9952, 48.0137, 8, 37.4953, 28.498, 5.25, 35.9971, 52.476, 5.25, 3.00397, 25.5174, 4.75, 34.5197, 58.4899, 8, 13.4858, 54.006, 6.75, 16.5136, 60.0121, 9, 33.017, 62.9794, 9.5, 25.512, 62.9871, 10, 19.4903, 37.5208, 5.25, 16.4928, 34.4903, 4.75, 15.0154, 49.4771, 5, 5.99281, 52.4971, 5.5, 6.01478, 61.4893, 9.75, 38.9996, 66.0233, 10.25, 36.0218, 61.486, 10, 3.01989, 67.4927, 10.5, 47.976, 69.0244, 12.25, 12.0073, 64.5194, 10.75, 12.0243)
-polygons = [PackedInt32Array(14, 4, 3), PackedInt32Array(4, 20, 5), PackedInt32Array(5, 37, 6), PackedInt32Array(6, 24, 7), PackedInt32Array(7, 24, 8), PackedInt32Array(8, 32, 0), PackedInt32Array(0, 25, 1), PackedInt32Array(1, 25, 9), PackedInt32Array(9, 22, 10), PackedInt32Array(10, 38, 2), PackedInt32Array(2, 38, 11), PackedInt32Array(11, 36, 12), PackedInt32Array(12, 29, 13), PackedInt32Array(13, 39, 14), PackedInt32Array(14, 20, 4), PackedInt32Array(20, 37, 5), PackedInt32Array(37, 19, 6), PackedInt32Array(6, 19, 24), PackedInt32Array(24, 33, 8), PackedInt32Array(32, 18, 0), PackedInt32Array(8, 33, 32), PackedInt32Array(0, 18, 25), PackedInt32Array(25, 23, 9), PackedInt32Array(22, 35, 10), PackedInt32Array(9, 23, 22), PackedInt32Array(10, 35, 38), PackedInt32Array(38, 35, 11), PackedInt32Array(36, 15, 12), PackedInt32Array(11, 35, 36), PackedInt32Array(29, 30, 13), PackedInt32Array(12, 15, 29), PackedInt32Array(39, 20, 14), PackedInt32Array(13, 30, 39), PackedInt32Array(20, 19, 37), PackedInt32Array(19, 34, 24), PackedInt32Array(24, 34, 33), PackedInt32Array(32, 31, 18), PackedInt32Array(33, 31, 32), PackedInt32Array(18, 23, 25), PackedInt32Array(22, 28, 35), PackedInt32Array(23, 16, 22), PackedInt32Array(36, 28, 15), PackedInt32Array(35, 28, 36), PackedInt32Array(29, 17, 30), PackedInt32Array(15, 21, 29), PackedInt32Array(39, 40, 20), PackedInt32Array(30, 40, 39), PackedInt32Array(20, 26, 19), PackedInt32Array(19, 26, 34), PackedInt32Array(34, 27, 33), PackedInt32Array(31, 16, 18), PackedInt32Array(33, 27, 31), PackedInt32Array(18, 16, 23), PackedInt32Array(22, 21, 28), PackedInt32Array(16, 17, 22), PackedInt32Array(28, 21, 15), PackedInt32Array(17, 27, 30), PackedInt32Array(29, 21, 17), PackedInt32Array(40, 26, 20), PackedInt32Array(30, 26, 40), PackedInt32Array(26, 27, 34), PackedInt32Array(31, 27, 16), PackedInt32Array(22, 17, 21), PackedInt32Array(16, 27, 17), PackedInt32Array(27, 26, 30)]
+vertices = PackedVector3Array(0.5, 5, 0.5, 0.5, 5, 49.5, 70.5, 4.75, 49.5, 70.5, 4.75, 0.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"Terrain"
 filter_baking_aabb = AABB(0, 0, 0, 70.99, 19.98, 50.01)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t2t4p"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_go701"]
-sky_material = SubResource("ProceduralSkyMaterial_t2t4p")
-
-[sub_resource type="Environment" id="Environment_0pcbe"]
-background_mode = 2
-sky = SubResource("Sky_go701")
-tonemap_mode = 2
-glow_enabled = true
-fog_light_color = Color(0, 0, 0, 1)
-volumetric_fog_albedo = Color(0, 0, 0, 1)
-volumetric_fog_length = 1024.0
-
 [sub_resource type="Resource" id="Resource_e0ngr"]
 script = ExtResource("7_7yui6")
 Name = ""
 AlbedoTexture = ExtResource("6_ikia7")
-NormalTexture = ExtResource("7_axeuq")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
@@ -65,8 +51,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 [sub_resource type="Resource" id="Resource_c5t2i"]
 script = ExtResource("7_7yui6")
 Name = ""
-AlbedoTexture = ExtResource("7_c5t2i")
-NormalTexture = ExtResource("7_axeuq")
+AlbedoTexture = ExtResource("8_1cojt")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
@@ -97,7 +82,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_80jdq"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_pyn1s"]
 resource_name = "bush_Plane_002"
 _surfaces = [{
 "aabb": AABB(-1, -0.0677842, -1, 2, 1.37746, 2),
@@ -115,23 +100,32 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0pcbe")
 
-[sub_resource type="Resource" id="Resource_0pcbe"]
+[sub_resource type="Gradient" id="Gradient_yq1aw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pyn1s"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_no8kt"]
+color_ramp = SubResource("Gradient_yq1aw")
+noise = SubResource("FastNoiseLite_pyn1s")
+
+[sub_resource type="Resource" id="Resource_no8kt"]
 script = ExtResource("9_kn0ld")
 Strategy = 1
-Mesh = SubResource("ArrayMesh_80jdq")
-MeshScale = Vector3(1, 1, 1)
+Mesh = SubResource("ArrayMesh_pyn1s")
+MeshScale = Vector3(2, 2, 2)
 WindStrength = 0.1
+NoiseTexture = SubResource("NoiseTexture2D_no8kt")
 VisualInstanceLayers = 1
 LODLevels = 3
 LODRowsPerLevel = 50
-LODInitialCellWidth = 1.0
+LODInitialCellWidth = 10.0
 Albedo = Color(0.418809, 0.588644, 0.472147, 1)
-AlbedoTextures = [ExtResource("9_0pcbe")]
+AlbedoTextures = [ExtResource("10_yq1aw")]
 NearestTextureFilter = true
 UseGroundColor = false
 CastShadow = true
-UseBrushScale = true
-RandomPlacementRange = 3.0
+UseBrushScale = false
+RandomPlacementRange = 1000.0
 ApplyOnTextureIndexes = PackedInt32Array()
 MaximumRenderDistance = 50
 EditorMaximumRenderDistance = 50
@@ -139,28 +133,106 @@ metadata/_custom_type_script = "uid://dgf8vwa2n8r11"
 
 [sub_resource type="Resource" id="Resource_axeuq"]
 script = ExtResource("10_hgpy0")
-Definition = SubResource("Resource_0pcbe")
+Definition = SubResource("Resource_no8kt")
 metadata/_custom_type_script = "uid://d33x21vao7tj2"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akjvr"]
+resource_name = "grasstexture"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("14_no8kt")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wigbs"]
+_surfaces = [{
+"aabb": AABB(-0.46418, -0.178487, -0.46418, 0.928361, 0.356975, 0.928361),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "grasstexture",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/3//////AAD/fwAAAAAAAP9/AAD//wAA/3///wAAAAD//////38AAAAAAAD/fwAA//8AAP9/AAAAAP///38AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y5c6l"]
+resource_name = "grass_Plane_001"
+_surfaces = [{
+"aabb": AABB(-0.46418, -0.178487, -0.46418, 0.928361, 0.356975, 0.928361),
+"attribute_data": PackedByteArray("iommf///lv9Hi///Qf4+f4qJpn///5b/R4v//0H+Pn8="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_akjvr"),
+"name": "grasstexture",
+"primitive": 3,
+"uv_scale": Vector4(1.85276, 1.78257, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/3///////7//fwAAAAD/v/9/AAD///+//3///wAA/7///////3///wAAAAD/f/////8AAP9///8AAP///3///xOAJwATgCcAE4AnABOAJwDrf+v/63/r/+t/6//rf+v/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wigbs")
+
+[sub_resource type="Resource" id="Resource_xbk3s"]
+script = ExtResource("9_kn0ld")
+Strategy = 1
+Mesh = SubResource("ArrayMesh_y5c6l")
+MeshScale = Vector3(3.75, 7.5, 3.75)
+WindStrength = 0.3
+NoiseTexture = SubResource("NoiseTexture2D_no8kt")
+VisualInstanceLayers = 1
+LODLevels = 3
+LODRowsPerLevel = 50
+LODInitialCellWidth = 1.0
+Albedo = Color(0.418809, 0.588644, 0.472147, 1)
+AlbedoTextures = [ExtResource("14_no8kt")]
+NearestTextureFilter = true
+UseGroundColor = false
+CastShadow = true
+UseBrushScale = false
+RandomPlacementRange = 50.0
+ApplyOnTextureIndexes = PackedInt32Array()
+MaximumRenderDistance = 50
+EditorMaximumRenderDistance = 50
+metadata/_custom_type_script = "uid://dgf8vwa2n8r11"
+
+[sub_resource type="Resource" id="Resource_i4fjy"]
+script = ExtResource("10_hgpy0")
+Definition = SubResource("Resource_xbk3s")
+metadata/_custom_type_script = "uid://d33x21vao7tj2"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kw8us"]
+noise_type = 0
+seed = 1
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nbiyt"]
+seamless = true
+noise = SubResource("FastNoiseLite_kw8us")
 
 [sub_resource type="Resource" id="Resource_yq1aw"]
 script = ExtResource("14_1cojt")
-WaterFactor = 1.0
-WaterInnerOffset = 0.2
-WaterColor = Color(1, 1, 1, 1)
-WaterFresnelColor = Color(1, 1, 1, 1)
-WaterMetallic = 0.0
-WaterRoughness = 0.0
+WaterFactor = 10.0
+WaterInnerOffset = 0.3
+WaterColor = Color(0, 0.379049, 0.615767, 1)
+WaterFresnelColor = Color(0, 0.746725, 0.635823, 1)
+WaterMetallic = 1.0
+WaterRoughness = 1.0
+WaterNormalMap = ExtResource("7_axeuq")
 WaterTimeScale = 0.1
-WaterStrength = 0.4
+WaterStrength = 15.0
+WaterWave = SubResource("NoiseTexture2D_nbiyt")
 WaterNoiseScale = 10.0
 WaterHeightScale = 0.15
-WaterColorDeep = Color(1, 1, 1, 1)
+WaterColorDeep = Color(0, 0, 0, 1)
 WaterColorShallow = Color(1, 1, 1, 1)
 WaterBeersLaw = 2.0
 WaterDepthOffset = -0.75
-WaterEdgeScale = 0.1
+WaterEdgeScale = 1.0
 WaterNear = 0.5
-WaterFar = 100.0
+WaterFar = 1000.0
 WaterEdgeColor = Color(1, 1, 1, 1)
 VisualInstanceLayers = 1
 metadata/_custom_type_script = "uid://k2tvfxm6feg5"
@@ -170,7 +242,7 @@ script = ExtResource("11_e0ngr")
 ZonePosition = Vector2i(0, 0)
 HeightMapTexture = ExtResource("9_7yui6")
 SplatmapsTexture = [ExtResource("10_c5t2i")]
-FoliagesTexture = [ExtResource("12_t2t4p")]
+FoliagesTexture = [ExtResource("12_t2t4p"), ExtResource("17_pyn1s")]
 ObjectsTexture = []
 WaterTexture = ExtResource("18_1cojt")
 
@@ -181,42 +253,35 @@ Zones = [SubResource("Resource_hgpy0")]
 [node name="World" type="Node3D"]
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.166687, 0.857805, 6.13928e-06)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -456.653, 0.857805, -87.2659)
 
 [node name="MonsterRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -170.794, -1.34432, -25.0981)
 navigation_mesh = SubResource("NavigationMesh_5a7ea")
 
 [node name="VillageRegion" type="NavigationRegion3D" parent="."]
-transform = Transform3D(0.863941, 0, -0.503593, 0, 1, 0, 0.503593, 0, 0.863941, -12.4915, -4.30756, -35.7881)
+transform = Transform3D(0.863941, 0, -0.503593, 0, 1, 0, 0.503593, 0, 0.863941, -469.512, -4.30756, -122.386)
 navigation_mesh = SubResource("NavigationMesh_8j60k")
 navigation_layers = 2
 travel_cost = 0.4
 
 [node name="npc_villager" parent="." instance=ExtResource("4_fo5ed")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.209202, 0.0547366, -6.8643)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -457.229, 0.0547366, -93.4623)
 
 [node name="npc_villager2" parent="." instance=ExtResource("4_fo5ed")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.209202, 1.87694, 6.9192)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -0.0833254, -0.0357208, 2.38419e-07)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_0pcbe")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -457.229, 1.87694, -79.6788)
 
 [node name="house1" parent="." groups=["Terrain"] instance=ExtResource("4_5ukr8")]
-transform = Transform3D(-0.576061, 0, -0.817406, 0, 1, 0, 0.817406, 0, -0.576061, -4.25101, 0, -19.6599)
+transform = Transform3D(-0.576061, 0, -0.817406, 0, 1, 0, 0.817406, 0, -0.576061, -461.271, 0, -106.258)
 
 [node name="house2" parent="." groups=["Terrain"] instance=ExtResource("4_5ukr8")]
-transform = Transform3D(0.786677, 0, 0.617365, 0, 1, 0, -0.617365, 0, 0.786677, 7.62399, 3.59223, 29.4167)
+transform = Transform3D(0.786677, 0, 0.617365, 0, 1, 0, -0.617365, 0, 0.786677, -449.396, 3.59223, -57.1813)
 
 [node name="house5" parent="." groups=["Terrain"] instance=ExtResource("4_5ukr8")]
-transform = Transform3D(-0.482793, 0, 0.875734, 0, 1, 0, -0.875734, 0, -0.482793, 12.866, 0, -6.71504)
+transform = Transform3D(-0.482793, 0, 0.875734, 0, 1, 0, -0.875734, 0, -0.482793, -444.154, 0, -93.313)
 
 [node name="house3" parent="." groups=["Terrain"] instance=ExtResource("4_5ukr8")]
-transform = Transform3D(0.878125, 0, -0.478431, 0, 1, 0, 0.478431, 0, 0.878125, -13.422, 0, 11.4102)
+transform = Transform3D(0.878125, 0, -0.478431, 0, 1, 0, 0.478431, 0, 0.878125, -470.442, 0, -75.1878)
 
 [node name="Hut" parent="." groups=["Terrain"] instance=ExtResource("3_8j60k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -149.256, 0.976351, 0.657704)
@@ -231,7 +296,7 @@ DataPath = "res://Scenes/World"
 CollisionLayers = -1
 CollisionMask = -1
 TextureSets = SubResource("Resource_kn0ld")
-Foliages = [SubResource("Resource_axeuq")]
+Foliages = [SubResource("Resource_axeuq"), SubResource("Resource_i4fjy")]
 Objects = []
 WaterDefinition = SubResource("Resource_yq1aw")
 MetaInfoLayers = []
