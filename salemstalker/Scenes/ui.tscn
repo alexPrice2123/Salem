@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=16 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
@@ -7,7 +7,6 @@
 [ext_resource type="Shader" uid="uid://2qgp3gkiyw40" path="res://Shaders/ui.gdshader" id="3_q7pk6"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
-[ext_resource type="PackedScene" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2246s"]
 shader = ExtResource("3_q7pk6")
@@ -230,8 +229,6 @@ transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1079, 606)
 render_target_update_mode = 0
-
-[node name="QuestWorld" parent="Quest/SubViewportContainer/SubViewport" instance=ExtResource("6_ryf15")]
 
 [node name="Title" type="Label" parent="Quest"]
 z_index = 1
