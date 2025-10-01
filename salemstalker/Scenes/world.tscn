@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=59 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -21,8 +21,12 @@
 [ext_resource type="Texture2D" uid="uid://dw2dxasfcx3dn" path="res://Scenes/World/Foliage_0_0_0.res" id="12_t2t4p"]
 [ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="14_1cojt"]
 [ext_resource type="Texture2D" uid="uid://canhbg83j2nyd" path="res://Assets/3D/plants/grass_graass.png" id="14_no8kt"]
+[ext_resource type="PackedScene" uid="uid://blt7o2y8rc0lv" path="res://Assets/3D/plants/tree.blend" id="16_pt3ps"]
+[ext_resource type="Script" uid="uid://cgf61yxk46wa4" path="res://addons/terrabrush/Scripts/EditorResources/ObjectDefinitionResource.cs" id="17_hmc15"]
 [ext_resource type="Texture2D" uid="uid://dhiq8g2oi7i8y" path="res://Scenes/World/Foliage_0_0_1.res" id="17_pyn1s"]
 [ext_resource type="Texture2D" uid="uid://bmgn0uf61ja1u" path="res://Scenes/World/Water_0_0.res" id="18_1cojt"]
+[ext_resource type="Script" uid="uid://comabiqrwe5u0" path="res://addons/terrabrush/Scripts/EditorResources/ObjectResource.cs" id="18_dt0r1"]
+[ext_resource type="Texture2D" uid="uid://cssdsrd3rajc1" path="res://Scenes/World/Object_0_0_0.res" id="23_hmc15"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_5a7ea"]
 vertices = PackedVector3Array(0.5, 1.75, 23.75, 18.75, 1.75, 24, 18.75, 1.75, 22.5, 20.5, 1.75, 22.25, 20.25, 1.75, 0.5, 0.5, 1.75, 0.5, 22.5, 1.75, 22.25, 22.75, 1.75, 0.5, 24, 1.75, 22.25, 24.25, 1.75, 24, 49.5, 1.75, 23.75, 49.5, 1.75, 0.5, 0.5, 1.75, 26, 18.75, 1.75, 25.75, 24.25, 1.75, 25.75, 49.5, 1.75, 26, 19.75, 6.5, 24.5, 19.75, 6.5, 26.5, 23.25, 6.5, 26.5, 23.25, 6.5, 24.5, 18.75, 1.75, 27.25, 19.25, 1.75, 27.5, 0.5, 7.25, 49.5, 19.25, 4.25, 49.5, 19.25, 1.75, 36.3, 0.5, 2.75, 33.3438, 0.5, 6, 43.625, 10.5962, 4.5, 49.5, 10.491, 2.25, 37.493, 9.01565, 1.75, 34.5183, 3.01517, 2.25, 29.9788, 5.98519, 1.75, 30.0008, 7.48064, 2.25, 34.5073, 5.97548, 2, 33.0145, 24.25, 1.75, 27.25, 23.75, 1.75, 27.5, 23.75, 4, 49.5, 49.5, 1.75, 49.5, 23.75, 1.75, 37.7667, 27.0164, 1.75, 38.9775, 37.5022, 2.25, 45.0076, 38.9771, 1.75, 43.4928, 20.75, 1.75, 27, 20.5, 1.75, 27.5, 20, 1.75, 36.3)
@@ -205,6 +209,38 @@ script = ExtResource("10_hgpy0")
 Definition = SubResource("Resource_xbk3s")
 metadata/_custom_type_script = "uid://d33x21vao7tj2"
 
+[sub_resource type="Gradient" id="Gradient_qebug"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o2rbt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1vso6"]
+color_ramp = SubResource("Gradient_qebug")
+noise = SubResource("FastNoiseLite_o2rbt")
+
+[sub_resource type="Resource" id="Resource_3ua1v"]
+script = ExtResource("17_hmc15")
+Strategy = 1
+ObjectFrequency = 15
+RandomRange = 10.0
+NoiseTexture = SubResource("NoiseTexture2D_1vso6")
+RandomYRotation = true
+RandomSize = true
+RandomSizeFactorMin = 0.75
+RandomSizeFactorMax = 1.5
+ObjectScenes = [ExtResource("16_pt3ps")]
+LODList = []
+LODMeshes = []
+UpdateDistanceThreshold = 1.0
+UpdateTimeFrequency = 0.1
+VisualInstanceLayers = 1
+metadata/_custom_type_script = "uid://cgf61yxk46wa4"
+
+[sub_resource type="Resource" id="Resource_r0ikl"]
+script = ExtResource("18_dt0r1")
+Definition = SubResource("Resource_3ua1v")
+Hide = false
+metadata/_custom_type_script = "uid://comabiqrwe5u0"
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kw8us"]
 noise_type = 0
 seed = 1
@@ -245,7 +281,7 @@ ZonePosition = Vector2i(0, 0)
 HeightMapTexture = ExtResource("9_7yui6")
 SplatmapsTexture = [ExtResource("10_c5t2i")]
 FoliagesTexture = [ExtResource("12_t2t4p"), ExtResource("17_pyn1s")]
-ObjectsTexture = []
+ObjectsTexture = [ExtResource("23_hmc15")]
 WaterTexture = ExtResource("18_1cojt")
 
 [sub_resource type="Resource" id="Resource_t2t4p"]
@@ -315,7 +351,7 @@ CollisionLayers = -1
 CollisionMask = -1
 TextureSets = SubResource("Resource_kn0ld")
 Foliages = [SubResource("Resource_axeuq"), SubResource("Resource_i4fjy")]
-Objects = []
+Objects = [SubResource("Resource_r0ikl")]
 WaterDefinition = SubResource("Resource_yq1aw")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_t2t4p")
