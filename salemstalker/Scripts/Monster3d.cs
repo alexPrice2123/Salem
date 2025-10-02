@@ -6,7 +6,7 @@ public partial class Monster3d : CharacterBody3D
     // --- CONSTANTS ---
     public const float Speed = 5.0f;             // Movement speed
     public const float JumpVelocity = 6.5f;      // Jump strength (unused)
-    public const float MaxHealth = 5.0f;         // Maximum monster health
+    public const float MaxHealth = 100.0f;         // Maximum monster health
     public const float Range = 25.0f;            // Detection range for chasing
     private const double SpawnDistance = 100;    // Distance from player before despawning
 
@@ -43,9 +43,9 @@ public partial class Monster3d : CharacterBody3D
     }
 
     // --- DAMAGE HANDLER ---
-    private async void _on_hitbox_area_entered(Area3D body)
+    private async void _on_hurtbox_area_entered(Area3D body)
     {
-        if (body.IsInGroup("Player") && _canBeHit)
+        if (body.IsInGroup("Weapon") && _canBeHit)
         {
             _canBeHit = false;
             float damage = _player._damage; // Damage dealt by player

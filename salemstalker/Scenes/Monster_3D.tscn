@@ -7,22 +7,16 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ayuld"]
 radius = 0.25
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yfqb8"]
-radius = 0.3
-height = 2.1
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ci7oq"]
+radius = 0.293507
+height = 1.93186
 
 [node name="Monster_3d" type="CharacterBody3D" groups=["Monster"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00115597, 0.0428574, 0.00184101)
 script = ExtResource("1_ayuld")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0762192, 0)
 shape = SubResource("CapsuleShape3D_ayuld")
-
-[node name="Hitbox" type="Area3D" parent="."]
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00115597, -0.0428574, -0.00184101)
-shape = SubResource("CapsuleShape3D_yfqb8")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -30,7 +24,17 @@ shape = SubResource("CapsuleShape3D_yfqb8")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00115597, -1.04286, -0.00184101)
 
 [node name="HitFX" parent="." instance=ExtResource("3_ci7oq")]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0.00115597, -1.04286, -0.00184101)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.00335562, -1.04286, -0.00184101)
 visible = false
 
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[node name="Hurtbox" type="Area3D" parent="." groups=["Monster"]]
+collision_layer = 1024
+collision_mask = 1024
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.142797, 0)
+shape = SubResource("CapsuleShape3D_ci7oq")
+debug_color = Color(0.987143, 0, 0.316185, 0.42)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
