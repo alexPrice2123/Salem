@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://devj8nqafvvvk"]
+
+[ext_resource type="Texture2D" uid="uid://qmxayi6pgeck" path="res://Assets/2D/Grass.png" id="1_4ljs6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1ckr"]
+albedo_color = Color(0.376806, 0.372505, 0.312032, 1)
+albedo_texture = ExtResource("1_4ljs6")
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.05
+
+[node name="QuestWorld" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.78852, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+far = 10.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164883, -0.0730438, -1.23657)
+light_color = Color(1, 1, 0.901961, 1)
+light_energy = 1.646
+omni_range = 3.285
+omni_attenuation = 0.5
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, -1.688)
+material_override = SubResource("StandardMaterial3D_r1ckr")
+size = Vector3(3, 2.159, 0.186)
