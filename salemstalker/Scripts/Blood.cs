@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Blood : MeshInstance3D
+public partial class Blood : Node3D
 {
 		private async void _on_hitbox_body_entered(Node3D body)
 	{

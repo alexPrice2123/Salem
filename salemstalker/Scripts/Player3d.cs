@@ -18,8 +18,7 @@ public partial class Player3d : CharacterBody3D
 	private Control _interface;                      // Pause menu UI
 	private Slider _senseBar;                        // Sensitivity slider in pause menu
 	public Control _inv;                             // Inventory UI
-	private MeshInstance3D _sword;                   // Sword hitbox mesh (damages enemies)
-	private MeshInstance3D _fakeSword;               // Cosmetic sword mesh in hand
+	private Node3D _sword;                           // Sword hitbox mesh (damages enemies)
 	private Control _combatNotif;                    // Combat notification UI
 	private RayCast3D _ray;                          // Forward raycast (for NPC interaction)
 	private Control _questBook;                      // Parent node for all quest UI
@@ -50,16 +49,13 @@ public partial class Player3d : CharacterBody3D
 		_cam = GetNode<Camera3D>("Head/Camera3D");
 		_interface = GetNode<Control>("UI/PauseMenu");
 		_senseBar = GetNode<Slider>("UI/PauseMenu/Sense");
-		_sword = GetNode<MeshInstance3D>("Head/Camera3D/Sword/Handle");
-		_fakeSword = GetNode<MeshInstance3D>("FakeSword/Handle");
+		_sword = GetNode<Node3D>("Head/Camera3D/Sword/Falchion");
 		_combatNotif = GetNode<Control>("UI/Combat");
 		_inv = GetNode<Control>("UI/Inv");
 		_ray = GetNode<RayCast3D>("Head/Camera3D/Ray");
 		_questBook = GetNode<Control>("UI/Quest");
 		_questBox = GetNode<Control>("UI/Quest/QuestBox");
 		_questTemplate = GetNode<VBoxContainer>("UI/Container/QuestTemplate");
-
-		_damage = 15.0f;                                     // Default starting damage
 	}
 
 	// --- INPUT HANDLER ---
@@ -95,9 +91,7 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		// --- Sword attack ---
-		else if (@event is InputEventMouseButton click 
-				 && Input.MouseMode == Input.MouseModeEnum.Captured 
-				 && click.Pressed 
+		else if (Input.IsActionPressed("attack")
 				 && _sword.GetNode<AnimationPlayer>("AnimationPlayer").IsPlaying() == false 
 				 && _lastSeen == null)
 		{
@@ -105,7 +99,7 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		// --- Inventory toggle ---
-		else if (@event is InputEventKey iKey && iKey.Keycode == Key.I && iKey.Pressed)
+		else if (Input.IsActionJustPressed("inventory"))
 		{
 			if (_inCombat == true) { return; }
 
@@ -139,7 +133,7 @@ public partial class Player3d : CharacterBody3D
 		}
 		
 		// --- Dash (Space key) ---
-		else if (@event is InputEventKey spaceKey && spaceKey.Keycode == Key.Space && spaceKey.Pressed)
+		else if (Input.IsActionJustPressed("dash"))
 		{
 			if (_dashVelocity <= 0.1f) { _dashVelocity = _fullDashValue; }
 		}
@@ -151,7 +145,7 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		// --- Interact (E key) ---
-		else if (@event is InputEventKey eKey && eKey.Keycode == Key.E && eKey.Pressed)
+		else if (Input.IsActionJustPressed("interact"))
 		{
 			if (_lastSeen != null && _lastSeen is NpcVillager villager)
 			{
@@ -200,7 +194,7 @@ public partial class Player3d : CharacterBody3D
 		if (!IsOnFloor()) { velocity += GetGravity() * (float)delta; }
 
 		// --- Movement input ---
-		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_forward", "move_back");
+		Vector2 inputDir = Input.GetVector("left", "right", "forward", "back");
 		Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (direction != Vector3.Zero)
 		{
@@ -261,12 +255,9 @@ public partial class Player3d : CharacterBody3D
 	// --- CUSTOM FUNCTIONS ---
 	private async void Swing()
 	{
-		float _swingTime = 0.3f;
-		if (Time.GetTicksMsec() - _lastHit < 700 && _comboNum == 2)
-		{
-			_comboNum = 0;
-		}
-		else if (Time.GetTicksMsec() - _lastHit < 700 && _comboNum == 0 || _comboNum == 1)
+		float swingTime = (float)_sword.GetMeta("swingSpeed");
+		float comboTime = swingTime * 1000 + 400;
+		if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
 		{
 			_comboNum++;
 		}
@@ -274,6 +265,12 @@ public partial class Player3d : CharacterBody3D
 		{
 			_comboNum = 0;
 		}
+		if (Time.GetTicksMsec() - _lastHit > comboTime && _comboNum == 2)
+		{
+			_comboNum = 0;
+		}
+		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
+		_damage = (float)_sword.GetMeta("damage");
 		if (_comboNum == 0)
 		{
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
@@ -284,13 +281,12 @@ public partial class Player3d : CharacterBody3D
 		}
 		else if (_comboNum == 2)
 		{
+			_damage = (float)_sword.GetMeta("hDamage");
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
-			_swingTime += 0.3f;
 		}
-		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
-		
+		GD.Print(comboTime, "abc", swingTime, "abc",_comboNum);
 		_lastHit = Time.GetTicksMsec();
-		await ToSignal(GetTree().CreateTimer(_swingTime), "timeout");
+		await ToSignal(GetTree().CreateTimer(swingTime), "timeout");
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
 	}
 

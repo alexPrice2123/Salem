@@ -1,0 +1,204 @@
+[gd_scene load_steps=16 format=3 uid="uid://cilhfw77d0fyx"]
+
+[ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="1_ej1uk"]
+[ext_resource type="Script" uid="uid://ob8xglbriafc" path="res://Scenes/MainHandWeapons/Falchion.cs" id="1_ki2ro"]
+
+[sub_resource type="Animation" id="Animation_ki2ro"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jo16x"]
+resource_name = "Swing1"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.366667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.44, 0.19, -0.05), Vector3(0.509, -0.069, -0.759), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.366667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.383972, 0, 0.628319), Vector3(-0.268781, -2.54818, 1.69471), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3h2ph"]
+resource_name = "Swing2"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.466667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.24, 0.14, 0.06), Vector3(-0.5, -0.12, -0.41), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.466667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.366519, 0.418879, -0.349066), Vector3(-0.71384, 1.95477, -1.5708), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c1cqh"]
+resource_name = "Swing3"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.41, 0, 0.15), Vector3(0, 0, -0.1), Vector3(-1.16, 0, 0.27), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.698132, 0.698132, -1.22173), Vector3(0, 0.680678, -1.5708), Vector3(0, 2.5604, -1.5708), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
+_data = {
+&"RESET": SubResource("Animation_ki2ro"),
+&"Swing1": SubResource("Animation_jo16x"),
+&"Swing2": SubResource("Animation_3h2ph"),
+&"Swing3": SubResource("Animation_c1cqh")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sk81k"]
+size = Vector3(0.428467, 1.78272, 0.104248)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvryv"]
+albedo_color = Color(1, 0, 0, 1)
+roughness = 0.0
+
+[sub_resource type="Curve" id="Curve_ecxhr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_c1cqh"]
+curve = SubResource("Curve_ecxhr")
+
+[sub_resource type="Curve" id="Curve_63doy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ag22c"]
+curve = SubResource("Curve_63doy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8th4x"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 2.99998
+radial_velocity_max = 5.99998
+radial_velocity_curve = SubResource("CurveTexture_c1cqh")
+gravity = Vector3(0, -2, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_ag22c")
+
+[sub_resource type="SphereMesh" id="SphereMesh_w6xdr"]
+
+[node name="Falchion" type="Node3D"]
+transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 0, 0, 0)
+script = ExtResource("1_ki2ro")
+metadata/swingSpeed = 0.7
+metadata/hDamage = 23.0
+metadata/damage = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3h2ph")
+}
+next/Swing1 = &"RESET"
+next/Swing2 = &"RESET"
+next/Swing3 = &"RESET"
+blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
+
+[node name="Hitbox" type="Area3D" parent="." groups=["Player", "Weapon"]]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.94338e-09, 0.605291, -0.113091)
+disable_mode = 2
+collision_layer = 1025
+collision_mask = 1025
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(0.999161, 0.0409514, 1.06581e-14, -0.0409514, 0.999161, 0, -4.40536e-13, -1.39888e-14, 1, -0.00686811, -0.167573, 1.33227e-15)
+shape = SubResource("BoxShape3D_sk81k")
+debug_color = Color(0.990788, 0, 0.273946, 0.42)
+
+[node name="falchion" parent="." instance=ExtResource("1_ej1uk")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.407, 0)
+
+[node name="Blood" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0698854, 1.24098, 0.000148448)
+material_override = SubResource("StandardMaterial3D_wvryv")
+emitting = false
+amount = 100
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_8th4x")
+draw_pass_1 = SubResource("SphereMesh_w6xdr")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

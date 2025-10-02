@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
-[ext_resource type="PackedScene" uid="uid://j6uelknlee1h" path="res://Scenes/MainHandWeapons/Shortsword.tscn" id="2_l13c1"]
+[ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="3_l13c1"]
 [ext_resource type="PackedScene" uid="uid://dwpo6a7lu68jh" path="res://Scenes/ui.tscn" id="3_sb0or"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
@@ -21,13 +21,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673132, 0)
 [node name="Sword" type="Node3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.231209, -0.298717)
 
-[node name="Handle" parent="Head/Camera3D/Sword" instance=ExtResource("2_l13c1")]
-transform = Transform3D(0.037423, 0, 0, 0, 0.0935574, 0, 0, 0, 0.037423, 0, 0, 0)
-skeleton = NodePath("../../../..")
+[node name="Falchion" parent="Head/Camera3D/Sword" instance=ExtResource("3_l13c1")]
 
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -5)
-collision_mask = 3
+collision_mask = 2
 collide_with_areas = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera3D"]
@@ -49,11 +47,3 @@ visible = false
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="UI" parent="." instance=ExtResource("3_sb0or")]
-
-[node name="FakeSword" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, 0.441923, -0.298717)
-visible = false
-
-[node name="Handle" parent="FakeSword" instance=ExtResource("2_l13c1")]
-transform = Transform3D(0.037423, 0, 0, 0, 0.0935574, 0, 0, 0, 0.037423, 0, 0, 0)
-skeleton = NodePath("../..")
