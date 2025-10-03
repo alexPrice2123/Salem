@@ -23,6 +23,10 @@ public partial class Monster3d : CharacterBody3D
     private Node3D _body;                        // Monster body mesh node
     private bool _canBeHit = true;               // Prevents rapid re-hits during invulnerability
     private Vector3 _currentRot;                 // Stores current rotation of monster
+    public bool _attacking = false;
+    public bool _canAttack  = true;
+    private AnimationPlayer _animPlayer;
+    private float attackOneLength;
 
     // --- READY ---
     public override void _Ready()
@@ -40,6 +44,8 @@ public partial class Monster3d : CharacterBody3D
         _hitFX = GetNode<Node3D>("HitFX");
         _body = GetNode<Node3D>("Body");
         _currentRot = GlobalRotation;
+        _animPlayer = GetNode<AnimationPlayer>("Body/AnimationPlayer");
+        attackOneLength = _animPlayer.GetAnimation("attack").Length;
     }
 
     // --- DAMAGE HANDLER ---
@@ -115,6 +121,16 @@ public partial class Monster3d : CharacterBody3D
             LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
 
             _player._inCombat = true;
+
+            if (distance <= 2f && _canAttack == true)
+            {
+                _attacking = true;
+                Attack(0.5f);
+            }
+            else if (distance > 2f)
+            {
+                _attacking = false;
+            }
         }
         // --- Wander ---
         else
@@ -151,5 +167,13 @@ public partial class Monster3d : CharacterBody3D
 
         // Smooth knockback decay
         _knockbackVelocity = _knockbackVelocity.Lerp(Vector3.Zero, (float)delta * 5.0f);
+    }
+
+    private async void Attack(float delayLength)
+    {
+        await ToSignal(GetTree().CreateTimer(attackOneLength), "timeout");
+        _canAttack = false;
+        await ToSignal(GetTree().CreateTimer(delayLength), "timeout");
+        _canAttack = true;
     }
 }

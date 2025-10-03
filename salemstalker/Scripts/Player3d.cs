@@ -24,6 +24,7 @@ public partial class Player3d : CharacterBody3D
 	private Control _questBook;                      // Parent node for all quest UI
 	public Control _questBox;                        // Quest display UI container
 	private VBoxContainer _questTemplate;            // Template node for quests
+	private OmniLight3D _lantern;
 
 	// --- COMBAT VARIABLES ---
 	public float _damage = 0.0f;                     // Attack damage value
@@ -40,7 +41,12 @@ public partial class Player3d : CharacterBody3D
 	private string _originalDialouge;                // Stores NPC dialogue before player interacts
 	private CharacterBody3D _lastSeen;               // Last seen NPC in interaction range
 	public int _monstersKilled = 0;                  // Monster kill counter (for quests)
-
+	public float _maxHealth = 100f;
+	public float _health;
+	public Color _maxHealthColor = new Color(244f/255f, 224f/255f, 138f/255f);
+	public Color _minHealthColor = new Color(255f/255f, 0f, 0f);
+	private float _maxRange = 25f;
+	private float _minRange = 5f;
 	// --- READY ---
 	public override void _Ready()
 	{
@@ -56,6 +62,8 @@ public partial class Player3d : CharacterBody3D
 		_questBook = GetNode<Control>("UI/Quest");
 		_questBox = GetNode<Control>("UI/Quest/QuestBox");
 		_questTemplate = GetNode<VBoxContainer>("UI/Container/QuestTemplate");
+		_lantern = GetNode<OmniLight3D>("Head/Camera3D/Lantern");
+		_health = _maxHealth;
 	}
 
 	// --- INPUT HANDLER ---
@@ -159,6 +167,14 @@ public partial class Player3d : CharacterBody3D
 	{
 		Vector3 velocity = Velocity;
 
+		_lantern.LightColor = _minHealthColor.Lerp(_maxHealthColor, _health / _maxHealth);
+		_lantern.OmniRange = (_health / _maxHealth * _maxRange) + _minRange;
+
+		if (_health <= 0)
+		{
+			QueueFree();
+		}
+
 		// --- Combat handling ---
 		_combatNotif.Visible = _inCombat;
 		_combatCounter += 1;
@@ -242,9 +258,9 @@ public partial class Player3d : CharacterBody3D
 			camTransformGoal.Origin = HeadBob(_bobTime);
 			_cam.Transform = camTransformGoal;
 
-			Transform3D swordTransformGoal = _sword.Transform;
-			swordTransformGoal.Origin = SwordBob(_bobTime);
-			_sword.Transform = swordTransformGoal;
+			Transform3D lightTransformGoal = _lantern.Transform;
+			lightTransformGoal.Origin = LightBob(_bobTime);
+			_lantern.Transform = lightTransformGoal;
 		}
 
 		// --- Apply movement ---
@@ -298,11 +314,11 @@ public partial class Player3d : CharacterBody3D
 		return pos;
 	}
 
-	private Vector3 SwordBob(float bobTime)
+	private Vector3 LightBob(float bobTime)
 	{
 		Vector3 pos = Vector3.Zero;
-		pos.Y = Mathf.Sin(bobTime * BobFreq / 1.5f) * BobAmp / 4;
-		pos.X = Mathf.Cos(bobTime * BobFreq / 2.5f) * BobAmp / 4;
+		pos.Y = Mathf.Sin(bobTime * BobFreq / 1.5f) * BobAmp;
+		pos.X = Mathf.Cos(bobTime * BobFreq / 2.5f) * BobAmp;
 		return pos;
 	}
 
