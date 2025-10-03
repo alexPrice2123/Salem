@@ -269,7 +269,7 @@ public partial class Player3d : CharacterBody3D
 		{
 			_comboNum = 0;
 		}
-		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
+		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionPolygon3D>("CollisionShape3D").Disabled = false;
 		_damage = (float)_sword.GetMeta("damage");
 		if (_comboNum == 0)
 		{
@@ -287,7 +287,7 @@ public partial class Player3d : CharacterBody3D
 		GD.Print(comboTime, "abc", swingTime, "abc",_comboNum);
 		_lastHit = Time.GetTicksMsec();
 		await ToSignal(GetTree().CreateTimer(swingTime), "timeout");
-		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
+		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionPolygon3D>("CollisionShape3D").Disabled = true;
 	}
 
 	private Vector3 HeadBob(float bobTime)
@@ -335,8 +335,8 @@ public partial class Player3d : CharacterBody3D
 			_questBox.FindChild(QuestName).QueueFree();
 		}
 	}
-	
-	public void GetQuest( string QuestTitle, string QuestGoal)
+
+	public void GetQuest(string QuestTitle, string QuestGoal)
 	{
 		Control questText = (VBoxContainer)_questTemplate.Duplicate();
 		_questBox.AddChild(questText);
@@ -345,4 +345,14 @@ public partial class Player3d : CharacterBody3D
 		questText.GetNode<Label>("Quest").Text = QuestTitle;
 		questText.GetNode<Label>("Number").Text = QuestGoal;
 	}
+	
+	public void _on_hurtbox_entered(Node3D body)
+	{
+        if (body.IsInGroup("Monster"))
+		{
+			
+            GetTree().Quit();
+        }
+		
+    }
 }

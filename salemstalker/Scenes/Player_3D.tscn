@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=6 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
 [ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="3_l13c1"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df3ch"]
+radius = 0.295052
 
 [node name="Player_3d" type="CharacterBody3D"]
 script = ExtResource("1_df3ch")
@@ -47,3 +50,16 @@ visible = false
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="UI" parent="." instance=ExtResource("3_sb0or")]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, 0.441923, -0.298717)
+
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 1025
+collision_mask = 1025
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape3D_df3ch")
+debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
