@@ -24,9 +24,10 @@ public partial class Monster3d : CharacterBody3D
     private bool _canBeHit = true;               // Prevents rapid re-hits during invulnerability
     private Vector3 _currentRot;                 // Stores current rotation of monster
     public bool _attacking = false;
-    public bool _canAttack  = true;
+    public bool _canAttack = true;
     private AnimationPlayer _animPlayer;
     private float attackOneLength;
+    private CollisionShape3D _attackBox;
 
     // --- READY ---
     public override void _Ready()
@@ -44,6 +45,8 @@ public partial class Monster3d : CharacterBody3D
         _hitFX = GetNode<Node3D>("HitFX");
         _body = GetNode<Node3D>("Body");
         _currentRot = GlobalRotation;
+        _attackBox = GetNode<CollisionShape3D>("Attackbox/CollisionShape3D");
+
         _animPlayer = GetNode<AnimationPlayer>("Body/AnimationPlayer");
         attackOneLength = _animPlayer.GetAnimation("attack").Length;
     }
@@ -171,9 +174,20 @@ public partial class Monster3d : CharacterBody3D
 
     private async void Attack(float delayLength)
     {
+        _attackBox.Disabled = false;
         await ToSignal(GetTree().CreateTimer(attackOneLength), "timeout");
+        _attackBox.Disabled = true;
         _canAttack = false;
         await ToSignal(GetTree().CreateTimer(delayLength), "timeout");
         _canAttack = true;
+    }
+
+    private void _on_attackbox_area_entered(Node3D body)
+    {
+        if (body.IsInGroup("Player"))
+        {
+            _player._health -= 10f;
+            _attackBox.Disabled = true;
+        }
     }
 }

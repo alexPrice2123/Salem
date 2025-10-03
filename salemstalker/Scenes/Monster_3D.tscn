@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://u7yct1quu07a"]
+[gd_scene load_steps=18 format=3 uid="uid://u7yct1quu07a"]
 
 [ext_resource type="Script" uid="uid://ckmn7j07x5ubl" path="res://Scripts/Monster3d.cs" id="1_ayuld"]
 [ext_resource type="PackedScene" uid="uid://bkw7kgrers2pn" path="res://Assets/HitFX/Villager/hit_fx.tscn" id="3_ci7oq"]
@@ -65,6 +65,9 @@ graph_offset = Vector2(70, 44)
 radius = 0.293507
 height = 1.93186
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ci7oq"]
+size = Vector3(1.04077, 1.4873, 1.00809)
+
 [node name="Monster_3d" type="CharacterBody3D" groups=["Monster"]]
 script = ExtResource("1_ayuld")
 
@@ -84,22 +87,22 @@ anim_player = NodePath("../Body/AnimationPlayer")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
-bones/8/rotation = Quaternion(-0.198155, 0.655479, -0.517855, 0.512746)
-bones/9/rotation = Quaternion(0.0384113, -0.00430026, 0.0188252, 0.999075)
-bones/18/rotation = Quaternion(0.200197, 0.200134, 0.783862, 0.552656)
-bones/19/rotation = Quaternion(0.0337382, 0.00510612, -0.0155544, 0.999297)
-bones/21/rotation = Quaternion(-0.0578959, -0.00201147, 0.172674, 0.983274)
-bones/22/rotation = Quaternion(0.0199921, 0.00824731, 0.105405, 0.994194)
-bones/23/rotation = Quaternion(-0.0604858, -0.0127385, 0.0653237, 0.995948)
-bones/25/rotation = Quaternion(0.359363, 0.0991303, 0.320739, 0.870723)
-bones/26/rotation = Quaternion(-0.305542, -0.0408437, -0.148455, 0.939647)
-bones/27/rotation = Quaternion(-0.0748524, -0.00278103, -0.198528, 0.977229)
+bones/8/rotation = Quaternion(-0.288279, 0.632537, -0.568455, 0.440058)
+bones/9/rotation = Quaternion(0.571942, -0.00212358, -0.131731, 0.809645)
+bones/18/rotation = Quaternion(-0.150904, -0.608218, 0.686886, 0.368084)
+bones/19/rotation = Quaternion(0.548045, 0.0196725, -0.0637676, 0.833782)
+bones/21/rotation = Quaternion(-0.0966642, 0.258241, 0.32192, 0.905724)
+bones/22/rotation = Quaternion(-0.0473394, 0.0197859, 0.299546, 0.952701)
+bones/23/rotation = Quaternion(-0.078243, 0.0546005, 0.594849, 0.798155)
+bones/25/rotation = Quaternion(0.376913, 0.124497, 0.478739, 0.7831)
+bones/26/rotation = Quaternion(-0.309649, -0.0101378, -0.104003, 0.945091)
+bones/27/rotation = Quaternion(-0.0527684, -0.0296006, -0.340938, 0.938137)
 bones/28/rotation = Quaternion(-5.42024e-08, 0.696112, 0.717933, -5.2555e-08)
 bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(0.0970371, 0.336436, 0.936693, -0.486804, 0.836921, -0.25017, -0.868104, -0.431711, 0.244991, -0.276921, 1.93869, 0.453261)
+transform = Transform3D(-0.511863, -0.0287571, 0.858585, 0.194606, 0.969576, 0.148493, -0.836734, 0.243094, -0.490694, -0.20332, 1.2988, 0.386707)
 
 [node name="HitFX" parent="." instance=ExtResource("3_ci7oq")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, -0.00335562, -1.04286, -0.00184101)
@@ -115,6 +118,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.142797, 0)
 shape = SubResource("CapsuleShape3D_ci7oq")
 debug_color = Color(0.987143, 0, 0.316185, 0.42)
 
+[node name="Attackbox" type="Area3D" parent="." groups=["Monster"]]
+collision_layer = 1024
+collision_mask = 1024
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attackbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100855, -0.539078)
+shape = SubResource("BoxShape3D_ci7oq")
+disabled = true
+debug_color = Color(0.987143, 0, 0.316185, 0.42)
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="Attackbox" to="." method="_on_attackbox_area_entered"]
 
 [editable path="Body"]
