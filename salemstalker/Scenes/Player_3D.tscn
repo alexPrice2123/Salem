@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=6 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
 [ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="3_l13c1"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df3ch"]
+radius = 0.295052
 
 [node name="Player_3d" type="CharacterBody3D"]
 script = ExtResource("1_df3ch")
@@ -23,18 +26,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.231209, -0.29871
 
 [node name="Falchion" parent="Head/Camera3D/Sword" instance=ExtResource("3_l13c1")]
 
+[node name="AnimationPlayer" parent="Head/Camera3D/Sword/Falchion" index="0"]
+blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
+
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -5)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera3D"]
-light_color = Color(1, 0.616467, 0.320204, 1)
-light_energy = 2.0
-spot_range = 200.0
-spot_attenuation = 0.75
-spot_angle = 75.0
-spot_angle_attenuation = 1.7411
+[node name="Lantern" type="OmniLight3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.381676, -0.240272, 0.442798)
+light_color = Color(0.956863, 0.882353, 0.541176, 1)
+light_energy = 4.0
+light_volumetric_fog_energy = 10.0
+omni_range = 25.0
 
 [node name="InvCam" type="CSGBox3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.39412)
@@ -47,3 +52,19 @@ visible = false
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="UI" parent="." instance=ExtResource("3_sb0or")]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, 0.441923, -0.298717)
+
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 1025
+collision_mask = 1025
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape3D_df3ch")
+debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+
+[editable path="Head/Camera3D/Sword/Falchion"]
+[editable path="Head/Camera3D/Sword/Falchion/falchion"]

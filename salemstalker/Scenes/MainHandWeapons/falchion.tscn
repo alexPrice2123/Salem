@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cilhfw77d0fyx"]
+[gd_scene load_steps=15 format=3 uid="uid://cilhfw77d0fyx"]
 
 [ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="1_ej1uk"]
 [ext_resource type="Script" uid="uid://ob8xglbriafc" path="res://Scenes/MainHandWeapons/Falchion.cs" id="1_ki2ro"]
@@ -123,9 +123,6 @@ _data = {
 &"Swing3": SubResource("Animation_c1cqh")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sk81k"]
-size = Vector3(0.428467, 1.78272, 0.104248)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvryv"]
 albedo_color = Color(1, 0, 0, 1)
 roughness = 0.0
@@ -184,10 +181,11 @@ disable_mode = 2
 collision_layer = 1025
 collision_mask = 1025
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(0.999161, 0.0409514, 1.06581e-14, -0.0409514, 0.999161, 0, -4.40536e-13, -1.39888e-14, 1, -0.00686811, -0.167573, 1.33227e-15)
-shape = SubResource("BoxShape3D_sk81k")
-debug_color = Color(0.990788, 0, 0.273946, 0.42)
+[node name="CollisionShape3D" type="CollisionPolygon3D" parent="Hitbox"]
+depth = 0.1
+disabled = true
+polygon = PackedVector2Array(0.126342, -0.487537, 0.20092, 0.120859, 0.0164386, 0.631126, -0.113091, 0.375992, -0.0424386, 0.0659068, -0.0777649, -0.491462)
+debug_color = Color(0.920377, 0.238206, 0.387774, 0.42)
 
 [node name="falchion" parent="." instance=ExtResource("1_ej1uk")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.407, 0)
