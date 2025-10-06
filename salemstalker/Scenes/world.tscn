@@ -319,7 +319,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -457.229, 1.87694, -79.6788)
 transform = Transform3D(-0.576061, 0, -0.817406, 0, 1, 0, 0.817406, 0, -0.576061, -461.271, 0, -106.258)
 
 [node name="house2" parent="." groups=["Terrain"] instance=ExtResource("4_5ukr8")]
-transform = Transform3D(0.786677, 0, 0.617365, 0, 1, 0, -0.617365, 0, 0.786677, -449.396, 3.59223, -57.1813)
+transform = Transform3D(0.786677, 0, 0.617365, 0, 1, 0, -0.617365, 0, 0.786677, -449.396, -0.0498046, -57.1813)
 
 [node name="house5" parent="." groups=["Terrain"] instance=ExtResource("4_5ukr8")]
 transform = Transform3D(-0.482793, 0, 0.875734, 0, 1, 0, -0.875734, 0, -0.482793, -444.154, 0, -93.313)
