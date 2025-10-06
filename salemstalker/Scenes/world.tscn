@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=56 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -288,24 +288,6 @@ WaterTexture = ExtResource("18_1cojt")
 script = ExtResource("12_kn0ld")
 Zones = [SubResource("Resource_hgpy0")]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hmc15"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_keuyo"]
-sky_material = SubResource("ProceduralSkyMaterial_hmc15")
-
-[sub_resource type="Environment" id="Environment_dt0r1"]
-background_mode = 2
-sky = SubResource("Sky_keuyo")
-tonemap_mode = 2
-glow_enabled = true
-fog_enabled = true
-fog_light_color = Color(0, 0, 0, 1)
-volumetric_fog_enabled = true
-volumetric_fog_albedo = Color(0, 0, 0, 1)
-volumetric_fog_length = 1024.0
-
 [node name="World" type="Node3D"]
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
@@ -358,7 +340,4 @@ WaterDefinition = SubResource("Resource_yq1aw")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_t2t4p")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = false
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_dt0r1")
+metadata/_edit_lock_ = true
