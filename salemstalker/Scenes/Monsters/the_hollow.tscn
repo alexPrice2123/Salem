@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://huk253tl7ax7"]
+[gd_scene load_steps=19 format=3 uid="uid://huk253tl7ax7"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_1rci4"]
 [ext_resource type="PackedScene" uid="uid://qcibdbx6jfkp" path="res://Assets/3D/charatermodel/maincharacterblank.blend" id="2_nsxmw"]
@@ -45,10 +45,12 @@ advance_mode = 2
 advance_expression = "_speedChange > 0"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_267gr"]
+xfade_time = 0.2
 advance_mode = 2
 advance_expression = "_canAttack == true && _attacking == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j2rcu"]
+xfade_time = 0.2
 advance_mode = 2
 advance_expression = "_canAttack == false"
 
@@ -56,6 +58,11 @@ advance_expression = "_canAttack == false"
 xfade_time = 0.2
 advance_mode = 2
 advance_expression = "_speedChange <= 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uhxka"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "velocity.length() <= 0.2"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nsxmw"]
 states/End/position = Vector2(882.5, 85.9062)
@@ -65,11 +72,11 @@ states/attack/position = Vector2(550, 203)
 states/idle/node = SubResource("AnimationNodeAnimation_ci7oq")
 states/idle/position = Vector2(467, 86.0625)
 states/running/node = SubResource("AnimationNodeAnimation_nsxmw")
-states/running/position = Vector2(696, 85.1875)
+states/running/position = Vector2(686, 85.8281)
 states/walking/node = SubResource("AnimationNodeAnimation_ht62m")
 states/walking/position = Vector2(591.75, -29.125)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_m7bjp"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_00oym"), "walking", "running", SubResource("AnimationNodeStateMachineTransition_ox1ja"), "running", "attack", SubResource("AnimationNodeStateMachineTransition_267gr"), "attack", "running", SubResource("AnimationNodeStateMachineTransition_j2rcu"), "running", "walking", SubResource("AnimationNodeStateMachineTransition_nsxmw")]
-graph_offset = Vector2(170, -48)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_m7bjp"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_00oym"), "walking", "running", SubResource("AnimationNodeStateMachineTransition_ox1ja"), "running", "attack", SubResource("AnimationNodeStateMachineTransition_267gr"), "attack", "running", SubResource("AnimationNodeStateMachineTransition_j2rcu"), "running", "walking", SubResource("AnimationNodeStateMachineTransition_nsxmw"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_uhxka")]
+graph_offset = Vector2(128, -158)
 
 [node name="TheHollow" instance=ExtResource("1_1rci4")]
 
@@ -84,9 +91,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
 bones/8/rotation = Quaternion(-0.288279, 0.632537, -0.568455, 0.440058)
-bones/9/rotation = Quaternion(0.547526, 0.00163765, -0.132724, 0.826194)
+bones/9/rotation = Quaternion(0.537866, 0.00310517, -0.13308, 0.832454)
 bones/18/rotation = Quaternion(-0.150904, -0.608218, 0.686886, 0.368084)
-bones/19/rotation = Quaternion(0.555675, 0.0206031, -0.0664273, 0.828486)
+bones/19/rotation = Quaternion(0.560693, 0.0212176, -0.0681833, 0.824939)
 bones/21/rotation = Quaternion(-0.0966642, 0.258241, 0.32192, 0.905724)
 bones/22/rotation = Quaternion(-0.0473394, 0.0197859, 0.299546, 0.952701)
 bones/23/rotation = Quaternion(-0.078243, 0.0546005, 0.594849, 0.798155)
@@ -98,7 +105,7 @@ bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.511863, -0.0287572, 0.858586, 0.178328, 0.974112, 0.13894, -0.840354, 0.224228, -0.493484, -0.20332, 1.30546, 0.386864)
+transform = Transform3D(-0.511863, -0.0287572, 0.858586, 0.167522, 0.976911, 0.132592, -0.842575, 0.211701, -0.495227, -0.20332, 1.30986, 0.386897)
 
 [node name="HitFX" parent="." index="6" instance=ExtResource("2_nsxmw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
