@@ -43,8 +43,8 @@ public partial class Player3d : CharacterBody3D
 	public int _monstersKilled = 0;                  // Monster kill counter (for quests)
 	public float _maxHealth = 100f;
 	public float _health;
-	public Color _maxHealthColor = new Color(244f/255f, 224f/255f, 138f/255f);
-	public Color _minHealthColor = new Color(255f/255f, 0f, 0f);
+	public Color _maxHealthColor = new Color(244f / 255f, 224f / 255f, 138f / 255f);
+	public Color _minHealthColor = new Color(255f / 255f, 0f, 0f);
 	private float _maxRange = 25f;
 	private float _minRange = 5f;
 	// --- READY ---
@@ -100,7 +100,7 @@ public partial class Player3d : CharacterBody3D
 
 		// --- Sword attack ---
 		else if (Input.IsActionPressed("attack")
-				 && _sword.GetNode<AnimationPlayer>("AnimationPlayer").IsPlaying() == false 
+				 && _sword.GetNode<AnimationPlayer>("AnimationPlayer").IsPlaying() == false
 				 && _lastSeen == null)
 		{
 			Swing();
@@ -122,7 +122,7 @@ public partial class Player3d : CharacterBody3D
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 			}
 		}
-		
+
 		// --- Questbook toggle ---
 		else if (@event is InputEventKey lKey && lKey.Keycode == Key.L && lKey.Pressed)
 		{
@@ -139,7 +139,7 @@ public partial class Player3d : CharacterBody3D
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 			}
 		}
-		
+
 		// --- Dash (Space key) ---
 		else if (Input.IsActionJustPressed("dash"))
 		{
@@ -300,7 +300,7 @@ public partial class Player3d : CharacterBody3D
 			_damage = (float)_sword.GetMeta("hDamage");
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
 		}
-		GD.Print(comboTime, "abc", swingTime, "abc",_comboNum);
+		GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
 		_lastHit = Time.GetTicksMsec();
 		await ToSignal(GetTree().CreateTimer(swingTime), "timeout");
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionPolygon3D>("CollisionShape3D").Disabled = true;
@@ -361,14 +361,14 @@ public partial class Player3d : CharacterBody3D
 		questText.GetNode<Label>("Quest").Text = QuestTitle;
 		questText.GetNode<Label>("Number").Text = QuestGoal;
 	}
-	
+
 	public void _on_hurtbox_entered(Node3D body)
 	{
-        if (body.IsInGroup("Monster"))
+		if (body.IsInGroup("Monster"))
 		{
-			
-            GetTree().Quit();
-        }
-		
-    }
+
+			GetTree().Quit();
+		}
+
+	}
 }

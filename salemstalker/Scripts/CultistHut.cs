@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class CultistHut : Node3D
 {
@@ -7,12 +8,16 @@ public partial class CultistHut : Node3D
     private const double SpawnDistance = 100;        // Maximum distance from player before monsters despawn or spawning stops
 
     // --- VARIABLES ---
-    private PackedScene _monsterScene = GD.Load<PackedScene>("res://Scenes/Monster_3D.tscn"); // Scene reference for the monster prefab
+    private PackedScene _monsterScene = GD.Load<PackedScene>("res://Scenes/Monsters/Monster_3D.tscn"); // Scene reference for the base monster class
+    private PackedScene _theHollow = GD.Load<PackedScene>("res://Scenes/Monsters/the_hollow.tscn"); // Scene reference for the hollow
+    private List<PackedScene> _monsterList;
+    private int _monsterCount = 1;
     private CsgBox3D _spawn;                   // Spawn point node where monsters will appear
     private Timer _countdown;                  // Timer node that triggers monster spawn events
     private float _number;                     // Tracks the current number of spawned monsters
     private Player3d _player;                  // Reference to the player node
     private Node3D _holder;                    // Node that holds all spawned monsters as children
+    private RandomNumberGenerator _rng = new RandomNumberGenerator();
 
     // --- READY ---
     public override void _Ready()
@@ -23,6 +28,8 @@ public partial class CultistHut : Node3D
 
         _player = this.GetParent().GetParent().GetNode<Player3d>("Player_3d"); // Get the player node (two parents up in the scene tree)
         _holder = GetNode<Node3D>("MonsterHolder");      // Get the monster holder node
+        _monsterList = new List<PackedScene> { _theHollow };
+        _rng.Randomize();
     }
 
     // --- SPAWN HANDLER ---
@@ -54,7 +61,10 @@ public partial class CultistHut : Node3D
         }
 
         // --- Spawn new monster ---
-        CharacterBody3D monsterInstance = _monsterScene.Instantiate<CharacterBody3D>(); // Create monster instance
+        int monsterIndex = _rng.RandiRange(1, _monsterCount);
+        PackedScene monsterSelection = _monsterList[monsterIndex-1];
+        GD.Print(monsterSelection);
+        CharacterBody3D monsterInstance = monsterSelection.Instantiate<CharacterBody3D>(); // Create monster instance
         _holder.AddChild(monsterInstance);                                             // Add monster to holder node
         monsterInstance.Position = _spawn.Position;                                    // Set monster spawn position
 
