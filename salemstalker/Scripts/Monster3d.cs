@@ -30,6 +30,7 @@ public partial class Monster3d : CharacterBody3D
     private CollisionShape3D _attackBox;
     private bool _hasHit = false;
     private float _speedChange = 0f;
+    private float _damage = 15f;
 
     // --- READY ---
     public override void _Ready()
@@ -64,6 +65,7 @@ public partial class Monster3d : CharacterBody3D
             // Swap body FX on hit
             _hitFX.Visible = true;
             _body.Visible = false;
+            _canAttack = false;
 
             // Apply knockback
             Vector3 knockbackDir = (GlobalPosition - _player.Position).Normalized();

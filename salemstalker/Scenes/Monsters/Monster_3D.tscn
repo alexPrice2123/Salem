@@ -1,63 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://u7yct1quu07a"]
+[gd_scene load_steps=5 format=3 uid="uid://u7yct1quu07a"]
 
 [ext_resource type="Script" uid="uid://ckmn7j07x5ubl" path="res://Scripts/Monster3d.cs" id="1_ayuld"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ayuld"]
 radius = 0.25
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_00oym"]
-animation = &"attack"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ci7oq"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ht62m"]
-animation = &"running"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ng0vc"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c1rs2"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "velocity.length() > 0.2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ci7oq"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "velocity.length() <= 0.2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m7bjp"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "_canAttack == true && _attacking == true"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tevrd"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "_canAttack == true && _attacking == true"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ht62m"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "_canAttack == false"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_00oym"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "_canAttack == false"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fdfih"]
-states/End/position = Vector2(806, 85.375)
-states/Start/position = Vector2(253.5, 85.75)
-states/attack/node = SubResource("AnimationNodeAnimation_00oym")
-states/attack/position = Vector2(550, 203)
-states/idle/node = SubResource("AnimationNodeAnimation_ci7oq")
-states/idle/position = Vector2(467, 86.0625)
-states/running/node = SubResource("AnimationNodeAnimation_ht62m")
-states/running/position = Vector2(650, 86.375)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_m7bjp"), "running", "attack", SubResource("AnimationNodeStateMachineTransition_tevrd"), "attack", "running", SubResource("AnimationNodeStateMachineTransition_ht62m"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_00oym")]
-graph_offset = Vector2(70, 44)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ci7oq"]
 radius = 0.293507
@@ -74,10 +20,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0762192, 0)
 shape = SubResource("CapsuleShape3D_ayuld")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_fdfih")
-advance_expression_base_node = NodePath("..")
 
 [node name="Hurtbox" type="Area3D" parent="." groups=["Monster"]]
 collision_layer = 1024
