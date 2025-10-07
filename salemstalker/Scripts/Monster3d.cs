@@ -3,37 +3,42 @@ using System;
 
 public partial class Monster3d : CharacterBody3D
 {
+    //---- THIS IS THE BASE MONSTER SCRIPT ALL VARIABLES WILL BE CHANGED IN THE INDIVIDUAL MONSTER SCRIPTS
     // --- CONSTANTS ---
-    public const float Speed = 2.5f;             // Movement speed
-    public const float JumpVelocity = 6.5f;      // Jump strength (unused)
-    public const float MaxHealth = 100.0f;         // Maximum monster health
-    public const float Range = 25.0f;            // Detection range for chasing
-    private const double SpawnDistance = 100;    // Distance from player before despawning
+    
+    public float Speed = 4.5f;             // Movement speed
+    public float MaxHealth = 100.0f;         // Maximum monster health
+    public float Range = 25.0f;            // Detection range for chasing
+    public double SpawnDistance = 100;    // Distance from player before despawning
+    public float BaseDamage = 10.0f;
+    public int WanderRange = 50;
+    public float AttackSpeed = 0.5f;
+    public float AttackRange = 1f;
 
     // --- VARIABLES ---
-    private Player3d _player;                    // Reference to the player
-    public float _health = MaxHealth;            // Current health of the monster
-    private Vector3 _knockbackVelocity = Vector3.Zero; // Knockback force applied when hit
-    private Vector3 _wanderPos;                  // Current wander target position
-    private float _count;                        // Frame counter used to time wander updates
-    private RandomNumberGenerator _rng = new();  // Random number generator for wander movement
-    private NavigationAgent3D _navAgent;         // Pathfinding/navigation agent
-    private Vector3 _startPos;                   // Starting position (wander center point)
-    private Node3D _hitFX;                       // Hit effect visual node
-    private Node3D _body;                        // Monster body mesh node
-    private bool _canBeHit = true;               // Prevents rapid re-hits during invulnerability
-    private Vector3 _currentRot;                 // Stores current rotation of monster
+    public Player3d _player;                    // Reference to the player
+    public float _health;            // Current health of the monster
+    public Vector3 _knockbackVelocity = Vector3.Zero; // Knockback force applied when hit
+    public Vector3 _wanderPos;                  // Current wander target position
+    public float _count;                        // Frame counter used to time wander updates
+    public RandomNumberGenerator _rng = new();  // Random number generator for wander movement
+    public NavigationAgent3D _navAgent;         // Pathfinding/navigation agent
+    public Vector3 _startPos;                   // Starting position (wander center point)
+    public Node3D _hitFX;                       // Hit effect visual node
+    public Node3D _body;                        // Monster body mesh node
+    public bool _canBeHit = true;               // Prevents rapid re-hits during invulnerability
+    public Vector3 _currentRot;                 // Stores current rotation of monster
     public bool _attacking = false;
     public bool _canAttack = true;
-    private AnimationPlayer _animPlayer;
-    private float attackOneLength;
-    private CollisionShape3D _attackBox;
-    private bool _hasHit = false;
-    private float _speedChange = 0f;
-    private float _damage = 15f;
+    public AnimationPlayer _animPlayer;
+    public float attackOneLength;
+    public CollisionShape3D _attackBox;
+    public bool _hasHit = false;
+    public float _speedOffset = 0f;
+    public float _damageOffset = 0f;
 
     // --- READY ---
-    public override void _Ready()
+    public void Initialization()
     {
         _player = this.GetParent().GetParent().GetParent().GetParent().GetNode<Player3d>("Player_3d");
         _rng.Randomize();
@@ -41,8 +46,8 @@ public partial class Monster3d : CharacterBody3D
         _startPos = GlobalPosition;
 
         // Initialize wander position randomly around spawn
-        float randZ = GlobalPosition.Z + _rng.RandiRange(-50, 50);
-        float randX = GlobalPosition.X + _rng.RandiRange(-50, 50);
+        float randZ = GlobalPosition.Z + _rng.RandiRange(-WanderRange, WanderRange);
+        float randX = GlobalPosition.X + _rng.RandiRange(-WanderRange, WanderRange);
         _wanderPos = new Vector3(randX, 0f, randZ);
 
         _hitFX = GetNode<Node3D>("HitFX");
@@ -55,7 +60,7 @@ public partial class Monster3d : CharacterBody3D
     }
 
     // --- DAMAGE HANDLER ---
-    private async void _on_hurtbox_area_entered(Area3D body)
+    public async void Damaged(Area3D body)
     {
         if (body.IsInGroup("Weapon") && _canBeHit)
         {
@@ -101,8 +106,8 @@ public partial class Monster3d : CharacterBody3D
         if (_count >= 250)
         {
             _count = _rng.RandiRange(-100, 50);
-            float randZ = _startPos.Z + _rng.RandiRange(-50, 50);
-            float randX = _startPos.X + _rng.RandiRange(-50, 50);
+            float randZ = _startPos.Z + _rng.RandiRange(-WanderRange, WanderRange);
+            float randX = _startPos.X + _rng.RandiRange(-WanderRange, WanderRange);
             _wanderPos = new Vector3(randX, _player.GlobalPosition.Y, randZ);
         }
 
@@ -111,16 +116,7 @@ public partial class Monster3d : CharacterBody3D
         {
             _navAgent.TargetPosition = _player.GlobalPosition;
             Vector3 nextPoint = _navAgent.GetNextPathPosition();
-            Velocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed + _speedChange) + _knockbackVelocity;
-
-            if (distance < 5)
-            {
-                _speedChange = 2.5f;
-            }
-            else
-            {
-                _speedChange = 0f;
-            }
+            Velocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed + _speedOffset) + _knockbackVelocity;
 
             // Handle Y-axis alignment
             if (GlobalPosition.Snapped(0.1f).Y == _player.GlobalPosition.Snapped(0.1f).Y)
@@ -141,11 +137,16 @@ public partial class Monster3d : CharacterBody3D
             if (distance <= 2f && _canAttack == true)
             {
                 _attacking = true;
-                Attack(2.5f);
+                Attack(AttackSpeed);
             }
             else if (distance > 2f)
             {
                 _attacking = false;
+            }
+
+            if (distance <= AttackRange)
+            {
+                Velocity = new Vector3(0, Velocity.Y, 0);
             }
         }
         // --- Wander ---
@@ -176,16 +177,13 @@ public partial class Monster3d : CharacterBody3D
         }
 
         // --- Movement ---
-        if (_player._inv.Visible == false)
-        {
-            MoveAndSlide();
-        }
+        if (_player._inv.Visible == false) { MoveAndSlide(); }
 
         // Smooth knockback decay
         _knockbackVelocity = _knockbackVelocity.Lerp(Vector3.Zero, (float)delta * 5.0f);
     }
 
-    private async void Attack(float delayLength)
+    public async void Attack(float delayLength)
     {
         _attackBox.Disabled = false;
         _hasHit = false;
@@ -194,15 +192,5 @@ public partial class Monster3d : CharacterBody3D
         _canAttack = false;
         await ToSignal(GetTree().CreateTimer(delayLength), "timeout");
         _canAttack = true;
-    }
-
-    private void _on_attackbox_area_entered(Node3D body)
-    {
-        if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
-        {
-            _player._health -= 10f;
-            _attackBox.Disabled = true;
-            _hasHit = true;
-        }
     }
 }

@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://duh6sypkk1xo1"]
+
+[ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="1_ogqpy"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_caui3"]
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ogqpy"]
+render_priority = 0
+shader = ExtResource("1_ogqpy")
+shader_parameter/Color = Color(0.288578, 5.62167e-05, 0.288576, 1)
+shader_parameter/glow_color = Color(0.437211, 0.000132985, 0.437208, 1)
+shader_parameter/dist = 2.0
+shader_parameter/speed = 1.0
+shader_parameter/glow_intensity = 250.0
+shader_parameter/glow_amount = 6.14
+shader_parameter/posMult = -0.2
+shader_parameter/noise = SubResource("NoiseTexture2D_caui3")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ogqpy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_caui3"]
+render_priority = 0
+shader = ExtResource("1_ogqpy")
+shader_parameter/Color = Color(0.437211, 0.000132985, 0.437208, 1)
+shader_parameter/glow_color = Color(1, 0, 1, 1)
+shader_parameter/dist = 2.0
+shader_parameter/speed = 1.0
+shader_parameter/glow_intensity = 250.0
+shader_parameter/glow_amount = 30.0
+shader_parameter/posMult = 1.58
+shader_parameter/noise = SubResource("NoiseTexture2D_caui3")
+
+[sub_resource type="Curve" id="Curve_ryljl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ryljl"]
+curve = SubResource("Curve_ryljl")
+
+[sub_resource type="Curve" id="Curve_4tb7o"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4tb7o"]
+curve = SubResource("Curve_4tb7o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r3x0a"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 2.99998
+radial_velocity_max = 5.99998
+radial_velocity_curve = SubResource("CurveTexture_ryljl")
+gravity = Vector3(0, -2, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_min = 0.25
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_4tb7o")
+
+[sub_resource type="SphereMesh" id="SphereMesh_gn4ky"]
+
+[node name="Orb" type="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.622675, 0, 0, 0, 0.49814, 0, 0, 0, 0.622675, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_ogqpy")
+mesh = SubResource("SphereMesh_ogqpy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D2"]
+light_color = Color(1, 0, 1, 1)
+light_energy = 5.0
+omni_range = 2.0
+
+[node name="Blood" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_caui3")
+amount = 100
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_r3x0a")
+draw_pass_1 = SubResource("SphereMesh_gn4ky")

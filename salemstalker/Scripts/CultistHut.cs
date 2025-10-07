@@ -10,6 +10,7 @@ public partial class CultistHut : Node3D
     // --- VARIABLES ---
     private PackedScene _monsterScene = GD.Load<PackedScene>("res://Scenes/Monsters/Monster_3D.tscn"); // Scene reference for the base monster class
     private PackedScene _theHollow = GD.Load<PackedScene>("res://Scenes/Monsters/the_hollow.tscn"); // Scene reference for the hollow
+    private PackedScene _vCultist = GD.Load<PackedScene>("res://Scenes/Monsters/vCultist.tscn"); // Scene reference for the violent culstist
     private List<PackedScene> _monsterList;
     private int _monsterCount = 1;
     private CsgBox3D _spawn;                   // Spawn point node where monsters will appear
@@ -28,7 +29,7 @@ public partial class CultistHut : Node3D
 
         _player = this.GetParent().GetParent().GetNode<Player3d>("Player_3d"); // Get the player node (two parents up in the scene tree)
         _holder = GetNode<Node3D>("MonsterHolder");      // Get the monster holder node
-        _monsterList = new List<PackedScene> { _theHollow };
+        _monsterList = new List<PackedScene> { _theHollow, _vCultist };
         _rng.Randomize();
     }
 
