@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://u7yct1quu07a"]
+
+[ext_resource type="Script" uid="uid://ckmn7j07x5ubl" path="res://Scripts/Monster3d.cs" id="1_ayuld"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ayuld"]
+radius = 0.25
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ci7oq"]
+radius = 0.293507
+height = 1.93186
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ci7oq"]
+size = Vector3(1.04077, 1.4873, 1.00809)
+
+[node name="Monster_3d" type="CharacterBody3D" groups=["Monster"]]
+script = ExtResource("1_ayuld")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0762192, 0)
+shape = SubResource("CapsuleShape3D_ayuld")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Hurtbox" type="Area3D" parent="." groups=["Monster"]]
+collision_layer = 1024
+collision_mask = 1024
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.142797, 0)
+shape = SubResource("CapsuleShape3D_ci7oq")
+debug_color = Color(0.987143, 0, 0.316185, 0.42)
+
+[node name="Attackbox" type="Area3D" parent="." groups=["Monster"]]
+collision_layer = 1024
+collision_mask = 1024
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attackbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100855, -0.539078)
+shape = SubResource("BoxShape3D_ci7oq")
+disabled = true
+debug_color = Color(0.987143, 0, 0.316185, 0.42)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="Attackbox" to="." method="_on_attackbox_area_entered"]
