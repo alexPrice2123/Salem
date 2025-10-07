@@ -1,18 +1,18 @@
-[gd_scene load_steps=61 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=58 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
-[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/grass.png" id="5_hmc15"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
+[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="6_ikia7"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="7_7yui6"]
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="7_axeuq"]
-[ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="7_dt0r1"]
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
-[ext_resource type="Texture2D" uid="uid://siqp4n131i47" path="res://Assets/2D/sandtextures.png" id="8_dt0r1"]
+[ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="8_dt0r1"]
 [ext_resource type="Texture2D" uid="uid://dxxey6dq8cds1" path="res://Assets/3D/plants/bush_bushtextures.png" id="9_0pcbe"]
 [ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Scenes/World/Heightmap_0_0.res" id="9_7yui6"]
 [ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="9_kn0ld"]
+[ext_resource type="Texture2D" uid="uid://siqp4n131i47" path="res://Assets/2D/sandtextures.png" id="9_qebug"]
 [ext_resource type="Texture2D" uid="uid://brgdqertk6qk0" path="res://Scenes/World/Splatmap_0_0_0.res" id="10_c5t2i"]
 [ext_resource type="Script" uid="uid://d33x21vao7tj2" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="10_hgpy0"]
 [ext_resource type="Texture2D" uid="uid://duyqji6d5wl4n" path="res://Assets/3D/plants/bush_goodtreebkgdless_kat_px.png" id="10_yq1aw"]
@@ -47,31 +47,34 @@ filter_baking_aabb = AABB(0, 0, 0, 70.99, 19.98, 50.01)
 
 [sub_resource type="Resource" id="Resource_e0ngr"]
 script = ExtResource("7_7yui6")
-Name = "grass"
-AlbedoTexture = ExtResource("5_hmc15")
+Name = ""
+AlbedoTexture = ExtResource("6_ikia7")
+NormalTexture = ExtResource("7_axeuq")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_c5t2i"]
 script = ExtResource("7_7yui6")
-Name = "dirt"
-AlbedoTexture = ExtResource("7_dt0r1")
+Name = ""
+AlbedoTexture = ExtResource("8_dt0r1")
+NormalTexture = ExtResource("7_axeuq")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
-[sub_resource type="Resource" id="Resource_qebug"]
+[sub_resource type="Resource" id="Resource_o2rbt"]
 script = ExtResource("7_7yui6")
-Name = "sand"
-AlbedoTexture = ExtResource("8_dt0r1")
+Name = ""
+AlbedoTexture = ExtResource("9_qebug")
+NormalTexture = ExtResource("7_axeuq")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_kn0ld"]
 script = ExtResource("8_c5t2i")
-TextureSets = [SubResource("Resource_e0ngr"), SubResource("Resource_c5t2i"), SubResource("Resource_qebug")]
+TextureSets = [SubResource("Resource_e0ngr"), SubResource("Resource_c5t2i"), SubResource("Resource_o2rbt")]
 metadata/_custom_type_script = "uid://043vjblb04jf"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2t4p"]
@@ -261,8 +264,8 @@ noise = SubResource("FastNoiseLite_kw8us")
 script = ExtResource("14_1cojt")
 WaterFactor = 10.0
 WaterInnerOffset = 0.3
-WaterColor = Color(0, 0.379049, 0.615767, 1)
-WaterFresnelColor = Color(0, 0.746725, 0.635823, 1)
+WaterColor = Color(0, 0.262061, 0.434977, 1)
+WaterFresnelColor = Color(0, 0.404081, 0.340577, 1)
 WaterMetallic = 1.0
 WaterRoughness = 1.0
 WaterNormalMap = ExtResource("7_axeuq")
@@ -294,24 +297,6 @@ WaterTexture = ExtResource("18_1cojt")
 [sub_resource type="Resource" id="Resource_t2t4p"]
 script = ExtResource("12_kn0ld")
 Zones = [SubResource("Resource_hgpy0")]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dt0r1"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_keuyo"]
-sky_material = SubResource("ProceduralSkyMaterial_dt0r1")
-
-[sub_resource type="Environment" id="Environment_o2rbt"]
-background_mode = 2
-sky = SubResource("Sky_keuyo")
-tonemap_mode = 2
-glow_enabled = true
-fog_enabled = true
-fog_light_color = Color(0, 0, 0, 1)
-volumetric_fog_enabled = true
-volumetric_fog_albedo = Color(0, 0, 0, 1)
-volumetric_fog_length = 1024.0
 
 [node name="World" type="Node3D"]
 
@@ -366,6 +351,3 @@ transform = Transform3D(-0.949699, 0, -0.313164, 0, 1, 0, 0.313164, 0, -0.949699
 
 [node name="house4" parent="." instance=ExtResource("27_hmc15")]
 transform = Transform3D(-0.592013, 0, 0.805928, 0, 1, 0, -0.805928, 0, -0.592013, -424.842, 5.96046e-08, -79.2056)
-
-[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_o2rbt")
