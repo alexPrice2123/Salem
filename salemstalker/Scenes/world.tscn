@@ -300,7 +300,9 @@ background_mode = 2
 sky = SubResource("Sky_keuyo")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
+volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 volumetric_fog_length = 1024.0
 
