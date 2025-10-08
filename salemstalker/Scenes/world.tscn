@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
-[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/grass.png" id="6_ikia7"]
+[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="6_ikia7"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="7_7yui6"]
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="7_axeuq"]
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
