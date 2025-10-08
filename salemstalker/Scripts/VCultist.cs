@@ -4,6 +4,9 @@ using System;
 public partial class VCultist : Monster3d
 {
     // Called when the node enters the scene tree for the first time.
+
+    private PackedScene _darkOrb = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/orb.tscn"); // Scene reference to the dark orb
+    private Node3D _spawn;
     public override void _Ready()
     {
         Speed = 4.5f;             // Movement speed
@@ -12,20 +15,17 @@ public partial class VCultist : Monster3d
         SpawnDistance = 100;    // Distance from player before despawning
         BaseDamage = 15.0f;
         WanderRange = 50;
-        AttackSpeed = 2.5f;
+        AttackSpeed = 6f;
         AttackRange = 15f;
         Monster = this;
+
+        _spawn = GetNode<Node3D>("Body/metarig/Skeleton3D/Cylinder/Spawn");
         Initialization();
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        float distance = (_player.GlobalPosition - GlobalPosition).Length();
-        if (distance <= AttackRange)
-        {
-
-        }
     }
 
     public void _on_hurtbox_area_entered(Area3D body)
@@ -45,12 +45,15 @@ public partial class VCultist : Monster3d
     
     public async void Attack()
 	{
-		_attackBox.Disabled = false;
-        _hasHit = false;
-        await ToSignal(GetTree().CreateTimer(attackOneLength), "timeout");
-        _attackBox.Disabled = true;
         _canAttack = false;
         await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
+		RigidBody3D projectileInstance = _darkOrb.Instantiate<RigidBody3D>(); // Create monster instance
+        _player.GetParent().AddChild(projectileInstance);                                             // Add monster to holder node
+        projectileInstance.GlobalPosition = _spawn.GlobalPosition;
+        if (projectileInstance is Orb orb)
+        {
+            orb.Shoot(-GlobalTransform.Basis.Z.Normalized());
+        }  
         _canAttack = true;
 	}
 }

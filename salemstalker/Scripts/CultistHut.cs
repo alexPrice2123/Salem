@@ -29,7 +29,7 @@ public partial class CultistHut : Node3D
 
         _player = this.GetParent().GetParent().GetNode<Player3d>("Player_3d"); // Get the player node (two parents up in the scene tree)
         _holder = GetNode<Node3D>("MonsterHolder");      // Get the monster holder node
-        _monsterList = new List<PackedScene> { _theHollow, _vCultist };
+        _monsterList = new List<PackedScene> { _vCultist, _theHollow };
         _rng.Randomize();
     }
 

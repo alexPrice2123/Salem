@@ -37,6 +37,7 @@ public partial class Monster3d : CharacterBody3D
     public bool _hasHit = false;
     public float _speedOffset = 0f;
     public float _damageOffset = 0f;
+    public bool _justSpawned = true;
 
     // --- READY ---
     public void Initialization()
@@ -103,7 +104,10 @@ public partial class Monster3d : CharacterBody3D
     {
         _count += 1;
         float distance = (_player.GlobalPosition - GlobalPosition).Length();
-
+        if (_count > 50 && _justSpawned == true)
+        {
+            _justSpawned = false;
+        }
         // Update wander position every ~250 frames
         if (_count >= 250)
         {
@@ -175,8 +179,9 @@ public partial class Monster3d : CharacterBody3D
             }
         }
 
+
         // --- Movement ---
-        if (distance > AttackRange && _knockbackVelocity.Length() < 0.5f) { MoveAndSlide(); } else { Velocity = Vector3.Zero; }
+        if (_justSpawned == true) { MoveAndSlide(); } else if (distance > AttackRange && _knockbackVelocity.Length() < 0.5f) { MoveAndSlide(); } else if (_knockbackVelocity.Length() < 0.5f) { Velocity = Vector3.Zero; } else { MoveAndSlide(); }
 
         // Smooth knockback decay
         _knockbackVelocity = _knockbackVelocity.Lerp(Vector3.Zero, (float)delta * 5.0f);

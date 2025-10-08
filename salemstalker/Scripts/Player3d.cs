@@ -302,7 +302,7 @@ public partial class Player3d : CharacterBody3D
 		}
 		GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
 		_lastHit = Time.GetTicksMsec();
-		await ToSignal(GetTree().CreateTimer(swingTime), "timeout");
+		await ToSignal(GetTree().CreateTimer(swingTime*0.7), "timeout");
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionPolygon3D>("CollisionShape3D").Disabled = true;
 	}
 
