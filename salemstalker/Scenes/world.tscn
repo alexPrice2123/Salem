@@ -339,7 +339,7 @@ WaterDefinition = SubResource("Resource_yq1aw")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_t2t4p")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = false
+metadata/_edit_lock_ = true
 
 [node name="house2" parent="." instance=ExtResource("27_hmc15")]
 transform = Transform3D(0.934242, 0, 0.35664, 0, 1, 0, -0.35664, 0, 0.934242, -441.425, 0, -56.4897)
