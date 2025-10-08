@@ -167,9 +167,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
 bones/8/rotation = Quaternion(-0.288279, 0.632537, -0.568455, 0.440058)
-bones/9/rotation = Quaternion(0.546796, 0.00174905, -0.132752, 0.826673)
+bones/9/rotation = Quaternion(0.565074, -0.00105775, -0.132024, 0.814408)
 bones/18/rotation = Quaternion(-0.150904, -0.608218, 0.686886, 0.368084)
-bones/19/rotation = Quaternion(0.556022, 0.0206455, -0.0665487, 0.828242)
+bones/19/rotation = Quaternion(0.549087, 0.0197994, -0.0641302, 0.833066)
 bones/21/rotation = Quaternion(-0.0966642, 0.258241, 0.32192, 0.905724)
 bones/22/rotation = Quaternion(-0.0473394, 0.0197859, 0.299546, 0.952701)
 bones/23/rotation = Quaternion(-0.078243, 0.0546005, 0.594849, 0.798155)
@@ -181,7 +181,7 @@ bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.511863, -0.0287571, 0.858586, 0.177583, 0.974311, 0.138503, -0.840512, 0.223364, -0.493607, -0.20332, 1.30576, 0.386868)
+transform = Transform3D(-0.511863, -0.0287572, 0.858585, 0.192394, 0.970216, 0.147195, -0.837246, 0.24053, -0.491085, -0.20332, 1.2997, 0.386736)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D/Cylinder" index="0"]
 visible = false
@@ -193,17 +193,19 @@ mesh = SubResource("SphereMesh_kviwv")
 skeleton = NodePath("../../../../..")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Body/metarig/Skeleton3D/Cylinder/MeshInstance3D2" index="0"]
-light_color = Color(1, 0, 1, 1)
+light_color = Color(0.313726, 0.188235, 0.921569, 1)
 light_energy = 5.0
 omni_range = 2.0
 
-[node name="Blood" type="GPUParticles3D" parent="Body/metarig/Skeleton3D/Cylinder" index="2"]
+[node name="Magic" type="GPUParticles3D" parent="Body/metarig/Skeleton3D/Cylinder" index="2"]
 transform = Transform3D(0.511863, 0.197702, 0.836009, 0.0287569, 0.968671, -0.246681, -0.858585, 0.150308, 0.490142, 0.00547312, -0.0699652, 0.0110329)
 material_override = SubResource("ShaderMaterial_yr5wf")
 amount = 100
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_ok713")
 draw_pass_1 = SubResource("SphereMesh_v2reo")
+
+[node name="Spawn" type="Node3D" parent="Body/metarig/Skeleton3D/Cylinder" index="3"]
 
 [node name="HitFX" parent="." index="6" instance=ExtResource("2_cno0p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
