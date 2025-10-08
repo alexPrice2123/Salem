@@ -1,13 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://j6uelknlee1h"]
+[gd_scene load_steps=16 format=3 uid="uid://j6uelknlee1h"]
 
 [ext_resource type="Script" uid="uid://bia85ihgc8h1y" path="res://Scripts/Blood.cs" id="2_jo16x"]
 [ext_resource type="PackedScene" uid="uid://323vl4kctpsr" path="res://Assets/Weapons/short sword.blend" id="3_3h2ph"]
+[ext_resource type="Texture2D" uid="uid://ww86xihxhm75" path="res://Assets/weapontextures/shortsword/blade_Base_color.png" id="3_c1cqh"]
+[ext_resource type="Texture2D" uid="uid://4qlybwvdid8b" path="res://Assets/weapontextures/shortsword/grip_Base_color.png" id="3_m4ngj"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3h2ph"]
 margin = 0.0
-size = Vector3(3.879, 17.004, 12.726)
+size = Vector3(3.879, 6.13188, 4.56445)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ag22c"]
+albedo_texture = ExtResource("3_m4ngj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4ngj"]
+albedo_texture = ExtResource("3_c1cqh")
+metallic = 1.0
+roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jo16x"]
 albedo_color = Color(1, 0, 0, 1)
@@ -63,12 +73,18 @@ input_ray_pickable = false
 priority = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 0.999997, 0, 0, 0, 1, -0.0221468, 8.46566, -0.0629556)
+transform = Transform3D(1, 0, 0, 0, 0.999985, 0, 0, 0, 1, -0.0221468, 3.02962, -0.0629556)
 shape = SubResource("BoxShape3D_3h2ph")
 disabled = true
 
 [node name="short sword" parent="." instance=ExtResource("3_3h2ph")]
 transform = Transform3D(-4.40611e-07, 0, 10.08, 0, 4.032, 0, -10.08, 0, -4.40611e-07, -0.0551795, -1.55477, 0.0225514)
+
+[node name="Cylinder" parent="short sword" index="0"]
+material_override = SubResource("StandardMaterial3D_ag22c")
+
+[node name="Sphere_001" parent="short sword" index="1"]
+material_override = SubResource("StandardMaterial3D_m4ngj")
 
 [node name="Blood" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0698854, 3.27924, 0.000148448)
@@ -80,3 +96,5 @@ process_material = SubResource("ParticleProcessMaterial_o56aj")
 draw_pass_1 = SubResource("SphereMesh_h8xwj")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+
+[editable path="short sword"]

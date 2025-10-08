@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=68 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -40,6 +40,24 @@ geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"Terrain"
 filter_baking_aabb = AABB(0, 0, 0, 100, 20, 100)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ua1v"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_keuyo"]
+sky_material = SubResource("ProceduralSkyMaterial_3ua1v")
+
+[sub_resource type="Environment" id="Environment_r0ikl"]
+background_mode = 2
+sky = SubResource("Sky_keuyo")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_length = 1024.0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_8j60k"]
 vertices = PackedVector3Array(0.5, 5, 0.5, 0.5, 5, 49.5, 70.5, 4.75, 49.5, 70.5, 4.75, 0.5)
@@ -343,6 +361,9 @@ transform = Transform3D(0.998821, 0, 0, 0, 0.998821, 0, 0, 0, 0.998821, 21.5126,
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="MonsterRegion/Hut"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.286737, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="MonsterRegion"]
+environment = SubResource("Environment_r0ikl")
 
 [node name="VillageRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.863941, 0, -0.503593, 0, 1, 0, 0.503593, 0, 0.863941, -469.512, -4.30756, -122.386)

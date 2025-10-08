@@ -4,6 +4,8 @@ using System;
 public partial class TheHollow : Monster3d
 {
 	// Called when the node enters the scene tree for the first time.
+
+	private float _distance;
 	public override void _Ready()
 	{
 		Speed = 2.5f;             // Movement speed
@@ -13,7 +15,7 @@ public partial class TheHollow : Monster3d
 		BaseDamage = 45.0f;
 		WanderRange = 50;
 		AttackSpeed = 2.5f;
-		AttackRange = 1f;
+		AttackRange = 2f;
 		Monster = this;
 		Initialization();
 	}
@@ -21,12 +23,12 @@ public partial class TheHollow : Monster3d
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		float distance = (_player.GlobalPosition - GlobalPosition).Length();
-		if (distance < 5)
+		_distance = (_player.GlobalPosition - GlobalPosition).Length();
+		if (_distance < 5 && _attackException == false)
 		{
 			_speedOffset = 2.5f;
 		}
-		else
+		else if (_attackException == false)
 		{
 			_speedOffset = 0f;
 		}
@@ -49,11 +51,23 @@ public partial class TheHollow : Monster3d
 
 	public async void Attack()
 	{
+		_attackAnim = true;
+		await ToSignal(GetTree().CreateTimer(1.5), "timeout");
+		if (_distance > AttackRange)
+		{
+			_attackException = true;
+			_speedOffset = 12f;	
+		}
+		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+		_speedOffset = 2.5f;
+		_attackException = false;
 		_attackBox.Disabled = false;
         _hasHit = false;
-        await ToSignal(GetTree().CreateTimer(attackOneLength), "timeout");
+        await ToSignal(GetTree().CreateTimer(0.4), "timeout");
         _attackBox.Disabled = true;
         _canAttack = false;
+		await ToSignal(GetTree().CreateTimer(0.7), "timeout");
+		_attackAnim = false;
         await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
         _canAttack = true;
 	}

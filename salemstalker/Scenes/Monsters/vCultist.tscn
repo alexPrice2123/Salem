@@ -156,6 +156,9 @@ scale_curve = SubResource("CurveTexture_yr5wf")
 [node name="vCultist" instance=ExtResource("1_20aj2")]
 script = ExtResource("2_im0l4")
 
+[node name="CollisionShape3D" parent="Hurtbox" index="0"]
+debug_color = Color(0.541872, 0.406451, 1, 0.42)
+
 [node name="AnimationTree" type="AnimationTree" parent="." index="4"]
 root_node = NodePath("../Body")
 tree_root = SubResource("AnimationNodeStateMachine_kviwv")
