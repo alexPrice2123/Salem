@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://ds8375k7kpihg"]
+[gd_scene load_steps=34 format=3 uid="uid://ds8375k7kpihg"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_20aj2"]
 [ext_resource type="PackedScene" uid="uid://qcibdbx6jfkp" path="res://Assets/3D/charatermodel/maincharacterblank.blend" id="2_cno0p"]
+[ext_resource type="Script" uid="uid://bm70c84xyxpwf" path="res://Scripts/VCultist.cs" id="2_im0l4"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_cno0p"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="3_im0l4"]
 
@@ -85,41 +86,52 @@ seamless = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_im0l4"]
 render_priority = 0
 shader = ExtResource("3_cno0p")
-shader_parameter/Color = Color(0.288578, 5.62167e-05, 0.288576, 1)
-shader_parameter/glow_color = Color(0.437211, 0.000132985, 0.437208, 1)
+shader_parameter/Color = Color(0.313726, 0.188235, 0.921569, 1)
+shader_parameter/glow_color = Color(0.258824, 0.0235294, 0.25098, 1)
 shader_parameter/dist = 2.0
 shader_parameter/speed = 1.0
-shader_parameter/glow_intensity = 250.0
-shader_parameter/glow_amount = 6.14
-shader_parameter/posMult = -0.02
+shader_parameter/glow_intensity = -0.1
+shader_parameter/glow_amount = 10.0
+shader_parameter/posMult = 0.03
 shader_parameter/noise = SubResource("NoiseTexture2D_xdlj8")
 
 [sub_resource type="SphereMesh" id="SphereMesh_kviwv"]
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cno0p"]
+seamless = true
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yr5wf"]
 render_priority = 0
 shader = ExtResource("3_cno0p")
-shader_parameter/Color = Color(0.437211, 0.000132985, 0.437208, 1)
-shader_parameter/glow_color = Color(1, 0, 1, 1)
+shader_parameter/Color = Color(0.313726, 0.188235, 0.921569, 1)
+shader_parameter/glow_color = Color(0.258824, 0.0235294, 0.25098, 1)
 shader_parameter/dist = 2.0
 shader_parameter/speed = 1.0
-shader_parameter/glow_intensity = 250.0
-shader_parameter/glow_amount = 30.0
+shader_parameter/glow_intensity = -0.1
+shader_parameter/glow_amount = 10.0
 shader_parameter/posMult = 1.58
-shader_parameter/noise = SubResource("NoiseTexture2D_xdlj8")
+shader_parameter/noise = SubResource("NoiseTexture2D_cno0p")
+
+[sub_resource type="Curve" id="Curve_cno0p"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_im0l4"]
+curve = SubResource("Curve_cno0p")
 
 [sub_resource type="Curve" id="Curve_ja8if"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_c1cqh"]
+[sub_resource type="CurveTexture" id="CurveTexture_kviwv"]
 curve = SubResource("Curve_ja8if")
 
 [sub_resource type="Curve" id="Curve_xtwe5"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_ag22c"]
+[sub_resource type="CurveTexture" id="CurveTexture_yr5wf"]
 curve = SubResource("Curve_xtwe5")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ok713"]
@@ -128,20 +140,21 @@ angle_min = 1.07288e-05
 angle_max = 360.0
 direction = Vector3(0, 0, 0)
 spread = 0.0
-radial_velocity_min = 1.99998
-radial_velocity_max = 2.99998
-radial_velocity_curve = SubResource("CurveTexture_c1cqh")
-gravity = Vector3(0, -2, 0)
-linear_accel_min = 0.999998
-linear_accel_max = 0.999998
+orbit_velocity_min = -0.5
+orbit_velocity_max = 0.5
+orbit_velocity_curve = SubResource("CurveTexture_im0l4")
+radial_velocity_min = 1.49998
+radial_velocity_max = 1.49998
+radial_velocity_curve = SubResource("CurveTexture_kviwv")
+gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 0.1
-scale_curve = SubResource("CurveTexture_ag22c")
+scale_curve = SubResource("CurveTexture_yr5wf")
 
 [sub_resource type="SphereMesh" id="SphereMesh_v2reo"]
 
-[node name="Monster_3d" instance=ExtResource("1_20aj2")]
-script = null
+[node name="vCultist" instance=ExtResource("1_20aj2")]
+script = ExtResource("2_im0l4")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="4"]
 root_node = NodePath("../Body")
@@ -154,9 +167,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
 bones/8/rotation = Quaternion(-0.288279, 0.632537, -0.568455, 0.440058)
-bones/9/rotation = Quaternion(0.55458, 0.000558801, -0.132451, 0.821521)
+bones/9/rotation = Quaternion(0.546796, 0.00174905, -0.132752, 0.826673)
 bones/18/rotation = Quaternion(-0.150904, -0.608218, 0.686886, 0.368084)
-bones/19/rotation = Quaternion(0.552557, 0.0202223, -0.0653391, 0.830664)
+bones/19/rotation = Quaternion(0.556022, 0.0206455, -0.0665487, 0.828242)
 bones/21/rotation = Quaternion(-0.0966642, 0.258241, 0.32192, 0.905724)
 bones/22/rotation = Quaternion(-0.0473394, 0.0197859, 0.299546, 0.952701)
 bones/23/rotation = Quaternion(-0.078243, 0.0546005, 0.594849, 0.798155)
@@ -168,7 +181,7 @@ bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.511863, -0.0287572, 0.858585, 0.185001, 0.972299, 0.142858, -0.83891, 0.231963, -0.492364, -0.20332, 1.30273, 0.386816)
+transform = Transform3D(-0.511863, -0.0287571, 0.858586, 0.177583, 0.974311, 0.138503, -0.840512, 0.223364, -0.493607, -0.20332, 1.30576, 0.386868)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D/Cylinder" index="0"]
 visible = false

@@ -14,6 +14,7 @@ public partial class Monster3d : CharacterBody3D
     public int WanderRange = 50;
     public float AttackSpeed = 0.5f;
     public float AttackRange = 1f;
+    public CharacterBody3D Monster;
 
     // --- VARIABLES ---
     public Player3d _player;                    // Reference to the player
@@ -54,6 +55,7 @@ public partial class Monster3d : CharacterBody3D
         _body = GetNode<Node3D>("Body");
         _currentRot = GlobalRotation;
         _attackBox = GetNode<CollisionShape3D>("Attackbox/CollisionShape3D");
+        _health = MaxHealth;
 
         _animPlayer = GetNode<AnimationPlayer>("Body/AnimationPlayer");
         attackOneLength = _animPlayer.GetAnimation("attack").Length;
@@ -134,20 +136,17 @@ public partial class Monster3d : CharacterBody3D
 
             _player._inCombat = true;
 
-            if (distance <= 2f && _canAttack == true)
+            if (distance <= AttackRange && _canAttack == true)
             {
                 _attacking = true;
-                Attack(AttackSpeed);
+
+                AttackInitilize();
             }
-            else if (distance > 2f)
+            else if (distance > AttackRange)
             {
                 _attacking = false;
             }
 
-            if (distance <= AttackRange)
-            {
-                Velocity = new Vector3(0, Velocity.Y, 0);
-            }
         }
         // --- Wander ---
         else
@@ -177,20 +176,21 @@ public partial class Monster3d : CharacterBody3D
         }
 
         // --- Movement ---
-        if (_player._inv.Visible == false) { MoveAndSlide(); }
+        if (distance > AttackRange && _knockbackVelocity.Length() < 0.5f) { MoveAndSlide(); } else { Velocity = Vector3.Zero; }
 
         // Smooth knockback decay
         _knockbackVelocity = _knockbackVelocity.Lerp(Vector3.Zero, (float)delta * 5.0f);
     }
 
-    public async void Attack(float delayLength)
+    public void AttackInitilize()
     {
-        _attackBox.Disabled = false;
-        _hasHit = false;
-        await ToSignal(GetTree().CreateTimer(attackOneLength), "timeout");
-        _attackBox.Disabled = true;
-        _canAttack = false;
-        await ToSignal(GetTree().CreateTimer(delayLength), "timeout");
-        _canAttack = true;
+        if (Monster is TheHollow hollow)
+        {
+            hollow.Attack();
+        }
+        else if (Monster is VCultist vCult)
+        {
+            vCult.Attack();
+        }
     }
 }

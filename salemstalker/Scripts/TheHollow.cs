@@ -14,6 +14,7 @@ public partial class TheHollow : Monster3d
 		WanderRange = 50;
 		AttackSpeed = 2.5f;
 		AttackRange = 1f;
+		Monster = this;
 		Initialization();
 	}
 
@@ -37,12 +38,23 @@ public partial class TheHollow : Monster3d
 	}
 
 	public void _on_attackbox_area_entered(Node3D body)
-    {
-        if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
-        {
-            _player._health -= BaseDamage + _damageOffset;
-            _attackBox.Disabled = true;
-            _hasHit = true;
-        }
-    }
+	{
+		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
+		{
+			_player._health -= BaseDamage + _damageOffset;
+			_attackBox.Disabled = true;
+			_hasHit = true;
+		}
+	}
+
+	public async void Attack()
+	{
+		_attackBox.Disabled = false;
+        _hasHit = false;
+        await ToSignal(GetTree().CreateTimer(attackOneLength), "timeout");
+        _attackBox.Disabled = true;
+        _canAttack = false;
+        await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
+        _canAttack = true;
+	}
 }
