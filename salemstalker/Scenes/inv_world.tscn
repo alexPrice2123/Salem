@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dufmkp4txcmvx"]
 
 [ext_resource type="Script" uid="uid://5grfqsaretre" path="res://Scenes/InvWorld.cs" id="1_2gl02"]
-[ext_resource type="Texture2D" uid="uid://qmxayi6pgeck" path="res://Assets/2D/Grass.png" id="1_e7ttb"]
+[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="1_e7ttb"]
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_qv3mo"]
 [ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="3_2gl02"]
 [ext_resource type="PackedScene" uid="uid://323vl4kctpsr" path="res://Assets/Weapons/short sword.blend" id="4_xsxfx"]
@@ -13,34 +13,6 @@ albedo_color = Color(0.376806, 0.372505, 0.312032, 1)
 albedo_texture = ExtResource("1_e7ttb")
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.05
-
-[sub_resource type="Animation" id="Animation_2gl02"]
-resource_name = "falchionHover"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("falchion:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1.41421),
-"update": 0,
-"values": [Vector3(-1.81136, 0.619959, -1.54662), Vector3(-1.741, 0.62, -1.457)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("falchion:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1.4048),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.0785398, 0.226893, 0.0174533)]
-}
 
 [sub_resource type="Animation" id="Animation_xsxfx"]
 length = 0.001
@@ -95,6 +67,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1.4048, 1),
 "update": 0,
 "values": [Vector3(0.0785398, 0.226893, 0.0174533), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2gl02"]
+resource_name = "falchionHover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("falchion:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1.41421),
+"update": 0,
+"values": [Vector3(-1.81136, 0.619959, -1.54662), Vector3(-1.741, 0.62, -1.457)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("falchion:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1.4048),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0785398, 0.226893, 0.0174533)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qit4k"]

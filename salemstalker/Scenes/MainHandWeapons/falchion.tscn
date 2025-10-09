@@ -167,6 +167,10 @@ script = ExtResource("1_ki2ro")
 metadata/swingSpeed = 0.7
 metadata/hDamage = 23.0
 metadata/damage = 20.0
+metadata/cChance = 0.25
+metadata/cPercent1 = 1.15
+metadata/cPercent2 = 1.15
+metadata/cPercent3 = 1.25
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

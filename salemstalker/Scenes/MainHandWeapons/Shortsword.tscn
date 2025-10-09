@@ -1,15 +1,74 @@
-[gd_scene load_steps=16 format=3 uid="uid://j6uelknlee1h"]
+[gd_scene load_steps=18 format=3 uid="uid://j6uelknlee1h"]
 
 [ext_resource type="Script" uid="uid://bia85ihgc8h1y" path="res://Scripts/Blood.cs" id="2_jo16x"]
 [ext_resource type="PackedScene" uid="uid://323vl4kctpsr" path="res://Assets/Weapons/short sword.blend" id="3_3h2ph"]
 [ext_resource type="Texture2D" uid="uid://ww86xihxhm75" path="res://Assets/weapontextures/shortsword/blade_Base_color.png" id="3_c1cqh"]
 [ext_resource type="Texture2D" uid="uid://4qlybwvdid8b" path="res://Assets/weapontextures/shortsword/grip_Base_color.png" id="3_m4ngj"]
 
+[sub_resource type="Animation" id="Animation_m4ngj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c1cqh"]
+resource_name = "Swing3"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.333333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.2, 0, 0.24), Vector3(-0.09, 0, -1.1), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.994838, 0, -0.10472), Vector3(-1.95477, 0, -0.0349066), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
+_data = {
+&"RESET": SubResource("Animation_m4ngj"),
+&"Swing3": SubResource("Animation_c1cqh")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3h2ph"]
 margin = 0.0
-size = Vector3(3.879, 6.13188, 4.56445)
+size = Vector3(1.67623, 5.66897, 4.56445)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ag22c"]
 albedo_texture = ExtResource("3_m4ngj")
@@ -58,6 +117,13 @@ scale_curve = SubResource("CurveTexture_c1cqh")
 [node name="ShortSword" type="Node3D"]
 transform = Transform3D(0.04, 0, 0, 0, 0.1, 0, 0, 0, 0.04, 0, 0, 0)
 script = ExtResource("2_jo16x")
+metadata/swingSpeed = 0.6
+metadata/hDamage = 20.0
+metadata/damage = 15.0
+metadata/cChance = 0.25
+metadata/cPercent1 = 1.2
+metadata/cPercent2 = 1.2
+metadata/cPercent3 = 1.25
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -73,7 +139,7 @@ input_ray_pickable = false
 priority = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 0.999985, 0, 0, 0, 1, -0.0221468, 3.02962, -0.0629556)
+transform = Transform3D(1, 0, 0, 0, 0.999994, 0, 0, 0, 1, 0, 3.19536, 0)
 shape = SubResource("BoxShape3D_3h2ph")
 disabled = true
 
