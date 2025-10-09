@@ -27,6 +27,7 @@ public partial class Player3d : CharacterBody3D
 	private OmniLight3D _lantern;
 
 	// --- COMBAT VARIABLES ---
+	protected RandomNumberGenerator _rng = new();  // Random number generator for crit & bleed proc
 	public float _damage = 0.0f;                     // Attack damage value
 	private ulong _lastHit = 0;                      // Time of the last time a player hit
 	private int _comboNum = 0;
@@ -276,17 +277,33 @@ public partial class Player3d : CharacterBody3D
 		_attackCooldown = true;
 		float swingTime = (float)_sword.GetMeta("swingSpeed");
 		float comboTime = swingTime * 1000 + 400;
+		_rng.Randomize();
 		if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
 		{
 			_comboNum++;
+			if(_rng.Randf() <= (float)_sword.GetMeta("cChance"))
+            {
+				_damage *= (float)_sword.GetMeta("cPercent1");
+				GD.Print("CRIT");
+            }
 		}
 		else
 		{
 			_comboNum = 0;
+			if(_rng.Randf() <= (float)_sword.GetMeta("cChance"))
+            {
+				_damage *= (float)_sword.GetMeta("cPercent2");
+				GD.Print("CRIT");
+            }
 		}
 		if (Time.GetTicksMsec() - _lastHit > comboTime && _comboNum == 2)
 		{
 			_comboNum = 0;
+			if(_rng.Randf() <= (float)_sword.GetMeta("cChance"))
+            {
+				_damage *= (float)_sword.GetMeta("cPercent3");
+				GD.Print("CRIT");
+            }
 		}
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
 		_damage = (float)_sword.GetMeta("damage");
