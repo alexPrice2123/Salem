@@ -5,31 +5,41 @@ using System.Runtime.CompilerServices;
 public partial class NpcVillager : CharacterBody3D
 {
 	// - Constants -
-	public const float Speed = 5.0f;                        // The AI's speed
-	public const float Range = 5.0f;                        // The max range between player and AI
+	public const float Speed = 5.0f;                       // The AI's speed
+	public const float Range = 5.0f;                       // The max range between player and AI
 
 	// - Variables -
-	private Player3d _player;                               // Reference to the player object
+	private int _questRequirement;                         
+	private Player3d _player;                              // Reference to the player object
 	private RandomNumberGenerator _rng = new();            // RNG for idle times
-	private bool moveStatus = true;                     // Whether the AI is in movement state or not
-	private bool idleStatus = false;                        // Whether the AI is idling or not 
-	private NavigationAgent3D _navigationAgent;         // Reference to the agent object
-	public Label3D _questPrompt;                            // Reference to the prompt object
-	private Vector3 WanderTarget;                           // The target for the AI to wander to whenever it is moving
+	private bool moveStatus = true;                        // Whether the AI is in movement state or not
+	private bool idleStatus = false;                       // Whether the AI is idling or not 
+	private bool _questAccepted;
+	private string _name;
+	private NavigationAgent3D _navigationAgent;            // Reference to the agent object
+	public Label3D _questPrompt;                           // Reference to the prompt object
+	public Label _dialogueBox;
+	public Control _dialogue; 
+	public Button _acceptButton;
+	public Button _ignoreButton;
+	private Vector3 WanderTarget;                          // The target for the AI to wander to whenever it is moving
 	[Export]
-	public string InitialDialouge = "No Dialouge";
+	public string InitialDialogue = "Initial";             // This dialogue goes into the QuestPrompt 3d label, the rest of the dialogue is spoken through the UI
 	[Export]
-	public string QuestDialouge = "No Dialouge";
+	public string QuestDialogue = "Quest";
 	[Export]
-	public string AcceptedDialouge = "No Dialouge";
+	public string AcceptedDialogue = "Accepted";
 	[Export]
-	public string WaitingDialouge = "No Dialouge";
+	public string IgnoredDialogue = "Ignored";
 	[Export]
-	public string DoneDialouge = "No Dialouge";
+	public string WaitingDialogue = "Waiting";
 	[Export]
-	public string QuestTitle = "Name of the quest (ex. Kill 5 Monsters)";
+	public string DoneDialogue = "Done";
 	[Export]
-	public string QuestGoal = "What the quest needs done (ex. 0/5) for killing 5 monsters";
+	public string QuestTitle = "Title";
+	[Export]
+	public string QuestGoal = "Goal";
+	[Export]
 	public bool _questComplete = false;
 
 	public Vector3 MovementTarget                           // The target for the AI to pathfind to
@@ -38,24 +48,36 @@ public partial class NpcVillager : CharacterBody3D
 		set { _navigationAgent.TargetPosition = value; }
 	}
 
-
-
 	public override void _Ready()
 	{
 		// Get reference to relevant nodes.
 		_player = this.GetParent().GetNode<Player3d>("Player_3d");
 		_navigationAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
 		_questPrompt = GetNode<Label3D>("QuestPrompt");
+		_dialogueBox = GetNode<Label>("UI/Dialogue/DialogueBox");
+		_dialogue = GetNode<Control>("UI/Dialogue");
+		_acceptButton = GetNode<Button>("UI/Dialogue/AcceptButton");
+		_acceptButton.Pressed += QuestAccepted;
+		_ignoreButton = GetNode<Button>("UI/Dialogue/IgnoreButton");
+		_ignoreButton.Pressed += QuestIgnored;
 
-		_questPrompt.Text = InitialDialouge;
+		_questPrompt.Text = InitialDialogue;
 
 		// Hide the quest prompt
 		_questPrompt.Hide();
-
 		// Make sure to not await during _Ready.
 		Callable.From(ActorSetup).CallDeferred();
 	}
-
+	
+	public void QuestAccepted() //changes dialouge from the quest dialouge to accepted dialouge
+	{
+		GD.Print("Accepted");
+	}
+	public void QuestIgnored() //changes dialouge from the quest dialouge to ignored dialouge
+	{ 
+		GD.Print("Ignored");
+	}
+	
 	public override void _PhysicsProcess(double delta) //Event tick; happens every frame
 	{
 		// Get the distance between the player and AI
@@ -65,7 +87,7 @@ public partial class NpcVillager : CharacterBody3D
 
 		if (_questComplete == true)
 		{
-			_questPrompt.Text = DoneDialouge;
+			_questPrompt.Text = DoneDialogue;
 		}
 
 		if (_navigationAgent.IsNavigationFinished()) // If the AI is close enough to pathfinding target
@@ -150,27 +172,26 @@ public partial class NpcVillager : CharacterBody3D
 
 	public void Talk()
 	{
+		bool done = false;
 		if (_questComplete == true) { return; } //if the quest is done the player can't interact
-
-		if (_questPrompt.Text.Contains("E to Accept")) //changes dialouge from the quest dialouge to accepted dialouge
+		
+		if (_player._monstersKilled < 5 && _player._questBox.FindChild("KillMonsters") == null) //changes dialouge from the initial dialouge to quest dialouge 
 		{
-			_questPrompt.Text = AcceptedDialouge;
-			_player._monstersKilled = 0;
-			_player.GetQuest(QuestTitle, QuestGoal);
+			_dialogueBox.Text = QuestDialogue;
 		}
-		else if (_questPrompt.Text.Contains("E to Talk") && _player._monstersKilled < 5 && _player._questBox.FindChild("KillMonsters") == null) //changes dialouge from the initial dialouge to quest dialouge 
+		if (_player._monstersKilled >= 5) //what happens when the player talks to him after completing the quest
 		{
-			_questPrompt.Text = QuestDialouge + "\n" + "E to Accept";
-		}
-		else if (_questPrompt.Text.Contains("E to Talk") && _player._monstersKilled >= 5) //what happens when the player talks to him after completing the quest
-		{
-			_questPrompt.Text = DoneDialouge;
+			_dialogueBox.Text = DoneDialogue;
 			_questComplete = true;
 			_player.RemoveQuest("KillMonsters");
 		}
-		else if (_questPrompt.Text.Contains("E to Talk") && _player._monstersKilled < 5) //what happens when the player talks to him before completing the quest
+		else if (_player._monstersKilled < 5) //what happens when the player talks to him before completing the quest
 		{
-			_questPrompt.Text = WaitingDialouge;
+			_dialogueBox.Text = WaitingDialogue;
 		}
+		//if(Input.IsActionJustPressed("continue_dialogue") && !done)
+		//{
+			
+		//}
 	}
 }

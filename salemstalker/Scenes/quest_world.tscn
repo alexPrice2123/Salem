@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://devj8nqafvvvk"]
 
-[ext_resource type="Texture2D" uid="uid://qmxayi6pgeck" path="res://Assets/2D/Grass.png" id="1_4ljs6"]
+[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="1_4ljs6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1ckr"]
 albedo_color = Color(0.376806, 0.372505, 0.312032, 1)
