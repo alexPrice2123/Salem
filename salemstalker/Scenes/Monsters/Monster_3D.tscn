@@ -2,22 +2,24 @@
 
 [ext_resource type="Script" uid="uid://ckmn7j07x5ubl" path="res://Scripts/Monster3d.cs" id="1_ayuld"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ayuld"]
-radius = 0.25
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_beqai"]
+radius = 0.367097
+height = 1.91433
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ci7oq"]
-radius = 0.293507
-height = 1.93186
+radius = 0.357846
+height = 1.94406
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ci7oq"]
-size = Vector3(1.04077, 1.4873, 1.00809)
+size = Vector3(1.04077, 1.4873, 1.54785)
 
 [node name="Monster_3d" type="CharacterBody3D" groups=["Monster"]]
 script = ExtResource("1_ayuld")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0762192, 0)
-shape = SubResource("CapsuleShape3D_ayuld")
+shape = SubResource("CapsuleShape3D_beqai")
+debug_color = Color(0.541872, 0.406451, 1, 0.42)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -29,7 +31,7 @@ input_ray_pickable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.142797, 0)
 shape = SubResource("CapsuleShape3D_ci7oq")
-debug_color = Color(0.987143, 0, 0.316185, 0.42)
+debug_color = Color(0.541872, 0.406451, 1, 0.42)
 
 [node name="Attackbox" type="Area3D" parent="." groups=["Monster"]]
 collision_layer = 1024

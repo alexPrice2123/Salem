@@ -7,6 +7,7 @@ public partial class VCultist : Monster3d
 
     private PackedScene _darkOrb = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/orb.tscn"); // Scene reference to the dark orb
     private Node3D _spawn;
+    private float _projectileSpeed = 15f;
     public override void _Ready()
     {
         Speed = 4.5f;             // Movement speed
@@ -42,18 +43,23 @@ public partial class VCultist : Monster3d
             _hasHit = true;
         }
     }
-    
+
     public async void Attack()
-	{
+    {
         _canAttack = false;
+        _attackAnim = true;
         await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
-		RigidBody3D projectileInstance = _darkOrb.Instantiate<RigidBody3D>(); // Create monster instance
+        RigidBody3D projectileInstance = _darkOrb.Instantiate<RigidBody3D>(); // Create monster instance
         _player.GetParent().AddChild(projectileInstance);                                             // Add monster to holder node
         projectileInstance.GlobalPosition = _spawn.GlobalPosition;
         if (projectileInstance is Orb orb)
         {
-            orb.Shoot(-GlobalTransform.Basis.Z.Normalized());
-        }  
+            orb._playerOrb = _player;
+            orb._damageOrb = BaseDamage + _damageOffset;
+            orb.Shoot(_projectileSpeed);
+        }
         _canAttack = true;
+        await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+        _attackAnim = false;
 	}
 }

@@ -9,7 +9,7 @@ public partial class Blood : Node3D
 		{
 			await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
 			GetNode<MeshInstance3D>("Blade").GetNode<GpuParticles3D>("Blood").Emitting = true;
-			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+			await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
 			GetNode<MeshInstance3D>("Blade").GetNode<GpuParticles3D>("Blood").Emitting = false;
 		}
 	}

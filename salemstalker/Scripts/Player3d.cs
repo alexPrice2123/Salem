@@ -47,6 +47,8 @@ public partial class Player3d : CharacterBody3D
 	public Color _minHealthColor = new Color(255f / 255f, 0f, 0f);
 	private float _maxRange = 25f;
 	private float _minRange = 5f;
+	private bool _attackCooldown = false;
+
 	// --- READY ---
 	public override void _Ready()
 	{
@@ -55,7 +57,7 @@ public partial class Player3d : CharacterBody3D
 		_cam = GetNode<Camera3D>("Head/Camera3D");
 		_interface = GetNode<Control>("UI/PauseMenu");
 		_senseBar = GetNode<Slider>("UI/PauseMenu/Sense");
-		_sword = GetNode<Node3D>("Head/Camera3D/Sword/Falchion");
+		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0);
 		_combatNotif = GetNode<Control>("UI/Combat");
 		_inv = GetNode<Control>("UI/Inv");
 		_ray = GetNode<RayCast3D>("Head/Camera3D/Ray");
@@ -100,7 +102,7 @@ public partial class Player3d : CharacterBody3D
 
 		// --- Sword attack ---
 		else if (Input.IsActionPressed("attack")
-				 && _sword.GetNode<AnimationPlayer>("AnimationPlayer").IsPlaying() == false
+				 && _attackCooldown == false
 				 && _lastSeen == null)
 		{
 			Swing();
@@ -271,6 +273,7 @@ public partial class Player3d : CharacterBody3D
 	// --- CUSTOM FUNCTIONS ---
 	private async void Swing()
 	{
+		_attackCooldown = true;
 		float swingTime = (float)_sword.GetMeta("swingSpeed");
 		float comboTime = swingTime * 1000 + 400;
 		if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
@@ -285,7 +288,7 @@ public partial class Player3d : CharacterBody3D
 		{
 			_comboNum = 0;
 		}
-		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionPolygon3D>("CollisionShape3D").Disabled = false;
+		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
 		_damage = (float)_sword.GetMeta("damage");
 		if (_comboNum == 0)
 		{
@@ -302,8 +305,10 @@ public partial class Player3d : CharacterBody3D
 		}
 		GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
 		_lastHit = Time.GetTicksMsec();
-		await ToSignal(GetTree().CreateTimer(swingTime*0.7), "timeout");
-		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionPolygon3D>("CollisionShape3D").Disabled = true;
+		await ToSignal(GetTree().CreateTimer(swingTime * 0.7), "timeout");
+		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
+		await ToSignal(GetTree().CreateTimer(swingTime * 0), "timeout");
+		_attackCooldown = false;
 	}
 
 	private Vector3 HeadBob(float bobTime)

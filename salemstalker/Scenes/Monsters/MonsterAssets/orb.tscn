@@ -100,7 +100,9 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_25wf1")
 draw_pass_1 = SubResource("SphereMesh_olnk0")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Attackbox" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attackbox"]
 shape = SubResource("SphereShape3D_cp2bc")
+
+[connection signal="area_entered" from="Attackbox" to="." method="_on_attackbox_area_entered"]
