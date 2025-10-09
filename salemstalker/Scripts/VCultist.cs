@@ -17,7 +17,7 @@ public partial class VCultist : Monster3d
         BaseDamage = 15.0f;
         WanderRange = 50;
         AttackSpeed = 6f;
-        AttackRange = 1f;
+        AttackRange = 15f;
         Monster = this;
 
         _spawn = GetNode<Node3D>("Body/metarig/Skeleton3D/Cylinder/Spawn");
