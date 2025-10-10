@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cilhfw77d0fyx"]
+[gd_scene load_steps=19 format=3 uid="uid://cilhfw77d0fyx"]
 
 [ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="1_ej1uk"]
 [ext_resource type="Script" uid="uid://ob8xglbriafc" path="res://Scenes/MainHandWeapons/Falchion.cs" id="1_ki2ro"]
@@ -126,6 +126,19 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
 size = Vector3(0.321167, 1.46155, 0.213867)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l13c1"]
+albedo_color = Color(0.439216, 0.258824, 0.258824, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0or"]
+albedo_color = Color(0.776471, 0.803922, 0.564706, 1)
+metallic = 1.0
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_df3ch"]
+albedo_color = Color(0.564962, 0.564962, 0.564962, 1)
+metallic = 1.0
+roughness = 0.3
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvryv"]
 albedo_color = Color(0.494245, 1.40181e-06, 2.40654e-07, 1)
 
@@ -194,6 +207,31 @@ shape = SubResource("BoxShape3D_ki2ro")
 [node name="falchion" parent="." instance=ExtResource("1_ej1uk")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.407, 0)
 
+[node name="Cube" parent="falchion" index="0"]
+material_override = SubResource("StandardMaterial3D_l13c1")
+
+[node name="Cylinder" parent="falchion" index="1"]
+material_override = SubResource("StandardMaterial3D_sb0or")
+
+[node name="Cylinder_001" parent="falchion" index="2"]
+material_override = SubResource("StandardMaterial3D_l13c1")
+
+[node name="Cube_001" parent="falchion" index="3"]
+transform = Transform3D(0.0815986, 0, 0, 0, 0.0424087, 0, 0, 0, 0.0360172, 0.133582, 0.453902, -4.44089e-16)
+material_override = SubResource("StandardMaterial3D_df3ch")
+
+[node name="BézierCurve" parent="falchion" index="4"]
+transform = Transform3D(0.106306, 0, 0, 0, 0, -0.106306, 0, 0.106306, 0, 0.298445, 0.448079, 0)
+material_override = SubResource("StandardMaterial3D_df3ch")
+
+[node name="BézierCurve_001" parent="falchion" index="5"]
+transform = Transform3D(-0.106306, 0, 0, 0, 0, 0.106306, 0, 0.106306, 0, 0.133582, 0.453902, -4.44089e-16)
+material_override = SubResource("StandardMaterial3D_df3ch")
+
+[node name="Cube_002" parent="falchion" index="6"]
+transform = Transform3D(0.0734789, 0, 0, 0, 0.0405374, 0, 0, 0, 0.0106852, 0.133582, 0.52704, -4.44089e-16)
+material_override = SubResource("StandardMaterial3D_df3ch")
+
 [node name="Blood" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0698854, 1.24098, 0.000148448)
 material_override = SubResource("StandardMaterial3D_wvryv")
@@ -204,3 +242,5 @@ process_material = SubResource("ParticleProcessMaterial_8th4x")
 draw_pass_1 = SubResource("BoxMesh_ki2ro")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+
+[editable path="falchion"]

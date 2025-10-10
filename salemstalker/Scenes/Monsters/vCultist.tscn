@@ -172,9 +172,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
 bones/8/rotation = Quaternion(-0.288279, 0.632537, -0.568455, 0.440058)
-bones/9/rotation = Quaternion(0.542074, 0.00246741, -0.132927, 0.829747)
+bones/9/rotation = Quaternion(0.570336, -0.00187377, -0.1318, 0.810766)
 bones/18/rotation = Quaternion(-0.150904, -0.608218, 0.686886, 0.368084)
-bones/19/rotation = Quaternion(0.558379, 0.020934, -0.067373, 0.82658)
+bones/19/rotation = Quaternion(0.54823, 0.0196951, -0.063832, 0.833655)
 bones/21/rotation = Quaternion(-0.0966642, 0.258241, 0.32192, 0.905724)
 bones/22/rotation = Quaternion(-0.0473394, 0.0197859, 0.299546, 0.952701)
 bones/23/rotation = Quaternion(-0.078243, 0.0546005, 0.594849, 0.798155)
@@ -186,7 +186,7 @@ bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.511863, -0.0287572, 0.858586, 0.172514, 0.975639, 0.135525, -0.841567, 0.217489, -0.494433, -0.20332, 1.30783, 0.386889)
+transform = Transform3D(-0.511863, -0.0287571, 0.858586, 0.194214, 0.96969, 0.148263, -0.836825, 0.242639, -0.490764, -0.20332, 1.29896, 0.386713)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D/Cylinder" index="0"]
 visible = false

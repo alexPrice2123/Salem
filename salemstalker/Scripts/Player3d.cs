@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 public partial class Player3d : CharacterBody3D
 {
@@ -26,6 +27,11 @@ public partial class Player3d : CharacterBody3D
 	private VBoxContainer _questTemplate;            // Template node for quests
 	private OmniLight3D _lantern;
 
+	// --- WEAPON REFERENCES ---
+	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/Shortsword.tscn"); // Scene reference for the shortsword
+	private PackedScene _falchion = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/falchion.tscn"); // Scene reference for the shortsword
+	private Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>();
+
 	// --- COMBAT VARIABLES ---
 	protected RandomNumberGenerator _rng = new();  // Random number generator for crit & bleed proc
 	public float _damage = 0.0f;                     // Attack damage value
@@ -49,6 +55,7 @@ public partial class Player3d : CharacterBody3D
 	private float _maxRange = 25f;
 	private float _minRange = 5f;
 	private bool _attackCooldown = false;
+	private string _weaponToSwitch = "ShortSword";
 
 	// --- READY ---
 	public override void _Ready()
@@ -67,6 +74,9 @@ public partial class Player3d : CharacterBody3D
 		_questTemplate = GetNode<VBoxContainer>("UI/Container/QuestTemplate");
 		_lantern = GetNode<OmniLight3D>("Head/Camera3D/Lantern");
 		_health = _maxHealth;
+
+		_weapon.Add("ShortSword", _shortSword);
+		_weapon.Add("Falchion", _falchion);
 	}
 
 	// --- INPUT HANDLER ---
@@ -80,7 +90,7 @@ public partial class Player3d : CharacterBody3D
 
 			Vector3 camRot = _cam.Rotation;
 			camRot.X = Mathf.Clamp(camRot.X, Mathf.DegToRad(-80f), Mathf.DegToRad(80f));
-			_cam.Rotation = camRot;
+			_cam.Rotation = _cam.Rotation.Lerp(camRot, 0.00001f);
 		}
 
 		// --- Pause menu toggle ---
@@ -106,7 +116,7 @@ public partial class Player3d : CharacterBody3D
 				 && _attackCooldown == false
 				 && _lastSeen == null)
 		{
-			Swing();
+			Swing(false);
 		}
 
 		// --- Inventory toggle ---
@@ -149,6 +159,11 @@ public partial class Player3d : CharacterBody3D
 			if (_dashVelocity <= 0.1f) { _dashVelocity = _fullDashValue; }
 		}
 
+		else if (Input.IsActionJustPressed("debugSwitchWeapon"))
+		{
+			SwitchPrimaryWeapon(_weaponToSwitch);
+		}
+
 		// --- Run (Shift key) ---
 		else if (@event is InputEventKey shiftKey && shiftKey.Keycode == Key.Shift)
 		{
@@ -187,7 +202,7 @@ public partial class Player3d : CharacterBody3D
 			_inCombat = false;
 		}
 
-		// --- Inventory camera transition ---
+		/*// --- Inventory camera transition ---
 		if (_inv.Visible == true)
 		{
 			_inInv = true;
@@ -205,7 +220,7 @@ public partial class Player3d : CharacterBody3D
 		{
 			_inInv = false;
 		}
-
+		*/
 		// --- Update sensitivity from pause menu ---
 		if (_interface.Visible == true) { CamSense = Convert.ToSingle(_senseBar.Value / 1000); }
 
@@ -272,12 +287,16 @@ public partial class Player3d : CharacterBody3D
 	}
 
 	// --- CUSTOM FUNCTIONS ---
-	private async void Swing()
+	private async void Swing(bool justEqquipped)
 	{
 		_attackCooldown = true;
 		float swingTime = (float)_sword.GetMeta("swingSpeed");
 		float comboTime = swingTime * 1000 + 400;
 		_rng.Randomize();
+		if (justEqquipped == true)
+        {
+			swingTime = 0f;
+        }
 		if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
 		{
 			_comboNum++;
@@ -320,6 +339,10 @@ public partial class Player3d : CharacterBody3D
 			_damage = (float)_sword.GetMeta("hDamage");
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
 		}
+		if (justEqquipped == true)
+        {
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
+        }
 		GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
 		_lastHit = Time.GetTicksMsec();
 		await ToSignal(GetTree().CreateTimer(swingTime * 0.7), "timeout");
@@ -393,4 +416,24 @@ public partial class Player3d : CharacterBody3D
 		}
 
 	}
+
+	private void SwitchPrimaryWeapon(string wepaonName)
+    {
+		PackedScene weaponScene = _weapon[wepaonName];
+		Node3D holder = GetNode<Node3D>("Head/Camera3D/Sword");
+		holder.GetChild<Node3D>(0).QueueFree();
+		Node3D swordInstance = weaponScene.Instantiate<Node3D>(); // Create sword instance
+        holder.AddChild(swordInstance);                                             // Add sword to holder node
+		swordInstance.Position = holder.Position;
+		_sword = swordInstance;
+		Swing(true);
+		if (_weaponToSwitch == "ShortSword")
+		{
+			_weaponToSwitch = "Falchion";
+		}
+		else if (_weaponToSwitch == "Falchion")
+        {
+			_weaponToSwitch = "ShortSword";
+        }
+    }
 }

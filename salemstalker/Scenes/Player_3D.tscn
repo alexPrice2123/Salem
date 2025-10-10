@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=6 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
 [ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="3_l13c1"]
@@ -6,19 +6,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l13c1"]
-albedo_color = Color(0.439216, 0.258824, 0.258824, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0or"]
-albedo_color = Color(0.776471, 0.803922, 0.564706, 1)
-metallic = 1.0
-roughness = 0.3
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_df3ch"]
-albedo_color = Color(0.564962, 0.564962, 0.564962, 1)
-metallic = 1.0
-roughness = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df3ch"]
 radius = 0.295052
@@ -38,30 +25,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673132, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.231209, -0.298717)
 
 [node name="Falchion" parent="Head/Camera3D/Sword" instance=ExtResource("3_l13c1")]
-
-[node name="AnimationPlayer" parent="Head/Camera3D/Sword/Falchion" index="0"]
-blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
-
-[node name="Cube" parent="Head/Camera3D/Sword/Falchion/falchion" index="0"]
-material_override = SubResource("StandardMaterial3D_l13c1")
-
-[node name="Cylinder" parent="Head/Camera3D/Sword/Falchion/falchion" index="1"]
-material_override = SubResource("StandardMaterial3D_sb0or")
-
-[node name="Cylinder_001" parent="Head/Camera3D/Sword/Falchion/falchion" index="2"]
-material_override = SubResource("StandardMaterial3D_l13c1")
-
-[node name="Cube_001" parent="Head/Camera3D/Sword/Falchion/falchion" index="3"]
-material_override = SubResource("StandardMaterial3D_df3ch")
-
-[node name="BézierCurve" parent="Head/Camera3D/Sword/Falchion/falchion" index="4"]
-material_override = SubResource("StandardMaterial3D_df3ch")
-
-[node name="BézierCurve_001" parent="Head/Camera3D/Sword/Falchion/falchion" index="5"]
-material_override = SubResource("StandardMaterial3D_df3ch")
-
-[node name="Cube_002" parent="Head/Camera3D/Sword/Falchion/falchion" index="6"]
-material_override = SubResource("StandardMaterial3D_df3ch")
 
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -5)

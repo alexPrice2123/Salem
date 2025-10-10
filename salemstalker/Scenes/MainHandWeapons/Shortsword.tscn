@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bia85ihgc8h1y" path="res://Scripts/Blood.cs" id="2_jo16x"]
 [ext_resource type="PackedScene" uid="uid://323vl4kctpsr" path="res://Assets/Weapons/short sword.blend" id="3_3h2ph"]
-[ext_resource type="Texture2D" uid="uid://ww86xihxhm75" path="res://Assets/weapontextures/shortsword/blade_Base_color.png" id="3_c1cqh"]
-[ext_resource type="Texture2D" uid="uid://4qlybwvdid8b" path="res://Assets/weapontextures/shortsword/grip_Base_color.png" id="3_m4ngj"]
 
 [sub_resource type="Animation" id="Animation_m4ngj"]
 length = 0.001
@@ -60,9 +58,67 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(-0.994838, 0, -0.10472), Vector3(-1.95477, 0, -0.0349066), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ag22c"]
+resource_name = "Swing2"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.2, 0.396667, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.54, 0, -0.325), Vector3(0.55, 0, -0.22), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.196667, 0.4, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 1.87623), Vector3(0, -1.5708, 1.87623), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o56aj"]
+resource_name = "Swing1"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.333333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.18, 0, 0), Vector3(-0.54, 0, -0.325), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.33, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, -1.9443), Vector3(0, 1.5708, -1.4748), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
 _data = {
 &"RESET": SubResource("Animation_m4ngj"),
+&"Swing1": SubResource("Animation_o56aj"),
+&"Swing2": SubResource("Animation_ag22c"),
 &"Swing3": SubResource("Animation_c1cqh")
 }
 
@@ -70,13 +126,13 @@ _data = {
 margin = 0.0
 size = Vector3(1.67623, 5.66897, 4.56445)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ag22c"]
-albedo_texture = ExtResource("3_m4ngj")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l13c1"]
+albedo_color = Color(0.439216, 0.258824, 0.258824, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4ngj"]
-albedo_texture = ExtResource("3_c1cqh")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_df3ch"]
+albedo_color = Color(0.564962, 0.564962, 0.564962, 1)
 metallic = 1.0
-roughness = 0.5
+roughness = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jo16x"]
 albedo_color = Color(1, 0, 0, 1)
@@ -147,10 +203,10 @@ disabled = true
 transform = Transform3D(-4.40611e-07, 0, 10.08, 0, 4.032, 0, -10.08, 0, -4.40611e-07, -0.0551795, -1.55477, 0.0225514)
 
 [node name="Cylinder" parent="short sword" index="0"]
-material_override = SubResource("StandardMaterial3D_ag22c")
+material_override = SubResource("StandardMaterial3D_l13c1")
 
 [node name="Sphere_001" parent="short sword" index="1"]
-material_override = SubResource("StandardMaterial3D_m4ngj")
+material_override = SubResource("StandardMaterial3D_df3ch")
 
 [node name="Blood" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0698854, 3.27924, 0.000148448)
