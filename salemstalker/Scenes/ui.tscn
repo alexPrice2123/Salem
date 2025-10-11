@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=30 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://bdqlvd6gs54fm" path="res://Assets/Fonts/SnowWhite.ttf" id="7_mmixe"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
+[ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
+[ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4vbiv"]
 
@@ -123,6 +125,14 @@ outline_color = Color(0, 0, 0, 1)
 font_size = 45
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_whq80"]
+shader = ExtResource("13_3r70p")
+shader_parameter/freq_times_PI = 1.0
+shader_parameter/strength = 0.04
+shader_parameter/fill = 1.0
+shader_parameter/wave_speed = 1.33
+shader_parameter/amp_osc_freq = 0.5
 
 [node name="UI" type="Control"]
 texture_filter = 1
@@ -551,6 +561,19 @@ offset_bottom = -0.0640106
 theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 22
 text = "Deny"
+
+[node name="Stamina" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(938, 500)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_whq80")
+
+[node name="Fill" type="Sprite2D" parent="Stamina"]
+modulate = Color(0, 0.807843, 1, 1)
+z_as_relative = false
+material = SubResource("ShaderMaterial_whq80")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("13_whq80")
 
 [connection signal="button_up" from="Inv/SubPort/Sub/Falchion" to="." method="_on_falchion_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/Falchion" to="." method="_on_falchion_mouse_entered"]

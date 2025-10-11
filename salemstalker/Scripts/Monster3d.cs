@@ -183,7 +183,7 @@ public partial class Monster3d : CharacterBody3D
 
 
         // --- Movement ---
-        if (_justSpawned == true) { MoveAndSlide(); } else if (_attackAnim == false && distance > AttackRange && _knockbackVelocity.Length() < 0.5f) { MoveAndSlide(); } else if ((_knockbackVelocity.Length() < 0.5f || _attackAnim == true) && _attackException == false) { Velocity = Vector3.Zero; } else { MoveAndSlide(); }
+        if (_player._inv.Visible == true){ Velocity = Vector3.Zero; } else if (_justSpawned == true) { MoveAndSlide(); } else if (_attackAnim == false && distance > AttackRange && _knockbackVelocity.Length() < 0.5f) { MoveAndSlide(); } else if ((_knockbackVelocity.Length() < 0.5f || _attackAnim == true) && _attackException == false) { Velocity = Vector3.Zero; } else { MoveAndSlide(); }
 
         // Smooth knockback decay
         _knockbackVelocity = _knockbackVelocity.Lerp(Vector3.Zero, (float)delta * 5.0f);

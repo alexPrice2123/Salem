@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 
 
+
 public partial class Player3d : CharacterBody3D
 {
 	// --- CONSTANTS ---
@@ -58,6 +59,11 @@ public partial class Player3d : CharacterBody3D
 	private bool _attackCooldown = false;
 	private string _weaponToSwitch = "ShortSword";
 	public Color _lightColor;
+	private float _maxStamina = 100f;
+	private float _stamina;
+	private float _staminaGoal;
+	private Vector3 _baseHeadPosition;
+	private Vector3 _headOffset = new Vector3(0f, 0f, 0f);
 
 	// --- READY ---
 	public override void _Ready()
@@ -76,6 +82,8 @@ public partial class Player3d : CharacterBody3D
 		_questTemplate = GetNode<VBoxContainer>("UI/Container/QuestTemplate");
 		_lantern = GetNode<OmniLight3D>("Head/Camera3D/Lantern");
 		_health = _maxHealth;
+		_stamina = _maxStamina;
+		_baseHeadPosition = _head.Position;
 
 		_weapon.Add("ShortSword", _shortSword);
 		_weapon.Add("Falchion", _falchion);
@@ -92,7 +100,7 @@ public partial class Player3d : CharacterBody3D
 
 			Vector3 camRot = _cam.Rotation;
 			camRot.X = Mathf.Clamp(camRot.X, Mathf.DegToRad(-80f), Mathf.DegToRad(80f));
-			_cam.Rotation = _cam.Rotation.Lerp(camRot, 0.00001f);
+			_cam.Rotation = camRot;
 		}
 
 		// --- Pause menu toggle ---
@@ -116,7 +124,8 @@ public partial class Player3d : CharacterBody3D
 		// --- Sword attack ---
 		else if (Input.IsActionPressed("attack")
 				 && _attackCooldown == false
-				 && _lastSeen == null)
+				 && _lastSeen == null
+				 && _inv.Visible == false)
 		{
 			Swing(false);
 		}
@@ -143,7 +152,7 @@ public partial class Player3d : CharacterBody3D
 		// --- Questbook toggle ---
 		else if (@event is InputEventKey lKey && lKey.Keycode == Key.L && lKey.Pressed)
 		{
-			if (_inCombat == true) { return; }
+			if (_inCombat == true || _inv.Visible == true) { return; }
 
 			if (_questBook.Visible == true)
 			{
@@ -160,12 +169,7 @@ public partial class Player3d : CharacterBody3D
 		// --- Dash (Space key) ---
 		else if (Input.IsActionJustPressed("dash"))
 		{
-			if (_dashVelocity <= 0.1f) { _dashVelocity = _fullDashValue; }
-		}
-
-		else if (Input.IsActionJustPressed("debugSwitchWeapon"))
-		{
-			SwitchPrimaryWeapon(_weaponToSwitch);
+			if (_dashVelocity <= 0.1f && _stamina >= 0.1f * _maxStamina) { _dashVelocity = _fullDashValue; _stamina -= 0.1f * _maxStamina; }
 		}
 
 		// --- Run (Shift key) ---
@@ -193,6 +197,10 @@ public partial class Player3d : CharacterBody3D
 		_lightColor = _lantern.LightColor;
 		_lantern.OmniRange = (_health / _maxHealth * _maxRange) + _minRange;
 
+		_staminaGoal = Mathf.Lerp(_staminaGoal,_stamina / _maxStamina, (float)delta * 3f);
+		ShaderMaterial staminaShader = GetNode<Sprite2D>("UI/Stamina/Fill").Material as ShaderMaterial;
+		staminaShader.SetShaderParameter("fill", _staminaGoal);
+
 		if (_health <= 0)
 		{
 			QueueFree();
@@ -206,6 +214,15 @@ public partial class Player3d : CharacterBody3D
 			_combatCounter = 0;
 			_inCombat = false;
 		}
+
+		if (_running == false)
+        {
+            _stamina += 0.02f*_maxStamina * (float)delta;
+			if (_stamina >= _maxStamina)
+            {
+				_stamina = _maxStamina;
+            }
+        }
 
 		/*// --- Inventory camera transition ---
 		if (_inv.Visible == true)
@@ -238,8 +255,17 @@ public partial class Player3d : CharacterBody3D
 		if (direction != Vector3.Zero)
 		{
 			_fullDashValue = 10f;
-			velocity.X = direction.X * (Speed + RunSpeed * Convert.ToInt32(_running) + _dashVelocity);
-			velocity.Z = direction.Z * (Speed + RunSpeed * Convert.ToInt32(_running) + _dashVelocity);
+			if (_stamina <= 0.0)
+            {
+				_running = false;
+            }
+			velocity.X = direction.X * (Speed + (RunSpeed * Convert.ToInt32(_running)) + _dashVelocity);
+			velocity.Z = direction.Z * (Speed + (RunSpeed * Convert.ToInt32(_running)) + _dashVelocity);
+			if (_running == true)
+            {
+				_stamina -= 0.04f*_maxStamina * (float)delta;
+				GD.Print(_stamina/_maxStamina);
+            }
 		}
 		else
 		{
@@ -250,6 +276,8 @@ public partial class Player3d : CharacterBody3D
 
 		// --- Dash decay ---
 		_dashVelocity = Mathf.Lerp(_dashVelocity, 0f, (float)delta * 6f);
+		_headOffset = _headOffset.Lerp(new Vector3(0f, -_dashVelocity/5f, 0f), (float)delta * 6f);
+		_head.Position = _baseHeadPosition + _headOffset;
 
 		// --- Camera FOV scaling ---
 		float fovGoal = Mathf.Lerp(_cam.Fov, Velocity.Length() + 80, (float)delta * 10f);
