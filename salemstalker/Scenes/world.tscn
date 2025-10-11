@@ -353,9 +353,27 @@ travel_cost = 0.4
 
 [node name="npc_villager" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -457.229, 0.0547366, -93.4623)
+InitialDialogue = "Initial"
+QuestDialogue = "Quest"
+AcceptedDialogue = "Accepted"
+IgnoredDialogue = "Ignored"
+WaitingDialogue = "Waiting"
+DoneDialogue = "Done"
+QuestTitle = "Title"
+QuestGoal = "Goal"
+_questComplete = false
 
 [node name="npc_villager2" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -457.229, 1.87694, -79.6788)
+InitialDialogue = "Initial"
+QuestDialogue = "Quest"
+AcceptedDialogue = "Accepted"
+IgnoredDialogue = "Ignored"
+WaitingDialogue = "Waiting"
+DoneDialogue = "Done"
+QuestTitle = "Title"
+QuestGoal = "Goal"
+_questComplete = false
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("6_5ukr8")
