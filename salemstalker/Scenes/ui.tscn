@@ -1,15 +1,55 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=27 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
+[ext_resource type="Shader" uid="uid://cdhocti5ssful" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
 [ext_resource type="PackedScene" uid="uid://dufmkp4txcmvx" path="res://Scenes/inv_world.tscn" id="3_nf4gj"]
 [ext_resource type="Shader" uid="uid://2qgp3gkiyw40" path="res://Shaders/ui.gdshader" id="3_q7pk6"]
+[ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://bdqlvd6gs54fm" path="res://Assets/Fonts/SnowWhite.ttf" id="7_mmixe"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4vbiv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3r70p"]
+shader = ExtResource("2_g0wmg")
+shader_parameter/use_sprite_alpha = true
+shader_parameter/use_transition_texture = false
+shader_parameter/transition_texture = SubResource("NoiseTexture2D_4vbiv")
+shader_parameter/transition_type = 0
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/invert = false
+shader_parameter/grid_size = Vector2(1, 1)
+shader_parameter/rotation_angle = 0.0
+shader_parameter/stagger = Vector2(0, 0)
+shader_parameter/stagger_frequency = Vector2i(2, 2)
+shader_parameter/flip_frequency = Vector2i(1, 1)
+shader_parameter/basic_feather = 1.1
+shader_parameter/use_mask_size = false
+shader_parameter/mask_size = Vector2(100, 100)
+shader_parameter/edges = 6
+shader_parameter/shape_feather = 0.1
+shader_parameter/sectors = 1
+shader_parameter/clock_feather = 0.0
+shader_parameter/progress = -1.0
+shader_parameter/progress_bias = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4vbiv"]
+line_spacing = 3.08
+font_size = 75
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8fs27"]
+shader = ExtResource("4_4vbiv")
+shader_parameter/rect_size = Vector2(0.455, 0.44)
+shader_parameter/bness = 1.0
+shader_parameter/fall_off_scale = 3.0
+shader_parameter/b_offset = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2246s"]
 shader = ExtResource("3_q7pk6")
@@ -97,6 +137,47 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_smcll")
+
+[node name="Loading" type="ColorRect" parent="."]
+visible = false
+z_index = 4096
+material = SubResource("ShaderMaterial_3r70p")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(539, 303)
+color = Color(0, 0, 0, 1)
+
+[node name="Combat" type="Label" parent="Loading"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Loading..."
+label_settings = SubResource("LabelSettings_4vbiv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Border" type="ColorRect" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_8fs27")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.01247)
+pivot_offset = Vector2(539, 303)
+mouse_filter = 2
 
 [node name="PauseMenu" type="Control" parent="."]
 visible = false
@@ -197,7 +278,7 @@ label_settings = SubResource("LabelSettings_jxero")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Inv"]
+[node name="SubPort" type="SubViewportContainer" parent="Inv"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -205,13 +286,33 @@ anchor_bottom = 1.002
 offset_right = -4.0
 offset_bottom = -0.296082
 
-[node name="SubViewport" type="SubViewport" parent="Inv/SubViewportContainer"]
+[node name="Sub" type="SubViewport" parent="Inv/SubPort"]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1079, 606)
 render_target_update_mode = 0
 
-[node name="InvWorld" parent="Inv/SubViewportContainer/SubViewport" instance=ExtResource("3_nf4gj")]
+[node name="Falchion" type="Button" parent="Inv/SubPort/Sub"]
+offset_left = 86.0
+offset_top = 183.0
+offset_right = 94.0
+offset_bottom = 191.0
+scale = Vector2(8.2879, 35.2724)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="Shortsword" type="Button" parent="Inv/SubPort/Sub"]
+offset_left = 167.0
+offset_top = 175.0
+offset_right = 175.0
+offset_bottom = 183.0
+scale = Vector2(8.3857, 37.5584)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+flat = true
+
+[node name="InvWorld" parent="Inv/SubPort/Sub" instance=ExtResource("3_nf4gj")]
 
 [node name="Quest" type="Control" parent="."]
 visible = false
@@ -450,3 +551,10 @@ offset_bottom = -0.0640106
 theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 22
 text = "Deny"
+
+[connection signal="button_up" from="Inv/SubPort/Sub/Falchion" to="." method="_on_falchion_button_up"]
+[connection signal="mouse_entered" from="Inv/SubPort/Sub/Falchion" to="." method="_on_falchion_mouse_entered"]
+[connection signal="mouse_exited" from="Inv/SubPort/Sub/Falchion" to="." method="_on_falchion_mouse_exited"]
+[connection signal="button_up" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_button_up"]
+[connection signal="mouse_entered" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_mouse_entered"]
+[connection signal="mouse_exited" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_mouse_exited"]

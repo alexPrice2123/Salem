@@ -3,6 +3,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 
+
 public partial class Player3d : CharacterBody3D
 {
 	// --- CONSTANTS ---
@@ -56,6 +57,7 @@ public partial class Player3d : CharacterBody3D
 	private float _minRange = 5f;
 	private bool _attackCooldown = false;
 	private string _weaponToSwitch = "ShortSword";
+	public Color _lightColor;
 
 	// --- READY ---
 	public override void _Ready()
@@ -122,6 +124,7 @@ public partial class Player3d : CharacterBody3D
 		// --- Inventory toggle ---
 		else if (Input.IsActionJustPressed("inventory"))
 		{
+			GD.Print("INV");
 			if (_inCombat == true) { return; }
 
 			if (_inv.Visible == true)
@@ -133,6 +136,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				_inv.Visible = true;
 				Input.MouseMode = Input.MouseModeEnum.Visible;
+				GetNode<Ui>("UI").Opened();
 			}
 		}
 
@@ -185,7 +189,8 @@ public partial class Player3d : CharacterBody3D
 	{
 		Vector3 velocity = Velocity;
 
-		_lantern.LightColor = _minHealthColor.Lerp(_maxHealthColor, _health / _maxHealth);
+		_lantern.LightColor = _lantern.LightColor.Lerp(_minHealthColor.Lerp(_maxHealthColor, _health / _maxHealth), (float)delta * 3f);
+		_lightColor = _lantern.LightColor;
 		_lantern.OmniRange = (_health / _maxHealth * _maxRange) + _minRange;
 
 		if (_health <= 0)
@@ -417,7 +422,7 @@ public partial class Player3d : CharacterBody3D
 
 	}
 
-	private void SwitchPrimaryWeapon(string wepaonName)
+	public void SwitchPrimaryWeapon(string wepaonName)
     {
 		PackedScene weaponScene = _weapon[wepaonName];
 		Node3D holder = GetNode<Node3D>("Head/Camera3D/Sword");
@@ -427,13 +432,5 @@ public partial class Player3d : CharacterBody3D
 		swordInstance.Position = holder.Position;
 		_sword = swordInstance;
 		Swing(true);
-		if (_weaponToSwitch == "ShortSword")
-		{
-			_weaponToSwitch = "Falchion";
-		}
-		else if (_weaponToSwitch == "Falchion")
-        {
-			_weaponToSwitch = "ShortSword";
-        }
     }
 }

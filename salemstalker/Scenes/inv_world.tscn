@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dufmkp4txcmvx"]
+[gd_scene load_steps=16 format=3 uid="uid://dufmkp4txcmvx"]
 
 [ext_resource type="Script" uid="uid://5grfqsaretre" path="res://Scenes/InvWorld.cs" id="1_2gl02"]
 [ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="1_e7ttb"]
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_qv3mo"]
-[ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="3_2gl02"]
-[ext_resource type="PackedScene" uid="uid://323vl4kctpsr" path="res://Assets/Weapons/short sword.blend" id="4_xsxfx"]
+[ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="4_2gl02"]
 [ext_resource type="PackedScene" uid="uid://b4y5ian205sds" path="res://Assets/Weapons/rapier.blend" id="5_0o872"]
+[ext_resource type="PackedScene" uid="uid://j6uelknlee1h" path="res://Scenes/MainHandWeapons/Shortsword.tscn" id="5_xsxfx"]
 [ext_resource type="PackedScene" uid="uid://catkfqrbkq6x4" path="res://Assets/Weapons/stake gun.blend" id="6_qit4k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4to0"]
@@ -18,24 +18,113 @@ emission_energy_multiplier = 0.05
 albedo_color = Color(0, 0, 0, 1)
 metallic = 1.0
 
-[sub_resource type="Animation" id="Animation_xsxfx"]
+[sub_resource type="Animation" id="Animation_qit4k"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("falchion:position")
+tracks/0/path = NodePath("ShortSword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.81136, 0.619959, -1.54662)]
+"values": [Vector3(-1.33786, 0.859681, -1.52533)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("falchion:rotation")
+tracks/1/path = NodePath("ShortSword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0o872"]
+resource_name = "falchionHover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Falchion:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(-1.74665, 0.901496, -1.54662), Vector3(-1.747, 0.901, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Falchion:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0.174533, -1.39626, -0.174533)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qit4k"]
+_data = {
+&"Hover": SubResource("Animation_0o872"),
+&"RESET": SubResource("Animation_qit4k")
+}
+
+[sub_resource type="Animation" id="Animation_2gl02"]
+resource_name = "Hover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(-1.29268, 0.922989, -1.54884), Vector3(-1.293, 0.923, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0.174533, -1.39626, -0.174533)]
+}
+
+[sub_resource type="Animation" id="Animation_xsxfx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -45,77 +134,11 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_0o872"]
-resource_name = "falchionDehover"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("falchion:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1.41421, 1),
-"update": 0,
-"values": [Vector3(-1.741, 0.62, -1.457), Vector3(-1.81136, 0.619959, -1.54662)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("falchion:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1.4048, 1),
-"update": 0,
-"values": [Vector3(0.0785398, 0.226893, 0.0174533), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_2gl02"]
-resource_name = "falchionHover"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("falchion:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1.41421),
-"update": 0,
-"values": [Vector3(-1.81136, 0.619959, -1.54662), Vector3(-1.741, 0.62, -1.457)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("falchion:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1.4048),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.0785398, 0.226893, 0.0174533)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qit4k"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0o872"]
 _data = {
-&"RESET": SubResource("Animation_xsxfx"),
-&"falchionDehover": SubResource("Animation_0o872"),
-&"falchionHover": SubResource("Animation_2gl02")
+&"Hover": SubResource("Animation_2gl02"),
+&"RESET": SubResource("Animation_xsxfx")
 }
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xsxfx"]
-size = Vector3(30.2603, 5.08502, 5.51379)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2gl02"]
-size = Vector3(0.202393, 1.16418, 0.203735)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qv3mo"]
-size = Vector3(4.18762, 19.0468, 1)
 
 [node name="InvWorld" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.6631, 0)
@@ -123,6 +146,8 @@ script = ExtResource("1_2gl02")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26516, 0)
+projection = 1
+size = 2.39
 far = 10.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
@@ -151,12 +176,6 @@ material_override = SubResource("StandardMaterial3D_2gl02")
 
 [node name="Cube_002" parent="dagger" index="3"]
 material_override = SubResource("StandardMaterial3D_2gl02")
-
-[node name="falchion" parent="." instance=ExtResource("3_2gl02")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -1.81136, 0.619959, -1.54662)
-
-[node name="short sword" parent="." instance=ExtResource("4_xsxfx")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -1.343, 0.598261, -1.51692)
 
 [node name="rapier" parent="." instance=ExtResource("5_0o872")]
 transform = Transform3D(-0.00147493, -0.0597482, 0.00528891, -0.0553763, -0.000676653, -0.023087, 0.0230498, -0.00544887, -0.0551273, 0.047, 0.47616, -1.37427)
@@ -188,37 +207,22 @@ material_override = SubResource("StandardMaterial3D_2gl02")
 [node name="stake gun" parent="." instance=ExtResource("6_qit4k")]
 transform = Transform3D(0.234803, 0.0286468, 0.0405843, 0.0433257, -0.0221709, -0.235013, -0.0243024, 0.23725, -0.0268622, 1.14676, 1.68016, -1.79272)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Falchion" parent="." instance=ExtResource("4_2gl02")]
+transform = Transform3D(0.661119, 0, 0, 0, 0.661119, 0, 0, 0, 0.661119, 0, 0, 0)
+
+[node name="HoverAnim" type="AnimationPlayer" parent="Falchion"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_qit4k")
 }
 
-[node name="rapierBox" type="Area3D" parent="."]
-transform = Transform3D(0.06, -8.84756e-09, 1.86265e-09, 6.28643e-09, 0.06, -1.49012e-08, 4.65661e-10, 1.86265e-08, 0.06, 1.04308e-07, 0.129844, -1.18548)
-collision_layer = 4294967295
-collision_mask = 4294967295
-input_capture_on_drag = true
+[node name="ShortSword" parent="." instance=ExtResource("5_xsxfx")]
+transform = Transform3D(0.078586, 0, 0, 0, 0.196465, 0, 0, 0, 0.078586, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rapierBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3821, 4.56935, -3.81261)
-shape = SubResource("BoxShape3D_xsxfx")
-
-[node name="weaponBox" type="Area3D" parent="."]
-transform = Transform3D(0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 0.999997, -1.30743, 0.905282, -1.29017)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="weaponBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0213624, 0.28347, -0.263344)
-shape = SubResource("BoxShape3D_2gl02")
-
-[node name="falchionBox" type="Area3D" parent="."]
-transform = Transform3D(0.0599999, -5.3551e-09, -4.65661e-10, 3.72529e-09, 0.06, -2.42144e-08, 0, 9.31322e-09, 0.06, -2.00492, 0.129843, -1.18548)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="falchionBox"]
-transform = Transform3D(1, 1.20468e-15, 0, 0, 1, 0, 0, 0, 1, 5.60008, 17.8842, -5.02427)
-shape = SubResource("BoxShape3D_qv3mo")
-
-[connection signal="mouse_entered" from="falchionBox" to="." method="_on_falchion_box_mouse_entered"]
-[connection signal="mouse_exited" from="falchionBox" to="." method="_on_falchion_box_mouse_exited"]
+[node name="HoverAnim" type="AnimationPlayer" parent="ShortSword"]
+libraries = {
+&"": SubResource("AnimationLibrary_0o872")
+}
 
 [editable path="dagger"]
 [editable path="rapier"]

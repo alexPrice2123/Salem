@@ -30,8 +30,8 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_c1cqh"]
-resource_name = "Swing3"
+[sub_resource type="Animation" id="Animation_o56aj"]
+resource_name = "Swing1"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.333333, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.2, 0, 0.24), Vector3(-0.09, 0, -1.1), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.18, 0, 0), Vector3(-0.54, 0, -0.325), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -52,10 +52,10 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.3, 0.6),
+"times": PackedFloat32Array(0, 0.166667, 0.33, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.994838, 0, -0.10472), Vector3(-1.95477, 0, -0.0349066), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, -1.9443), Vector3(0, 1.5708, -1.4748), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ag22c"]
@@ -86,8 +86,8 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 1.87623), Vector3(0, -1.5708, 1.87623), Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_o56aj"]
-resource_name = "Swing1"
+[sub_resource type="Animation" id="Animation_c1cqh"]
+resource_name = "Swing3"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.333333, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.18, 0, 0), Vector3(-0.54, 0, -0.325), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.2, 0, 0.24), Vector3(-0.09, 0, -1.1), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -108,10 +108,10 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.33, 0.6),
+"times": PackedFloat32Array(0, 0.0666667, 0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, -1.9443), Vector3(0, 1.5708, -1.4748), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.994838, 0, -0.10472), Vector3(-1.95477, 0, -0.0349066), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
