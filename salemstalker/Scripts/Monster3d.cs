@@ -27,7 +27,7 @@ public partial class Monster3d : CharacterBody3D
     protected Vector3 _startPos;                   // Starting position (wander center point)
     protected Node3D _hitFX;                       // Hit effect visual node
     protected Node3D _body;                        // Monster body mesh node
-    protected bool _canBeHit = true;               // Prevents rapid re-hits during invulnerability
+    public bool _canBeHit = true;               // Prevents rapid re-hits during invulnerability
     protected Vector3 _currentRot;                 // Stores current rotation of monster
     public bool _attacking = false;
     public bool _canAttack = true;
@@ -94,10 +94,6 @@ public partial class Monster3d : CharacterBody3D
                 _player.MonsterKilled("Monster");
                 QueueFree(); // Destroy monster when health hits zero
             }
-
-            // Short invulnerability window
-            await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
-            _canBeHit = true;
         }
     }
 

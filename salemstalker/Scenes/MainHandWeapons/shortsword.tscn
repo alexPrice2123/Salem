@@ -1,7 +1,53 @@
-[gd_scene load_steps=19 format=3 uid="uid://cilhfw77d0fyx"]
+[gd_scene load_steps=18 format=3 uid="uid://3v4hdgpge0v6"]
 
-[ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="1_ej1uk"]
-[ext_resource type="Script" uid="uid://tfmbanw1c877" path="res://Scenes/MainHandWeapons/Falchion.cs" id="1_ki2ro"]
+[ext_resource type="Script" uid="uid://b1ax0drvppbgl" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_ckg03"]
+[ext_resource type="PackedScene" uid="uid://323vl4kctpsr" path="res://Assets/Weapons/short sword.blend" id="2_pkki5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
+size = Vector3(0.321167, 1.46155, 0.213867)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvryv"]
+albedo_color = Color(0.494245, 1.40181e-06, 2.40654e-07, 1)
+
+[sub_resource type="Curve" id="Curve_ecxhr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ki2ro"]
+curve = SubResource("Curve_ecxhr")
+
+[sub_resource type="Curve" id="Curve_63doy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sk81k"]
+curve = SubResource("Curve_63doy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8th4x"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 2.99998
+radial_velocity_max = 5.99998
+radial_velocity_curve = SubResource("CurveTexture_ki2ro")
+gravity = Vector3(0, -2, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_sk81k")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ki2ro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cg2tk"]
+albedo_color = Color(0.439216, 0.258824, 0.258824, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nst8u"]
+albedo_color = Color(0.564962, 0.564962, 0.564962, 1)
+metallic = 1.0
+roughness = 0.3
 
 [sub_resource type="Animation" id="Animation_ki2ro"]
 resource_name = "RESET"
@@ -123,76 +169,16 @@ _data = {
 &"Swing3": SubResource("Animation_c1cqh")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
-size = Vector3(0.321167, 1.46155, 0.213867)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l13c1"]
-albedo_color = Color(0.439216, 0.258824, 0.258824, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0or"]
-albedo_color = Color(0.776471, 0.803922, 0.564706, 1)
-metallic = 1.0
-roughness = 0.3
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_df3ch"]
-albedo_color = Color(0.564962, 0.564962, 0.564962, 1)
-metallic = 1.0
-roughness = 0.3
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvryv"]
-albedo_color = Color(0.494245, 1.40181e-06, 2.40654e-07, 1)
-
-[sub_resource type="Curve" id="Curve_ecxhr"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_ki2ro"]
-curve = SubResource("Curve_ecxhr")
-
-[sub_resource type="Curve" id="Curve_63doy"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_sk81k"]
-curve = SubResource("Curve_63doy")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8th4x"]
-lifetime_randomness = 1.0
-angle_min = 1.07288e-05
-angle_max = 360.0
-direction = Vector3(0, 0, 0)
-spread = 0.0
-radial_velocity_min = 2.99998
-radial_velocity_max = 5.99998
-radial_velocity_curve = SubResource("CurveTexture_ki2ro")
-gravity = Vector3(0, -2, 0)
-linear_accel_min = 0.999998
-linear_accel_max = 0.999998
-scale_min = 0.05
-scale_max = 0.1
-scale_curve = SubResource("CurveTexture_sk81k")
-
-[sub_resource type="BoxMesh" id="BoxMesh_ki2ro"]
-
-[node name="Falchion" type="Node3D"]
+[node name="Shortsword" type="Node3D"]
 transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 0, 0, 0)
-script = ExtResource("1_ki2ro")
-metadata/swingSpeed = 0.7
-metadata/hDamage = 23.0
-metadata/damage = 20.0
+script = ExtResource("1_ckg03")
+metadata/swingSpeed = 0.6
+metadata/hDamage = 20.0
+metadata/damage = 15.0
 metadata/cChance = 0.25
-metadata/cPercent1 = 1.15
-metadata/cPercent2 = 1.15
+metadata/cPercent1 = 1.2
+metadata/cPercent2 = 1.2
 metadata/cPercent3 = 1.25
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_3h2ph")
-}
-next/Swing1 = &"RESET"
-next/Swing2 = &"RESET"
-next/Swing3 = &"RESET"
-blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
 
 [node name="Hitbox" type="Area3D" parent="." groups=["Player", "Weapon"]]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.94338e-09, 0.605291, -0.113091)
@@ -204,36 +190,8 @@ collision_mask = 1025
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.0327759, 0.230774, 0)
 shape = SubResource("BoxShape3D_ki2ro")
 
-[node name="falchion" parent="." instance=ExtResource("1_ej1uk")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.407, 0)
-
-[node name="Cube" parent="falchion" index="0"]
-material_override = SubResource("StandardMaterial3D_l13c1")
-
-[node name="Cylinder" parent="falchion" index="1"]
-material_override = SubResource("StandardMaterial3D_sb0or")
-
-[node name="Cylinder_001" parent="falchion" index="2"]
-material_override = SubResource("StandardMaterial3D_l13c1")
-
-[node name="Cube_001" parent="falchion" index="3"]
-transform = Transform3D(0.0815986, 0, 0, 0, 0.0424087, 0, 0, 0, 0.0360172, 0.133582, 0.453902, -4.44089e-16)
-material_override = SubResource("StandardMaterial3D_df3ch")
-
-[node name="BézierCurve" parent="falchion" index="4"]
-transform = Transform3D(0.106306, 0, 0, 0, 0, -0.106306, 0, 0.106306, 0, 0.298445, 0.448079, 0)
-material_override = SubResource("StandardMaterial3D_df3ch")
-
-[node name="BézierCurve_001" parent="falchion" index="5"]
-transform = Transform3D(-0.106306, 0, 0, 0, 0, 0.106306, 0, 0.106306, 0, 0.133582, 0.453902, -4.44089e-16)
-material_override = SubResource("StandardMaterial3D_df3ch")
-
-[node name="Cube_002" parent="falchion" index="6"]
-transform = Transform3D(0.0734789, 0, 0, 0, 0.0405374, 0, 0, 0, 0.0106852, 0.133582, 0.52704, -4.44089e-16)
-material_override = SubResource("StandardMaterial3D_df3ch")
-
 [node name="Blood" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0698854, 1.24098, 0.000148448)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00812661, 1.10846, -0.080514)
 material_override = SubResource("StandardMaterial3D_wvryv")
 emitting = false
 amount = 100
@@ -241,6 +199,20 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_8th4x")
 draw_pass_1 = SubResource("BoxMesh_ki2ro")
 
+[node name="shortsword" parent="." instance=ExtResource("2_pkki5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0105306, -0.331278, -0.12519)
+
+[node name="Cylinder" parent="shortsword" index="0"]
+material_override = SubResource("StandardMaterial3D_cg2tk")
+
+[node name="Sphere_001" parent="shortsword" index="1"]
+material_override = SubResource("StandardMaterial3D_nst8u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3h2ph")
+}
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 
-[editable path="falchion"]
+[editable path="shortsword"]

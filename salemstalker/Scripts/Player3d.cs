@@ -30,7 +30,7 @@ public partial class Player3d : CharacterBody3D
 	private OmniLight3D _lantern;
 
 	// --- WEAPON REFERENCES ---
-	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/Shortsword.tscn"); // Scene reference for the shortsword
+	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Scene reference for the shortsword
 	private PackedScene _falchion = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/falchion.tscn"); // Scene reference for the shortsword
 	private Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>();
 
@@ -57,13 +57,13 @@ public partial class Player3d : CharacterBody3D
 	private float _maxRange = 25f;
 	private float _minRange = 5f;
 	private bool _attackCooldown = false;
-	private string _weaponToSwitch = "ShortSword";
 	public Color _lightColor;
 	private float _maxStamina = 100f;
 	private float _stamina;
 	private float _staminaGoal;
 	private Vector3 _baseHeadPosition;
 	private Vector3 _headOffset = new Vector3(0f, 0f, 0f);
+	private SwordHandler _swordInst;
 
 	// --- READY ---
 	public override void _Ready()
@@ -84,6 +84,7 @@ public partial class Player3d : CharacterBody3D
 		_health = _maxHealth;
 		_stamina = _maxStamina;
 		_baseHeadPosition = _head.Position;
+		_swordInst = _sword as SwordHandler;
 
 		_weapon.Add("ShortSword", _shortSword);
 		_weapon.Add("Falchion", _falchion);
@@ -213,6 +214,7 @@ public partial class Player3d : CharacterBody3D
 		{
 			_combatCounter = 0;
 			_inCombat = false;
+			_swordInst.ResetMonsterList();
 		}
 
 		if (_running == false)
@@ -322,31 +324,34 @@ public partial class Player3d : CharacterBody3D
 	// --- CUSTOM FUNCTIONS ---
 	private async void Swing(bool justEqquipped)
 	{
+		_swordInst.ResetMonsterDebounce();
 		_attackCooldown = true;
 		float swingTime = (float)_sword.GetMeta("swingSpeed");
 		float comboTime = swingTime * 1000 + 400;
 		_rng.Randomize();
 		if (justEqquipped == true)
-        {
+		{
 			swingTime = 0f;
-        }
+		}
 		if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
 		{
 			_comboNum++;
-			if(_rng.Randf() <= (float)_sword.GetMeta("cChance"))
-            {
+			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
+			{
 				_damage *= (float)_sword.GetMeta("cPercent1");
+				_swordInst._crit = true;
 				GD.Print("CRIT");
-            }
+			}
 		}
 		else
 		{
 			_comboNum = 0;
-			if(_rng.Randf() <= (float)_sword.GetMeta("cChance"))
-            {
+			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
+			{
 				_damage *= (float)_sword.GetMeta("cPercent2");
+				_swordInst._crit = true;
 				GD.Print("CRIT");
-            }
+			}
 		}
 		if (Time.GetTicksMsec() - _lastHit > comboTime && _comboNum == 2)
 		{
@@ -354,6 +359,7 @@ public partial class Player3d : CharacterBody3D
 			if(_rng.Randf() <= (float)_sword.GetMeta("cChance"))
             {
 				_damage *= (float)_sword.GetMeta("cPercent3");
+				_swordInst._crit = true;
 				GD.Print("CRIT");
             }
 		}
@@ -459,6 +465,7 @@ public partial class Player3d : CharacterBody3D
         holder.AddChild(swordInstance);                                             // Add sword to holder node
 		swordInstance.Position = holder.Position;
 		_sword = swordInstance;
+		_swordInst = _sword as SwordHandler;
 		Swing(true);
     }
 }

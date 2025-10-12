@@ -1,17 +1,11 @@
 using Godot;
 using System;
 
-public partial class Falchion : Node3D
+public partial class Falchion : SwordHandler
 {
-    private async void _on_hitbox_body_entered(Node3D body)
-	{
-		if (body.IsInGroup("Monster"))
-		{
-			await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
-			GetNode<GpuParticles3D>("Blood").Emitting = true;
-			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
-            GetNode<GpuParticles3D>("Blood").Emitting = false;
-            GD.Print("enemy hit");
-		}
-	}
+    public override void _Ready()
+    {
+        _firstDelay = 0.05f;
+        _secondDelay = 0.2f;
+    }
 }

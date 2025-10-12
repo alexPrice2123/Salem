@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://j6uelknlee1h"]
+[gd_scene load_steps=18 format=3 uid="uid://ba2bh2gvqsf0i"]
 
-[ext_resource type="Script" uid="uid://c173hqgufrnnn" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_jo16x"]
-[ext_resource type="PackedScene" uid="uid://323vl4kctpsr" path="res://Assets/Weapons/short sword.blend" id="3_3h2ph"]
+[ext_resource type="Script" uid="uid://b1ax0drvppbgl" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_pe45y"]
+[ext_resource type="PackedScene" uid="uid://323vl4kctpsr" path="res://Assets/Weapons/short sword.blend" id="2_mslme"]
 
-[sub_resource type="Animation" id="Animation_m4ngj"]
+[sub_resource type="Animation" id="Animation_ki2ro"]
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -30,9 +31,9 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_o56aj"]
+[sub_resource type="Animation" id="Animation_jo16x"]
 resource_name = "Swing1"
-length = 0.6
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -40,10 +41,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.333333, 0.6),
+"times": PackedFloat32Array(0, 0.1, 0.366667, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.18, 0, 0), Vector3(-0.54, 0, -0.325), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.44, 0.19, -0.05), Vector3(0.509, -0.069, -0.759), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -52,15 +53,15 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.33, 0.6),
+"times": PackedFloat32Array(0, 0.1, 0.366667, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, -1.9443), Vector3(0, 1.5708, -1.4748), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.383972, 0, 0.628319), Vector3(-0.268781, -2.54818, 1.69471), Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_ag22c"]
+[sub_resource type="Animation" id="Animation_3h2ph"]
 resource_name = "Swing2"
-length = 0.6
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -68,10 +69,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.2, 0.396667, 0.566667),
+"times": PackedFloat32Array(0, 0.1, 0.466667, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.54, 0, -0.325), Vector3(0.55, 0, -0.22), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.24, 0.14, 0.06), Vector3(-0.5, -0.12, -0.41), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -80,15 +81,15 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333, 0.196667, 0.4, 0.566667),
+"times": PackedFloat32Array(0, 0.1, 0.466667, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 1.87623), Vector3(0, -1.5708, 1.87623), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.366519, 0.418879, -0.349066), Vector3(-0.71384, 1.95477, -1.5708), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_c1cqh"]
 resource_name = "Swing3"
-length = 0.6
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -96,10 +97,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.333333, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.2, 0, 0.24), Vector3(-0.09, 0, -1.1), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.41, 0, 0.15), Vector3(0, 0, -0.1), Vector3(-1.16, 0, 0.27), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -108,17 +109,17 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.994838, 0, -0.10472), Vector3(-1.95477, 0, -0.0349066), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.698132, 0.698132, -1.22173), Vector3(0, 0.680678, -1.5708), Vector3(0, 2.5604, -1.5708), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
 _data = {
-&"RESET": SubResource("Animation_m4ngj"),
-&"Swing1": SubResource("Animation_o56aj"),
-&"Swing2": SubResource("Animation_ag22c"),
+&"RESET": SubResource("Animation_ki2ro"),
+&"Swing1": SubResource("Animation_jo16x"),
+&"Swing2": SubResource("Animation_3h2ph"),
 &"Swing3": SubResource("Animation_c1cqh")
 }
 
@@ -169,9 +170,9 @@ scale_curve = SubResource("CurveTexture_ag22c")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ag22c"]
 
-[node name="ShortSword" type="Node3D"]
+[node name="Shortsword" type="Node3D"]
 transform = Transform3D(0.04, 0, 0, 0, 0.1, 0, 0, 0, 0.04, 0, 0, 0)
-script = ExtResource("1_jo16x")
+script = ExtResource("1_pe45y")
 metadata/swingSpeed = 0.6
 metadata/hDamage = 20.0
 metadata/damage = 15.0
@@ -198,13 +199,13 @@ transform = Transform3D(1, 0, 0, 0, 0.999994, 0, 0, 0, 1, 0, 3.19536, 0)
 shape = SubResource("BoxShape3D_3h2ph")
 disabled = true
 
-[node name="short sword" parent="." instance=ExtResource("3_3h2ph")]
+[node name="shortsword" parent="." instance=ExtResource("2_mslme")]
 transform = Transform3D(-4.40611e-07, 0, 10.08, 0, 4.032, 0, -10.08, 0, -4.40611e-07, -0.0551795, -1.55477, 0.0225514)
 
-[node name="Cylinder" parent="short sword" index="0"]
+[node name="Cylinder" parent="shortsword" index="0"]
 material_override = SubResource("StandardMaterial3D_l13c1")
 
-[node name="Sphere_001" parent="short sword" index="1"]
+[node name="Sphere_001" parent="shortsword" index="1"]
 material_override = SubResource("StandardMaterial3D_df3ch")
 
 [node name="Blood" type="GPUParticles3D" parent="."]
@@ -218,4 +219,4 @@ draw_pass_1 = SubResource("BoxMesh_ag22c")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 
-[editable path="short sword"]
+[editable path="shortsword"]
