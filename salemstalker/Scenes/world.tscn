@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=70 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="7_axeuq"]
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="8_dt0r1"]
-[ext_resource type="Texture2D" uid="uid://duyqji6d5wl4n" path="res://Assets/3D/plants/bush_goodtreebkgdless_kat_px.png" id="9_0pcbe"]
 [ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Scenes/World/Heightmap_0_0.res" id="9_7yui6"]
 [ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="9_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://chu6uwfbaqyat" path="res://Assets/2D/sand.png" id="9_qebug"]
@@ -118,7 +117,7 @@ metadata/_custom_type_script = "uid://043vjblb04jf"
 resource_name = "Material.002"
 transparency = 4
 cull_mode = 2
-albedo_texture = ExtResource("9_0pcbe")
+albedo_texture = ExtResource("10_yq1aw")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0pcbe"]

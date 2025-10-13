@@ -258,10 +258,10 @@ public partial class Player3d : CharacterBody3D
 
 		
 		if (_parried == true)
-        {
+		{
 			_parried = false;
 			Parry();
-        }
+		}
 
 		// --- Combat handling ---
 		_combatNotif.Visible = _inCombat;
@@ -284,8 +284,8 @@ public partial class Player3d : CharacterBody3D
 
 		if (_hasApple == true && _questBox.FindChild("Find Bob's Apple") != null)
 		{
-            (_questBox.GetNode("Find Bob's Apple/Number") as Label).Text = "1/1";
-        }
+			(_questBox.GetNode("Find Bob's Apple/Number") as Label).Text = "1/1";
+		}
 
 		/*// --- Inventory camera transition ---
 		if (_inv.Visible == true)
@@ -347,14 +347,14 @@ public partial class Player3d : CharacterBody3D
 		_cam.Fov = fovGoal;
 
 		if (GetMouseCollision() != null)
-        {
+		{
 			CharacterBody3D targetNode = GetMouseCollision();
 			_lastSeen = targetNode;
 			if (targetNode.Name == "Apple")
-            {
+			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
-            }
-        }
+			}
+		}
 		// --- NPC Interaction detection ---
 		if (GetMouseCollision() != null && _originalDialouge == null)
 		{
@@ -379,16 +379,18 @@ public partial class Player3d : CharacterBody3D
 					_originalDialouge = villager.WaitingDialogue;
 					villager._questPrompt.Text = villager.WaitingDialogue + "\n" + "E to Talk";
 				} 
-            }
+			}
 			
 		}
 		else if (GetMouseCollision() == null && _originalDialouge != null) //set the NPC's dialouge back to the original
 		{
 			if (_lastSeen is NpcVillager villager) { villager._questPrompt.Text = _originalDialouge; }
-			if (_lastSeen.Name == "Apple")
-            {
-                _lastSeen.GetNode<Label3D>("Title").Visible = false;
-            }
+			if (_lastSeen != null){
+				if (_lastSeen.Name == "Apple")
+				{
+				_lastSeen.GetNode<Label3D>("Title").Visible = false;
+				}
+			}
 			_lastSeen = null;
 			_originalDialouge = null;
 		}
@@ -407,9 +409,9 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		if (_stamina <= -5)
-        {
+		{
 			_stamina = -5;
-        }
+		}
 		// --- Apply movement ---
 		Velocity = velocity;
 		if (_inv.Visible == false) { MoveAndSlide(); }
@@ -511,7 +513,7 @@ public partial class Player3d : CharacterBody3D
 	{
 		_parry = false;
 		_sword.GetNode<GpuParticles3D>("Parry").Emitting = true;
-    }
+	}
 
 	private Vector3 HeadBob(float bobTime)
 	{
@@ -544,9 +546,9 @@ public partial class Player3d : CharacterBody3D
 	public void MonsterKilled(string MonsterType)
 	{
 		if (MonsterType == "VCultist")
-        {
+		{
 			_monstersKilled += 1;
-        }
+		}
 		if (_questBox.FindChild("Kill 5 Cultists") != null)
 		{
 			if (_monstersKilled >= 5) { (_questBox.GetNode("Kill 5 Cultists/Number") as Label).Text = "Complete!"; }
@@ -563,9 +565,9 @@ public partial class Player3d : CharacterBody3D
 	}
 
 	private void _on_quest_button_button_up(string buttonName)
-    {
+	{
 		GD.Print(buttonName);
-    }
+	}
 
 	public void GetQuest(string QuestTitle, string QuestGoal)
 	{
@@ -587,9 +589,9 @@ public partial class Player3d : CharacterBody3D
 		_villager.Ignored();
 	}
 	public void ContinueDialouge()
-    {
+	{
 		_villager.Continue();
-    }
+	}
 
 	public void Damaged(float takenDamage, Monster3d monster)
 	{
@@ -632,24 +634,24 @@ public partial class Player3d : CharacterBody3D
 			_parried = true;
 		}
 		if (_stamina <= 0)
-        {
+		{
 			takenDamage *= 0.7f;
-        }
+		}
 		_health -= takenDamage;
 	}
 
 
 
 	public void SwitchPrimaryWeapon(string wepaonName)
-    {
+	{
 		PackedScene weaponScene = _weapon[wepaonName];
 		Node3D holder = GetNode<Node3D>("Head/Camera3D/Sword");
 		holder.GetChild<Node3D>(0).QueueFree();
 		Node3D swordInstance = weaponScene.Instantiate<Node3D>(); // Create sword instance
-        holder.AddChild(swordInstance);                                             // Add sword to holder node
+		holder.AddChild(swordInstance);                                             // Add sword to holder node
 		swordInstance.Position = holder.Position;
 		_sword = swordInstance;
 		_swordInst = _sword as SwordHandler;
 		Swing(true);
-    }
+	}
 }
