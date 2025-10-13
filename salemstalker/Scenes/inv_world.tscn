@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://dufmkp4txcmvx"]
 
 [ext_resource type="Script" uid="uid://5grfqsaretre" path="res://Scenes/InvWorld.cs" id="1_2gl02"]
-[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="1_e7ttb"]
+[ext_resource type="Texture2D" uid="uid://ebnfthe7xyj" path="res://Assets/2D/burlap.jpg" id="2_2gl02"]
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_qv3mo"]
 [ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="4_2gl02"]
 [ext_resource type="PackedScene" uid="uid://b4y5ian205sds" path="res://Assets/Weapons/rapier.blend" id="5_0o872"]
@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://do3u2x5avpy72" path="res://Scenes/OffHandWeapons/stake_gun.tscn" id="8_xsxfx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4to0"]
-albedo_color = Color(0.376806, 0.372505, 0.312032, 1)
-albedo_texture = ExtResource("1_e7ttb")
+albedo_color = Color(0.423651, 0.423651, 0.423651, 1)
+albedo_texture = ExtResource("2_2gl02")
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.05
 
@@ -31,7 +31,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector3(-1.74665, 0.901496, -1.54662), Vector3(-1.747, 0.901, -1)]
+"values": [Vector3(-1.74665, 0.901496, -1.54662), Vector3(-1.747, 0.901, -1.5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -68,7 +68,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector3(1.26042, 1.61991, -1.28725), Vector3(1.26, 1.62, -1)]
+"values": [Vector3(1.26042, 1.61991, -1.28725), Vector3(1.26, 1.62, -1.2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -129,7 +129,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector3(-1.393, 0.923, -1.549), Vector3(-1.393, 0.923, -1)]
+"values": [Vector3(-1.393, 0.923, -1.549), Vector3(-1.393, 0.923, -1.5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -188,9 +188,11 @@ size = 2.39
 far = 10.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164883, -0.0730438, -1.23657)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164883, -0.0730438, -0.23657)
 light_color = Color(1, 1, 0.901961, 1)
 light_energy = 1.646
+shadow_enabled = true
+shadow_opacity = 0.5
 omni_range = 3.285
 omni_attenuation = 0.5
 

@@ -32,6 +32,11 @@ public partial class TheHollow : Monster3d
 		{
 			_speedOffset = 0f;
 		}
+		if (_health <= 0)
+		{
+			_player.MonsterKilled("TheHollow");
+			QueueFree(); // Destroy monster when health hits zero
+		}
 	}
 
 	public void _on_hurtbox_area_entered(Area3D body)

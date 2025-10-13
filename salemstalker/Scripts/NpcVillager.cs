@@ -5,24 +5,26 @@ using System.Runtime.CompilerServices;
 public partial class NpcVillager : CharacterBody3D
 {
 	// - Constants -
-	public const float Speed = 5.0f;                       // The AI's speed
-	public const float Range = 5.0f;                       // The max range between player and AI
+	public const float Speed = 3.0f;                       // The AI's speed
+	public const float Range = 3.0f;                       // The max range between player and AI
 
 	// - Variables -
-	private int _questRequirement;                         
-	private Player3d _player;                              // Reference to the player object
-	private RandomNumberGenerator _rng = new();            // RNG for idle times
-	private bool moveStatus = true;                        // Whether the AI is in movement state or not
-	private bool idleStatus = false;                       // Whether the AI is idling or not 
-	private bool _questAccepted;
-	private string _name;
-	private NavigationAgent3D _navigationAgent;            // Reference to the agent object
+	protected int _questRequirement;                         
+	protected Player3d _player;                              // Reference to the player object
+	protected RandomNumberGenerator _rng = new();            // RNG for idle times
+	protected bool moveStatus = true;                        // Whether the AI is in movement state or not
+	protected bool idleStatus = false;                       // Whether the AI is idling or not 
+	protected bool _questAccepted;
+	protected string _name;
+	protected NavigationAgent3D _navigationAgent;            // Reference to the agent object
 	public Label3D _questPrompt;                           // Reference to the prompt object
 	public Label _dialogueBox;
 	public Control _dialogue; 
 	public Button _acceptButton;
 	public Button _ignoreButton;
-	private Vector3 WanderTarget;                          // The target for the AI to wander to whenever it is moving
+	protected Vector3 WanderTarget;                          // The target for the AI to wander to whenever it is moving
+	[Export]
+	public string NPCName = "Bob"; 
 	[Export]
 	public string InitialDialogue = "Initial";             // This dialogue goes into the QuestPrompt 3d label, the rest of the dialogue is spoken through the UI
 	[Export]
@@ -41,6 +43,8 @@ public partial class NpcVillager : CharacterBody3D
 	public string QuestGoal = "Goal";
 	[Export]
 	public bool _questComplete = false;
+	public bool _questInProgress = false;
+	public CharacterBody3D Villager;
 
 	public Vector3 MovementTarget                           // The target for the AI to pathfind to
 	{
@@ -48,18 +52,19 @@ public partial class NpcVillager : CharacterBody3D
 		set { _navigationAgent.TargetPosition = value; }
 	}
 
-	public override void _Ready()
+	public void InitializeVillager()
 	{
 		// Get reference to relevant nodes.
 		_player = this.GetParent().GetNode<Player3d>("Player_3d");
 		_navigationAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
 		_questPrompt = GetNode<Label3D>("QuestPrompt");
-		_dialogueBox = GetNode<Label>("UI/Dialogue/DialogueBox");
-		_dialogue = GetNode<Control>("UI/Dialogue");
-		_acceptButton = GetNode<Button>("UI/Dialogue/AcceptButton");
+		_dialogueBox = _player.GetNode<Label>("UI/Dialogue/DialogueBox");
+		_dialogue = _player.GetNode<Control>("UI/Dialogue");
+		_acceptButton = _player.GetNode<Button>("UI/Dialogue/AcceptButton");
 		_acceptButton.Pressed += QuestAccepted;
-		_ignoreButton = GetNode<Button>("UI/Dialogue/IgnoreButton");
+		_ignoreButton = _player.GetNode<Button>("UI/Dialogue/IgnoreButton");
 		_ignoreButton.Pressed += QuestIgnored;
+		WanderTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 2, false);
 
 		_questPrompt.Text = InitialDialogue;
 
@@ -78,14 +83,14 @@ public partial class NpcVillager : CharacterBody3D
 		GD.Print("Ignored");
 	}
 	
-	public override void _PhysicsProcess(double delta) //Event tick; happens every frame
+	public void EveryFrame(double delta) //Event tick; happens every frame
 	{
 		// Get the distance between the player and AI
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
 		// Add a temp variable for velocity
 		Vector3 velocity = new();
 
-		if (_questComplete == true)
+		if (_questComplete == true && _questInProgress == false)
 		{
 			_questPrompt.Text = DoneDialogue;
 		}
@@ -121,7 +126,7 @@ public partial class NpcVillager : CharacterBody3D
 			velocity = Vector3.Zero;
 
 			// Make the quest prompt appear 
-			_questPrompt.Show();
+			if (_dialogue.Visible == false){ _questPrompt.Visible = true; }
 		}
 
 		if (moveStatus)
@@ -132,7 +137,7 @@ public partial class NpcVillager : CharacterBody3D
 			velocity += (nextPoint - GlobalTransform.Origin).Normalized() * Speed;
 
 			// Make sure the quest prompt is hidden whenever player is not near
-			_questPrompt.Hide();
+			_questPrompt.Visible = false;
 
 			// Face wander target
 			if (GlobalPosition.DistanceTo(nextPoint) > 0.01f)
@@ -152,7 +157,7 @@ public partial class NpcVillager : CharacterBody3D
 		MoveAndSlide();
 	}
 
-	private async void ActorSetup()
+	protected async void ActorSetup()
 	{
 		// Wait for the first physics frame so the NavigationServer can sync.
 		await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
@@ -162,7 +167,7 @@ public partial class NpcVillager : CharacterBody3D
 		WanderTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 2, false);
 	}
 
-	private async void WanderIdle()
+	protected async void WanderIdle()
 	{
 		// Make the villager wait for 4-10 seconds before moving again
 		await ToSignal(GetTree().CreateTimer(_rng.RandfRange(4.0f, 10.0f)), "timeout");
@@ -170,28 +175,45 @@ public partial class NpcVillager : CharacterBody3D
 		idleStatus = false;
 	}
 
+	public void Accepted()
+	{
+		_player.GetQuest(QuestTitle, QuestGoal);
+		_dialogueBox.Text = AcceptedDialogue;
+		_questInProgress = true;
+		_questPrompt.Text = WaitingDialogue;
+		_player._originalDialouge = WaitingDialogue;
+		_dialogue.GetNode<Button>("Continue").Visible = true;
+		_dialogue.GetNode<Button>("AcceptButton").Visible = false;
+		_dialogue.GetNode<Button>("IgnoreButton").Visible = false;
+	}
+
+	public void Ignored()
+	{
+		_dialogueBox.Text = IgnoredDialogue;
+		_dialogue.GetNode<Button>("Continue").Visible = true;
+		_dialogue.GetNode<Button>("AcceptButton").Visible = false;
+		_dialogue.GetNode<Button>("IgnoreButton").Visible = false;
+	}
+
+	public void Continue()
+    {
+		_player._villager = null;
+		_dialogue.Visible = false;
+		Input.MouseMode = Input.MouseModeEnum.Captured;
+    }
+
 	public void Talk()
 	{
-		bool done = false;
-		if (_questComplete == true) { return; } //if the quest is done the player can't interact
-		
-		if (_player._monstersKilled < 5 && _player._questBox.FindChild("KillMonsters") == null) //changes dialouge from the initial dialouge to quest dialouge 
+		_dialogue.GetNode<Button>("Continue").Visible = false;
+		_dialogue.GetNode<Button>("AcceptButton").Visible = true;
+		_dialogue.GetNode<Button>("IgnoreButton").Visible = true;
+		if (Villager is KillMonstersQuest killVillager)
 		{
-			_dialogueBox.Text = QuestDialogue;
+			killVillager.NPCTalk();
 		}
-		if (_player._monstersKilled >= 5) //what happens when the player talks to him after completing the quest
-		{
-			_dialogueBox.Text = DoneDialogue;
-			_questComplete = true;
-			_player.RemoveQuest("KillMonsters");
-		}
-		else if (_player._monstersKilled < 5) //what happens when the player talks to him before completing the quest
-		{
-			_dialogueBox.Text = WaitingDialogue;
-		}
-		//if(Input.IsActionJustPressed("continue_dialogue") && !done)
-		//{
-			
-		//}
+		else if (Villager is GetAppleQuest appleVillager)
+        {
+			appleVillager.NPCTalk();
+        }
 	}
 }

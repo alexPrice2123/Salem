@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp8uiiauk5326"]
+
+[ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="1_3b5q5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5vngr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtpkl"]
+transparency = 1
+albedo_color = Color(0.956863, 0.882353, 0.541176, 0.647059)
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.956863, 0.882353, 0.541176, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qpe6n"]
+
+[node name="Lamp" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.339865, 0, 0, 0, 4.85193, 0, 0, 0, 0.339865, 0, 0, 0)
+material_override = ExtResource("1_3b5q5")
+mesh = SubResource("BoxMesh_5vngr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.752472, 0, 0, 0, 0.299706, 0, 0, 0, 0.339865, 0.49945, 2.27252, 0)
+material_override = ExtResource("1_3b5q5")
+mesh = SubResource("BoxMesh_5vngr")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.53671, 0, 0, 0, 0.53671, 0, 0, 0, 0.53671, 0.70633, 1.94946, 0)
+material_override = SubResource("StandardMaterial3D_xtpkl")
+mesh = SubResource("SphereMesh_qpe6n")
+
+[node name="Lantern" type="OmniLight3D" parent="MeshInstance3D3"]
+light_color = Color(0.956863, 0.882353, 0.541176, 1)
+light_energy = 8.0
+light_volumetric_fog_energy = 16.0
+omni_range = 150.0

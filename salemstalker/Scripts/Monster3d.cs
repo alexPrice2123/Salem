@@ -94,11 +94,6 @@ public partial class Monster3d : CharacterBody3D
 
             // Apply damage
             _health -= damage;
-            if (_health <= 0)
-            {
-                _player.MonsterKilled("Monster");
-                QueueFree(); // Destroy monster when health hits zero
-            }
         }
     }
 

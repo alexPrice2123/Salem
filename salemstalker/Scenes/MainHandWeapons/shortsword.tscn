@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://3v4hdgpge0v6"]
+[gd_scene load_steps=27 format=3 uid="uid://3v4hdgpge0v6"]
 
 [ext_resource type="Script" uid="uid://b1ax0drvppbgl" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_ckg03"]
 [ext_resource type="PackedScene" uid="uid://323vl4kctpsr" path="res://Assets/Weapons/short sword.blend" id="2_pkki5"]
@@ -227,6 +227,42 @@ _data = {
 &"Swing3": SubResource("Animation_c1cqh")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1osjb"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="Curve" id="Curve_cg2tk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nst8u"]
+curve = SubResource("Curve_cg2tk")
+
+[sub_resource type="Curve" id="Curve_02r2q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_b1i4m"]
+curve = SubResource("Curve_02r2q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hraxq"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 2.99998
+radial_velocity_max = 5.99998
+radial_velocity_curve = SubResource("CurveTexture_nst8u")
+gravity = Vector3(0, -2, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_b1i4m")
+
+[sub_resource type="BoxMesh" id="BoxMesh_0eq1u"]
+size = Vector3(0.1, 0.1, 1)
+
 [node name="Shortsword" type="Node3D"]
 transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 0, 0, 0)
 script = ExtResource("1_ckg03")
@@ -274,6 +310,17 @@ next/Swing1 = &"RESET"
 next/Swing2 = &"RESET"
 next/Swing3 = &"RESET"
 blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
+
+[node name="Parry" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0693777, 0.654532, -0.193639)
+material_override = SubResource("StandardMaterial3D_1osjb")
+emitting = false
+amount = 100
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_hraxq")
+draw_pass_1 = SubResource("BoxMesh_0eq1u")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 

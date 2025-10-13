@@ -27,6 +27,11 @@ public partial class VCultist : Monster3d
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+        if (_health <= 0)
+        {
+            _player.MonsterKilled("VCultist");
+            QueueFree(); // Destroy monster when health hits zero
+        }
     }
 
     public void _on_hurtbox_area_entered(Area3D body)

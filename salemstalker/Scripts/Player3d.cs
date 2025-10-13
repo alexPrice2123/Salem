@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 
 
+
 public partial class Player3d : CharacterBody3D
 {
 	// --- CONSTANTS ---
@@ -47,9 +48,9 @@ public partial class Player3d : CharacterBody3D
 	private float _fullDashValue = 10.0f;            // Maximum dash velocity
 	private bool _running = false;                   // True if player is holding run input
 	private float _bobTime = 0.0f;                   // Time accumulator for head-bob effect
-	private string _originalDialouge;                // Stores NPC dialogue before player interacts
+	public string _originalDialouge;                // Stores NPC dialogue before player interacts
 	private CharacterBody3D _lastSeen;               // Last seen NPC in interaction range
-	public int _monstersKilled = 0;                  // Monster kill counter (for quests)
+	public int _monstersKilled = 4;                  // Monster kill counter (for quests)
 	public float _maxHealth = 100f;
 	public float _health;
 	public Color _maxHealthColor = new Color(244f / 255f, 224f / 255f, 138f / 255f);
@@ -69,6 +70,8 @@ public partial class Player3d : CharacterBody3D
 	public bool _parried = false;
 	private float _parryWindow = 0.15f;
 	private float _currentParryWindow;
+	public NpcVillager _villager;
+	public bool _hasApple = false;
 	
 
 	// --- READY ---
@@ -137,6 +140,16 @@ public partial class Player3d : CharacterBody3D
 			Swing(false);
 		}
 
+		else if (Input.IsActionPressed("attack")
+				 && _attackCooldown == false
+				 && _lastSeen.Name == "Apple"
+				 && _inv.Visible == false)
+		{
+			_lastSeen.QueueFree();
+			_lastSeen = null;
+			_hasApple = true;
+		}
+
 		else if (Input.IsActionJustPressed("block")
 				 && _attackCooldown == false
 				 && _lastSeen == null
@@ -156,7 +169,7 @@ public partial class Player3d : CharacterBody3D
 		else if (Input.IsActionJustPressed("inventory"))
 		{
 			GD.Print("INV");
-			if (_inCombat == true) { return; }
+			if (_inCombat == true || _questBook.Visible == true) { return; }
 
 			if (_inv.Visible == true)
 			{
@@ -174,7 +187,7 @@ public partial class Player3d : CharacterBody3D
 		// --- Questbook toggle ---
 		else if (@event is InputEventKey lKey && lKey.Keycode == Key.L && lKey.Pressed)
 		{
-			if (_inCombat == true || _inv.Visible == true) { return; }
+			if (_inv.Visible == true) { return; }
 
 			if (_questBook.Visible == true)
 			{
@@ -199,14 +212,15 @@ public partial class Player3d : CharacterBody3D
 		{
 			_running = shiftKey.Pressed;
 			if (_stamina <= 0)
-            {
+			{
 				_running = false;
-            }
+			}
 		}
 
 		// --- Interact (E key) ---
 		else if (Input.IsActionJustPressed("interact"))
 		{
+			GD.Print(_lastSeen);
 			if (_lastSeen != null && _lastSeen is NpcVillager villager)
 			{
 				villager.Talk();
@@ -268,6 +282,11 @@ public partial class Player3d : CharacterBody3D
 			}
 		}
 
+		if (_hasApple == true && _questBox.FindChild("Find Bob's Apple") != null)
+		{
+            (_questBox.GetNode("Find Bob's Apple/Number") as Label).Text = "1/1";
+        }
+
 		/*// --- Inventory camera transition ---
 		if (_inv.Visible == true)
 		{
@@ -327,20 +346,49 @@ public partial class Player3d : CharacterBody3D
 		float fovGoal = Mathf.Lerp(_cam.Fov, Velocity.Length() + 80, (float)delta * 10f);
 		_cam.Fov = fovGoal;
 
+		if (GetMouseCollision() != null)
+        {
+			CharacterBody3D targetNode = GetMouseCollision();
+			_lastSeen = targetNode;
+			if (targetNode.Name == "Apple")
+            {
+				targetNode.GetNode<Label3D>("Title").Visible = true;
+            }
+        }
 		// --- NPC Interaction detection ---
 		if (GetMouseCollision() != null && _originalDialouge == null)
 		{
 			CharacterBody3D targetNode = GetMouseCollision();
-			if (targetNode is NpcVillager villager && villager._questComplete == false) // if the node that the player is looking at (argument 1), has a script attached to it named (argument 2) then set that to the variable (argument 3)
+			if (targetNode is NpcVillager villager)
 			{
-				_lastSeen = villager;
-				_originalDialouge = villager._questPrompt.Text;
-				villager._questPrompt.Text = villager._questPrompt.Text + "\n" + "E to Talk";
-			}
+				if (villager._questComplete == false && villager._questInProgress == false) // if the node that the player is looking at (argument 1), has a script attached to it named (argument 2) then set that to the variable (argument 3)
+				{
+					_lastSeen = villager;
+					_originalDialouge = villager._questPrompt.Text;
+					villager._questPrompt.Text = villager._questPrompt.Text + "\n" + "E to Talk";
+				}
+				else if (villager._questComplete == false && villager._questInProgress == true) // if the node that the player is looking at (argument 1), has a script attached to it named (argument 2) then set that to the variable (argument 3)
+				{
+					_lastSeen = villager;
+					_originalDialouge = villager.WaitingDialogue;
+					villager._questPrompt.Text = villager.WaitingDialogue;
+				}
+				else if (villager._questComplete == true & villager._questInProgress == true) // if the node that the player is looking at (argument 1), has a script attached to it named (argument 2) then set that to the variable (argument 3)
+				{
+					_lastSeen = villager;
+					_originalDialouge = villager.WaitingDialogue;
+					villager._questPrompt.Text = villager.WaitingDialogue + "\n" + "E to Talk";
+				} 
+            }
+			
 		}
 		else if (GetMouseCollision() == null && _originalDialouge != null) //set the NPC's dialouge back to the original
 		{
 			if (_lastSeen is NpcVillager villager) { villager._questPrompt.Text = _originalDialouge; }
+			if (_lastSeen.Name == "Apple")
+            {
+                _lastSeen.GetNode<Label3D>("Title").Visible = false;
+            }
 			_lastSeen = null;
 			_originalDialouge = null;
 		}
@@ -362,7 +410,6 @@ public partial class Player3d : CharacterBody3D
         {
 			_stamina = -5;
         }
-
 		// --- Apply movement ---
 		Velocity = velocity;
 		if (_inv.Visible == false) { MoveAndSlide(); }
@@ -481,7 +528,7 @@ public partial class Player3d : CharacterBody3D
 		pos.X = Mathf.Cos(bobTime * BobFreq / 2.5f) * BobAmp;
 		return pos;
 	}
-
+	
 	public CharacterBody3D GetMouseCollision()
 	{
 		if (_ray.IsColliding())
@@ -496,11 +543,14 @@ public partial class Player3d : CharacterBody3D
 
 	public void MonsterKilled(string MonsterType)
 	{
-		_monstersKilled += 1;
-		if (_questBox.FindChild("KillMonsters") != null)
+		if (MonsterType == "VCultist")
+        {
+			_monstersKilled += 1;
+        }
+		if (_questBox.FindChild("Kill 5 Cultists") != null)
 		{
-			if (_monstersKilled >= 5) { (_questBox.GetNode("KillMonsters/Number") as Label).Text = "Complete!"; }
-			else { (_questBox.GetNode("KillMonsters/Number") as Label).Text = _monstersKilled + "/5"; }
+			if (_monstersKilled >= 5) { (_questBox.GetNode("Kill 5 Cultists/Number") as Label).Text = "Complete!"; }
+			else { (_questBox.GetNode("Kill 5 Cultists/Number") as Label).Text = _monstersKilled + "/5"; }
 		}
 	}
 
@@ -512,6 +562,11 @@ public partial class Player3d : CharacterBody3D
 		}
 	}
 
+	private void _on_quest_button_button_up(string buttonName)
+    {
+		GD.Print(buttonName);
+    }
+
 	public void GetQuest(string QuestTitle, string QuestGoal)
 	{
 		Control questText = (VBoxContainer)_questTemplate.Duplicate();
@@ -521,6 +576,20 @@ public partial class Player3d : CharacterBody3D
 		questText.GetNode<Label>("Quest").Text = QuestTitle;
 		questText.GetNode<Label>("Number").Text = QuestGoal;
 	}
+
+	public void QuestAccepted()
+	{
+		_villager.Accepted();
+	}
+
+	public void QuestIgnored()
+	{
+		_villager.Ignored();
+	}
+	public void ContinueDialouge()
+    {
+		_villager.Continue();
+    }
 
 	public void Damaged(float takenDamage, Monster3d monster)
 	{

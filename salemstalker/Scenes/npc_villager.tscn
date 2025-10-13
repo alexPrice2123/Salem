@@ -1,18 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl3y8nfncided"]
+[gd_scene load_steps=7 format=3 uid="uid://dl3y8nfncided"]
 
-[ext_resource type="Script" uid="uid://cqm83otrgcv18" path="res://Scripts/NpcVillager.cs" id="1_x81n3"]
 [ext_resource type="PackedScene" uid="uid://c6jmp7jqyytkw" path="res://Assets/3D/charatermodel/villagerblank.blend" id="2_8tk1i"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="4_l2tj8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_820w5"]
+albedo_color = Color(0.366853, 0.288561, 0.180929, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2tj8"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ox1ja"]
+albedo_color = Color(0.898039, 0.709804, 0.631373, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n6gic"]
 height = 3.13692
 
 [node name="npc_villager" type="CharacterBody3D" groups=["Interactable"]]
 collision_layer = 2
-script = ExtResource("1_x81n3")
 
 [node name="villagerblank" parent="." instance=ExtResource("2_8tk1i")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Cube" parent="villagerblank/metarig/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_820w5")
+surface_material_override/1 = SubResource("StandardMaterial3D_820w5")
+surface_material_override/2 = SubResource("StandardMaterial3D_l2tj8")
+surface_material_override/3 = SubResource("StandardMaterial3D_ox1ja")
+
+[node name="Cube_002" parent="villagerblank/metarig/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_820w5")
+surface_material_override/1 = SubResource("StandardMaterial3D_ox1ja")
+
+[node name="Cube_003" parent="villagerblank/metarig/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ox1ja")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 1.0
@@ -42,3 +62,5 @@ font_size = 25
 outline_size = 8
 autowrap_mode = 3
 width = 320.0
+
+[editable path="villagerblank"]

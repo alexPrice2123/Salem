@@ -62,7 +62,7 @@ size = Vector3(1.19323, 0.389267, 0.0205688)
 material = ExtResource("2_n642y")
 
 [node name="SpawnTime" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 5.0
 
 [node name="MonsterHolder" type="Node3D" parent="."]
 

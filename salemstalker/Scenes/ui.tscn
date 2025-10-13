@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=29 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
@@ -10,7 +10,6 @@
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
-[ext_resource type="FontFile" uid="uid://bdqlvd6gs54fm" path="res://Assets/Fonts/SnowWhite.ttf" id="7_mmixe"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
@@ -87,7 +86,7 @@ shader_parameter/b_displacement = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxero"]
 line_spacing = 3.08
-font_size = 40
+font_size = 60
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
 
@@ -112,7 +111,7 @@ shader = ExtResource("5_q7pk6")
 
 [sub_resource type="LabelSettings" id="LabelSettings_m78vo"]
 line_spacing = 3.08
-font_size = 30
+font_size = 40
 outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
@@ -379,8 +378,8 @@ anchor_bottom = 0.18
 offset_right = 96.534
 offset_bottom = 17.92
 scale = Vector2(0.75, 0.75)
-theme_override_fonts/font = ExtResource("7_mmixe")
-text = "Ongoing Missions"
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Current Missions"
 label_settings = SubResource("LabelSettings_jxero")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -397,7 +396,7 @@ offset_left = -0.392029
 offset_right = 98.3
 offset_bottom = 17.92
 scale = Vector2(0.75, 0.75)
-theme_override_fonts/font = ExtResource("7_mmixe")
+theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "Description"
 label_settings = SubResource("LabelSettings_jxero")
 horizontal_alignment = 1
@@ -410,6 +409,7 @@ offset_top = 125.392
 offset_right = 975.527
 offset_bottom = 705.182
 scale = Vector2(0.75, 0.75)
+theme_override_fonts/font = ExtResource("1_qdvrb")
 horizontal_alignment = 1
 
 [node name="Combat" type="Label" parent="."]
@@ -494,14 +494,24 @@ scale = Vector2(0.55, 0.55)
 [node name="Quest" type="Label" parent="Container/QuestTemplate"]
 z_index = 1
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7_mmixe")
+theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "Quest"
 label_settings = SubResource("LabelSettings_jxero")
+
+[node name="QuestButton" type="Button" parent="Container/QuestTemplate/Quest"]
+layout_mode = 2
+offset_top = 12.685
+offset_right = 295.0
+offset_bottom = 112.685
+rotation = 3.14159
+pivot_offset = Vector2(147.5, 50)
+mouse_default_cursor_shape = 2
+flat = true
 
 [node name="Number" type="Label" parent="Container/QuestTemplate"]
 z_index = 1
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7_mmixe")
+theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "Number"
 label_settings = SubResource("LabelSettings_m78vo")
 
@@ -521,9 +531,10 @@ offset_bottom = 0.149963
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.316
-anchor_right = 1.0
+anchor_right = 0.849
 anchor_bottom = 0.75
 offset_top = -0.352001
+offset_right = -0.0400391
 offset_bottom = -1.52588e-05
 grow_horizontal = 2
 grow_vertical = 2
@@ -532,7 +543,7 @@ text = "dialogue"
 label_settings = SubResource("LabelSettings_nt8jn")
 autowrap_mode = 2
 
-[node name="Name" type="Label" parent="Dialogue/DialogueBox"]
+[node name="NameText" type="Label" parent="Dialogue/DialogueBox"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.333
@@ -553,9 +564,27 @@ anchor_bottom = 1.012
 offset_top = 0.0559998
 offset_right = 0.439987
 offset_bottom = -0.0640106
+focus_mode = 0
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 22
 text = "Accept"
+
+[node name="Continue" type="Button" parent="Dialogue"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.802
+anchor_right = 0.161
+anchor_bottom = 1.012
+offset_top = 0.0559998
+offset_right = 172.44
+offset_bottom = -0.0639954
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("10_nt8jn")
+theme_override_font_sizes/font_size = 22
+text = "Click To Continue"
 
 [node name="IgnoreButton" type="Button" parent="Dialogue"]
 layout_mode = 1
@@ -568,9 +597,11 @@ offset_left = 0.119995
 offset_top = 0.0559998
 offset_right = -0.399994
 offset_bottom = -0.0640106
+focus_mode = 0
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 22
-text = "Deny"
+text = "Ignore"
 
 [node name="Stamina" type="Sprite2D" parent="."]
 z_index = 1
@@ -594,3 +625,7 @@ texture = ExtResource("13_whq80")
 [connection signal="button_up" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_mouse_exited"]
+[connection signal="button_up" from="Container/QuestTemplate/Quest/QuestButton" to="." method="_on_quest_button_button_up"]
+[connection signal="button_up" from="Dialogue/AcceptButton" to="." method="_on_accept_button_button_up"]
+[connection signal="button_up" from="Dialogue/Continue" to="." method="_on_continue_button_up"]
+[connection signal="button_up" from="Dialogue/IgnoreButton" to="." method="_on_ignore_button_button_up"]

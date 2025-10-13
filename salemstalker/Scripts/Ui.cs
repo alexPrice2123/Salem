@@ -37,6 +37,13 @@ public partial class Ui : Control
 		}
 		GetNode<ColorRect>("Border").Color = _player._lightColor;
 	}
+
+	//--- Dialouge ---
+	private void _on_accept_button_button_up() { _player.QuestAccepted(); }
+	private void _on_ignore_button_button_up() { _player.QuestIgnored(); }
+	private void _on_continue_button_up() { _player.ContinueDialouge(); }
+
+
 	// --- Falchion ---
 	private void _on_falchion_mouse_entered(){ PlayAnim("Falchion", true); }
 	private void _on_falchion_mouse_exited(){ PlayAnim("Falchion", false); }
