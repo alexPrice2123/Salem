@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://3v4hdgpge0v6"]
+[gd_scene load_steps=20 format=3 uid="uid://3v4hdgpge0v6"]
 
 [ext_resource type="Script" uid="uid://b1ax0drvppbgl" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_ckg03"]
 [ext_resource type="PackedScene" uid="uid://323vl4kctpsr" path="res://Assets/Weapons/short sword.blend" id="2_pkki5"]
@@ -48,6 +48,62 @@ albedo_color = Color(0.439216, 0.258824, 0.258824, 1)
 albedo_color = Color(0.564962, 0.564962, 0.564962, 1)
 metallic = 1.0
 roughness = 0.3
+
+[sub_resource type="Animation" id="Animation_wvryv"]
+resource_name = "Block"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0.15, -0.08), Vector3(0, 0.15, 0), Vector3(0, 0.15, -0.09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(1.0472, -1.39626, -0.0872665), Vector3(1.0472, -1.39626, -0.296706), Vector3(1.0472, -1.39626, -0.0872665)]
+}
+
+[sub_resource type="Animation" id="Animation_sk81k"]
+resource_name = "Parry"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.15, -0.09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.0472, -1.39626, -0.0872665)]
+}
 
 [sub_resource type="Animation" id="Animation_ki2ro"]
 resource_name = "RESET"
@@ -163,6 +219,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
 _data = {
+&"Block": SubResource("Animation_wvryv"),
+&"Parry": SubResource("Animation_sk81k"),
 &"RESET": SubResource("Animation_ki2ro"),
 &"Swing1": SubResource("Animation_jo16x"),
 &"Swing2": SubResource("Animation_3h2ph"),
@@ -212,6 +270,10 @@ material_override = SubResource("StandardMaterial3D_nst8u")
 libraries = {
 &"": SubResource("AnimationLibrary_3h2ph")
 }
+next/Swing1 = &"RESET"
+next/Swing2 = &"RESET"
+next/Swing3 = &"RESET"
+blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 

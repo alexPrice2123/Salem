@@ -67,7 +67,7 @@ public partial class Player3d : CharacterBody3D
 	public bool _blocking = false;
 	public bool _parry = false;
 	public bool _parried = false;
-	private float _parryWindow = 0.25f;
+	private float _parryWindow = 0.1f;
 	private float _currentParryWindow;
 	
 
@@ -439,17 +439,19 @@ public partial class Player3d : CharacterBody3D
 		_attackCooldown = false;
 	}
 
-	private void Block(bool block)
+	private async void Block(bool block)
 	{
 		_blocking = block;
-		_parry = block;
 		if (block == true)
 		{
-			_currentParryWindow = _parryWindow;
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Parry");
+			await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+			_parry = block;
+			_currentParryWindow = _parryWindow;
 		}
 		else
 		{
+			_parry = block;
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").PlayBackwards("Parry");
 		}
 	}

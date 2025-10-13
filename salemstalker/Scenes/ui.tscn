@@ -49,7 +49,7 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fs27"]
 shader = ExtResource("4_4vbiv")
 shader_parameter/rect_size = Vector2(0.455, 0.44)
-shader_parameter/bness = 1.0
+shader_parameter/bness = 0.1
 shader_parameter/fall_off_scale = 3.0
 shader_parameter/b_offset = 1.0
 
