@@ -445,7 +445,7 @@ public partial class Player3d : CharacterBody3D
 		if (block == true)
 		{
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Parry");
-			//await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+			await ToSignal(GetTree().CreateTimer(0.1), "timeout");
 			_parry = block;
 			_currentParryWindow = _parryWindow;
 		}
