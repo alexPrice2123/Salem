@@ -459,7 +459,6 @@ public partial class Player3d : CharacterBody3D
 	private void Parry()
 	{
 		_parry = false;
-		_stamina += 0.25f * _maxStamina;
 		_sword.GetNode<GpuParticles3D>("Parry").Emitting = true;
     }
 
@@ -530,6 +529,27 @@ public partial class Player3d : CharacterBody3D
 		else if (_blocking == true && _parry == true)
 		{
 			takenDamage *= 0.25f;
+			_stamina += 0.25f * _maxStamina;
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_parried = true;
+		}
+		GD.Print(_blocking);
+		GD.Print(_parry);
+		_health -= takenDamage;
+	}
+
+	public void RangedDamaged(float takenDamage)
+	{
+		if (_blocking == true && _parry == false)
+		{
+			takenDamage *= 0.5f;
+			_stamina -= 0.15f * _maxStamina;
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+		}
+		else if (_blocking == true && _parry == true)
+		{
+			takenDamage = 0f;
+			_stamina += 0.25f * _maxStamina;
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			_parried = true;
 		}

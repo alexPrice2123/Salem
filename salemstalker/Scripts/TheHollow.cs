@@ -53,13 +53,7 @@ public partial class TheHollow : Monster3d
 	{
 		_hasHit = false;
 		_attackAnim = true;
-		await ToSignal(GetTree().CreateTimer(1.5), "timeout");
-		if (_distance > AttackRange)
-		{
-			_attackException = true;
-			_speedOffset = 12f;	
-		}
-		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+		await ToSignal(GetTree().CreateTimer(1.75), "timeout");
 		_speedOffset = 2.5f;
 		_attackException = false;
 		_attackBox.GetParent<Area3D>().Monitoring = true;
