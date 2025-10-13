@@ -518,7 +518,7 @@ public partial class Player3d : CharacterBody3D
 		questText.GetNode<Label>("Number").Text = QuestGoal;
 	}
 
-	public void Damaged(float takenDamage)
+	public void Damaged(float takenDamage, Monster3d monster)
 	{
 		if (_blocking == true && _parry == false)
 		{
@@ -530,6 +530,9 @@ public partial class Player3d : CharacterBody3D
 		{
 			takenDamage *= 0.25f;
 			_stamina += 0.25f * _maxStamina;
+			_damage = 0f;
+			monster.Damaged(_sword.GetNode<Area3D>("Hitbox"));
+			monster._attackException = true;
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			_parried = true;
 		}

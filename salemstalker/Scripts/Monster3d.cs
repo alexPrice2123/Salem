@@ -39,7 +39,7 @@ public partial class Monster3d : CharacterBody3D
     protected float _damageOffset = 0f;
     protected bool _justSpawned = true;
     protected bool _attackAnim = false;
-    protected bool _attackException = false;
+    public bool _attackException = false;
 
     // --- READY ---
     public void Initialization()

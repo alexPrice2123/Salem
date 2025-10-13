@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_qv3mo"]
 [ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="4_2gl02"]
 [ext_resource type="PackedScene" uid="uid://b4y5ian205sds" path="res://Assets/Weapons/rapier.blend" id="5_0o872"]
-[ext_resource type="PackedScene" uid="uid://ba2bh2gvqsf0i" path="res://Scenes/MainHandWeapons/shortsword1.tscn" id="5_xsxfx"]
+[ext_resource type="PackedScene" uid="uid://3v4hdgpge0v6" path="res://Scenes/MainHandWeapons/shortsword.tscn" id="7_2gl02"]
 [ext_resource type="PackedScene" uid="uid://do3u2x5avpy72" path="res://Scenes/OffHandWeapons/stake_gun.tscn" id="8_xsxfx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4to0"]
@@ -48,96 +48,11 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_qit4k"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShortSword:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.33786, 0.859681, -1.52533)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ShortSword:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -1.5708, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qit4k"]
 _data = {
 &"Hover": SubResource("Animation_0o872"),
 &"RESET": SubResource("Animation_qit4k")
-}
-
-[sub_resource type="Animation" id="Animation_2gl02"]
-resource_name = "Hover"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(-1.29268, 0.922989, -1.54884), Vector3(-1.293, 0.923, -1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(0, -1.5708, 0), Vector3(0.174533, -1.39626, -0.174533)]
-}
-
-[sub_resource type="Animation" id="Animation_xsxfx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0o872"]
-_data = {
-&"Hover": SubResource("Animation_2gl02"),
-&"RESET": SubResource("Animation_xsxfx")
 }
 
 [sub_resource type="Animation" id="Animation_shlj8"]
@@ -199,6 +114,67 @@ tracks/1/keys = {
 _data = {
 &"Hover": SubResource("Animation_shlj8"),
 &"RESET": SubResource("Animation_rbabf")
+}
+
+[sub_resource type="Animation" id="Animation_2gl02"]
+resource_name = "Hover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(-1.393, 0.923, -1.549), Vector3(-1.393, 0.923, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0.174533, -1.39626, -0.174533)]
+}
+
+[sub_resource type="Animation" id="Animation_xsxfx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0o872"]
+_data = {
+&"Hover": SubResource("Animation_2gl02"),
+&"RESET": SubResource("Animation_xsxfx")
 }
 
 [node name="InvWorld" type="Node3D"]
@@ -274,20 +250,20 @@ libraries = {
 &"": SubResource("AnimationLibrary_qit4k")
 }
 
-[node name="ShortSword" parent="." instance=ExtResource("5_xsxfx")]
-transform = Transform3D(0.078586, 0, 0, 0, 0.196465, 0, 0, 0, 0.078586, 0, 0, 0)
-
-[node name="HoverAnim" type="AnimationPlayer" parent="ShortSword"]
-libraries = {
-&"": SubResource("AnimationLibrary_0o872")
-}
-
 [node name="StakeGun" parent="." instance=ExtResource("8_xsxfx")]
 transform = Transform3D(0.933014, 0.250001, 0.258816, 0.249997, 0.0669858, -0.965927, -0.258819, 0.965926, -9.36912e-07, 1.26042, 1.61991, -1.28725)
 
 [node name="HoverAnim" type="AnimationPlayer" parent="StakeGun"]
 libraries = {
 &"": SubResource("AnimationLibrary_5yuta")
+}
+
+[node name="ShortSword" parent="." instance=ExtResource("7_2gl02")]
+transform = Transform3D(0.716291, 0, 0, 0, 0.716291, 0, 0, 0, 0.716291, 0, 0, 0)
+
+[node name="HoverAnim" type="AnimationPlayer" parent="ShortSword"]
+libraries = {
+&"": SubResource("AnimationLibrary_0o872")
 }
 
 [editable path="dagger"]
