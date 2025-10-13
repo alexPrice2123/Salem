@@ -251,7 +251,7 @@ libraries = {
 }
 
 [node name="StakeGun" parent="." instance=ExtResource("8_xsxfx")]
-transform = Transform3D(0.933014, 0.250001, 0.258816, 0.249997, 0.0669858, -0.965927, -0.258819, 0.965926, -9.36912e-07, 1.26042, 1.61991, -1.28725)
+transform = Transform3D(0.933014, 0.250001, 0.258816, 0.249998, 0.0669858, -0.965927, -0.25882, 0.965926, -9.36912e-07, 1.26042, 1.61991, -1.28725)
 
 [node name="HoverAnim" type="AnimationPlayer" parent="StakeGun"]
 libraries = {

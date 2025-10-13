@@ -67,7 +67,7 @@ public partial class Player3d : CharacterBody3D
 	public bool _blocking = false;
 	public bool _parry = false;
 	public bool _parried = false;
-	private float _parryWindow = 0.1f;
+	private float _parryWindow = 0.15f;
 	private float _currentParryWindow;
 	
 
@@ -198,6 +198,10 @@ public partial class Player3d : CharacterBody3D
 		else if (@event is InputEventKey shiftKey && shiftKey.Keycode == Key.Shift)
 		{
 			_running = shiftKey.Pressed;
+			if (_stamina <= 0)
+            {
+				_running = false;
+            }
 		}
 
 		// --- Interact (E key) ---
@@ -295,7 +299,7 @@ public partial class Player3d : CharacterBody3D
 		if (direction != Vector3.Zero)
 		{
 			_fullDashValue = 10f;
-			if (_stamina <= 0.0)
+			if (_stamina <= -5.0)
 			{
 				_running = false;
 			}
@@ -354,9 +358,9 @@ public partial class Player3d : CharacterBody3D
 			_lantern.Transform = lightTransformGoal;
 		}
 
-		if (_stamina <= 0)
+		if (_stamina <= -5)
         {
-			_stamina = 0;
+			_stamina = -5;
         }
 
 		// --- Apply movement ---
@@ -445,7 +449,7 @@ public partial class Player3d : CharacterBody3D
 		if (block == true)
 		{
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Parry");
-			await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+			await ToSignal(GetTree().CreateTimer(0.05), "timeout");
 			_parry = block;
 			_currentParryWindow = _parryWindow;
 		}
@@ -528,38 +532,44 @@ public partial class Player3d : CharacterBody3D
 		}
 		else if (_blocking == true && _parry == true)
 		{
-			takenDamage *= 0.25f;
 			_stamina += 0.25f * _maxStamina;
-			_damage = 0f;
-			monster.Damaged(_sword.GetNode<Area3D>("Hitbox"));
-			monster._attackException = true;
+			takenDamage = 0f;
+			monster.Stunned();
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			_parried = true;
 		}
-		GD.Print(_blocking);
-		GD.Print(_parry);
+		if (_stamina <= 0)
+		{
+			takenDamage *= 1.3f;
+		}
 		_health -= takenDamage;
 	}
-
-	public void RangedDamaged(float takenDamage)
+	
+	public void RangedDamaged(float takenDamage, RigidBody3D projectile)
 	{
 		if (_blocking == true && _parry == false)
 		{
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			projectile.QueueFree();
 		}
 		else if (_blocking == true && _parry == true)
 		{
+			_stamina += 0.10f * _maxStamina;
 			takenDamage = 0f;
-			_stamina += 0.25f * _maxStamina;
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			projectile.QueueFree();
 			_parried = true;
 		}
-		GD.Print(_blocking);
-		GD.Print(_parry);
+		if (_stamina <= 0)
+        {
+			takenDamage *= 0.7f;
+        }
 		_health -= takenDamage;
 	}
+
+
 
 	public void SwitchPrimaryWeapon(string wepaonName)
     {

@@ -40,6 +40,7 @@ public partial class Monster3d : CharacterBody3D
     protected bool _justSpawned = true;
     protected bool _attackAnim = false;
     public bool _attackException = false;
+    protected bool _stunned = false;
 
     // --- READY ---
     public void Initialization()
@@ -71,6 +72,10 @@ public partial class Monster3d : CharacterBody3D
         {
             _canBeHit = false;
             float damage = _player._damage; // Damage dealt by player
+            if (_stunned == true)
+            {
+                damage *= 1.3f;
+            }
 
             // Swap body FX on hit
             _hitFX.Visible = true;
@@ -179,7 +184,11 @@ public partial class Monster3d : CharacterBody3D
 
 
         // --- Movement ---
-        if (_player._inv.Visible == true){ Velocity = Vector3.Zero; } else if (_justSpawned == true) { MoveAndSlide(); } else if (_attackAnim == false && distance > AttackRange && _knockbackVelocity.Length() < 0.5f) { MoveAndSlide(); } else if ((_knockbackVelocity.Length() < 0.5f || _attackAnim == true) && _attackException == false) { Velocity = Vector3.Zero; } else { MoveAndSlide(); }
+        if (_player._inv.Visible == true || (_stunned == true && _attackException == false)) { Velocity = Vector3.Zero; }
+        else if (_justSpawned == true) { MoveAndSlide(); }
+        else if (_attackAnim == false && distance > AttackRange && _knockbackVelocity.Length() < 0.5f) { MoveAndSlide(); }
+        else if ((_knockbackVelocity.Length() < 0.5f || _attackAnim == true) && _attackException == false) { Velocity = Vector3.Zero; }
+        else { MoveAndSlide(); }
 
         // Smooth knockback decay
         _knockbackVelocity = _knockbackVelocity.Lerp(Vector3.Zero, (float)delta * 5.0f);
@@ -187,6 +196,8 @@ public partial class Monster3d : CharacterBody3D
 
     public void AttackInitilize()
     {
+        if (_stunned == true) { return; }
+        
         if (Monster is TheHollow hollow)
         {
             hollow.Attack();
@@ -195,5 +206,18 @@ public partial class Monster3d : CharacterBody3D
         {
             vCult.Attack();
         }
+    }
+
+    public async void Stunned()
+    {
+        _stunned = true;
+        _attackException = true;
+        Vector3 knockbackDir = (GlobalPosition - _player.Position).Normalized();
+        _knockbackVelocity = knockbackDir * _player._knockbackStrength;
+        GetNode<GpuParticles3D>("Stunned").Emitting = true;
+        await ToSignal(GetTree().CreateTimer(1f), "timeout");
+        GetNode<GpuParticles3D>("Stunned").Emitting = false;
+        _stunned = false;
+
     }
 }

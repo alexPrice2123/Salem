@@ -20,7 +20,7 @@ public partial class Orb : RigidBody3D
 	public override void _Process(double delta)
     {
 		_count += 1;
-		if (_count > 500)
+		if (_count > 250)
         {
 			QueueFree();
         }
@@ -30,7 +30,7 @@ public partial class Orb : RigidBody3D
 	{
 		if (body.IsInGroup("Player") && body.Name == "Hurtbox")
 		{
-			_playerOrb._health -= _damageOrb;
+			_playerOrb.RangedDamaged(_damageOrb, this);
 			_attackBox.Disabled = true;
 		}
 	}
