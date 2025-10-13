@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ds8375k7kpihg"]
+[gd_scene load_steps=38 format=3 uid="uid://ds8375k7kpihg"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_20aj2"]
 [ext_resource type="PackedScene" uid="uid://qcibdbx6jfkp" path="res://Assets/3D/charatermodel/maincharacterblank.blend" id="2_cno0p"]
@@ -158,6 +158,15 @@ scale_curve = SubResource("CurveTexture_yr5wf")
 
 [sub_resource type="SphereMesh" id="SphereMesh_v2reo"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_im0l4"]
+albedo_color = Color(0.305337, 6.2955e-05, 0.305335, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kviwv"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ox1ja"]
+albedo_color = Color(0.898039, 0.709804, 0.631373, 1)
+
 [node name="vCultist" instance=ExtResource("1_20aj2")]
 script = ExtResource("2_im0l4")
 
@@ -171,22 +180,22 @@ anim_player = NodePath("../Body/AnimationPlayer")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
-bones/8/rotation = Quaternion(-0.288279, 0.632537, -0.568455, 0.440058)
-bones/9/rotation = Quaternion(0.570336, -0.00187377, -0.1318, 0.810766)
-bones/18/rotation = Quaternion(-0.150904, -0.608218, 0.686886, 0.368084)
-bones/19/rotation = Quaternion(0.54823, 0.0196951, -0.063832, 0.833655)
-bones/21/rotation = Quaternion(-0.0966642, 0.258241, 0.32192, 0.905724)
-bones/22/rotation = Quaternion(-0.0473394, 0.0197859, 0.299546, 0.952701)
-bones/23/rotation = Quaternion(-0.078243, 0.0546005, 0.594849, 0.798155)
-bones/25/rotation = Quaternion(0.376913, 0.124497, 0.478739, 0.7831)
-bones/26/rotation = Quaternion(-0.309649, -0.0101378, -0.104003, 0.945091)
-bones/27/rotation = Quaternion(-0.0527684, -0.0296006, -0.340938, 0.938137)
+bones/8/rotation = Quaternion(-0.198155, 0.655479, -0.517855, 0.512746)
+bones/9/rotation = Quaternion(0.0384113, -0.00430026, 0.0188252, 0.999075)
+bones/18/rotation = Quaternion(0.200197, 0.200134, 0.783862, 0.552656)
+bones/19/rotation = Quaternion(0.0337382, 0.00510612, -0.0155544, 0.999297)
+bones/21/rotation = Quaternion(-0.0578959, -0.00201147, 0.172674, 0.983274)
+bones/22/rotation = Quaternion(0.0199921, 0.00824731, 0.105405, 0.994194)
+bones/23/rotation = Quaternion(-0.0604858, -0.0127385, 0.0653237, 0.995948)
+bones/25/rotation = Quaternion(0.359363, 0.0991303, 0.320739, 0.870723)
+bones/26/rotation = Quaternion(-0.305542, -0.0408437, -0.148455, 0.939647)
+bones/27/rotation = Quaternion(-0.0748524, -0.00278103, -0.198528, 0.977229)
 bones/28/rotation = Quaternion(-5.42024e-08, 0.696112, 0.717933, -5.2555e-08)
 bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.511863, -0.0287571, 0.858586, 0.194214, 0.96969, 0.148263, -0.836825, 0.242639, -0.490764, -0.20332, 1.29896, 0.386713)
+transform = Transform3D(0.0970371, 0.336436, 0.936693, -0.486804, 0.836921, -0.25017, -0.868104, -0.431711, 0.244991, -0.276921, 1.93869, 0.453261)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D/Cylinder" index="0"]
 visible = false
@@ -212,14 +221,43 @@ draw_pass_1 = SubResource("SphereMesh_v2reo")
 
 [node name="Spawn" type="Node3D" parent="Body/metarig/Skeleton3D/Cylinder" index="3"]
 
+[node name="Cube" parent="Body/metarig/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_im0l4")
+surface_material_override/1 = SubResource("StandardMaterial3D_im0l4")
+surface_material_override/2 = SubResource("StandardMaterial3D_kviwv")
+surface_material_override/3 = SubResource("StandardMaterial3D_ox1ja")
+
+[node name="Cube_002" parent="Body/metarig/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_im0l4")
+surface_material_override/1 = SubResource("StandardMaterial3D_ox1ja")
+
+[node name="Cube_003" parent="Body/metarig/Skeleton3D" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ox1ja")
+
 [node name="HitFX" parent="." index="6" instance=ExtResource("2_cno0p")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
 visible = false
 
+[node name="Skeleton3D" parent="HitFX/metarig" index="0"]
+bones/8/rotation = Quaternion(-0.288279, 0.632537, -0.568455, 0.440058)
+bones/9/rotation = Quaternion(0.53784, 0.00310904, -0.133081, 0.832471)
+bones/18/rotation = Quaternion(-0.150904, -0.608218, 0.686886, 0.368084)
+bones/19/rotation = Quaternion(0.560713, 0.02122, -0.0681902, 0.824925)
+bones/21/rotation = Quaternion(-0.0966642, 0.258241, 0.32192, 0.905724)
+bones/22/rotation = Quaternion(-0.0473394, 0.0197859, 0.299546, 0.952701)
+bones/23/rotation = Quaternion(-0.078243, 0.0546005, 0.594849, 0.798155)
+bones/25/rotation = Quaternion(0.376913, 0.124497, 0.478739, 0.7831)
+bones/26/rotation = Quaternion(-0.309649, -0.0101378, -0.104003, 0.945091)
+bones/27/rotation = Quaternion(-0.0527684, -0.0296006, -0.340938, 0.938137)
+bones/28/rotation = Quaternion(-5.42024e-08, 0.696112, 0.717933, -5.2555e-08)
+bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
+bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
+
 [node name="Cylinder" parent="HitFX/metarig/Skeleton3D" index="0"]
-transform = Transform3D(0.358575, -2.07219e-07, 0.933501, 0.933501, 2.98023e-08, -0.358575, 1.49012e-08, 1, 1.41561e-07, -0.460036, 1.02225, 0.0461812)
+transform = Transform3D(-0.511863, -0.0287572, 0.858586, 0.167479, 0.976922, 0.132567, -0.842583, 0.211651, -0.495234, -0.20332, 1.30988, 0.386897)
 
 [node name="Cylinder" parent="HitFX/metarig/Skeleton3D/Cylinder" index="0"]
+visible = false
 material_overlay = ExtResource("3_im0l4")
 
 [node name="Cube" parent="HitFX/metarig/Skeleton3D" index="1"]

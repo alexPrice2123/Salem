@@ -47,6 +47,10 @@ public partial class Ui : Control
 	private void _on_shortsword_mouse_exited(){ PlayAnim("ShortSword", false); }
 	private void _on_shortsword_button_up() { _player.SwitchPrimaryWeapon("ShortSword"); }
 
+	// --- StakeGun ---
+	private void _on_stake_gun_mouse_entered(){ PlayAnim("StakeGun", true); }
+	private void _on_stake_gun_mouse_exited(){ PlayAnim("StakeGun", false); }
+
 	private async void Load()
 	{
 		await ToSignal(GetTree().CreateTimer(1), "timeout");
@@ -56,6 +60,7 @@ public partial class Ui : Control
     {
 		PlayAnim("ShortSword", false);
 		PlayAnim("Falchion", false);
+		PlayAnim("StakeGun", false);
     }
 
 	private void PlayAnim(string sword, bool forwards)

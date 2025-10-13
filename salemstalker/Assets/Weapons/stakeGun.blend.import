@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://catkfqrbkq6x4"
-path="res://.godot/imported/stake gun.blend-a24323d8961aaccbe2835794a9630b7b.scn"
+path="res://.godot/imported/stakeGun.blend-693b3c26a38fc711b4433a3ed5dcbf03.scn"
 
 [deps]
 
-source_file="res://Assets/Weapons/stake gun.blend"
-dest_files=["res://.godot/imported/stake gun.blend-a24323d8961aaccbe2835794a9630b7b.scn"]
+source_file="res://Assets/Weapons/stakeGun.blend"
+dest_files=["res://.godot/imported/stakeGun.blend-693b3c26a38fc711b4433a3ed5dcbf03.scn"]
 
 [params]
 

@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://do3u2x5avpy72"]
+
+[ext_resource type="PackedScene" uid="uid://catkfqrbkq6x4" path="res://Assets/Weapons/stakeGun.blend" id="1_jmmew"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_iwl1i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t84m3"]
+albedo_texture = ExtResource("2_iwl1i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by887"]
+albedo_color = Color(0.577008, 0.577008, 0.577008, 1)
+albedo_texture = ExtResource("2_iwl1i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_df3ch"]
+albedo_color = Color(0.564962, 0.564962, 0.564962, 1)
+metallic = 1.0
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cn8n3"]
+albedo_color = Color(0.400698, 0.400698, 0.400698, 1)
+metallic = 1.0
+roughness = 0.3
+
+[node name="StakeGun" type="Node3D"]
+
+[node name="stake gun" parent="." instance=ExtResource("1_jmmew")]
+transform = Transform3D(0.264955, 0, 0, 0, 0.264955, 0, 0, 0, 0.264955, 0, -0.542065, 0)
+
+[node name="Cylinder" parent="stake gun" index="0"]
+material_override = SubResource("StandardMaterial3D_t84m3")
+
+[node name="Cube" parent="stake gun" index="1"]
+material_override = SubResource("StandardMaterial3D_by887")
+
+[node name="Cube_001" parent="stake gun" index="2"]
+material_override = SubResource("StandardMaterial3D_df3ch")
+
+[node name="Cube_002" parent="stake gun" index="3"]
+material_override = SubResource("StandardMaterial3D_cn8n3")
+
+[node name="Cylinder_001" parent="stake gun" index="4"]
+material_override = SubResource("StandardMaterial3D_cn8n3")
+
+[node name="Cylinder_002" parent="stake gun" index="5"]
+material_override = SubResource("StandardMaterial3D_by887")
+
+[node name="Cube_003" parent="stake gun" index="6"]
+material_override = SubResource("StandardMaterial3D_df3ch")
+
+[editable path="stake gun"]

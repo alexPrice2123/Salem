@@ -1,7 +1,63 @@
-[gd_scene load_steps=19 format=3 uid="uid://cilhfw77d0fyx"]
+[gd_scene load_steps=24 format=3 uid="uid://cilhfw77d0fyx"]
 
 [ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="1_ej1uk"]
 [ext_resource type="Script" uid="uid://tfmbanw1c877" path="res://Scenes/MainHandWeapons/Falchion.cs" id="1_ki2ro"]
+
+[sub_resource type="Animation" id="Animation_wvryv"]
+resource_name = "Block"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0.15, -0.08), Vector3(0, 0.15, 0), Vector3(0, 0.15, -0.09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(1.0472, -1.39626, -0.0872665), Vector3(1.0472, -1.39626, -0.296706), Vector3(1.0472, -1.39626, -0.0872665)]
+}
+
+[sub_resource type="Animation" id="Animation_sk81k"]
+resource_name = "Parry"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.15, -0.09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.0472, -1.39626, -0.0872665)]
+}
 
 [sub_resource type="Animation" id="Animation_ki2ro"]
 resource_name = "RESET"
@@ -117,6 +173,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
 _data = {
+&"Block": SubResource("Animation_wvryv"),
+&"Parry": SubResource("Animation_sk81k"),
 &"RESET": SubResource("Animation_ki2ro"),
 &"Swing1": SubResource("Animation_jo16x"),
 &"Swing2": SubResource("Animation_3h2ph"),
@@ -173,6 +231,28 @@ scale_max = 0.1
 scale_curve = SubResource("CurveTexture_sk81k")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ki2ro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ki2ro"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sk81k"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 2.99998
+radial_velocity_max = 5.99998
+radial_velocity_curve = SubResource("CurveTexture_ki2ro")
+gravity = Vector3(0, -2, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_sk81k")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wvryv"]
+size = Vector3(0.1, 0.1, 1)
 
 [node name="Falchion" type="Node3D"]
 transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 0, 0, 0)
@@ -240,6 +320,17 @@ amount = 100
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_8th4x")
 draw_pass_1 = SubResource("BoxMesh_ki2ro")
+
+[node name="Parry" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0693777, 0.654532, -0.193639)
+material_override = SubResource("StandardMaterial3D_ki2ro")
+emitting = false
+amount = 100
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_sk81k")
+draw_pass_1 = SubResource("BoxMesh_wvryv")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 

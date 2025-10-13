@@ -312,6 +312,16 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
+[node name="StakeGun" type="Button" parent="Inv/SubPort/Sub"]
+offset_left = 795.0
+offset_top = 97.0
+offset_right = 803.0
+offset_bottom = 105.0
+scale = Vector2(16.1216, 19.5039)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+flat = true
+
 [node name="Shortsword" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 167.0
 offset_top = 175.0
@@ -578,6 +588,9 @@ texture = ExtResource("13_whq80")
 [connection signal="button_up" from="Inv/SubPort/Sub/Falchion" to="." method="_on_falchion_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/Falchion" to="." method="_on_falchion_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/Falchion" to="." method="_on_falchion_mouse_exited"]
+[connection signal="button_up" from="Inv/SubPort/Sub/StakeGun" to="." method="_on_stake_gun_button_up"]
+[connection signal="mouse_entered" from="Inv/SubPort/Sub/StakeGun" to="." method="_on_stake_gun_mouse_entered"]
+[connection signal="mouse_exited" from="Inv/SubPort/Sub/StakeGun" to="." method="_on_stake_gun_mouse_exited"]
 [connection signal="button_up" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_mouse_exited"]

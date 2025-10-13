@@ -43,7 +43,7 @@ public partial class TheHollow : Monster3d
 	{
 		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
 		{
-			_player._health -= BaseDamage + _damageOffset;
+			_player.Damaged(BaseDamage + _damageOffset);
 			_attackBox.Disabled = true;
 			_hasHit = true;
 		}
@@ -51,6 +51,7 @@ public partial class TheHollow : Monster3d
 
 	public async void Attack()
 	{
+		_hasHit = false;
 		_attackAnim = true;
 		await ToSignal(GetTree().CreateTimer(1.5), "timeout");
 		if (_distance > AttackRange)
@@ -61,10 +62,9 @@ public partial class TheHollow : Monster3d
 		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
 		_speedOffset = 2.5f;
 		_attackException = false;
-		_attackBox.Disabled = false;
-        _hasHit = false;
-        await ToSignal(GetTree().CreateTimer(0.4), "timeout");
-        _attackBox.Disabled = true;
+		_attackBox.GetParent<Area3D>().Monitoring = true;
+        await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+		_attackBox.GetParent<Area3D>().Monitoring = false;
         _canAttack = false;
 		await ToSignal(GetTree().CreateTimer(0.7), "timeout");
 		_attackAnim = false;

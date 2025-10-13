@@ -64,6 +64,12 @@ public partial class Player3d : CharacterBody3D
 	private Vector3 _baseHeadPosition;
 	private Vector3 _headOffset = new Vector3(0f, 0f, 0f);
 	private SwordHandler _swordInst;
+	public bool _blocking = false;
+	public bool _parry = false;
+	public bool _parried = false;
+	private float _parryWindow = 0.25f;
+	private float _currentParryWindow;
+	
 
 	// --- READY ---
 	public override void _Ready()
@@ -129,6 +135,21 @@ public partial class Player3d : CharacterBody3D
 				 && _inv.Visible == false)
 		{
 			Swing(false);
+		}
+
+		else if (Input.IsActionJustPressed("block")
+				 && _attackCooldown == false
+				 && _lastSeen == null
+				 && _inv.Visible == false)
+		{
+			Block(true);
+		}
+		else if (Input.IsActionJustReleased("block")
+				 && _attackCooldown == false
+				 && _lastSeen == null
+				 && _inv.Visible == false)
+		{
+			Block(false);
 		}
 
 		// --- Inventory toggle ---
@@ -198,7 +219,7 @@ public partial class Player3d : CharacterBody3D
 		_lightColor = _lantern.LightColor;
 		_lantern.OmniRange = (_health / _maxHealth * _maxRange) + _minRange;
 
-		_staminaGoal = Mathf.Lerp(_staminaGoal,_stamina / _maxStamina, (float)delta * 3f);
+		_staminaGoal = Mathf.Lerp(_staminaGoal, _stamina / _maxStamina, (float)delta * 3f);
 		ShaderMaterial staminaShader = GetNode<Sprite2D>("UI/Stamina/Fill").Material as ShaderMaterial;
 		staminaShader.SetShaderParameter("fill", _staminaGoal);
 
@@ -206,6 +227,23 @@ public partial class Player3d : CharacterBody3D
 		{
 			QueueFree();
 		}
+
+		if (_currentParryWindow > 0)
+		{
+			_currentParryWindow -= (float)delta;
+		}
+		else
+		{
+			_parry = false;
+			_currentParryWindow = 0;
+		}
+
+		
+		if (_parried == true)
+        {
+			_parried = false;
+			Parry();
+        }
 
 		// --- Combat handling ---
 		_combatNotif.Visible = _inCombat;
@@ -218,13 +256,13 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		if (_running == false)
-        {
-            _stamina += 0.02f*_maxStamina * (float)delta;
+		{
+			_stamina += 0.02f * _maxStamina * (float)delta;
 			if (_stamina >= _maxStamina)
-            {
+			{
 				_stamina = _maxStamina;
-            }
-        }
+			}
+		}
 
 		/*// --- Inventory camera transition ---
 		if (_inv.Visible == true)
@@ -258,16 +296,16 @@ public partial class Player3d : CharacterBody3D
 		{
 			_fullDashValue = 10f;
 			if (_stamina <= 0.0)
-            {
+			{
 				_running = false;
-            }
+			}
 			velocity.X = direction.X * (Speed + (RunSpeed * Convert.ToInt32(_running)) + _dashVelocity);
 			velocity.Z = direction.Z * (Speed + (RunSpeed * Convert.ToInt32(_running)) + _dashVelocity);
 			if (_running == true)
-            {
-				_stamina -= 0.04f*_maxStamina * (float)delta;
-				GD.Print(_stamina/_maxStamina);
-            }
+			{
+				_stamina -= 0.04f * _maxStamina * (float)delta;
+				GD.Print(_stamina / _maxStamina);
+			}
 		}
 		else
 		{
@@ -278,7 +316,7 @@ public partial class Player3d : CharacterBody3D
 
 		// --- Dash decay ---
 		_dashVelocity = Mathf.Lerp(_dashVelocity, 0f, (float)delta * 6f);
-		_headOffset = _headOffset.Lerp(new Vector3(0f, -_dashVelocity/5f, 0f), (float)delta * 6f);
+		_headOffset = _headOffset.Lerp(new Vector3(0f, -_dashVelocity / 5f, 0f), (float)delta * 6f);
 		_head.Position = _baseHeadPosition + _headOffset;
 
 		// --- Camera FOV scaling ---
@@ -316,19 +354,32 @@ public partial class Player3d : CharacterBody3D
 			_lantern.Transform = lightTransformGoal;
 		}
 
+		if (_stamina <= 0)
+        {
+			_stamina = 0;
+        }
+
 		// --- Apply movement ---
 		Velocity = velocity;
 		if (_inv.Visible == false) { MoveAndSlide(); }
 	}
 
+
 	// --- CUSTOM FUNCTIONS ---
 	private async void Swing(bool justEqquipped)
 	{
+		_stamina -= 0.05f * _maxStamina;
 		_swordInst.ResetMonsterDebounce();
 		_attackCooldown = true;
 		float swingTime = (float)_sword.GetMeta("swingSpeed");
 		float comboTime = swingTime * 1000 + 400;
 		_rng.Randomize();
+		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
+		_damage = (float)_sword.GetMeta("damage");
+		if (_stamina <= 0.05f * _maxStamina)
+		{
+			_damage *= 0.7f;
+		}
 		if (justEqquipped == true)
 		{
 			swingTime = 0f;
@@ -356,15 +407,13 @@ public partial class Player3d : CharacterBody3D
 		if (Time.GetTicksMsec() - _lastHit > comboTime && _comboNum == 2)
 		{
 			_comboNum = 0;
-			if(_rng.Randf() <= (float)_sword.GetMeta("cChance"))
-            {
+			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
+			{
 				_damage *= (float)_sword.GetMeta("cPercent3");
 				_swordInst._crit = true;
 				GD.Print("CRIT");
-            }
+			}
 		}
-		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
-		_damage = (float)_sword.GetMeta("damage");
 		if (_comboNum == 0)
 		{
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
@@ -379,9 +428,9 @@ public partial class Player3d : CharacterBody3D
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
 		}
 		if (justEqquipped == true)
-        {
+		{
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
-        }
+		}
 		GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
 		_lastHit = Time.GetTicksMsec();
 		await ToSignal(GetTree().CreateTimer(swingTime * 0.7), "timeout");
@@ -389,6 +438,28 @@ public partial class Player3d : CharacterBody3D
 		await ToSignal(GetTree().CreateTimer(swingTime * 0), "timeout");
 		_attackCooldown = false;
 	}
+
+	private void Block(bool block)
+	{
+		_blocking = block;
+		_parry = block;
+		if (block == true)
+		{
+			_currentParryWindow = _parryWindow;
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Parry");
+		}
+		else
+		{
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").PlayBackwards("Parry");
+		}
+	}
+	
+	private void Parry()
+	{
+		_parry = false;
+		_stamina += 0.25f * _maxStamina;
+		_sword.GetNode<GpuParticles3D>("Parry").Emitting = true;
+    }
 
 	private Vector3 HeadBob(float bobTime)
 	{
@@ -446,14 +517,23 @@ public partial class Player3d : CharacterBody3D
 		questText.GetNode<Label>("Number").Text = QuestGoal;
 	}
 
-	public void _on_hurtbox_entered(Node3D body)
+	public void Damaged(float takenDamage)
 	{
-		if (body.IsInGroup("Monster"))
+		if (_blocking == true && _parry == false)
 		{
-
-			GetTree().Quit();
+			takenDamage *= 0.5f;
+			_stamina -= 0.15f * _maxStamina;
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 		}
-
+		else if (_blocking == true && _parry == true)
+		{
+			takenDamage *= 0.25f;
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_parried = true;
+		}
+		GD.Print(_blocking);
+		GD.Print(_parry);
+		_health -= takenDamage;
 	}
 
 	public void SwitchPrimaryWeapon(string wepaonName)
