@@ -6,6 +6,13 @@
 [node name="Hut" type="Node3D"]
 script = ExtResource("1_sak6b")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0490504, 1.07138, 0.940964)
+light_color = Color(0.313726, 0.188235, 0.921569, 1)
+light_energy = 5.0
+shadow_enabled = true
+omni_range = 6.0
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, -2.04131, 1.59968, -0.23902)
 use_collision = true
@@ -62,7 +69,7 @@ size = Vector3(1.19323, 0.389267, 0.0205688)
 material = ExtResource("2_n642y")
 
 [node name="SpawnTime" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 7.5
 
 [node name="MonsterHolder" type="Node3D" parent="."]
 

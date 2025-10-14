@@ -348,6 +348,7 @@ transform = Transform3D(-0.995991, 0, -0.0751335, 0, 0.998821, 0, 0.0751335, 0, 
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="MonsterRegion/Hut"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.286737, 0)
+visible = false
 
 [node name="VillageRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.254805, 0, -0.966993, 0, 1, 0, 0.966993, 0, 0.254805, -437.512, -4.30756, -130.386)
@@ -369,7 +370,7 @@ QuestTitle = "Kill 5 Cultists"
 QuestGoal = "0/5"
 
 [node name="npc_villager2" parent="." instance=ExtResource("4_fo5ed")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 1.87694, -92.2066)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
 script = ExtResource("5_p5wkl")
 InitialDialogue = "Where could my apple possibly be?"
 QuestDialogue = "I lost my apple somehwere in the village! Could you find it for me?"
