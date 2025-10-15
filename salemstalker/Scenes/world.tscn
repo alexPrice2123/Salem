@@ -394,7 +394,7 @@ WaterDefinition = SubResource("Resource_yq1aw")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_t2t4p")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = true
+metadata/_edit_lock_ = false
 
 [node name="Enviorment" parent="TerraBrush" instance=ExtResource("33_r0ikl")]
 
