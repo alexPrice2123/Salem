@@ -25,8 +25,9 @@ public partial class Player3d : CharacterBody3D
 	private RayCast3D _ray;                          // Raycast used to detect interactable objects (NPCs, items)
 	private Control _questBook;                      // The main container for the Quest Log UI
 	public Control _questBox;                        // Container where active quest entries are listed
-	private VBoxContainer _questTemplate;            // A hidden template used to instantiate new quest UI entries
-	private OmniLight3D _lantern; // A light attached to the player (likely for dynamic lighting/mood based on health)
+	private VBoxContainer _questTemplate;            // A hidden template used to instantiate new quest UI entries
+	private OmniLight3D _lantern; 					 // A light attached to the player (likely for dynamic lighting/mood based on health)
+	private AudioStreamPlayer3D _audio;				 // Audio player for sound effects
 
 	// --- WEAPON REFERENCES ---
 	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
@@ -42,9 +43,11 @@ public partial class Player3d : CharacterBody3D
 	public bool _inCombat = false;                   // Flag: true if the player has recently attacked or been attacked
 	private float _combatCounter = 0;                // Timer/frame counter for the combat cooldown
 	private bool _inInv;                             // Tracks if the player is currently in the inventory state (commented out)
-	private float _dashVelocity = 0f;                // Current extra speed from dashing
-	private float _fullDashValue = 10.0f;            // Max speed boost granted by a full dash
-	private bool _running = false;                   // True if the 'run' input is held down
+	private float _dashVelocity = 0f;                // Current extra speed from dashing
+	private float _fullDashValue = 10.0f;            // Max speed boost granted by a full dash
+	private float _knockVelocity = 0f;               // Current knockback applied to player
+	private bool _running = false;                   // True if the 'run' input is held down
+	private bool _inStep = false;					 // Prevents footstep audio from playing if player is already playing a step.
 	private float _bobTime = 0.0f;                   // Accumulator for the head-bob sine wave function
 	public string _originalDialouge;                // Stores an NPC's default dialogue to restore it after interaction
 	private CharacterBody3D _lastSeen;               // Reference to the last interactable object the raycast hit
@@ -90,6 +93,7 @@ public partial class Player3d : CharacterBody3D
 		_questBox = GetNode<Control>("UI/Quest/QuestBox");
 		_questTemplate = GetNode<VBoxContainer>("UI/Container/QuestTemplate");
 		_lantern = GetNode<OmniLight3D>("Head/Camera3D/Lantern");
+		_audio = GetNode<AudioStreamPlayer3D>("SFX");
 		
 		// Initialize starting values
 		_health = _maxHealth;
@@ -355,8 +359,8 @@ public partial class Player3d : CharacterBody3D
 				_running = false; // Force stop running if stamina is too low
 			}
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
-			velocity.X = direction.X * (Speed + (RunSpeed * Convert.ToInt32(_running)) + _dashVelocity);
-			velocity.Z = direction.Z * (Speed + (RunSpeed * Convert.ToInt32(_running)) + _dashVelocity);
+			velocity.X = direction.X * (Speed + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
+			velocity.Z = direction.Z * (Speed + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
 			
 			if (_running == true)
 			{
@@ -369,12 +373,13 @@ public partial class Player3d : CharacterBody3D
 			// Player is stationary (no directional input)
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 			// If dash is active, smoothly move the player forward based on the dash (maintains momentum)
-			velocity = velocity.Lerp(_cam.GlobalTransform.Basis.Z * -1 * _dashVelocity, (float)delta * 10f);
+			velocity = velocity.Lerp(_cam.GlobalTransform.Basis.Z * -1 * (_dashVelocity - _knockVelocity), (float)delta * 10f );
 			velocity = new Vector3(velocity.X, 0f, velocity.Z); // Keep Y velocity (gravity/jump) separate
 		}
 
-		// --- Dash Decay and Head Offset ---
+		// --- Dash & Knockback Decay and Head Offset ---
 		_dashVelocity = Mathf.Lerp(_dashVelocity, 0f, (float)delta * 6f); // Dash speed smoothly decreases
+		_knockVelocity = Mathf.Lerp(_knockVelocity, 0f, (float)delta * 6f); // Dash speed smoothly decreases
 		// Apply a subtle head 'squash' effect during the dash decay
 		_headOffset = _headOffset.Lerp(new Vector3(0f, -_dashVelocity / 5f, 0f), (float)delta * 6f);
 		_head.Position = _baseHeadPosition + _headOffset;
@@ -587,6 +592,7 @@ public partial class Player3d : CharacterBody3D
 	{
 		_parry = false; // Ensure parry window is closed
 		_sword.GetNode<GpuParticles3D>("Parry").Emitting = true; // Play parry visual effect
+		play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry.ogg"));
 	}
 
 	// Calculates the position offset for the head-bob effect based on time.
@@ -681,12 +687,15 @@ public partial class Player3d : CharacterBody3D
 	// Handles damage taken by the player from a Monster3d (melee damage).
 	public void Damaged(float takenDamage, Monster3d monster)
 	{
+		_knockVelocity = 2f;
 		if (_blocking == true && _parry == false)
 		{
 			// Regular block: reduce damage, deduct stamina, play block animation
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
+			_knockVelocity = 1f;
 		}
 		else if (_blocking == true && _parry == true)
 		{
@@ -696,12 +705,14 @@ public partial class Player3d : CharacterBody3D
 			monster.Stunned();
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			_parried = true;
+			_knockVelocity = 0f;
 		}
 		
 		// Damage multiplier if player is out of stamina
 		if (_stamina <= 0)
 		{
 			takenDamage *= 1.3f;
+			_knockVelocity *= 1.3f;
 		}
 		_health -= takenDamage; // Apply final damage
 	}
@@ -709,13 +720,16 @@ public partial class Player3d : CharacterBody3D
 	// Handles damage taken by the player from a RigidBody3D (ranged projectile).
 	public void RangedDamaged(float takenDamage, RigidBody3D projectile)
 	{
+		_knockVelocity = 0.5f;
 		if (_blocking == true && _parry == false)
 		{
 			// Regular block: reduce damage, deduct stamina, play block animation, destroy projectile
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			projectile.QueueFree();
+			_knockVelocity = 0.25f;
 		}
 		else if (_blocking == true && _parry == true)
 		{
@@ -725,6 +739,7 @@ public partial class Player3d : CharacterBody3D
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			projectile.QueueFree();
 			_parried = true;
+			_knockVelocity = 0f;
 		}
 		
 		// Damage multiplier if player is out of stamina (Note: this is a damage reduction, which might be a bug/typo for out-of-stamina)
@@ -742,10 +757,34 @@ public partial class Player3d : CharacterBody3D
 		Node3D holder = GetNode<Node3D>("Head/Camera3D/Sword");
 		holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
 		Node3D swordInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
-		holder.AddChild(swordInstance);                                             // Add new weapon to holder node
+		holder.AddChild(swordInstance);                                             // Add new weapon to holder node
 		swordInstance.Position = holder.Position;
 		_sword = swordInstance; // Update the main sword reference
 		_swordInst = _sword as SwordHandler; // Update the sword script reference
 		Swing(true); // Call swing with 'justEquipped' to reset animation/position
 	}
+
+	public async void play_sfx(AudioStreamOggVorbis soundeffect)
+	{
+		AudioStreamPlayer player = new();
+		AddChild(player);
+		player.Stream = soundeffect;
+		player.Play();
+		await ToSignal(player, "finished");
+		player.QueueFree();
+	}
+	public async void play_footstep(float stepSpeed)
+	{
+		if (!_inStep)
+		{
+			_inStep = true;
+			await ToSignal(GetTree().CreateTimer(stepSpeed), "timeout");
+			GetNode<AudioStreamPlayer>("Footsteps").Play();
+			_inStep = false;
+		}
+		else
+        {
+            await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
+        }
+    }
 }

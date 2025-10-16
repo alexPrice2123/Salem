@@ -1,6 +1,5 @@
-[gd_scene load_steps=19 format=3 uid="uid://dufmkp4txcmvx"]
+[gd_scene load_steps=18 format=3 uid="uid://dufmkp4txcmvx"]
 
-[ext_resource type="Script" uid="uid://5grfqsaretre" path="res://Scenes/InvWorld.cs" id="1_2gl02"]
 [ext_resource type="Texture2D" uid="uid://ebnfthe7xyj" path="res://Assets/2D/burlap.jpg" id="2_2gl02"]
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_qv3mo"]
 [ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="4_2gl02"]
@@ -68,7 +67,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector3(1.26042, 1.61991, -1.28725), Vector3(1.26, 1.62, -1.2)]
+"values": [Vector3(1.26, 1.62, -1.387), Vector3(1.26, 1.62, -1.2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -179,7 +178,6 @@ _data = {
 
 [node name="InvWorld" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.6631, 0)
-script = ExtResource("1_2gl02")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26516, 0)

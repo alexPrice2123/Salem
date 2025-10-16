@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/KillMonstersQuest.cs" id="4_ochwf"]
 [ext_resource type="Script" uid="uid://crro3jhbhqqfg" path="res://Scripts/GetAppleQuest.cs" id="5_p5wkl"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
-[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/grass.png" id="6_ikia7"]
+[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="6_ikia7"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="7_7yui6"]
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="7_axeuq"]
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
