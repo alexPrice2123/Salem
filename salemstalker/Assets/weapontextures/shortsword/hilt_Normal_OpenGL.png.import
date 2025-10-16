@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqsowoe3enkj2"
+uid="uid://c77ur00lrhk54"
 path="res://.godot/imported/hilt_Normal_OpenGL.png-a26a45bf8c26b795fb98cc2114e4d02f.ctex"
 metadata={
 "vram_texture": false
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
