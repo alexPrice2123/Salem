@@ -23,6 +23,7 @@ public partial class TheHollow : Monster3d
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		EveryFrame(delta);
 		_distance = (_player.GlobalPosition - GlobalPosition).Length();
 		if (_distance < 5 && _attackException == false)
 		{

@@ -7,12 +7,12 @@ using System.Collections.Generic; // For using Dictionary.
 public partial class Player3d : CharacterBody3D
 {
 	// --- CONSTANTS ---
-	public const float Speed = 4.5f;                 // Base player movement speed (units/second)
-	public const float RunSpeed = 6.5f;              // Additional speed when running
-	public const float JumpVelocity = 6.5f;          // Vertical velocity applied for jumping (not used in _PhysicsProcess shown)
-	public const float BobFreq = 2.0f;               // Frequency (speed) of the camera head-bob effect
-	public const float BobAmp = 0.06f;               // Amplitude (intensity) of the camera head-bob effect
-	public float CamSense = 0.002f;                  // Camera mouse sensitivity multiplier
+	public const float Speed = 4.5f;                 // Base player movement speed (units/second)
+	public const float RunSpeed = 6.5f;              // Additional speed when running
+	public const float JumpVelocity = 6.5f;          // Vertical velocity applied for jumping (not used in _PhysicsProcess shown)
+	public const float BobFreq = 2.0f;               // Frequency (speed) of the camera head-bob effect
+	public const float BobAmp = 0.06f;               // Amplitude (intensity) of the camera head-bob effect
+	public float CamSense = 0.002f;                  // Camera mouse sensitivity multiplier
 
 	// --- NODE REFERENCES ---
 	private Node3D _head;                            // Player head node, controls vertical camera movement/head-bob offset
@@ -35,9 +35,9 @@ public partial class Player3d : CharacterBody3D
 	private Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
 	// --- VARIABLES ---
-	protected RandomNumberGenerator _rng = new();  // Generator for random events like critical hits and effects
-	public float _damage = 0.0f;                     // Current attack damage value, adjusted by buffs/debuffs
-	private ulong _lastHit = 0;                      // Stores the game time (in milliseconds) of the player's last attack
+	protected RandomNumberGenerator _rng = new();  // Generator for random events like critical hits and effects
+	public float _damage = 0.0f;                     // Current attack damage value, adjusted by buffs/debuffs
+	private ulong _lastHit = 0;                      // Stores the game time (in milliseconds) of the player's last attack
 	private int _comboNum = 0; // Current step in the attack combo chain (0, 1, or 2)
 	public float _knockbackStrength = 15.0f;         // Force applied to enemies upon hit
 	public bool _inCombat = false;                   // Flag: true if the player has recently attacked or been attacked
@@ -73,12 +73,14 @@ public partial class Player3d : CharacterBody3D
 	private float _currentParryWindow; // Remaining time in the parry window
 	public NpcVillager _villager; // Reference to the currently interacting villager NPC
 	public bool _hasApple = false; // Quest item flag
+	private float _staminaTimer = 2f;
+	private float _currentStaminaTimer = 0f;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
 	public override void _Ready()
 	{
-		Input.MouseMode = Input.MouseModeEnum.Captured;      // Hide and lock the mouse cursor to the center of the screen
+		Input.MouseMode = Input.MouseModeEnum.Captured;      // Hide and lock the mouse cursor to the center of the screen
 		
 		// Get references to child nodes
 		_head = GetNode<Node3D>("Head");
@@ -239,7 +241,7 @@ public partial class Player3d : CharacterBody3D
 			// Check if dash cooldown is over and player has enough stamina
 			if (_dashVelocity <= 0.1f && _stamina >= 0.1f * _maxStamina) {
 				_dashVelocity = _fullDashValue; // Apply max dash speed
-				_stamina -= 0.1f * _maxStamina; // Deduct stamina
+				_stamina -= 10f; // Deduct stamina
 			}
 		}
 
@@ -248,9 +250,14 @@ public partial class Player3d : CharacterBody3D
 		{
 			_running = shiftKey.Pressed; // Set running state based on key press
 			// If stamina is zero or less, stop running immediately
+			if (_running == false)
+            {
+                _currentStaminaTimer = _staminaTimer;
+            }
 			if (_stamina <= 0)
 			{
 				_running = false;
+				_currentStaminaTimer = _staminaTimer;
 			}
 		}
 
@@ -271,6 +278,12 @@ public partial class Player3d : CharacterBody3D
 	{
 		Vector3 velocity = Velocity; // Get the current velocity vector
 
+
+		if (_currentStaminaTimer > 0f)
+		{
+			_currentStaminaTimer -= (float)delta;
+			GD.Print(_currentStaminaTimer);
+		}
 		// --- Lantern/Light Effects (Based on Health) ---
 		// Smoothly interpolate the lantern's color between max and min health colors
 		_lantern.LightColor = _lantern.LightColor.Lerp(_minHealthColor.Lerp(_maxHealthColor, _health / _maxHealth), (float)delta * 3f);
@@ -321,7 +334,7 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		// --- Stamina Regeneration ---
-		if (_running == false)
+		if (_running == false && _currentStaminaTimer <= 0)
 		{
 			_stamina += 0.02f * _maxStamina * (float)delta; // Regenerate stamina slowly
 			if (_stamina >= _maxStamina)
@@ -354,9 +367,10 @@ public partial class Player3d : CharacterBody3D
 		{
 			// Player is moving
 			_fullDashValue = 10f; // Reset dash value to standard
-			if (_stamina <= -5.0)
+			if (_stamina <= 0f)
 			{
 				_running = false; // Force stop running if stamina is too low
+				_stamina = 0f;
 			}
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
 			velocity.X = direction.X * (Speed + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
@@ -364,8 +378,15 @@ public partial class Player3d : CharacterBody3D
 			
 			if (_running == true)
 			{
-				_stamina -= 0.04f * _maxStamina * (float)delta; // Deduct stamina while running
-				GD.Print(_stamina / _maxStamina);
+				if (_inCombat == true)
+				{
+					_stamina -= 10f * (float)delta; // Deduct stamina while running  
+				}
+                else
+                {
+					_stamina -= 4f * (float)delta; // Deduct stamina while running  
+                }
+
 			}
 		}
 		else
@@ -425,7 +446,7 @@ public partial class Player3d : CharacterBody3D
 					_lastSeen = villager;
 					_originalDialouge = villager.WaitingDialogue;
 					villager._questPrompt.Text = villager.WaitingDialogue + "\n" + "E to Talk";
-				} 
+				} 
 			}
 		}
 		// --- Interaction End ---
@@ -459,15 +480,15 @@ public partial class Player3d : CharacterBody3D
 			_lantern.Transform = lightTransformGoal;
 		}
 
-		if (_stamina <= -5)
+		if (_stamina <= 0)
 		{
-			_stamina = -5; // Limit minimum stamina
+			_stamina = 0; // Limit minimum stamina
 		}
 		
 		// --- Apply movement ---
 		Velocity = velocity;
 		// Only call MoveAndSlide() if not paused by UI elements (Inventory, Controls, Dialogue)
-		if (_inv.Visible == false 
+		if (_inv.Visible == false 
 		&& GetNode<Sprite2D>("UI/Controls").Visible == false
 		&& GetNode<Control>("UI/Dialogue").Visible == false) { MoveAndSlide(); }
 	}
@@ -757,6 +778,7 @@ public partial class Player3d : CharacterBody3D
 		Node3D holder = GetNode<Node3D>("Head/Camera3D/Sword");
 		holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
 		Node3D swordInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
+		holder.AddChild(swordInstance);                                             // Add new weapon to holder node
 		holder.AddChild(swordInstance);                                             // Add new weapon to holder node
 		swordInstance.Position = holder.Position;
 		_sword = swordInstance; // Update the main sword reference

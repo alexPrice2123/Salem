@@ -83,7 +83,7 @@ states/running/position = Vector2(686, 85.8281)
 states/walking/node = SubResource("AnimationNodeAnimation_ht62m")
 states/walking/position = Vector2(591.75, -29.125)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "walking", "running", SubResource("AnimationNodeStateMachineTransition_ox1ja"), "running", "walking", SubResource("AnimationNodeStateMachineTransition_nsxmw"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_uhxka"), "idle", "charge", SubResource("AnimationNodeStateMachineTransition_kviwv"), "running", "charge", SubResource("AnimationNodeStateMachineTransition_yr5wf"), "charge", "attack", SubResource("AnimationNodeStateMachineTransition_ja8if"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_xtwe5")]
-graph_offset = Vector2(172, 30)
+graph_offset = Vector2(172, -10)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]
 seamless = true
@@ -181,9 +181,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
 bones/8/rotation = Quaternion(-0.288279, 0.632537, -0.568455, 0.440058)
-bones/9/rotation = Quaternion(0.573457, -0.0023595, -0.131665, 0.808582)
+bones/9/rotation = Quaternion(0.557102, 0.00017157, -0.132351, 0.81983)
 bones/18/rotation = Quaternion(-0.150904, -0.608218, 0.686886, 0.368084)
-bones/19/rotation = Quaternion(0.547865, 0.0196506, -0.063705, 0.833906)
+bones/19/rotation = Quaternion(0.551578, 0.0201028, -0.0649975, 0.831344)
 bones/21/rotation = Quaternion(-0.0966642, 0.258241, 0.32192, 0.905724)
 bones/22/rotation = Quaternion(-0.0473394, 0.0197859, 0.299546, 0.952701)
 bones/23/rotation = Quaternion(-0.078243, 0.0546005, 0.594849, 0.798155)
@@ -195,7 +195,7 @@ bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.511863, -0.0287571, 0.858585, 0.194989, 0.969465, 0.148717, -0.836645, 0.243538, -0.490626, -0.20332, 1.29864, 0.386702)
+transform = Transform3D(-0.511863, -0.0287571, 0.858586, 0.187092, 0.971718, 0.144085, -0.838446, 0.234387, -0.492006, -0.20332, 1.30188, 0.386796)
 
 [node name="Cylinder" parent="Body/metarig/Skeleton3D/Cylinder" index="0"]
 visible = false

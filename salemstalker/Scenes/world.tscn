@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=73 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="7_axeuq"]
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="8_dt0r1"]
+[ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="8_r74th"]
+[ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="9_04jkj"]
 [ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Scenes/World/Heightmap_0_0.res" id="9_7yui6"]
 [ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="9_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://chu6uwfbaqyat" path="res://Assets/2D/sand.png" id="9_qebug"]
@@ -57,19 +59,20 @@ filter_baking_aabb = AABB(0, 0, 0, 70.99, 19.98, 50.01)
 
 [sub_resource type="Resource" id="Resource_e0ngr"]
 script = ExtResource("7_7yui6")
-Name = "grass"
+Name = "Grass"
 AlbedoTexture = ExtResource("6_ikia7")
-NormalTexture = ExtResource("7_axeuq")
-TextureDetail = -1
-Triplanar = false
+NormalTexture = ExtResource("9_04jkj")
+HeightTexture = ExtResource("8_r74th")
+TextureDetail = 50
+Triplanar = true
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_c5t2i"]
 script = ExtResource("7_7yui6")
 Name = "dirt"
 AlbedoTexture = ExtResource("8_dt0r1")
-NormalTexture = ExtResource("7_axeuq")
-TextureDetail = -1
+HeightTexture = ExtResource("8_r74th")
+TextureDetail = 50
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
@@ -77,7 +80,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 script = ExtResource("7_7yui6")
 Name = "sand"
 AlbedoTexture = ExtResource("9_qebug")
-NormalTexture = ExtResource("7_axeuq")
+HeightTexture = ExtResource("8_r74th")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
@@ -86,7 +89,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 script = ExtResource("7_7yui6")
 Name = "shallowocean"
 AlbedoTexture = ExtResource("10_3ua1v")
-NormalTexture = ExtResource("7_axeuq")
+HeightTexture = ExtResource("8_r74th")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
@@ -95,7 +98,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 script = ExtResource("7_7yui6")
 Name = "midocean"
 AlbedoTexture = ExtResource("11_r0ikl")
-NormalTexture = ExtResource("7_axeuq")
+HeightTexture = ExtResource("8_r74th")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
@@ -104,7 +107,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 script = ExtResource("7_7yui6")
 Name = "deepocean"
 AlbedoTexture = ExtResource("12_opbav")
-NormalTexture = ExtResource("7_axeuq")
+HeightTexture = ExtResource("8_r74th")
 TextureDetail = -1
 Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
@@ -382,8 +385,6 @@ DoneDialogue = "My apple! Thank you! Hopefully I wont lose it again!"
 QuestTitle = "Find Bob's Apple"
 QuestGoal = "0/1"
 
-[node name="Enviorment" parent="." instance=ExtResource("33_r0ikl")]
-
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("6_5ukr8")
 ZonesSize = 2560
@@ -398,7 +399,9 @@ WaterDefinition = SubResource("Resource_yq1aw")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_t2t4p")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = true
+metadata/_edit_lock_ = false
+
+[node name="Enviorment" parent="TerraBrush" instance=ExtResource("33_r0ikl")]
 
 [node name="house2" parent="." instance=ExtResource("27_hmc15")]
 transform = Transform3D(0.934242, 0, 0.35664, 0, 1, 0, -0.35664, 0, 0.934242, -441.425, 0, -56.4897)
@@ -470,4 +473,4 @@ use_collision = true
 size = Vector3(20, 4, 0.564453)
 
 [node name="Apple" parent="." instance=ExtResource("38_r74th")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -465.424, 0.514021, -115.923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -465.301, 0.51393, -115.831)

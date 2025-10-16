@@ -8,6 +8,8 @@ public partial class VCultist : Monster3d
     private PackedScene _darkOrb = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/orb.tscn"); // Scene reference to the dark orb
     private Node3D _spawn;
     private float _projectileSpeed = 15f;
+    private float _dashRange = 10f;
+    private bool _dashing = false;
     public override void _Ready()
     {
         Speed = 4.5f;             // Movement speed
@@ -16,7 +18,7 @@ public partial class VCultist : Monster3d
         SpawnDistance = 100;    // Distance from player before despawning
         BaseDamage = 15.0f;
         WanderRange = 50;
-        AttackSpeed = 6f;
+        AttackSpeed = 4f;
         AttackRange = 15f;
         Monster = this;
 
@@ -27,11 +29,31 @@ public partial class VCultist : Monster3d
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+        EveryFrame(delta);
+        float distance = (_player.GlobalPosition - GlobalPosition).Length();
+        if (distance <= _dashRange && _canAttack == false && _attackAnim == false)
+        {
+            if (_dashing == false)
+            {
+                Dash();
+            }
+            MoveAndSlide();
+        }
+        else
+        {
+            _dashing = false;
+            _dashVelocity = 1f;
+        }
         if (_health <= 0)
         {
             _player.MonsterKilled("VCultist");
             QueueFree(); // Destroy monster when health hits zero
         }
+    }
+    
+    private void Dash()
+    {
+        _dashVelocity = -100;
     }
 
     public void _on_hurtbox_area_entered(Area3D body)
@@ -53,7 +75,7 @@ public partial class VCultist : Monster3d
     {
         _canAttack = false;
         _attackAnim = true;
-        await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
+        await ToSignal(GetTree().CreateTimer(AttackSpeed-1), "timeout");
         RigidBody3D projectileInstance = _darkOrb.Instantiate<RigidBody3D>(); // Create monster instance
         _player.GetParent().AddChild(projectileInstance);                                             // Add monster to holder node
         projectileInstance.GlobalPosition = _spawn.GlobalPosition;
@@ -66,5 +88,8 @@ public partial class VCultist : Monster3d
         _canAttack = true;
         await ToSignal(GetTree().CreateTimer(0.5), "timeout");
         _attackAnim = false;
+        _canAttack = false;
+        await ToSignal(GetTree().CreateTimer(1), "timeout");
+        _canAttack = true;
 	}
 }

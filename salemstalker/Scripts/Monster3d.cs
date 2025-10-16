@@ -41,6 +41,8 @@ public partial class Monster3d : CharacterBody3D
     protected bool _attackAnim = false;
     public bool _attackException = false;
     protected bool _stunned = false;
+    protected Vector3 _targetVelocity;
+    protected float _dashVelocity = 1f;
 
     // --- READY ---
     public void Initialization()
@@ -98,7 +100,7 @@ public partial class Monster3d : CharacterBody3D
     }
 
     // --- PHYSICS LOOP ---
-    public override void _PhysicsProcess(double delta)
+    public void EveryFrame(double delta)
     {
         _count += 1;
         float distance = (_player.GlobalPosition - GlobalPosition).Length();
@@ -120,16 +122,16 @@ public partial class Monster3d : CharacterBody3D
         {
             _navAgent.TargetPosition = _player.GlobalPosition;
             Vector3 nextPoint = _navAgent.GetNextPathPosition();
-            Velocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed + _speedOffset) + _knockbackVelocity;
+            _targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed*_dashVelocity + _speedOffset) + _knockbackVelocity;
 
             // Handle Y-axis alignment
             if (GlobalPosition.Snapped(0.1f).Y == _player.GlobalPosition.Snapped(0.1f).Y)
             {
-                Velocity = new Vector3(Velocity.X, 0f, Velocity.Z);
+                _targetVelocity = new Vector3(_targetVelocity.X, 0f, _targetVelocity.Z);
             }
             else if (!IsOnFloor())
             {
-                Velocity = new Vector3(Velocity.X, -9.8f, Velocity.Z);
+                _targetVelocity = new Vector3(_targetVelocity.X, -9.8f, _targetVelocity.Z);
             }
 
             // Face player
@@ -155,16 +157,16 @@ public partial class Monster3d : CharacterBody3D
         {
             _navAgent.TargetPosition = _wanderPos;
             Vector3 nextPoint = _navAgent.GetNextPathPosition();
-            Velocity = ((nextPoint - GlobalTransform.Origin).Normalized() * Speed) + _knockbackVelocity;
+            _targetVelocity = ((nextPoint - GlobalTransform.Origin).Normalized() * Speed) + _knockbackVelocity;
 
             // Handle Y-axis alignment
             if (GlobalPosition.Snapped(0.1f).Y == _player.GlobalPosition.Snapped(0.1f).Y)
             {
-                Velocity = new Vector3(Velocity.X, 0f, Velocity.Z);
+                _targetVelocity = new Vector3(_targetVelocity.X, 0f, _targetVelocity.Z);
             }
             else if (!IsOnFloor())
             {
-                Velocity = new Vector3(Velocity.X, -9.8f, Velocity.Z);
+                _targetVelocity = new Vector3(_targetVelocity.X, -9.8f, _targetVelocity.Z);
             }
 
             // Face wander position
@@ -176,13 +178,13 @@ public partial class Monster3d : CharacterBody3D
                 QueueFree();
             }
         }
-
+        Velocity = Velocity.Lerp(_targetVelocity, (float)delta);
 
         // --- Movement ---
-        if (_player._inv.Visible == true || (_stunned == true && _attackException == false)) { Velocity = Vector3.Zero; }
+        if (_player._inv.Visible == true || (_stunned == true && _attackException == false)) { _targetVelocity = Vector3.Zero; }
         else if (_justSpawned == true) { MoveAndSlide(); }
         else if (_attackAnim == false && distance > AttackRange && _knockbackVelocity.Length() < 0.5f) { MoveAndSlide(); }
-        else if ((_knockbackVelocity.Length() < 0.5f || _attackAnim == true) && _attackException == false) { Velocity = Vector3.Zero; }
+        else if ((_knockbackVelocity.Length() < 0.5f || _attackAnim == true) && _attackException == false) { _targetVelocity = Vector3.Zero; }
         else { MoveAndSlide(); }
 
         // Smooth knockback decay
