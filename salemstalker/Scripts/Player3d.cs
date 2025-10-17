@@ -12,7 +12,6 @@ public partial class Player3d : CharacterBody3D
 	public const float JumpVelocity = 6.5f;          // Vertical velocity applied for jumping (not used in _PhysicsProcess shown)
 	public const float BobFreq = 2f;               // Frequency (speed) of the camera head-bob effect
 	public const float BobAmp = 0.06f;               // Amplitude (intensity) of the camera head-bob effect
-	public float CamSense = 0.002f;                  // Camera mouse sensitivity multiplier
 
 	// --- NODE REFERENCES ---
 	private Node3D _head;                            // Player head node, controls vertical camera movement/head-bob offset
@@ -35,6 +34,8 @@ public partial class Player3d : CharacterBody3D
 	private Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
 	// --- VARIABLES ---
+	public float HorCamSense = 0.002f;                  // Horizontal camera mouse sensitivity multiplier
+	public float VerCamSense = 0.002f;                  // Vertical camera mouse sensitivity multiplier
 	protected RandomNumberGenerator _rng = new();  // Generator for random events like critical hits and effects
 	public float _damage = 0.0f;                     // Current attack damage value, adjusted by buffs/debuffs
 	private ulong _lastHit = 0;                      // Stores the game time (in milliseconds) of the player's last attack
@@ -116,8 +117,8 @@ public partial class Player3d : CharacterBody3D
 		if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
 		{
 			// Rotate the body/head horizontally (Y-axis) and the camera vertically (X-axis)
-			_head.RotateY(-motion.Relative.X * CamSense);
-			_cam.RotateX(-motion.Relative.Y * CamSense);
+			_head.RotateY(-motion.Relative.X * HorCamSense);
+			_cam.RotateX(-motion.Relative.Y * VerCamSense);
 
 			// Clamp the vertical camera rotation to prevent looking too far up or down
 			Vector3 camRot = _cam.Rotation;
@@ -135,7 +136,7 @@ public partial class Player3d : CharacterBody3D
 				// Un-capture mouse, show pause menu, update sensitivity slider to current value
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 				_interface.Visible = true;
-				_senseBar.Value = CamSense * 1000;
+				_senseBar.Value = HorCamSense * 1000;
 			}
 			else
 			{
@@ -349,11 +350,15 @@ public partial class Player3d : CharacterBody3D
 			// Update quest display text to "1/1"
 			(_questBox.GetNode("Find Bob's Apple/Number") as Label).Text = "1/1";
 		}
-		
+
 		// [Inventory Camera Transition - Commented Out]
 
 		// --- Update sensitivity from pause menu ---
-		if (_interface.Visible == true) { CamSense = Convert.ToSingle(_senseBar.Value / 1000); }
+		if (_interface.Visible == true)
+		{
+			HorCamSense = Convert.ToSingle(_senseBar.Value / 1000);
+			VerCamSense = Convert.ToSingle(_senseBar.Value / 1000);
+		}
 
 		// --- Gravity ---
 		if (!IsOnFloor()) { velocity += GetGravity() * (float)delta; } // Apply gravity if not on the floor
@@ -499,7 +504,7 @@ public partial class Player3d : CharacterBody3D
 
 
 	// --- CUSTOM FUNCTIONS ---
-	
+
 	// Handles the sword attack sequence, damage calculation, and combo logic.
 	private async void Swing(bool justEqquipped)
 	{
@@ -510,13 +515,15 @@ public partial class Player3d : CharacterBody3D
 		_rng.Randomize();
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
 		_damage = (float)_sword.GetMeta("damage");
-		
+		float tempHorSense = HorCamSense;
+		float tempVerSense = VerCamSense;
+
 		// Damage penalty if stamina is too low
 		if (_stamina <= 0.05f * _maxStamina)
 		{
 			_damage *= 0.7f;
 		}
-		
+
 		// Skip stamina deduction and set swing time to zero if just equipping the weapon (for animation only)
 		if (justEqquipped == true)
 		{
@@ -526,12 +533,12 @@ public partial class Player3d : CharacterBody3D
 		{
 			_stamina -= 0.05f * _maxStamina; // Deduct stamina for the attack
 		}
-		
+
 		// --- Combo and Crit Logic ---
 		if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
 		{
 			_comboNum++; // Advance combo counter
-			// Check for critical hit chance (meta tag)
+						 // Check for critical hit chance (meta tag)
 			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
 			{
 				_damage *= (float)_sword.GetMeta("cPercent1");
@@ -549,7 +556,7 @@ public partial class Player3d : CharacterBody3D
 				GD.Print("CRIT");
 			}
 		}
-		
+
 		// Third hit combo check (uses a separate combo percent)
 		if (Time.GetTicksMsec() - _lastHit > comboTime && _comboNum == 2)
 		{
@@ -561,37 +568,47 @@ public partial class Player3d : CharacterBody3D
 				GD.Print("CRIT");
 			}
 		}
-		
+
 		// --- Play Animation based on Combo ---
 		if (_comboNum == 0)
 		{
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
+			HorCamSense /= 2.5f;
+			VerCamSense /= 3f;
 		}
 		else if (_comboNum == 1)
 		{
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
+			HorCamSense /= 2.5f;
+			VerCamSense /= 3f;
 		}
 		else if (_comboNum == 2)
 		{
 			_damage = (float)_sword.GetMeta("hDamage"); // Use a special high-damage value for the final hit
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
+			HorCamSense /= 2f;
+			VerCamSense /= 5f;
 		}
-		
+
 		if (justEqquipped == true)
 		{
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Stop(); // Don't animate if just equipped
 		}
-		
+
 		GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
 		_lastHit = Time.GetTicksMsec(); // Record the time of this hit
-		
+		play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));
 		// Wait for the main part of the swing animation to finish
 		await ToSignal(GetTree().CreateTimer(swingTime * 0.7), "timeout");
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
-		
+
 		// Wait for the remainder of the swing (0 seconds in this case, a slight delay might be intended)
 		await ToSignal(GetTree().CreateTimer(swingTime * 0), "timeout");
 		_attackCooldown = false; // End the attack cooldown
+
+		// Reset the players sensitivity
+		HorCamSense = tempHorSense;
+		VerCamSense = tempVerSense;
 	}
 
 	// Handles the blocking and parrying mechanic.
@@ -805,7 +822,19 @@ public partial class Player3d : CharacterBody3D
 		{
 			_inStep = true;
 			await ToSignal(GetTree().CreateTimer(stepSpeed), "timeout");
-			GetNode<AudioStreamPlayer>("Footsteps").Play();
+			int ranStep = _rng.RandiRange(0, 2);
+			if (ranStep == 0)
+			{
+				play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Footstep1.ogg"));
+			}
+			else if (ranStep == 1)
+			{
+				play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Footstep2.ogg"));
+			}
+			else
+			{
+				play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Footstep3.ogg"));
+			}
 			_inStep = false;
 		}
 		else
