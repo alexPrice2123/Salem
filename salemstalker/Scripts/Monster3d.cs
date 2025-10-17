@@ -108,6 +108,8 @@ public partial class Monster3d : CharacterBody3D
         {
             _justSpawned = false;
         }
+
+
         // Update wander position every ~250 frames
         if (_count >= 250)
         {
@@ -116,7 +118,7 @@ public partial class Monster3d : CharacterBody3D
             float randX = _startPos.X + _rng.RandiRange(-WanderRange, WanderRange);
             _wanderPos = new Vector3(randX, _player.GlobalPosition.Y, randZ);
         }
-
+        _dashVelocity = Mathf.Lerp(_dashVelocity, 1f, 10f * (float)delta);
         // --- Chase Player ---
         if (distance <= Range)
         {
@@ -178,7 +180,7 @@ public partial class Monster3d : CharacterBody3D
                 QueueFree();
             }
         }
-        Velocity = Velocity.Lerp(_targetVelocity, (float)delta);
+        Velocity = Velocity.Lerp(_targetVelocity, 2f * (float)delta);
 
         // --- Movement ---
         if (_player._inv.Visible == true || (_stunned == true && _attackException == false)) { _targetVelocity = Vector3.Zero; }
@@ -201,6 +203,7 @@ public partial class Monster3d : CharacterBody3D
         }
         else if (Monster is VCultist vCult)
         {
+            if (_dashVelocity < 0.99f){ return; }
             vCult.Attack();
         }
     }

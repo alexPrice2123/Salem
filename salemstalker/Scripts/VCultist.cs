@@ -8,21 +8,22 @@ public partial class VCultist : Monster3d
     private PackedScene _darkOrb = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/orb.tscn"); // Scene reference to the dark orb
     private Node3D _spawn;
     private float _projectileSpeed = 15f;
-    private float _dashRange = 10f;
+    private float _dashRange = 5f;
     private bool _dashing = false;
+    private bool _dashAnim = false;
     public override void _Ready()
     {
         Speed = 4.5f;             // Movement speed
         MaxHealth = 100.0f;         // Maximum monster health
         Range = 50.0f;            // Detection range for chasing
         SpawnDistance = 100;    // Distance from player before despawning
-        BaseDamage = 15.0f;
+        BaseDamage = 0.0f;
         WanderRange = 50;
         AttackSpeed = 4f;
         AttackRange = 15f;
         Monster = this;
 
-        _spawn = GetNode<Node3D>("Body/metarig/Skeleton3D/Cylinder/Spawn");
+        _spawn = GetNode<Node3D>("Spawn");
         Initialization();
     }
 
@@ -37,12 +38,15 @@ public partial class VCultist : Monster3d
             {
                 Dash();
             }
-            MoveAndSlide();
         }
         else
         {
             _dashing = false;
-            _dashVelocity = 1f;
+            _dashAnim = false;
+        }
+        if (_dashVelocity < 0.99f)
+        {
+            MoveAndSlide();
         }
         if (_health <= 0)
         {
@@ -51,9 +55,11 @@ public partial class VCultist : Monster3d
         }
     }
     
-    private void Dash()
+    private async void Dash()
     {
-        _dashVelocity = -100;
+        _dashAnim = true;
+        await ToSignal(GetTree().CreateTimer(1), "timeout");
+        _dashVelocity = -3f;
     }
 
     public void _on_hurtbox_area_entered(Area3D body)
@@ -75,7 +81,9 @@ public partial class VCultist : Monster3d
     {
         _canAttack = false;
         _attackAnim = true;
-        await ToSignal(GetTree().CreateTimer(AttackSpeed-1), "timeout");
+        await ToSignal(GetTree().CreateTimer(AttackSpeed - 1), "timeout");
+        _canAttack = true;
+        await ToSignal(GetTree().CreateTimer(0.92), "timeout");
         RigidBody3D projectileInstance = _darkOrb.Instantiate<RigidBody3D>(); // Create monster instance
         _player.GetParent().AddChild(projectileInstance);                                             // Add monster to holder node
         projectileInstance.GlobalPosition = _spawn.GlobalPosition;
@@ -85,7 +93,6 @@ public partial class VCultist : Monster3d
             orb._damageOrb = BaseDamage + _damageOffset;
             orb.Shoot(_projectileSpeed);
         }
-        _canAttack = true;
         await ToSignal(GetTree().CreateTimer(0.5), "timeout");
         _attackAnim = false;
         _canAttack = false;
