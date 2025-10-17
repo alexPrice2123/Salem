@@ -7,10 +7,10 @@ using System.Collections.Generic; // For using Dictionary.
 public partial class Player3d : CharacterBody3D
 {
 	// --- CONSTANTS ---
-	public const float Speed = 4.5f;                 // Base player movement speed (units/second)
-	public const float RunSpeed = 6.5f;              // Additional speed when running
+	public const float Speed = 3.5f;                 // Base player movement speed (units/second)
+	public const float RunSpeed = 4.5f;              // Additional speed when running
 	public const float JumpVelocity = 6.5f;          // Vertical velocity applied for jumping (not used in _PhysicsProcess shown)
-	public const float BobFreq = 2.0f;               // Frequency (speed) of the camera head-bob effect
+	public const float BobFreq = 2f;               // Frequency (speed) of the camera head-bob effect
 	public const float BobAmp = 0.06f;               // Amplitude (intensity) of the camera head-bob effect
 	public float CamSense = 0.002f;                  // Camera mouse sensitivity multiplier
 
@@ -362,7 +362,7 @@ public partial class Player3d : CharacterBody3D
 		Vector2 inputDir = Input.GetVector("left", "right", "forward", "back"); // Get normalized 2D input
 		// Convert 2D input to 3D direction relative to the player's head/facing
 		Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-		
+
 		if (direction != Vector3.Zero)
 		{
 			// Player is moving
@@ -375,26 +375,30 @@ public partial class Player3d : CharacterBody3D
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
 			velocity.X = direction.X * (Speed + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
 			velocity.Z = direction.Z * (Speed + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
-			
+
 			if (_running == true)
 			{
 				if (_inCombat == true)
 				{
 					_stamina -= 10f * (float)delta; // Deduct stamina while running  
 				}
-                else
-                {
+				else
+				{
 					_stamina -= 4f * (float)delta; // Deduct stamina while running  
-                }
-
+				}
+				play_footstep(0.35f);
+			}
+			else
+			{
+				play_footstep(0.7f);
 			}
 		}
 		else
 		{
 			// Player is stationary (no directional input)
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
-			// If dash is active, smoothly move the player forward based on the dash (maintains momentum)
-			velocity = velocity.Lerp(_cam.GlobalTransform.Basis.Z * -1 * (_dashVelocity - _knockVelocity), (float)delta * 10f );
+								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
+			velocity = velocity.Lerp(_cam.GlobalTransform.Basis.Z * -1 * (_dashVelocity - _knockVelocity), (float)delta * 10f);
 			velocity = new Vector3(velocity.X, 0f, velocity.Z); // Keep Y velocity (gravity/jump) separate
 		}
 
