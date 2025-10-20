@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c4ionl12wydjs"
-path="res://.godot/imported/cultist.blend-87532b9939a3e27cc7998d55b12782d1.scn"
+uid="uid://bg0f8jemngmha"
+path="res://.godot/imported/fence3.blend-718e3a097310543bd40a01bb29015dcf.scn"
 
 [deps]
 
-source_file="res://Assets/3D/charatermodel/cultist.blend"
-dest_files=["res://.godot/imported/cultist.blend-87532b9939a3e27cc7998d55b12782d1.scn"]
+source_file="res://Assets/3D/buildings/fence3.blend"
+dest_files=["res://.godot/imported/fence3.blend-718e3a097310543bd40a01bb29015dcf.scn"]
 
 [params]
 
@@ -27,7 +27,7 @@ meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
-animation/fps=24.0
+animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false

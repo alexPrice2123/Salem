@@ -11,6 +11,12 @@ public partial class VCultist : Monster3d
     private float _dashRange = 5f;
     private bool _dashing = false;
     private bool _dashAnim = false;
+    private GpuParticles3D _leftArmMagic;
+    private GpuParticles3D _rightArmMagic;
+    private GpuParticles3D _magicOrbParticle;
+    private MeshInstance3D _orb;
+    private Vector3 _orbGoal = new Vector3(0f, 0f, 0f);
+    private float _orbTweenTime = 1f;
     public override void _Ready()
     {
         Speed = 4.5f;             // Movement speed
@@ -25,6 +31,11 @@ public partial class VCultist : Monster3d
 
         _spawn = GetNode<Node3D>("Spawn");
         Initialization();
+
+        _leftArmMagic = GetNode<GpuParticles3D>("Body/metarig/Skeleton3D/arur_l/arur_l/Magic");
+        _rightArmMagic = GetNode<GpuParticles3D>("Body/metarig/Skeleton3D/arua_r/arua_r/Magic");
+        _magicOrbParticle = GetNode<GpuParticles3D>("Magic");
+        _orb = GetNode<MeshInstance3D>("Orb");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,6 +64,7 @@ public partial class VCultist : Monster3d
             _player.MonsterKilled("VCultist");
             QueueFree(); // Destroy monster when health hits zero
         }
+        _orb.Scale = _orb.Scale.Lerp(_orbGoal, _orbTweenTime * (float)delta);
     }
     
     private async void Dash()
@@ -79,6 +91,11 @@ public partial class VCultist : Monster3d
 
     public async void Attack()
     {
+        _rightArmMagic.Emitting = false;
+        _leftArmMagic.Emitting = false;
+        _magicOrbParticle.Emitting = true;
+        _orbTweenTime = 1f;
+        _orbGoal = new Vector3(-0.2f, -0.2f, -0.2f);
         _canAttack = false;
         _attackAnim = true;
         await ToSignal(GetTree().CreateTimer(AttackSpeed - 1), "timeout");
@@ -87,6 +104,11 @@ public partial class VCultist : Monster3d
         RigidBody3D projectileInstance = _darkOrb.Instantiate<RigidBody3D>(); // Create monster instance
         _player.GetParent().AddChild(projectileInstance);                                             // Add monster to holder node
         projectileInstance.GlobalPosition = _spawn.GlobalPosition;
+        _rightArmMagic.Emitting = true;
+        _leftArmMagic.Emitting = true;
+        _orbTweenTime = 100f;
+        _orbGoal = new Vector3(0f, 0f, 0f);
+        _magicOrbParticle.Emitting = false;
         if (projectileInstance is Orb orb)
         {
             orb._playerOrb = _player;
