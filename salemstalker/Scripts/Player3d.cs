@@ -634,7 +634,21 @@ public partial class Player3d : CharacterBody3D
 	{
 		_parry = false; // Ensure parry window is closed
 		_sword.GetNode<GpuParticles3D>("Parry").Emitting = true; // Play parry visual effect
-		play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry.ogg"));
+
+		int ranSound = _rng.RandiRange(0, 2); // Randomize which sound effect to play
+		if (ranSound == 0)
+		{
+			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry1.ogg"));
+		}
+		else if (ranSound == 1)
+		{
+			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry2.ogg"));
+		}
+		else if (ranSound == 2)
+        {
+            play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry3.ogg"));
+        }
+		
 	}
 
 	// Calculates the position offset for the head-bob effect based on time.
