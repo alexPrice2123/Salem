@@ -62,11 +62,7 @@ angle_min = 1.07288e-05
 angle_max = 360.0
 direction = Vector3(0, 0, 0)
 spread = 0.0
-orbit_velocity_min = -0.5
-orbit_velocity_max = 0.5
 orbit_velocity_curve = SubResource("CurveTexture_im0l4")
-radial_velocity_min = 1.49998
-radial_velocity_max = 1.49998
 radial_velocity_curve = SubResource("CurveTexture_c1cqh")
 gravity = Vector3(0, 0, 0)
 scale_min = 0.1
@@ -83,7 +79,7 @@ gravity_scale = 0.0
 script = ExtResource("1_6l8s8")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.671919, 0, 0, 0, 0.537536, 0, 0, 0, 0.671919, 0, 0, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_caui3")
 mesh = SubResource("SphereMesh_ryljl")
 

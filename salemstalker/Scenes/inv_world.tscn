@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dufmkp4txcmvx"]
+[gd_scene load_steps=22 format=3 uid="uid://dufmkp4txcmvx"]
 
 [ext_resource type="Texture2D" uid="uid://ebnfthe7xyj" path="res://Assets/2D/burlap.jpg" id="2_2gl02"]
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_qv3mo"]
 [ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="4_2gl02"]
 [ext_resource type="PackedScene" uid="uid://b4y5ian205sds" path="res://Assets/Weapons/rapier.blend" id="5_0o872"]
 [ext_resource type="PackedScene" uid="uid://3v4hdgpge0v6" path="res://Scenes/MainHandWeapons/shortsword.tscn" id="7_2gl02"]
+[ext_resource type="PackedScene" uid="uid://cax87yg6ap8ew" path="res://Assets/Weapons/flintlock.blend" id="7_xsxfx"]
 [ext_resource type="PackedScene" uid="uid://do3u2x5avpy72" path="res://Scenes/OffHandWeapons/stake_gun.tscn" id="8_xsxfx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4to0"]
@@ -61,7 +62,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
@@ -122,7 +123,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
@@ -174,6 +175,67 @@ tracks/1/keys = {
 _data = {
 &"Hover": SubResource("Animation_2gl02"),
 &"RESET": SubResource("Animation_xsxfx")
+}
+
+[sub_resource type="Animation" id="Animation_5yuta"]
+resource_name = "Hover"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, -2),
+"update": 0,
+"values": [Vector3(0.788165, 1.43068, -1.63266), Vector3(0.738, 1.431, -1.463)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, -2),
+"update": 0,
+"values": [Vector3(-1.43945, -0.848835, -1.11219), Vector3(-1.89368, -0.757473, -0.954695)]
+}
+
+[sub_resource type="Animation" id="Animation_0k6f7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.788165, 1.43068, -1.63266)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.43945, -0.848835, -1.11219)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_liuau"]
+_data = {
+&"Hover": SubResource("Animation_5yuta"),
+&"RESET": SubResource("Animation_0k6f7")
 }
 
 [node name="InvWorld" type="Node3D"]
@@ -264,6 +326,14 @@ transform = Transform3D(0.716291, 0, 0, 0, 0.716291, 0, 0, 0, 0.716291, 0, 0, 0)
 [node name="HoverAnim" type="AnimationPlayer" parent="ShortSword"]
 libraries = {
 &"": SubResource("AnimationLibrary_0o872")
+}
+
+[node name="flintlock" parent="." instance=ExtResource("7_xsxfx")]
+transform = Transform3D(-0.427043, 1.05104, -0.112055, -0.133877, 0.0660976, 1.13018, 1.04848, 0.436524, 0.0986691, 0.788165, 1.43068, -1.63266)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="flintlock"]
+libraries = {
+&"": SubResource("AnimationLibrary_liuau")
 }
 
 [editable path="dagger"]

@@ -19,7 +19,7 @@ animation = &"dash"
 animation = &"idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ht62m"]
-animation = &"walking"
+animation = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ng0vc"]
 advance_mode = 2
@@ -27,12 +27,12 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c1rs2"]
 xfade_time = 0.2
 advance_mode = 2
-advance_expression = "velocity.length() > 0.2"
+advance_expression = "velocity.length() > 1"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ci7oq"]
 xfade_time = 0.2
 advance_mode = 2
-advance_expression = "velocity.length() <= 0.2"
+advance_expression = "velocity.length() <= 1"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kviwv"]
 xfade_time = 0.2
@@ -77,7 +77,7 @@ states/idle/position = Vector2(467, 86.0625)
 states/walking/node = SubResource("AnimationNodeAnimation_ht62m")
 states/walking/position = Vector2(687.062, 85.8281)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "idle", "charge", SubResource("AnimationNodeStateMachineTransition_kviwv"), "charge", "attack", SubResource("AnimationNodeStateMachineTransition_ja8if"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_xtwe5"), "walking", "charge", SubResource("AnimationNodeStateMachineTransition_im0l4"), "idle", "dash", SubResource("AnimationNodeStateMachineTransition_yr5wf"), "dash", "idle", SubResource("AnimationNodeStateMachineTransition_ok713")]
-graph_offset = Vector2(168, -38)
+graph_offset = Vector2(160, 20)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]
 seamless = true
@@ -197,20 +197,20 @@ tree_root = SubResource("AnimationNodeStateMachine_kviwv")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../Body/AnimationPlayer")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="5"]
-transform = Transform3D(0.17005, -1.51161e-10, 4.44819e-08, 2.05466e-09, 0.0408995, -0.000492864, -1.47936e-07, 0.000394292, 0.0511243, -0.000732893, 0.462375, -0.37608)
+[node name="Orb" type="MeshInstance3D" parent="." index="5"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -0.000732893, 0.462375, -0.37608)
 material_override = SubResource("ShaderMaterial_im0l4")
 mesh = SubResource("SphereMesh_kviwv")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D2" index="0"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Orb" index="0"]
 light_color = Color(0.313726, 0.188235, 0.921569, 1)
 light_energy = 5.0
 omni_range = 2.0
 
 [node name="Magic" type="GPUParticles3D" parent="." index="6"]
 transform = Transform3D(1, 3.72529e-07, -3.27826e-07, -2.98023e-08, 0.99998, -0.00645068, -1.19209e-07, 0.00645069, 0.99998, -0.00398066, 0.449296, -0.35853)
-visible = false
 material_override = SubResource("ShaderMaterial_yr5wf")
+emitting = false
 amount = 100
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_ok713")
@@ -223,31 +223,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00286001, 0.464739, -0.386
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
-bones/0/position = Vector3(-2.00883e-10, 0.930016, -0.0649478)
-bones/1/rotation = Quaternion(-0.0509647, -4.09043e-11, -1.31071e-08, 0.998701)
+bones/0/position = Vector3(-8.89325e-10, 0.941583, -0.0649478)
+bones/1/rotation = Quaternion(-0.0434973, -1.17125e-10, -1.31074e-08, 0.999054)
 bones/2/rotation = Quaternion(-0.0991209, -1.18622e-07, -1.18161e-08, 0.995075)
-bones/5/rotation = Quaternion(-0.0938334, 1.18933e-07, -9.50142e-09, 0.995588)
+bones/5/rotation = Quaternion(-0.118083, 1.19433e-07, -6.6383e-09, 0.993004)
 bones/9/position = Vector3(0.02321, 0.179695, -0.0258477)
-bones/9/rotation = Quaternion(-0.156827, 0.452254, -0.63664, 0.604617)
-bones/10/rotation = Quaternion(0.712835, -1.32509e-05, -0.151422, 0.68479)
+bones/9/rotation = Quaternion(-0.153151, 0.435063, -0.644193, 0.610148)
+bones/10/rotation = Quaternion(0.734353, -0.0103438, -0.121726, 0.667684)
 bones/11/rotation = Quaternion(0.0189465, -0.441512, 0.0317851, 0.896492)
 bones/15/rotation = Quaternion(0.30379, -0.328655, -0.262531, 0.854854)
 bones/16/rotation = Quaternion(-0.207841, 0.0687457, 0.129042, 0.967173)
 bones/17/rotation = Quaternion(0.0250806, 0.0125801, 0.117811, 0.99264)
 bones/20/position = Vector3(-0.0122632, 0.180324, -0.00908038)
 bones/20/rotation = Quaternion(-0.17153, -0.653043, 0.512541, 0.530484)
-bones/21/rotation = Quaternion(0.618383, -0.0551152, 0.337287, 0.707674)
+bones/21/rotation = Quaternion(0.638387, -0.0288332, 0.310757, 0.703606)
 bones/22/rotation = Quaternion(0.0804695, -0.0242495, -0.211768, 0.9737)
 bones/23/rotation = Quaternion(-0.161795, 0.607627, 0.0469097, 0.776151)
 bones/26/rotation = Quaternion(0.522486, 0.595971, 0.00513368, 0.609754)
 bones/27/rotation = Quaternion(-0.305542, -0.0408437, -0.148455, 0.939647)
 bones/30/rotation = Quaternion(-5.42024e-08, 0.696112, 0.717933, -5.2555e-08)
-bones/34/rotation = Quaternion(0.964988, 0.0602253, -0.117898, 0.226433)
-bones/35/rotation = Quaternion(0.174502, 0.00424948, 0.0223364, 0.984394)
+bones/34/rotation = Quaternion(0.978696, 0.0438127, -0.117593, 0.162499)
+bones/35/rotation = Quaternion(0.0607488, 0.0043087, 0.00777588, 0.998114)
 bones/36/rotation = Quaternion(-0.473183, -0.0617349, -0.0126969, 0.878706)
 bones/37/rotation = Quaternion(0.0106844, 0.961413, -0.270421, 0.0494412)
-bones/39/rotation = Quaternion(0.968219, -0.0593004, 0.0786191, 0.229901)
-bones/40/rotation = Quaternion(0.18438, -0.0042239, -0.0400677, 0.982029)
+bones/39/rotation = Quaternion(0.980315, -0.0429608, 0.0773746, 0.176496)
+bones/40/rotation = Quaternion(0.089645, -0.00428302, -0.0194808, 0.995774)
 bones/41/rotation = Quaternion(-0.490002, 0.0553189, 0.00734169, 0.869933)
 bones/42/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/43/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
@@ -257,39 +257,47 @@ bones/46/position = Vector3(-0.159219, 0.0824029, -0.0156682)
 bones/47/rotation = Quaternion(0.999891, 0.000406379, -0.0102964, -0.0106287)
 
 [node name="Plane" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, -1.49782e-09, 2.0734e-10, 1.50912e-09, 0.997213, -0.0746057, -9.50791e-11, 0.0746057, 0.997213, 6.18818e-10, 1.74725, 0.00132345)
+transform = Transform3D(1, -9.58833e-09, 4.35937e-10, 9.59815e-09, 0.999166, -0.0408396, -4.40758e-11, 0.0408396, 0.999166, 7.35611e-10, 1.75895, 0.00478046)
 
 [node name="Plane" parent="Body/metarig/Skeleton3D/Plane" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_cno0p")
 
 [node name="arur_l" parent="Body/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.03642, -0.0345012, -0.230363, 0.159517, 0.870681, 0.587276, 0.169741, -0.607576, 0.854671, 0.279828, 1.43692, 0.273979)
+transform = Transform3D(1.04138, -0.0663602, -0.198863, 0.17873, 0.807684, 0.666428, 0.109571, -0.68678, 0.802964, 0.286363, 1.46785, 0.275673)
 
 [node name="arur_l" parent="Body/metarig/Skeleton3D/arur_l" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022436, 0.0297889, 6.98492e-10)
 material_override = SubResource("ShaderMaterial_cno0p")
 
 [node name="Magic" type="GPUParticles3D" parent="Body/metarig/Skeleton3D/arur_l/arur_l" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_yr5wf")
-amount = 100
+amount = 50
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_cno0p")
 draw_pass_1 = SubResource("SphereMesh_v2reo")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Body/metarig/Skeleton3D/arur_l/arur_l/Magic" index="0"]
+light_color = Color(0.313726, 0.188235, 0.921569, 1)
+light_energy = 2.5
+omni_range = 0.5
+
 [node name="arua_r" parent="Body/metarig/Skeleton3D" index="2"]
-transform = Transform3D(0.998688, 0.00135341, 0.362001, 0.0173899, 1.06086, -0.0519425, -0.361586, 0.0547594, 0.997337, -0.237397, 1.28806, 0.173065)
+transform = Transform3D(1.01894, -0.00112809, 0.300306, 0.0032845, 1.06224, -0.00715457, -0.30029, 0.00779103, 1.01892, -0.249513, 1.30832, 0.182453)
 
 [node name="arua_r" parent="Body/metarig/Skeleton3D/arua_r" index="0"]
 material_override = SubResource("ShaderMaterial_cno0p")
 
 [node name="Magic" type="GPUParticles3D" parent="Body/metarig/Skeleton3D/arua_r/arua_r" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_yr5wf")
-amount = 100
+amount = 50
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_cno0p")
 draw_pass_1 = SubResource("SphereMesh_v2reo")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Body/metarig/Skeleton3D/arua_r/arua_r/Magic" index="0"]
+light_color = Color(0.313726, 0.188235, 0.921569, 1)
+light_energy = 2.5
+omni_range = 0.5
 
 [node name="Cube" parent="Body/metarig/Skeleton3D" index="3"]
 surface_material_override/0 = SubResource("StandardMaterial3D_im0l4")
@@ -303,55 +311,21 @@ surface_material_override/0 = SubResource("StandardMaterial3D_im0l4")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1, 0)
 visible = false
 
-[node name="Skeleton3D" parent="HitFX/metarig" index="0"]
-bones/0/position = Vector3(-3.55271e-15, 0.942675, -0.0649478)
-bones/1/rotation = Quaternion(-0.042766, 2.20339e-14, -1.01962e-08, 0.999085)
-bones/2/rotation = Quaternion(-0.0991209, -1.18622e-07, -1.18161e-08, 0.995075)
-bones/5/rotation = Quaternion(-0.120344, 1.18343e-07, -1.43461e-08, 0.992732)
-bones/9/position = Vector3(0.02321, 0.179695, -0.0258477)
-bones/9/rotation = Quaternion(-0.152866, 0.433732, -0.644764, 0.610564)
-bones/10/rotation = Quaternion(0.735629, -0.0129006, -0.11315, 0.667743)
-bones/11/rotation = Quaternion(0.0189465, -0.441512, 0.0317851, 0.896492)
-bones/15/rotation = Quaternion(0.30379, -0.328655, -0.262531, 0.854854)
-bones/16/rotation = Quaternion(-0.207841, 0.0687457, 0.129042, 0.967173)
-bones/17/rotation = Quaternion(0.0250806, 0.0125801, 0.117811, 0.99264)
-bones/20/position = Vector3(-0.0122632, 0.180324, -0.00908038)
-bones/20/rotation = Quaternion(-0.17153, -0.653043, 0.512541, 0.530484)
-bones/21/rotation = Quaternion(0.641504, -0.026759, 0.307627, 0.702226)
-bones/22/rotation = Quaternion(0.0804695, -0.0242495, -0.211768, 0.9737)
-bones/23/rotation = Quaternion(-0.161795, 0.607627, 0.0469097, 0.776151)
-bones/26/rotation = Quaternion(0.522486, 0.595971, 0.00513368, 0.609754)
-bones/27/rotation = Quaternion(-0.305542, -0.0408437, -0.148455, 0.939647)
-bones/30/rotation = Quaternion(-5.42024e-08, 0.696112, 0.717933, -5.2555e-08)
-bones/34/rotation = Quaternion(0.98113, 0.04019, -0.117736, 0.148013)
-bones/35/rotation = Quaternion(0.0349604, 0.00431412, 0.00447496, 0.999369)
-bones/36/rotation = Quaternion(-0.473183, -0.0617349, -0.0126969, 0.878706)
-bones/37/rotation = Quaternion(0.0106844, 0.961413, -0.270421, 0.0494412)
-bones/39/rotation = Quaternion(0.98187, -0.0404932, 0.0772635, 0.168289)
-bones/40/rotation = Quaternion(0.0750645, -0.00428845, -0.0163123, 0.997036)
-bones/41/rotation = Quaternion(-0.490002, 0.0553189, 0.00734169, 0.869933)
-bones/42/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
-bones/43/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
-bones/44/position = Vector3(0.181001, 0.0824029, -0.0156682)
-bones/45/rotation = Quaternion(0.999891, -0.000406379, 0.0102964, -0.0106287)
-bones/46/position = Vector3(-0.159219, 0.0824029, -0.0156682)
-bones/47/rotation = Quaternion(0.999891, 0.000406379, -0.0102964, -0.0106287)
-
 [node name="Plane" parent="HitFX/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.90727e-14, -4.96392e-14, -1.24044e-14, 0.999287, -0.0377519, -3.63339e-14, 0.037752, 0.999287, -1.39517e-14, 1.76004, 0.00514819)
+transform = Transform3D(1, 8.91302e-15, 3.59268e-14, 1.39358e-14, 1, 8.9407e-08, -1.06729e-13, -5.96046e-08, 1, -1.28375e-14, 1.7603, -3.10829e-08)
 
 [node name="Plane" parent="HitFX/metarig/Skeleton3D/Plane" index="0"]
 transform = Transform3D(1, -1.27055e-21, 7.10543e-15, 0, 1, 0, 0, 0, 1, -0.00223202, 0, 0.000280977)
 material_override = ExtResource("5_im0l4")
 
 [node name="arur_l" parent="HitFX/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.04322, -0.0767534, -0.184989, 0.178482, 0.801422, 0.67401, 0.0908634, -0.693004, 0.799945, 0.289199, 1.47066, 0.275832)
+transform = Transform3D(0.920801, 0.260336, 0.461274, 0.382403, 0.313358, -0.940212, -0.366492, 0.981048, 0.177908, 0.409664, 1.12752, 0.00396868)
 
 [node name="arur_l" parent="HitFX/metarig/Skeleton3D/arur_l" index="0"]
 transparency = 1.0
 
 [node name="arua_r" parent="HitFX/metarig/Skeleton3D" index="2"]
-transform = Transform3D(1.02041, -8.9407e-08, 0.295271, -5.96046e-08, 1.06227, -2.08616e-07, -0.295272, 3.72529e-08, 1.02041, -0.250534, 1.31081, 0.18332)
+transform = Transform3D(0.876853, -0.104729, -0.590411, -0.53066, 0.351486, -0.85046, 0.279202, 0.996951, 0.237817, -0.407665, 1.14661, 0.00689694)
 
 [node name="arua_r" parent="HitFX/metarig/Skeleton3D/arua_r" index="0"]
 transparency = 1.0
