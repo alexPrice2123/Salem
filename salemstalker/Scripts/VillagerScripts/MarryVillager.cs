@@ -12,7 +12,7 @@ public partial class MarryVillager : NpcVillager
 	public override void _PhysicsProcess(double delta)
 	{
 		EveryFrame(delta);
-		if (true = false) //Replace with the correct quest completion condition
+		if (true == false) //Replace with the correct quest completion condition
 		{
 			_questComplete = true;
 		}
