@@ -3,13 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
-[ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/KillMonstersQuest.cs" id="4_ochwf"]
-[ext_resource type="Script" uid="uid://crro3jhbhqqfg" path="res://Scripts/GetAppleQuest.cs" id="5_p5wkl"]
+[ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/VillagerScripts/JohnVillager.cs" id="4_ochwf"]
+[ext_resource type="Script" uid="uid://crro3jhbhqqfg" path="res://Scripts/VillagerScripts/BobVillager.cs" id="5_p5wkl"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
-[ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/marryVillager.cs" id="6_atqvy"]
+[ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/VillagerScripts/MarryVillager.cs" id="6_atqvy"]
 [ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="6_ikia7"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="7_7yui6"]
-[ext_resource type="Script" uid="uid://bwc5be1j0grxx" path="res://Scripts/ElizabethVillager.cs" id="7_atqvy"]
+[ext_resource type="Script" uid="uid://bwc5be1j0grxx" path="res://Scripts/VillagerScripts/ElizabethVillager.cs" id="7_atqvy"]
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="7_axeuq"]
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="8_dt0r1"]
@@ -72,6 +72,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 script = ExtResource("7_7yui6")
 Name = "dirt"
 AlbedoTexture = ExtResource("8_dt0r1")
+NormalTexture = ExtResource("7_axeuq")
 HeightTexture = ExtResource("8_r74th")
 TextureDetail = 50
 Triplanar = false
@@ -81,6 +82,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 script = ExtResource("7_7yui6")
 Name = "sand"
 AlbedoTexture = ExtResource("9_qebug")
+NormalTexture = ExtResource("7_axeuq")
 HeightTexture = ExtResource("8_r74th")
 TextureDetail = -1
 Triplanar = false
@@ -90,6 +92,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 script = ExtResource("7_7yui6")
 Name = "shallowocean"
 AlbedoTexture = ExtResource("10_3ua1v")
+NormalTexture = ExtResource("7_axeuq")
 HeightTexture = ExtResource("8_r74th")
 TextureDetail = -1
 Triplanar = false
@@ -99,6 +102,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 script = ExtResource("7_7yui6")
 Name = "midocean"
 AlbedoTexture = ExtResource("11_r0ikl")
+NormalTexture = ExtResource("7_axeuq")
 HeightTexture = ExtResource("8_r74th")
 TextureDetail = -1
 Triplanar = false
@@ -108,6 +112,7 @@ metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 script = ExtResource("7_7yui6")
 Name = "deepocean"
 AlbedoTexture = ExtResource("12_opbav")
+NormalTexture = ExtResource("7_axeuq")
 HeightTexture = ExtResource("8_r74th")
 TextureDetail = -1
 Triplanar = false
