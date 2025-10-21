@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwiy7a16ospna"]
+[gd_scene load_steps=17 format=3 uid="uid://cwiy7a16ospna"]
 
 [ext_resource type="Script" uid="uid://dbx0mkf5x3iac" path="res://Scripts/Orb.cs" id="1_6l8s8"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="1_ogqpy"]
@@ -71,6 +71,21 @@ scale_curve = SubResource("CurveTexture_ag22c")
 
 [sub_resource type="SphereMesh" id="SphereMesh_olnk0"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6l8s8"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.31
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.1
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_ag22c")
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_cp2bc"]
 radius = 0.316207
 
@@ -78,22 +93,33 @@ radius = 0.316207
 gravity_scale = 0.0
 script = ExtResource("1_6l8s8")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="Orb" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_caui3")
 mesh = SubResource("SphereMesh_ryljl")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D2"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Orb"]
 light_color = Color(0.313726, 0.188235, 0.921569, 1)
 light_energy = 5.0
 omni_range = 2.0
 
-[node name="Blood" type="GPUParticles3D" parent="."]
+[node name="Magic" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.509754, 0.196887, 0.832565, 0.0286384, 0.96468, -0.245665, -0.855048, 0.149689, 0.488123, 0.00547312, -0.0699652, 0.0110329)
 material_override = SubResource("ShaderMaterial_4tb7o")
 amount = 100
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_25wf1")
+draw_pass_1 = SubResource("SphereMesh_olnk0")
+
+[node name="Boom" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.509754, 0.196887, 0.832565, 0.0286384, 0.96468, -0.245665, -0.855048, 0.149689, 0.488123, 0.00547312, -0.0699652, 0.617419)
+material_override = SubResource("ShaderMaterial_4tb7o")
+emitting = false
+amount = 100
+lifetime = 15.0
+one_shot = true
+speed_scale = 64.0
+process_material = SubResource("ParticleProcessMaterial_6l8s8")
 draw_pass_1 = SubResource("SphereMesh_olnk0")
 
 [node name="Attackbox" type="Area3D" parent="."]
