@@ -1,13 +1,15 @@
-[gd_scene load_steps=73 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=74 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
-[ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/KillMonstersQuest.cs" id="4_ochwf"]
-[ext_resource type="Script" uid="uid://crro3jhbhqqfg" path="res://Scripts/GetAppleQuest.cs" id="5_p5wkl"]
+[ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/VillagerScripts/JohnVillager.cs" id="4_ochwf"]
+[ext_resource type="Script" uid="uid://crro3jhbhqqfg" path="res://Scripts/VillagerScripts/BobVillager.cs" id="5_p5wkl"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
+[ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/VillagerScripts/MarryVillager.cs" id="6_atqvy"]
 [ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="6_ikia7"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="7_7yui6"]
+[ext_resource type="Script" uid="uid://bwc5be1j0grxx" path="res://Scripts/VillagerScripts/ElizabethVillager.cs" id="7_atqvy"]
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="7_axeuq"]
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="8_dt0r1"]
@@ -36,7 +38,6 @@
 [ext_resource type="Texture2D" uid="uid://cssdsrd3rajc1" path="res://Scenes/World/Object_0_0_0.res" id="23_hmc15"]
 [ext_resource type="PackedScene" uid="uid://fodrwm4bj1gf" path="res://Assets/3D/buildings/house1.blend" id="27_hmc15"]
 [ext_resource type="Texture2D" uid="uid://cuwiqnxpnyifh" path="res://Scenes/World/Splatmap_0_0_1.res" id="28_r0ikl"]
-[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/demo_world.tscn" id="33_r0ikl"]
 [ext_resource type="PackedScene" uid="uid://dp8uiiauk5326" path="res://Scenes/lamp.tscn" id="34_opbav"]
 [ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="35_coyub"]
 [ext_resource type="PackedScene" uid="uid://dqwfbyg6hnvlk" path="res://Scenes/apple.tscn" id="38_r74th"]
@@ -341,7 +342,7 @@ Zones = [SubResource("Resource_hgpy0")]
 [node name="World" type="Node3D"]
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -451.578, 0.857805, -83.1037)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -753.906, 16.7869, -603.626)
 
 [node name="MonsterRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -586.005, -4.39457, -25.0981)
@@ -360,7 +361,7 @@ navigation_mesh = SubResource("NavigationMesh_8j60k")
 navigation_layers = 2
 travel_cost = 0.4
 
-[node name="npc_villager" parent="." instance=ExtResource("4_fo5ed")]
+[node name="John" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -427.36, 0.0547366, -73.5424)
 script = ExtResource("4_ochwf")
 NPCName = "John"
@@ -373,7 +374,7 @@ DoneDialogue = "Thank you! Our village is safe once again!"
 QuestTitle = "Kill 5 Cultists"
 QuestGoal = "0/5"
 
-[node name="npc_villager2" parent="." instance=ExtResource("4_fo5ed")]
+[node name="Bob" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
 script = ExtResource("5_p5wkl")
 InitialDialogue = "Where could my apple possibly be?"
@@ -384,6 +385,32 @@ WaitingDialogue = "Hmmm, no apple yet?"
 DoneDialogue = "My apple! Thank you! Hopefully I wont lose it again!"
 QuestTitle = "Find Bob's Apple"
 QuestGoal = "0/1"
+
+[node name="Mary" parent="." instance=ExtResource("4_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
+script = ExtResource("6_atqvy")
+NPCName = "Mary"
+InitialDialogue = "Where's my cat?!"
+QuestDialogue = "I lost my cat Butter! He ran off into the Woods somewhere! Will you go find him for me?"
+AcceptedDialogue = "Oh Thank you!"
+IgnoredDialogue = "Oh no, my poor cat!"
+WaitingDialogue = "Have you found him yet?"
+DoneDialogue = "Oh Thank you so much! Say thank you to the nice hero, Butter!"
+QuestTitle = "Find Mary's cat"
+QuestGoal = "0/1"
+
+[node name="Elizabeth" parent="." instance=ExtResource("4_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
+script = ExtResource("7_atqvy")
+NPCName = "Elizabeth"
+InitialDialogue = "Im so Tired"
+QuestDialogue = "My Husband Died protecting us from the cultists, now I'm left to toke care of our son. I'm always so busy and we don't have firewood. Could you go find some for us Please?"
+AcceptedDialogue = "Thank you! Im so grateful!"
+IgnoredDialogue = "Oh ok."
+WaitingDialogue = "Sorry but thats not Enough."
+DoneDialogue = "Thank you so much!"
+QuestTitle = "Get elizabeth some firewood"
+QuestGoal = "0/10"
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("6_5ukr8")
@@ -400,8 +427,6 @@ MetaInfoLayers = []
 TerrainZones = SubResource("Resource_t2t4p")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
 metadata/_edit_lock_ = false
-
-[node name="Enviorment" parent="TerraBrush" instance=ExtResource("33_r0ikl")]
 
 [node name="house2" parent="." instance=ExtResource("27_hmc15")]
 transform = Transform3D(0.934242, 0, 0.35664, 0, 1, 0, -0.35664, 0, 0.934242, -441.425, 0, -56.4897)
