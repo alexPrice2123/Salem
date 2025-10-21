@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=75 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="8_dt0r1"]
 [ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="8_r74th"]
+[ext_resource type="Script" uid="uid://fpbtgg4ofyo" path="res://Scripts/VillagerScripts/JacobVillager.cs" id="8_w5giw"]
 [ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="9_04jkj"]
 [ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Scenes/World/Heightmap_0_0.res" id="9_7yui6"]
 [ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="9_kn0ld"]
@@ -411,6 +412,19 @@ WaitingDialogue = "Sorry but thats not Enough."
 DoneDialogue = "Thank you so much!"
 QuestTitle = "Get elizabeth some firewood"
 QuestGoal = "0/10"
+
+[node name="Jacob" parent="." instance=ExtResource("4_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
+script = ExtResource("8_w5giw")
+NPCName = "Jacob"
+InitialDialogue = "My apples!"
+QuestDialogue = "I dropped my basket and my apples whent everywhere! can you help me find them all?"
+AcceptedDialogue = "Thanks!"
+IgnoredDialogue = "Oh ok."
+WaitingDialogue = "I don't think thats all of them!"
+DoneDialogue = "Thanks for the help!"
+QuestTitle = "Find Jacobs apples"
+QuestGoal = "0/20"
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("6_5ukr8")
