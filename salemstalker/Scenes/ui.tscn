@@ -3,15 +3,15 @@
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
-[ext_resource type="Shader" uid="uid://cdhocti5ssful" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
+[ext_resource type="Shader" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
 [ext_resource type="PackedScene" uid="uid://dufmkp4txcmvx" path="res://Scenes/inv_world.tscn" id="3_nf4gj"]
 [ext_resource type="Shader" uid="uid://2qgp3gkiyw40" path="res://Shaders/ui.gdshader" id="3_q7pk6"]
-[ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
+[ext_resource type="Shader" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
-[ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
+[ext_resource type="PackedScene" uid="uid://6ys2jw0m130w" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
-[ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
+[ext_resource type="Shader" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
 
@@ -264,29 +264,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Inv" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Title" type="Label" parent="Inv"]
-z_index = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.054
-anchor_right = 1.0
-anchor_bottom = 0.173
-offset_top = 0.00799942
-offset_right = 1.0
-offset_bottom = -0.104004
-theme_override_fonts/font = ExtResource("1_qdvrb")
-text = "Inventory"
-label_settings = SubResource("LabelSettings_jxero")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="SubPort" type="SubViewportContainer" parent="Inv"]
 layout_mode = 1
@@ -299,8 +282,8 @@ offset_bottom = -0.296082
 [node name="Sub" type="SubViewport" parent="Inv/SubPort"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1079, 606)
-render_target_update_mode = 0
+size = Vector2i(1080, 605)
+render_target_update_mode = 4
 
 [node name="Falchion" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 86.0
@@ -322,6 +305,16 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
+[node name="FlintGun" type="Button" parent="Inv/SubPort/Sub"]
+offset_left = 690.0
+offset_top = 97.0
+offset_right = 701.0
+offset_bottom = 105.0
+scale = Vector2(7.242, 20.194)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+flat = true
+
 [node name="Shortsword" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 167.0
 offset_top = 175.0
@@ -333,6 +326,58 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="InvWorld" parent="Inv/SubPort/Sub" instance=ExtResource("3_nf4gj")]
+
+[node name="SlotSelector" type="Control" parent="Inv/SubPort/Sub"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 87.0
+offset_right = 765.0
+offset_bottom = 537.0
+
+[node name="Slot1" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.074
+offset_left = 225.0
+offset_top = 220.0
+offset_right = 375.0
+offset_bottom = 336.7
+rotation = 0.785398
+text = "Slot1
+"
+
+[node name="Slot3" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.074
+offset_left = 225.0
+offset_right = 375.0
+offset_bottom = 116.7
+rotation = 0.785398
+text = "Slot3"
+
+[node name="Slot2" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.074
+offset_left = 332.5
+offset_top = 110.0
+offset_right = 482.5
+offset_bottom = 226.7
+rotation = 0.785398
+text = "Slot2"
+
+[node name="Slot4" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.074
+offset_left = 115.5
+offset_top = 110.0
+offset_right = 265.5
+offset_bottom = 226.7
+rotation = 0.785398
+text = "Slot4"
 
 [node name="Quest" type="Control" parent="."]
 visible = false
@@ -453,10 +498,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -122.0
-offset_top = -57.0
-offset_right = 179.0
-offset_bottom = 58.0
+offset_left = -218.0
+offset_top = -60.0
+offset_right = 83.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
@@ -618,6 +663,7 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_whq80")
 
 [node name="Controls" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(538, 305)
 scale = Vector2(0.561458, 0.559259)
 texture = ExtResource("14_8fs27")
@@ -628,9 +674,16 @@ texture = ExtResource("14_8fs27")
 [connection signal="button_up" from="Inv/SubPort/Sub/StakeGun" to="." method="_on_stake_gun_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/StakeGun" to="." method="_on_stake_gun_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/StakeGun" to="." method="_on_stake_gun_mouse_exited"]
+[connection signal="button_up" from="Inv/SubPort/Sub/FlintGun" to="." method="_on_gun_button_up"]
+[connection signal="mouse_entered" from="Inv/SubPort/Sub/FlintGun" to="." method="_on_gun_mouse_entered"]
+[connection signal="mouse_exited" from="Inv/SubPort/Sub/FlintGun" to="." method="_on_gun_mouse_exited"]
 [connection signal="button_up" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_mouse_exited"]
+[connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot1" to="." method="_on_slot_1_button_up"]
+[connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot3" to="." method="_on_slot_3_button_up"]
+[connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot2" to="." method="_on_slot_2_button_up"]
+[connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot4" to="." method="_on_slot_4_button_up"]
 [connection signal="button_up" from="Container/QuestTemplate/Quest/QuestButton" to="." method="_on_quest_button_button_up"]
 [connection signal="button_up" from="Dialogue/AcceptButton" to="." method="_on_accept_button_button_up"]
 [connection signal="button_up" from="Dialogue/Continue" to="." method="_on_continue_button_up"]

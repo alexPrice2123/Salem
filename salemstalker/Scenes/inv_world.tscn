@@ -329,9 +329,9 @@ libraries = {
 }
 
 [node name="flintlock" parent="." instance=ExtResource("7_xsxfx")]
-transform = Transform3D(-0.427043, 1.05104, -0.112055, -0.133877, 0.0660976, 1.13018, 1.04848, 0.436524, 0.0986691, 0.788165, 1.43068, -1.63266)
+transform = Transform3D(-0.427048, 1.05104, -0.112055, -0.133877, 0.0660972, 1.13018, 1.04848, 0.43653, 0.0986691, 0.788165, 1.43068, -1.63266)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="flintlock"]
+[node name="HoverAnim" type="AnimationPlayer" parent="flintlock"]
 libraries = {
 &"": SubResource("AnimationLibrary_liuau")
 }
