@@ -348,7 +348,7 @@ Zones = [SubResource("Resource_hgpy0")]
 [node name="World" type="Node3D"]
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -753.906, 16.7869, -603.626)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -455.707, 0.732849, -87.8341)
 
 [node name="MonsterRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -586.005, -4.39457, -25.0981)
