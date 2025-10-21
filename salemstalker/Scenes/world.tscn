@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=80 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
@@ -17,17 +17,22 @@
 [ext_resource type="Script" uid="uid://fpbtgg4ofyo" path="res://Scripts/VillagerScripts/JacobVillager.cs" id="8_w5giw"]
 [ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="9_04jkj"]
 [ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Scenes/World/Heightmap_0_0.res" id="9_7yui6"]
+[ext_resource type="Script" uid="uid://deqndpcgi731" path="res://Scripts/VillagerScripts/MatthewVillager.cs" id="9_jwdyn"]
 [ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="9_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://chu6uwfbaqyat" path="res://Assets/2D/sand.png" id="9_qebug"]
 [ext_resource type="Texture2D" uid="uid://bdg05x8m3uscr" path="res://Assets/2D/shallowocean.png" id="10_3ua1v"]
 [ext_resource type="Texture2D" uid="uid://brgdqertk6qk0" path="res://Scenes/World/Splatmap_0_0_0.res" id="10_c5t2i"]
 [ext_resource type="Script" uid="uid://d33x21vao7tj2" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="10_hgpy0"]
+[ext_resource type="Script" uid="uid://1j4tnfmggee4" path="res://Scripts/VillagerScripts/LukasVillager.cs" id="10_t6yt7"]
 [ext_resource type="Texture2D" uid="uid://duyqji6d5wl4n" path="res://Assets/3D/plants/bush_goodtreebkgdless_kat_px.png" id="10_yq1aw"]
+[ext_resource type="Script" uid="uid://cvaa6k23p1fy6" path="res://Scripts/VillagerScripts/SamualVillager.cs" id="11_al5m0"]
 [ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="11_e0ngr"]
 [ext_resource type="Texture2D" uid="uid://xcspp642up40" path="res://Assets/2D/midocean.png" id="11_r0ikl"]
+[ext_resource type="Script" uid="uid://brv6v4lm6cph8" path="res://Scripts/VillagerScripts/MarthaVillager.cs" id="12_6mm6r"]
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="12_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://d0u1esu3iuflj" path="res://Assets/2D/deepocean.png" id="12_opbav"]
 [ext_resource type="Texture2D" uid="uid://dw2dxasfcx3dn" path="res://Scenes/World/Foliage_0_0_0.res" id="12_t2t4p"]
+[ext_resource type="Script" uid="uid://cd1hk520uuwo4" path="res://Scripts/VillagerScripts/EzekielVillager.cs" id="13_xcb5n"]
 [ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="14_1cojt"]
 [ext_resource type="Texture2D" uid="uid://canhbg83j2nyd" path="res://Assets/3D/plants/grass_graass.png" id="14_no8kt"]
 [ext_resource type="PackedScene" uid="uid://blt7o2y8rc0lv" path="res://Assets/3D/plants/tree.blend" id="16_pt3ps"]
@@ -425,6 +430,71 @@ WaitingDialogue = "I don't think thats all of them!"
 DoneDialogue = "Thanks for the help!"
 QuestTitle = "Find Jacobs apples"
 QuestGoal = "0/20"
+
+[node name="Matthew" parent="." instance=ExtResource("4_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
+script = ExtResource("9_jwdyn")
+NPCName = "Matthew"
+InitialDialogue = "my leg hurts."
+QuestDialogue = "I hurt my leg yesterday and I need to take this cake to the house 2 doors down. I cant get there by myself! can you take it for me please?"
+AcceptedDialogue = "oh thank you!"
+IgnoredDialogue = "Fine."
+WaitingDialogue = "the house if just 2 doors down."
+DoneDialogue = "Thank you so much!"
+QuestTitle = "take cake 2 doors down"
+QuestGoal = "0/1"
+
+[node name="Lukas" parent="." instance=ExtResource("4_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
+script = ExtResource("10_t6yt7")
+NPCName = "Lukas"
+InitialDialogue = "Wheres my sheep!"
+QuestDialogue = "A Monster! It took my sheep! All of them! Deep in the forest! Please! Get them Back!"
+AcceptedDialogue = "Thank you!"
+IgnoredDialogue = "Will no one help me?"
+WaitingDialogue = "Have you found them yet?"
+DoneDialogue = "OH My Lord! Thank You! Thank You!"
+QuestTitle = "Find Lukas's sheep"
+QuestGoal = "0/30"
+
+[node name="Samual" parent="." instance=ExtResource("4_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
+script = ExtResource("11_al5m0")
+NPCName = "Samual"
+InitialDialogue = "My son."
+QuestDialogue = "Please, My son, He's sick! The doctor can't help him! We heard you can heal the infected! Please help my son!"
+AcceptedDialogue = "Thank you!"
+IgnoredDialogue = "No, My son."
+WaitingDialogue = "Is he ok?"
+DoneDialogue = "Oh Thank you! My son is ok!"
+QuestTitle = "find medicine and Heal Samual's son"
+QuestGoal = "0/2"
+
+[node name="Martha" parent="." instance=ExtResource("4_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
+script = ExtResource("12_6mm6r")
+NPCName = "Martha"
+InitialDialogue = "Stupid darkness, never know when to sleep, and when to work."
+QuestDialogue = "I really hate this damned curse, don't you? y-know the only thing worse, are all the stupid monsters that used to ...be ...hey, if you would, go and kill a few cultists, for me! and they gotta be cultists. Do it with my knife too! I wanna see them cry help to their god for once."
+AcceptedDialogue = "Thanks! lift the curse soon, ok?"
+IgnoredDialogue = "ugh! your no fun. "
+WaitingDialogue = "c-mon you can do it!"
+DoneDialogue = "Thanks! How many of them went running?"
+QuestTitle = "Kill cultsits for Martha"
+QuestGoal = "0/5"
+
+[node name="Ezekiel" parent="." instance=ExtResource("4_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
+script = ExtResource("13_xcb5n")
+NPCName = "Ezekiel"
+InitialDialogue = "Please someone help me!"
+QuestDialogue = "Those cultists took my wife! I couldn't fight them! I sorry I couldn't.. Please, Please find my wife! Kill as many as you have to, Just get my wife back to me!, Please"
+AcceptedDialogue = "Thank you! so much, Thank you!"
+IgnoredDialogue = "No Please. please."
+WaitingDialogue = "Is she safe? Where is she?"
+DoneDialogue = "Oh Thank you Hero! Thank you! My wife."
+QuestTitle = "Find Ezekiel's wife"
+QuestGoal = "0/1"
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("6_5ukr8")
