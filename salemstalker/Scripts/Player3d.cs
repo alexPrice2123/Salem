@@ -27,6 +27,8 @@ public partial class Player3d : CharacterBody3D
 	private VBoxContainer _questTemplate;            // A hidden template used to instantiate new quest UI entries
 	private OmniLight3D _lantern; 					 // A light attached to the player (likely for dynamic lighting/mood based on health)
 	private AudioStreamPlayer3D _audio;				 // Audio player for sound effects
+	private Control _dialogue;                       // Main container for all dialogue UI
+	private Control _smithShop;                      // Main container for all blacksmith shop UI
 
 	// --- WEAPON REFERENCES ---
 	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
@@ -76,6 +78,7 @@ public partial class Player3d : CharacterBody3D
 	public bool _hasApple = false; // Quest item flag
 	private float _staminaTimer = 2f;
 	private float _currentStaminaTimer = 0f;
+	public bool _twoHand = false;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -97,6 +100,8 @@ public partial class Player3d : CharacterBody3D
 		_questTemplate = GetNode<VBoxContainer>("UI/Container/QuestTemplate");
 		_lantern = GetNode<OmniLight3D>("Head/Camera3D/Lantern");
 		_audio = GetNode<AudioStreamPlayer3D>("SFX");
+		_dialogue = GetNode<Control>("UI/Dialogue");
+		_smithShop = GetNode<Control>("UI/BlacksmithShop");
 		
 		// Initialize starting values
 		_health = _maxHealth;
@@ -129,7 +134,22 @@ public partial class Player3d : CharacterBody3D
 		// --- Pause menu toggle (Escape) ---
 		else if (@event is InputEventKey escapeKey && escapeKey.Keycode == Key.Escape && escapeKey.Pressed)
 		{
-			if (_inv.Visible == true) { return; } // Prevent opening pause menu if inventory is already open
+			if (_inv.Visible == true) // pressing escape while the inventory is open will close it.
+			{
+				_inv.Visible = false;
+				Input.MouseMode = Input.MouseModeEnum.Visible;
+			}
+			if (_questBook.Visible == true)
+			{
+				_questBook.Visible = false;
+				Input.MouseMode = Input.MouseModeEnum.Visible;
+			}                                                 // same for the quest and shop UI
+			if (_smithShop.Visible == true)
+			{
+				_smithShop.Visible = false;
+				Input.MouseMode = Input.MouseModeEnum.Visible;
+			}
+			if(_dialogue.Visible == true) { return; }
 
 			if (Input.MouseMode == Input.MouseModeEnum.Captured)
 			{
@@ -177,6 +197,12 @@ public partial class Player3d : CharacterBody3D
 				toDestroy.QueueFree();
 				_hasApple = true;
 			}
+			if (_lastSeen.Name == "Anvil")
+			{
+				_lastSeen = null;
+				_smithShop.Visible = true;
+				Input.MouseMode = Input.MouseModeEnum.Visible;
+			}
 		}
 
 		// --- Block Start (Block Action) ---
@@ -218,7 +244,7 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		// --- Questbook toggle (L Key) ---
-		else if (@event is InputEventKey lKey && lKey.Keycode == Key.L && lKey.Pressed)
+		else if (Input.IsActionJustPressed("questOpen"))
 		{
 			if (_inv.Visible == true) { return; }
 
@@ -252,9 +278,9 @@ public partial class Player3d : CharacterBody3D
 			_running = shiftKey.Pressed; // Set running state based on key press
 			// If stamina is zero or less, stop running immediately
 			if (_running == false)
-            {
-                _currentStaminaTimer = _staminaTimer;
-            }
+			{
+				_currentStaminaTimer = _staminaTimer;
+			}
 			if (_stamina <= 0)
 			{
 				_running = false;
@@ -426,6 +452,10 @@ public partial class Player3d : CharacterBody3D
 			_lastSeen = targetNode;
 			// Specific handling for the "Apple" item (shows a title)
 			if (targetNode.Name == "Apple")
+			{
+				targetNode.GetNode<Label3D>("Title").Visible = true;
+			}
+			if (targetNode.Name == "Anvil")
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
 			}
@@ -645,9 +675,9 @@ public partial class Player3d : CharacterBody3D
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry2.ogg"));
 		}
 		else if (ranSound == 2)
-        {
-            play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry3.ogg"));
-        }
+		{
+			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry3.ogg"));
+		}
 		
 	}
 
@@ -852,8 +882,8 @@ public partial class Player3d : CharacterBody3D
 			_inStep = false;
 		}
 		else
-        {
-            await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
-        }
-    }
+		{
+			await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
+		}
+	}
 }
