@@ -17,6 +17,7 @@ public partial class TheHollow : Monster3d
 		AttackSpeed = 2.5f;
 		AttackRange = 2f;
 		Monster = this;
+		Chaser = true;
 		Initialization();
 	}
 
@@ -59,6 +60,7 @@ public partial class TheHollow : Monster3d
 	{
 		_hasHit = false;
 		_attackAnim = true;
+		_targetVelocity = Vector3.Zero;
 		await ToSignal(GetTree().CreateTimer(1.7), "timeout");
 		_speedOffset = 2.5f;
 		_attackBox.GetParent<Area3D>().Monitoring = true;
@@ -68,6 +70,7 @@ public partial class TheHollow : Monster3d
 		_attackException = false;
 		await ToSignal(GetTree().CreateTimer(0.7), "timeout");
 		_attackAnim = false;
+		_targetVelocity = Vector3.Zero;
         await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
         _canAttack = true;
 	}

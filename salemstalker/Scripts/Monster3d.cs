@@ -15,6 +15,7 @@ public partial class Monster3d : CharacterBody3D
     protected float AttackSpeed = 0.5f;
     protected float AttackRange = 1f;
     protected CharacterBody3D Monster;
+    protected bool Chaser = false;
 
     // --- VARIABLES ---
     protected Player3d _player;                    // Reference to the player
@@ -43,6 +44,8 @@ public partial class Monster3d : CharacterBody3D
     protected bool _stunned = false;
     protected Vector3 _targetVelocity;
     protected float _dashVelocity = 1f;
+    protected Vector3 _rangedPosition;
+    protected float _veloThreshold = -5f;
 
     // --- READY ---
     public void Initialization()
@@ -65,6 +68,7 @@ public partial class Monster3d : CharacterBody3D
 
         _animPlayer = GetNode<AnimationPlayer>("Body/AnimationPlayer");
         attackOneLength = _animPlayer.GetAnimation("attack").Length;
+        RandomRangedPosition();
     }
 
     // --- DAMAGE HANDLER ---
@@ -120,12 +124,18 @@ public partial class Monster3d : CharacterBody3D
         }
         _dashVelocity = Mathf.Lerp(_dashVelocity, 1f, 10f * (float)delta);
         // --- Chase Player ---
-        if (distance <= Range)
+        if (distance <= Range && _attackAnim == false && Chaser == true)
         {
             _navAgent.TargetPosition = _player.GlobalPosition;
             Vector3 nextPoint = _navAgent.GetNextPathPosition();
-            _targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed*_dashVelocity + _speedOffset) + _knockbackVelocity;
-
+            if (_knockbackVelocity.Length() > 1)
+            {
+                Velocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed * _dashVelocity + _speedOffset) + _knockbackVelocity;
+            }
+            else
+            {
+                _targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed * _dashVelocity + _speedOffset) + _knockbackVelocity;
+            }
             // Handle Y-axis alignment
             if (GlobalPosition.Snapped(0.1f).Y == _player.GlobalPosition.Snapped(0.1f).Y)
             {
@@ -154,10 +164,36 @@ public partial class Monster3d : CharacterBody3D
             }
 
         }
-        // --- Wander ---
-        else
+         // --- Ranged Enemy Chase ---
+        else if (_attackAnim == false && Chaser == false)
         {
-            _navAgent.TargetPosition = _wanderPos;
+            _navAgent.TargetPosition = _rangedPosition;
+            Vector3 nextPoint = _navAgent.GetNextPathPosition();
+            _targetVelocity = ((nextPoint - GlobalTransform.Origin).Normalized() * Speed) + _knockbackVelocity;
+
+            if (GlobalPosition.Snapped(0.1f) == _rangedPosition.Snapped(0.1f) || Velocity.Length() <= _veloThreshold)
+            {
+                _veloThreshold = -5f;
+                AttackInitilize();
+            }
+
+            // Handle Y-axis alignment
+            if (GlobalPosition.Snapped(0.1f).Y == _player.GlobalPosition.Snapped(0.1f).Y)
+            {
+                _targetVelocity = new Vector3(_targetVelocity.X, 0f, _targetVelocity.Z);
+            }
+            else if (!IsOnFloor())
+            {
+                _targetVelocity = new Vector3(_targetVelocity.X, -9.8f, _targetVelocity.Z);
+            }
+
+            // Face wander position
+            LookAt(new Vector3(_rangedPosition.X, GlobalPosition.Y, _rangedPosition.Z), Vector3.Up);
+        }
+        // --- Wander ---
+        else if (_attackAnim == false)
+        {
+            _navAgent.TargetPosition = _rangedPosition;
             Vector3 nextPoint = _navAgent.GetNextPathPosition();
             _targetVelocity = ((nextPoint - GlobalTransform.Origin).Normalized() * Speed) + _knockbackVelocity;
 
@@ -184,6 +220,7 @@ public partial class Monster3d : CharacterBody3D
 
         // --- Movement ---
         if (_player._inv.Visible == true || (_stunned == true && _attackException == false)) { _targetVelocity = Vector3.Zero; }
+        else if (Chaser == false && _attackAnim == false){ MoveAndSlide(); }
         else if (_justSpawned == true) { MoveAndSlide(); }
         else if (_attackAnim == false && distance > AttackRange && _knockbackVelocity.Length() < 0.5f) { MoveAndSlide(); }
         else if ((_knockbackVelocity.Length() < 0.5f || _attackAnim == true) && _attackException == false) { _targetVelocity = Vector3.Zero; }
@@ -219,5 +256,14 @@ public partial class Monster3d : CharacterBody3D
         GetNode<GpuParticles3D>("Stunned").Emitting = false;
         _stunned = false;
 
+    }
+
+    protected async void RandomRangedPosition()
+    {
+        float randZ = _startPos.Z + _rng.RandiRange(-1, 1)*AttackRange;
+        float randX = _startPos.X + _rng.RandiRange(-1, 1) * AttackRange;
+        _rangedPosition = new Vector3(randX, _player.GlobalPosition.Y, randZ);
+        await ToSignal(GetTree().CreateTimer(2f), "timeout");    
+        _veloThreshold = 0.5f;
     }
 }

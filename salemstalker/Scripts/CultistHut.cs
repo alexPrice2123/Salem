@@ -51,7 +51,7 @@ public partial class CultistHut : Node3D
 		{
 			return;
 		}
-
+		_countdown.WaitTime = _spawnTime;
 		// Distance between player and hut
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
 	
