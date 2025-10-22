@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmgtv0o1qnx6"]
+[gd_scene load_steps=4 format=3 uid="uid://dmgtv0o1qnx6"]
 
 [ext_resource type="Script" uid="uid://csc1wgxwkys3h" path="res://Scripts/CultistHut.cs" id="1_sak6b"]
+[ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/the_hollow.tscn" id="2_4aca4"]
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_n642y"]
 
 [node name="Hut" type="Node3D"]
 script = ExtResource("1_sak6b")
+_monsterList = Array[PackedScene]([ExtResource("2_4aca4")])
+_monsterCount = Array[int]([1])
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0490504, 1.07138, 0.940964)

@@ -7,7 +7,7 @@ public partial class VCultist : Monster3d
 
     private PackedScene _darkOrb = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/orb.tscn"); // Scene reference to the dark orb
     private Node3D _spawn;
-    private float _projectileSpeed = 15f;
+    private float _projectileSpeed = 25f;
     private float _dashRange = 5f;
     private bool _dashing = false;
     private bool _dashAnim = false;
@@ -23,7 +23,7 @@ public partial class VCultist : Monster3d
         MaxHealth = 100.0f;         // Maximum monster health
         Range = 50.0f;            // Detection range for chasing
         SpawnDistance = 100;    // Distance from player before despawning
-        BaseDamage = 0.0f;
+        BaseDamage = 25.0f;
         WanderRange = 50;
         AttackSpeed = 4f;
         AttackRange = 15f;
