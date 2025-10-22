@@ -9,7 +9,7 @@
 [ext_resource type="Shader" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
-[ext_resource type="PackedScene" uid="uid://6ys2jw0m130w" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
+[ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
 [ext_resource type="Shader" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
@@ -264,6 +264,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Inv" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -283,7 +284,7 @@ offset_bottom = -0.296082
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1080, 605)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Falchion" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 86.0
@@ -328,6 +329,7 @@ flat = true
 [node name="InvWorld" parent="Inv/SubPort/Sub" instance=ExtResource("3_nf4gj")]
 
 [node name="SlotSelector" type="Control" parent="Inv/SubPort/Sub"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 315.0
@@ -378,6 +380,15 @@ offset_right = 265.5
 offset_bottom = 226.7
 rotation = 0.785398
 text = "Slot4"
+
+[node name="Label" type="Label" parent="Inv/SubPort/Sub/SlotSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.089
+anchor_bottom = 0.051
+offset_right = -0.0499992
+offset_bottom = 0.0499992
+text = "Select weapon slot"
 
 [node name="Quest" type="Control" parent="."]
 visible = false
@@ -463,10 +474,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.002
 anchor_bottom = 0.995
-offset_left = 1.0
-offset_top = 278.794
-offset_right = -0.304077
-offset_bottom = 279.33
+offset_left = -3.0
+offset_top = 278.0
+offset_right = -4.30408
+offset_bottom = 278.536
 theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "In Combat"
 label_settings = SubResource("LabelSettings_qdvrb")
@@ -498,10 +509,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -218.0
-offset_top = -60.0
-offset_right = 83.0
-offset_bottom = 55.0
+offset_left = -119.0
+offset_top = -69.0
+offset_right = 182.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
