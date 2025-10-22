@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=31 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
+[ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
@@ -264,6 +265,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Inv" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -283,7 +285,7 @@ offset_bottom = -0.296082
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1080, 605)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Falchion" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 86.0
@@ -328,6 +330,7 @@ flat = true
 [node name="InvWorld" parent="Inv/SubPort/Sub" instance=ExtResource("3_nf4gj")]
 
 [node name="SlotSelector" type="Control" parent="Inv/SubPort/Sub"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 315.0
@@ -378,6 +381,15 @@ offset_right = 265.5
 offset_bottom = 226.7
 rotation = 0.785398
 text = "Slot4"
+
+[node name="Label" type="Label" parent="Inv/SubPort/Sub/SlotSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.089
+anchor_bottom = 0.051
+offset_right = -0.0499992
+offset_bottom = 0.0499992
+text = "Select weapon slot"
 
 [node name="Quest" type="Control" parent="."]
 visible = false
@@ -463,10 +475,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.002
 anchor_bottom = 0.995
-offset_left = 1.0
-offset_top = 278.794
-offset_right = -0.304077
-offset_bottom = 279.33
+offset_left = -3.0
+offset_top = 278.0
+offset_right = -4.30408
+offset_bottom = 278.536
 theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "In Combat"
 label_settings = SubResource("LabelSettings_qdvrb")
@@ -498,10 +510,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -218.0
-offset_top = -60.0
-offset_right = 83.0
-offset_bottom = 55.0
+offset_left = -119.0
+offset_top = -69.0
+offset_right = 182.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
@@ -649,6 +661,71 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 22
 text = "Ignore"
 
+[node name="BlacksmithShop" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.059
+anchor_top = 0.157
+anchor_right = 0.686
+anchor_bottom = 0.856
+offset_left = 0.338997
+offset_top = -0.142006
+offset_right = -0.194031
+offset_bottom = 0.263977
+
+[node name="ShopOptionTypes" type="OptionButton" parent="BlacksmithShop"]
+layout_mode = 0
+offset_right = 415.0
+offset_bottom = 33.0
+selected = 0
+item_count = 4
+popup/item_0/text = "One-Handed Primary"
+popup/item_0/id = 0
+popup/item_1/text = "Two-Handed Primary"
+popup/item_1/id = 1
+popup/item_2/text = "Offensive Secondary"
+popup/item_2/id = 2
+popup/item_3/text = "Defensive Secondary"
+popup/item_3/id = 3
+
+[node name="ShopOption1" type="Button" parent="BlacksmithShop"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 415.0
+offset_bottom = 121.0
+
+[node name="ShopOption2" type="Button" parent="BlacksmithShop"]
+layout_mode = 0
+offset_top = 150.0
+offset_right = 415.0
+offset_bottom = 221.0
+
+[node name="ShopOption3" type="Button" parent="BlacksmithShop"]
+layout_mode = 0
+offset_top = 250.0
+offset_right = 415.0
+offset_bottom = 321.0
+
+[node name="ShopOption4" type="Button" parent="BlacksmithShop"]
+layout_mode = 0
+offset_top = 350.0
+offset_right = 415.0
+offset_bottom = 421.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="BlacksmithShop"]
+layout_mode = 0
+offset_left = 438.38
+offset_right = 770.38
+offset_bottom = 422.0
+
+[node name="SubViewport" type="SubViewport" parent="BlacksmithShop/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(242, 422)
+render_target_update_mode = 0
+
+[node name="ShopPreviewWorld" parent="BlacksmithShop/SubViewportContainer/SubViewport" instance=ExtResource("12_whq80")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.51964, -10.136, 0)
+
 [node name="Stamina" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(938, 500)
@@ -663,7 +740,6 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_whq80")
 
 [node name="Controls" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(538, 305)
 scale = Vector2(0.561458, 0.559259)
 texture = ExtResource("14_8fs27")

@@ -48,13 +48,13 @@ public partial class Ui : Control
 
 
 	// --- Falchion ---
-	private void _on_falchion_mouse_entered() { PlayAnim("Falchion", true); }
-	private void _on_falchion_mouse_exited() { PlayAnim("Falchion", false); }
+	private void _on_falchion_mouse_entered(){ PlayAnim("Falchion", true); }
+	private void _on_falchion_mouse_exited(){ PlayAnim("Falchion", false); }
 	private void _on_falchion_button_up() { _player.SwitchPrimaryWeapon("Falchion"); }
 	
 	// --- ShortSword ---
-	private void _on_shortsword_mouse_entered() { PlayAnim("ShortSword", true); }
-	private void _on_shortsword_mouse_exited() { PlayAnim("ShortSword", false); }
+	private void _on_shortsword_mouse_entered(){ PlayAnim("ShortSword", true); }
+	private void _on_shortsword_mouse_exited(){ PlayAnim("ShortSword", false); }
 	private void _on_shortsword_button_up() { _player.SwitchPrimaryWeapon("ShortSword"); }
 
 	// --- StakeGun ---
