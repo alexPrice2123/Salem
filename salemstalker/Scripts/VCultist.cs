@@ -23,11 +23,12 @@ public partial class VCultist : Monster3d
         MaxHealth = 100.0f;         // Maximum monster health
         Range = 50.0f;            // Detection range for chasing
         SpawnDistance = 100;    // Distance from player before despawning
-        BaseDamage = 25.0f;
+        BaseDamage = 0*25.0f;
         WanderRange = 50;
         AttackSpeed = 4f;
         AttackRange = 15f;
         Monster = this;
+        Chaser = false;
 
         _spawn = GetNode<Node3D>("Spawn");
         Initialization();
@@ -54,6 +55,11 @@ public partial class VCultist : Monster3d
         {
             _dashing = false;
             _dashAnim = false;
+        }
+        if (_attackAnim == true)
+        {
+            Vector3 playerPos = _player.GlobalPosition;
+            LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
         }
         if (_dashVelocity < 0.99f)
         {
@@ -115,6 +121,7 @@ public partial class VCultist : Monster3d
             orb._damageOrb = BaseDamage + _damageOffset;
             orb.Shoot(_projectileSpeed);
         }
+        RandomRangedPosition();
         await ToSignal(GetTree().CreateTimer(0.5), "timeout");
         _attackAnim = false;
         _canAttack = false;
