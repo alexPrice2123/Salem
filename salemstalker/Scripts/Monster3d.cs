@@ -46,6 +46,8 @@ public partial class Monster3d : CharacterBody3D
     protected float _dashVelocity = 1f;
     protected Vector3 _rangedPosition;
     protected float _veloThreshold = -5f;
+    protected bool _dashAnim = false;
+    protected Node3D _lookDirection;
 
     // --- READY ---
     public void Initialization()
@@ -65,9 +67,11 @@ public partial class Monster3d : CharacterBody3D
         _currentRot = GlobalRotation;
         _attackBox = GetNode<CollisionShape3D>("Attackbox/CollisionShape3D");
         _health = MaxHealth;
+        _lookDirection = GetNode<Node3D>("Direction");
 
         _animPlayer = GetNode<AnimationPlayer>("Body/AnimationPlayer");
         attackOneLength = _animPlayer.GetAnimation("attack").Length;
+
         RandomRangedPosition();
     }
 
@@ -164,7 +168,7 @@ public partial class Monster3d : CharacterBody3D
             }
 
         }
-         // --- Ranged Enemy Chase ---
+        // --- Ranged Enemy Chase ---
         else if (_attackAnim == false && Chaser == false)
         {
             _navAgent.TargetPosition = _rangedPosition;
@@ -188,12 +192,16 @@ public partial class Monster3d : CharacterBody3D
             }
 
             // Face wander position
-            LookAt(new Vector3(_rangedPosition.X, GlobalPosition.Y, _rangedPosition.Z), Vector3.Up);
+            Vector3 moveDirection = Velocity.Normalized();
+            if (moveDirection != Vector3.Zero)
+            {
+                _lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up);
+            }
         }
         // --- Wander ---
         else if (_attackAnim == false)
         {
-            _navAgent.TargetPosition = _rangedPosition;
+            _navAgent.TargetPosition = _wanderPos;
             Vector3 nextPoint = _navAgent.GetNextPathPosition();
             _targetVelocity = ((nextPoint - GlobalTransform.Origin).Normalized() * Speed) + _knockbackVelocity;
 
@@ -219,7 +227,7 @@ public partial class Monster3d : CharacterBody3D
         Velocity = Velocity.Lerp(_targetVelocity, 2f * (float)delta);
 
         // --- Movement ---
-        if (_player._inv.Visible == true || (_stunned == true && _attackException == false)) { _targetVelocity = Vector3.Zero; }
+        if (_player._inv.Visible == true || (_stunned == true && _attackException == false) || (_dashVelocity >= 0.99f && _dashAnim == true)) { _targetVelocity = Vector3.Zero; }
         else if (Chaser == false && _attackAnim == false){ MoveAndSlide(); }
         else if (_justSpawned == true) { MoveAndSlide(); }
         else if (_attackAnim == false && distance > AttackRange && _knockbackVelocity.Length() < 0.5f) { MoveAndSlide(); }
@@ -264,6 +272,6 @@ public partial class Monster3d : CharacterBody3D
         float randX = _startPos.X + _rng.RandiRange(-1, 1) * AttackRange;
         _rangedPosition = new Vector3(randX, _player.GlobalPosition.Y, randZ);
         await ToSignal(GetTree().CreateTimer(2f), "timeout");    
-        _veloThreshold = 0.5f;
+        _veloThreshold = 0.5f; 
     }
 }
