@@ -24,7 +24,7 @@ public partial class Orb : RigidBody3D
         }
     }
 
-	public void _on_attackbox_area_entered(Node3D body)
+	public async void _on_attackbox_area_entered(Node3D body)
 	{
 		if (body.IsInGroup("Player") && body.Name == "Hurtbox")
 		{
@@ -35,6 +35,8 @@ public partial class Orb : RigidBody3D
 			GetNode<GpuParticles3D>("Boom").Emitting = true;
 			GetNode<GpuParticles3D>("Magic").Emitting = false;
 			GetNode<MeshInstance3D>("Orb").Visible = false;
+			await ToSignal(GetTree().CreateTimer(1), "timeout");
+			QueueFree();
 		}
 	}
 }
