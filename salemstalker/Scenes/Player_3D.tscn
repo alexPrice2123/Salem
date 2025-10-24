@@ -26,9 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.231209, -0.29871
 
 [node name="Falchion" parent="Head/Camera3D/Sword" instance=ExtResource("3_l13c1")]
 
-[node name="AnimationPlayer" parent="Head/Camera3D/Sword/Falchion" index="0"]
-blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
-
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -5)
 collision_mask = 2
@@ -39,6 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265332, -0.769787, -0.31310
 light_color = Color(0.956863, 0.882353, 0.541176, 1)
 light_energy = 4.0
 light_volumetric_fog_energy = 10.0
+shadow_enabled = true
 omni_range = 25.0
 
 [node name="InvCam" type="CSGBox3D" parent="Head"]
