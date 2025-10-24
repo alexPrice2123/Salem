@@ -400,7 +400,7 @@ navigation_mesh = SubResource("NavigationMesh_5a7ea")
 [node name="Hut" parent="MonsterRegion" groups=["Terrain"] instance=ExtResource("3_8j60k")]
 transform = Transform3D(-0.995991, 0, -0.0751335, 0, 0.998821, 0, 0.0751335, 0, -0.995991, 74.503, 4.53272, 68.476)
 _monsterList = Array[PackedScene]([ExtResource("3_uqdn7"), ExtResource("4_gwaj6")])
-_monsterCount = Array[int]([0, 1])
+_monsterCount = Array[int]([0, 50])
 
 [node name="VillageRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.254805, 0, -0.966993, 0, 1, 0, 0.966993, 0, 0.254805, -437.512, -4.30756, -130.386)

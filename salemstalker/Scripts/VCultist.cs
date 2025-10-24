@@ -65,12 +65,12 @@ public partial class VCultist : Monster3d
             Vector3 moveDirection = Velocity.Normalized();
             if (moveDirection != Vector3.Zero)
             {
-                _lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up);
+                _lookDirection.LookAt((GlobalTransform.Origin + moveDirection)*-1, Vector3.Up);
             }
         }
         else if (_dashAnim == true)
         {
-            _lookDirection.LookAt(new Vector3(_rangedPosition.X, GlobalPosition.Y, _rangedPosition.Z), Vector3.Up);
+            _lookDirection.LookAt(new Vector3(_rangedPosition.X, GlobalPosition.Y, _rangedPosition.Z)*-1, Vector3.Up);
         }
         if (_dashVelocity < 0.99f)
         {
@@ -82,8 +82,15 @@ public partial class VCultist : Monster3d
             QueueFree(); // Destroy monster when health hits zero
         }
         _orb.Scale = _orb.Scale.Lerp(_orbGoal, _orbTweenTime * (float)delta);
-        float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 100.0f);
-        GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
+        if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
+        {
+            GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
+        }
+        else
+        {
+            float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
+            GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
+        }
     }
     
     private async void Dash()
@@ -137,7 +144,7 @@ public partial class VCultist : Monster3d
         float distance = (_player.GlobalPosition - GlobalPosition).Length();
         if (distance <= _dashRange)
         {
-            RandomRangedPosition();
+            //RandomRangedPosition();
             await ToSignal(GetTree().CreateTimer(0.5), "timeout");
             _attackAnim = false;
             _canAttack = false;
@@ -150,7 +157,7 @@ public partial class VCultist : Monster3d
             int shouldChange = _rng.RandiRange(1, 2);
             if (shouldChange == 1)
             {
-                RandomRangedPosition();
+                //RandomRangedPosition();
                 await ToSignal(GetTree().CreateTimer(0.5), "timeout");
                 _attackAnim = false;
                 _canAttack = false;

@@ -71,8 +71,6 @@ public partial class Monster3d : CharacterBody3D
 
         _animPlayer = GetNode<AnimationPlayer>("Body/AnimationPlayer");
         attackOneLength = _animPlayer.GetAnimation("attack").Length;
-
-        RandomRangedPosition();
     }
 
     // --- DAMAGE HANDLER ---
@@ -110,7 +108,6 @@ public partial class Monster3d : CharacterBody3D
     // --- PHYSICS LOOP ---
     public void EveryFrame(double delta)
     {
-        _count += 1;
         float distance = (_player.GlobalPosition - GlobalPosition).Length();
         if (_count > 50 && _justSpawned == true)
         {
@@ -178,6 +175,8 @@ public partial class Monster3d : CharacterBody3D
             if (GlobalPosition.Snapped(0.1f) == _rangedPosition.Snapped(0.1f) || Velocity.Length() <= _veloThreshold)
             {
                 _veloThreshold = -5f;
+                _targetVelocity = Vector3.Zero;
+                Velocity = _targetVelocity; 
                 AttackInitilize();
             }
 
@@ -266,10 +265,17 @@ public partial class Monster3d : CharacterBody3D
 
     }
 
-    protected async void RandomRangedPosition()
+    public async void RandomRangedPosition()
     {
-        float randZ = _startPos.Z + _rng.RandiRange(-1, 1)*AttackRange;
-        float randX = _startPos.X + _rng.RandiRange(-1, 1) * AttackRange;
+        _rng.Randomize();
+        float randZ = _player.GlobalPosition.Z + _rng.RandiRange(-1, 1) * AttackRange;
+        float rangeZ = randZ - _player.GlobalPosition.Z;
+        if (rangeZ == 0) { randZ += AttackRange; }
+        GD.Print(randZ - _player.GlobalPosition.Z+" Z");
+        float randX = _player.GlobalPosition.X + _rng.RandiRange(-1, 1) * AttackRange;
+        float rangeX = randX - _player.GlobalPosition.Z;
+        if (rangeX == 0) { randX += AttackRange; }
+        GD.Print(randX - _player.GlobalPosition.X+" X");
         _rangedPosition = new Vector3(randX, _player.GlobalPosition.Y, randZ);
         await ToSignal(GetTree().CreateTimer(2f), "timeout");    
         _veloThreshold = 0.5f; 
