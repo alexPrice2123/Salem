@@ -1,8 +1,7 @@
-[gd_scene load_steps=91 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=90 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
-[ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/the_hollow.tscn" id="3_uqdn7"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/vCultist.tscn" id="4_gwaj6"]
 [ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/VillagerScripts/JohnVillager.cs" id="4_ochwf"]
@@ -399,8 +398,9 @@ navigation_mesh = SubResource("NavigationMesh_5a7ea")
 
 [node name="Hut" parent="MonsterRegion" groups=["Terrain"] instance=ExtResource("3_8j60k")]
 transform = Transform3D(-0.995991, 0, -0.0751335, 0, 0.998821, 0, 0.0751335, 0, -0.995991, 74.503, 4.53272, 68.476)
-_monsterList = Array[PackedScene]([ExtResource("3_uqdn7"), ExtResource("4_gwaj6")])
-_monsterCount = Array[int]([0, 50])
+_spawnTime = 1.0
+_monsterList = Array[PackedScene]([ExtResource("4_gwaj6")])
+_monsterCount = Array[int]([20])
 
 [node name="VillageRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.254805, 0, -0.966993, 0, 1, 0, 0.966993, 0, 0.254805, -437.512, -4.30756, -130.386)

@@ -268,16 +268,15 @@ public partial class Monster3d : CharacterBody3D
     public async void RandomRangedPosition()
     {
         _rng.Randomize();
-        float randZ = _player.GlobalPosition.Z + _rng.RandiRange(-1, 1) * AttackRange;
-        float rangeZ = randZ - _player.GlobalPosition.Z;
-        if (rangeZ == 0) { randZ += AttackRange; }
-        GD.Print(randZ - _player.GlobalPosition.Z+" Z");
-        float randX = _player.GlobalPosition.X + _rng.RandiRange(-1, 1) * AttackRange;
-        float rangeX = randX - _player.GlobalPosition.Z;
-        if (rangeX == 0) { randX += AttackRange; }
-        GD.Print(randX - _player.GlobalPosition.X+" X");
-        _rangedPosition = new Vector3(randX, _player.GlobalPosition.Y, randZ);
-        await ToSignal(GetTree().CreateTimer(2f), "timeout");    
-        _veloThreshold = 0.5f; 
+        float randomRadius = Mathf.Sqrt(GD.Randf()) * AttackRange;
+        Vector3 center = _player.GlobalPosition;
+        // Generate a random angle
+        float angle = GD.Randf() * 2 * MathF.PI;
+        float xOffset = randomRadius * Mathf.Cos(angle);
+        float zOffset = randomRadius * Mathf.Sin(angle);
+
+        _rangedPosition = new Vector3(center.X + xOffset, center.Y, center.Z + zOffset);
+        await ToSignal(GetTree().CreateTimer(2f), "timeout");
+        _veloThreshold = 0.5f;
     }
 }
