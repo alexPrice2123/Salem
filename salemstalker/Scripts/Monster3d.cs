@@ -103,6 +103,24 @@ public partial class Monster3d : CharacterBody3D
             // Apply damage
             _health -= damage;
         }
+        else if (body.IsInGroup("PlayerProj"))
+        {
+            _canBeHit = false;
+            float damage = MaxHealth * (float)body.GetMeta("DamagePer");
+
+            // Swap body FX on hit
+            _hitFX.Visible = true;
+            _body.Visible = false;
+            _canAttack = false;
+
+            await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+            // Reset visuals
+            _hitFX.Visible = false;
+            _body.Visible = true;
+
+            // Apply damage
+            _health -= damage;
+        }
     }
 
     // --- PHYSICS LOOP ---
