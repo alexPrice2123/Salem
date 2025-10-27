@@ -398,7 +398,6 @@ navigation_mesh = SubResource("NavigationMesh_5a7ea")
 
 [node name="Hut" parent="MonsterRegion" groups=["Terrain"] instance=ExtResource("3_8j60k")]
 transform = Transform3D(-0.995991, 0, -0.0751335, 0, 0.998821, 0, 0.0751335, 0, -0.995991, 74.503, 4.53272, 68.476)
-_spawnTime = 1.0
 _monsterList = Array[PackedScene]([ExtResource("4_gwaj6")])
 _monsterCount = Array[int]([20])
 

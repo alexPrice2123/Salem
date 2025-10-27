@@ -30,7 +30,6 @@ public partial class Player3d : CharacterBody3D
 	public Control _questBox;                        // Container where active quest entries are listed
 	private VBoxContainer _questTemplate;            // A hidden template used to instantiate new quest UI entries
 	private OmniLight3D _lantern; 					 // A light attached to the player (likely for dynamic lighting/mood based on health)
-	private AudioStreamPlayer3D _audio;				 // Audio player for sound effects
 	private Control _dialogue;                       // Main container for all dialogue UI
 	private Control _smithShop;                      // Main container for all blacksmith shop UI
 
@@ -110,7 +109,6 @@ public partial class Player3d : CharacterBody3D
 		_questBox = GetNode<Control>("UI/Quest/QuestBox");
 		_questTemplate = GetNode<VBoxContainer>("UI/Container/QuestTemplate");
 		_lantern = GetNode<OmniLight3D>("Head/Camera3D/Lantern");
-		_audio = GetNode<AudioStreamPlayer3D>("SFX");
 		_dialogue = GetNode<Control>("UI/Dialogue");
 		_smithShop = GetNode<Control>("UI/BlacksmithShop");
 		
