@@ -577,7 +577,7 @@ public partial class Player3d : CharacterBody3D
 		// Only call MoveAndSlide() if not paused by UI elements (Inventory, Controls, Dialogue)
 		if (_inv.Visible == false 
 		&& GetNode<Sprite2D>("UI/Controls").Visible == false
-		&& GetNode<Control>("UI/Dialogue").Visible == false) {/* MoveAndSlide();*/ }
+		&& GetNode<Control>("UI/Dialogue").Visible == false) {MoveAndSlide(); }
 	}
 
 
