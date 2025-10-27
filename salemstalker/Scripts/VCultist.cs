@@ -10,7 +10,6 @@ public partial class VCultist : Monster3d
     private float _projectileSpeed = 25f;
     private float _dashRange = 5f;
     private bool _dashing = false;
-    private bool _dashAnim = false;
     private GpuParticles3D _leftArmMagic;
     private GpuParticles3D _rightArmMagic;
     private GpuParticles3D _magicOrbParticle;
@@ -59,7 +58,19 @@ public partial class VCultist : Monster3d
         if (_attackAnim == true)
         {
             Vector3 playerPos = _player.GlobalPosition;
-            LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
+            _lookDirection.LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
+        }
+        if (_dashVelocity < 0.99f)
+        {
+            Vector3 moveDirection = Velocity.Normalized();
+            if (moveDirection != Vector3.Zero)
+            {
+                _lookDirection.LookAt((GlobalTransform.Origin + moveDirection)*-1, Vector3.Up);
+            }
+        }
+        else if (_dashAnim == true)
+        {
+            _lookDirection.LookAt(new Vector3(_rangedPosition.X, GlobalPosition.Y, _rangedPosition.Z)*-1, Vector3.Up);
         }
         if (_dashVelocity < 0.99f)
         {
@@ -71,6 +82,15 @@ public partial class VCultist : Monster3d
             QueueFree(); // Destroy monster when health hits zero
         }
         _orb.Scale = _orb.Scale.Lerp(_orbGoal, _orbTweenTime * (float)delta);
+        if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
+        {
+            GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
+        }
+        else
+        {
+            float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
+            GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
+        }
     }
     
     private async void Dash()
@@ -121,11 +141,35 @@ public partial class VCultist : Monster3d
             orb._damageOrb = BaseDamage + _damageOffset;
             orb.Shoot(_projectileSpeed);
         }
-        RandomRangedPosition();
-        await ToSignal(GetTree().CreateTimer(0.5), "timeout");
-        _attackAnim = false;
-        _canAttack = false;
-        await ToSignal(GetTree().CreateTimer(1), "timeout");
-        _canAttack = true;
+        float distance = (_player.GlobalPosition - GlobalPosition).Length();
+        if (distance <= _dashRange)
+        {
+            //RandomRangedPosition();
+            await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+            _attackAnim = false;
+            _canAttack = false;
+            await ToSignal(GetTree().CreateTimer(1), "timeout");
+            _canAttack = true;
+        }
+        else
+        {
+            _rng.Randomize();
+            int shouldChange = _rng.RandiRange(1, 2);
+            if (shouldChange == 1)
+            {
+                //RandomRangedPosition();
+                await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+                _attackAnim = false;
+                _canAttack = false;
+                await ToSignal(GetTree().CreateTimer(1), "timeout");
+                _canAttack = true;
+            }
+            else
+            {
+                _attackAnim = false;
+                _canAttack = true;
+                Attack();
+            }
+        }
 	}
 }
