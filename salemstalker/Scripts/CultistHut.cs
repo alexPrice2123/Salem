@@ -97,7 +97,7 @@ public partial class CultistHut : Node3D
 		{
 			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 			SpawnMonster();
-			GD.Print("Tried to spawn" + _monsterList[monsterIndex] + " but was at max");
+			//GD.Print("Tried to spawn" + _monsterList[monsterIndex] + " but was at max");
         }
     }
 
