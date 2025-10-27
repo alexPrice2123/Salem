@@ -18,8 +18,12 @@ public partial class Player3d : CharacterBody3D
 	private Camera3D _cam;                           // Player camera node (handles up/down rotation and FOV)
 	private Control _interface;                      // Reference to the main Pause menu UI
 	private Slider _senseBar;                        // Slider control within the pause menu for adjusting sensitivity
-	public Control _inv;                             // Reference to the Inventory UI
-	private Node3D _sword;                           // The currently equipped sword's mesh/root node
+	public Control _inv;                             // Reference to the Inventory UI
+	private Node3D _sword;                           // The currently equipped sword's mesh/root node
+	private Node3D _eSecWeapon1;
+	private Node3D _eSecWeapon2;
+	private Node3D _eSecWeapon3;
+	private Node3D _eSecWeapon4;
 	private Control _combatNotif;                    // UI element for combat notifications/status
 	private RayCast3D _ray;                          // Raycast used to detect interactable objects (NPCs, items)
 	private Control _questBook;                      // The main container for the Quest Log UI
@@ -33,7 +37,9 @@ public partial class Player3d : CharacterBody3D
 	// --- WEAPON REFERENCES ---
 	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
 	private PackedScene _falchion = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/falchion.tscn"); // Pre-load falchion scene resource
+	private PackedScene _flintGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Flintlock.tscn"); // Pre-load Flintlock scene resource
 	private Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
+	private Dictionary<string, PackedScene> _secWeapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
 	// --- VARIABLES ---
 	public float HorCamSense = 0.002f;                  // Horizontal camera mouse sensitivity multiplier
@@ -78,6 +84,7 @@ public partial class Player3d : CharacterBody3D
 	public bool _hasApple = false; // Quest item flag
 	private float _staminaTimer = 2f;
 	private float _currentStaminaTimer = 0f;
+	private int equipSec = 1;
 	public bool _twoHand = false;
 
 	// --- READY ---
@@ -92,6 +99,10 @@ public partial class Player3d : CharacterBody3D
 		_interface = GetNode<Control>("UI/PauseMenu");
 		_senseBar = GetNode<Slider>("UI/PauseMenu/Sense");
 		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
+		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
+		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
+		_eSecWeapon3 = GetNode<Node3D>("Head/Camera3D/Offhand3").GetChild<Node3D>(0);
+		_eSecWeapon4 = GetNode<Node3D>("Head/Camera3D/Offhand4").GetChild<Node3D>(0);
 		_combatNotif = GetNode<Control>("UI/Combat");
 		_inv = GetNode<Control>("UI/Inv");
 		_ray = GetNode<RayCast3D>("Head/Camera3D/Ray");
@@ -112,6 +123,7 @@ public partial class Player3d : CharacterBody3D
 		// Populate the weapon dictionary
 		_weapon.Add("ShortSword", _shortSword);
 		_weapon.Add("Falchion", _falchion);
+		_secWeapon.Add("FlintGun", _flintGun);
 	}
 
 	// --- INPUT HANDLER ---
@@ -132,7 +144,7 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		// --- Pause menu toggle (Escape) ---
-		else if (@event is InputEventKey escapeKey && escapeKey.Keycode == Key.Escape && escapeKey.Pressed)
+		else if (Input.IsActionJustPressed("pause"))
 		{
 			if (_inv.Visible == true) // pressing escape while the inventory is open will close it.
 			{
@@ -149,7 +161,7 @@ public partial class Player3d : CharacterBody3D
 				_smithShop.Visible = false;
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 			}
-			if(_dialogue.Visible == true) { return; }
+			if (_dialogue.Visible == true) { return; }
 
 			if (Input.MouseMode == Input.MouseModeEnum.Captured)
 			{
@@ -266,7 +278,8 @@ public partial class Player3d : CharacterBody3D
 		else if (Input.IsActionJustPressed("dash"))
 		{
 			// Check if dash cooldown is over and player has enough stamina
-			if (_dashVelocity <= 0.1f && _stamina >= 0.1f * _maxStamina) {
+			if (_dashVelocity <= 0.1f && _stamina >= 0.1f * _maxStamina)
+			{
 				_dashVelocity = _fullDashValue; // Apply max dash speed
 				_stamina -= 10f; // Deduct stamina
 			}
@@ -297,6 +310,41 @@ public partial class Player3d : CharacterBody3D
 				villager.Talk();
 			}
 		}
+		
+
+		else if (Input.IsActionJustPressed("special"))
+		{
+			if (equipSec == 1)
+			{
+				if (_eSecWeapon1 is Flintlock flintchild)
+				{
+					flintchild.specAction();
+                }
+			}
+			else if (equipSec == 2)
+			{
+				if (_eSecWeapon2 is Flintlock flintchild)
+				{
+					flintchild.specAction();
+                }
+			}
+			else if (equipSec == 3)
+			{
+				GD.Print("test2");
+				if (_eSecWeapon3 is Flintlock flintchild)
+				{
+					flintchild.specAction();
+                }
+			}
+			else
+			{
+				GD.Print("test2");
+                if (_eSecWeapon4 is Flintlock flintchild)
+				{
+					flintchild.specAction();
+                }
+            }
+        }
 	}
 
 	// --- PHYSICS LOOP ---
@@ -886,4 +934,5 @@ public partial class Player3d : CharacterBody3D
 			await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
 		}
 	}
+
 }
