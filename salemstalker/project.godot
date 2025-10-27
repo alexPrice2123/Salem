@@ -36,6 +36,7 @@ Monster=""
 Player=""
 Interactable=""
 Weapon=""
+PlayerProj=""
 
 [input]
 
