@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3ix37nxvhxo5"]
+[gd_scene load_steps=16 format=3 uid="uid://c3ix37nxvhxo5"]
 
 [ext_resource type="Script" uid="uid://dxkew2fckxi71" path="res://Scenes/OffHandWeapons/Flintlock.cs" id="1_wv7ev"]
 [ext_resource type="PackedScene" uid="uid://cyf8c2ed65om1" path="res://Assets/Weapons/weapon_animtions/flinklock_animtions.blend" id="2_rfx4h"]
@@ -39,7 +39,33 @@ material = SubResource("StandardMaterial3D_wv7ev")
 radius = 0.05
 height = 0.1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rfx4h"]
+animation = &"armed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0uelw"]
+animation = &"fire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lr1eo"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+advance_expression = "shooting = true
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rfx4h"]
+advance_mode = 2
+advance_expression = "_shooting = true;"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0uelw"]
+advance_mode = 2
+advance_expression = "shooting = false"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0uelw"]
+states/armed/node = SubResource("AnimationNodeAnimation_rfx4h")
+states/armed/position = Vector2(376, 55.5933)
+states/fire/node = SubResource("AnimationNodeAnimation_0uelw")
+states/fire/position = Vector2(376.25, 167.562)
+transitions = ["armed", "fire", SubResource("AnimationNodeStateMachineTransition_lr1eo"), "Start", "armed", SubResource("AnimationNodeStateMachineTransition_rfx4h"), "fire", "armed", SubResource("AnimationNodeStateMachineTransition_0uelw")]
 
 [node name="FlintGun" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558561, 0)
@@ -57,6 +83,7 @@ draw_pass_1 = SubResource("SphereMesh_rfx4h")
 
 [node name="Flash" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0277899, -0.523615, 0.0821745)
+visible = false
 light_color = Color(1, 0.627451, 0, 1)
 light_energy = 16.0
 light_indirect_energy = 16.0
@@ -68,21 +95,21 @@ spot_angle = 70.0
 spot_angle_attenuation = 12.394
 
 [node name="BarrelPos" type="Marker3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.244073, -0.524, -7.56249)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.244073, -0.524, -0.100576)
 
 [node name="flinklock_animtions" parent="." instance=ExtResource("2_rfx4h")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0820205, -2.18294, 1.06889)
 
 [node name="Skeleton3D" parent="flinklock_animtions/metarig" index="0"]
-bones/8/rotation = Quaternion(-0.0532363, 0.0163121, -0.860912, 0.505699)
-bones/9/rotation = Quaternion(0.148918, 0.0616207, -0.132652, 0.977972)
-bones/10/rotation = Quaternion(-0.226592, -0.21835, 0.146092, 0.937889)
+bones/8/rotation = Quaternion(-0.303982, 0.595171, -0.620591, 0.410162)
+bones/9/rotation = Quaternion(0.163256, 0.0590477, -0.132891, 0.975808)
+bones/10/rotation = Quaternion(-0.0386568, -0.212789, 0.0779945, 0.973213)
 bones/11/rotation = Quaternion(0.179764, -0.206637, 0.167751, 0.947019)
 bones/12/rotation = Quaternion(-0.30828, 0.197393, -0.35762, 0.859132)
-bones/13/rotation = Quaternion(-0.366131, -0.102459, -0.249283, 0.890678)
-bones/15/rotation = Quaternion(-0.000587352, -0.194393, -0.375696, 0.906126)
+bones/13/rotation = Quaternion(-0.366132, -0.102459, -0.249283, 0.890678)
+bones/15/rotation = Quaternion(0.164069, -0.0932468, -0.432995, 0.88142)
 bones/16/rotation = Quaternion(-0.152494, 0.0324545, 0.340067, 0.927387)
-bones/17/rotation = Quaternion(0.0344872, -0.0458761, 0.26541, 0.962426)
+bones/17/rotation = Quaternion(0.0344871, -0.0458761, 0.26541, 0.962426)
 bones/19/rotation = Quaternion(-0.219223, -0.673226, 0.585935, 0.394193)
 bones/20/rotation = Quaternion(0.166704, -0.0998514, 0.141085, 0.970739)
 bones/21/rotation = Quaternion(0.0696113, -0.0378772, -0.243182, 0.966738)
@@ -97,11 +124,15 @@ bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
 
 [node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.0147199, 0.000521587, 0.00144538, 0.000505125, 0.0147901, -0.000192955, -0.00145121, -0.000142579, -0.0147279, 0.116332, 1.61075, 0.716158)
+transform = Transform3D(-0.0146431, 0.000682895, 0.00203767, 0.0020551, 0.00855356, 0.0119017, -0.000628493, 0.0120585, -0.00855773, 0.124191, 0.888632, 0.262743)
+
+[node name="AnimationPlayer" parent="flinklock_animtions" index="1"]
+deterministic = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../flinklock_animtions")
 tree_root = SubResource("AnimationNodeStateMachine_0uelw")
+advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../flinklock_animtions/AnimationPlayer")
 
 [editable path="flinklock_animtions"]
