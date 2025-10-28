@@ -111,26 +111,11 @@ public partial class VCultist : Monster3d
     {
         if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
         {
-            if (_dashAnim == true || _dashVelocity < 0.99f)
-            {
-                GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y+180f, GlobalRotation.Z);
-            }
-            else
-            {
-                GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
-            }
+            GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
         }
         else
         {
-            float newRotation = 0f;
-            if (_dashAnim == true || _dashVelocity < 0.99f)
-            {
-                newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y+180f, (float)delta * 10f);
-            }
-            else
-            {
-                newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
-            }
+            float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
             GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
         }
     }
