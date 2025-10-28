@@ -329,7 +329,7 @@ libraries = {
 }
 
 [node name="flintlock" parent="." instance=ExtResource("7_xsxfx")]
-transform = Transform3D(-0.427048, 1.05104, -0.112055, -0.133877, 0.0660972, 1.13018, 1.04848, 0.43653, 0.0986691, 0.788165, 1.43068, -1.63266)
+transform = Transform3D(-0.427048, 1.05104, -0.112055, -0.133877, 0.0660973, 1.13018, 1.04848, 0.436531, 0.0986691, 0.788165, 1.43068, -1.63266)
 
 [node name="HoverAnim" type="AnimationPlayer" parent="flintlock"]
 libraries = {

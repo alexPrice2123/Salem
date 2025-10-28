@@ -46,12 +46,16 @@ public partial class CultistHut : Node3D
 	// --- SPAWN HANDLER ---
 	private void _on_spawn_time_timeout()
 	{
-		// Prevent spawning if player is in inventory
+		SpawnMonster();
+	}
+	
+	private async void SpawnMonster()
+    {
+        // Prevent spawning if player is in inventory
 		if (_player._inv.Visible == true)
 		{
 			return;
 		}
-		_countdown.WaitTime = _spawnTime;
 		// Distance between player and hut
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
 	
@@ -73,26 +77,29 @@ public partial class CultistHut : Node3D
 
 		// --- Spawn new monster ---
 		int monsterIndex = _rng.RandiRange(0, _monsterCount.Count-1);
-		GD.Print(monsterIndex);
 		if (_currenctMonsterCount[monsterIndex] > 0)
 		{
 			_currenctMonsterCount[monsterIndex] -= 1;
 			PackedScene monsterSelection = _monsterList[monsterIndex];
-			GD.Print(monsterSelection);
 			CharacterBody3D monsterInstance = monsterSelection.Instantiate<CharacterBody3D>(); // Create monster instance
 			_holder.AddChild(monsterInstance);                                             // Add monster to holder node
 			monsterInstance.Position = _spawn.Position;                                    // Set monster spawn position
-
+			if (monsterInstance is Monster3d monster)
+            {
+                monster.RandomRangedPosition();
+            }
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();
+			
 			GD.Print("There are " + _number + " monsters and its running at " + fps + " FPS");
 		}
         else
-        {
-			_countdown.WaitTime = 0.5f;
-			GD.Print("Tried to spawn" + _monsterList[monsterIndex] + " but was at max");
+		{
+			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+			SpawnMonster();
+			//GD.Print("Tried to spawn" + _monsterList[monsterIndex] + " but was at max");
         }
-	}
+    }
 
 	// --- PROCESS LOOP ---
 	public override void _Process(double delta)

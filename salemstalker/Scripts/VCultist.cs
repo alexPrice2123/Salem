@@ -82,8 +82,7 @@ public partial class VCultist : Monster3d
             QueueFree(); // Destroy monster when health hits zero
         }
         _orb.Scale = _orb.Scale.Lerp(_orbGoal, _orbTweenTime * (float)delta);
-        float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 100.0f);
-        GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
+        RotateFunc(delta);
     }
     
     private async void Dash()
@@ -105,6 +104,19 @@ public partial class VCultist : Monster3d
             _player._health -= BaseDamage + _damageOffset;
             _attackBox.Disabled = true;
             _hasHit = true;
+        }
+    }
+
+    private void RotateFunc(double delta)
+    {
+        if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
+        {
+            GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
+        }
+        else
+        {
+            float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
+            GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
         }
     }
 
@@ -159,10 +171,13 @@ public partial class VCultist : Monster3d
             }
             else
             {
+                await ToSignal(GetTree().CreateTimer(0.5), "timeout");
                 _attackAnim = false;
+                _canAttack = false;
+                await ToSignal(GetTree().CreateTimer(1), "timeout");
                 _canAttack = true;
                 Attack();
             }
         }
-	}
+    }
 }

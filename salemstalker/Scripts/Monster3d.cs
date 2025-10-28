@@ -71,8 +71,6 @@ public partial class Monster3d : CharacterBody3D
 
         _animPlayer = GetNode<AnimationPlayer>("Body/AnimationPlayer");
         attackOneLength = _animPlayer.GetAnimation("attack").Length;
-
-        RandomRangedPosition();
     }
 
     // --- DAMAGE HANDLER ---
@@ -105,12 +103,29 @@ public partial class Monster3d : CharacterBody3D
             // Apply damage
             _health -= damage;
         }
+        else if (body.IsInGroup("PlayerProj") && _canBeHit)
+        {
+            _canBeHit = false;
+            float damage = MaxHealth * (float)body.GetMeta("DamagePer");
+
+            // Swap body FX on hit
+            _hitFX.Visible = true;
+            _body.Visible = false;
+            _canAttack = false;
+
+            await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+            // Reset visuals
+            _hitFX.Visible = false;
+            _body.Visible = true;
+
+            // Apply damage
+            _health -= damage;
+        }
     }
 
     // --- PHYSICS LOOP ---
     public void EveryFrame(double delta)
     {
-        _count += 1;
         float distance = (_player.GlobalPosition - GlobalPosition).Length();
         if (_count > 50 && _justSpawned == true)
         {
@@ -178,6 +193,8 @@ public partial class Monster3d : CharacterBody3D
             if (GlobalPosition.Snapped(0.1f) == _rangedPosition.Snapped(0.1f) || Velocity.Length() <= _veloThreshold)
             {
                 _veloThreshold = -5f;
+                _targetVelocity = Vector3.Zero;
+                Velocity = _targetVelocity; 
                 AttackInitilize();
             }
 
@@ -266,12 +283,18 @@ public partial class Monster3d : CharacterBody3D
 
     }
 
-    protected async void RandomRangedPosition()
+    public async void RandomRangedPosition()
     {
-        float randZ = _startPos.Z + _rng.RandiRange(-1, 1)*AttackRange;
-        float randX = _startPos.X + _rng.RandiRange(-1, 1) * AttackRange;
-        _rangedPosition = new Vector3(randX, _player.GlobalPosition.Y, randZ);
-        await ToSignal(GetTree().CreateTimer(2f), "timeout");    
-        _veloThreshold = 0.5f; 
+        _rng.Randomize();
+        float randomRadius = Mathf.Sqrt(GD.Randf()) * AttackRange;
+        Vector3 center = _player.GlobalPosition;
+        // Generate a random angle
+        float angle = GD.Randf() * 2 * MathF.PI;
+        float xOffset = randomRadius * Mathf.Cos(angle);
+        float zOffset = randomRadius * Mathf.Sin(angle);
+
+        _rangedPosition = new Vector3(center.X + xOffset, center.Y, center.Z + zOffset);
+        await ToSignal(GetTree().CreateTimer(2f), "timeout");
+        _veloThreshold = 0.5f;
     }
 }

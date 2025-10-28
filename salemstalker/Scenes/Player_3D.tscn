@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=7 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
 [ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="3_l13c1"]
+[ext_resource type="PackedScene" uid="uid://c3ix37nxvhxo5" path="res://Scenes/OffHandWeapons/Flintlock.tscn" id="3_mawk5"]
 [ext_resource type="PackedScene" uid="uid://dwpo6a7lu68jh" path="res://Scenes/ui.tscn" id="3_sb0or"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
@@ -26,7 +27,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.231209, -0.29871
 
 [node name="Falchion" parent="Head/Camera3D/Sword" instance=ExtResource("3_l13c1")]
 
+[node name="AnimationPlayer" parent="Head/Camera3D/Sword/Falchion" index="0"]
+blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
+
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.379691, 0, 0)
 target_position = Vector3(0, 0, -5)
 collision_mask = 2
 collide_with_areas = true
@@ -38,6 +43,17 @@ light_energy = 4.0
 light_volumetric_fog_energy = 10.0
 shadow_enabled = true
 omni_range = 25.0
+
+[node name="Offhand1" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.407499, -0.336706, -0.835945)
+
+[node name="FlintGun" parent="Head/Camera3D/Offhand1" instance=ExtResource("3_mawk5")]
+
+[node name="Offhand2" type="Node3D" parent="Head/Camera3D"]
+
+[node name="Offhand3" type="Node3D" parent="Head/Camera3D"]
+
+[node name="Offhand4" type="Node3D" parent="Head/Camera3D"]
 
 [node name="InvCam" type="CSGBox3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.39412)
@@ -61,6 +77,8 @@ collision_mask = 1025
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape3D_df3ch")
 debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 
