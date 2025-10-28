@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://ckmn7j07x5ubl" path="res://Scripts/Monster3d.cs" id="1_ayuld"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_beqai"]
-radius = 0.367097
-height = 1.91433
+radius = 0.223127
+height = 1.43075
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ci7oq"]
-radius = 0.357846
-height = 1.94406
+radius = 0.241829
+height = 1.38319
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ci7oq"]
-size = Vector3(1.04077, 1.4873, 1.54785)
+size = Vector3(1.04077, 1.31622, 1.20215)
 
 [node name="Monster_3d" type="CharacterBody3D" groups=["Monster"]]
 script = ExtResource("1_ayuld")
