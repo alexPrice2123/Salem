@@ -23,6 +23,8 @@ height = 0.32903
 radius = 1.11931
 
 [node name="GunBullet" type="RigidBody3D" groups=["PlayerProj"]]
+collision_layer = 256
+collision_mask = 256
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3ix37nxvhxo5"]
+[gd_scene load_steps=11 format=3 uid="uid://c3ix37nxvhxo5"]
 
 [ext_resource type="Script" uid="uid://dxkew2fckxi71" path="res://Scenes/OffHandWeapons/Flintlock.cs" id="1_wv7ev"]
 [ext_resource type="PackedScene" uid="uid://cyf8c2ed65om1" path="res://Assets/Weapons/weapon_animtions/flinklock_animtions.blend" id="2_rfx4h"]
@@ -39,33 +39,7 @@ material = SubResource("StandardMaterial3D_wv7ev")
 radius = 0.05
 height = 0.1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rfx4h"]
-animation = &"armed"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0uelw"]
-animation = &"fire"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lr1eo"]
-xfade_time = 0.5
-switch_mode = 2
-advance_mode = 2
-advance_expression = "shooting = true
-"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rfx4h"]
-advance_mode = 2
-advance_expression = "_shooting = true;"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0uelw"]
-advance_mode = 2
-advance_expression = "shooting = false"
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0uelw"]
-states/armed/node = SubResource("AnimationNodeAnimation_rfx4h")
-states/armed/position = Vector2(376, 55.5933)
-states/fire/node = SubResource("AnimationNodeAnimation_0uelw")
-states/fire/position = Vector2(376.25, 167.562)
-transitions = ["armed", "fire", SubResource("AnimationNodeStateMachineTransition_lr1eo"), "Start", "armed", SubResource("AnimationNodeStateMachineTransition_rfx4h"), "fire", "armed", SubResource("AnimationNodeStateMachineTransition_0uelw")]
 
 [node name="FlintGun" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558561, 0)
@@ -100,31 +74,8 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.244
 [node name="flinklock_animtions" parent="." instance=ExtResource("2_rfx4h")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0820205, -2.18294, 1.06889)
 
-[node name="Skeleton3D" parent="flinklock_animtions/metarig" index="0"]
-bones/8/rotation = Quaternion(-0.303982, 0.595171, -0.620591, 0.410162)
-bones/9/rotation = Quaternion(0.163256, 0.0590477, -0.132891, 0.975808)
-bones/10/rotation = Quaternion(-0.0386568, -0.212789, 0.0779945, 0.973213)
-bones/11/rotation = Quaternion(0.179764, -0.206637, 0.167751, 0.947019)
-bones/12/rotation = Quaternion(-0.30828, 0.197393, -0.35762, 0.859132)
-bones/13/rotation = Quaternion(-0.366132, -0.102459, -0.249283, 0.890678)
-bones/15/rotation = Quaternion(0.164069, -0.0932468, -0.432995, 0.88142)
-bones/16/rotation = Quaternion(-0.152494, 0.0324545, 0.340067, 0.927387)
-bones/17/rotation = Quaternion(0.0344871, -0.0458761, 0.26541, 0.962426)
-bones/19/rotation = Quaternion(-0.219223, -0.673226, 0.585935, 0.394193)
-bones/20/rotation = Quaternion(0.166704, -0.0998514, 0.141085, 0.970739)
-bones/21/rotation = Quaternion(0.0696113, -0.0378772, -0.243182, 0.966738)
-bones/22/rotation = Quaternion(-0.0966641, 0.258241, 0.32192, 0.905724)
-bones/23/rotation = Quaternion(-0.0473394, 0.0197859, 0.299546, 0.952701)
-bones/24/rotation = Quaternion(-0.078243, 0.0546005, 0.594849, 0.798155)
-bones/25/rotation = Quaternion(0.367195, 0.110883, 0.45398, 0.804223)
-bones/26/rotation = Quaternion(-0.309649, -0.0101378, -0.104003, 0.945091)
-bones/27/rotation = Quaternion(-0.0527684, -0.0296006, -0.340938, 0.938137)
-bones/28/rotation = Quaternion(-5.42024e-08, 0.696112, 0.717933, -5.2555e-08)
-bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
-bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
-
 [node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.0146431, 0.000682895, 0.00203767, 0.0020551, 0.00855356, 0.0119017, -0.000628493, 0.0120585, -0.00855773, 0.124191, 0.888632, 0.262743)
+transform = Transform3D(-0.0121357, -0.00143485, -0.00834896, -0.00806893, 0.00640008, 0.0106287, 0.00257997, 0.0132672, -0.00603022, 0.540708, 0.927916, 0.120466)
 
 [node name="AnimationPlayer" parent="flinklock_animtions" index="1"]
 deterministic = true
