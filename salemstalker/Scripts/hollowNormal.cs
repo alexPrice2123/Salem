@@ -10,12 +10,12 @@ public partial class hollowNormal : Monster3d
 	{
 		Speed = 4.6f;             // Movement speed
 		MaxHealth = 60.0f;         // Maximum monster health
-		Range = 25.0f;            // Detection range for chasing
+		Range = 30.0f;            // Detection range for chasing
 		SpawnDistance = 100;    // Distance from player before despawning
 		BaseDamage = 15.0f;
 		WanderRange = 50;
 		AttackSpeed = 1.5f;
-		AttackRange = 2f;
+		AttackRange = 1f;
 		Monster = this;
 		Chaser = true;
 		MoveWhileAttack = true;
@@ -66,7 +66,7 @@ public partial class hollowNormal : Monster3d
 	{
 		_hasHit = false;
 		_attackAnim = true;
-		await ToSignal(GetTree().CreateTimer(1.7), "timeout");
+		await ToSignal(GetTree().CreateTimer(1.6), "timeout");
 		_speedOffset = 2.5f;
 		_attackBox.GetParent<Area3D>().Monitoring = true;
         await ToSignal(GetTree().CreateTimer(0.2), "timeout");

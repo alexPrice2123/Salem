@@ -223,31 +223,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00286001, 0.464739, -0.386
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1, 0)
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
-bones/0/position = Vector3(8.00621e-10, 0.929223, -0.0649478)
-bones/1/rotation = Quaternion(-0.0543057, 1.14375e-10, -1.0276e-08, 0.998524)
+bones/0/position = Vector3(-7.51111e-10, 0.939261, -0.0649478)
+bones/1/rotation = Quaternion(-0.0449034, -1.02777e-10, -1.31075e-08, 0.998991)
 bones/2/rotation = Quaternion(-0.0991209, -1.18622e-07, -1.18161e-08, 0.995075)
-bones/5/rotation = Quaternion(-0.0921215, 1.17762e-07, -1.76791e-08, 0.995748)
+bones/5/rotation = Quaternion(-0.113208, 1.19338e-07, -7.21491e-09, 0.993571)
 bones/9/position = Vector3(0.02321, 0.179695, -0.0258477)
-bones/9/rotation = Quaternion(-0.160369, 0.468931, -0.628991, 0.598962)
-bones/10/rotation = Quaternion(0.67784, -0.00694368, -0.071925, 0.731649)
+bones/9/rotation = Quaternion(-0.153789, 0.438039, -0.642909, 0.609212)
+bones/10/rotation = Quaternion(0.731103, -0.00564811, -0.137598, 0.668224)
 bones/11/rotation = Quaternion(0.0189465, -0.441512, 0.0317851, 0.896492)
 bones/15/rotation = Quaternion(0.30379, -0.328655, -0.262531, 0.854854)
 bones/16/rotation = Quaternion(-0.207841, 0.0687457, 0.129042, 0.967173)
 bones/17/rotation = Quaternion(0.0250806, 0.0125801, 0.117811, 0.99264)
 bones/20/position = Vector3(-0.0122632, 0.180324, -0.00908038)
 bones/20/rotation = Quaternion(-0.17153, -0.653043, 0.512541, 0.530484)
-bones/21/rotation = Quaternion(0.635265, -0.0652371, 0.341515, 0.689601)
+bones/21/rotation = Quaternion(0.632098, -0.0335563, 0.317275, 0.70616)
 bones/22/rotation = Quaternion(0.0804695, -0.0242495, -0.211768, 0.9737)
 bones/23/rotation = Quaternion(-0.161795, 0.607627, 0.0469097, 0.776151)
 bones/26/rotation = Quaternion(0.522486, 0.595971, 0.00513368, 0.609754)
 bones/27/rotation = Quaternion(-0.305542, -0.0408437, -0.148455, 0.939647)
 bones/30/rotation = Quaternion(-5.42024e-08, 0.696112, 0.717933, -5.2555e-08)
-bones/34/rotation = Quaternion(0.964242, 0.0609975, -0.117948, 0.229357)
-bones/35/rotation = Quaternion(0.179657, 0.00424541, 0.0229962, 0.983452)
+bones/34/rotation = Quaternion(0.97503, 0.0487394, -0.117523, 0.182012)
+bones/35/rotation = Quaternion(0.0954968, 0.00429676, 0.0122237, 0.995345)
 bones/36/rotation = Quaternion(-0.473183, -0.0617349, -0.0126969, 0.878706)
 bones/37/rotation = Quaternion(0.0106844, 0.961413, -0.270421, 0.0494412)
-bones/39/rotation = Quaternion(0.96752, -0.0601362, 0.0787057, 0.232582)
-bones/40/rotation = Quaternion(0.189122, -0.00421984, -0.0410982, 0.981084)
+bones/39/rotation = Quaternion(0.977379, -0.0473368, 0.0776337, 0.190951)
+bones/40/rotation = Quaternion(0.115332, -0.0042711, -0.0250628, 0.993002)
 bones/41/rotation = Quaternion(-0.490002, 0.0553189, 0.00734169, 0.869933)
 bones/42/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/43/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
@@ -257,13 +257,13 @@ bones/46/position = Vector3(-0.159219, 0.0824029, -0.0156682)
 bones/47/rotation = Quaternion(0.999891, 0.000406379, -0.0102964, -0.0106287)
 
 [node name="Plane" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, 8.19662e-09, -5.53861e-10, -8.21523e-09, 0.99745, -0.0713619, -3.25797e-11, 0.071362, 0.99745, -9.40701e-10, 1.7466, -0.00272455)
+transform = Transform3D(1, -7.91223e-09, 4.16937e-10, 7.92312e-09, 0.998855, -0.0478344, -3.80505e-11, 0.0478343, 0.998855, 7.42932e-10, 1.75662, 0.00421719)
 
 [node name="Plane" parent="Body/metarig/Skeleton3D/Plane" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_cno0p")
 
 [node name="arur_l" parent="Body/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.05033, -0.145049, -0.0648123, 0.158395, 0.922539, 0.502251, -0.0122938, -0.506266, 0.933791, 0.313402, 1.41519, 0.275488)
+transform = Transform3D(1.03737, -0.0473323, -0.223718, 0.177638, 0.821243, 0.649945, 0.143996, -0.672118, 0.809904, 0.281266, 1.46168, 0.275337)
 
 [node name="arur_l" parent="Body/metarig/Skeleton3D/arur_l" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022436, 0.0297889, 6.98492e-10)
@@ -282,7 +282,7 @@ light_energy = 2.5
 omni_range = 0.5
 
 [node name="arua_r" parent="Body/metarig/Skeleton3D" index="2"]
-transform = Transform3D(0.984817, 0.00246972, 0.398186, -0.000353232, 1.06226, -0.0057158, -0.398194, 0.00516651, 0.984804, -0.230291, 1.29638, 0.169904)
+transform = Transform3D(1.01552, -0.00285673, 0.311653, 0.00968818, 1.062, -0.0218349, -0.311515, 0.0237162, 1.01529, -0.247233, 1.30314, 0.180608)
 
 [node name="arua_r" parent="Body/metarig/Skeleton3D/arua_r" index="0"]
 material_override = SubResource("ShaderMaterial_cno0p")

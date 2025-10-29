@@ -1,10 +1,12 @@
-[gd_scene load_steps=89 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=91 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
+[ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/hollowBrute.tscn" id="4_36g3o"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/vCultist.tscn" id="4_gwaj6"]
 [ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/VillagerScripts/JohnVillager.cs" id="4_ochwf"]
+[ext_resource type="PackedScene" uid="uid://dbhqhurkcdks0" path="res://Scenes/Monsters/hollowNormal.tscn" id="5_vhf2b"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
 [ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/VillagerScripts/MarryVillager.cs" id="6_atqvy"]
 [ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="6_ikia7"]
@@ -397,9 +399,8 @@ navigation_mesh = SubResource("NavigationMesh_5a7ea")
 
 [node name="Hut" parent="MonsterRegion" groups=["Terrain"] instance=ExtResource("3_8j60k")]
 transform = Transform3D(-0.995991, 0, -0.0751335, 0, 0.998821, 0, 0.0751335, 0, -0.995991, 74.503, 4.53272, 68.476)
-_spawnTime = 10.0
-_monsterList = Array[PackedScene]([ExtResource("4_gwaj6")])
-_monsterCount = Array[int]([20])
+_monsterList = Array[PackedScene]([ExtResource("4_gwaj6"), ExtResource("4_36g3o"), ExtResource("5_vhf2b")])
+_monsterCount = Array[int]([3, 2, 5])
 
 [node name="VillageRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.254805, 0, -0.966993, 0, 1, 0, 0.966993, 0, 0.254805, -437.512, -4.30756, -130.386)

@@ -10,12 +10,12 @@ public partial class hollowBrute : Monster3d
 	{
 		Speed = 2.5f;             // Movement speed
 		MaxHealth = 100.0f;         // Maximum monster health
-		Range = 25.0f;            // Detection range for chasing
+		Range = 30.0f;            // Detection range for chasing
 		SpawnDistance = 100;    // Distance from player before despawning
-		BaseDamage = 45.0f;
+		BaseDamage = 35.0f;
 		WanderRange = 50;
 		AttackSpeed = 2.5f;
-		AttackRange = 3f;
+		AttackRange = 1.5f;
 		Monster = this;
 		Chaser = true;
 		Initialization();
@@ -28,7 +28,7 @@ public partial class hollowBrute : Monster3d
 		_distance = (_player.GlobalPosition - GlobalPosition).Length();
 		if (_distance < 5 && _attackException == false)
 		{
-			_speedOffset = 2.5f;
+			_speedOffset = 2f;
 		}
 		else if (_attackException == false)
 		{

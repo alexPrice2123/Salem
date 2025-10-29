@@ -19,8 +19,8 @@ public partial class vCultist : Monster3d
     public override void _Ready()
     {
         Speed = 4.5f;             // Movement speed
-        MaxHealth = 100.0f;         // Maximum monster health
-        Range = 50.0f;            // Detection range for chasing
+        MaxHealth = 50.0f;         // Maximum monster health
+        Range = 55.0f;            // Detection range for chasing
         SpawnDistance = 100;    // Distance from player before despawning
         BaseDamage = 25.0f;
         WanderRange = 50;
@@ -59,8 +59,9 @@ public partial class vCultist : Monster3d
         {
             Vector3 playerPos = _player.GlobalPosition;
             _lookDirection.LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
+            _targetVelocity = Vector3.Zero;
         }
-        if (_dashVelocity < 0.99f)
+        if (_dashVelocity > 1.01f)
         {
             Vector3 moveDirection = Velocity.Normalized();
             if (moveDirection != Vector3.Zero)
@@ -72,7 +73,7 @@ public partial class vCultist : Monster3d
         {
             _lookDirection.LookAt(new Vector3(_rangedPosition.X, GlobalPosition.Y, _rangedPosition.Z), Vector3.Up);
         }
-        if (_dashVelocity < 0.99f)
+        if (_dashVelocity > 1.01f)
         {
             MoveAndSlide();
         }
@@ -89,7 +90,7 @@ public partial class vCultist : Monster3d
     {
         _dashAnim = true;
         await ToSignal(GetTree().CreateTimer(1), "timeout");
-        _dashVelocity = -3f;
+        _dashVelocity = 1.5f;
     }
 
     public void _on_hurtbox_area_entered(Area3D body)
