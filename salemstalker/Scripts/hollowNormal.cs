@@ -28,7 +28,7 @@ public partial class hollowNormal : Monster3d
 		EveryFrame(delta);
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("TheHollow");
+			_player.MonsterKilled("hollowNormal");
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		RotateFunc(delta);

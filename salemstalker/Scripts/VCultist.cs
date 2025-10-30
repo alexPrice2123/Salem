@@ -79,7 +79,7 @@ public partial class vCultist : Monster3d
         }
         if (_health <= 0)
         {
-            _player.MonsterKilled("VCultist");
+            _player.MonsterKilled("vCultist");
             QueueFree(); // Destroy monster when health hits zero
         }
         _orb.Scale = _orb.Scale.Lerp(_orbGoal, _orbTweenTime * (float)delta);
