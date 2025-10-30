@@ -42,7 +42,7 @@ public partial class Ui : Control
 
 	public override void _Process(double delta)
 	{
-		// Switch the titles of the buttons based on what 
+		// Switch the titles of the buttons based on what shopOption you have selected
 		if (_shopTypeSelection.Selected == 0) 
 		{
 			_shopOption1.Text = "Shortsword";
