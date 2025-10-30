@@ -12,7 +12,6 @@ public partial class GunBullet : RigidBody3D
         _count += 1;
         if (_count > 500)
         {
-            GD.Print("bulletDespawn");
             QueueFree();
         }
     }
@@ -21,7 +20,6 @@ public partial class GunBullet : RigidBody3D
     {
         if (body.IsInGroup("Monster"))
         {
-            GD.Print("munchHit");
             QueueFree();
         }
     }

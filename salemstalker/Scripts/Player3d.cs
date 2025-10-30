@@ -54,6 +54,7 @@ public partial class Player3d : CharacterBody3D
 	private float _dashVelocity = 0f;                // Current extra speed from dashing
 	private float _fullDashValue = 10.0f;            // Max speed boost granted by a full dash
 	private float _knockVelocity = 0f;               // Current knockback applied to player
+	private bool _cooldownSec;						 // Tracks whether the player can use their secondary weapon
 	private bool _running = false;                   // True if the 'run' input is held down
 	private bool _inStep = false;					 // Prevents footstep audio from playing if player is already playing a step.
 	private float _bobTime = 0.0f;                   // Accumulator for the head-bob sine wave function
@@ -83,7 +84,7 @@ public partial class Player3d : CharacterBody3D
 	public bool _hasApple = false; // Quest item flag
 	private float _staminaTimer = 2f;
 	private float _currentStaminaTimer = 0f;
-	private int equipSec = 1;
+	private int equipSec = 2;
 	public bool _twoHand = false;
 
 	// --- READY ---
@@ -321,6 +322,7 @@ public partial class Player3d : CharacterBody3D
 			}
 			else if (equipSec == 2)
 			{
+				GD.Print("Test1");
 				if (_eSecWeapon2 is Flintlock flintchild)
 				{
 					flintchild.specAction();
@@ -890,13 +892,39 @@ public partial class Player3d : CharacterBody3D
 		holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
 		Node3D swordInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
 		holder.AddChild(swordInstance);                                             // Add new weapon to holder node
-		holder.AddChild(swordInstance);                                             // Add new weapon to holder node
 		swordInstance.Position = holder.Position;
 		_sword = swordInstance; // Update the main sword reference
 		_swordInst = _sword as SwordHandler; // Update the sword script reference
 		Swing(true); // Call swing with 'justEquipped' to reset animation/position
 	}
 
+	// Switches the player's secondary weapon slots.
+	public void SwtichSecondaryWeapon(string wepaonName, int slot)
+	{
+		PackedScene weaponScene = _secWeapon[wepaonName]; // Get the scene resource from the dictionary
+		Node3D holder;
+		if (slot == 0)
+		{
+			holder = GetNode<Node3D>("Head/Camera3D/Offhand1");
+		}
+		else if (slot == 1)
+		{
+			holder = GetNode<Node3D>("Head/Camera3D/Offhand2");
+		}
+		else if (slot == 2)
+		{
+			holder = GetNode<Node3D>("Head/Camera3D/Offhand3");
+		}
+		else
+		{
+			holder = GetNode<Node3D>("Head/Camera3D/Offhand4");
+		}
+		holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
+		Node3D weaponInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
+		holder.AddChild(weaponInstance);                                             // Add new weapon to holder node
+		weaponInstance.Position = holder.Position;
+		GD.Print("weaponswaped");
+    }
 	public async void play_sfx(AudioStreamOggVorbis soundeffect)
 	{
 		AudioStreamPlayer player = new();

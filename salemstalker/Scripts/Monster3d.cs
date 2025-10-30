@@ -84,7 +84,7 @@ public partial class Monster3d : CharacterBody3D
         }
         else if (body.IsInGroup("PlayerProj") && _canBeHit)
         {
-            float damage = MaxHealth * (float)body.GetMeta("DamagePer");
+            float damage = MaxHealth * (float)body.GetParent().GetMeta("DamagePer");
             DamageHandler(false, damage);
         }
     }

@@ -22,19 +22,20 @@ public partial class Flintlock : Node3D
     public async void specAction()
     {
         shooting = true;
-        await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+        await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
         RigidBody3D temPrj = _gunBullet.Instantiate<RigidBody3D>();
         AddSibling(temPrj);
         temPrj.Position = _barrel.Position;
         temPrj.Rotation = _barrel.Rotation;
         muzzleFlash();
-        await ToSignal(GetTree().CreateTimer(1.33f), "timeout");
+        await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
         shooting = false;
     }
     
     private async void muzzleFlash()
     {
         _smoke.Emitting = true;
+        await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
         _flash.Visible = true;
         await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
         _flash.Visible = false;

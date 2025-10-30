@@ -1,62 +1,151 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3ix37nxvhxo5"]
+[gd_scene load_steps=31 format=3 uid="uid://c3ix37nxvhxo5"]
 
 [ext_resource type="Script" uid="uid://dxkew2fckxi71" path="res://Scenes/OffHandWeapons/Flintlock.cs" id="1_wv7ev"]
+[ext_resource type="Shader" uid="uid://yffbi77k33ow" path="res://Shaders/gunSmoke.gdshader" id="2_cwoc6"]
 [ext_resource type="PackedScene" uid="uid://cyf8c2ed65om1" path="res://Assets/Weapons/weapon_animtions/flinklock_animtions.blend" id="2_rfx4h"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1psg8"]
-inherit_velocity_ratio = 1.0
-velocity_pivot = Vector3(0.39, 0, 0)
-direction = Vector3(0, 0, -1)
-spread = 10.0
-initial_velocity_min = 0.5
-initial_velocity_max = 3.0
-gravity = Vector3(0, 0.5, 0)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_wv7ev"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rfx4h"]
-as_normal_map = true
-noise = SubResource("FastNoiseLite_wv7ev")
+[ext_resource type="ArrayMesh" uid="uid://c03p1wq8x7grl" path="res://Assets/3D/Mesh.tres" id="3_6xgjh"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cwoc6"]
+noise_type = 3
+fractal_type = 2
+fractal_octaves = 10
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6xgjh"]
+as_normal_map = true
 noise = SubResource("FastNoiseLite_cwoc6")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wv7ev"]
-transparency = 1
-shading_mode = 2
-diffuse_mode = 1
-specular_mode = 2
-roughness = 0.5
-roughness_texture = SubResource("NoiseTexture2D_rfx4h")
-subsurf_scatter_enabled = true
-subsurf_scatter_strength = 0.83
-subsurf_scatter_texture = SubResource("NoiseTexture2D_6xgjh")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4t8y"]
+albedo_color = Color(0.353786, 0.156002, 4.81308e-08, 1)
+metallic = 0.1
+roughness = 0.65
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_6xgjh")
 
-[sub_resource type="SphereMesh" id="SphereMesh_rfx4h"]
-material = SubResource("StandardMaterial3D_wv7ev")
-radius = 0.05
-height = 0.1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lr1eo"]
+albedo_color = Color(0.712129, 0.712129, 0.712129, 1)
+metallic = 0.83
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwoc6"]
+albedo_color = Color(0.295447, 0.143942, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xgjh"]
+albedo_color = Color(0.999999, 0.760996, 0.549659, 1)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rfx4h"]
+animation = &"armed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0uelw"]
+animation = &"armed"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cwoc6"]
+animation = &"fire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6xgjh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h4t8y"]
+xfade_time = 0.7
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c0xgx"]
+advance_mode = 2
+advance_expression = "shooting == true "
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rfx4h"]
+xfade_time = 0.5
+switch_mode = 1
+advance_mode = 2
+advance_expression = "shooting == true"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0uelw"]
+states/armed/node = SubResource("AnimationNodeAnimation_0uelw")
+states/armed/position = Vector2(350.5, 100.25)
+"states/armed 2/node" = SubResource("AnimationNodeAnimation_rfx4h")
+"states/armed 2/position" = Vector2(502, 55)
+states/fire/node = SubResource("AnimationNodeAnimation_cwoc6")
+states/fire/position = Vector2(504, 156)
+transitions = ["Start", "armed", SubResource("AnimationNodeStateMachineTransition_6xgjh"), "armed 2", "fire", SubResource("AnimationNodeStateMachineTransition_h4t8y"), "armed", "armed 2", SubResource("AnimationNodeStateMachineTransition_c0xgx"), "fire", "armed 2", SubResource("AnimationNodeStateMachineTransition_rfx4h")]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cwoc6"]
+
+[sub_resource type="Gradient" id="Gradient_cwoc6"]
+offsets = PackedFloat32Array(0.00155763, 0.107477)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6xgjh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h4t8y"]
+seamless = true
+color_ramp = SubResource("Gradient_cwoc6")
+noise = SubResource("FastNoiseLite_6xgjh")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lr1eo"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c0xgx"]
+noise = SubResource("FastNoiseLite_lr1eo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cwoc6"]
+render_priority = 0
+shader = ExtResource("2_cwoc6")
+shader_parameter/Color = Color(0.402604, 0.402604, 0.402604, 1)
+shader_parameter/Color_Gradiant = SubResource("NoiseTexture2D_h4t8y")
+shader_parameter/Vor_Noise = SubResource("NoiseTexture2D_c0xgx")
+shader_parameter/Alpha_Curve = SubResource("NoiseTexture2D_cwoc6")
+shader_parameter/Fernal_Power = 0.0
+shader_parameter/Vor_Scale = 0.86
+shader_parameter/Vor_Speed = 1.0
+shader_parameter/Emmision_Power = 0.1
+shader_parameter/Alpha_Clip = 1.0
+
+[sub_resource type="Curve" id="Curve_6xgjh"]
+_data = [Vector2(0, 0), 0.0, 1.02364, 0, 0, Vector2(1, 1), 0.971069, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_acbqd"]
+texture_mode = 1
+curve = SubResource("Curve_6xgjh")
+
+[sub_resource type="Curve" id="Curve_h4t8y"]
+_data = [Vector2(0, 0.274112), 0.0, 0.0, 0, 0, Vector2(0.752976, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wxifh"]
+curve = SubResource("Curve_h4t8y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lr1eo"]
+lifetime_randomness = 0.25
+particle_flag_rotate_y = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 0, -1)
+spread = 10.0
+initial_velocity_max = 5.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 90.9
+gravity = Vector3(0, 0.1, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 0.999998
+scale_min = 0.25
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_wxifh")
+alpha_curve = SubResource("CurveTexture_acbqd")
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.02
+turbulence_noise_strength = 0.05
+turbulence_noise_scale = 0.1
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
 
 [node name="FlintGun" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558561, 0)
 script = ExtResource("1_wv7ev")
 
-[node name="Smoke" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0277899, -0.523615, 0.0821745)
-emitting = false
-amount = 60
-lifetime = 3.0
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_1psg8")
-draw_pass_1 = SubResource("SphereMesh_rfx4h")
-
 [node name="Flash" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0277899, -0.523615, 0.0821745)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0277899, -0.523615, 0.310528)
 visible = false
 light_color = Color(1, 0.627451, 0, 1)
 light_energy = 16.0
@@ -69,13 +158,44 @@ spot_angle = 70.0
 spot_angle_attenuation = 12.394
 
 [node name="BarrelPos" type="Marker3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.244073, -0.524, -0.100576)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.035231, -0.524, 0.555457)
 
 [node name="flinklock_animtions" parent="." instance=ExtResource("2_rfx4h")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0820205, -2.18294, 1.06889)
 
+[node name="Skeleton3D" parent="flinklock_animtions/metarig" index="0"]
+bones/8/rotation = Quaternion(-0.303982, 0.595171, -0.620591, 0.410162)
+bones/9/rotation = Quaternion(0.163256, 0.0590477, -0.132891, 0.975808)
+bones/10/rotation = Quaternion(-0.0386568, -0.212789, 0.0779945, 0.973213)
+bones/11/rotation = Quaternion(0.179764, -0.206637, 0.167751, 0.947019)
+bones/12/rotation = Quaternion(-0.30828, 0.197393, -0.35762, 0.859132)
+bones/13/rotation = Quaternion(-0.366132, -0.102459, -0.249283, 0.890678)
+bones/15/rotation = Quaternion(0.164069, -0.0932468, -0.432995, 0.88142)
+bones/16/rotation = Quaternion(-0.152494, 0.0324545, 0.340067, 0.927387)
+bones/17/rotation = Quaternion(0.0344871, -0.0458761, 0.26541, 0.962426)
+bones/19/rotation = Quaternion(-0.219223, -0.673226, 0.585935, 0.394193)
+bones/20/rotation = Quaternion(0.166704, -0.0998514, 0.141085, 0.970739)
+bones/21/rotation = Quaternion(0.0696113, -0.0378772, -0.243182, 0.966738)
+bones/22/rotation = Quaternion(-0.0966641, 0.258241, 0.32192, 0.905724)
+bones/23/rotation = Quaternion(-0.0473394, 0.0197859, 0.299546, 0.952701)
+bones/24/rotation = Quaternion(-0.078243, 0.0546005, 0.594849, 0.798155)
+bones/25/rotation = Quaternion(0.367195, 0.110883, 0.45398, 0.804223)
+bones/26/rotation = Quaternion(-0.309649, -0.0101378, -0.104003, 0.945091)
+bones/27/rotation = Quaternion(-0.0527684, -0.0296006, -0.340938, 0.938137)
+bones/28/rotation = Quaternion(-5.42024e-08, 0.696112, 0.717933, -5.2555e-08)
+bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
+bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
+
 [node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.0121357, -0.00143485, -0.00834896, -0.00806893, 0.00640008, 0.0106287, 0.00257997, 0.0132672, -0.00603022, 0.540708, 0.927916, 0.120466)
+transform = Transform3D(-0.0146431, 0.000682895, 0.00203767, 0.0020551, 0.00855356, 0.0119017, -0.000628493, 0.0120585, -0.00855773, 0.124191, 0.888632, 0.262743)
+
+[node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D/Cube" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h4t8y")
+surface_material_override/1 = SubResource("StandardMaterial3D_lr1eo")
+
+[node name="Cube_002" parent="flinklock_animtions/metarig/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cwoc6")
+surface_material_override/1 = SubResource("StandardMaterial3D_6xgjh")
 
 [node name="AnimationPlayer" parent="flinklock_animtions" index="1"]
 deterministic = true
@@ -85,5 +205,20 @@ root_node = NodePath("../flinklock_animtions")
 tree_root = SubResource("AnimationNodeStateMachine_0uelw")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../flinklock_animtions/AnimationPlayer")
+
+[node name="Smoke" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0277899, -0.523615, 0.310528)
+material_override = SubResource("ShaderMaterial_cwoc6")
+transparency = 0.87
+cast_shadow = 0
+emitting = false
+amount = 15
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_lr1eo")
+draw_pass_1 = ExtResource("3_6xgjh")
 
 [editable path="flinklock_animtions"]
