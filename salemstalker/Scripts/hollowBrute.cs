@@ -36,7 +36,7 @@ public partial class hollowBrute : Monster3d
 		}
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("TheHollow");
+			_player.MonsterKilled("hollowBrute");
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		if (_attackAnim == false) { RotateFunc(delta); }

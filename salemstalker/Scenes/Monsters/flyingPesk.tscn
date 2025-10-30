@@ -1,0 +1,215 @@
+[gd_scene load_steps=36 format=3 uid="uid://crxygapcq66ft"]
+
+[ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_rrcq7"]
+[ext_resource type="Script" uid="uid://c4bkik5xcpbc3" path="res://Scripts/flyingPesk.cs" id="2_rrcq7"]
+[ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_0e7p8"]
+[ext_resource type="PackedScene" uid="uid://wp3pcn5363qr" path="res://Scenes/ProgrammerArt/body.tscn" id="4_stvu4"]
+[ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="5_chkap"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_im0l4"]
+radius = 0.331716
+height = 1.72689
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kviwv"]
+radius = 0.50767
+height = 1.01534
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_00oym"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_im0l4"]
+animation = &"chargeup"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cno0p"]
+animation = &"dash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ci7oq"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ht62m"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ng0vc"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c1rs2"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "velocity.length() > 1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ci7oq"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "velocity.length() <= 1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kviwv"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_attackAnim == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ja8if"]
+advance_mode = 2
+advance_expression = "_canAttack == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xtwe5"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_im0l4"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_attackAnim == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yr5wf"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_dashAnim == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ok713"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_dashVelocity > 0.99 && _dashAnim == false"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kviwv"]
+states/End/position = Vector2(882.5, 85.9062)
+states/Start/position = Vector2(253.5, 85.75)
+states/attack/node = SubResource("AnimationNodeAnimation_00oym")
+states/attack/position = Vector2(685.375, 182)
+states/charge/node = SubResource("AnimationNodeAnimation_im0l4")
+states/charge/position = Vector2(468.5, 228.125)
+states/dash/node = SubResource("AnimationNodeAnimation_cno0p")
+states/dash/position = Vector2(552.5, -34.5)
+states/idle/node = SubResource("AnimationNodeAnimation_ci7oq")
+states/idle/position = Vector2(467, 86.0625)
+states/walking/node = SubResource("AnimationNodeAnimation_ht62m")
+states/walking/position = Vector2(687.062, 85.8281)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "idle", "charge", SubResource("AnimationNodeStateMachineTransition_kviwv"), "charge", "attack", SubResource("AnimationNodeStateMachineTransition_ja8if"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_xtwe5"), "walking", "charge", SubResource("AnimationNodeStateMachineTransition_im0l4"), "idle", "dash", SubResource("AnimationNodeStateMachineTransition_yr5wf"), "dash", "idle", SubResource("AnimationNodeStateMachineTransition_ok713")]
+graph_offset = Vector2(160, 20)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_im0l4"]
+render_priority = 0
+shader = ExtResource("3_0e7p8")
+shader_parameter/Color = Color(0.313726, 0.188235, 0.921569, 1)
+shader_parameter/glow_color = Color(0.258824, 0.0235294, 0.25098, 1)
+shader_parameter/dist = 2.0
+shader_parameter/speed = 1.0
+shader_parameter/glow_intensity = -0.1
+shader_parameter/glow_amount = 10.0
+shader_parameter/posMult = 0.01
+shader_parameter/noise = SubResource("NoiseTexture2D_xdlj8")
+
+[sub_resource type="SphereMesh" id="SphereMesh_kviwv"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cno0p"]
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yr5wf"]
+render_priority = 0
+shader = ExtResource("3_0e7p8")
+shader_parameter/Color = Color(0.313726, 0.188235, 0.921569, 1)
+shader_parameter/glow_color = Color(0.258824, 0.0235294, 0.25098, 1)
+shader_parameter/dist = 2.0
+shader_parameter/speed = 1.0
+shader_parameter/glow_intensity = -0.1
+shader_parameter/glow_amount = 10.0
+shader_parameter/posMult = 1.58
+shader_parameter/noise = SubResource("NoiseTexture2D_cno0p")
+
+[sub_resource type="Curve" id="Curve_cno0p"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_im0l4"]
+curve = SubResource("Curve_cno0p")
+
+[sub_resource type="Curve" id="Curve_ja8if"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kviwv"]
+curve = SubResource("Curve_ja8if")
+
+[sub_resource type="Curve" id="Curve_xtwe5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yr5wf"]
+curve = SubResource("Curve_xtwe5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ok713"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+orbit_velocity_min = -0.5
+orbit_velocity_max = 0.5
+orbit_velocity_curve = SubResource("CurveTexture_im0l4")
+radial_velocity_min = 1.49998
+radial_velocity_max = 1.49998
+radial_velocity_curve = SubResource("CurveTexture_kviwv")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_yr5wf")
+
+[sub_resource type="SphereMesh" id="SphereMesh_v2reo"]
+
+[node name="flyingPesk" instance=ExtResource("1_rrcq7")]
+script = ExtResource("2_rrcq7")
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.145572, -2.17801e-08)
+shape = SubResource("CapsuleShape3D_im0l4")
+
+[node name="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(0.630657, 0, 0, 0, 0.630657, 0, 0, 0, 0.630657, 0, 0.4244, 0)
+shape = SubResource("CapsuleShape3D_kviwv")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="4"]
+tree_root = SubResource("AnimationNodeStateMachine_kviwv")
+advance_expression_base_node = NodePath("..")
+
+[node name="Orb" type="MeshInstance3D" parent="." index="5"]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -0.000732893, 0.462375, -0.37608)
+material_override = SubResource("ShaderMaterial_im0l4")
+mesh = SubResource("SphereMesh_kviwv")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Orb" index="0"]
+light_color = Color(0.313726, 0.188235, 0.921569, 1)
+light_energy = 5.0
+omni_range = 2.0
+
+[node name="Magic" type="GPUParticles3D" parent="." index="6"]
+transform = Transform3D(1, 3.72529e-07, -3.27826e-07, -2.98023e-08, 0.99998, -0.00645068, -1.19209e-07, 0.00645069, 0.99998, -0.00398066, 0.449296, -0.35853)
+material_override = SubResource("ShaderMaterial_yr5wf")
+emitting = false
+amount = 100
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_ok713")
+draw_pass_1 = SubResource("SphereMesh_v2reo")
+
+[node name="Spawn" type="Node3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00286001, 0.464739, -0.386737)
+
+[node name="Direction" type="Node3D" parent="." index="8"]
+
+[node name="Body" parent="." index="9" instance=ExtResource("4_stvu4")]
+transform = Transform3D(-0.667423, 0, 5.8348e-08, 0, 0.667423, 0, -5.8348e-08, 0, -0.667423, 0, 0.42209, 0)
+
+[node name="HitFX" parent="." index="10" instance=ExtResource("4_stvu4")]
+transform = Transform3D(-0.667423, 0, 5.8348e-08, 0, 0.667423, 0, -5.8348e-08, 0, -0.667423, 0, 0.42209, 0)
+visible = false
+
+[node name="MeshInstance3D" parent="HitFX" index="0"]
+material_override = ExtResource("5_chkap")
+
+[node name="MeshInstance3D2" parent="HitFX" index="1"]
+material_override = ExtResource("5_chkap")
+
+[editable path="HitFX"]

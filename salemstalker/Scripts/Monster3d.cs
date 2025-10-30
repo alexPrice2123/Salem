@@ -18,6 +18,8 @@ public partial class Monster3d : CharacterBody3D
     protected CharacterBody3D Monster;          // A reference to the monster
     protected bool Chaser = false;              // If this monster chasing the player or finds a point within a range of the player
     protected bool MoveWhileAttack = false;     // Can this monster move while attacking
+    protected bool Flying = false;              // Should gravity be applied to this monster
+    public bool Debug = false;                  // If true this monster wont move or attack
 
     // --- NODE REFERENCES ---
     protected Player3d _player;                 // Reference to the player
@@ -102,11 +104,12 @@ public partial class Monster3d : CharacterBody3D
         _body.Visible = false;
         _canAttack = false;
         await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-        _hitFX.Visible = false;
-        _body.Visible = true;
 
         // Reduce health
         _health -= damage;
+
+        _hitFX.Visible = false;
+        _body.Visible = true;
     }
 
 
@@ -114,6 +117,10 @@ public partial class Monster3d : CharacterBody3D
     // Handles state: chase, attack, wander, despawn
     public void EveryFrame(double delta)
     {
+        if (Debug == true)
+        {
+            return;
+        }
         float distance = (_player.GlobalPosition - GlobalPosition).Length();
 
         // Delay initial behavior when first spawned
@@ -195,7 +202,7 @@ public partial class Monster3d : CharacterBody3D
                 AttackInitilize();
             }
             //Only apply gravity if not on the same Y as the player
-            if (GlobalPosition.Snapped(0.1f).Y == _player.GlobalPosition.Snapped(0.1f).Y)
+            if (GlobalPosition.Snapped(0.1f).Y == _player.GlobalPosition.Snapped(0.1f).Y || Flying == true)
             {
                 _targetVelocity = new Vector3(_targetVelocity.X, 0f, _targetVelocity.Z);
             }
@@ -262,7 +269,8 @@ public partial class Monster3d : CharacterBody3D
 
         if (Monster is hollowBrute hb) hb.Attack();
         else if (Monster is hollowNormal hn) hn.Attack();
-        else if (Monster is vCultist vc ) vc.Attack();
+        else if (Monster is vCultist vc) vc.Attack();
+        else if (Monster is flyingPesk fp ) fp.Fly();
     }
 
 
@@ -301,6 +309,7 @@ public partial class Monster3d : CharacterBody3D
         _veloThreshold = 0.5f;
     }
 
+    // --- KNOCKBACK FUNCTION --- //
     private void ApplyKnockback()
     {
         Vector3 knockbackDir = (GlobalPosition - _player.Position).Normalized();
