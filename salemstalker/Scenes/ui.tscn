@@ -101,12 +101,15 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q7pk6"]
 shader = ExtResource("4_2246s")
+shader_parameter/wiggleMult = 0.1
+shader_parameter/wiggleTime = 1.0
+shader_parameter/wiggleY = 2.0
+shader_parameter/BlendAmount = 1.49012e-07
 shader_parameter/change_color_depth = true
 shader_parameter/target_color_depth = 4
 shader_parameter/dithering = true
 shader_parameter/scale_resolution = true
 shader_parameter/target_resolution_scale = 2
-shader_parameter/enable_recolor = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m78vo"]
 shader = ExtResource("5_q7pk6")

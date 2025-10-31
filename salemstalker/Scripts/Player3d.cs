@@ -86,6 +86,7 @@ public partial class Player3d : CharacterBody3D
 	private float _currentStaminaTimer = 0f;
 	private int equipSec = 2;
 	public bool _twoHand = false;
+	public float _hallucinationFactor = 0f;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -353,6 +354,8 @@ public partial class Player3d : CharacterBody3D
 	{
 		Vector3 velocity = Velocity; // Get the current velocity vector
 
+		ShaderMaterial shaderMaterial = GetNode<ColorRect>("UI/Dither").Material as ShaderMaterial;
+		shaderMaterial.SetShaderParameter("BlendAmount", Mathf.Lerp((float)shaderMaterial.GetShaderParameter("BlendAmount"), _hallucinationFactor, (float)delta));
 
 		if (_currentStaminaTimer > 0f)
 		{
