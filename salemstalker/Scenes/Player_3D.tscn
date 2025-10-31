@@ -47,9 +47,10 @@ omni_range = 25.0
 [node name="Offhand1" type="Node3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190454, -0.219152, -1.07967)
 
-[node name="FlintGun" parent="Head/Camera3D/Offhand1" instance=ExtResource("3_mawk5")]
-
 [node name="Offhand2" type="Node3D" parent="Head/Camera3D"]
+
+[node name="FlintGun" parent="Head/Camera3D/Offhand2" instance=ExtResource("3_mawk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190454, 0.339409, -1.07967)
 
 [node name="Offhand3" type="Node3D" parent="Head/Camera3D"]
 
@@ -84,5 +85,5 @@ debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 
 [editable path="Head/Camera3D/Sword/Falchion"]
 [editable path="Head/Camera3D/Sword/Falchion/falchion"]
-[editable path="Head/Camera3D/Offhand1/FlintGun"]
-[editable path="Head/Camera3D/Offhand1/FlintGun/flinklock_animtions"]
+[editable path="Head/Camera3D/Offhand2/FlintGun"]
+[editable path="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions"]

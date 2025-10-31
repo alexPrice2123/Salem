@@ -100,15 +100,15 @@ shader_parameter/Emmision_Power = 0.1
 shader_parameter/Alpha_Clip = 1.0
 
 [sub_resource type="Curve" id="Curve_6xgjh"]
-_data = [Vector2(0, 0), 0.0, 1.02364, 0, 0, Vector2(1, 1), 0.971069, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 1.02364, 0, 0, Vector2(0.450893, 0.669049), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.971069, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_acbqd"]
 texture_mode = 1
 curve = SubResource("Curve_6xgjh")
 
 [sub_resource type="Curve" id="Curve_h4t8y"]
-_data = [Vector2(0, 0.274112), 0.0, 0.0, 0, 0, Vector2(0.752976, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.499637), 0.0, 0.0, 0, 0, Vector2(0.322917, 0.955943), -0.00587023, 0.0, 0, 0, Vector2(0.796131, 0.0323167), -1.42264, -1.42264, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_wxifh"]
@@ -119,12 +119,13 @@ lifetime_randomness = 0.25
 particle_flag_rotate_y = true
 angle_min = -180.0
 angle_max = 180.0
+inherit_velocity_ratio = 1.0
 direction = Vector3(0, 0, -1)
 spread = 10.0
-initial_velocity_max = 5.0
+initial_velocity_max = 10.0
 angular_velocity_min = -1.60933e-05
 angular_velocity_max = 90.9
-gravity = Vector3(0, 0.1, 0)
+gravity = Vector3(0, 0.2, 0)
 linear_accel_min = -2.23517e-06
 linear_accel_max = 0.999998
 scale_min = 0.25
@@ -133,7 +134,7 @@ scale_curve = SubResource("CurveTexture_wxifh")
 alpha_curve = SubResource("CurveTexture_acbqd")
 hue_variation_min = -2.23517e-08
 hue_variation_max = 0.02
-turbulence_noise_strength = 0.05
+turbulence_enabled = true
 turbulence_noise_scale = 0.1
 collision_mode = 1
 collision_friction = 0.0
@@ -164,15 +165,15 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.035
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0820205, -2.18294, 1.06889)
 
 [node name="Skeleton3D" parent="flinklock_animtions/metarig" index="0"]
-bones/8/rotation = Quaternion(-0.303982, 0.595171, -0.620591, 0.410162)
-bones/9/rotation = Quaternion(0.163256, 0.0590477, -0.132891, 0.975808)
-bones/10/rotation = Quaternion(-0.0386568, -0.212789, 0.0779945, 0.973213)
+bones/8/rotation = Quaternion(-0.29716, 0.660388, -0.543239, 0.424823)
+bones/9/rotation = Quaternion(0.101214, 0.0600148, -0.132174, 0.984217)
+bones/10/rotation = Quaternion(0.0249198, -0.210067, 0.100917, 0.972145)
 bones/11/rotation = Quaternion(0.179764, -0.206637, 0.167751, 0.947019)
 bones/12/rotation = Quaternion(-0.30828, 0.197393, -0.35762, 0.859132)
-bones/13/rotation = Quaternion(-0.366132, -0.102459, -0.249283, 0.890678)
-bones/15/rotation = Quaternion(0.164069, -0.0932468, -0.432995, 0.88142)
+bones/13/rotation = Quaternion(-0.366131, -0.102459, -0.249283, 0.890678)
+bones/15/rotation = Quaternion(0.213468, -0.0553024, -0.407084, 0.886372)
 bones/16/rotation = Quaternion(-0.152494, 0.0324545, 0.340067, 0.927387)
-bones/17/rotation = Quaternion(0.0344871, -0.0458761, 0.26541, 0.962426)
+bones/17/rotation = Quaternion(0.0344872, -0.0458761, 0.26541, 0.962426)
 bones/19/rotation = Quaternion(-0.219223, -0.673226, 0.585935, 0.394193)
 bones/20/rotation = Quaternion(0.166704, -0.0998514, 0.141085, 0.970739)
 bones/21/rotation = Quaternion(0.0696113, -0.0378772, -0.243182, 0.966738)
@@ -187,7 +188,7 @@ bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
 
 [node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.0146431, 0.000682895, 0.00203767, 0.0020551, 0.00855356, 0.0119017, -0.000628493, 0.0120585, -0.00855773, 0.124191, 0.888632, 0.262743)
+transform = Transform3D(-0.0147873, 2.32831e-09, -0.000611237, -0.000551835, 0.00636452, 0.0133501, 0.000262859, 0.0133615, -0.00635908, 0.222049, 0.84092, 0.116019)
 
 [node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D/Cube" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4t8y")
@@ -211,9 +212,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0277899, -0.523615, 0.31052
 material_override = SubResource("ShaderMaterial_cwoc6")
 transparency = 0.87
 cast_shadow = 0
-emitting = false
-amount = 15
-lifetime = 2.0
+amount = 50
+lifetime = 6.0
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
