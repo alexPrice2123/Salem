@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t547gwa8vawn"
-path="res://.godot/imported/grass.png-4e4d1ccf0912c07fd0f162901f6e9b18.ctex"
+uid="uid://clxg8lxqtvhdl"
+path="res://.godot/imported/barrel metal_Roughness.png-a5a079cf1d637530d793363c5aacf52c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/2D/grass.png"
-dest_files=["res://.godot/imported/grass.png-4e4d1ccf0912c07fd0f162901f6e9b18.ctex"]
+source_file="res://Assets/weapontextures/flintlock/barrel metal_Roughness.png"
+dest_files=["res://.godot/imported/barrel metal_Roughness.png-a5a079cf1d637530d793363c5aacf52c.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
