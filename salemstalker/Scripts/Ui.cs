@@ -43,35 +43,35 @@ public partial class Ui : Control
 	public override void _Process(double delta)
 	{
 		// Switch the titles of the buttons based on what shopOption you have selected
-		if (_shopTypeSelection.Selected == 0) 
+		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
 		{
-			_shopOption1.Text = "Shortsword";
-			_shopOption2.Text = "Falchion";
-			_shopOption3.Text = "Rapier";
-			_shopOption4.Text = "Dagger";
-			_shopOption4.Visible = true;
+			GetNode<Button>("BlacksmithShop/ShopOption1").Text = "Shortsword";
+			GetNode<Button>("BlacksmithShop/ShopOption2").Text = "Falchion";
+			GetNode<Button>("BlacksmithShop/ShopOption3").Text = "Rapier";
+			GetNode<Button>("BlacksmithShop/ShopOption4").Text = "Dagger";
+			GetNode<Button>("BlacksmithShop/ShopOption4").Visible = true;
 		}
 		else if (_shopTypeSelection.Selected == 1)
 		{
-			_shopOption1.Text = "Longsword";
-			_shopOption2.Text = "Greatsword";
-			_shopOption3.Text = "Battle Axe";
-			_shopOption4.Text = "Halberd";
-			_shopOption4.Visible = true;
+			GetNode<Button>("BlacksmithShop/ShopOption1").Text = "Longsword";
+			GetNode<Button>("BlacksmithShop/ShopOption2").Text = "Greatsword";
+			GetNode<Button>("BlacksmithShop/ShopOption3").Text = "Battle Axe";
+			GetNode<Button>("BlacksmithShop/ShopOption4").Text = "Halberd";
+			GetNode<Button>("BlacksmithShop/ShopOption4").Visible = true;
 		}
 		else if (_shopTypeSelection.Selected == 2)
 		{
-			_shopOption1.Text = "Flintlock";
-			_shopOption2.Text = "Stake Launcher";
-			_shopOption3.Text = "Throwables";
-			_shopOption4.Visible = false;
+			GetNode<Button>("BlacksmithShop/ShopOption1").Text = "Flintlock";
+			GetNode<Button>("BlacksmithShop/ShopOption2").Text = "Stake Launcher";
+			GetNode<Button>("BlacksmithShop/ShopOption3").Text = "Throwables";
+			GetNode<Button>("BlacksmithShop/ShopOption4").Visible = false;
 		}
 		else
 		{
-			_shopOption1.Text = "Shield";
-			_shopOption2.Text = "Chain Hook";
-			_shopOption3.Text = "Holy Relic";
-			_shopOption4.Visible = false;
+			GetNode<Button>("BlacksmithShop/ShopOption1").Text = "Shield";
+			GetNode<Button>("BlacksmithShop/ShopOption2").Text = "Chain Hook";
+			GetNode<Button>("BlacksmithShop/ShopOption3").Text = "Holy Relic";
+			GetNode<Button>("BlacksmithShop/ShopOption4").Visible = false;
 		}
 		
 		if (_loaded == true)
@@ -84,7 +84,6 @@ public partial class Ui : Control
 				_loadingUI.Visible = false;
 			}
 		}
-		GetNode<ColorRect>("Border").Color = _player._lightColor;
 	}
 
 	//--- Dialouge ---
