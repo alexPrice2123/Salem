@@ -1,9 +1,10 @@
-[gd_scene load_steps=90 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=91 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
 [ext_resource type="PackedScene" uid="uid://crxygapcq66ft" path="res://Scenes/Monsters/flyingPesk.tscn" id="3_13n8b"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://dbhqhurkcdks0" path="res://Scenes/Monsters/hollowNormal.tscn" id="4_gwaj6"]
 [ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/VillagerScripts/JohnVillager.cs" id="4_ochwf"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
 [ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/VillagerScripts/MarryVillager.cs" id="6_atqvy"]
@@ -389,6 +390,12 @@ Zones = [SubResource("Resource_hgpy0")]
 
 [node name="World" type="Node3D"]
 
+[node name="MonsterHolder" type="Node3D" parent="."]
+
+[node name="Hold2" type="Node3D" parent="MonsterHolder"]
+
+[node name="Hold" type="Node3D" parent="MonsterHolder/Hold2"]
+
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -571.401, 0.732849, -0.0671349)
 
@@ -398,8 +405,8 @@ navigation_mesh = SubResource("NavigationMesh_5a7ea")
 
 [node name="Hut" parent="MonsterRegion" groups=["Terrain"] instance=ExtResource("3_8j60k")]
 transform = Transform3D(-0.995991, 0, -0.0751335, 0, 0.998821, 0, 0.0751335, 0, -0.995991, 74.503, 4.53272, 68.476)
-_monsterList = Array[PackedScene]([ExtResource("3_13n8b")])
-_monsterCount = Array[int]([1])
+_monsterList = Array[PackedScene]([ExtResource("3_13n8b"), ExtResource("4_gwaj6")])
+_monsterCount = Array[int]([1, 5])
 
 [node name="VillageRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.254805, 0, -0.966993, 0, 1, 0, 0.966993, 0, 0.254805, -437.512, -4.30756, -130.386)

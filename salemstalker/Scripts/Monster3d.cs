@@ -269,8 +269,9 @@ public partial class Monster3d : CharacterBody3D
 
         if (Monster is hollowBrute hb) hb.Attack();
         else if (Monster is hollowNormal hn) hn.Attack();
+        else if (Monster is hollowShadow hs ) hs.Attack();
         else if (Monster is vCultist vc) vc.Attack();
-        else if (Monster is flyingPesk fp ) fp.Fly();
+        else if (Monster is flyingPesk fp) fp.Fly();
     }
 
 

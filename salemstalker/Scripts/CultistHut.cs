@@ -8,9 +8,6 @@ public partial class CultistHut : Node3D
 
 
 	// --- VARIABLES ---
-	private PackedScene _monsterScene = GD.Load<PackedScene>("res://Scenes/Monsters/Monster_3D.tscn"); // Scene reference for the base monster class
-	private PackedScene _theHollow = GD.Load<PackedScene>("res://Scenes/Monsters/the_hollow.tscn"); // Scene reference for the hollow
-	private PackedScene _vCultist = GD.Load<PackedScene>("res://Scenes/Monsters/vCultist.tscn"); // Scene reference for the violent culstist
 	private CsgBox3D _spawn;                   // Spawn point node where monsters will appear
 	private Timer _countdown;                  // Timer node that triggers monster spawn events
 	private int _number;                     // Tracks the current number of spawned monsters
