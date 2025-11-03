@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class CultistHut : Node3D
+public partial class DebugHut : Node3D
 {
 	// --- CONSTANTS ---
 
@@ -83,7 +83,8 @@ public partial class CultistHut : Node3D
 			monsterInstance.Position = _spawn.Position;                                    // Set monster spawn position
 			if (monsterInstance is Monster3d monster)
             {
-                monster.RandomRangedPosition();
+				monster.RandomRangedPosition();
+				monster.Debug = true;
             }
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();

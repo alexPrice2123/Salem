@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4ntgvke0mfh3"]
+
+[ext_resource type="Script" uid="uid://dcgujs2qwv4l5" path="res://Scripts/DebugHut.cs" id="1_x5deh"]
+[ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_8c0l7"]
+
+[node name="Hut" type="Node3D"]
+script = ExtResource("1_x5deh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.313726, 0.188235, 0.921569, 1)
+light_energy = 5.0
+shadow_enabled = true
+omni_range = 6.0
+
+[node name="Spawn" type="CSGBox3D" parent="."]
+transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 0, 0, 0)
+visible = false
+size = Vector3(0.1, 0.1, 0.1)
+material = ExtResource("2_8c0l7")
+
+[node name="SpawnTime" type="Timer" parent="."]
+wait_time = 7.5
+
+[node name="MonsterHolder" type="Node3D" parent="."]
+
+[connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
