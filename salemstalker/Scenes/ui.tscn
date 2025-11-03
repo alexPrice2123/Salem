@@ -817,22 +817,19 @@ offset_right = 0.0449829
 offset_bottom = 0.295959
 
 [node name="Stamina" type="Sprite2D" parent="."]
-visible = false
 z_index = 1
 position = Vector2(938, 500)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("13_whq80")
 
 [node name="Fill" type="Sprite2D" parent="Stamina"]
-visible = false
-modulate = Color(0, 0.807843, 1, 1)
+modulate = Color(0.235305, 0.629091, 0.82479, 1)
 z_as_relative = false
 material = SubResource("ShaderMaterial_whq80")
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_whq80")
 
 [node name="Controls" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(538, 305)
 scale = Vector2(0.561458, 0.559259)
 texture = ExtResource("14_8fs27")
