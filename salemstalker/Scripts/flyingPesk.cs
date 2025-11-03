@@ -102,7 +102,7 @@ public partial class flyingPesk : Monster3d
 		_targetVelocity = Vector3.Zero;
 		Velocity = _targetVelocity;
 
-		_player.Damaged(BaseDamage + _damageOffset, this as Monster3d);
+		_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "Hallucinate");
 
 		// await ToSignal(GetTree().CreateTimer(1f), "timeout");
 		_fleeing = true;

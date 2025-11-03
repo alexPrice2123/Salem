@@ -357,6 +357,12 @@ public partial class Player3d : CharacterBody3D
 		ShaderMaterial shaderMaterial = GetNode<ColorRect>("UI/Dither").Material as ShaderMaterial;
 		shaderMaterial.SetShaderParameter("BlendAmount", Mathf.Lerp((float)shaderMaterial.GetShaderParameter("BlendAmount"), _hallucinationFactor, (float)delta));
 
+		_hallucinationFactor = Mathf.Lerp(_hallucinationFactor, 0f, (float)delta / 10);
+		if (_hallucinationFactor <= 0.4)
+        {
+			_hallucinationFactor = 0;
+        }
+
 		if (_currentStaminaTimer > 0f)
 		{
 			_currentStaminaTimer -= (float)delta;
@@ -822,8 +828,12 @@ public partial class Player3d : CharacterBody3D
 	}
 
 	// Handles damage taken by the player from a Monster3d (melee damage).
-	public void Damaged(float takenDamage, Monster3d monster)
-	{
+	public void Damaged(float takenDamage, Monster3d monster, string effect)
+	{	
+		if (effect == "Hallucinate")
+        {
+			_hallucinationFactor = 1f;
+        }
 		_knockVelocity = 2f;
 		if (_blocking == true && _parry == false)
 		{
