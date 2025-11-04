@@ -21,20 +21,21 @@ public partial class Ui : Control
 	private Button _shopOption4;
 	public override void _Ready()
 	{
+		_slotSelect = GetNode<Control>("Inv/SubPort/Sub/SlotSelector");
 		PlayShopAnim("Falchion");
 		PlayShopAnim("Shortsword");
-		
+
 		if (GetParent() is Player3d player)
 		{
 			_player = player;
 		}
+		_slotSelect = GetNode<Control>("Inv/SubPort/Sub/SlotSelector");
 		_loadingUI = GetNode<Control>("Loading");
 		_shopTypeSelection = GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions");
 		_shopOption1 = GetNode<Button>("BlacksmithShop/ShopOption1");
 		_shopOption2 = GetNode<Button>("BlacksmithShop/ShopOption2");
 		_shopOption3 = GetNode<Button>("BlacksmithShop/ShopOption3");
 		_shopOption4 = GetNode<Button>("BlacksmithShop/ShopOption4");
-		_slotSelect = GetNode<Control>("Inv/SubPort/Sub/SlotSelector");
 		_loadingUI.Visible = true;
 		_loadingMaterial = _loadingUI.Material as ShaderMaterial;
 		Load();
@@ -187,32 +188,40 @@ public partial class Ui : Control
 		}
 	}
 
-	private void _on_slot_4_button_up()
+	private async void _on_slot_4_button_up()
 	{
 		_slotSelect.Visible = false;
-		GD.Print("sendslot4");
+		GD.Print("sendslot4", _secItemSend);
+		_player.SwtichSecondaryWeapon(_secItemSend,4);
+		await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 		_secItemSend = null;
 	}
 
-	private void _on_slot_3_button_up()
+	private async void _on_slot_3_button_up()
 	{
 		_slotSelect.Visible = false;
-		GD.Print("sendslot3");
+		GD.Print("sendslot3", _secItemSend);
+		_player.SwtichSecondaryWeapon(_secItemSend,4);
+		await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 		_secItemSend = null;
 	}
 
-	private void _on_slot_2_button_up()
+	private async void _on_slot_2_button_up()
 	{
 		_slotSelect.Visible = false;
-		GD.Print("sendslot2");
+		GD.Print("sendslot2", _secItemSend);
+		_player.SwtichSecondaryWeapon(_secItemSend,4);
+		await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 		_secItemSend = null;
 	}
 	
-	private void _on_slot_1_button_up()
+	private async void _on_slot_1_button_up()
 	{
 		_slotSelect.Visible = false;
-		GD.Print("sendslot1");
+		GD.Print("sendslot1", _secItemSend);
+		_player.SwtichSecondaryWeapon(_secItemSend,4);
+		await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 		_secItemSend = null;
 	}
-	
+	private async void _on_button_button_down() { GetTree().Root.PropagateNotification((int)NotificationWMCloseRequest); GetTree().Quit(); }
 }
