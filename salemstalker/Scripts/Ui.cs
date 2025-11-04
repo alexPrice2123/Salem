@@ -21,10 +21,6 @@ public partial class Ui : Control
 	private Button _shopOption4;
 	public override void _Ready()
 	{
-		_slotSelect = GetNode<Control>("Inv/SubPort/Sub/SlotSelector");
-		PlayShopAnim("Falchion");
-		PlayShopAnim("Shortsword");
-
 		if (GetParent() is Player3d player)
 		{
 			_player = player;
