@@ -80,6 +80,10 @@ public partial class vCultist : Monster3d
         if (_health <= 0)
         {
             _player.MonsterKilled("vCultist");
+            if (Debug == true)
+            {
+				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
+            }
             QueueFree(); // Destroy monster when health hits zero
         }
         _orb.Scale = _orb.Scale.Lerp(_orbGoal, _orbTweenTime * (float)delta);

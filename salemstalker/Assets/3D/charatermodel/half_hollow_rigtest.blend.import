@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bcoxa54p7uy8u"
-path="res://.godot/imported/half_hollow_rigtest.blend-9aae780e0cc22835130eb5c13c88e9a6.scn"
+valid=false
 
 [deps]
 
 source_file="res://Assets/3D/charatermodel/half_hollow_rigtest.blend"
-dest_files=["res://.godot/imported/half_hollow_rigtest.blend-9aae780e0cc22835130eb5c13c88e9a6.scn"]
 
 [params]
 

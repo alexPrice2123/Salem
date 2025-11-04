@@ -1,6 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cahiyym0yhafq"]
 
-[ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://Assets/2D/WoodPlank.png" id="1_rw1ko"]
+[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="1_rw1ko"]
 
 [resource]
 albedo_texture = ExtResource("1_rw1ko")
+uv1_scale = Vector3(1000, 1000, 1000)
