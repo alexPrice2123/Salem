@@ -727,6 +727,7 @@ public partial class Player3d : CharacterBody3D
 	{
 		_parry = false; // Ensure parry window is closed
 		_sword.GetNode<GpuParticles3D>("Parry").Emitting = true; // Play parry visual effect
+		_hallucinationFactor = 0f;
 
 		int ranSound = _rng.RandiRange(0, 2); // Randomize which sound effect to play
 		if (ranSound == 0)

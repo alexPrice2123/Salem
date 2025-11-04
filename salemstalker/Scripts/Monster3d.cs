@@ -186,6 +186,7 @@ public partial class Monster3d : CharacterBody3D
             // Apply movement and knockback forces
             if (_knockbackVelocity.Length() > 0.5)
             {
+                GD.Print(_knockbackVelocity.Length());
                 _targetVelocity = Vector3.Zero + _knockbackVelocity;
                 Velocity = _targetVelocity;
             }
