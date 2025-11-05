@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://crxygapcq66ft"]
+[gd_scene load_steps=42 format=3 uid="uid://crxygapcq66ft"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_rrcq7"]
 [ext_resource type="Script" uid="uid://c4bkik5xcpbc3" path="res://Scripts/flyingPesk.cs" id="2_rrcq7"]
@@ -143,6 +143,14 @@ scale_curve = SubResource("CurveTexture_yr5wf")
 
 [sub_resource type="SphereMesh" id="SphereMesh_v2reo"]
 
+[sub_resource type="Animation" id="Animation_rrcq7"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pgtvs"]
+_data = {
+&"idle": SubResource("Animation_rrcq7")
+}
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrcq7"]
 albedo_color = Color(1, 1, 0, 1)
 emission_enabled = true
@@ -222,6 +230,11 @@ material_override = ExtResource("5_chkap")
 
 [node name="MeshInstance3D2" parent="HitFX" index="1"]
 material_override = ExtResource("5_chkap")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HitFX" index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_pgtvs")
+}
 
 [node name="Stunned" type="GPUParticles3D" parent="." index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00175359, 0.654441, -0.181937)

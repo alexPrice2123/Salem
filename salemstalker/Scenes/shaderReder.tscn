@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c33h640ws53o2"]
 
-[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/demo_world.tscn" id="1_fn5sd"]
+[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="1_fn5sd"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="1_nea72"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1dyl7"]

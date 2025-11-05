@@ -100,6 +100,7 @@ public partial class Monster3d : CharacterBody3D
         if (knockBack == true) { ApplyKnockback(); }
 
         // Quick visual hit reaction
+        _hitFX.GetNode<AnimationPlayer>("AnimationPlayer").Play("idle");
         _hitFX.Visible = true;
         _body.Visible = false;
         _canAttack = false;
