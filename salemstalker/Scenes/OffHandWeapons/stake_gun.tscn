@@ -1,24 +1,112 @@
-[gd_scene load_steps=7 format=3 uid="uid://do3u2x5avpy72"]
+[gd_scene load_steps=44 format=3 uid="uid://do3u2x5avpy72"]
 
 [ext_resource type="PackedScene" uid="uid://catkfqrbkq6x4" path="res://Assets/Weapons/stakeGun.blend" id="1_jmmew"]
-[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_iwl1i"]
+[ext_resource type="Texture2D" uid="uid://be77ih4xx22nn" path="res://Assets/weapontextures/stakegun/stake_Base_color.png" id="2_r4a1s"]
+[ext_resource type="Texture2D" uid="uid://dwomhoj57faey" path="res://Assets/weapontextures/stakegun/stake_Height.png" id="3_lfwbr"]
+[ext_resource type="Texture2D" uid="uid://cmtvh227ao0up" path="res://Assets/weapontextures/stakegun/stake_Metallic.png" id="4_ljwo7"]
+[ext_resource type="Texture2D" uid="uid://hwb25r7a2uvs" path="res://Assets/weapontextures/stakegun/stake_Normal_OpenGL.png" id="5_gjkus"]
+[ext_resource type="Texture2D" uid="uid://d1o5s5dn7cdi6" path="res://Assets/weapontextures/stakegun/stake_Roughness.png" id="6_xsyfx"]
+[ext_resource type="Texture2D" uid="uid://uj33ug0h5dp8" path="res://Assets/weapontextures/stakegun/main body_Base_color.png" id="7_wsllt"]
+[ext_resource type="Texture2D" uid="uid://drtasftpk44if" path="res://Assets/weapontextures/stakegun/main body_Height.png" id="8_vogo1"]
+[ext_resource type="Texture2D" uid="uid://cdhjhktrwrra" path="res://Assets/weapontextures/stakegun/main body_Metallic.png" id="9_m0dnr"]
+[ext_resource type="Texture2D" uid="uid://me1mh6don04" path="res://Assets/weapontextures/stakegun/main body_Normal.png" id="10_pej8p"]
+[ext_resource type="Texture2D" uid="uid://dxq4kg5o1ujqk" path="res://Assets/weapontextures/stakegun/main body_Roughness.png" id="11_latmq"]
+[ext_resource type="Texture2D" uid="uid://b20tmfhg234xu" path="res://Assets/weapontextures/stakegun/trigger_Base_color.png" id="12_f06ak"]
+[ext_resource type="Texture2D" uid="uid://dcr1ohiqlnjdn" path="res://Assets/weapontextures/stakegun/trigger_Height.png" id="13_bi0xr"]
+[ext_resource type="Texture2D" uid="uid://b446bllox6pdr" path="res://Assets/weapontextures/stakegun/trigger_Metallic.png" id="14_qugfl"]
+[ext_resource type="Texture2D" uid="uid://djn4n0xq0rq68" path="res://Assets/weapontextures/stakegun/trigger_Normal_OpenGL.png" id="15_7ou1y"]
+[ext_resource type="Texture2D" uid="uid://bkobw8ml5em2w" path="res://Assets/weapontextures/stakegun/trigger_Roughness.png" id="16_6epex"]
+[ext_resource type="Texture2D" uid="uid://blgnpidlg8d62" path="res://Assets/weapontextures/stakegun/back thingy_Base_color.png" id="17_306lm"]
+[ext_resource type="Texture2D" uid="uid://cokh41q4ffxtg" path="res://Assets/weapontextures/stakegun/back thingy_Height.png" id="18_kbavs"]
+[ext_resource type="Texture2D" uid="uid://mm8k8rq8c1ss" path="res://Assets/weapontextures/stakegun/back thingy_Metallic.png" id="19_ei2kg"]
+[ext_resource type="Texture2D" uid="uid://2kgyp3onpbfm" path="res://Assets/weapontextures/stakegun/back thingy_Normal_OpenGL.png" id="20_egq1r"]
+[ext_resource type="Texture2D" uid="uid://dxyvcydxysits" path="res://Assets/weapontextures/stakegun/back thingy_Roughness.png" id="21_lkl8x"]
+[ext_resource type="Texture2D" uid="uid://vfhablkbgbx5" path="res://Assets/weapontextures/stakegun/plunger_Base_color.png" id="22_i2uah"]
+[ext_resource type="Texture2D" uid="uid://cienlx64b4jhv" path="res://Assets/weapontextures/stakegun/plunger_Height.png" id="23_qtslt"]
+[ext_resource type="Texture2D" uid="uid://2jn45g4uffsc" path="res://Assets/weapontextures/stakegun/plunger_Metallic.png" id="24_32rkr"]
+[ext_resource type="Texture2D" uid="uid://ducogfr0w0gl5" path="res://Assets/weapontextures/stakegun/plunger_Normal.png" id="25_ce22r"]
+[ext_resource type="Texture2D" uid="uid://1a54plqjrtif" path="res://Assets/weapontextures/stakegun/plunger_Roughness.png" id="26_6434j"]
+[ext_resource type="Texture2D" uid="uid://dwmx48n04fhfy" path="res://Assets/weapontextures/stakegun/flinger thingies_Base_color.png" id="27_synqx"]
+[ext_resource type="Texture2D" uid="uid://b0814lpbsuiqo" path="res://Assets/weapontextures/stakegun/flinger thingies_Height.png" id="28_trchb"]
+[ext_resource type="Texture2D" uid="uid://dqwfex5uhiimn" path="res://Assets/weapontextures/stakegun/flinger thingies_Metallic.png" id="29_qvn22"]
+[ext_resource type="Texture2D" uid="uid://5j7weqlpwpbt" path="res://Assets/weapontextures/stakegun/flinger thingies_Normal.png" id="30_tsq4q"]
+[ext_resource type="Texture2D" uid="uid://bgr6qfrxabqbd" path="res://Assets/weapontextures/stakegun/flinger thingies_Roughness.png" id="31_knutt"]
+[ext_resource type="Texture2D" uid="uid://cc1yverx8u6th" path="res://Assets/weapontextures/stakegun/metal spikey bits_Base_color.png" id="32_ecm4v"]
+[ext_resource type="Texture2D" uid="uid://5ymjevhgkbgw" path="res://Assets/weapontextures/stakegun/metal spikey bits_Height.png" id="33_sajxn"]
+[ext_resource type="Texture2D" uid="uid://c8km4rj2snvfv" path="res://Assets/weapontextures/stakegun/metal spikey bits_Metallic.png" id="34_kcn2f"]
+[ext_resource type="Texture2D" uid="uid://b24p5yavd7a2v" path="res://Assets/weapontextures/stakegun/metal spikey bits_Normal.png" id="35_tg4l2"]
+[ext_resource type="Texture2D" uid="uid://og0h12lrines" path="res://Assets/weapontextures/stakegun/metal spikey bits_Roughness.png" id="36_pn0qa"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t84m3"]
-albedo_texture = ExtResource("2_iwl1i")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by887"]
-albedo_color = Color(0.577008, 0.577008, 0.577008, 1)
-albedo_texture = ExtResource("2_iwl1i")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_df3ch"]
-albedo_color = Color(0.564962, 0.564962, 0.564962, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6akbv"]
+albedo_color = Color(0.910845, 0.852164, 0.794515, 1)
+albedo_texture = ExtResource("2_r4a1s")
 metallic = 1.0
-roughness = 0.3
+metallic_texture = ExtResource("4_ljwo7")
+roughness_texture = ExtResource("6_xsyfx")
+normal_enabled = true
+normal_texture = ExtResource("5_gjkus")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_lfwbr")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cn8n3"]
-albedo_color = Color(0.400698, 0.400698, 0.400698, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i1lf"]
+albedo_texture = ExtResource("7_wsllt")
 metallic = 1.0
-roughness = 0.3
+metallic_texture = ExtResource("9_m0dnr")
+roughness_texture = ExtResource("11_latmq")
+normal_enabled = true
+normal_texture = ExtResource("10_pej8p")
+heightmap_enabled = true
+heightmap_texture = ExtResource("8_vogo1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtapg"]
+albedo_texture = ExtResource("12_f06ak")
+metallic = 1.0
+metallic_texture = ExtResource("14_qugfl")
+roughness_texture = ExtResource("16_6epex")
+normal_enabled = true
+normal_texture = ExtResource("15_7ou1y")
+heightmap_enabled = true
+heightmap_texture = ExtResource("13_bi0xr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hku14"]
+albedo_texture = ExtResource("17_306lm")
+metallic = 1.0
+metallic_texture = ExtResource("19_ei2kg")
+roughness_texture = ExtResource("21_lkl8x")
+normal_enabled = true
+normal_texture = ExtResource("20_egq1r")
+heightmap_enabled = true
+heightmap_texture = ExtResource("18_kbavs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4us6l"]
+albedo_texture = ExtResource("22_i2uah")
+metallic = 1.0
+metallic_texture = ExtResource("24_32rkr")
+roughness_texture = ExtResource("26_6434j")
+normal_enabled = true
+normal_texture = ExtResource("25_ce22r")
+heightmap_enabled = true
+heightmap_texture = ExtResource("23_qtslt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcuar"]
+albedo_texture = ExtResource("27_synqx")
+metallic = 1.0
+metallic_texture = ExtResource("29_qvn22")
+roughness_texture = ExtResource("31_knutt")
+normal_enabled = true
+normal_texture = ExtResource("30_tsq4q")
+heightmap_enabled = true
+heightmap_texture = ExtResource("28_trchb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0e2h"]
+albedo_texture = ExtResource("32_ecm4v")
+metallic = 1.0
+metallic_texture = ExtResource("34_kcn2f")
+roughness_texture = ExtResource("36_pn0qa")
+normal_enabled = true
+normal_texture = ExtResource("35_tg4l2")
+heightmap_enabled = true
+heightmap_texture = ExtResource("33_sajxn")
 
 [node name="StakeGun" type="Node3D"]
 
@@ -26,24 +114,24 @@ roughness = 0.3
 transform = Transform3D(0.264955, 0, 0, 0, 0.264955, 0, 0, 0, 0.264955, 0, -0.542065, 0)
 
 [node name="Cylinder" parent="stake gun" index="0"]
-material_override = SubResource("StandardMaterial3D_t84m3")
+surface_material_override/0 = SubResource("StandardMaterial3D_6akbv")
 
 [node name="Cube" parent="stake gun" index="1"]
-material_override = SubResource("StandardMaterial3D_by887")
+surface_material_override/0 = SubResource("StandardMaterial3D_8i1lf")
 
 [node name="Cube_001" parent="stake gun" index="2"]
-material_override = SubResource("StandardMaterial3D_df3ch")
+surface_material_override/0 = SubResource("StandardMaterial3D_vtapg")
 
 [node name="Cube_002" parent="stake gun" index="3"]
-material_override = SubResource("StandardMaterial3D_cn8n3")
+surface_material_override/0 = SubResource("StandardMaterial3D_hku14")
 
 [node name="Cylinder_001" parent="stake gun" index="4"]
-material_override = SubResource("StandardMaterial3D_cn8n3")
+surface_material_override/0 = SubResource("StandardMaterial3D_4us6l")
 
 [node name="Cylinder_002" parent="stake gun" index="5"]
-material_override = SubResource("StandardMaterial3D_by887")
+surface_material_override/0 = SubResource("StandardMaterial3D_vcuar")
 
 [node name="Cube_003" parent="stake gun" index="6"]
-material_override = SubResource("StandardMaterial3D_df3ch")
+surface_material_override/0 = SubResource("StandardMaterial3D_i0e2h")
 
 [editable path="stake gun"]
