@@ -20,6 +20,7 @@ public partial class Monster3d : CharacterBody3D
     protected bool MoveWhileAttack = false;     // Can this monster move while attacking
     protected bool Flying = false;              // Should gravity be applied to this monster
     public bool Debug = false;                  // If true this monster wont move or attack
+    public bool CanShadow = false;              // Decides if the monster can become a phantom
 
     // --- NODE REFERENCES ---
     protected Player3d _player;                 // Reference to the player

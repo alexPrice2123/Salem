@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw2fjllusx7kw"]
+
+[ext_resource type="Script" uid="uid://j62rfr3y6iu1" path="res://Scripts/enemySpawner.cs" id="1_4l55s"]
+[ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_8h7h8"]
+
+[node name="EnemySpawner" type="Node3D"]
+script = ExtResource("1_4l55s")
+
+[node name="Spawn" type="CSGBox3D" parent="."]
+transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 0, 0, 0)
+visible = false
+size = Vector3(0.1, 0.1, 0.1)
+material = ExtResource("2_8h7h8")
+
+[node name="SpawnTime" type="Timer" parent="."]
+wait_time = 7.5
+
+[node name="MonsterHolder" type="Node3D" parent="."]
+
+[connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]

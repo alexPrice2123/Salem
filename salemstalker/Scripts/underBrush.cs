@@ -15,7 +15,7 @@ public partial class underBrush : Monster3d
 		MaxHealth = 75.0f;         // Maximum monster health
 		Range = 30.0f;            // Detection range for chasing
 		SpawnDistance = 100;    // Distance from player before despawning
-		BaseDamage = 0*10.0f;
+		BaseDamage = 10.0f;
 		WanderRange = 50;
 		AttackSpeed = 1.33f;
 		AttackRange = 1f;

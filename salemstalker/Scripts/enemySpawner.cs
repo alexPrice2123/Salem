@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class CultistHut : Node3D
+public partial class enemySpawner : Node3D
 {
 	// --- CONSTANTS ---
 
@@ -15,11 +15,11 @@ public partial class CultistHut : Node3D
 	private Node3D _holder;                    // Node that holds all spawned monsters as children
 	private RandomNumberGenerator _rng = new RandomNumberGenerator();
 	[Export]
-	public float _spawnTime = 6f;
-	[Export]
 	public int _maxMonsterCount = 70;
 	[Export]
 	public bool _canShadow = false;
+	[Export]
+	public float SpawnRange = 25f;        
 	[Export]
 	public double SpawnDistance = 100;        // Maximum distance from player before monsters despawn or spawning stops    
 	[Export]
@@ -33,7 +33,7 @@ public partial class CultistHut : Node3D
 	{
 		_spawn = GetNode<CsgBox3D>("Spawn");             // Get the spawn point node
 		_countdown = GetNode<Timer>("SpawnTime");        // Get the timer node
-		_countdown.WaitTime = _spawnTime;
+		_countdown.WaitTime = 0.1f;
 		_countdown.Start();                              // Start the spawn timer
 		_currenctMonsterCount = _monsterCount;
 
@@ -82,7 +82,7 @@ public partial class CultistHut : Node3D
 			PackedScene monsterSelection = _monsterList[monsterIndex];
 			CharacterBody3D monsterInstance = monsterSelection.Instantiate<CharacterBody3D>(); // Create monster instance
 			_holder.AddChild(monsterInstance);                                             // Add monster to holder node
-			monsterInstance.Position = _spawn.Position;                                    // Set monster spawn position
+			monsterInstance.Position = _spawn.Position + new Vector3(_rng.RandfRange(-SpawnRange, SpawnRange), 0f, _rng.RandfRange(-SpawnRange, SpawnRange));                                    // Set monster spawn position
 			if (monsterInstance is Monster3d monster)
             {
                 monster.RandomRangedPosition();

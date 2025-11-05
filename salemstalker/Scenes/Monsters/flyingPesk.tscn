@@ -242,4 +242,5 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_2yltb")
 draw_pass_1 = SubResource("BoxMesh_chkap")
 
+[editable path="Body"]
 [editable path="HitFX"]
