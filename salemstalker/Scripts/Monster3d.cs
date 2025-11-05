@@ -179,7 +179,7 @@ public partial class Monster3d : CharacterBody3D
         }
 
         // RANGED ENEMY BEHAVIOR: maintain distance then fire
-        else if (!_attackAnim && !Chaser)
+        else if (distance <= Range && !_attackAnim && !Chaser)
         {
             _player._inCombat = true; _navAgent.TargetPosition = _rangedPosition;
             Vector3 nextPoint = _navAgent.GetNextPathPosition();

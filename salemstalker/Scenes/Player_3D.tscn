@@ -27,11 +27,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.231209, -0.29871
 
 [node name="Falchion" parent="Head/Camera3D/Sword" instance=ExtResource("3_l13c1")]
 
-[node name="AnimationPlayer" parent="Head/Camera3D/Sword/Falchion" index="0"]
-blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
-
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.379691, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141743, 0, 0)
 target_position = Vector3(0, 0, -5)
 collision_mask = 2
 collide_with_areas = true
@@ -51,6 +48,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190454, -0.219152, -1.0796
 
 [node name="FlintGun" parent="Head/Camera3D/Offhand2" instance=ExtResource("3_mawk5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190454, 0.339409, -1.07967)
+
+[node name="Skeleton3D" parent="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions/metarig" index="0"]
+bones/8/rotation = Quaternion(-0.29716, 0.660388, -0.543239, 0.424823)
+bones/9/rotation = Quaternion(0.101214, 0.0600148, -0.132174, 0.984217)
+bones/10/rotation = Quaternion(0.0249198, -0.210067, 0.100917, 0.972145)
+bones/11/rotation = Quaternion(0.179764, -0.206637, 0.167751, 0.947019)
+bones/12/rotation = Quaternion(-0.30828, 0.197393, -0.35762, 0.859132)
+bones/13/rotation = Quaternion(-0.366131, -0.102459, -0.249283, 0.890678)
+bones/15/rotation = Quaternion(0.213468, -0.0553024, -0.407084, 0.886372)
+bones/16/rotation = Quaternion(-0.152494, 0.0324545, 0.340067, 0.927387)
+bones/17/rotation = Quaternion(0.0344872, -0.0458761, 0.26541, 0.962426)
+bones/19/rotation = Quaternion(-0.219223, -0.673226, 0.585935, 0.394193)
+bones/20/rotation = Quaternion(0.166704, -0.0998514, 0.141085, 0.970739)
+bones/21/rotation = Quaternion(0.0696113, -0.0378772, -0.243182, 0.966738)
+bones/22/rotation = Quaternion(-0.0966641, 0.258241, 0.32192, 0.905724)
+bones/23/rotation = Quaternion(-0.0473394, 0.0197859, 0.299546, 0.952701)
+bones/24/rotation = Quaternion(-0.078243, 0.0546005, 0.594849, 0.798155)
+bones/25/rotation = Quaternion(0.367195, 0.110883, 0.45398, 0.804223)
+bones/26/rotation = Quaternion(-0.309649, -0.0101378, -0.104003, 0.945091)
+bones/27/rotation = Quaternion(-0.0527684, -0.0296006, -0.340938, 0.938137)
+bones/28/rotation = Quaternion(-5.42024e-08, 0.696112, 0.717933, -5.2555e-08)
+bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
+bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
+
+[node name="Cube" parent="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions/metarig/Skeleton3D" index="0"]
+transform = Transform3D(-0.0147873, 2.32831e-09, -0.000611237, -0.000551835, 0.00636452, 0.0133501, 0.000262859, 0.0133615, -0.00635908, 0.222049, 0.84092, 0.116019)
 
 [node name="Offhand3" type="Node3D" parent="Head/Camera3D"]
 

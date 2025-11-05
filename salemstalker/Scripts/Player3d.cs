@@ -362,7 +362,7 @@ public partial class Player3d : CharacterBody3D
 		Vector3 velocity = Velocity; // Get the current velocity vector
 
 		ShaderMaterial shaderMaterial = GetNode<ColorRect>("UI/Dither").Material as ShaderMaterial;
-		shaderMaterial.SetShaderParameter("BlendAmount", Mathf.Lerp((float)shaderMaterial.GetShaderParameter("BlendAmount"), _hallucinationFactor, (float)delta));
+		shaderMaterial.SetShaderParameter("BlendAmount", Mathf.Lerp((float)shaderMaterial.GetShaderParameter("BlendAmount"), _hallucinationFactor*-1000, (float)delta/10));
 
 		_hallucinationFactor = Mathf.Lerp(_hallucinationFactor, 0f, (float)delta / 10);
 		if (_hallucinationFactor <= 0.4)
