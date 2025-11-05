@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvls06clf6bc5"]
+[gd_scene load_steps=12 format=3 uid="uid://cvls06clf6bc5"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_ostip"]
+[ext_resource type="Shader" uid="uid://bu36lcp8xftmo" path="res://Shaders/starrySky.gdshader" id="1_p5qse"]
 [ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="2_kvufb"]
 [ext_resource type="PackedScene" uid="uid://d4ntgvke0mfh3" path="res://Scenes/DebugHut.tscn" id="3_kvufb"]
 [ext_resource type="PackedScene" uid="uid://crxygapcq66ft" path="res://Scenes/Monsters/flyingPesk.tscn" id="4_aetuq"]
@@ -8,24 +9,28 @@
 [ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/hollowBrute.tscn" id="6_4dpch"]
 [ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/vCultist.tscn" id="7_4dpch"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ostip"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yt8cr"]
+shader = ExtResource("1_p5qse")
+shader_parameter/sky_color = Color(0, 0, 0, 1)
+shader_parameter/star_base_color = Color(0.8, 1, 0.3, 1)
+shader_parameter/star_hue_offset = 1.0
+shader_parameter/star_intensity = 0.1
+shader_parameter/star_twinkle_speed = 0.25
+shader_parameter/star_twinkle_intensity = 1.0
+shader_parameter/layer_scale = 20.0
+shader_parameter/layer_scale_step = 10.0
+shader_parameter/layers_count = 3
 
-[sub_resource type="Sky" id="Sky_kvufb"]
-sky_material = SubResource("ProceduralSkyMaterial_ostip")
+[sub_resource type="Sky" id="Sky_hdhae"]
+sky_material = SubResource("ShaderMaterial_yt8cr")
 
 [sub_resource type="Environment" id="Environment_aetuq"]
 background_mode = 2
-sky = SubResource("Sky_kvufb")
+sky = SubResource("Sky_hdhae")
 tonemap_mode = 2
 glow_enabled = true
 
 [node name="World" type="Node3D"]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aetuq")

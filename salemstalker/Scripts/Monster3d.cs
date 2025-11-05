@@ -100,6 +100,7 @@ public partial class Monster3d : CharacterBody3D
         if (knockBack == true) { ApplyKnockback(); }
 
         // Quick visual hit reaction
+        _hitFX.GetNode<AnimationPlayer>("AnimationPlayer").Play("idle");
         _hitFX.Visible = true;
         _body.Visible = false;
         _canAttack = false;
@@ -179,19 +180,19 @@ public partial class Monster3d : CharacterBody3D
         }
 
         // RANGED ENEMY BEHAVIOR: maintain distance then fire
-        else if (!_attackAnim && !Chaser)
+        else if (distance <= Range && !_attackAnim && !Chaser)
         {
             _player._inCombat = true; _navAgent.TargetPosition = _rangedPosition;
             Vector3 nextPoint = _navAgent.GetNextPathPosition();
             // Apply movement and knockback forces
             if (_knockbackVelocity.Length() > 0.5)
             {
-                GD.Print(_knockbackVelocity.Length());
                 _targetVelocity = Vector3.Zero + _knockbackVelocity;
                 Velocity = _targetVelocity;
             }
             else
             {
+                GD.Print(_targetVelocity.Length());
                 _targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed * _dashVelocity + _speedOffset);
             }
             // Attack when the monster gets near the finish position or if its been stading still
@@ -279,16 +280,27 @@ public partial class Monster3d : CharacterBody3D
     // --- STUN EFFECT --- //
     public async void Stunned()
     {
-        _stunned = true;
-        _attackException = true;
-        ApplyKnockback();
+        if (Monster is flyingPesk fp)
+        {
+            _speedOffset = -3.5f;
+            GetNode<GpuParticles3D>("Stunned").Emitting = true;
+            await ToSignal(GetTree().CreateTimer(3f), "timeout");
+            GetNode<GpuParticles3D>("Stunned").Emitting = false;
+            _speedOffset = 0f;
+        }
+        else
+        {
+            _stunned = true;
+            _attackException = true;
+            ApplyKnockback();
 
-        // Visual stun effect
-        GetNode<GpuParticles3D>("Stunned").Emitting = true;
-        await ToSignal(GetTree().CreateTimer(1f), "timeout");
-        GetNode<GpuParticles3D>("Stunned").Emitting = false;
+            // Visual stun effect
+            GetNode<GpuParticles3D>("Stunned").Emitting = true;
+            await ToSignal(GetTree().CreateTimer(1f), "timeout");
+            GetNode<GpuParticles3D>("Stunned").Emitting = false;
 
-        _stunned = false;
+            _stunned = false;
+        }
     }
 
 

@@ -133,7 +133,7 @@ texture_mode = 1
 curve = SubResource("Curve_6xgjh")
 
 [sub_resource type="Curve" id="Curve_h4t8y"]
-_data = [Vector2(0, 0.499637), 0.0, 0.0, 0, 0, Vector2(0.322917, 0.955943), -0.00587023, 0.0, 0, 0, Vector2(0.796131, 0.0323167), -1.42264, -1.42264, 0, 0]
+_data = [Vector2(0, 0.499637), 0.0, 0.0, 0, 0, Vector2(0.142663, 1), -0.00587023, 0.0, 0, 0, Vector2(0.263587, 0), -1.42264, -1.42264, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_wxifh"]
