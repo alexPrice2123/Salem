@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="3_8j60k"]
-[ext_resource type="PackedScene" uid="uid://c3gi3vrev7n0x" path="res://Scenes/Monsters/underBrush.tscn" id="3_uqdn7"]
+[ext_resource type="PackedScene" uid="uid://crxygapcq66ft" path="res://Scenes/Monsters/flyingPesk.tscn" id="3_13n8b"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
 [ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/VillagerScripts/JohnVillager.cs" id="4_ochwf"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
@@ -404,7 +404,7 @@ navigation_mesh = SubResource("NavigationMesh_5a7ea")
 
 [node name="Hut" parent="MonsterRegion" groups=["Terrain"] instance=ExtResource("3_8j60k")]
 transform = Transform3D(-0.995991, 0, -0.0751335, 0, 0.998821, 0, 0.0751335, 0, -0.995991, 74.503, 4.53272, 68.476)
-_monsterList = Array[PackedScene]([ExtResource("3_uqdn7")])
+_monsterList = Array[PackedScene]([ExtResource("3_13n8b")])
 _monsterCount = Array[int]([1])
 
 [node name="VillageRegion" type="NavigationRegion3D" parent="."]
