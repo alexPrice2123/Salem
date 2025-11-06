@@ -1,0 +1,130 @@
+[gd_scene load_steps=13 format=3 uid="uid://2x3s0qfc32yb"]
+
+[ext_resource type="Script" uid="uid://c0ajuqqr08phc" path="res://Scripts/vineUnderground.cs" id="1_qnigb"]
+[ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="2_qnigb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13aiu"]
+albedo_texture = ExtResource("2_qnigb")
+
+[sub_resource type="Curve" id="Curve_qnigb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nst8u"]
+curve = SubResource("Curve_qnigb")
+
+[sub_resource type="Curve" id="Curve_t0cnc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_b1i4m"]
+curve = SubResource("Curve_t0cnc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8if4t"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 2.99998
+radial_velocity_max = 5.99998
+radial_velocity_curve = SubResource("CurveTexture_nst8u")
+gravity = Vector3(0, -2, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_min = 0.25
+scale_max = 0.35
+scale_curve = SubResource("CurveTexture_b1i4m")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cidwa"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qnigb"]
+lifetime_randomness = 1.0
+emission_shape_scale = Vector3(1, 0.06, 1)
+emission_shape = 1
+emission_sphere_radius = 2.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 1.99998
+radial_velocity_curve = SubResource("CurveTexture_nst8u")
+gravity = Vector3(0, -2, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_min = 0.15
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_b1i4m")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t0cnc"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 7.99998
+radial_velocity_max = 9.99998
+radial_velocity_curve = SubResource("CurveTexture_nst8u")
+gravity = Vector3(0, -2, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_min = 0.35
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_b1i4m")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qnigb"]
+radius = 0.0111869
+
+[node name="Vine" type="CharacterBody3D"]
+script = ExtResource("1_qnigb")
+
+[node name="Dirt" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00210285, 0.00185138, 0.00122893)
+material_override = SubResource("StandardMaterial3D_13aiu")
+amount = 100
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_8if4t")
+draw_pass_1 = SubResource("BoxMesh_cidwa")
+
+[node name="Before" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00210285, 0.00185138, 0.00122893)
+material_override = SubResource("StandardMaterial3D_13aiu")
+emitting = false
+amount = 200
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_qnigb")
+draw_pass_1 = SubResource("BoxMesh_cidwa")
+
+[node name="Attack" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00210285, 0.00185138, 0.00122893)
+material_override = SubResource("StandardMaterial3D_13aiu")
+emitting = false
+amount = 100
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_t0cnc")
+draw_pass_1 = SubResource("BoxMesh_cidwa")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_qnigb")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.504333, 0)
+size = Vector3(2, 0.991333, 2)

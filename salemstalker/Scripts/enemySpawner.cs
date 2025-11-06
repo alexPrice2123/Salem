@@ -18,8 +18,7 @@ public partial class enemySpawner : Node3D
 	public int _maxMonsterCount = 70;
 	[Export]
 	public bool _canShadow = false;
-	[Export]
-	public float SpawnRange = 25f;        
+	public float SpawnRange;        
 	[Export]
 	public double SpawnDistance = 100;        // Maximum distance from player before monsters despawn or spawning stops    
 	[Export]
@@ -40,6 +39,8 @@ public partial class enemySpawner : Node3D
 		_player = this.GetParent().GetParent().GetNode<Player3d>("Player_3d"); // Get the player node (two parents up in the scene tree)
 		_holder = GetNode<Node3D>("MonsterHolder");      // Get the monster holder node
 		_rng.Randomize();
+
+		SpawnRange = GetNode<OmniLight3D>("Range").OmniRange;
 	}
 
 	// --- SPAWN HANDLER ---
@@ -85,7 +86,15 @@ public partial class enemySpawner : Node3D
 			monsterInstance.Position = _spawn.Position + new Vector3(_rng.RandfRange(-SpawnRange, SpawnRange), 0f, _rng.RandfRange(-SpawnRange, SpawnRange));                                    // Set monster spawn position
 			if (monsterInstance is Monster3d monster)
             {
-                monster.RandomRangedPosition();
+				monster.RandomRangedPosition();
+				if (_canShadow == true)
+                {
+					float shadowChange = _rng.RandfRange(1, 10);
+					if (shadowChange == 1)
+                    {
+						monster.Shadow = true;
+                    }
+                }
             }
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();

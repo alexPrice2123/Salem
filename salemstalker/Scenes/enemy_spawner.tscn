@@ -7,7 +7,7 @@
 script = ExtResource("1_4l55s")
 
 [node name="Spawn" type="CSGBox3D" parent="."]
-transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 0, 0, 0)
+transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 0, 1.86531, 0)
 visible = false
 size = Vector3(0.1, 0.1, 0.1)
 material = ExtResource("2_8h7h8")
@@ -16,5 +16,8 @@ material = ExtResource("2_8h7h8")
 wait_time = 7.5
 
 [node name="MonsterHolder" type="Node3D" parent="."]
+
+[node name="Range" type="OmniLight3D" parent="."]
+light_energy = 0.0
 
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]

@@ -22,7 +22,7 @@ public partial class vCultist : Monster3d
         MaxHealth = 50.0f;         // Maximum monster health
         Range = 55.0f;            // Detection range for chasing
         SpawnDistance = 100;    // Distance from player before despawning
-        BaseDamage = 25.0f;
+        BaseDamage = 0*25.0f;
         WanderRange = 50;
         AttackSpeed = 4f;
         AttackRange = 15f;
