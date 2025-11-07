@@ -89,6 +89,10 @@ public partial class Monster3d : CharacterBody3D
         else if (body.IsInGroup("PlayerProj") && _canBeHit)
         {
             float damage = MaxHealth * (float)body.GetParent().GetMeta("DamagePer");
+            if (body.GetParent() is StakeBullet sb)
+            {
+                sb.CountPierce();
+            }
             DamageHandler(false, damage);
         }
     }

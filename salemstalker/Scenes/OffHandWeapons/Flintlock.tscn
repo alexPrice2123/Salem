@@ -190,15 +190,15 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.035
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0820205, -2.18294, 1.06889)
 
 [node name="Skeleton3D" parent="flinklock_animtions/metarig" index="0"]
-bones/8/rotation = Quaternion(-0.29716, 0.660388, -0.543239, 0.424823)
-bones/9/rotation = Quaternion(0.101214, 0.0600148, -0.132174, 0.984217)
-bones/10/rotation = Quaternion(0.0249198, -0.210067, 0.100917, 0.972145)
+bones/8/rotation = Quaternion(-0.303982, 0.595171, -0.620591, 0.410162)
+bones/9/rotation = Quaternion(0.163256, 0.0590477, -0.132891, 0.975808)
+bones/10/rotation = Quaternion(-0.0386568, -0.212789, 0.0779945, 0.973213)
 bones/11/rotation = Quaternion(0.179764, -0.206637, 0.167751, 0.947019)
 bones/12/rotation = Quaternion(-0.30828, 0.197393, -0.35762, 0.859132)
-bones/13/rotation = Quaternion(-0.366131, -0.102459, -0.249283, 0.890678)
-bones/15/rotation = Quaternion(0.213468, -0.0553024, -0.407084, 0.886372)
+bones/13/rotation = Quaternion(-0.366132, -0.102459, -0.249283, 0.890678)
+bones/15/rotation = Quaternion(0.164069, -0.0932468, -0.432995, 0.88142)
 bones/16/rotation = Quaternion(-0.152494, 0.0324545, 0.340067, 0.927387)
-bones/17/rotation = Quaternion(0.0344872, -0.0458761, 0.26541, 0.962426)
+bones/17/rotation = Quaternion(0.0344871, -0.0458761, 0.26541, 0.962426)
 bones/19/rotation = Quaternion(-0.219223, -0.673226, 0.585935, 0.394193)
 bones/20/rotation = Quaternion(0.166704, -0.0998514, 0.141085, 0.970739)
 bones/21/rotation = Quaternion(0.0696113, -0.0378772, -0.243182, 0.966738)
@@ -213,7 +213,7 @@ bones/40/rotation = Quaternion(-0.0613856, 0.959714, -0.268659, -0.054804)
 bones/41/rotation = Quaternion(-0.632082, 0.72477, -0.180023, -0.206816)
 
 [node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.0147873, 2.32831e-09, -0.000611237, -0.000551835, 0.00636452, 0.0133501, 0.000262859, 0.0133615, -0.00635908, 0.222049, 0.84092, 0.116019)
+transform = Transform3D(-0.0146431, 0.000682895, 0.00203767, 0.0020551, 0.00855356, 0.0119017, -0.000628493, 0.0120585, -0.00855773, 0.124191, 0.888632, 0.262743)
 
 [node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D/Cube" index="0"]
 transform = Transform3D(1, -1.86265e-09, 4.65661e-10, 0, 1, 8.9407e-08, -9.31323e-10, 0, 1, 0, 0, 0)
