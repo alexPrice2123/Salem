@@ -1,6 +1,7 @@
-[gd_scene load_steps=44 format=3 uid="uid://do3u2x5avpy72"]
+[gd_scene load_steps=57 format=3 uid="uid://do3u2x5avpy72"]
 
 [ext_resource type="PackedScene" uid="uid://catkfqrbkq6x4" path="res://Assets/Weapons/stakeGun.blend" id="1_jmmew"]
+[ext_resource type="Script" uid="uid://bk1w4nbdu4aea" path="res://Scenes/OffHandWeapons/StakeGun.cs" id="1_lfwbr"]
 [ext_resource type="Texture2D" uid="uid://be77ih4xx22nn" path="res://Assets/weapontextures/stakegun/stake_Base_color.png" id="2_r4a1s"]
 [ext_resource type="Texture2D" uid="uid://dwomhoj57faey" path="res://Assets/weapontextures/stakegun/stake_Height.png" id="3_lfwbr"]
 [ext_resource type="Texture2D" uid="uid://cmtvh227ao0up" path="res://Assets/weapontextures/stakegun/stake_Metallic.png" id="4_ljwo7"]
@@ -108,10 +109,163 @@ normal_texture = ExtResource("35_tg4l2")
 heightmap_enabled = true
 heightmap_texture = ExtResource("33_sajxn")
 
+[sub_resource type="Animation" id="Animation_ljwo7"]
+resource_name = "Armed"
+length = 1.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("stake gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.75, 1.05, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1, 1.62), Vector3(0, -0.832, -0.05), Vector3(0, -0.542065, 0), Vector3(0, -0.602, 0), Vector3(0, -0.602, 0), Vector3(0, -0.542065, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("stake gun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.6, 0.85, 1.05, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.50098, -3.14159, 0), Vector3(0.279253, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(-0.0523599, -3.14159, 0), Vector3(0.0174533, -3.14159, 0), Vector3(0, -3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lfwbr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("stake gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.542065, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("stake gun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("stake gun/Cylinder:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.34047, 0.099716)]
+}
+
+[sub_resource type="Animation" id="Animation_r4a1s"]
+resource_name = "Shooting"
+length = 0.8333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("stake gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.666667, 0.8332),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.542065, 0), Vector3(0, -0.5, 0), Vector3(0, -0.262, 0.06), Vector3(0, -0.542065, 0), Vector3(0, -1, 1.62)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("stake gun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.666667, 0.8332),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(-0.0349066, -3.14159, 0), Vector3(-0.523599, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(1.50098, -3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("stake gun/Cylinder:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.191667, 0.2, 0.825, 0.8333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2.34047, 0.099716), Vector3(0, 2.34, 0.29), Vector3(0, 2.34047, 0.099716), Vector3(0, 2.34, -75.34), Vector3(0, 2.34, -75.34), Vector3(0, 2.34047, 0.099716)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lfwbr"]
+_data = {
+&"Armed": SubResource("Animation_ljwo7"),
+&"RESET": SubResource("Animation_lfwbr"),
+&"Shooting": SubResource("Animation_r4a1s")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lfwbr"]
+animation = &"Armed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ljwo7"]
+animation = &"Armed"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r4a1s"]
+animation = &"Shooting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gjkus"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xsyfx"]
+advance_mode = 2
+advance_expression = "shooting == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wsllt"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vogo1"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "shooting == true"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lfwbr"]
+states/Armed/node = SubResource("AnimationNodeAnimation_ljwo7")
+states/Armed/position = Vector2(353.5, 112.25)
+"states/Armed 2/node" = SubResource("AnimationNodeAnimation_lfwbr")
+"states/Armed 2/position" = Vector2(511.25, 60)
+states/Shooting/node = SubResource("AnimationNodeAnimation_r4a1s")
+states/Shooting/position = Vector2(512.5, 166.5)
+states/Start/position = Vector2(206.5, 113.5)
+transitions = ["Start", "Armed", SubResource("AnimationNodeStateMachineTransition_gjkus"), "Armed", "Armed 2", SubResource("AnimationNodeStateMachineTransition_xsyfx"), "Armed 2", "Shooting", SubResource("AnimationNodeStateMachineTransition_wsllt"), "Shooting", "Armed 2", SubResource("AnimationNodeStateMachineTransition_vogo1")]
+
 [node name="StakeGun" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_lfwbr")
 
 [node name="stake gun" parent="." instance=ExtResource("1_jmmew")]
-transform = Transform3D(0.264955, 0, 0, 0, 0.264955, 0, 0, 0, 0.264955, 0, -0.542065, 0)
+transform = Transform3D(-0.264955, 0, -6.71709e-07, 0, 0.264955, 0, 6.71709e-07, 0, -0.264955, 0, -0.542065, 0)
 
 [node name="Cylinder" parent="stake gun" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_6akbv")
@@ -133,5 +287,19 @@ surface_material_override/0 = SubResource("StandardMaterial3D_vcuar")
 
 [node name="Cube_003" parent="stake gun" index="6"]
 surface_material_override/0 = SubResource("StandardMaterial3D_i0e2h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="stake gun"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_lfwbr")
+}
+
+[node name="BarrelPos" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.081108, -1.08765)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_lfwbr")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../stake gun/AnimationPlayer")
 
 [editable path="stake gun"]

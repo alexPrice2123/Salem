@@ -37,6 +37,7 @@ public partial class Player3d : CharacterBody3D
 	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
 	private PackedScene _falchion = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/falchion.tscn"); // Pre-load falchion scene resource
 	private PackedScene _flintGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Flintlock.tscn"); // Pre-load Flintlock scene resource
+	private PackedScene _stakeGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/stake_gun.tscn"); // Pre-load Stake Gun scene resource
 	private Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 	private Dictionary<string, PackedScene> _secWeapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
@@ -124,6 +125,7 @@ public partial class Player3d : CharacterBody3D
 		_weapon.Add("ShortSword", _shortSword);
 		_weapon.Add("Falchion", _falchion);
 		_secWeapon.Add("FlintGun", _flintGun);
+		_secWeapon.Add("StakeGun", _stakeGun);
 	}
 
 	// --- INPUT HANDLER ---
@@ -324,32 +326,46 @@ public partial class Player3d : CharacterBody3D
 			{
 				if (_eSecWeapon1 is Flintlock flintchild)
 				{
+					GD.Print("wtf?");
 					flintchild.specAction();
+				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					GD.Print("ShootPlease");
+					stakeChild.specAction();
 				}
 			}
 			else if (equipSec == 2)
 			{
-				GD.Print("Test1");
 				if (_eSecWeapon2 is Flintlock flintchild)
 				{
 					flintchild.specAction();
 				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					stakeChild.specAction();
+				}
 			}
 			else if (equipSec == 3)
 			{
-				GD.Print("test2");
 				if (_eSecWeapon3 is Flintlock flintchild)
 				{
 					flintchild.specAction();
 				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					stakeChild.specAction();
+				}
 			}
 			else
 			{
-				GD.Print("test3");
 				if (_eSecWeapon4 is Flintlock flintchild)
 				{
-					GD.Print("Here!");
 					flintchild.specAction();
+				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					stakeChild.specAction();
 				}
 			}
 		}
@@ -836,10 +852,14 @@ public partial class Player3d : CharacterBody3D
 
 	// Handles damage taken by the player from a Monster3d (melee damage).
 	public void Damaged(float takenDamage, Monster3d monster, string effect)
-	{	
+	{
 		if (effect == "Hallucinate")
-        {
+		{
 			_hallucinationFactor = 1f;
+		}
+		if (effect == "StaminaDrain" && _blocking == false)
+        {
+			_stamina -= _stamina*0.15f;
         }
 		_knockVelocity = 2f;
 		if (_blocking == true && _parry == false)
@@ -919,7 +939,7 @@ public partial class Player3d : CharacterBody3D
 	}
 
 	// Switches the player's secondary weapon slots.
-	public void SwtichSecondaryWeapon(string wepaonName, int slot)
+	public void SwitchSecondaryWeapon(string wepaonName, int slot)
 	{
 		PackedScene weaponScene = _secWeapon[wepaonName]; // Get the scene resource from the dictionary
 		Node3D holder;
@@ -939,10 +959,18 @@ public partial class Player3d : CharacterBody3D
 		{
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand4");
 		}
-		holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
+		GD.Print(holder);
+		GD.Print(weaponScene.ToString());
+		GD.Print(wepaonName);
+		if (holder.GetChild(0) != null)
+		{
+			GD.Print(holder.GetChild(0).ToString(), "Old");
+			holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
+		}
 		Node3D weaponInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
 		holder.AddChild(weaponInstance);                                             // Add new weapon to holder node
 		weaponInstance.Position = holder.Position;
+		GD.Print(holder.GetChild(0).ToString(), "New");
 		GD.Print("weaponswaped");
     }
 	public async void play_sfx(AudioStreamOggVorbis soundeffect)
