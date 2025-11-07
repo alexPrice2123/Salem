@@ -16,7 +16,6 @@ public partial class Flintlock : Node3D
         _flash = GetNode<SpotLight3D>("Flash");
         _smoke = GetNode<GpuParticles3D>("Smoke");
         _barrel = GetNode<Marker3D>("BarrelPos");
-        _direct = GetNode<Marker3D>("DirectionPos");
 
     }
     public async void specAction()
