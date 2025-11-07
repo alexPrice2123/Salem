@@ -188,7 +188,7 @@ public partial class Ui : Control
 	{
 		_slotSelect.Visible = false;
 		GD.Print("sendslot4", _secItemSend);
-		_player.SwtichSecondaryWeapon(_secItemSend,4);
+		_player.SwitchSecondaryWeapon(_secItemSend,4);
 		await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 		_secItemSend = null;
 	}
@@ -197,7 +197,7 @@ public partial class Ui : Control
 	{
 		_slotSelect.Visible = false;
 		GD.Print("sendslot3", _secItemSend);
-		_player.SwtichSecondaryWeapon(_secItemSend,4);
+		_player.SwitchSecondaryWeapon(_secItemSend,4);
 		await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 		_secItemSend = null;
 	}
@@ -206,7 +206,7 @@ public partial class Ui : Control
 	{
 		_slotSelect.Visible = false;
 		GD.Print("sendslot2", _secItemSend);
-		_player.SwtichSecondaryWeapon(_secItemSend,4);
+		_player.SwitchSecondaryWeapon(_secItemSend,4);
 		await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 		_secItemSend = null;
 	}
@@ -215,7 +215,7 @@ public partial class Ui : Control
 	{
 		_slotSelect.Visible = false;
 		GD.Print("sendslot1", _secItemSend);
-		_player.SwtichSecondaryWeapon(_secItemSend,4);
+		_player.SwitchSecondaryWeapon(_secItemSend,4);
 		await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 		_secItemSend = null;
 	}
