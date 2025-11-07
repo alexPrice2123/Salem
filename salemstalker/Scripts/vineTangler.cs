@@ -87,6 +87,7 @@ public partial class vineTangler : Monster3d
 		if (projectileInstance is vineUnderground vu)
         {
 			vu._player = _player;
+			vu._monster = this;
         }
 		await ToSignal(GetTree().CreateTimer(0.7), "timeout");
 		_attackAnim = false;
