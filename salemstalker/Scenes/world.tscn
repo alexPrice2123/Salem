@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://bw2fjllusx7kw" path="res://Scenes/enemy_spawner.tscn" id="2_uqdn7"]
-[ext_resource type="PackedScene" uid="uid://cdyf44r2hpl3e" path="res://Scenes/Monsters/vineTangler.tscn" id="3_13n8b"]
+[ext_resource type="PackedScene" uid="uid://bliqfpjmneg1" path="res://Scenes/Monsters/weepingSpine.tscn" id="3_13n8b"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
 [ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/VillagerScripts/JohnVillager.cs" id="4_ochwf"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
