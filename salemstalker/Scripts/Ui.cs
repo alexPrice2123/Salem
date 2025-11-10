@@ -191,6 +191,9 @@ public partial class Ui : Control
 		PlayInvAnim("ShortSword", false);
 		PlayInvAnim("Falchion", false);
 		PlayInvAnim("StakeGun", false);
+		PlayInvAnim("flintlock", false);
+		PlayInvAnim("dagger", false);
+		PlayInvAnim("longsword", false);
 	}
 
 	private void PlayInvAnim(string sword, bool forwards)
