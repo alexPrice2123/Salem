@@ -402,7 +402,7 @@ transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -635.903, -
 navigation_mesh = SubResource("NavigationMesh_5a7ea")
 
 [node name="EnemySpawner" parent="MonsterRegion" instance=ExtResource("2_uqdn7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.416, 5.35355, 21.508)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.2232, 5.35355, 21.508)
 _maxMonsterCount = 10
 _monsterList = Array[PackedScene]([ExtResource("3_13n8b")])
 _monsterCount = Array[int]([1])

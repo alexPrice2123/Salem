@@ -88,6 +88,8 @@ public partial class Player3d : CharacterBody3D
 	private int equipSec = 2;
 	public bool _twoHand = false;
 	public float _hallucinationFactor = 0f;
+	public float _speedOffset = 0f;
+	public float _speedCount = 0f;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -484,8 +486,8 @@ public partial class Player3d : CharacterBody3D
 				_stamina = 0f;
 			}
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
-			velocity.X = direction.X * (Speed + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
-			velocity.Z = direction.Z * (Speed + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
+			velocity.X = direction.X * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
+			velocity.Z = direction.Z * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
 
 			if (_running == true)
 			{
@@ -540,7 +542,7 @@ public partial class Player3d : CharacterBody3D
 				targetNode.GetNode<Label3D>("Title").Visible = true;
 			}
 		}
-		
+
 		// --- NPC Interaction detection (Dialogue/Quest Prompt) ---
 		if (GetMouseCollision() != null && _originalDialouge == null)
 		{
@@ -565,7 +567,7 @@ public partial class Player3d : CharacterBody3D
 					_lastSeen = villager;
 					_originalDialouge = villager.WaitingDialogue;
 					villager._questPrompt.Text = villager.WaitingDialogue + "\n" + "E to Talk";
-				} 
+				}
 			}
 		}
 		// --- Interaction End ---
@@ -574,15 +576,23 @@ public partial class Player3d : CharacterBody3D
 			// Restore the NPC's original dialogue text
 			if (_lastSeen is NpcVillager villager) { villager._questPrompt.Text = _originalDialouge; }
 			// Hide the label for the "Apple" item if it was visible
-			if (IsInstanceValid(_lastSeen)){
+			if (IsInstanceValid(_lastSeen))
+			{
 				if (_lastSeen.Name == "Apple")
 				{
-				_lastSeen.GetNode<Label3D>("Title").Visible = false;
+					_lastSeen.GetNode<Label3D>("Title").Visible = false;
 				}
 			}
 			_lastSeen = null;
 			_originalDialouge = null;
 		}
+
+		_speedCount -= (float)delta;
+		if (_speedCount <= 0)
+        {
+			_speedOffset = 0f;
+			_speedCount = 0f;
+        }
 
 		// --- Head bob + sword bob ---
 		if (_dashVelocity <= 1.0) // Only apply bob when not dashing
@@ -892,9 +902,14 @@ public partial class Player3d : CharacterBody3D
 	}
 	
 	// Handles damage taken by the player from a RigidBody3D (ranged projectile).
-	public void RangedDamaged(float takenDamage, RigidBody3D projectile)
+	public void RangedDamaged(float takenDamage, RigidBody3D projectile, string effect)
 	{
 		_knockVelocity = 0.5f;
+		if (effect == "Slowed")
+        {
+			_speedOffset = -2.5f;
+			_speedCount = 1.5f;
+        }
 		if (_blocking == true && _parry == false)
 		{
 			// Regular block: reduce damage, deduct stamina, play block animation, destroy projectile
