@@ -22,6 +22,7 @@ public partial class Monster3d : CharacterBody3D
     public bool Debug = false;                  // If true this monster wont move or attack
     public bool Shadow = false;                 // Decides if the monster can become a phantom
     public bool Stationery = false;             // If the monster shouldnt move at all
+    public string Biome;                        // What Biome this monster spawned in
 
     // --- NODE REFERENCES ---
     protected Player3d _player;                 // Reference to the player
@@ -210,7 +211,7 @@ public partial class Monster3d : CharacterBody3D
                 AttackInitilize();
             }
             //Only apply gravity if not on the same Y as the player
-            if (GlobalPosition.Snapped(0.1f).Y == _player.GlobalPosition.Snapped(0.1f).Y || Flying == true)
+            if (GlobalPosition.Snapped(0.1f).Y == _player.GlobalPosition.Snapped(0.1f).Y)
             {
                 _targetVelocity = new Vector3(_targetVelocity.X, 0f, _targetVelocity.Z);
             }
@@ -267,7 +268,7 @@ public partial class Monster3d : CharacterBody3D
         _knockbackVelocity = _knockbackVelocity.Lerp(Vector3.Zero, (float)delta * 5.0f);
 
         // If the monster is stunned then dont let it move
-        if (_stunned == true) { _targetVelocity = Vector3.Zero + _knockbackVelocity; Velocity = _targetVelocity; }
+        if (_stunned == true && Stationery == false) { _targetVelocity = Vector3.Zero + _knockbackVelocity; Velocity = _targetVelocity; }
 
         // Apply velocity smoothing + movement checks
         Velocity = Velocity.Lerp(_targetVelocity, 4f * (float)delta);

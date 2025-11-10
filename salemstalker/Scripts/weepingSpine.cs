@@ -7,16 +7,18 @@ public partial class weepingSpine : Monster3d
 	private PackedScene _poisonBall = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/poisonBall.tscn"); // Scene reference to the dark orb
 	private float _distance;
 	private Node3D _spawn;
-    private float _projectileSpeed = 25f;
+	private float _projectileSpeed = 25f;
+	private float _meleeRange = 2f;
+	private float _meleeDamage = 10f;
 	public override void _Ready()
 	{
-        Speed = 4.5f;             // Movement speed
-        MaxHealth = 50.0f;         // Maximum monster health
-        Range = 55.0f;            // Detection range for chasing
+        Speed = 0f;             // Movement speed
+        MaxHealth = 40.0f;         // Maximum monster health
+        Range = 60.0f;            // Detection range for chasing
         SpawnDistance = 100;    // Distance from player before despawning
-        BaseDamage = 25.0f;
+        BaseDamage = 15.0f;
         WanderRange = 50;
-        AttackSpeed = 3f;
+        AttackSpeed = 5f;
         AttackRange = 15f;
         Monster = this;
 		Stationery = true;
@@ -32,11 +34,12 @@ public partial class weepingSpine : Monster3d
 		{
 			_player.MonsterKilled("weepingSpine");
 			if (Debug == true)
-            {
-				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
-            }
+			{
+				if (GetParent().GetParent() is DebugHut dh) { dh._shouldSpawn = true; }
+			}
 			QueueFree(); // Destroy monster when health hits zero
 		}
+		_distance = (_player.GlobalPosition - GlobalPosition).Length();
 		RotateFunc(delta);
 	}
 
@@ -62,7 +65,7 @@ public partial class weepingSpine : Monster3d
 	{
 		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
 		{
-			_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "None");
+			_player.Damaged(_meleeDamage + _damageOffset, this as Monster3d, "None");
 			_attackBox.Disabled = true;
 			_hasHit = true;
 		}
@@ -70,21 +73,39 @@ public partial class weepingSpine : Monster3d
 
 	public async void Attack()
 	{
-		_hasHit = false;
-		_attackAnim = true;
-		_canAttack = false;
-		await ToSignal(GetTree().CreateTimer(1.6), "timeout");
-		RigidBody3D projectileInstance = _poisonBall.Instantiate<RigidBody3D>(); // Create monster instance
-        _player.GetParent().AddChild(projectileInstance);                                             // Add monster to holder node
-        projectileInstance.GlobalPosition = _spawn.GlobalPosition;
-		if (projectileInstance is poisonBall ball)
+		if (_distance > _meleeRange)
 		{
-			ball._playerOrb = _player;
-			ball._damageOrb = BaseDamage + _damageOffset;
-			ball.Shoot(_projectileSpeed);
+			_hasHit = false;
+			_attackAnim = true;
+			_canAttack = false;
+			await ToSignal(GetTree().CreateTimer(1.6), "timeout");
+			RigidBody3D projectileInstance = _poisonBall.Instantiate<RigidBody3D>(); // Create monster instance
+			_player.GetParent().AddChild(projectileInstance);                                             // Add monster to holder node
+			projectileInstance.GlobalPosition = _spawn.GlobalPosition;
+			if (projectileInstance is poisonBall ball)
+			{
+				ball._playerOrb = _player;
+				ball._damageOrb = BaseDamage + _damageOffset;
+				ball.Shoot(_projectileSpeed);
+			}
+			_attackAnim = false;
+			await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
+			_canAttack = true;
 		}
-		_attackAnim = false;
-		await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
-        _canAttack = true;
+        else
+        {
+            _hasHit = false;
+			_attackAnim = true;
+			await ToSignal(GetTree().CreateTimer(1.6), "timeout");
+			_speedOffset = 2.5f;
+			_attackBox.GetParent<Area3D>().Monitoring = true;
+			await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+			_attackBox.GetParent<Area3D>().Monitoring = false;
+			_canAttack = false;
+			await ToSignal(GetTree().CreateTimer(0.7), "timeout");
+			_attackAnim = false;
+			await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
+			_canAttack = true;
+        }
 	}
 }

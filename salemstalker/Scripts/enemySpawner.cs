@@ -18,6 +18,8 @@ public partial class enemySpawner : Node3D
 	public int _maxMonsterCount = 70;
 	[Export]
 	public bool _canShadow = false;
+	[Export(PropertyHint.Enum, "Plains,Swamp,Forest")]
+	public string _biome = "Plains";
 	public float SpawnRange;        
 	[Export]
 	public double SpawnDistance = 100;        // Maximum distance from player before monsters despawn or spawning stops    
@@ -87,6 +89,7 @@ public partial class enemySpawner : Node3D
 			if (monsterInstance is Monster3d monster)
             {
 				monster.RandomRangedPosition();
+				monster.Biome = _biome;
 				if (_canShadow == true)
                 {
 					float shadowChange = _rng.RandfRange(1, 10);
