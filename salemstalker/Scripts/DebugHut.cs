@@ -13,28 +13,22 @@ public partial class DebugHut : Node3D
 	private int _number;                     // Tracks the current number of spawned monsters
 	private Player3d _player;                  // Reference to the player node
 	private Node3D _holder;                    // Node that holds all spawned monsters as children
+	public bool _shouldSpawn = true;
 	private RandomNumberGenerator _rng = new RandomNumberGenerator();
 	[Export]
-	public float _spawnTime = 6f;
-	[Export]
+	public float _spawnTime = 2f;
 	public int _maxMonsterCount = 70;
-	[Export]
 	public double SpawnDistance = 100;        // Maximum distance from player before monsters despawn or spawning stops    
 	[Export]
-	public Godot.Collections.Array<PackedScene> _monsterList { get; set; } = [];
-	[Export]
-	public Godot.Collections.Array<int> _monsterCount { get; set; } = [];
-	public Godot.Collections.Array<int> _currenctMonsterCount { get; set; } = [];
+	public PackedScene _monster;
 
 	// --- READY ---
 	public override void _Ready()
 	{
 		_spawn = GetNode<CsgBox3D>("Spawn");             // Get the spawn point node
 		_countdown = GetNode<Timer>("SpawnTime");        // Get the timer node
-		_countdown.WaitTime = _spawnTime;
 		_countdown.Start();                              // Start the spawn timer
-		_currenctMonsterCount = _monsterCount;
-
+        GetNode<Label3D>("SpawnedName").Text = Name;
 		_player = this.GetParent().GetParent().GetNode<Player3d>("Player_3d"); // Get the player node (two parents up in the scene tree)
 		_holder = GetNode<Node3D>("MonsterHolder");      // Get the monster holder node
 		_rng.Randomize();
@@ -53,32 +47,13 @@ public partial class DebugHut : Node3D
 		{
 			return;
 		}
-		// Distance between player and hut
-		float distance = (_player.GlobalPosition - GlobalPosition).Length();
-	
-		// --- Recount monsters if player is too far away (despawn management) ---
-		if (distance >= SpawnDistance)
-		{
-			_number = 0;
-			foreach (CharacterBody3D monster in _holder.GetChildren())
-			{
-				_number += 1;
-			}
-		}
-
-		// --- Prevent spawning if at max count or player too far ---
-		if (_number >= _maxMonsterCount || distance >= SpawnDistance)
-		{
-			return;
-		}
 
 		// --- Spawn new monster ---
-		int monsterIndex = _rng.RandiRange(0, _monsterCount.Count-1);
-		if (_currenctMonsterCount[monsterIndex] > 0)
+		if (_shouldSpawn == true)
 		{
-			_currenctMonsterCount[monsterIndex] -= 1;
-			PackedScene monsterSelection = _monsterList[monsterIndex];
-			CharacterBody3D monsterInstance = monsterSelection.Instantiate<CharacterBody3D>(); // Create monster instance
+			_shouldSpawn = false;
+			await ToSignal(GetTree().CreateTimer(_spawnTime), "timeout");
+			CharacterBody3D monsterInstance = _monster.Instantiate<CharacterBody3D>(); // Create monster instance
 			_holder.AddChild(monsterInstance);                                             // Add monster to holder node
 			monsterInstance.Position = _spawn.Position;                                    // Set monster spawn position
 			if (monsterInstance is Monster3d monster)
@@ -91,12 +66,6 @@ public partial class DebugHut : Node3D
 			
 			GD.Print("There are " + _number + " monsters and its running at " + fps + " FPS");
 		}
-        else
-		{
-			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-			SpawnMonster();
-			//GD.Print("Tried to spawn" + _monsterList[monsterIndex] + " but was at max");
-        }
     }
 
 	// --- PROCESS LOOP ---

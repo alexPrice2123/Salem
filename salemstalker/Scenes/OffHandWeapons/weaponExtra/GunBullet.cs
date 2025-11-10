@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 public partial class GunBullet : RigidBody3D
 {
-    private float _speed = 10.0f;
+    private float _speed = 30.0f;
     private int _count = 0;
     public override void _PhysicsProcess(double delta)
     {

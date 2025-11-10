@@ -20,6 +20,8 @@ public partial class Monster3d : CharacterBody3D
     protected bool MoveWhileAttack = false;     // Can this monster move while attacking
     protected bool Flying = false;              // Should gravity be applied to this monster
     public bool Debug = false;                  // If true this monster wont move or attack
+    public bool Shadow = false;                 // Decides if the monster can become a phantom
+    public bool Stationery = false;             // If the monster shouldnt move at all
 
     // --- NODE REFERENCES ---
     protected Player3d _player;                 // Reference to the player
@@ -87,6 +89,10 @@ public partial class Monster3d : CharacterBody3D
         else if (body.IsInGroup("PlayerProj") && _canBeHit)
         {
             float damage = MaxHealth * (float)body.GetParent().GetMeta("DamagePer");
+            if (body.GetParent() is StakeBullet sb)
+            {
+                sb.CountPierce();
+            }
             DamageHandler(false, damage);
         }
     }
@@ -100,6 +106,7 @@ public partial class Monster3d : CharacterBody3D
         if (knockBack == true) { ApplyKnockback(); }
 
         // Quick visual hit reaction
+        _hitFX.GetNode<AnimationPlayer>("AnimationPlayer").Play("idle");
         _hitFX.Visible = true;
         _body.Visible = false;
         _canAttack = false;
@@ -139,7 +146,7 @@ public partial class Monster3d : CharacterBody3D
         _dashVelocity = Mathf.Lerp(_dashVelocity, 1f, 15f * (float)delta);
 
         // CHASE MODE: If player close enough and monster is a chaser
-        if (distance <= Range && (Chaser && !_attackAnim || MoveWhileAttack && Chaser))
+        if (distance <= Range && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false)
         {
             // Navigation pathing toward player
             _navAgent.TargetPosition = _player.GlobalPosition;
@@ -179,7 +186,7 @@ public partial class Monster3d : CharacterBody3D
         }
 
         // RANGED ENEMY BEHAVIOR: maintain distance then fire
-        else if (!_attackAnim && !Chaser)
+        else if (distance <= Range && !_attackAnim && !Chaser && Stationery == false)
         {
             _player._inCombat = true; _navAgent.TargetPosition = _rangedPosition;
             Vector3 nextPoint = _navAgent.GetNextPathPosition();
@@ -191,6 +198,7 @@ public partial class Monster3d : CharacterBody3D
             }
             else
             {
+                GD.Print(_targetVelocity.Length());
                 _targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed * _dashVelocity + _speedOffset);
             }
             // Attack when the monster gets near the finish position or if its been stading still
@@ -217,7 +225,25 @@ public partial class Monster3d : CharacterBody3D
                 _lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up); 
             }
         }
+        else if (Stationery == true)
+        {
 
+            // Rotate monster to face player
+            Vector3 playerPos = _player.GlobalPosition;
+            _lookDirection.LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
+
+            if (!IsOnFloor())
+            {
+                _targetVelocity = new Vector3(_targetVelocity.X, -9.8f, _targetVelocity.Z);
+            }
+            // Stop and attack if close enough
+            if (distance <= AttackRange && _canAttack == true)
+            {
+               _attacking = true;
+                AttackInitilize();
+            }
+            else _attacking = false;
+        }
         // WANDERING (Idle state)
         else if (!_attackAnim)
         {
@@ -269,25 +295,43 @@ public partial class Monster3d : CharacterBody3D
 
         if (Monster is hollowBrute hb) hb.Attack();
         else if (Monster is hollowNormal hn) hn.Attack();
-        else if (Monster is hollowShadow hs ) hs.Attack();
+        else if (Monster is hollowShadow hs) hs.Attack();
         else if (Monster is vCultist vc) vc.Attack();
         else if (Monster is flyingPesk fp) fp.Fly();
+        else if (Monster is underBrush ub) ub.Attack();
+        else if (Monster is vineTangler vt) vt.Attack();
+        else if (Monster is weepingSpine ws) ws.Attack();
     }
 
 
     // --- STUN EFFECT --- //
     public async void Stunned()
     {
-        _stunned = true;
-        _attackException = true;
-        ApplyKnockback();
+        if (Monster is flyingPesk)
+        {
+            _speedOffset = -3.5f;
+            GetNode<GpuParticles3D>("Stunned").Emitting = true;
+            await ToSignal(GetTree().CreateTimer(3f), "timeout");
+            GetNode<GpuParticles3D>("Stunned").Emitting = false;
+            _speedOffset = 0f;
+        }
+        else
+        {
+            if (Monster is underBrush ub)
+            {
+                ub._currentAttackOffset = 0f;
+            }
+            _stunned = true;
+            _attackException = true;
+            ApplyKnockback();
 
-        // Visual stun effect
-        GetNode<GpuParticles3D>("Stunned").Emitting = true;
-        await ToSignal(GetTree().CreateTimer(1f), "timeout");
-        GetNode<GpuParticles3D>("Stunned").Emitting = false;
+            // Visual stun effect
+            GetNode<GpuParticles3D>("Stunned").Emitting = true;
+            await ToSignal(GetTree().CreateTimer(1f), "timeout");
+            GetNode<GpuParticles3D>("Stunned").Emitting = false;
 
-        _stunned = false;
+            _stunned = false;
+        }
     }
 
 
@@ -296,14 +340,13 @@ public partial class Monster3d : CharacterBody3D
     public async void RandomRangedPosition()
     {
         _rng.Randomize();
-        float randomRadius = Mathf.Sqrt(GD.Randf()) * AttackRange;
         float angle = GD.Randf() * 2 * MathF.PI;
 
         Vector3 center = _player.GlobalPosition;
         _rangedPosition = new Vector3(
-            center.X + randomRadius * Mathf.Cos(angle),
+            center.X + AttackRange * Mathf.Cos(angle),
             center.Y,
-            center.Z + randomRadius * Mathf.Sin(angle)
+            center.Z + AttackRange * Mathf.Sin(angle)
         );
 
         await ToSignal(GetTree().CreateTimer(2f), "timeout");

@@ -28,12 +28,6 @@ public partial class hollowShadow : Monster3d
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
-		if (_health <= 0)
-		{
-			_player.MonsterKilled("hollowNormal");
-			QueueFree(); // Destroy monster when health hits zero
-		}
-
 		if (_player._hallucinationFactor <= 0.1)
         {
             _fadeFactor = 3f;
@@ -70,7 +64,7 @@ public partial class hollowShadow : Monster3d
 	{
 		_hasHit = false;
 		_attackAnim = true;
-		await ToSignal(GetTree().CreateTimer(1.3), "timeout");
+		await ToSignal(GetTree().CreateTimer(1), "timeout");
 		_fadeFactor = 10f;
 		_transparencyGoal = 1f;
 		GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;

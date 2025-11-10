@@ -10,7 +10,7 @@ public partial class Player3d : CharacterBody3D
 	public const float Speed = 3.5f;                 // Base player movement speed (units/second)
 	public const float RunSpeed = 4.5f;              // Additional speed when running
 	public const float JumpVelocity = 6.5f;          // Vertical velocity applied for jumping (not used in _PhysicsProcess shown)
-	public const float BobFreq = 2f;               // Frequency (speed) of the camera head-bob effect
+	public const float BobFreq = 2f;                 // Frequency (speed) of the camera head-bob effect
 	public const float BobAmp = 0.06f;               // Amplitude (intensity) of the camera head-bob effect
 
 	// --- NODE REFERENCES ---
@@ -20,10 +20,10 @@ public partial class Player3d : CharacterBody3D
 	private Slider _senseBar;                        // Slider control within the pause menu for adjusting sensitivity
 	public Control _inv;                             // Reference to the Inventory UI
 	private Node3D _sword;                           // The currently equipped sword's mesh/root node
-	private Node3D _eSecWeapon1;
-	private Node3D _eSecWeapon2;
-	private Node3D _eSecWeapon3;
-	private Node3D _eSecWeapon4;
+	private Node3D _eSecWeapon1;					 // The secondary weapon slot 1's root node
+	private Node3D _eSecWeapon2;					 // The secondary weapon slot 2's root node
+	private Node3D _eSecWeapon3;					 // The secondary weapon slot 3's root node
+	private Node3D _eSecWeapon4;					 // The secondary weapon slot 4's root node
 	private Control _combatNotif;                    // UI element for combat notifications/status
 	private RayCast3D _ray;                          // Raycast used to detect interactable objects (NPCs, items)
 	private Control _questBook;                      // The main container for the Quest Log UI
@@ -37,51 +37,52 @@ public partial class Player3d : CharacterBody3D
 	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
 	private PackedScene _falchion = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/falchion.tscn"); // Pre-load falchion scene resource
 	private PackedScene _flintGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Flintlock.tscn"); // Pre-load Flintlock scene resource
+	private PackedScene _stakeGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/stake_gun.tscn"); // Pre-load Stake Gun scene resource
 	private Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 	private Dictionary<string, PackedScene> _secWeapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
 	// --- VARIABLES ---
 	public float HorCamSense = 0.002f;                  // Horizontal camera mouse sensitivity multiplier
 	public float VerCamSense = 0.002f;                  // Vertical camera mouse sensitivity multiplier
-	protected RandomNumberGenerator _rng = new();  // Generator for random events like critical hits and effects
-	public float _damage = 0.0f;                     // Current attack damage value, adjusted by buffs/debuffs
-	private ulong _lastHit = 0;                      // Stores the game time (in milliseconds) of the player's last attack
-	private int _comboNum = 0; // Current step in the attack combo chain (0, 1, or 2)
-	public float _knockbackStrength = 5.0f;         // Force applied to enemies upon hit
-	public bool _inCombat = false;                   // Flag: true if the player has recently attacked or been attacked
-	private float _combatCounter = 0;                // Timer/frame counter for the combat cooldown
-	private bool _inInv;                             // Tracks if the player is currently in the inventory state (commented out)
-	private float _dashVelocity = 0f;                // Current extra speed from dashing
-	private float _fullDashValue = 10.0f;            // Max speed boost granted by a full dash
-	private float _knockVelocity = 0f;               // Current knockback applied to player
-	private bool _cooldownSec;						 // Tracks whether the player can use their secondary weapon
-	private bool _running = false;                   // True if the 'run' input is held down
-	private bool _inStep = false;					 // Prevents footstep audio from playing if player is already playing a step.
-	private float _bobTime = 0.0f;                   // Accumulator for the head-bob sine wave function
-	public string _originalDialouge;                // Stores an NPC's default dialogue to restore it after interaction
-	private CharacterBody3D _lastSeen;               // Reference to the last interactable object the raycast hit
-	public int _monstersKilled = 0;                  // Counter for monsters killed (for quest tracking)
-	public float _maxHealth = 100f; // Maximum player health
-	public float _health; // Current player health
+	protected RandomNumberGenerator _rng = new();       // Generator for random events like critical hits and effects
+	public float _damage = 0.0f;                     	// Current attack damage value, adjusted by buffs/debuffs
+	private ulong _lastHit = 0;                      	// Stores the game time (in milliseconds) of the player's last attack
+	private int _comboNum = 0;						 	// Current step in the attack combo chain (0, 1, or 2)
+	public float _knockbackStrength = 5.0f;          	// Force applied to enemies upon hit
+	public bool _inCombat = false;                   	// Flag: true if the player has recently attacked or been attacked
+	private float _combatCounter = 0;               	// Timer/frame counter for the combat cooldown
+	private bool _inInv;                             	// Tracks if the player is currently in the inventory state (commented out)
+	private float _dashVelocity = 0f;                	// Current extra speed from dashing
+	private float _fullDashValue = 10.0f;            	// Max speed boost granted by a full dash
+	private float _knockVelocity = 0f;               	// Current knockback applied to player
+	private bool _cooldownSec;						 	// Tracks whether the player can use their secondary weapon
+	private bool _running = false;                   	// True if the 'run' input is held down
+	private bool _inStep = false;					 	// Prevents footstep audio from playing if player is already playing a step.
+	private float _bobTime = 0.0f;                   	// Accumulator for the head-bob sine wave function
+	public string _originalDialouge;                 	// Stores an NPC's default dialogue to restore it after interaction
+	private CharacterBody3D _lastSeen;               	// Reference to the last interactable object the raycast hit
+	public int _monstersKilled = 0;                  	// Counter for monsters killed (for quest tracking)
+	public float _maxHealth = 100f;					 	// Maximum player health
+	public float _health; 								// Current player health
 	public Color _maxHealthColor = new Color(244f / 255f, 224f / 255f, 138f / 255f); // Goldish color for high health light
 	public Color _minHealthColor = new Color(255f / 255f, 0f, 0f); // Red color for low health light
-	private float _maxRange = 25f; // Max range for the lantern light
-	private float _minRange = 5f; // Min range for the lantern light
-	private bool _attackCooldown = false; // Flag: prevents attacking during a swing animation
-	public Color _lightColor; // Current color of the lantern light
-	private float _maxStamina = 100f; // Maximum player stamina
-	private float _stamina; // Current player stamina
-	private float _staminaGoal; // Lerp target for stamina (used for UI smooth transition)
-	private Vector3 _baseHeadPosition; // The head node's default local position
+	private float _maxRange = 25f; 						// Max range for the lantern light
+	private float _minRange = 5f; 						// Min range for the lantern light
+	private bool _attackCooldown = false; 				// Flag: prevents attacking during a swing animation
+	public Color _lightColor; 							// Current color of the lantern light
+	private float _maxStamina = 100f; 					// Maximum player stamina
+	private float _stamina; 							// Current player stamina
+	private float _staminaGoal; 						// Lerp target for stamina (used for UI smooth transition)
+	private Vector3 _baseHeadPosition; 					// The head node's default local position
 	private Vector3 _headOffset = new Vector3(0f, 0f, 0f); // Dynamic offset for head (e.g., dash effect)
-	private SwordHandler _swordInst; // Script instance of the currently equipped sword
-	public bool _blocking = false; // Flag: true if the player is holding the block input
-	public bool _parry = false; // Flag: true during the small parry window at the start of a block
-	public bool _parried = false; // Flag: true if a parry was successful (set by the enemy/damage function)
-	private float _parryWindow = 0.15f; // Duration of the parry window (in seconds)
-	private float _currentParryWindow; // Remaining time in the parry window
-	public NpcVillager _villager; // Reference to the currently interacting villager NPC
-	public bool _hasApple = false; // Quest item flag
+	private SwordHandler _swordInst;					// Script instance of the currently equipped sword
+	public bool _blocking = false; 						// Flag: true if the player is holding the block input
+	public bool _parry = false; 						// Flag: true during the small parry window at the start of a block
+	public bool _parried = false; 						// Flag: true if a parry was successful (set by the enemy/damage function)
+	private float _parryWindow = 0.15f; 				// Duration of the parry window (in seconds)
+	private float _currentParryWindow; 					// Remaining time in the parry window
+	public NpcVillager _villager; 						// Reference to the currently interacting villager NPC
+	public bool _hasApple = false; 						// Quest item flag
 	private float _staminaTimer = 2f;
 	private float _currentStaminaTimer = 0f;
 	private int equipSec = 2;
@@ -124,6 +125,7 @@ public partial class Player3d : CharacterBody3D
 		_weapon.Add("ShortSword", _shortSword);
 		_weapon.Add("Falchion", _falchion);
 		_secWeapon.Add("FlintGun", _flintGun);
+		_secWeapon.Add("StakeGun", _stakeGun);
 	}
 
 	// --- INPUT HANDLER ---
@@ -289,7 +291,7 @@ public partial class Player3d : CharacterBody3D
 		else if (@event is InputEventKey shiftKey && shiftKey.Keycode == Key.Shift)
 		{
 			_running = shiftKey.Pressed; // Set running state based on key press
-			// If stamina is zero or less, stop running immediately
+										 // If stamina is zero or less, stop running immediately
 			if (_running == false)
 			{
 				_currentStaminaTimer = _staminaTimer;
@@ -310,42 +312,63 @@ public partial class Player3d : CharacterBody3D
 				villager.Talk();
 			}
 		}
-		
 
+		// --- Swap equiped secondary weapon ---
+		else if (Input.IsActionJustPressed("specialSwap1")) { equipSec = 1; }
+		else if (Input.IsActionJustPressed("specialSwap2")) { equipSec = 2; }
+		else if (Input.IsActionJustPressed("specialSwap3")) { equipSec = 3; }
+		else if (Input.IsActionJustPressed("specialSwap4")) { equipSec = 4; }
+
+		// --- Use secondary weapon ---
 		else if (Input.IsActionJustPressed("special"))
 		{
 			if (equipSec == 1)
 			{
 				if (_eSecWeapon1 is Flintlock flintchild)
 				{
+					GD.Print("wtf?");
 					flintchild.specAction();
-                }
+				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					GD.Print("ShootPlease");
+					stakeChild.specAction();
+				}
 			}
 			else if (equipSec == 2)
 			{
-				GD.Print("Test1");
 				if (_eSecWeapon2 is Flintlock flintchild)
 				{
 					flintchild.specAction();
-                }
+				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					stakeChild.specAction();
+				}
 			}
 			else if (equipSec == 3)
 			{
-				GD.Print("test2");
 				if (_eSecWeapon3 is Flintlock flintchild)
 				{
 					flintchild.specAction();
-                }
+				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					stakeChild.specAction();
+				}
 			}
 			else
 			{
-				GD.Print("test2");
-                if (_eSecWeapon4 is Flintlock flintchild)
+				if (_eSecWeapon4 is Flintlock flintchild)
 				{
 					flintchild.specAction();
-                }
-            }
-        }
+				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					stakeChild.specAction();
+				}
+			}
+		}
 	}
 
 	// --- PHYSICS LOOP ---
@@ -625,7 +648,7 @@ public partial class Player3d : CharacterBody3D
 		if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
 		{
 			_comboNum++; // Advance combo counter
-						 // Check for critical hit chance (meta tag)
+			// Check for critical hit chance (meta tag)
 			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
 			{
 				_damage *= (float)_sword.GetMeta("cPercent1");
@@ -652,7 +675,6 @@ public partial class Player3d : CharacterBody3D
 			{
 				_damage *= (float)_sword.GetMeta("cPercent3");
 				_swordInst._crit = true;
-				GD.Print("CRIT");
 			}
 		}
 
@@ -721,6 +743,7 @@ public partial class Player3d : CharacterBody3D
 	{
 		_parry = false; // Ensure parry window is closed
 		_sword.GetNode<GpuParticles3D>("Parry").Emitting = true; // Play parry visual effect
+		_hallucinationFactor = 0f;
 
 		int ranSound = _rng.RandiRange(0, 2); // Randomize which sound effect to play
 		if (ranSound == 0)
@@ -829,10 +852,14 @@ public partial class Player3d : CharacterBody3D
 
 	// Handles damage taken by the player from a Monster3d (melee damage).
 	public void Damaged(float takenDamage, Monster3d monster, string effect)
-	{	
+	{
 		if (effect == "Hallucinate")
-        {
+		{
 			_hallucinationFactor = 1f;
+		}
+		if (effect == "StaminaDrain" && _blocking == false)
+        {
+			_stamina -= _stamina*0.15f;
         }
 		_knockVelocity = 2f;
 		if (_blocking == true && _parry == false)
@@ -912,7 +939,7 @@ public partial class Player3d : CharacterBody3D
 	}
 
 	// Switches the player's secondary weapon slots.
-	public void SwtichSecondaryWeapon(string wepaonName, int slot)
+	public void SwitchSecondaryWeapon(string wepaonName, int slot)
 	{
 		PackedScene weaponScene = _secWeapon[wepaonName]; // Get the scene resource from the dictionary
 		Node3D holder;
@@ -932,10 +959,17 @@ public partial class Player3d : CharacterBody3D
 		{
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand4");
 		}
-		holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
+		GD.Print(holder);
+		GD.Print(wepaonName);
+		if (holder.GetChild(0) != null)
+		{
+			GD.Print(holder.GetChild(0).ToString(), "Old");
+			holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
+		}
 		Node3D weaponInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
 		holder.AddChild(weaponInstance);                                             // Add new weapon to holder node
 		weaponInstance.Position = holder.Position;
+		GD.Print(holder.GetChild(0).ToString(), "New");
 		GD.Print("weaponswaped");
     }
 	public async void play_sfx(AudioStreamOggVorbis soundeffect)

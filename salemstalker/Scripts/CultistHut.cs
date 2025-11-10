@@ -19,6 +19,8 @@ public partial class CultistHut : Node3D
 	[Export]
 	public int _maxMonsterCount = 70;
 	[Export]
+	public bool _canShadow = false;
+	[Export]
 	public double SpawnDistance = 100;        // Maximum distance from player before monsters despawn or spawning stops    
 	[Export]
 	public Godot.Collections.Array<PackedScene> _monsterList { get; set; } = [];

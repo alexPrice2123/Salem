@@ -55,6 +55,10 @@ public partial class flyingPesk : Monster3d
 		if (_health <= 0)
 		{
 			_player.MonsterKilled("flyingPesk");
+			if (Debug == true)
+            {
+				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
+            }
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		if (_attacking == true)

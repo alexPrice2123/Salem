@@ -36,7 +36,7 @@ public partial class Fog : Node3D
 		}
 		else
 		{
-			GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity = Mathf.Lerp(GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity, _normalFog, (float)delta);
+			GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity = Mathf.Lerp(GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity, _normalFog, (float)delta/2);
 		}
 	}
 	
