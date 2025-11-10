@@ -960,7 +960,6 @@ public partial class Player3d : CharacterBody3D
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand4");
 		}
 		GD.Print(holder);
-		GD.Print(weaponScene.ToString());
 		GD.Print(wepaonName);
 		if (holder.GetChild(0) != null)
 		{
