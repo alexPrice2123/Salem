@@ -28,7 +28,7 @@ public partial class Orb : RigidBody3D
 	{
 		if (body.IsInGroup("Player") && body.Name == "Hurtbox")
 		{
-			_playerOrb.RangedDamaged(_damageOrb, this);
+			_playerOrb.RangedDamaged(_damageOrb, this, "None");
 			//GetNode<CollisionShape3D>("Area3D/CollisionShape3D").Disabled = true;
 			LinearVelocity = Vector3.Zero;
 			AngularVelocity = Vector3.Zero;

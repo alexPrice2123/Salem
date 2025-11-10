@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=35 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
@@ -122,13 +122,37 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nt8jn"]
 line_spacing = -6.0
-font_size = 30
+font_size = 32
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g0wmg"]
 font_size = 45
 outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_smy1h"]
+font_size = 37
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lkjmk"]
+line_spacing = -4.0
+font_size = 20
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_whq80"]
+line_spacing = -8.0
+font_size = 46
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kuui0"]
+line_spacing = 0.0
+paragraph_spacing = -7.0
+font_size = 26
+outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_whq80"]
@@ -409,57 +433,28 @@ offset_right = -0.0499992
 offset_bottom = 0.0499992
 text = "Select weapon slot"
 
-[node name="ResourceInv" type="Control" parent="."]
+[node name="ResourceInv2" type="Control" parent="."]
 visible = false
 layout_mode = 1
-anchor_left = 0.13
-anchor_top = 0.165
-anchor_right = 0.871
-anchor_bottom = 0.825
-offset_left = -0.270004
-offset_top = 0.00999451
-offset_right = 0.190918
-offset_bottom = 0.0499573
+anchor_left = 0.116
+anchor_top = 0.112
+anchor_right = 0.885
+anchor_bottom = 0.891
+offset_left = 107.472
+offset_top = 76.056
+offset_right = 107.721
+offset_bottom = 75.9819
 
-[node name="InvSlot1" type="Button" parent="ResourceInv"]
-clip_contents = true
+[node name="GridContainer" type="GridContainer" parent="ResourceInv2"]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 47.0
-offset_right = 160.0
-offset_bottom = 127.0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 7
 
-[node name="InvSlot2" type="Button" parent="ResourceInv"]
+[node name="InvSlot1" type="Button" parent="ResourceInv2/GridContainer"]
 clip_contents = true
-layout_mode = 0
-offset_left = 160.0
-offset_top = 47.0
-offset_right = 240.0
-offset_bottom = 127.0
-
-[node name="InvSlot3" type="Button" parent="ResourceInv"]
-clip_contents = true
-layout_mode = 0
-offset_left = 240.0
-offset_top = 47.0
-offset_right = 320.0
-offset_bottom = 127.0
-
-[node name="InvSlot4" type="Button" parent="ResourceInv"]
-clip_contents = true
-layout_mode = 0
-offset_left = 320.0
-offset_top = 47.0
-offset_right = 400.0
-offset_bottom = 127.0
-
-[node name="InvSlot5" type="Button" parent="ResourceInv"]
-clip_contents = true
-layout_mode = 0
-offset_left = 400.0
-offset_top = 47.0
-offset_right = 480.0
-offset_bottom = 127.0
+custom_minimum_size = Vector2(115, 115)
+layout_mode = 2
 
 [node name="Quest" type="Control" parent="."]
 visible = false
@@ -580,10 +575,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -119.0
-offset_top = -69.0
-offset_right = 182.0
-offset_bottom = 46.0
+offset_left = -109.0
+offset_top = -39.0
+offset_right = 192.0
+offset_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
@@ -750,15 +745,11 @@ layout_mode = 0
 offset_right = 415.0
 offset_bottom = 33.0
 selected = 0
-item_count = 4
+item_count = 2
 popup/item_0/text = "One-Handed Primary"
 popup/item_0/id = 0
 popup/item_1/text = "Two-Handed Primary"
 popup/item_1/id = 1
-popup/item_2/text = "Offensive Secondary"
-popup/item_2/id = 2
-popup/item_3/text = "Defensive Secondary"
-popup/item_3/id = 3
 
 [node name="ShopOption1" type="Button" parent="BlacksmithShop"]
 layout_mode = 0
@@ -788,35 +779,136 @@ offset_right = 415.0
 offset_bottom = 421.0
 text = "Option4"
 
-[node name="Upgrade" type="Button" parent="BlacksmithShop"]
-z_index = 1
-layout_mode = 0
-offset_left = 623.0
-offset_top = 4.0
-offset_right = 676.0
-offset_bottom = 38.0
-
-[node name="View" type="Button" parent="BlacksmithShop"]
-z_index = 1
-layout_mode = 0
-offset_left = 642.0
-offset_top = 42.0
-offset_right = 676.0
-offset_bottom = 76.0
-
-[node name="PortContainer" type="SubViewportContainer" parent="BlacksmithShop"]
-layout_mode = 0
+[node name="View" type="Control" parent="BlacksmithShop"]
+anchors_preset = 0
 offset_left = 438.0
 offset_right = 680.0
 offset_bottom = 422.0
 
-[node name="Port" type="SubViewport" parent="BlacksmithShop/PortContainer"]
+[node name="PortContainer" type="SubViewportContainer" parent="BlacksmithShop/View"]
+layout_mode = 0
+offset_right = 242.0
+offset_bottom = 422.0
+
+[node name="Port" type="SubViewport" parent="BlacksmithShop/View/PortContainer"]
 handle_input_locally = false
 size = Vector2i(242, 422)
 render_target_update_mode = 0
 
-[node name="ShopPreviewWorld" parent="BlacksmithShop/PortContainer/Port" instance=ExtResource("12_whq80")]
+[node name="ShopPreviewWorld" parent="BlacksmithShop/View/PortContainer/Port" instance=ExtResource("12_whq80")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.51964, -10.136, 0)
+
+[node name="Upgrade" type="Button" parent="BlacksmithShop/View"]
+z_index = 1
+layout_mode = 0
+offset_left = 161.0
+offset_top = 4.0
+offset_right = 236.0
+offset_bottom = 38.0
+text = "Upgrade"
+
+[node name="View" type="Button" parent="BlacksmithShop/View"]
+z_index = 1
+layout_mode = 0
+offset_left = 188.0
+offset_top = 42.0
+offset_right = 236.0
+offset_bottom = 76.0
+text = "View"
+
+[node name="WeaponDesc" type="ColorRect" parent="BlacksmithShop/View"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 6.0
+offset_top = 68.0
+offset_right = 236.0
+offset_bottom = 411.0
+color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[node name="ViewWeapon" type="Label" parent="BlacksmithShop/View/WeaponDesc"]
+z_index = 2
+layout_mode = 0
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 226.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+text = "Greatsword"
+label_settings = SubResource("LabelSettings_smy1h")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="BlacksmithShop/View/WeaponDesc"]
+z_index = 2
+layout_mode = 0
+offset_left = 5.0
+offset_top = 38.0
+offset_right = 226.0
+offset_bottom = 338.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+text = "The greatsword is an effective area denial weapon which excels in crowded environments and against melee enemies, who would need close proximity to attack.
+
+Its special attack blocks and pushes enemies, stunning them briefly."
+label_settings = SubResource("LabelSettings_lkjmk")
+autowrap_mode = 3
+
+[node name="UpgradeMenu" type="Control" parent="BlacksmithShop/View"]
+visible = false
+anchors_preset = 0
+offset_right = 242.0
+offset_bottom = 422.0
+
+[node name="ColorRect" type="ColorRect" parent="BlacksmithShop/View/UpgradeMenu"]
+z_index = 2
+layout_mode = 0
+offset_right = 242.0
+offset_bottom = 422.0
+color = Color(0.762404, 0.762404, 0.762404, 1)
+
+[node name="UpgradePrompt" type="Label" parent="BlacksmithShop/View/UpgradeMenu"]
+z_index = 2
+layout_mode = 0
+offset_right = 242.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+text = "Upgrade
+Greatsword?"
+label_settings = SubResource("LabelSettings_whq80")
+horizontal_alignment = 1
+
+[node name="Requirements" type="Label" parent="BlacksmithShop/View/UpgradeMenu"]
+z_index = 2
+layout_mode = 0
+offset_left = 11.0
+offset_top = 132.0
+offset_right = 232.0
+offset_bottom = 360.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+text = "Reqirements:
+
+Great stuff x2
+Sword stuff x10
+Upgrade stuff x3"
+label_settings = SubResource("LabelSettings_kuui0")
+horizontal_alignment = 1
+
+[node name="UpgradeConf" type="Button" parent="BlacksmithShop/View/UpgradeMenu"]
+z_index = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 377.0
+offset_right = 116.0
+offset_bottom = 412.0
+text = "Yes"
+
+[node name="UpgradeDeny" type="Button" parent="BlacksmithShop/View/UpgradeMenu"]
+z_index = 2
+layout_mode = 0
+offset_left = 126.0
+offset_top = 377.0
+offset_right = 228.0
+offset_bottom = 412.0
+text = "No"
 
 [node name="WizardShop" type="Control" parent="."]
 visible = false
@@ -873,3 +965,7 @@ texture = ExtResource("14_8fs27")
 [connection signal="button_up" from="BlacksmithShop/ShopOption2" to="." method="_on_shop_option2_button_up"]
 [connection signal="button_up" from="BlacksmithShop/ShopOption3" to="." method="_on_shop_option3_button_up"]
 [connection signal="button_up" from="BlacksmithShop/ShopOption4" to="." method="_on_shop_option4_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/Upgrade" to="." method="_on_upgrade_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/View" to="." method="_on_view_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/UpgradeConf" to="." method="_on_upgrade_conf_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/UpgradeDeny" to="." method="_on_upgrade_deny_button_up"]
