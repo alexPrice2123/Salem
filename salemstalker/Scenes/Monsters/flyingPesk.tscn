@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://crxygapcq66ft"]
+[gd_scene load_steps=51 format=3 uid="uid://crxygapcq66ft"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_rrcq7"]
 [ext_resource type="Script" uid="uid://c4bkik5xcpbc3" path="res://Scripts/flyingPesk.cs" id="2_rrcq7"]
@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://h326kngq1jwa" path="res://Assets/3D/charatermodel/pesk.blend" id="4_pgtvs"]
 [ext_resource type="Texture2D" uid="uid://dgk24wrmrjdc5" path="res://Assets/monstertextures/pest/body_Base_color.png" id="5_chkap"]
 [ext_resource type="Texture2D" uid="uid://chrlyioibw7yi" path="res://Assets/monstertextures/pest/wings1_Base_color.png" id="6_2smgy"]
+[ext_resource type="Shader" uid="uid://dxqpgkj0a37w" path="res://Shaders/transparency.gdshader" id="7_chkap"]
 [ext_resource type="Texture2D" uid="uid://0ditjrm6xuhh" path="res://Assets/monstertextures/pest/wings2_Base_color.png" id="7_jme35"]
 [ext_resource type="Texture2D" uid="uid://dtjx3xaadwmfs" path="res://Assets/monstertextures/pest/head_Base_color.png" id="8_5b4hn"]
 [ext_resource type="Texture2D" uid="uid://dnjw11awpqh0m" path="res://Assets/monstertextures/pest/needle_Base_color.png" id="9_cuw7d"]
+[ext_resource type="Texture2D" uid="uid://d2hyy2gjqv67q" path="res://Assets/monstertextures/pest/wings2_Opacity.png" id="9_jme35"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_im0l4"]
 radius = 0.331716
@@ -153,8 +155,15 @@ albedo_texture = ExtResource("5_chkap")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wdu0w"]
 albedo_texture = ExtResource("6_2smgy")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6rud"]
-albedo_texture = ExtResource("7_jme35")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2yltb"]
+render_priority = 0
+shader = ExtResource("7_chkap")
+shader_parameter/albedo_tex = ExtResource("7_jme35")
+shader_parameter/opacity_tex = ExtResource("9_jme35")
+shader_parameter/opacity_strength = 0.5
+shader_parameter/threshold = 0.5
+shader_parameter/feather = 0.0
+shader_parameter/use_smooth = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nu0d2"]
 albedo_texture = ExtResource("8_5b4hn")
@@ -227,12 +236,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00286001, 0.464739, -0.386
 [node name="Direction" type="Node3D" parent="." index="7"]
 
 [node name="Body" parent="." index="8" instance=ExtResource("4_pgtvs")]
-transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0.223611, -0.224724)
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0.223611, -0.22472665)
 
 [node name="Plane_001" parent="Body/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_agvvd")
 surface_material_override/1 = SubResource("StandardMaterial3D_wdu0w")
-surface_material_override/2 = SubResource("StandardMaterial3D_x6rud")
+surface_material_override/2 = SubResource("ShaderMaterial_2yltb")
 surface_material_override/3 = SubResource("StandardMaterial3D_nu0d2")
 surface_material_override/4 = SubResource("StandardMaterial3D_l58v1")
 
