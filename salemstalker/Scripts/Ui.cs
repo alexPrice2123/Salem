@@ -156,11 +156,21 @@ public partial class Ui : Control
 	private void _on_falchion_mouse_entered(){ PlayInvAnim("Falchion", true); }
 	private void _on_falchion_mouse_exited(){ PlayInvAnim("Falchion", false); }
 	private void _on_falchion_button_up() { _player.SwitchPrimaryWeapon("Falchion"); }
+
+	// --- Dagger ---
+	private void _on_dagger_mouse_entered() { PlayInvAnim("dagger", true); }
+	private void _on_dagger_mouse_exited() { PlayInvAnim("dagger", false); }
+	private void _on_dagger_button_up(){ _player.SwitchPrimaryWeapon("dagger"); }
 	
 	// --- ShortSword ---
 	private void _on_shortsword_mouse_entered(){ PlayInvAnim("ShortSword", true); }
 	private void _on_shortsword_mouse_exited(){ PlayInvAnim("ShortSword", false); }
 	private void _on_shortsword_button_up() { _player.SwitchPrimaryWeapon("ShortSword"); }
+
+	// --- Longsword ---
+	private void _on_longsword_mouse_entered() { PlayInvAnim("longsword", true); }
+	private void _on_longsword_mouse_exited() { PlayInvAnim("longsword", false); }
+	private void _on_longsword_button_up(){ _player.SwitchPrimaryWeapon("longsword"); }
 
 	// --- StakeGun ---
 	private void _on_stake_gun_mouse_entered() { PlayInvAnim("StakeGun", true); }
