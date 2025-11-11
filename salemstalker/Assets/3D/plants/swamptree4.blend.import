@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bmlwshpph738s"
-path="res://.godot/imported/foresttree2.blend-19a3e8de885d89d589f37e0f327d05b5.scn"
+uid="uid://cyki88j4sl167"
+path="res://.godot/imported/swamptree4.blend-7f704eac5e6179bfeb301d6d0a8fbf38.scn"
 
 [deps]
 
-source_file="res://Assets/3D/plants/foresttree2.blend"
-dest_files=["res://.godot/imported/foresttree2.blend-19a3e8de885d89d589f37e0f327d05b5.scn"]
+source_file="res://Assets/3D/plants/swamptree4.blend"
+dest_files=["res://.godot/imported/swamptree4.blend-7f704eac5e6179bfeb301d6d0a8fbf38.scn"]
 
 [params]
 
@@ -56,4 +56,4 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
-gltf/naming_version=0
+gltf/naming_version=2
