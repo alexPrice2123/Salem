@@ -1,0 +1,63 @@
+[gd_scene load_steps=12 format=3 uid="uid://cvls06clf6bc5"]
+
+[ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_ostip"]
+[ext_resource type="Shader" uid="uid://bu36lcp8xftmo" path="res://Shaders/starrySky.gdshader" id="1_p5qse"]
+[ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="2_kvufb"]
+[ext_resource type="PackedScene" uid="uid://d4ntgvke0mfh3" path="res://Scenes/DebugHut.tscn" id="3_kvufb"]
+[ext_resource type="PackedScene" uid="uid://crxygapcq66ft" path="res://Scenes/Monsters/flyingPesk.tscn" id="4_aetuq"]
+[ext_resource type="PackedScene" uid="uid://dbhqhurkcdks0" path="res://Scenes/Monsters/hollowNormal.tscn" id="5_41pr4"]
+[ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/hollowBrute.tscn" id="6_4dpch"]
+[ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/vCultist.tscn" id="7_4dpch"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yt8cr"]
+shader = ExtResource("1_p5qse")
+shader_parameter/sky_color = Color(0, 0, 0, 1)
+shader_parameter/star_base_color = Color(0.8, 1, 0.3, 1)
+shader_parameter/star_hue_offset = 1.0
+shader_parameter/star_intensity = 0.1
+shader_parameter/star_twinkle_speed = 0.25
+shader_parameter/star_twinkle_intensity = 1.0
+shader_parameter/layer_scale = 20.0
+shader_parameter/layer_scale_step = 10.0
+shader_parameter/layers_count = 3
+
+[sub_resource type="Sky" id="Sky_hdhae"]
+sky_material = SubResource("ShaderMaterial_yt8cr")
+
+[sub_resource type="Environment" id="Environment_aetuq"]
+background_mode = 2
+sky = SubResource("Sky_hdhae")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_aetuq")
+
+[node name="Player_3d" parent="." instance=ExtResource("1_ostip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -569.226, -0.267151, 3.56368)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -566.982, -1.93395, 6.91586)
+material_override = ExtResource("2_kvufb")
+use_collision = true
+size = Vector3(10000, 1, 10000)
+
+[node name="HutHolder" type="Node3D" parent="."]
+
+[node name="Pesk" parent="HutHolder" instance=ExtResource("3_kvufb")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -569.6, -0.196111, -0.293375)
+_monster = ExtResource("4_aetuq")
+
+[node name="Hollow" parent="HutHolder" instance=ExtResource("3_kvufb")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -566.007, -0.196111, -0.293375)
+_monster = ExtResource("5_41pr4")
+
+[node name="HollowBrute" parent="HutHolder" instance=ExtResource("3_kvufb")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -562.572, -0.196111, -0.293375)
+_monster = ExtResource("6_4dpch")
+
+[node name="VCultist" parent="HutHolder" instance=ExtResource("3_kvufb")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -572.717, -0.196111, -0.293375)
+_monster = ExtResource("7_4dpch")

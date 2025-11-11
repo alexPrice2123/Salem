@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmhgitq1fwfst"]
+
+[ext_resource type="Script" uid="uid://cqbhjkh8fdspc" path="res://Scripts/Fog.cs" id="1_s37ah"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_keuyo"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_keuyo"]
+sky_material = SubResource("ProceduralSkyMaterial_keuyo")
+
+[sub_resource type="Environment" id="Environment_s37ah"]
+background_mode = 2
+sky = SubResource("Sky_keuyo")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_length = 1024.0
+
+[node name="Enviorment" type="Node3D"]
+script = ExtResource("1_s37ah")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_s37ah")

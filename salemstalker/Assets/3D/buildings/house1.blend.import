@@ -32,7 +32,30 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"chimney": {
+"use_external/enabled": true,
+"use_external/path": "uid://bwj213xpibuwa"
+},
+"door": {
+"use_external/enabled": true,
+"use_external/path": "uid://bwj213xpibuwa"
+},
+"house": {
+"use_external/enabled": true,
+"use_external/path": "uid://cahiyym0yhafq"
+},
+"roof": {
+"use_external/enabled": true,
+"use_external/path": "uid://dx6y6wwdl58gh"
+},
+"window": {
+"use_external/enabled": true,
+"use_external/path": "uid://c55tu7fxgo1v3"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

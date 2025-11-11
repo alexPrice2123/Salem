@@ -1,7 +1,27 @@
-[gd_scene load_steps=24 format=3 uid="uid://cilhfw77d0fyx"]
+[gd_scene load_steps=52 format=3 uid="uid://cilhfw77d0fyx"]
 
 [ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="1_ej1uk"]
 [ext_resource type="Script" uid="uid://tfmbanw1c877" path="res://Scenes/MainHandWeapons/Falchion.cs" id="1_ki2ro"]
+[ext_resource type="Texture2D" uid="uid://beaglb71eg4rr" path="res://Assets/weapontextures/falchion/pommel_Base_color.png" id="3_a1ejp"]
+[ext_resource type="Texture2D" uid="uid://1y3o4rmdjvui" path="res://Assets/weapontextures/falchion/pommel_Height.png" id="4_fk8vp"]
+[ext_resource type="Texture2D" uid="uid://cqj8uep6womhi" path="res://Assets/weapontextures/falchion/pommel_Metallic.png" id="5_63re0"]
+[ext_resource type="Texture2D" uid="uid://4ykodxh0fnss" path="res://Assets/weapontextures/falchion/pommel_Normal.png" id="6_jwxcy"]
+[ext_resource type="Texture2D" uid="uid://dbjuj3u2q5dfx" path="res://Assets/weapontextures/falchion/pommel_Roughness.png" id="7_sgoks"]
+[ext_resource type="Texture2D" uid="uid://dpuk16gt0rg0u" path="res://Assets/weapontextures/falchion/handle_Base_color.png" id="8_nr88d"]
+[ext_resource type="Texture2D" uid="uid://cmi12b0cv410b" path="res://Assets/weapontextures/falchion/handle_Height.png" id="9_e23w1"]
+[ext_resource type="Texture2D" uid="uid://bweq3c13rc2dt" path="res://Assets/weapontextures/falchion/handle_Metallic.png" id="10_kosbe"]
+[ext_resource type="Texture2D" uid="uid://bmkitgt6i0di6" path="res://Assets/weapontextures/falchion/handle_Normal.png" id="11_w53an"]
+[ext_resource type="Texture2D" uid="uid://dau4tqcx6eprb" path="res://Assets/weapontextures/falchion/handle_Roughness.png" id="12_t514g"]
+[ext_resource type="Texture2D" uid="uid://1td3x5xas03l" path="res://Assets/weapontextures/falchion/hilt_1_Base_color.png" id="13_lmc31"]
+[ext_resource type="Texture2D" uid="uid://cs3lkyyxvujjv" path="res://Assets/weapontextures/falchion/hilt_1_Height.png" id="14_fp6o5"]
+[ext_resource type="Texture2D" uid="uid://dub7m3dobfk8f" path="res://Assets/weapontextures/falchion/hilt_1_Metallic.png" id="15_au5sl"]
+[ext_resource type="Texture2D" uid="uid://bo4sejhosbb8d" path="res://Assets/weapontextures/falchion/hilt_1_Normal.png" id="16_hi1d2"]
+[ext_resource type="Texture2D" uid="uid://dja1bdf5o6bjn" path="res://Assets/weapontextures/falchion/hilt_1_Roughness.png" id="17_wr17s"]
+[ext_resource type="Texture2D" uid="uid://c4mfu5e5631bu" path="res://Assets/weapontextures/falchion/blade_Base_color.png" id="18_3eh2l"]
+[ext_resource type="Texture2D" uid="uid://bo12aldyw4a18" path="res://Assets/weapontextures/falchion/blade_Height.png" id="19_n0lvx"]
+[ext_resource type="Texture2D" uid="uid://5ixud4qb3qkl" path="res://Assets/weapontextures/falchion/blade_Metallic.png" id="20_kmiv0"]
+[ext_resource type="Texture2D" uid="uid://0qkxoifp5v5n" path="res://Assets/weapontextures/falchion/blade_Normal.png" id="21_wq7l3"]
+[ext_resource type="Texture2D" uid="uid://cmrqcoy3oh4wo" path="res://Assets/weapontextures/falchion/blade_Roughness.png" id="22_0rhjt"]
 
 [sub_resource type="Animation" id="Animation_wvryv"]
 resource_name = "Block"
@@ -184,21 +204,115 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
 size = Vector3(0.321167, 1.46155, 0.213867)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l13c1"]
-albedo_color = Color(0.439216, 0.258824, 0.258824, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sb0or"]
-albedo_color = Color(0.776471, 0.803922, 0.564706, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ngfl"]
+albedo_texture = ExtResource("3_a1ejp")
 metallic = 1.0
-roughness = 0.3
+metallic_texture = ExtResource("5_63re0")
+roughness_texture = ExtResource("7_sgoks")
+normal_enabled = true
+normal_texture = ExtResource("6_jwxcy")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_fk8vp")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_df3ch"]
-albedo_color = Color(0.564962, 0.564962, 0.564962, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb8we"]
+albedo_texture = ExtResource("3_a1ejp")
 metallic = 1.0
-roughness = 0.3
+metallic_texture = ExtResource("5_63re0")
+roughness_texture = ExtResource("7_sgoks")
+normal_enabled = true
+normal_texture = ExtResource("6_jwxcy")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_fk8vp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8xkq1"]
+albedo_texture = ExtResource("8_nr88d")
+metallic = 1.0
+metallic_texture = ExtResource("10_kosbe")
+roughness_texture = ExtResource("12_t514g")
+normal_enabled = true
+normal_texture = ExtResource("11_w53an")
+heightmap_enabled = true
+heightmap_texture = ExtResource("9_e23w1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hoity"]
+albedo_texture = ExtResource("13_lmc31")
+metallic = 1.0
+metallic_texture = ExtResource("15_au5sl")
+roughness_texture = ExtResource("17_wr17s")
+normal_enabled = true
+normal_texture = ExtResource("16_hi1d2")
+heightmap_enabled = true
+heightmap_texture = ExtResource("14_fp6o5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xvrv"]
+albedo_texture = ExtResource("13_lmc31")
+metallic = 1.0
+metallic_texture = ExtResource("15_au5sl")
+roughness_texture = ExtResource("17_wr17s")
+normal_enabled = true
+normal_texture = ExtResource("16_hi1d2")
+heightmap_enabled = true
+heightmap_texture = ExtResource("14_fp6o5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqs8a"]
+albedo_texture = ExtResource("13_lmc31")
+metallic = 1.0
+metallic_texture = ExtResource("15_au5sl")
+roughness_texture = ExtResource("17_wr17s")
+normal_enabled = true
+normal_texture = ExtResource("16_hi1d2")
+heightmap_enabled = true
+heightmap_texture = ExtResource("14_fp6o5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hhvx"]
+albedo_texture = ExtResource("18_3eh2l")
+metallic = 1.0
+metallic_texture = ExtResource("20_kmiv0")
+roughness_texture = ExtResource("22_0rhjt")
+normal_enabled = true
+normal_texture = ExtResource("21_wq7l3")
+heightmap_enabled = true
+heightmap_texture = ExtResource("19_n0lvx")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvryv"]
 albedo_color = Color(0.494245, 1.40181e-06, 2.40654e-07, 1)
+
+[sub_resource type="Curve" id="Curve_cg2tk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nst8u"]
+curve = SubResource("Curve_cg2tk")
+
+[sub_resource type="Curve" id="Curve_02r2q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_b1i4m"]
+curve = SubResource("Curve_02r2q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8th4x"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 2.99998
+radial_velocity_max = 5.99998
+radial_velocity_curve = SubResource("CurveTexture_nst8u")
+gravity = Vector3(0, -2, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_b1i4m")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ki2ro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ki2ro"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
 
 [sub_resource type="Curve" id="Curve_ecxhr"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -213,29 +327,6 @@ point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_sk81k"]
 curve = SubResource("Curve_63doy")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8th4x"]
-lifetime_randomness = 1.0
-angle_min = 1.07288e-05
-angle_max = 360.0
-direction = Vector3(0, 0, 0)
-spread = 0.0
-radial_velocity_min = 2.99998
-radial_velocity_max = 5.99998
-radial_velocity_curve = SubResource("CurveTexture_ki2ro")
-gravity = Vector3(0, -2, 0)
-linear_accel_min = 0.999998
-linear_accel_max = 0.999998
-scale_min = 0.05
-scale_max = 0.1
-scale_curve = SubResource("CurveTexture_sk81k")
-
-[sub_resource type="BoxMesh" id="BoxMesh_ki2ro"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ki2ro"]
-albedo_color = Color(1, 1, 0, 1)
-emission_enabled = true
-emission = Color(1, 1, 0, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sk81k"]
 lifetime_randomness = 1.0
@@ -288,29 +379,29 @@ shape = SubResource("BoxShape3D_ki2ro")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.407, 0)
 
 [node name="Cube" parent="falchion" index="0"]
-material_override = SubResource("StandardMaterial3D_l13c1")
+surface_material_override/0 = SubResource("StandardMaterial3D_0ngfl")
 
 [node name="Cylinder" parent="falchion" index="1"]
-material_override = SubResource("StandardMaterial3D_sb0or")
+surface_material_override/0 = SubResource("StandardMaterial3D_hb8we")
 
 [node name="Cylinder_001" parent="falchion" index="2"]
-material_override = SubResource("StandardMaterial3D_l13c1")
+surface_material_override/0 = SubResource("StandardMaterial3D_8xkq1")
 
 [node name="Cube_001" parent="falchion" index="3"]
-transform = Transform3D(0.0815986, 0, 0, 0, 0.0424087, 0, 0, 0, 0.0360172, 0.133582, 0.453902, -4.44089e-16)
-material_override = SubResource("StandardMaterial3D_df3ch")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133582, 0.453902, -4.44089e-16)
+surface_material_override/0 = SubResource("StandardMaterial3D_hoity")
 
 [node name="BézierCurve" parent="falchion" index="4"]
-transform = Transform3D(0.106306, 0, 0, 0, 0, -0.106306, 0, 0.106306, 0, 0.298445, 0.448079, 0)
-material_override = SubResource("StandardMaterial3D_df3ch")
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, -0.0477436, 0.448, -1.99952e-09)
+surface_material_override/0 = SubResource("StandardMaterial3D_1xvrv")
 
 [node name="BézierCurve_001" parent="falchion" index="5"]
-transform = Transform3D(-0.106306, 0, 0, 0, 0, 0.106306, 0, 0.106306, 0, 0.133582, 0.453902, -4.44089e-16)
-material_override = SubResource("StandardMaterial3D_df3ch")
+transform = Transform3D(-1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 0.133582, 0.453902, -4.44089e-16)
+surface_material_override/0 = SubResource("StandardMaterial3D_mqs8a")
 
 [node name="Cube_002" parent="falchion" index="6"]
-transform = Transform3D(0.0734789, 0, 0, 0, 0.0405374, 0, 0, 0, 0.0106852, 0.133582, 0.52704, -4.44089e-16)
-material_override = SubResource("StandardMaterial3D_df3ch")
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0.129475, 0.52704, -1.79536e-10)
+surface_material_override/0 = SubResource("StandardMaterial3D_6hhvx")
 
 [node name="Blood" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0698854, 1.24098, 0.000148448)
@@ -329,6 +420,7 @@ amount = 100
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_sk81k")
 draw_pass_1 = SubResource("BoxMesh_wvryv")
 

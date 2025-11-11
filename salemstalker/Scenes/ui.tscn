@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=35 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
@@ -10,10 +10,11 @@
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
-[ext_resource type="FontFile" uid="uid://bdqlvd6gs54fm" path="res://Assets/Fonts/SnowWhite.ttf" id="7_mmixe"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
+[ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
+[ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4vbiv"]
 
@@ -87,7 +88,7 @@ shader_parameter/b_displacement = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxero"]
 line_spacing = 3.08
-font_size = 40
+font_size = 60
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
 
@@ -100,30 +101,58 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q7pk6"]
 shader = ExtResource("4_2246s")
+shader_parameter/wiggleMult = 0.1
+shader_parameter/wiggleTime = 1.0
+shader_parameter/wiggleY = 2.0
+shader_parameter/BlendAmount = 1.49012e-07
 shader_parameter/change_color_depth = true
 shader_parameter/target_color_depth = 4
 shader_parameter/dithering = true
 shader_parameter/scale_resolution = true
 shader_parameter/target_resolution_scale = 2
-shader_parameter/enable_recolor = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m78vo"]
 shader = ExtResource("5_q7pk6")
 
 [sub_resource type="LabelSettings" id="LabelSettings_m78vo"]
 line_spacing = 3.08
-font_size = 30
+font_size = 40
 outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nt8jn"]
-font_size = 30
+line_spacing = -6.0
+font_size = 32
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g0wmg"]
 font_size = 45
 outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_smy1h"]
+font_size = 37
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lkjmk"]
+line_spacing = -4.0
+font_size = 20
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_whq80"]
+line_spacing = -8.0
+font_size = 46
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kuui0"]
+line_spacing = 0.0
+paragraph_spacing = -7.0
+font_size = 26
+outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_whq80"]
@@ -263,6 +292,20 @@ label_settings = SubResource("LabelSettings_jxero")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Button" type="Button" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.037
+anchor_right = 0.027
+anchor_bottom = 0.037
+offset_left = 0.866999
+offset_top = 12.578
+offset_right = 58.867
+offset_bottom = 39.578
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Quit"
+
 [node name="Inv" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -271,22 +314,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Title" type="Label" parent="Inv"]
-z_index = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.054
-anchor_right = 1.0
-anchor_bottom = 0.173
-offset_top = 0.00799942
-offset_right = 1.0
-offset_bottom = -0.104004
-theme_override_fonts/font = ExtResource("1_qdvrb")
-text = "Inventory"
-label_settings = SubResource("LabelSettings_jxero")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="SubPort" type="SubViewportContainer" parent="Inv"]
 layout_mode = 1
@@ -299,7 +326,7 @@ offset_bottom = -0.296082
 [node name="Sub" type="SubViewport" parent="Inv/SubPort"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1079, 606)
+size = Vector2i(1080, 605)
 render_target_update_mode = 0
 
 [node name="Falchion" type="Button" parent="Inv/SubPort/Sub"]
@@ -322,6 +349,16 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
+[node name="FlintGun" type="Button" parent="Inv/SubPort/Sub"]
+offset_left = 690.0
+offset_top = 97.0
+offset_right = 701.0
+offset_bottom = 105.0
+scale = Vector2(7.242, 20.194)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+flat = true
+
 [node name="Shortsword" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 167.0
 offset_top = 175.0
@@ -333,6 +370,91 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="InvWorld" parent="Inv/SubPort/Sub" instance=ExtResource("3_nf4gj")]
+
+[node name="SlotSelector" type="Control" parent="Inv/SubPort/Sub"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 315.0
+offset_top = 87.0
+offset_right = 765.0
+offset_bottom = 537.0
+
+[node name="Slot1" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.074
+offset_left = 225.0
+offset_top = 220.0
+offset_right = 375.0
+offset_bottom = 336.7
+rotation = 0.785398
+text = "Slot1
+"
+
+[node name="Slot3" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.074
+offset_left = 225.0
+offset_right = 375.0
+offset_bottom = 116.7
+rotation = 0.785398
+text = "Slot3"
+
+[node name="Slot2" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.074
+offset_left = 332.5
+offset_top = 110.0
+offset_right = 482.5
+offset_bottom = 226.7
+rotation = 0.785398
+text = "Slot2"
+
+[node name="Slot4" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.074
+offset_left = 115.5
+offset_top = 110.0
+offset_right = 265.5
+offset_bottom = 226.7
+rotation = 0.785398
+text = "Slot4"
+
+[node name="Label" type="Label" parent="Inv/SubPort/Sub/SlotSelector"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.089
+anchor_bottom = 0.051
+offset_right = -0.0499992
+offset_bottom = 0.0499992
+text = "Select weapon slot"
+
+[node name="ResourceInv2" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.116
+anchor_top = 0.112
+anchor_right = 0.885
+anchor_bottom = 0.891
+offset_left = 107.472
+offset_top = 76.056
+offset_right = 107.721
+offset_bottom = 75.9819
+
+[node name="GridContainer" type="GridContainer" parent="ResourceInv2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 7
+
+[node name="InvSlot1" type="Button" parent="ResourceInv2/GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(115, 115)
+layout_mode = 2
 
 [node name="Quest" type="Control" parent="."]
 visible = false
@@ -379,8 +501,8 @@ anchor_bottom = 0.18
 offset_right = 96.534
 offset_bottom = 17.92
 scale = Vector2(0.75, 0.75)
-theme_override_fonts/font = ExtResource("7_mmixe")
-text = "Ongoing Missions"
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Current Missions"
 label_settings = SubResource("LabelSettings_jxero")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -397,7 +519,7 @@ offset_left = -0.392029
 offset_right = 98.3
 offset_bottom = 17.92
 scale = Vector2(0.75, 0.75)
-theme_override_fonts/font = ExtResource("7_mmixe")
+theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "Description"
 label_settings = SubResource("LabelSettings_jxero")
 horizontal_alignment = 1
@@ -410,6 +532,7 @@ offset_top = 125.392
 offset_right = 975.527
 offset_bottom = 705.182
 scale = Vector2(0.75, 0.75)
+theme_override_fonts/font = ExtResource("1_qdvrb")
 horizontal_alignment = 1
 
 [node name="Combat" type="Label" parent="."]
@@ -417,10 +540,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.002
 anchor_bottom = 0.995
-offset_left = 1.0
-offset_top = 278.794
-offset_right = -0.304077
-offset_bottom = 279.33
+offset_left = -3.0
+offset_top = 278.0
+offset_right = -4.30408
+offset_bottom = 278.536
 theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "In Combat"
 label_settings = SubResource("LabelSettings_qdvrb")
@@ -452,10 +575,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -122.0
-offset_top = -57.0
-offset_right = 179.0
-offset_bottom = 58.0
+offset_left = -109.0
+offset_top = -39.0
+offset_right = 192.0
+offset_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
@@ -494,14 +617,24 @@ scale = Vector2(0.55, 0.55)
 [node name="Quest" type="Label" parent="Container/QuestTemplate"]
 z_index = 1
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7_mmixe")
+theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "Quest"
 label_settings = SubResource("LabelSettings_jxero")
+
+[node name="QuestButton" type="Button" parent="Container/QuestTemplate/Quest"]
+layout_mode = 2
+offset_top = 12.685
+offset_right = 295.0
+offset_bottom = 112.685
+rotation = 3.14159
+pivot_offset = Vector2(147.5, 50)
+mouse_default_cursor_shape = 2
+flat = true
 
 [node name="Number" type="Label" parent="Container/QuestTemplate"]
 z_index = 1
 layout_mode = 2
-theme_override_fonts/font = ExtResource("7_mmixe")
+theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "Number"
 label_settings = SubResource("LabelSettings_m78vo")
 
@@ -521,18 +654,21 @@ offset_bottom = 0.149963
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.316
-anchor_right = 1.0
+anchor_right = 0.849
 anchor_bottom = 0.75
 offset_top = -0.352001
+offset_right = -0.0400391
 offset_bottom = -1.52588e-05
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("10_nt8jn")
-text = "dialogue"
+text = "dialogue
+d
+d"
 label_settings = SubResource("LabelSettings_nt8jn")
 autowrap_mode = 2
 
-[node name="Name" type="Label" parent="Dialogue/DialogueBox"]
+[node name="NameText" type="Label" parent="Dialogue/DialogueBox"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.333
@@ -553,9 +689,27 @@ anchor_bottom = 1.012
 offset_top = 0.0559998
 offset_right = 0.439987
 offset_bottom = -0.0640106
+focus_mode = 0
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 22
 text = "Accept"
+
+[node name="Continue" type="Button" parent="Dialogue"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.802
+anchor_right = 0.161
+anchor_bottom = 1.012
+offset_top = 0.0559998
+offset_right = 172.44
+offset_bottom = -0.0639954
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("10_nt8jn")
+theme_override_font_sizes/font_size = 22
+text = "Click To Continue"
 
 [node name="IgnoreButton" type="Button" parent="Dialogue"]
 layout_mode = 1
@@ -568,9 +722,205 @@ offset_left = 0.119995
 offset_top = 0.0559998
 offset_right = -0.399994
 offset_bottom = -0.0640106
+focus_mode = 0
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 22
-text = "Deny"
+text = "Ignore"
+
+[node name="BlacksmithShop" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.059
+anchor_top = 0.157
+anchor_right = 0.69
+anchor_bottom = 0.856
+offset_left = 0.338997
+offset_top = -0.142006
+offset_right = -0.510071
+offset_bottom = 0.263977
+
+[node name="ShopTypeOptions" type="OptionButton" parent="BlacksmithShop"]
+layout_mode = 0
+offset_right = 415.0
+offset_bottom = 33.0
+selected = 0
+item_count = 2
+popup/item_0/text = "One-Handed Primary"
+popup/item_0/id = 0
+popup/item_1/text = "Two-Handed Primary"
+popup/item_1/id = 1
+
+[node name="ShopOption1" type="Button" parent="BlacksmithShop"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 415.0
+offset_bottom = 121.0
+text = "Option1"
+
+[node name="ShopOption2" type="Button" parent="BlacksmithShop"]
+layout_mode = 0
+offset_top = 150.0
+offset_right = 415.0
+offset_bottom = 221.0
+text = "Option2"
+
+[node name="ShopOption3" type="Button" parent="BlacksmithShop"]
+layout_mode = 0
+offset_top = 250.0
+offset_right = 415.0
+offset_bottom = 321.0
+text = "Option3"
+
+[node name="ShopOption4" type="Button" parent="BlacksmithShop"]
+layout_mode = 0
+offset_top = 350.0
+offset_right = 415.0
+offset_bottom = 421.0
+text = "Option4"
+
+[node name="View" type="Control" parent="BlacksmithShop"]
+anchors_preset = 0
+offset_left = 438.0
+offset_right = 680.0
+offset_bottom = 422.0
+
+[node name="PortContainer" type="SubViewportContainer" parent="BlacksmithShop/View"]
+layout_mode = 0
+offset_right = 242.0
+offset_bottom = 422.0
+
+[node name="Port" type="SubViewport" parent="BlacksmithShop/View/PortContainer"]
+handle_input_locally = false
+size = Vector2i(242, 422)
+render_target_update_mode = 0
+
+[node name="ShopPreviewWorld" parent="BlacksmithShop/View/PortContainer/Port" instance=ExtResource("12_whq80")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.51964, -10.136, 0)
+
+[node name="Upgrade" type="Button" parent="BlacksmithShop/View"]
+z_index = 1
+layout_mode = 0
+offset_left = 161.0
+offset_top = 4.0
+offset_right = 236.0
+offset_bottom = 38.0
+text = "Upgrade"
+
+[node name="View" type="Button" parent="BlacksmithShop/View"]
+z_index = 1
+layout_mode = 0
+offset_left = 188.0
+offset_top = 42.0
+offset_right = 236.0
+offset_bottom = 76.0
+text = "View"
+
+[node name="WeaponDesc" type="ColorRect" parent="BlacksmithShop/View"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 6.0
+offset_top = 68.0
+offset_right = 236.0
+offset_bottom = 411.0
+color = Color(0.760784, 0.760784, 0.760784, 1)
+
+[node name="ViewWeapon" type="Label" parent="BlacksmithShop/View/WeaponDesc"]
+z_index = 2
+layout_mode = 0
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 226.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+text = "Greatsword"
+label_settings = SubResource("LabelSettings_smy1h")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="BlacksmithShop/View/WeaponDesc"]
+z_index = 2
+layout_mode = 0
+offset_left = 5.0
+offset_top = 38.0
+offset_right = 226.0
+offset_bottom = 338.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+text = "The greatsword is an effective area denial weapon which excels in crowded environments and against melee enemies, who would need close proximity to attack.
+
+Its special attack blocks and pushes enemies, stunning them briefly."
+label_settings = SubResource("LabelSettings_lkjmk")
+autowrap_mode = 3
+
+[node name="UpgradeMenu" type="Control" parent="BlacksmithShop/View"]
+visible = false
+anchors_preset = 0
+offset_right = 242.0
+offset_bottom = 422.0
+
+[node name="ColorRect" type="ColorRect" parent="BlacksmithShop/View/UpgradeMenu"]
+z_index = 2
+layout_mode = 0
+offset_right = 242.0
+offset_bottom = 422.0
+color = Color(0.762404, 0.762404, 0.762404, 1)
+
+[node name="UpgradePrompt" type="Label" parent="BlacksmithShop/View/UpgradeMenu"]
+z_index = 2
+layout_mode = 0
+offset_right = 242.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+text = "Upgrade
+Greatsword?"
+label_settings = SubResource("LabelSettings_whq80")
+horizontal_alignment = 1
+
+[node name="Requirements" type="Label" parent="BlacksmithShop/View/UpgradeMenu"]
+z_index = 2
+layout_mode = 0
+offset_left = 11.0
+offset_top = 132.0
+offset_right = 232.0
+offset_bottom = 360.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+text = "Reqirements:
+
+Great stuff x2
+Sword stuff x10
+Upgrade stuff x3"
+label_settings = SubResource("LabelSettings_kuui0")
+horizontal_alignment = 1
+
+[node name="UpgradeConf" type="Button" parent="BlacksmithShop/View/UpgradeMenu"]
+z_index = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 377.0
+offset_right = 116.0
+offset_bottom = 412.0
+text = "Yes"
+
+[node name="UpgradeDeny" type="Button" parent="BlacksmithShop/View/UpgradeMenu"]
+z_index = 2
+layout_mode = 0
+offset_left = 126.0
+offset_top = 377.0
+offset_right = 228.0
+offset_bottom = 412.0
+text = "No"
+
+[node name="WizardShop" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchor_left = 0.074
+anchor_top = 0.106
+anchor_right = 0.645
+anchor_bottom = 0.884
+offset_left = 0.153999
+offset_top = -0.236
+offset_right = 0.0449829
+offset_bottom = 0.295959
 
 [node name="Stamina" type="Sprite2D" parent="."]
 z_index = 1
@@ -579,18 +929,43 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("13_whq80")
 
 [node name="Fill" type="Sprite2D" parent="Stamina"]
-modulate = Color(0, 0.807843, 1, 1)
+modulate = Color(0.235305, 0.629091, 0.82479, 1)
 z_as_relative = false
 material = SubResource("ShaderMaterial_whq80")
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_whq80")
 
+[node name="Controls" type="Sprite2D" parent="."]
+position = Vector2(538, 305)
+scale = Vector2(0.561458, 0.559259)
+texture = ExtResource("14_8fs27")
+
+[connection signal="button_down" from="PauseMenu/Button" to="." method="_on_button_button_down"]
 [connection signal="button_up" from="Inv/SubPort/Sub/Falchion" to="." method="_on_falchion_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/Falchion" to="." method="_on_falchion_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/Falchion" to="." method="_on_falchion_mouse_exited"]
 [connection signal="button_up" from="Inv/SubPort/Sub/StakeGun" to="." method="_on_stake_gun_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/StakeGun" to="." method="_on_stake_gun_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/StakeGun" to="." method="_on_stake_gun_mouse_exited"]
+[connection signal="button_up" from="Inv/SubPort/Sub/FlintGun" to="." method="_on_gun_button_up"]
+[connection signal="mouse_entered" from="Inv/SubPort/Sub/FlintGun" to="." method="_on_gun_mouse_entered"]
+[connection signal="mouse_exited" from="Inv/SubPort/Sub/FlintGun" to="." method="_on_gun_mouse_exited"]
 [connection signal="button_up" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/Shortsword" to="." method="_on_shortsword_mouse_exited"]
+[connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot1" to="." method="_on_slot_1_button_up"]
+[connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot3" to="." method="_on_slot_3_button_up"]
+[connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot2" to="." method="_on_slot_2_button_up"]
+[connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot4" to="." method="_on_slot_4_button_up"]
+[connection signal="button_up" from="Container/QuestTemplate/Quest/QuestButton" to="." method="_on_quest_button_button_up"]
+[connection signal="button_up" from="Dialogue/AcceptButton" to="." method="_on_accept_button_button_up"]
+[connection signal="button_up" from="Dialogue/Continue" to="." method="_on_continue_button_up"]
+[connection signal="button_up" from="Dialogue/IgnoreButton" to="." method="_on_ignore_button_button_up"]
+[connection signal="button_up" from="BlacksmithShop/ShopOption1" to="." method="_on_shop_option1_button_up"]
+[connection signal="button_up" from="BlacksmithShop/ShopOption2" to="." method="_on_shop_option2_button_up"]
+[connection signal="button_up" from="BlacksmithShop/ShopOption3" to="." method="_on_shop_option3_button_up"]
+[connection signal="button_up" from="BlacksmithShop/ShopOption4" to="." method="_on_shop_option4_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/Upgrade" to="." method="_on_upgrade_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/View" to="." method="_on_view_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/UpgradeConf" to="." method="_on_upgrade_conf_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/UpgradeDeny" to="." method="_on_upgrade_deny_button_up"]

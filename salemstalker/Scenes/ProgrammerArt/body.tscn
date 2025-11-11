@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://wp3pcn5363qr"]
+
+[ext_resource type="Texture2D" uid="uid://ebnfthe7xyj" path="res://Assets/2D/burlap.jpg" id="1_leq06"]
+[ext_resource type="Texture2D" uid="uid://xcspp642up40" path="res://Assets/2D/midocean.png" id="2_7jknd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5nufi"]
+albedo_texture = ExtResource("1_leq06")
+
+[sub_resource type="SphereMesh" id="SphereMesh_2lsx8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wlwt"]
+albedo_texture = ExtResource("2_7jknd")
+
+[node name="Body" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.403646, 0, 0, 0, 0.339915, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_5nufi")
+mesh = SubResource("SphereMesh_2lsx8")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0193065, 0, 0, 0, 0.0273438, -0.0827172, 0, 0.00738252, 0.306372, 0, -0.0260879, 0.533303)
+material_override = SubResource("StandardMaterial3D_3wlwt")
+mesh = SubResource("SphereMesh_2lsx8")

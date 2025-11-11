@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://devj8nqafvvvk"]
 
-[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="1_4ljs6"]
+[ext_resource type="Texture2D" uid="uid://cjrn82wnf31ao" path="res://Assets/2D/paper.png" id="1_4ljs6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r1ckr"]
-albedo_color = Color(0.376806, 0.372505, 0.312032, 1)
+albedo_color = Color(0.485703, 0.485704, 0.485703, 1)
 albedo_texture = ExtResource("1_4ljs6")
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.05

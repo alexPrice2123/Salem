@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=4 uid="uid://c6afypybklyjj"]
+
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="1_50vrq"]
+[ext_resource type="Script" uid="uid://dk44cnyvvtsjq" path="res://Scenes/OffHandWeapons/weaponExtra/StakeBullet.cs" id="1_nrgp0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nrgp0"]
+albedo_texture = ExtResource("1_50vrq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_032jv"]
+resource_name = "stake"
+cull_mode = 2
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tewvx"]
+_surfaces = [{
+"aabb": AABB(-0.132802, -0.139636, -1.12995, 0.265603, 0.279272, 2.09497),
+"format": 34896613377,
+"index_count": 174,
+"index_data": PackedByteArray("DQABAA4ADwANAA4AAAABAA0ABwAAAA0ADwAHAA0ABwAQAAAACgAPAA4ABwARABAAEAADAAAAAwABAAAADwACAAcABwACABEADwASAAIACgASAA8AEwACABIACgATABIAAgAUABEAEAARABQAEwAUAAIAEAAVAAMAEAAUABUAFQAWAAMAFgABAAMAFQAUABcAFQAIABYAFQAXAAgACAAYABYAGAABABYACAAXABkAFAAZABcACAAJABgACAAZAAkAFAAaABkAFAATABoACQAZABsAGQAaABsACQAGABgABgABABgACQAbAAsACQALAAYACwAbABoAGgATAAwACwAFAAYABQABAAYACwAaABwACwAcAAUAHAAaAAwAHQAMABMAHAAMAB0AHQATAAoAHAAeAAUAHAAdAB4AHgABAAUAHQAKAAQAHQAEAB4ABAABAB4ACgAOAAQADgABAAQA"),
+"lods": [0.148199, PackedByteArray("AAABAAcABwADAAAAAwABAAAABwACAAMAAgAHAAEACAABAAMAAgAIAAMACAACAAkACAAJAAEACgACAAEACQAGAAEACgABAAQACQALAAYACgAMAAIACQACAAwADAAKAAQACQAMAAsABQABAAYABAABAAUACwAFAAYADAAEAAUACwAMAAUA"), 0.275701, PackedByteArray("AAABAAIAAwABAAAAAgADAAAAAgABAAMAAgABAAQABAABAAUAAgAEAAUAAgACAAUABgABAAIABQABAAYAAgAFAAYA")],
+"name": "stake",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 31,
+"vertex_data": PackedByteArray("//+Np6rDAAD/f/9///8AACjFiNoAAAAA//9xWKrDAADkMIznqsMAAAAAcViqwwAA5DByGKrDAAAaz4znCgIAABrPchgKAgAA/38AAAoCAADkMIznCgIAAOQwchgKAgAAFxCUogAAAAAaz4znqsMAAP9//v+qwwAA/3///woCAAD//42nCgIAAOfvlKIAAAAA/3/n7wAAAADWOojaAAAAAOfval0AAAAA//9xWAoCAAAaz3IYqsMAACjFdiUAAAAA/38AAKrDAAD/fxcQAAAAABcQal0AAAAA1jp2JQAAAAAAAHFYCgIAAAAAjacKAgAAAACNp6rDAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ggn7s"]
+resource_name = "stakeGun_Cylinder"
+_surfaces = [{
+"aabb": AABB(-0.132802, -0.139636, -1.12995, 0.265603, 0.279272, 2.09497),
+"attribute_data": PackedByteArray("GYvw4R+z/v9Vgf9/kpVP4B+z/v8fs/7/9rJn3o28nN4fs/7/duMmgDrQT+Afs/7//3+WgUmeE4NJqBCDQcaOgVayFYNF0PuCtOSjgRTlJeSY2uzhZdqlgh+z/v//fz7k/3+WgXOKqIKSlU/gGYvw4XOKqIJTlPWCm5853x+z/v9TlPWCSZ4Tg1upm96bnznfSagQgx+z/v9bqZveSagQg/ayZ95WshWDhbwWg0PGO98fs/7/jbyc3oW8FoNNxg2DOtBP4EPGO99Nxg2DRdD7gpja7OEfs/7/ZdqlgmXapYK05KOBC9obgUXQ+4Ij0E6BTcYNg4W8FoOHvHyBVrIVg1WyXoFIqImBSZ4Tg1CeZIFTlPWCa5R3gXOKqILbihaB///W+tr6fvL//zn2OOp+8onyEfGJ8v//2vqS/hTl1vo46pL+FOU59g=="),
+"format": 34896613399,
+"index_count": 174,
+"index_data": PackedByteArray("EwABABQAFQATABQAFQASABMAAAAWABcAGAAAABcAGAAZAAAAGgAEABsAHAAaABsAHAAdABoAHgAfAAMAIAAeAAMAIAAhAB4AIgAFACMADQAiACMADQAkACIABgAlACYAJwAGACYAJwAQAAYABwAIACgAKQAHACgAKQAqAAcAKwAsAC0ALgArAC0ALgAvACsAMAALADEAMgAwADEAMgAzADAANAA1AAoAEQA0AAoAEQA2ADQANwAJADgANwA5AAkAOgA5ADcAOgA7ADkAPAA7ADoAPAAPADsAPQAPADwAPQA+AA8APwA+AD0APwBAAD4ADgBAAD8ADgBBAEAAQgBBAA4AQgBDAEEARABDAEIARABFAEMARgBFAEQARgBHAEUADABHAEYADAACAEcASABJAEoASABLAEkASQBLAEwASwBIAE0ATQBIAE4ASwBNAE8ATwBNAFAASwBPAFEA"),
+"lods": [0.148199, PackedByteArray("AAABAAwADAADAAAAAwAEAAAADAACAAMAAgANAAMADQAFAAMADQACAA4ADQAOAAUADgAGAAUADgACAA8ADgAQAAYADgAPABAAEAAHAAYAEAAPAAcABwAIAAYADwAKAAcACgALAAcADwARAAoAEQABAAoAEQAPAAkAEQAJAAEACQASAAEA"), 0.275701, PackedByteArray("AAABAAIAAwAEAAAAAgADAAAAAgAFAAMABgAFAAIAAgAHAAYABwAIAAYAAgAJAAcACQABAAoACQAKAAcACgALAAcA")],
+"material": SubResource("StandardMaterial3D_032jv"),
+"name": "stake",
+"primitive": 3,
+"uv_scale": Vector4(1.05479, 2, 0, 0),
+"vertex_count": 82,
+"vertex_data": PackedByteArray("//+Np6rDAs3/f/9///91tSjFiNoAACrh//9xWKrDkun/f/9///8e2P9//3///2r55DByGKrDSfUAAHFYqsO/5P9//3///xTjKMWI2gAATuXkMIznqsMEv/9//3///1XEGs+M5woCK+Eaz3IYCgIm9/9/AAAKAsb/FxCUogAA4ubkMHIYCgIW9+QwjOcKArHAGs+M5woCfcIaz4znqsPhuv9//v+qw+e6/3///woCTsL/f/9///9syhrPjOeqwz/NGs+M5woCmsX//42nCgJTxf//cViqwzja//+Np6rDZNr//42nCgI71P//cVgKAvLTGs9yGKrDc+n/f/9///8Y6P//cVgKAvfkGs9yGAoCv+T/fwAAqsPe+RrPchiqw+/5/38AAAoCCPf/f/9///+39P9/AACqw0P1/38AAAoCC/fkMHIYqsPE5OQwchgKAmzlAABxWAoCYuUAAI2nqsNc1f9//3///47SAABxWKrDbNUAAHFYCgJH1QAAjacKAizV5DCM56rDQcgAAI2nqsNXyAAAjacKAlnI5DCM5woCN8j/f/7/qsPvvv9//3///xW6/3///woCoMD/f///CgIV4RrPjOcKAkbl/3/n7wAAFuHkMIznCgJ44tY6iNoAAHfiAACNpwoC6eYAAHFYCgIl7hcQal0AADHu5DByGAoCx/bWOnYlAADE9v9/FxAAAL//Gs9yGAoCV/YoxXYlAABW9v//cVgKAsbt5+9qXQAAze3//42nCgL05efvlKIAAO7l1jqI2gAA//8oxYjaAAD///9/5+8AAP//5+9qXQAA///n75SiAAD//xcQal0AAP//FxCUogAA////fxcQAAD//9Y6diUAAP//KMV2JQAA//+sv55uHd5BV1fO0VFhnO1TG6oKYdmKqk2axx74c9Ch5kLTLOjm4YJ1Yf87oaXoXsRizuVRkYnQRPpaVf/u0CPBxcR89gLu4p6M4bp5cN6nWTXe61iD4cd4hLyDcLu/827bvfRYr70zWHisBV+LrC9f/an7U8+poFNOnNdTlZp6Vq+ZpkyFmXZMtYsYSsOLIUp0ibxEe8ug+JbHJPi+xIf2d9Ce5grN9+UBzf7lT9q61TLc/Nde2rPVRNVc1SPVbNWf54fBweeBwXffpsAw37fAE/83oVn/qKRg7eieUfWgh8zhU3VA9ayHRuKhqDviqKgH0RPB8sMh1BDECdQTto7nDbaU5+taQP98lzA1epcuNSOrD0MxqyBDnbxnTY68UE3ctSLK3LUiyty1IsrctSLK3LUiyty1IsrctSLK3LUiyty1IsrctSLK")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_tewvx")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aj1if"]
+height = 2.49965
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nrgp0"]
+radius = 0.001
+
+[node name="StakeBullet" type="RigidBody3D" groups=["PlayerProj"]]
+collision_layer = 4
+collision_mask = 4
+mass = 3.0
+gravity_scale = 0.7
+inertia = Vector3(3, 5, 5)
+script = ExtResource("1_nrgp0")
+metadata/DamagePer = 0.15
+
+[node name="Cylinder" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0.000685692, 0, 0.578092)
+material_override = SubResource("StandardMaterial3D_nrgp0")
+mesh = SubResource("ArrayMesh_ggn7s")
+skeleton = NodePath("")
+
+[node name="HitArea3D" type="Area3D" parent="." groups=["PlayerProj"]]
+transform = Transform3D(0.47, 0, 0, 0, -2.05444e-08, -0.47, 0, 0.47, -2.05444e-08, 0.000685692, 0, 0.578092)
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea3D"]
+shape = SubResource("CapsuleShape3D_aj1if")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.504693)
+shape = SubResource("SphereShape3D_nrgp0")
+
+[connection signal="body_entered" from="HitArea3D" to="." method="_on_hit_area_3d_body_entered"]

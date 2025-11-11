@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqwfbyg6hnvlk"]
+
+[ext_resource type="PackedScene" uid="uid://bngyn1dwl4jl8" path="res://Assets/3D/apple.fbx" id="1_v3gsn"]
+[ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="2_ir1en"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ir1en"]
+radius = 0.82088
+
+[node name="Apple" type="CharacterBody3D" groups=["Interactable"]]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.0164936, 0)
+shape = SubResource("SphereShape3D_ir1en")
+
+[node name="apple" parent="." instance=ExtResource("1_v3gsn")]
+transform = Transform3D(0.313376, 0, 0, 0, 0.313376, 0, 0, 0, 0.313376, 0, -0.314221, 0)
+
+[node name="Title" type="Label3D" parent="."]
+transform = Transform3D(-0.999347, 0, 0.036138, 0, 1, 0, -0.036138, 0, -0.999347, 0, 0.671696, 0)
+visible = false
+pixel_size = 0.01
+billboard = 1
+no_depth_test = true
+texture_filter = 0
+text = "Click To Pick Up"
+font = ExtResource("2_ir1en")
+font_size = 25
+outline_size = 8
+autowrap_mode = 3
+width = 320.0

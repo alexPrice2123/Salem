@@ -1,35 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmgtv0o1qnx6"]
+[gd_scene load_steps=5 format=3 uid="uid://dmgtv0o1qnx6"]
 
 [ext_resource type="Script" uid="uid://csc1wgxwkys3h" path="res://Scripts/CultistHut.cs" id="1_sak6b"]
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_n642y"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4aca4"]
+albedo_color = Color(0.223846, 3.38961e-05, 0.223844, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4aca4"]
+radius = 2.11251
+
 [node name="Hut" type="Node3D"]
 script = ExtResource("1_sak6b")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0490504, 1.07138, 0.940964)
+light_color = Color(0.313726, 0.188235, 0.921569, 1)
+light_energy = 5.0
+shadow_enabled = true
+omni_range = 6.0
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, -2.04131, 1.59968, -0.23902)
-use_collision = true
-size = Vector3(0.0368652, 1.71692, 1)
-material = ExtResource("2_n642y")
+transform = Transform3D(2.31013, 1.33375, 0, -1.33375, 2.31013, 0, 0, 0, 2.66751, -0.719368, 0.980778, -0.23902)
+size = Vector3(0.0368652, 1.01715, 1)
+material = SubResource("StandardMaterial3D_4aca4")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(2.65037, 0, 0, 0, 2.65037, 0, 0, 0, 2.65037, 2.10976, 1.59968, -0.23902)
-use_collision = true
-size = Vector3(0.0368652, 1.71692, 1)
-material = ExtResource("2_n642y")
+transform = Transform3D(2.31013, -1.33376, 0, 1.33376, 2.31013, 0, 0, 0, 2.66751, 0.698654, 0.980778, -0.23902)
+size = Vector3(0.0368652, 1.01715, 1)
+material = SubResource("StandardMaterial3D_4aca4")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 0.0490504, 3.81026, -0.23902)
-use_collision = true
-size = Vector3(1.58191, 0.0595093, 1)
-material = ExtResource("2_n642y")
-
-[node name="Ramp" type="CSGBox3D" parent="."]
-transform = Transform3D(2.74287, 0, 0, 0, 4.57974, -5.11486, 0, 8.03306, 2.91604, 0.0461627, -0.439082, -1.00969)
-visible = false
-use_collision = true
-size = Vector3(1.50961, 0.304732, 0.429855)
-material = ExtResource("2_n642y")
+transform = Transform3D(-1.00979e-07, 5.83003e-08, 2.66751, 1.33376, 2.31013, 0, -2.31013, 1.33376, -1.16601e-07, 0.0160875, 0.980778, -1.00812)
+size = Vector3(0.0368652, 1.01715, 1)
+material = SubResource("StandardMaterial3D_4aca4")
 
 [node name="Spawn" type="CSGBox3D" parent="."]
 transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 0.0490504, 1.07138, 0.940964)
@@ -37,33 +40,45 @@ visible = false
 size = Vector3(0.1, 0.1, 0.1)
 material = ExtResource("2_n642y")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 0.0490504, 1.60379, -1.4575)
-use_collision = true
-size = Vector3(1.58191, 1.71384, 0.0864258)
-material = ExtResource("2_n642y")
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="."]
-transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, -1.78476, 1.60379, 1.05543)
-use_collision = true
-size = Vector3(0.206985, 1.71384, 0.0205688)
-material = ExtResource("2_n642y")
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="."]
-transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 1.85557, 1.60379, 1.05543)
-use_collision = true
-size = Vector3(0.175369, 1.71384, 0.0205688)
-material = ExtResource("2_n642y")
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="."]
-transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 0.0848116, 3.37045, 1.05543)
-use_collision = true
-size = Vector3(1.19323, 0.389267, 0.0205688)
-material = ExtResource("2_n642y")
-
 [node name="SpawnTime" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 7.5
 
 [node name="MonsterHolder" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.785577, 0, 0, 0, 0.785577, 0, 0, 0, 0.785577, 0, 0.517149, -0.195278)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("SphereShape3D_4aca4")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45494, 0, 0)
+radius = 2.0
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36239, 0, 0)
+radius = 2.0
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="NavigationObstacle3D4" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45494, 0, 2.02972)
+radius = 2.0
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="NavigationObstacle3D5" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36239, 0, 2.02972)
+radius = 2.0
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="NavigationObstacle3D3" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0400982, 0, -2.46468)
+radius = 2.0
+affect_navigation_mesh = true
+carve_navigation_mesh = true
 
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]

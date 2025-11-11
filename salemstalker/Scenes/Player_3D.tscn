@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=8 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
+[ext_resource type="PackedScene" uid="uid://do3u2x5avpy72" path="res://Scenes/OffHandWeapons/stake_gun.tscn" id="3_cvtri"]
 [ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="3_l13c1"]
+[ext_resource type="PackedScene" uid="uid://c3ix37nxvhxo5" path="res://Scenes/OffHandWeapons/Flintlock.tscn" id="3_mawk5"]
 [ext_resource type="PackedScene" uid="uid://dwpo6a7lu68jh" path="res://Scenes/ui.tscn" id="3_sb0or"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
@@ -26,7 +28,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.231209, -0.29871
 
 [node name="Falchion" parent="Head/Camera3D/Sword" instance=ExtResource("3_l13c1")]
 
+[node name="AnimationPlayer" parent="Head/Camera3D/Sword/Falchion" index="0"]
+blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
+
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141743, 0, 0)
 target_position = Vector3(0, 0, -5)
 collision_mask = 2
 collide_with_areas = true
@@ -36,7 +42,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265332, -0.769787, -0.31310
 light_color = Color(0.956863, 0.882353, 0.541176, 1)
 light_energy = 4.0
 light_volumetric_fog_energy = 10.0
+shadow_enabled = true
 omni_range = 25.0
+
+[node name="Offhand1" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190454, -0.219152, -1.07967)
+
+[node name="StakeGun" parent="Head/Camera3D/Offhand1" instance=ExtResource("3_cvtri")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0.410663)
+
+[node name="Offhand2" type="Node3D" parent="Head/Camera3D"]
+
+[node name="FlintGun" parent="Head/Camera3D/Offhand2" instance=ExtResource("3_mawk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190454, 0.339409, -1.07967)
+
+[node name="Skeleton3D" parent="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions/metarig" index="0"]
+bones/8/rotation = Quaternion(-0.29716, 0.660388, -0.543239, 0.424823)
+bones/9/rotation = Quaternion(0.101214, 0.0600148, -0.132174, 0.984217)
+bones/10/rotation = Quaternion(0.0249198, -0.210067, 0.100917, 0.972145)
+bones/13/rotation = Quaternion(-0.366131, -0.102459, -0.249283, 0.890678)
+bones/15/rotation = Quaternion(0.213468, -0.0553024, -0.407084, 0.886372)
+bones/17/rotation = Quaternion(0.0344872, -0.0458761, 0.26541, 0.962426)
+
+[node name="Cube" parent="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions/metarig/Skeleton3D" index="0"]
+transform = Transform3D(-0.0147873, 2.32831e-09, -0.000611237, -0.000551835, 0.00636452, 0.0133501, 0.000262859, 0.0133615, -0.00635908, 0.222049, 0.84092, 0.116019)
+
+[node name="Offhand3" type="Node3D" parent="Head/Camera3D"]
+
+[node name="Offhand4" type="Node3D" parent="Head/Camera3D"]
 
 [node name="InvCam" type="CSGBox3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.39412)
@@ -47,6 +80,9 @@ size = Vector3(0.1, 0.1, 0.1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00668174, 0)
 visible = false
 size = Vector3(0.1, 0.1, 0.1)
+
+[node name="TripSpawn" type="Node3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0305719, -10.8766)
 
 [node name="UI" parent="." instance=ExtResource("3_sb0or")]
 
@@ -61,7 +97,11 @@ collision_mask = 1025
 shape = SubResource("CapsuleShape3D_df3ch")
 debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 
 [editable path="Head/Camera3D/Sword/Falchion"]
 [editable path="Head/Camera3D/Sword/Falchion/falchion"]
+[editable path="Head/Camera3D/Offhand2/FlintGun"]
+[editable path="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions"]
