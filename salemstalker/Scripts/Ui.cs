@@ -22,7 +22,6 @@ public partial class Ui : Control
 	private string _shopSelection = "Shortsword";
 	public override void _Ready()
 	{
-		GD.Print((float)GetNode<Node3D>(_shopSelection).GetMeta("damage"));
 
 		if (GetParent() is Player3d player)
 		{

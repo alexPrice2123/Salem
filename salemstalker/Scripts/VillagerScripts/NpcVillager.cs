@@ -28,15 +28,17 @@ public partial class NpcVillager : CharacterBody3D
 	[Export]
 	public string InitialDialogue = "Initial";             // This dialogue goes into the QuestPrompt 3d label, the rest of the dialogue is spoken through the UI
 	[Export]
-	public string QuestDialogue = "Quest";
+	public Godot.Collections.Array<string> QuestDialogue { get; set; } = [];
 	[Export]
-	public string AcceptedDialogue = "Accepted";
+	public Godot.Collections.Array<string> AcceptedDialogue { get; set; } = [];
 	[Export]
 	public string IgnoredDialogue = "Ignored";
 	[Export]
 	public string WaitingDialogue = "Waiting";
 	[Export]
-	public string DoneDialogue = "Done";
+	public Godot.Collections.Array<string> DoneDialogue { get; set; } = [];
+	[Export]
+	public string PostDoneDialogue = "Done";
 	[Export]
 	public string QuestTitle = "Title";
 	[Export]
@@ -45,6 +47,8 @@ public partial class NpcVillager : CharacterBody3D
 	public bool _questComplete = false;
 	public bool _questInProgress = false;
 	public CharacterBody3D Villager;
+	private int _dialougeIndex = 0;
+	private string _currentDialouge = "Initial";
 
 	public Vector3 MovementTarget                           // The target for the AI to pathfind to
 	{
@@ -92,7 +96,7 @@ public partial class NpcVillager : CharacterBody3D
 
 		if (_questComplete == true && _questInProgress == false)
 		{
-			_questPrompt.Text = DoneDialogue;
+			_questPrompt.Text = PostDoneDialogue;
 		}
 
 		if (_navigationAgent.IsNavigationFinished()) // If the AI is close enough to pathfinding target
@@ -178,7 +182,9 @@ public partial class NpcVillager : CharacterBody3D
 	public void Accepted()
 	{
 		_player.GetQuest(QuestTitle, QuestGoal);
-		_dialogueBox.Text = AcceptedDialogue;
+		_dialougeIndex = 0;
+		_currentDialouge = "Accepted";
+		_dialogueBox.Text = AcceptedDialogue[_dialougeIndex];
 		_questInProgress = true;
 		_questPrompt.Text = WaitingDialogue;
 		_player._originalDialouge = WaitingDialogue;
@@ -197,41 +203,97 @@ public partial class NpcVillager : CharacterBody3D
 
 	public void Continue()
 	{
-		_player._villager = null;
-		_dialogue.Visible = false;
-		Input.MouseMode = Input.MouseModeEnum.Captured;
+		if (_dialougeIndex < QuestDialogue.Count-1)
+		{
+			if (_currentDialouge == "Quest")
+			{
+				_dialougeIndex += 1;
+				_dialogueBox.Text = QuestDialogue[_dialougeIndex];
+			}
+			else if (_currentDialouge == "Accepted")
+			{
+				_dialougeIndex += 1;
+				_dialogueBox.Text = AcceptedDialogue[_dialougeIndex];
+			}
+			else if (_currentDialouge == "Done")
+            {
+                _dialougeIndex += 1;
+				_dialogueBox.Text = DoneDialogue[_dialougeIndex];
+            }
+		}
+		else
+		{
+			if (_currentDialouge == "Done")
+            {
+				_questInProgress = false;
+				_player.RemoveQuest(QuestTitle);
+            }
+			_player._villager = null;
+			_dialogue.Visible = false;
+			Input.MouseMode = Input.MouseModeEnum.Captured;
+		}
+		CheckDialougeIndex();
 	}
 
 	public void Talk()
 	{
-		_dialogue.GetNode<Button>("Continue").Visible = false;
-		_dialogue.GetNode<Button>("AcceptButton").Visible = true;
-		_dialogue.GetNode<Button>("IgnoreButton").Visible = true;
-		
 		if (_questComplete == true && _questInProgress == false) { return; } //if the quest is done the player can't interact
 
-		if (_questComplete == true && _player._questBox.FindChild(QuestTitle) == null) //changes dialouge from the initial dialouge to quest dialouge 
-		{
-			_dialogueBox.Text = QuestDialogue;
-		}
 		if (_questComplete == true) //what happens when the player talks to him after completing the quest
 		{
-			_dialogueBox.Text = DoneDialogue;
-			_questInProgress = false;
-			_player.RemoveQuest(QuestTitle);
+			_dialougeIndex = 0;
+			_currentDialouge = "Done";
+			_questPrompt.Visible = false;
+			_player._villager = this;
+			_dialogue.Visible = true;
+			_dialogueBox.Text = DoneDialogue[_dialougeIndex];
+			Input.MouseMode = Input.MouseModeEnum.Visible;
+			_dialogueBox.GetNode<Label>("NameText").Text = NPCName;
 		}
 		else  //what happens when the player talks to him before completing the quest
 		{
 			_dialogueBox.Text = WaitingDialogue;
 		}
-		if (_questPrompt.Visible == true && _questInProgress == false && _questComplete == false)
+
+		if (_questPrompt.Visible == true && _questInProgress == false && _questComplete == false && _currentDialouge != "Quest")
 		{
+			_dialougeIndex = 0;
+			_currentDialouge = "Quest";
 			_questPrompt.Visible = false;
 			_player._villager = this;
 			_dialogue.Visible = true;
-			_dialogueBox.Text = QuestDialogue;
+			_dialogueBox.Text = QuestDialogue[_dialougeIndex];
 			Input.MouseMode = Input.MouseModeEnum.Visible;
 			_dialogueBox.GetNode<Label>("NameText").Text = NPCName;
 		}
+
+		CheckDialougeIndex();
 	}
+
+    private void CheckDialougeIndex()
+    {
+		if (_currentDialouge == "Quest")
+		{
+			GD.Print(_dialougeIndex);
+			if (_dialougeIndex < QuestDialogue.Count - 1)
+			{
+				_dialogue.GetNode<Button>("Continue").Visible = true;
+				_dialogue.GetNode<Button>("AcceptButton").Visible = false;
+				_dialogue.GetNode<Button>("IgnoreButton").Visible = false;
+			}
+			else
+			{
+				_dialogue.GetNode<Button>("Continue").Visible = false;
+				_dialogue.GetNode<Button>("AcceptButton").Visible = true;
+				_dialogue.GetNode<Button>("IgnoreButton").Visible = true;
+			}
+		}
+		else if (_currentDialouge == "Accepted" || _currentDialouge == "Done")
+		{
+			GD.Print(_dialougeIndex);
+			_dialogue.GetNode<Button>("Continue").Visible = true;
+			_dialogue.GetNode<Button>("AcceptButton").Visible = false;
+			_dialogue.GetNode<Button>("IgnoreButton").Visible = false;
+        }
+    }
 }
