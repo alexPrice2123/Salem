@@ -24,6 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6704136, 0)
 material_override = SubResource("StandardMaterial3D_v23y2")
 
 [node name="BossTree" parent="." instance=ExtResource("4_v23y2")]
+visible = false
 
 [node name="Cube" parent="BossTree" index="0"]
 material_override = SubResource("StandardMaterial3D_p2s7p")

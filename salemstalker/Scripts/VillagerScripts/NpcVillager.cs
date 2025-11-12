@@ -206,7 +206,9 @@ public partial class NpcVillager : CharacterBody3D
 
 	public void Continue()
 	{
-		if (_dialougeIndex < QuestDialogue.Count-1)
+		if ((_currentDialouge == "Quest" && _dialougeIndex < QuestDialogue.Count-1)
+		|| (_currentDialouge == "Accepted" && _dialougeIndex < AcceptedDialogue.Count-1)
+		|| (_currentDialouge == "Done" && _dialougeIndex < DoneDialogue.Count-1))
 		{
 			if (_currentDialouge == "Quest")
 			{
