@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://crxygapcq66ft" path="res://Scenes/Monsters/flyingPesk.tscn" id="4_aetuq"]
 [ext_resource type="PackedScene" uid="uid://dbhqhurkcdks0" path="res://Scenes/Monsters/hollowNormal.tscn" id="5_41pr4"]
 [ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/hollowBrute.tscn" id="6_4dpch"]
-[ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/vCultist.tscn" id="7_4dpch"]
+[ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/sCultist.tscn" id="7_4dpch"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yt8cr"]
 shader = ExtResource("1_p5qse")
@@ -58,6 +58,6 @@ _monster = ExtResource("5_41pr4")
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -562.572, -0.196111, -0.293375)
 _monster = ExtResource("6_4dpch")
 
-[node name="VCultist" parent="HutHolder" instance=ExtResource("3_kvufb")]
+[node name="ShamenCultist" parent="HutHolder" instance=ExtResource("3_kvufb")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -572.717, -0.196111, -0.293375)
 _monster = ExtResource("7_4dpch")

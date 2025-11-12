@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://syqvg0yul3mk"]
+
+[ext_resource type="Script" uid="uid://c0ajuqqr08phc" path="res://Scripts/vineUnderground.cs" id="1_v23y2"]
+[ext_resource type="PackedScene" uid="uid://dopp52d46332" path="res://Assets/3D/plants/swamptree2.blend" id="2_p8xk8"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="3_i5fsq"]
+[ext_resource type="PackedScene" uid="uid://ckgxsjfenmaig" path="res://Assets/3D/plants/swampbosstree.blend" id="4_v23y2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v23y2"]
+albedo_color = Color(0.8111275, 0.8111274, 0.8111274, 1)
+albedo_texture = ExtResource("3_i5fsq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2s7p"]
+albedo_color = Color(0.5931336, 0.59313357, 0.59313357, 1)
+albedo_texture = ExtResource("3_i5fsq")
+uv1_scale = Vector3(10, 10, 10)
+
+[node name="Tree" type="CharacterBody3D"]
+script = ExtResource("1_v23y2")
+
+[node name="FakeTree" parent="." instance=ExtResource("2_p8xk8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6704136, 0)
+
+[node name="Cube" parent="FakeTree" index="0"]
+material_override = SubResource("StandardMaterial3D_v23y2")
+
+[node name="BossTree" parent="." instance=ExtResource("4_v23y2")]
+
+[node name="Cube" parent="BossTree" index="0"]
+material_override = SubResource("StandardMaterial3D_p2s7p")
+
+[editable path="FakeTree"]
+[editable path="BossTree"]
