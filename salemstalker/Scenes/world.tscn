@@ -1,12 +1,11 @@
-[gd_scene load_steps=95 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=91 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://bw2fjllusx7kw" path="res://Scenes/enemy_spawner.tscn" id="2_uqdn7"]
 [ext_resource type="PackedScene" uid="uid://cdyf44r2hpl3e" path="res://Scenes/Monsters/vineTangler.tscn" id="3_uqdn7"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
-[ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/VillagerScripts/JohnVillager.cs" id="4_ochwf"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
-[ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/VillagerScripts/MarryVillager.cs" id="6_atqvy"]
+[ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/VillagerScripts/MaryVillager.cs" id="6_atqvy"]
 [ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="6_ikia7"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="7_7yui6"]
 [ext_resource type="Script" uid="uid://bwc5be1j0grxx" path="res://Scripts/VillagerScripts/ElizabethVillager.cs" id="7_atqvy"]
@@ -32,7 +31,7 @@
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="12_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://d0u1esu3iuflj" path="res://Assets/2D/deepocean.png" id="12_opbav"]
 [ext_resource type="Texture2D" uid="uid://dw2dxasfcx3dn" path="res://Scenes/World/Foliage_0_0_0.res" id="12_t2t4p"]
-[ext_resource type="Script" uid="uid://cd1hk520uuwo4" path="res://Scripts/VillagerScripts/EzekielVillager.cs" id="13_xcb5n"]
+[ext_resource type="Script" uid="uid://cd1hk520uuwo4" path="res://Scripts/VillagerScripts/FinnVillager.cs" id="13_xcb5n"]
 [ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="14_1cojt"]
 [ext_resource type="Texture2D" uid="uid://canhbg83j2nyd" path="res://Assets/3D/plants/grass_graass.png" id="14_no8kt"]
 [ext_resource type="PackedScene" uid="uid://blt7o2y8rc0lv" path="res://Assets/3D/plants/tree.blend" id="16_pt3ps"]
@@ -52,8 +51,6 @@
 [ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="35_coyub"]
 [ext_resource type="PackedScene" uid="uid://dqwfbyg6hnvlk" path="res://Scenes/apple.tscn" id="38_r74th"]
 [ext_resource type="Texture2D" uid="uid://m0yvspt7vwje" path="res://Scenes/World/Splatmap_0_0_2.res" id="45_vhf2b"]
-[ext_resource type="PackedScene" uid="uid://syqvg0yul3mk" path="res://Scenes/Monsters/MonsterAssets/fakeTree.tscn" id="53_uqdn7"]
-[ext_resource type="PackedScene" uid="uid://ctodbn6m6s5i2" path="res://Scenes/Monsters/Bosses/theHushedBark.tscn" id="54_gwaj6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_13n8b"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -83,11 +80,6 @@ geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"Terrain"
 filter_baking_aabb = AABB(0, 0, 0, 70.99, 19.98, 50.01)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqdn7"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 16.0
 
 [sub_resource type="Resource" id="Resource_e0ngr"]
 script = ExtResource("7_7yui6")
@@ -376,7 +368,7 @@ directional_shadow_max_distance = 1.0
 [node name="Hold" type="Node3D" parent="MonsterHolder/Hold2"]
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -764.0262, 3.3163023, -561.16766)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.78598, 0.732849, -94.693436)
 
 [node name="MonsterRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -635.903, -4.39457, -59.4284)
@@ -394,21 +386,6 @@ navigation_mesh = SubResource("NavigationMesh_8j60k")
 navigation_layers = 2
 travel_cost = 0.4
 
-[node name="John" parent="." instance=ExtResource("4_fo5ed")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -427.36, 0.0547366, -73.5424)
-script = ExtResource("4_ochwf")
-NPCName = "John"
-InitialDialogue = "Help! Help! Our Village needs help!"
-AcceptedDialogue = Array[String](["Accept", "2", "3"])
-IgnoredDialogue = "Do you want our village to be destroyed?"
-WaitingDialogue = "Those Cultists are still out there..."
-DoneDialogue = Array[String](["Done", "2"])
-QuestTitle = "Kill 5 Cultists"
-QuestGoal = "0/5"
-
-[node name="Cube" parent="John/villagerblank/metarig/Skeleton3D" index="0"]
-material_override = SubResource("StandardMaterial3D_uqdn7")
-
 [node name="Mary" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
 script = ExtResource("6_atqvy")
@@ -417,7 +394,8 @@ InitialDialogue = "Taz! Oh Taz where are you?"
 QuestDialogue = Array[String](["Mister! Won't you help an old woman out? I've lost my young and dearest kitty.", "I fear he's lost somewhere in the woods. Would you please find him and bring him back home? "])
 AcceptedDialogue = Array[String](["Oh thank you! Please make sure he comes back safely."])
 IgnoredDialogue = "Oh dear. Maybe he'll come back on his own some day..."
-WaitingDialogue = "Have you found him yet?"
+WaitingDialogue = "Have you found Taz yet?"
+DoneDialogue = Array[String](["Oh thank you mister! Don't ever leave me again Taz. "])
 PostDoneDialogue = "Oh Taz. Don't you ever leave me again!"
 QuestTitle = "Find Mary's cat Taz somewhere in the forest"
 QuestGoal = "0/1"
@@ -426,70 +404,97 @@ QuestGoal = "0/1"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
 script = ExtResource("7_atqvy")
 NPCName = "Elizabeth"
-InitialDialogue = "Im so Tired"
-IgnoredDialogue = "Oh ok."
-WaitingDialogue = "Sorry but thats not Enough."
-QuestTitle = "Get elizabeth some firewood"
-QuestGoal = "0/10"
+InitialDialogue = "It's been getting colder and colder..."
+QuestDialogue = Array[String](["Hey there mister. Our town hasn't been holding up lately after we escaped our old village in the swamp a few months back. ", "It's been getting colder recently and the the town's lumberjacks haven't returned yet with the firewood. ", "Could you go out into the forest and fetch us some? "])
+AcceptedDialogue = Array[String](["Thank you so much mister! Return them to me once you have enough. "])
+IgnoredDialogue = "Oh, that's alright. Maybe the lumberjacks will come back soon. "
+WaitingDialogue = "Still waiting on that firewood once you gather enough."
+DoneDialogue = Array[String](["This is perfect. Thank you kind mister. Take these. They may help you on your journey. "])
+PostDoneDialogue = "Now everyone can keep warm near their fires. "
+QuestTitle = "Gather firewood from the forest for Elizabeth "
+QuestGoal = "0/15"
 
 [node name="Jacob" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
 script = ExtResource("8_w5giw")
 NPCName = "Jacob"
-InitialDialogue = "My apples!"
-IgnoredDialogue = "Oh ok."
-WaitingDialogue = "I don't think thats all of them!"
-QuestTitle = "Find Jacobs apples"
-QuestGoal = "0/20"
-
-[node name="Matthew" parent="." instance=ExtResource("4_fo5ed")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
-script = ExtResource("9_jwdyn")
-NPCName = "Matthew"
-InitialDialogue = "my leg hurts."
-IgnoredDialogue = "Fine."
-WaitingDialogue = "the house if just 2 doors down."
-QuestTitle = "take cake 2 doors down"
-QuestGoal = "0/1"
+InitialDialogue = "These damn rats are everywhere."
+QuestDialogue = Array[String](["Ugh. It's been getting difficult to manage our food due to rats scurring about. ", "You mind disposing of them? I'll give you something worth while. "])
+AcceptedDialogue = Array[String](["I appreciate it. Just use that trusty weapon of yours and it should do the trick. "])
+IgnoredDialogue = "Hm... Maybe I should find another way to deal with them."
+WaitingDialogue = "I think I still hear some rats about. "
+DoneDialogue = Array[String](["Man, you really got every last one. Here, take these. They're better in your hands than mine. "])
+PostDoneDialogue = "Now those rats won't mess with our food. "
+QuestTitle = "Kill the rats scurring about"
+QuestGoal = "0/10"
 
 [node name="Lukas" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -85.2256)
 script = ExtResource("10_t6yt7")
 NPCName = "Lukas"
-InitialDialogue = "Wheres my sheep!"
-IgnoredDialogue = "Will no one help me?"
-WaitingDialogue = "Have you found them yet?"
-QuestTitle = "Find Lukas's sheep"
-QuestGoal = "0/30"
+InitialDialogue = "I know I saw it! Those damn Cultists are making more of them!"
+QuestDialogue = Array[String](["You there sir! Please, hear me out. Those Cultists are up to no good. ", "They've been making more of those shrines all over our land, spreading influence to others.  ", "Please, I beg of you. Destroy those shrines and end their evil guding light!"])
+AcceptedDialogue = Array[String](["Yes! Thank you so much! You should be able to find shrines around the land. I trust you'll destroy them all.  "])
+IgnoredDialogue = "Perhaps someone else will understand... "
+WaitingDialogue = "Keep looking around on your journey and you should find those shrines. "
+DoneDialogue = Array[String](["See! I knew you'd destroy those shrines!"])
+PostDoneDialogue = "Those Cultists won't influence nobody no more!"
+QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
+QuestGoal = "0/5"
 
 [node name="Samual" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -88.9519)
 script = ExtResource("11_al5m0")
 NPCName = "Samual"
-InitialDialogue = "My son."
-IgnoredDialogue = "No, My son."
-WaitingDialogue = "Is he ok?"
-QuestTitle = "find medicine and Heal Samual's son"
-QuestGoal = "0/2"
+InitialDialogue = "Somebody please! Help my son!"
+QuestDialogue = Array[String](["Mister! Please, my son is ill and needs medicine. I can't go and gather the necessary resources for the medicine and need someone's help. ", "Would you please help a poor soul out and gather what's needed to craft the medicine?"])
+AcceptedDialogue = Array[String](["Oh thank you kind sir! Once you gather the resources, head to the Wizard to craft the medicine. Give it to me once you have it. Please hurry! "])
+IgnoredDialogue = "No. But my son..."
+WaitingDialogue = "Please deliver the medicine to me soon. "
+DoneDialogue = Array[String](["Yes! You made the medicine just in time! I'll give it to my son shortly. Thank you so much sir!"])
+PostDoneDialogue = "Hopefully my son gets better with that medicine. "
+QuestTitle = "Gather resources to craft the medicine "
+QuestGoal = "Bleeding Heart: 0/3, Dead Ooze: 0/3, Seed: 0/3"
 
 [node name="Martha" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -86.1518)
 script = ExtResource("12_6mm6r")
 NPCName = "Martha"
-InitialDialogue = "Stupid darkness, never know when to sleep, and when to work."
-IgnoredDialogue = "ugh! your no fun. "
-WaitingDialogue = "c-mon you can do it!"
-QuestTitle = "Kill cultsits for Martha"
-QuestGoal = "0/5"
+InitialDialogue = "Those monsters! They took him away! "
+QuestDialogue = Array[String](["Those Cultists and their minions killed my husband. I don't know what to do without him. ", "He was a good man. Please. I'm asking from the bottom of my heart for you to avenge him. Will you?"])
+AcceptedDialogue = Array[String](["Thank you. Oh thank you so much. Deliver justice to those damn creatures of the night. "])
+IgnoredDialogue = "Maybe someone else can help me. "
+WaitingDialogue = "My husband won't be brought to justice until those monsters are dead! "
+DoneDialogue = Array[String](["I believe both him and I can be at peace now. Thank you. "])
+PostDoneDialogue = "Be careful of more creatures on your journey. "
+QuestTitle = "Kill creatures from different biomes to avenge Martha's husband "
+QuestGoal = "Forest: 0/5, Swamp: 0/5, Plains: 0/5"
 
-[node name="Ezekiel" parent="." instance=ExtResource("4_fo5ed")]
+[node name="Finn" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.9955)
 script = ExtResource("13_xcb5n")
-NPCName = "Ezekiel"
-InitialDialogue = "Please someone help me!"
-IgnoredDialogue = "No Please. please."
-WaitingDialogue = "Is she safe? Where is she?"
-QuestTitle = "Find Ezekiel's wife"
+NPCName = "Finn"
+InitialDialogue = "Hey mister. I've got some valuable information you might want to hear. "
+QuestDialogue = Array[String](["I heard one of the villagers left behind an important tool on that swamp island before coming here. It could be a useful weapon.", "Maybe you should go check it out. "])
+AcceptedDialogue = Array[String](["I trust you'll find it. Good luck. "])
+IgnoredDialogue = "Welp. It could help you further down the road. "
+WaitingDialogue = "I still wonder what that tool could be."
+PostDoneDialogue = "Hey! You found the tool. Good work. "
+QuestTitle = "Find the hidden weapon on the swamp island"
+QuestGoal = "0/1"
+
+[node name="Matthew" parent="." instance=ExtResource("4_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
+script = ExtResource("9_jwdyn")
+NPCName = "Matthew"
+InitialDialogue = "Oh, young man. Please come and speak with me for a moment. "
+QuestDialogue = Array[String](["Young man. Our village has been in a troubling state after we had to evacuate from the swamp island South West of us. It use to be our home before it was corrupted. ", "A terrifying beast was created by the Cultists that plague the island. Please wandering traveller. Will you defeat the creature? (PROGRESS QUEST)  "])
+AcceptedDialogue = Array[String](["Thank you sir. We owe you a great debt if you manage to defeat it.  ", "Head South West of the village and follow a trail to reach the dock. It should have a boat to let you reach the island. Good luck sir. "])
+IgnoredDialogue = "Please reconsider. We truly need your help. "
+WaitingDialogue = "That beast still plauges the island. "
+DoneDialogue = Array[String](["You did it! You managed to defeat the beast! Thank you so much kind sir. The village can begin travelling back to claim back what was lost from us many months ago. ", "That Soul looks important. Keep it close. It may be important to you in your future. ", "Good luck on your journey. I believe you'll see it through to the end."])
+PostDoneDialogue = "The island is free of corruption once more. Thank you. "
+QuestTitle = "Defeat The Hollowed Bark on the swamp island"
 QuestGoal = "0/1"
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
@@ -580,18 +585,4 @@ size = Vector3(20, 4, 0.564453)
 [node name="Apple" parent="." instance=ExtResource("38_r74th")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -465.301, 0.51393, -115.831)
 
-[node name="HushedTrees" parent="." instance=ExtResource("54_gwaj6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -764.2116, 0, -564.26764)
-
-[node name="Tree1" parent="HushedTrees" instance=ExtResource("53_uqdn7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.62085, 0.82338166, -13.118347)
-
-[node name="Tree2" parent="HushedTrees" instance=ExtResource("53_uqdn7")]
-transform = Transform3D(-0.4834504, 0, -0.87537175, 0, 1, 0, 0.87537175, 0, -0.4834504, -8.573853, 0.82338166, -13.118347)
-
-[node name="Tree3" parent="HushedTrees" instance=ExtResource("53_uqdn7")]
-transform = Transform3D(0.97938174, 0, -0.20201814, 0, 1, 0, 0.20201814, 0, 0.97938174, -2.1594238, 0.82338166, 13.260376)
-
 [editable path="MonsterRegion/EnemySpawner"]
-[editable path="John"]
-[editable path="John/villagerblank"]
