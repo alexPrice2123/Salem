@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MarryVillager : NpcVillager
+public partial class MaryVillager : NpcVillager
 {
 	public override void _Ready()
 	{
