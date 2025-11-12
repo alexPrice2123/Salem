@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://crxygapcq66ft"]
+[gd_scene load_steps=63 format=3 uid="uid://crxygapcq66ft"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_rrcq7"]
 [ext_resource type="Script" uid="uid://c4bkik5xcpbc3" path="res://Scripts/flyingPesk.cs" id="2_rrcq7"]
@@ -6,11 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://h326kngq1jwa" path="res://Assets/3D/charatermodel/pesk.blend" id="4_pgtvs"]
 [ext_resource type="Texture2D" uid="uid://dgk24wrmrjdc5" path="res://Assets/monstertextures/pest/body_Base_color.png" id="5_chkap"]
 [ext_resource type="Texture2D" uid="uid://chrlyioibw7yi" path="res://Assets/monstertextures/pest/wings1_Base_color.png" id="6_2smgy"]
+[ext_resource type="Texture2D" uid="uid://cqh1bwpuy2onh" path="res://Assets/monstertextures/pest/body_Height.png" id="6_d00qn"]
 [ext_resource type="Shader" uid="uid://dxqpgkj0a37w" path="res://Shaders/transparency.gdshader" id="7_chkap"]
 [ext_resource type="Texture2D" uid="uid://0ditjrm6xuhh" path="res://Assets/monstertextures/pest/wings2_Base_color.png" id="7_jme35"]
+[ext_resource type="Texture2D" uid="uid://dx8kqvujp6ojr" path="res://Assets/monstertextures/pest/body_Metallic.png" id="7_o8ft4"]
 [ext_resource type="Texture2D" uid="uid://dtjx3xaadwmfs" path="res://Assets/monstertextures/pest/head_Base_color.png" id="8_5b4hn"]
+[ext_resource type="Texture2D" uid="uid://bl1v4h1wv2myu" path="res://Assets/monstertextures/pest/body_Normal.png" id="8_r0won"]
+[ext_resource type="Texture2D" uid="uid://bagr3ake3ywvo" path="res://Assets/monstertextures/pest/body_Roughness.png" id="9_cmqyk"]
 [ext_resource type="Texture2D" uid="uid://dnjw11awpqh0m" path="res://Assets/monstertextures/pest/needle_Base_color.png" id="9_cuw7d"]
 [ext_resource type="Texture2D" uid="uid://d2hyy2gjqv67q" path="res://Assets/monstertextures/pest/wings2_Opacity.png" id="9_jme35"]
+[ext_resource type="Texture2D" uid="uid://br07v21p3mh8u" path="res://Assets/monstertextures/pest/wings1_Opacity.png" id="12_axk2y"]
+[ext_resource type="Texture2D" uid="uid://c5a71w0agpl01" path="res://Assets/monstertextures/pest/head_Height.png" id="16_uyxho"]
+[ext_resource type="Texture2D" uid="uid://cbh2g5h5k3k2i" path="res://Assets/monstertextures/pest/head_Metallic.png" id="17_hd0yo"]
+[ext_resource type="Texture2D" uid="uid://dnv4if3phj65u" path="res://Assets/monstertextures/pest/head_Normal.png" id="18_p60kb"]
+[ext_resource type="Texture2D" uid="uid://dy6lamiy5odsx" path="res://Assets/monstertextures/pest/head_Roughness.png" id="19_ns443"]
+[ext_resource type="Texture2D" uid="uid://bbjcqej0kng3t" path="res://Assets/monstertextures/pest/needle_Height.png" id="21_tqvaa"]
+[ext_resource type="Texture2D" uid="uid://b4tpksgo5ose1" path="res://Assets/monstertextures/pest/head_Opacity.png" id="22_f5jtg"]
+[ext_resource type="Texture2D" uid="uid://bwotptpce18hr" path="res://Assets/monstertextures/pest/needle_Roughness.png" id="23_nvjma"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_im0l4"]
 radius = 0.331716
@@ -151,25 +163,56 @@ scale_curve = SubResource("CurveTexture_yr5wf")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agvvd"]
 albedo_texture = ExtResource("5_chkap")
+metallic = 1.0
+metallic_texture = ExtResource("7_o8ft4")
+roughness_texture = ExtResource("9_cmqyk")
+normal_enabled = true
+normal_texture = ExtResource("8_r0won")
+heightmap_enabled = true
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("6_d00qn")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wdu0w"]
-albedo_texture = ExtResource("6_2smgy")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2smgy"]
+render_priority = 0
+shader = ExtResource("7_chkap")
+shader_parameter/albedo_tex = ExtResource("6_2smgy")
+shader_parameter/opacity_tex = ExtResource("12_axk2y")
+shader_parameter/opacity_strength = 0.69
+shader_parameter/threshold = 0.0
+shader_parameter/feather = 0.02
+shader_parameter/use_smooth = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2yltb"]
 render_priority = 0
 shader = ExtResource("7_chkap")
 shader_parameter/albedo_tex = ExtResource("7_jme35")
 shader_parameter/opacity_tex = ExtResource("9_jme35")
-shader_parameter/opacity_strength = 0.5
+shader_parameter/opacity_strength = 0.27
 shader_parameter/threshold = 0.5
 shader_parameter/feather = 0.0
 shader_parameter/use_smooth = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nu0d2"]
 albedo_texture = ExtResource("8_5b4hn")
+metallic = 1.0
+metallic_texture = ExtResource("17_hd0yo")
+roughness_texture = ExtResource("19_ns443")
+normal_enabled = true
+normal_texture = ExtResource("18_p60kb")
+heightmap_enabled = true
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("16_uyxho")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l58v1"]
 albedo_texture = ExtResource("9_cuw7d")
+metallic = 1.0
+metallic_texture = ExtResource("22_f5jtg")
+roughness_texture = ExtResource("23_nvjma")
+normal_enabled = true
+normal_texture = ExtResource("18_p60kb")
+heightmap_enabled = true
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("21_tqvaa")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrcq7"]
 albedo_color = Color(1, 1, 0, 1)
@@ -240,7 +283,7 @@ transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 
 
 [node name="Plane_001" parent="Body/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_agvvd")
-surface_material_override/1 = SubResource("StandardMaterial3D_wdu0w")
+surface_material_override/1 = SubResource("ShaderMaterial_2smgy")
 surface_material_override/2 = SubResource("ShaderMaterial_2yltb")
 surface_material_override/3 = SubResource("StandardMaterial3D_nu0d2")
 surface_material_override/4 = SubResource("StandardMaterial3D_l58v1")
