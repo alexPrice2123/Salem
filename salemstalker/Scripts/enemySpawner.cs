@@ -22,8 +22,6 @@ public partial class enemySpawner : Node3D
 	public string _biome = "Plains";
 	public float SpawnRange;        
 	[Export]
-	public double SpawnDistance = 100;        // Maximum distance from player before monsters despawn or spawning stops    
-	[Export]
 	public Godot.Collections.Array<PackedScene> _monsterList { get; set; } = [];
 	[Export]
 	public Godot.Collections.Array<int> _monsterCount { get; set; } = [];
@@ -62,7 +60,7 @@ public partial class enemySpawner : Node3D
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
 	
 		// --- Recount monsters if player is too far away (despawn management) ---
-		if (distance >= SpawnDistance)
+		if (distance >= SpawnRange+25f)
 		{
 			_number = 0;
 			foreach (CharacterBody3D monster in _holder.GetChildren())
@@ -72,7 +70,7 @@ public partial class enemySpawner : Node3D
 		}
 
 		// --- Prevent spawning if at max count or player too far ---
-		if (_number >= _maxMonsterCount || distance >= SpawnDistance)
+		if (_number >= _maxMonsterCount || distance >= SpawnRange+25f)
 		{
 			return;
 		}

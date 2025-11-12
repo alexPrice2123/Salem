@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_mix, depth_prepass_alpha, cull_back;
+render_mode blend_mix, depth_prepass_alpha, cull_disabled;
 
 uniform sampler2D albedo_tex;
 uniform sampler2D opacity_tex;
