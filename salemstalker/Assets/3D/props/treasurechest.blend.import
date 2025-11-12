@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://5ptxnyvv6q3c"
-valid=false
+path="res://.godot/imported/treasurechest.blend-0c0c2be2511fc7cb022160ddea51d32c.scn"
 
 [deps]
 
 source_file="res://Assets/3D/props/treasurechest.blend"
+dest_files=["res://.godot/imported/treasurechest.blend-0c0c2be2511fc7cb022160ddea51d32c.scn"]
 
 [params]
 
