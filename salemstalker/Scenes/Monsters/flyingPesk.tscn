@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://crxygapcq66ft"]
+[gd_scene load_steps=64 format=3 uid="uid://crxygapcq66ft"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_rrcq7"]
 [ext_resource type="Script" uid="uid://c4bkik5xcpbc3" path="res://Scripts/flyingPesk.cs" id="2_rrcq7"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bbjcqej0kng3t" path="res://Assets/monstertextures/pest/needle_Height.png" id="21_tqvaa"]
 [ext_resource type="Texture2D" uid="uid://b4tpksgo5ose1" path="res://Assets/monstertextures/pest/head_Opacity.png" id="22_f5jtg"]
 [ext_resource type="Texture2D" uid="uid://bwotptpce18hr" path="res://Assets/monstertextures/pest/needle_Roughness.png" id="23_nvjma"]
+[ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="24_o8ft4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_im0l4"]
 radius = 0.331716
@@ -164,6 +165,7 @@ scale_curve = SubResource("CurveTexture_yr5wf")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agvvd"]
 albedo_texture = ExtResource("5_chkap")
 metallic = 1.0
+metallic_specular = 0.0
 metallic_texture = ExtResource("7_o8ft4")
 roughness_texture = ExtResource("9_cmqyk")
 normal_enabled = true
@@ -291,6 +293,9 @@ surface_material_override/4 = SubResource("StandardMaterial3D_l58v1")
 [node name="HitFX" parent="." index="9" instance=ExtResource("4_pgtvs")]
 transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0.223611, -0.224724)
 visible = false
+
+[node name="Plane_001" parent="HitFX/Armature/Skeleton3D" index="0"]
+material_override = ExtResource("24_o8ft4")
 
 [node name="Stunned" type="GPUParticles3D" parent="." index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00175359, 0.654441, -0.181937)

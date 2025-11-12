@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctodbn6m6s5i2"]
+
+[ext_resource type="Script" uid="uid://cwlijfyyu5bd6" path="res://Scripts/theHushedBark.cs" id="1_a6y03"]
+
+[node name="HushedTrees" type="Node3D"]
+script = ExtResource("1_a6y03")
+
+[node name="PeskTimer" type="Timer" parent="."]
+
+[node name="UnderbrushTimer" type="Timer" parent="."]
+
+[node name="WeepingTimer" type="Timer" parent="."]
