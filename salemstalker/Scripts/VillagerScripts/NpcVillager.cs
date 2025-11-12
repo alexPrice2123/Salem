@@ -28,15 +28,15 @@ public partial class NpcVillager : CharacterBody3D
 	[Export]
 	public string InitialDialogue = "Initial";             // This dialogue goes into the QuestPrompt 3d label, the rest of the dialogue is spoken through the UI
 	[Export]
-	public Godot.Collections.Array<string> QuestDialogue { get; set; } = [];
+	public Godot.Collections.Array<string> QuestDialogue { get; set; } = new Godot.Collections.Array<string>{ "Quest" };
 	[Export]
-	public Godot.Collections.Array<string> AcceptedDialogue { get; set; } = [];
+	public Godot.Collections.Array<string> AcceptedDialogue { get; set; } = new Godot.Collections.Array<string>{ "Accept" };
 	[Export]
 	public string IgnoredDialogue = "Ignored";
 	[Export]
 	public string WaitingDialogue = "Waiting";
 	[Export]
-	public Godot.Collections.Array<string> DoneDialogue { get; set; } = [];
+	public Godot.Collections.Array<string> DoneDialogue { get; set; } = new Godot.Collections.Array<string>{ "Done" };
 	[Export]
 	public string PostDoneDialogue = "Done";
 	[Export]
@@ -49,6 +49,7 @@ public partial class NpcVillager : CharacterBody3D
 	public CharacterBody3D Villager;
 	private int _dialougeIndex = 0;
 	private string _currentDialouge = "Initial";
+	public bool _hasTalked = false;
 
 	public Vector3 MovementTarget                           // The target for the AI to pathfind to
 	{
@@ -94,7 +95,7 @@ public partial class NpcVillager : CharacterBody3D
 		// Add a temp variable for velocity
 		Vector3 velocity = new();
 
-		if (_questComplete == true && _questInProgress == false)
+		if (_questComplete == true && _questInProgress == false && _hasTalked == true)
 		{
 			_questPrompt.Text = PostDoneDialogue;
 		}
@@ -184,6 +185,7 @@ public partial class NpcVillager : CharacterBody3D
 		_player.GetQuest(QuestTitle, QuestGoal);
 		_dialougeIndex = 0;
 		_currentDialouge = "Accepted";
+		_hasTalked = true;
 		_dialogueBox.Text = AcceptedDialogue[_dialougeIndex];
 		_questInProgress = true;
 		_questPrompt.Text = WaitingDialogue;
@@ -195,6 +197,7 @@ public partial class NpcVillager : CharacterBody3D
 
 	public void Ignored()
 	{
+		_currentDialouge = "Ignored";
 		_dialogueBox.Text = IgnoredDialogue;
 		_dialogue.GetNode<Button>("Continue").Visible = true;
 		_dialogue.GetNode<Button>("AcceptButton").Visible = false;
@@ -217,7 +220,7 @@ public partial class NpcVillager : CharacterBody3D
 			}
 			else if (_currentDialouge == "Done")
             {
-                _dialougeIndex += 1;
+				_dialougeIndex += 1;
 				_dialogueBox.Text = DoneDialogue[_dialougeIndex];
             }
 		}
@@ -226,10 +229,13 @@ public partial class NpcVillager : CharacterBody3D
 			if (_currentDialouge == "Done")
             {
 				_questInProgress = false;
+				_hasTalked = true;
 				_player.RemoveQuest(QuestTitle);
             }
 			_player._villager = null;
 			_dialogue.Visible = false;
+			_dialougeIndex = 0;
+			_currentDialouge = "Initial";
 			Input.MouseMode = Input.MouseModeEnum.Captured;
 		}
 		CheckDialougeIndex();
@@ -237,9 +243,9 @@ public partial class NpcVillager : CharacterBody3D
 
 	public void Talk()
 	{
-		if (_questComplete == true && _questInProgress == false) { return; } //if the quest is done the player can't interact
+		if (_questComplete == true && _questInProgress == false && _hasTalked == true) { return; } //if the quest is done the player can't interact
 
-		if (_questComplete == true) //what happens when the player talks to him after completing the quest
+		if (_questComplete == true ) //what happens when the player talks to him after completing the quest
 		{
 			_dialougeIndex = 0;
 			_currentDialouge = "Done";
@@ -264,6 +270,7 @@ public partial class NpcVillager : CharacterBody3D
 			_dialogue.Visible = true;
 			_dialogueBox.Text = QuestDialogue[_dialougeIndex];
 			Input.MouseMode = Input.MouseModeEnum.Visible;
+			GD.Print(Input.MouseMode);
 			_dialogueBox.GetNode<Label>("NameText").Text = NPCName;
 		}
 
