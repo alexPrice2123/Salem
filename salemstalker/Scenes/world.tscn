@@ -374,7 +374,7 @@ directional_shadow_max_distance = 1.0
 [node name="Hold" type="Node3D" parent="MonsterHolder/Hold2"]
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -737.20526, 23.589912, -579.54895)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -453.49628, 1.8468666, -84.61487)
 
 [node name="MonsterRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -635.903, -4.39457, -59.4284)
@@ -397,8 +397,10 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -427.3
 script = ExtResource("4_ochwf")
 NPCName = "John"
 InitialDialogue = "Help! Help! Our Village needs help!"
+AcceptedDialogue = Array[String](["Accept", "2", "3"])
 IgnoredDialogue = "Do you want our village to be destroyed?"
 WaitingDialogue = "Those Cultists are still out there..."
+DoneDialogue = Array[String](["Done", "2"])
 QuestTitle = "Kill 5 Cultists"
 QuestGoal = "0/5"
 
