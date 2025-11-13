@@ -54,35 +54,23 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0.410663)
 [node name="Offhand2" type="Node3D" parent="Head/Camera3D"]
 
 [node name="FlintGun" parent="Head/Camera3D/Offhand2" instance=ExtResource("3_mawk5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190454, 0.339409, -1.07967)
 
 [node name="Skeleton3D" parent="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions/metarig" index="0"]
 bones/8/rotation = Quaternion(-0.29716015, 0.6603882, -0.5432395, 0.42482266)
 bones/9/rotation = Quaternion(0.10121383, 0.060014803, -0.13217439, 0.9842174)
 bones/10/rotation = Quaternion(0.024919773, -0.2100672, 0.10091673, 0.97214544)
 bones/11/rotation = Quaternion(0.17976402, -0.20663744, 0.16775073, 0.94701934)
-bones/12/rotation = Quaternion(-0.3082795, 0.1973927, -0.35761988, 0.8591321)
 bones/13/rotation = Quaternion(-0.36613148, -0.10245915, -0.24928343, 0.8906783)
 bones/15/rotation = Quaternion(0.21346803, -0.05530236, -0.40708378, 0.88637227)
 bones/16/rotation = Quaternion(-0.15249363, 0.0324545, 0.34006724, 0.92738706)
 bones/17/rotation = Quaternion(0.034487158, -0.045876056, 0.26540962, 0.962426)
-bones/19/rotation = Quaternion(-0.21922302, -0.6732264, 0.5859349, 0.39419255)
-bones/20/rotation = Quaternion(0.16670354, -0.099851385, 0.14108498, 0.9707393)
-bones/21/rotation = Quaternion(0.06961127, -0.037877247, -0.24318211, 0.96673787)
-bones/22/rotation = Quaternion(-0.096664146, 0.25824094, 0.32191965, 0.90572375)
-bones/23/rotation = Quaternion(-0.047339365, 0.019785857, 0.29954642, 0.95270115)
-bones/24/rotation = Quaternion(-0.07824299, 0.05460053, 0.5948491, 0.79815495)
-bones/25/rotation = Quaternion(0.36719507, 0.110883385, 0.45397997, 0.8042231)
-bones/26/rotation = Quaternion(-0.30964947, -0.010137811, -0.104003236, 0.9450914)
-bones/27/rotation = Quaternion(-0.052768383, -0.029600598, -0.34093818, 0.9381367)
-bones/28/rotation = Quaternion(-5.4202424e-08, 0.6961122, 0.717933, -5.255501e-08)
-bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994)
-bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cube" parent="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions/metarig/Skeleton3D" index="0"]
 transform = Transform3D(-0.014787305, 2.3283064e-09, -0.00061123725, -0.00055183494, 0.006364515, 0.013350144, 0.00026285928, 0.013361542, -0.0063590836, 0.22204852, 0.84092027, 0.11601922)
 
 [node name="Offhand3" type="Node3D" parent="Head/Camera3D"]
+
+[node name="FlintGun" parent="Head/Camera3D/Offhand3" instance=ExtResource("3_mawk5")]
 
 [node name="Offhand4" type="Node3D" parent="Head/Camera3D"]
 

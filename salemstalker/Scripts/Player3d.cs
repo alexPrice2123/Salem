@@ -982,7 +982,23 @@ public partial class Player3d : CharacterBody3D
 		Node3D weaponInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
 		holder.AddChild(weaponInstance);                                             // Add new weapon to holder node
 		weaponInstance.Position = holder.Position;
-		GD.Print("weaponswaped");
+		if (slot == 0)
+		{
+			_eSecWeapon1 = weaponInstance;
+		}
+		else if (slot == 1)
+		{
+			_eSecWeapon2 = weaponInstance;
+		}
+		else if (slot == 2)
+		{
+			_eSecWeapon3 = weaponInstance;
+		}
+		else
+		{
+			_eSecWeapon4 = weaponInstance;
+		}
+		GD.Print("weaponswapped");
     }
 	public async void play_sfx(AudioStreamOggVorbis soundeffect)
 	{
