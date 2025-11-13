@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://3v4hdgpge0v6"]
+[gd_scene load_steps=47 format=3 uid="uid://3v4hdgpge0v6"]
 
 [ext_resource type="Script" uid="uid://b1ax0drvppbgl" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_ckg03"]
 [ext_resource type="PackedScene" uid="uid://c1ixg535pupsm" path="res://Assets/Weapons/shortsword.blend" id="2_pkki5"]
@@ -21,9 +21,126 @@
 [ext_resource type="Texture2D" uid="uid://ccf58htao85c0" path="res://Assets/weapontextures/shortsword/pommel_Metallic.png" id="19_vooft"]
 [ext_resource type="Texture2D" uid="uid://dtlhjroxfkqou" path="res://Assets/weapontextures/shortsword/pommel_Normal.png" id="20_18nq6"]
 [ext_resource type="Texture2D" uid="uid://duf0m6xtj2nor" path="res://Assets/weapontextures/shortsword/pommel_Roughness.png" id="21_duntr"]
+[ext_resource type="PackedScene" uid="uid://qcibdbx6jfkp" path="res://Assets/3D/charatermodel/maincharacterblank.blend" id="22_4ujmf"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
-size = Vector3(0.321167, 1.46155, 0.213867)
+[sub_resource type="Animation" id="Animation_4ujmf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.416825)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iloqm"]
+resource_name = "Swing1"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.33333334, 0.59999967),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.44, 0.19, -0.05), Vector3(0.509, -0.069, -0.759), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.33333334, 0.59999967),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.383972, 0, 0.628319), Vector3(-0.268781, -2.54818, 1.69471), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w4qeb"]
+resource_name = "Swing2"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.23333333, 0.59999967),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.44, 0.19, -0.05), Vector3(0.509, -0.069, -0.759), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.23333333, 0.59999967),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.383972, 0, 0.628319), Vector3(-0.268781, -2.54818, 1.69471), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0gn6g"]
+resource_name = "Swing3"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.4, 0.59999967),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.44, 0.19, -0.05), Vector3(0.509, -0.069, -0.759), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.4, 0.59999967),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.383972, 0, 0.628319), Vector3(-0.268781, -2.54818, 1.69471), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w4qeb"]
+_data = {
+&"RESET": SubResource("Animation_4ujmf"),
+&"Swing1": SubResource("Animation_iloqm"),
+&"Swing2": SubResource("Animation_w4qeb"),
+&"Swing3": SubResource("Animation_0gn6g")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvryv"]
 albedo_color = Color(0.494245, 1.40181e-06, 2.40654e-07, 1)
@@ -32,14 +149,14 @@ albedo_color = Color(0.494245, 1.40181e-06, 2.40654e-07, 1)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ki2ro"]
+[sub_resource type="CurveTexture" id="CurveTexture_0gn6g"]
 curve = SubResource("Curve_ecxhr")
 
 [sub_resource type="Curve" id="Curve_63doy"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_sk81k"]
+[sub_resource type="CurveTexture" id="CurveTexture_kwmjs"]
 curve = SubResource("Curve_63doy")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8th4x"]
@@ -50,13 +167,13 @@ direction = Vector3(0, 0, 0)
 spread = 0.0
 radial_velocity_min = 2.99998
 radial_velocity_max = 5.99998
-radial_velocity_curve = SubResource("CurveTexture_ki2ro")
+radial_velocity_curve = SubResource("CurveTexture_0gn6g")
 gravity = Vector3(0, -2, 0)
 linear_accel_min = 0.999998
 linear_accel_max = 0.999998
 scale_min = 0.05
 scale_max = 0.1
-scale_curve = SubResource("CurveTexture_sk81k")
+scale_curve = SubResource("CurveTexture_kwmjs")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ki2ro"]
 
@@ -100,184 +217,6 @@ normal_texture = ExtResource("20_18nq6")
 heightmap_enabled = true
 heightmap_texture = ExtResource("18_3jmbr")
 
-[sub_resource type="Animation" id="Animation_wvryv"]
-resource_name = "Block"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Vector3(0, 0.15, -0.08), Vector3(0, 0.15, 0), Vector3(0, 0.15, -0.09)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Vector3(1.0472, -1.39626, -0.0872665), Vector3(1.0472, -1.39626, -0.296706), Vector3(1.0472, -1.39626, -0.0872665)]
-}
-
-[sub_resource type="Animation" id="Animation_sk81k"]
-resource_name = "Parry"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.15, -0.09)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1.0472, -1.39626, -0.0872665)]
-}
-
-[sub_resource type="Animation" id="Animation_ki2ro"]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_jo16x"]
-resource_name = "Swing1"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.366667, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.44, 0.19, -0.05), Vector3(0.509, -0.069, -0.759), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.366667, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.383972, 0, 0.628319), Vector3(-0.268781, -2.54818, 1.69471), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_3h2ph"]
-resource_name = "Swing2"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.466667, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.24, 0.14, 0.06), Vector3(-0.5, -0.12, -0.41), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.466667, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.366519, 0.418879, -0.349066), Vector3(-0.71384, 1.95477, -1.5708), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_c1cqh"]
-resource_name = "Swing3"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.41, 0, 0.15), Vector3(0, 0, -0.1), Vector3(-1.16, 0, 0.27), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.698132, 0.698132, -1.22173), Vector3(0, 0.680678, -1.5708), Vector3(0, 2.5604, -1.5708), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3h2ph"]
-_data = {
-&"Block": SubResource("Animation_wvryv"),
-&"Parry": SubResource("Animation_sk81k"),
-&"RESET": SubResource("Animation_ki2ro"),
-&"Swing1": SubResource("Animation_jo16x"),
-&"Swing2": SubResource("Animation_3h2ph"),
-&"Swing3": SubResource("Animation_c1cqh")
-}
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1osjb"]
 albedo_color = Color(1, 1, 0, 1)
 emission_enabled = true
@@ -287,14 +226,14 @@ emission = Color(1, 1, 0, 1)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_nst8u"]
+[sub_resource type="CurveTexture" id="CurveTexture_mw22n"]
 curve = SubResource("Curve_cg2tk")
 
 [sub_resource type="Curve" id="Curve_02r2q"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_b1i4m"]
+[sub_resource type="CurveTexture" id="CurveTexture_wvwlr"]
 curve = SubResource("Curve_02r2q")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hraxq"]
@@ -305,17 +244,20 @@ direction = Vector3(0, 0, 0)
 spread = 0.0
 radial_velocity_min = 2.99998
 radial_velocity_max = 5.99998
-radial_velocity_curve = SubResource("CurveTexture_nst8u")
+radial_velocity_curve = SubResource("CurveTexture_mw22n")
 gravity = Vector3(0, -2, 0)
 scale_min = 0.05
 scale_max = 0.1
-scale_curve = SubResource("CurveTexture_b1i4m")
+scale_curve = SubResource("CurveTexture_wvwlr")
 
 [sub_resource type="BoxMesh" id="BoxMesh_0eq1u"]
 size = Vector3(0.1, 0.1, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
+size = Vector3(0.21177, 1.52848, 0.321355)
+
 [node name="Shortsword" type="Node3D"]
-transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 0, 0, 0)
+transform = Transform3D(-0.41, 0, -1.0394244e-06, 0, 0.41, 0, 1.0394244e-06, 0, -0.41, 0, 0, -0.416825)
 script = ExtResource("1_ckg03")
 metadata/swingSpeed = 0.6
 metadata/hDamage = 20.0
@@ -325,15 +267,10 @@ metadata/cPercent1 = 1.2
 metadata/cPercent2 = 1.2
 metadata/cPercent3 = 1.25
 
-[node name="Hitbox" type="Area3D" parent="." groups=["Player", "Weapon"]]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.94338e-09, 0.605291, -0.113091)
-disable_mode = 2
-collision_layer = 1025
-collision_mask = 1025
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.0327759, 0.230774, 0)
-shape = SubResource("BoxShape3D_ki2ro")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w4qeb")
+}
 
 [node name="Blood" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00812661, 1.10846, -0.080514)
@@ -345,7 +282,7 @@ process_material = SubResource("ParticleProcessMaterial_8th4x")
 draw_pass_1 = SubResource("BoxMesh_ki2ro")
 
 [node name="shortsword" parent="." instance=ExtResource("2_pkki5")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0105306, -0.331278, -0.12519)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.25842655, 0)
 
 [node name="Cylinder" parent="shortsword" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_5pnml")
@@ -354,15 +291,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_5pnml")
 surface_material_override/0 = SubResource("StandardMaterial3D_tlhnf")
 surface_material_override/1 = SubResource("StandardMaterial3D_oettj")
 surface_material_override/2 = SubResource("StandardMaterial3D_mkca1")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_3h2ph")
-}
-next/Swing1 = &"RESET"
-next/Swing2 = &"RESET"
-next/Swing3 = &"RESET"
-blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
 
 [node name="Parry" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0693777, 0.654532, -0.193639)
@@ -375,6 +303,43 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_hraxq")
 draw_pass_1 = SubResource("BoxMesh_0eq1u")
 
+[node name="Hitbox" type="Area3D" parent="." groups=["Player", "Weapon"]]
+transform = Transform3D(1, 0, 4.3325778e-15, 0, 1, 0, -4.3325778e-15, 0, 1, 0, 0.9560886, 0)
+disable_mode = 2
+collision_layer = 1025
+collision_mask = 1025
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_ki2ro")
+debug_color = Color(0.972146, 0, 0.443071, 0.42)
+
+[node name="maincharacterblank" parent="." instance=ExtResource("22_4ujmf")]
+transform = Transform3D(2.4390244, 0, 0, 0, 2.4390244, 0, 0, 0, 2.4390244, -0.18083178, 0, -0.8303128)
+
+[node name="Skeleton3D" parent="maincharacterblank/metarig" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.021108687)
+bones/0/position = Vector3(-3.5527124e-15, 0.9426751, -0.06494778)
+bones/8/rotation = Quaternion(-0.34055507, 0.8070219, -0.3661749, 0.31409213)
+bones/9/rotation = Quaternion(0.5499285, 0.0012709876, -0.13263234, 0.82461244)
+bones/18/rotation = Quaternion(-0.21616365, -0.66549957, 0.59247065, 0.39920184)
+bones/19/rotation = Quaternion(0.58357465, -0.035395406, 0.035085876, 0.8105287)
+bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
+bones/21/rotation = Quaternion(-0.09666416, 0.25824094, 0.32191968, 0.90572375)
+bones/22/rotation = Quaternion(-0.047339372, 0.019785862, 0.29954648, 0.95270115)
+bones/23/rotation = Quaternion(-0.07824302, 0.05460053, 0.59484905, 0.79815507)
+bones/25/rotation = Quaternion(0.36719504, 0.110883355, 0.45398003, 0.8042232)
+bones/26/rotation = Quaternion(-0.30964947, -0.010137783, -0.10400324, 0.9450914)
+bones/27/rotation = Quaternion(-0.052768394, -0.029600598, -0.3409382, 0.9381367)
+bones/28/rotation = Quaternion(-5.4202424e-08, 0.6961122, 0.717933, -5.255501e-08)
+bones/35/position = Vector3(0.88, 0.127, 0)
+bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994)
+bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
+
+[node name="Cylinder" parent="maincharacterblank/metarig/Skeleton3D" index="0"]
+transform = Transform3D(-0.49890462, -0.018667236, 0.8664556, 0.3458143, 0.9124409, 0.21877739, -0.7946733, 0.40878183, -0.44876552, -0.18933906, 1.2346741, 0.31580126)
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 
 [editable path="shortsword"]
+[editable path="maincharacterblank"]

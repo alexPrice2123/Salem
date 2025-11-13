@@ -201,9 +201,6 @@ _data = {
 &"Swing3": SubResource("Animation_c1cqh")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
-size = Vector3(0.321167, 1.46155, 0.213867)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ngfl"]
 albedo_texture = ExtResource("3_a1ejp")
 metallic = 1.0
@@ -345,6 +342,9 @@ scale_curve = SubResource("CurveTexture_sk81k")
 [sub_resource type="BoxMesh" id="BoxMesh_wvryv"]
 size = Vector3(0.1, 0.1, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
+size = Vector3(0.321167, 1.46155, 0.213867)
+
 [node name="Falchion" type="Node3D"]
 transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 0, 0, 0)
 script = ExtResource("1_ki2ro")
@@ -364,16 +364,6 @@ next/Swing1 = &"RESET"
 next/Swing2 = &"RESET"
 next/Swing3 = &"RESET"
 blend_times = [&"Swing2", &"Swing1", 1.0, &"Swing3", &"RESET", 0.2, &"Swing3", &"Swing1", 0.2]
-
-[node name="Hitbox" type="Area3D" parent="." groups=["Player", "Weapon"]]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.94338e-09, 0.605291, -0.113091)
-disable_mode = 2
-collision_layer = 1025
-collision_mask = 1025
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.0327759, 0.230774, 0)
-shape = SubResource("BoxShape3D_ki2ro")
 
 [node name="falchion" parent="." instance=ExtResource("1_ej1uk")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.407, 0)
@@ -423,6 +413,16 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_sk81k")
 draw_pass_1 = SubResource("BoxMesh_wvryv")
+
+[node name="Hitbox" type="Area3D" parent="." groups=["Player", "Weapon"]]
+transform = Transform3D(-3.7252903e-08, -1.4901161e-08, 1, -1.1175871e-08, 1, -1.4901161e-08, -0.99999994, 0, -2.9802322e-08, -1.4901161e-08, 0.6052909, -0.11309096)
+disable_mode = 2
+collision_layer = 1025
+collision_mask = 1025
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.0327759, 0.230774, 0)
+shape = SubResource("BoxShape3D_ki2ro")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 

@@ -31,9 +31,9 @@ public partial class theHushedBark : Node3D
 	}
 
 	public async void Damaged(Area3D body)
-    {
-        if (body.IsInGroup("Weapon") && _canBeHit)
-        {
+	{
+		if (body.IsInGroup("Weapon") && _canBeHit)
+		{
 			// Quick visual hit reaction
 			//_hitFX.GetNode<AnimationPlayer>("AnimationPlayer").Play("idle");
 			_hitFX.Visible = true;
@@ -42,11 +42,18 @@ public partial class theHushedBark : Node3D
 			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 			_canBeHit = true;
 
+			DefensiveAttack();
+
 			// Reduce health
 			_health -= _player._damage;
 
 			_hitFX.Visible = false;
 			_body.Visible = true;
-        }
+		}
+	}
+	
+	private async void DefensiveAttack()
+    {
+        
     }
 }
