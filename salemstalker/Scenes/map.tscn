@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://yquh377uui0p"]
+
+[ext_resource type="Texture2D" uid="uid://2df70rxjqudu" path="res://Assets/UI/map.png" id="1_ci6au"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(544, 303.99997)
+scale = Vector2(0.50878733, 0.50878733)
+texture = ExtResource("1_ci6au")
