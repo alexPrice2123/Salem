@@ -1,0 +1,125 @@
+[gd_scene load_steps=18 format=3 uid="uid://eewceqmua2pk"]
+
+[ext_resource type="Script" uid="uid://b7y5viqmrrr1l" path="res://Scenes/MainHandWeapons/Longsword.cs" id="1_gbebq"]
+[ext_resource type="PackedScene" uid="uid://du71670gpsymh" path="res://Assets/Weapons/longsword.blend" id="1_uebnu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gopbf"]
+size = Vector3(0.21177, 3.0585542, 0.321355)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbebq"]
+albedo_color = Color(0.494245, 1.40181e-06, 2.40654e-07, 1)
+
+[sub_resource type="Curve" id="Curve_hry07"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ki2ro"]
+curve = SubResource("Curve_hry07")
+
+[sub_resource type="Curve" id="Curve_w2k3v"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sk81k"]
+curve = SubResource("Curve_w2k3v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tuti7"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 2.99998
+radial_velocity_max = 5.99998
+radial_velocity_curve = SubResource("CurveTexture_ki2ro")
+gravity = Vector3(0, -2, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_sk81k")
+
+[sub_resource type="BoxMesh" id="BoxMesh_3ea4r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrfll"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="Curve" id="Curve_uapeq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nst8u"]
+curve = SubResource("Curve_uapeq")
+
+[sub_resource type="Curve" id="Curve_mnod0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_b1i4m"]
+curve = SubResource("Curve_mnod0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_epqox"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 2.99998
+radial_velocity_max = 5.99998
+radial_velocity_curve = SubResource("CurveTexture_nst8u")
+gravity = Vector3(0, -2, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_b1i4m")
+
+[sub_resource type="BoxMesh" id="BoxMesh_el5lg"]
+size = Vector3(0.1, 0.1, 1)
+
+[node name="Longsword" type="Node3D"]
+transform = Transform3D(-8.475035e-09, -0.029108733, 0.5191846, -0.055645347, 0.51620346, 0.028941588, -0.5170141, -0.05555809, -0.0031149422, -0.0110879, -0.555058, 0.028029801)
+script = ExtResource("1_gbebq")
+metadata/swingSpeed = 1.2
+metadata/hDamage = 27.0
+metadata/damage = 30.0
+metadata/cChance = 0.1
+metadata/cPercent1 = 1.2
+metadata/cPercent2 = 1.2
+metadata/cPercent3 = 1.2
+
+[node name="longsword" parent="." instance=ExtResource("1_uebnu")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.79, 0)
+
+[node name="Hitbox" type="Area3D" parent="." groups=["Player", "Weapon"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+disable_mode = 2
+collision_layer = 1025
+collision_mask = 1025
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 6.4028427e-09, -6.938353e-08, -1.3969839e-09, 1, 2.8312206e-07, 0, 0, 0.99999714, 0, 0.63853127, -7.450581e-09)
+shape = SubResource("BoxShape3D_gopbf")
+debug_color = Color(0.972146, 0, 0.443071, 0.42)
+
+[node name="Blood" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.4442363e-08, -0.2675257, -2.4856448, -0.13994585, 2.481747, -0.26710624, 2.4960814, 0.13914233, -0.01497569, -0.07303068, 2.5636058, -0.0009371117)
+material_override = SubResource("StandardMaterial3D_gbebq")
+emitting = false
+amount = 100
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_tuti7")
+draw_pass_1 = SubResource("BoxMesh_3ea4r")
+
+[node name="Parry" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.4810026e-08, -0.26752564, -2.4856448, -0.13994583, 2.481747, -0.26710618, 2.4960809, 0.13914229, -0.014975689, 0.30621365, 1.6809762, 0.007093936)
+material_override = SubResource("StandardMaterial3D_xrfll")
+emitting = false
+amount = 100
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_epqox")
+draw_pass_1 = SubResource("BoxMesh_el5lg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

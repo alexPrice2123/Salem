@@ -17,6 +17,16 @@ albedo_color = Color(0.5931336, 0.59313357, 0.59313357, 1)
 albedo_texture = ExtResource("3_i5fsq")
 uv1_scale = Vector3(10, 10, 10)
 
+[sub_resource type="Animation" id="Animation_p2s7p"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spikes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -20.271736, -4.072869)
+
 [sub_resource type="Animation" id="Animation_v23y2"]
 resource_name = "Spikes"
 length = 2.0
@@ -27,16 +37,6 @@ tracks/0/path = NodePath("Spikes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, -21, -4.073, 0.1, 1, 0, -10, -4.073, 1, 1, 0, -10, -4.073, 2, 1, 0, -21, -4.073)
-
-[sub_resource type="Animation" id="Animation_p2s7p"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Spikes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, -20.271736, -4.072869)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_subrv"]
 _data = {

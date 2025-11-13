@@ -36,6 +36,8 @@ public partial class Player3d : CharacterBody3D
 	// --- WEAPON REFERENCES ---
 	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
 	private PackedScene _falchion = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/falchion.tscn"); // Pre-load falchion scene resource
+	private PackedScene _dagger = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/dagger.tscn"); // Pre-load falchion scene resource
+	private PackedScene _longsword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/longsword.tscn"); // Pre-load falchion scene resource
 	private PackedScene _flintGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Flintlock.tscn"); // Pre-load Flintlock scene resource
 	private PackedScene _stakeGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/stake_gun.tscn"); // Pre-load Stake Gun scene resource
 	private Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
@@ -126,6 +128,8 @@ public partial class Player3d : CharacterBody3D
 		// Populate the weapon dictionary
 		_weapon.Add("ShortSword", _shortSword);
 		_weapon.Add("Falchion", _falchion);
+		_weapon.Add("longsword", _longsword);
+		_weapon.Add("dagger", _dagger);
 		_secWeapon.Add("FlintGun", _flintGun);
 		_secWeapon.Add("StakeGun", _stakeGun);
 	}
@@ -971,17 +975,13 @@ public partial class Player3d : CharacterBody3D
 		{
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand4");
 		}
-		GD.Print(holder);
-		GD.Print(wepaonName);
 		if (holder.GetChild(0) != null)
 		{
-			GD.Print(holder.GetChild(0).ToString(), "Old");
 			holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
 		}
 		Node3D weaponInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
 		holder.AddChild(weaponInstance);                                             // Add new weapon to holder node
 		weaponInstance.Position = holder.Position;
-		GD.Print(holder.GetChild(0).ToString(), "New");
 		GD.Print("weaponswaped");
     }
 	public async void play_sfx(AudioStreamOggVorbis soundeffect)

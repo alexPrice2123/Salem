@@ -120,6 +120,11 @@ public partial class Monster3d : CharacterBody3D
         _body.Visible = true;
     }
 
+    public async void Bleed(float bleedDamage, float bleedLength)
+    {
+        
+    }
+
 
     // --- CORE MONSTER AI LOOP --- //
     // Handles state: chase, attack, wander, despawn
