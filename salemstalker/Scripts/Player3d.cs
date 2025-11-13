@@ -872,7 +872,14 @@ public partial class Player3d : CharacterBody3D
         {
 			_stamina -= _stamina*0.15f;
         }
-		_knockVelocity = 2f;
+		if (effect == "BarkSpikes")
+        {
+            _knockVelocity = 75f;
+        }
+        else
+        {
+            _knockVelocity = 2f;
+        }
 		if (_blocking == true && _parry == false)
 		{
 			// Regular block: reduce damage, deduct stamina, play block animation

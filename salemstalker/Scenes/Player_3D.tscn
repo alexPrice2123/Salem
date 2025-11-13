@@ -46,10 +46,8 @@ shadow_enabled = true
 omni_range = 25.0
 
 [node name="Offhand1" type="Node3D" parent="Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190454, -0.219152, -1.07967)
 
 [node name="StakeGun" parent="Head/Camera3D/Offhand1" instance=ExtResource("3_cvtri")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0.410663)
 
 [node name="Offhand2" type="Node3D" parent="Head/Camera3D"]
 
