@@ -1,0 +1,152 @@
+[gd_scene load_steps=21 format=3 uid="uid://syqvg0yul3mk"]
+
+[ext_resource type="Script" uid="uid://c0gtclfpd0kby" path="res://Scripts/fakeTree.cs" id="1_subrv"]
+[ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="2_p2s7p"]
+[ext_resource type="PackedScene" uid="uid://dopp52d46332" path="res://Assets/3D/plants/swamptree2.blend" id="2_p8xk8"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="3_i5fsq"]
+[ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="4_in1tx"]
+[ext_resource type="PackedScene" uid="uid://iljcylun6obp" path="res://Assets/3D/plants/tree3.blend" id="4_p2s7p"]
+[ext_resource type="PackedScene" uid="uid://ckgxsjfenmaig" path="res://Assets/3D/plants/swampbosstree.blend" id="4_v23y2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v23y2"]
+albedo_color = Color(0.8111275, 0.8111274, 0.8111274, 1)
+albedo_texture = ExtResource("3_i5fsq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2s7p"]
+albedo_color = Color(0.5931336, 0.59313357, 0.59313357, 1)
+albedo_texture = ExtResource("3_i5fsq")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="Animation" id="Animation_p2s7p"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spikes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -20.271736, -4.072869)
+
+[sub_resource type="Animation" id="Animation_v23y2"]
+resource_name = "Spikes"
+length = 2.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spikes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -21, -4.073, 0.1, 1, 0, -10, -4.073, 1, 1, 0, -10, -4.073, 2, 1, 0, -21, -4.073)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_subrv"]
+_data = {
+&"RESET": SubResource("Animation_p2s7p"),
+&"Spikes": SubResource("Animation_v23y2")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_subrv"]
+albedo_texture = ExtResource("2_p2s7p")
+
+[sub_resource type="Curve" id="Curve_in1tx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nst8u"]
+curve = SubResource("Curve_in1tx")
+
+[sub_resource type="Curve" id="Curve_b1k8h"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_b1i4m"]
+curve = SubResource("Curve_b1k8h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p2s7p"]
+lifetime_randomness = 1.0
+emission_shape_scale = Vector3(10, 1, 10)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_max = 20.0
+radial_velocity_min = 24.999977
+radial_velocity_max = 49.999977
+radial_velocity_curve = SubResource("CurveTexture_nst8u")
+gravity = Vector3(0, -9.3, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_b1i4m")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_j3vkp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p2s7p"]
+size = Vector3(3, 7.376, 3)
+
+[node name="Tree" type="Node3D"]
+script = ExtResource("1_subrv")
+
+[node name="FakeTree" parent="." instance=ExtResource("2_p8xk8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6704136, 0)
+
+[node name="Cube" parent="FakeTree" index="0"]
+material_override = SubResource("StandardMaterial3D_v23y2")
+
+[node name="BossTree" parent="." instance=ExtResource("4_v23y2")]
+visible = false
+
+[node name="Cube" parent="BossTree" index="0"]
+material_override = SubResource("StandardMaterial3D_p2s7p")
+
+[node name="HitFX" parent="." instance=ExtResource("4_v23y2")]
+visible = false
+
+[node name="Cube" parent="HitFX" index="0"]
+material_override = ExtResource("4_in1tx")
+
+[node name="Spikes" parent="." instance=ExtResource("4_p2s7p")]
+transform = Transform3D(2.5477748, 0, 0, 0, 1.6918371, 0, 0, 0, 2.5477748, 0, -20.271736, -4.072869)
+
+[node name="Cube" parent="Spikes" index="0"]
+material_override = SubResource("StandardMaterial3D_p2s7p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_subrv")
+}
+
+[node name="Attack" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00210285, 0.00185138, 0.00122893)
+material_override = SubResource("StandardMaterial3D_subrv")
+emitting = false
+amount = 250
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_p2s7p")
+draw_pass_1 = SubResource("BoxMesh_j3vkp")
+
+[node name="Hurtbox" type="Area3D" parent="." groups=["Monster"]]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.053811, 0)
+collision_layer = 1024
+collision_mask = 1024
+input_ray_pickable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 1.54513, 0)
+shape = SubResource("BoxShape3D_p2s7p")
+debug_color = Color(0.541872, 0.406451, 1, 0.42)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="FakeTree"]
+[editable path="BossTree"]
+[editable path="HitFX"]
+[editable path="Spikes"]

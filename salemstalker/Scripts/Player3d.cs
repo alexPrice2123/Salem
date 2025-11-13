@@ -808,13 +808,10 @@ public partial class Player3d : CharacterBody3D
 		return null;
 	}
 
-	// Updates the monster kill count, specifically for 'VCultist', and updates the quest UI.
+	// Updates the monster kill count, and updates the quest UI.
 	public void MonsterKilled(string MonsterType)
 	{
-		if (MonsterType == "VCultist")
-		{
-			_monstersKilled += 1;
-		}
+		_monstersKilled += 1;
 		if (_questBox.FindChild("Kill 5 Cultists") != null)
 		{
 			// Update the quest objective text

@@ -1,12 +1,11 @@
-[gd_scene load_steps=90 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=93 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://bw2fjllusx7kw" path="res://Scenes/enemy_spawner.tscn" id="2_uqdn7"]
-[ext_resource type="PackedScene" uid="uid://cdyf44r2hpl3e" path="res://Scenes/Monsters/vineTangler.tscn" id="3_13n8b"]
+[ext_resource type="PackedScene" uid="uid://cdyf44r2hpl3e" path="res://Scenes/Monsters/vineTangler.tscn" id="3_uqdn7"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="4_fo5ed"]
-[ext_resource type="Script" uid="uid://iedrinobwedb" path="res://Scripts/VillagerScripts/JohnVillager.cs" id="4_ochwf"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="6_5ukr8"]
-[ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/VillagerScripts/MarryVillager.cs" id="6_atqvy"]
+[ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/VillagerScripts/MaryVillager.cs" id="6_atqvy"]
 [ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="6_ikia7"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="7_7yui6"]
 [ext_resource type="Script" uid="uid://bwc5be1j0grxx" path="res://Scripts/VillagerScripts/ElizabethVillager.cs" id="7_atqvy"]
@@ -14,7 +13,7 @@
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="8_dt0r1"]
 [ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="8_r74th"]
-[ext_resource type="Script" uid="uid://fpbtgg4ofyo" path="res://Scripts/VillagerScripts/JacobVillager.cs" id="8_w5giw"]
+[ext_resource type="Script" path="res://Scripts/VillagerScripts/JacobVillager.cs" id="8_w5giw"]
 [ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="9_04jkj"]
 [ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Scenes/World/Heightmap_0_0.res" id="9_7yui6"]
 [ext_resource type="Script" uid="uid://deqndpcgi731" path="res://Scripts/VillagerScripts/MatthewVillager.cs" id="9_jwdyn"]
@@ -32,7 +31,7 @@
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="12_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://d0u1esu3iuflj" path="res://Assets/2D/deepocean.png" id="12_opbav"]
 [ext_resource type="Texture2D" uid="uid://dw2dxasfcx3dn" path="res://Scenes/World/Foliage_0_0_0.res" id="12_t2t4p"]
-[ext_resource type="Script" uid="uid://cd1hk520uuwo4" path="res://Scripts/VillagerScripts/EzekielVillager.cs" id="13_xcb5n"]
+[ext_resource type="Script" uid="uid://cd1hk520uuwo4" path="res://Scripts/VillagerScripts/FinnVillager.cs" id="13_xcb5n"]
 [ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="14_1cojt"]
 [ext_resource type="Texture2D" uid="uid://canhbg83j2nyd" path="res://Assets/3D/plants/grass_graass.png" id="14_no8kt"]
 [ext_resource type="PackedScene" uid="uid://blt7o2y8rc0lv" path="res://Assets/3D/plants/tree.blend" id="16_pt3ps"]
@@ -52,7 +51,21 @@
 [ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="35_coyub"]
 [ext_resource type="PackedScene" uid="uid://dqwfbyg6hnvlk" path="res://Scenes/apple.tscn" id="38_r74th"]
 [ext_resource type="Texture2D" uid="uid://m0yvspt7vwje" path="res://Scenes/World/Splatmap_0_0_2.res" id="45_vhf2b"]
-[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="53_uqdn7"]
+[ext_resource type="PackedScene" uid="uid://ctodbn6m6s5i2" path="res://Scenes/Monsters/Bosses/theHushedBark.tscn" id="52_uqdn7"]
+[ext_resource type="PackedScene" uid="uid://syqvg0yul3mk" path="res://Scenes/Monsters/MonsterAssets/fakeTree.tscn" id="53_gwaj6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_13n8b"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_uqdn7"]
+sky_material = SubResource("ProceduralSkyMaterial_13n8b")
+
+[sub_resource type="Environment" id="Environment_gwaj6"]
+background_mode = 2
+sky = SubResource("Sky_uqdn7")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_5a7ea"]
 vertices = PackedVector3Array(0.5, 5.25, 20.25, 1.5, 5, 20.25, 2.5, 5, 18.5, 0.75, 5.25, 11.75, 4.25, 5, 2, 3.75, 5.25, 0.5, 1.25, 5.25, 0.75, 1.75, 5.25, 5.5, 4.5, 4.75, 19, 10.75, 4.75, 17.5, 10.5, 4.75, 16, 1.25, 5.25, 6.25, 1.5, 5.25, 10, 10, 4.75, 7, 8.75, 4.75, 5.75, 4.55, 4.75, 5.6, 3.92857, 4.75, 9.14286, 10.5, 4.75, 3.75, 10.5, 4.75, 0.5, 7, 4.75, 0.5, 5.5, 4.75, 2, 8.75, 4.75, 5, 12, 4.75, 15.25, 11, 4.75, 6.75, 25, 4.75, 2.5, 22.5, 4.75, 2.5, 21.5, 4.75, 3.25, 12, 4.75, 5, 20, 4.75, 1, 20.5, 4.75, 0.5, 33, 4.75, 1.25, 33, 4.75, 0.5, 25.25, 4.75, 0.5, 12, 4.75, 5.75, 13, 4.75, 15.5, 13.25, 4.75, 17.25, 22.25, 4.75, 23.5, 23.25, 4.75, 23.5, 33.75, 4.75, 1.75, 25, 4.75, 25.25, 20, 4.75, 2.5, 20.5, 4.75, 3.25, 25, 4.75, 26, 25.75, 4.75, 26.25, 50.25, 4.75, 8.5, 51.25, 4.75, 8.25, 51.25, 4.75, 0.5, 49.75, 4.75, 9.75, 37, 4.75, 0.5, 36.5, 4.75, 2, 49.25, 4.75, 28.5, 50.75, 4.75, 28.25, 51.25, 4.75, 11.75, 49.75, 4.75, 11, 53.25, 4.75, 9, 53, 4.75, 11, 52.25, 4.75, 11.75, 63.25, 4.75, 14, 63.5, 4.75, 13.5, 65.25, 4.75, 13.25, 65.25, 4.75, 0.5, 95.5, 4.75, 56.75, 96.5, 4.75, 56.5, 96.75, 4.75, 56.25, 114.75, 4.75, 46.5, 114.75, 4.75, 47.5, 120, 4.75, 47.75, 120.25, 4.75, 47, 111.5, 4.75, 46.25, 112.75, 4.75, 45.25, 127.5, 4.75, 0.5, 66.75, 4.75, 16, 113.5, 4.75, 45.25, 122, 4.75, 45.75, 125.75, 4.75, 42, 125.75, 4.75, 39.25, 66.5, 4.75, 13.75, 111.25, 4.75, 47.25, 66.25, 4.75, 16.5, 64, 4.75, 16.75, 63.25, 4.75, 28.75, 63.5, 4.75, 30.25, 127.5, 4.75, 39, 155, 4.75, 24, 156.25, 4.75, 23.25, 156.25, 4.75, 0.5, 154.5, 4.75, 25.25, 128.75, 4.75, 39, 158, 4.75, 24, 158.25, 4.75, 25, 168.5, 4.75, 28.75, 170, 4.75, 27.75, 170, 4.75, 0.5, 192, 4.75, 35.25, 196.75, 4.75, 35, 196.75, 4.75, 34.5, 190.75, 4.75, 33.5, 198, 4.75, 33.75, 172, 4.75, 29.25, 199, 4.75, 33.75, 199.5, 4.75, 0.5, 172.25, 4.75, 30.25, 188.75, 4.75, 34.25, 189.5, 4.75, 33.5, 199.5, 4.75, 34.5, 51.5, 4.75, 29.5, 60.5, 4.75, 29.5, 61.5, 4.75, 28.25, 63.5, 4.75, 16.5, 62.75, 4.75, 28.25, 14.25, 4.75, 31.25, 22.5, 4.75, 28, 20.5, 4.75, 26.25, 20.5, 4.75, 25.25, 12.5, 4.75, 18, 11.75, 4.75, 18, 11.75, 4.75, 29.5, 5.25, 4.75, 19.5, 11, 4.75, 18, 4.5, 4.75, 21.5, 10.5, 4.75, 30.5, 1.5, 5, 21, 0.5, 4.75, 32, 9.75, 4.75, 32, 9.75, 4.75, 31.25, 4.25, 4.75, 22, 3, 4.75, 22, 157.25, 4.75, 44.75, 164.75, 4.75, 44.5, 165, 4.75, 43.5, 155.25, 4.75, 42.75, 167.75, 4.75, 42.75, 169.5, 4.75, 32.25, 167.75, 4.75, 29.25, 167.75, 4.75, 30.5, 157, 4.75, 26.75, 155.75, 4.75, 26.5, 22.5, 4.75, 26, 23.25, 4.75, 25.75, 23, 4.75, 25.25, 22.25, 4.75, 25.5, 129.25, 4.75, 39.25, 129.25, 4.75, 42, 130.5, 4.75, 42.75, 153.75, 4.75, 43.25, 23, 4.75, 28, 30, 4.75, 44.25, 32, 4.75, 42.75, 28.25, 4.75, 28.75, 48.5, 4.75, 29.25, 13.25, 4.75, 33.5, 11.5, 4.75, 49.25, 30, 4.75, 44.75, 11.75, 4.75, 34, 11, 4.75, 48.75, 43, 4.75, 44.75, 43.75, 4.75, 46.5, 45.25, 4.75, 46, 45.25, 4.75, 43.25, 32.75, 4.75, 42.75, 40.25, 4.75, 45.25, 33.75, 4.75, 44, 33.75, 4.75, 45.75, 39.75, 4.75, 46, 48.75, 4.75, 31.25, 48.25, 4.75, 43, 49.25, 4.75, 31.5, 48.75, 4.75, 46, 51.25, 4.75, 46.25, 51.5, 4.75, 45.75, 48.75, 4.75, 43.25, 53.5, 4.75, 45.25, 51.5, 4.75, 30.75, 54.5, 4.75, 45.25, 51, 4.75, 31.25, 54.75, 4.75, 45.75, 61.5, 4.75, 31, 169.5, 4.75, 29.75, 169.75, 4.75, 30.5, 170.25, 4.75, 30.25, 170, 4.75, 29.5, 83.75, 4.75, 65.25, 94.5, 4.75, 58.25, 94.5, 4.75, 57.5, 81.25, 4.75, 66, 62.5, 4.75, 31.25, 55, 4.75, 48.25, 188, 4.75, 35, 170.25, 4.75, 32.25, 11.5, 4.75, 32, 12.25, 4.75, 32.25, 12, 4.75, 31.25, 11.5, 4.75, 31.5, 0.5, 4.75, 50.5, 8.5, 4.75, 50.5, 9.5, 4.75, 48.5, 9.75, 4.75, 32.5, 168.5, 4.75, 43.75, 189.75, 4.75, 37.5, 188.5, 4.75, 36.5, 178, 4.75, 64, 177.25, 4.75, 64.75, 177.25, 4.75, 65.5, 185, 4.75, 70, 187.25, 4.75, 71.5, 187.25, 4.75, 72.5, 188.5, 4.75, 74.5, 190, 4.75, 74.25, 169, 4.75, 45.5, 175.75, 4.75, 62, 178, 4.75, 62.25, 192, 4.75, 36, 197.5, 4.75, 36.5, 190.5, 4.75, 37.5, 185.75, 4.75, 70, 199.5, 4.75, 75.75, 199.5, 4.75, 36.25, 190.5, 4.75, 75.75, 127.25, 4.75, 40.25, 127.25, 4.75, 41, 128, 4.75, 41, 128, 4.75, 40.25, 129, 4.75, 42.5, 126, 4.75, 42.5, 124, 4.75, 47.25, 124, 4.75, 48.5, 123.25, 4.75, 57.75, 141.25, 4.75, 56.75, 143.25, 4.75, 54.75, 122.25, 4.75, 50, 122.25, 4.75, 57.75, 144, 4.75, 54.75, 152.75, 4.75, 45.25, 152.75, 4.75, 44.5, 46.75, 4.75, 44.5, 46.75, 4.75, 45.25, 47.5, 4.75, 45.25, 47.5, 4.75, 44.5, 154.5, 4.75, 44.75, 154.75, 4.75, 45.5, 155.5, 4.75, 45, 155.25, 4.75, 44.5, 157, 4.75, 59, 157.75, 4.75, 60.25, 158.5, 4.75, 60.25, 156.25, 4.75, 46.5, 157.25, 4.75, 45.5, 159.75, 4.75, 61.75, 166.25, 4.75, 47, 166.5, 4.75, 44.5, 166.75, 4.75, 45.25, 167.25, 4.75, 45, 167.25, 4.75, 44.5, 28.75, 4.75, 48.25, 31, 4.75, 46.25, 12, 4.75, 49.75, 146, 4.75, 56.75, 154.75, 4.75, 47.25, 174.25, 4.75, 63, 175.25, 4.75, 63, 175.25, 4.75, 62.25, 159.75, 4.75, 62.5, 168.5, 4.75, 46.25, 26, 4.75, 63.25, 25.75, 4.75, 63.75, 26.5, 4.75, 64, 28, 4.75, 63.25, 27, 4.75, 66.25, 26.5, 4.75, 66.5, 73.25, 4.75, 76, 45.75, 4.75, 46.5, 44, 4.75, 47.75, 54.5, 4.75, 48.75, 52, 4.75, 49.25, 73.75, 4.75, 74.75, 27, 4.75, 65.25, 48.5, 4.75, 46.5, 51.5, 4.75, 48.75, 43.5, 4.75, 48.25, 40.75, 4.75, 48.75, 31.5, 4.75, 46.75, 28.5, 4.75, 60.75, 28, 4.75, 60.25, 41.5, 4.75, 46.5, 41.5, 4.75, 47, 42.25, 4.75, 47, 42.25, 4.75, 46.5, 146, 4.75, 57, 155.5, 4.75, 47.25, 52.75, 4.75, 47, 52.75, 4.75, 47.5, 53.5, 4.75, 47.5, 53.5, 4.75, 47, 112.75, 4.75, 49, 97.5, 4.75, 57.5, 120, 4.75, 48.5, 113.5, 4.75, 49, 121.5, 4.75, 50, 120.5, 4.75, 58.5, 113.75, 4.75, 65.5, 114.25, 4.75, 65.5, 121, 4.75, 61.25, 97.5, 4.75, 58.5, 11.5, 4.75, 51.25, 12.25, 4.75, 51.5, 25.75, 4.75, 60, 77, 4.75, 75, 77.5, 4.75, 75.75, 82.25, 4.75, 69.5, 81.5, 4.75, 69, 74, 4.75, 74.25, 75, 4.75, 74.25, 80.75, 4.75, 67.25, 80.75, 4.75, 66.25, 0.5, 4.75, 61.75, 4.5, 4.75, 61.75, 4.75, 4.75, 60, 8.5, 4.75, 51, 7.75, 4.75, 60, 8, 4.75, 60.5, 10, 4.75, 52, 11, 4.75, 52, 8, 4.75, 62, 9.25, 4.75, 61.75, 10.5, 4.75, 64.25, 21.75, 4.75, 63.25, 23, 4.75, 62.25, 21.75, 4.75, 64, 25.25, 4.75, 62.75, 24.75, 4.75, 63.75, 24, 4.75, 62.25, 25.25, 4.75, 60.25, 143.25, 4.75, 56.75, 143.5, 4.75, 57.5, 144, 4.75, 57.25, 143.75, 4.75, 56.5, 142, 4.75, 61.75, 143, 4.75, 61.5, 143.5, 4.75, 59.25, 141.25, 4.75, 57.5, 124, 4.75, 58.25, 124.5, 4.75, 60.5, 127.75, 4.75, 63.25, 141, 4.75, 63.75, 144.25, 4.75, 59.25, 145, 4.75, 62.5, 156.25, 4.75, 61.5, 145.5, 4.75, 63.5, 156.25, 4.75, 62.5, 85, 4.75, 68.5, 84.5, 4.75, 68.75, 92.75, 4.75, 75.25, 94.25, 4.75, 74.5, 85, 4.75, 67.25, 95.5, 4.75, 74.5, 95.75, 4.75, 59.5, 112.75, 4.75, 66.25, 96.75, 4.75, 59.25, 113.75, 4.75, 80.5, 114, 4.75, 80.5, 113.75, 4.75, 68.75, 112.5, 4.75, 67.75, 96, 4.75, 74.75, 96.5, 4.75, 77.5, 122, 4.75, 59.5, 122.75, 4.75, 60, 122.75, 4.75, 59.25, 124, 4.75, 61.25, 125.25, 4.75, 72.25, 128, 4.75, 75, 129, 4.75, 74.25, 115.25, 4.75, 66.25, 121.25, 4.75, 61.75, 115.5, 4.75, 67.5, 114, 4.75, 68.75, 6, 4.75, 61.5, 6, 4.75, 62.25, 6.5, 4.75, 62.25, 6.5, 4.75, 61.5, 24, 4.75, 66.25, 23.75, 4.75, 65.25, 22.75, 4.75, 65.25, 3.75, 4.75, 89.75, 3.25, 4.75, 90.75, 7, 4.75, 91.25, 7.25, 4.75, 66, 6.25, 4.75, 63.5, 4.5, 4.75, 63.25, 3.5, 4.75, 88.5, 8.75, 4.75, 90.5, 10, 4.75, 65.25, 9.5, 4.75, 91.5, 0.5, 4.75, 89.5, 1.5, 4.75, 88, 153.5, 4.75, 68.75, 154.75, 4.75, 69.5, 157.75, 4.75, 64, 144.75, 4.75, 65.25, 152.5, 4.75, 68.75, 143.75, 4.75, 66, 152.25, 4.75, 69.25, 172.5, 4.75, 65.25, 158.25, 4.75, 64, 130.75, 4.75, 75.75, 138, 4.75, 76, 138.5, 4.75, 75.25, 130, 4.75, 74.25, 140, 4.75, 75, 141, 4.75, 64.75, 141.75, 4.75, 65.25, 142.75, 4.75, 64, 143.5, 4.75, 64.25, 143.25, 4.75, 63.25, 142.75, 4.75, 63.5, 8, 4.75, 63.5, 8, 4.75, 64.25, 8.75, 4.75, 64, 155, 4.75, 71, 154, 4.75, 72.25, 165.75, 4.75, 77.25, 166.5, 4.75, 76.5, 167.5, 4.75, 76.5, 172.5, 4.75, 65.5, 174.5, 4.75, 65, 174.75, 4.75, 65.75, 175.25, 4.75, 65.5, 175, 4.75, 64.75, 151, 4.75, 74.75, 151.25, 4.75, 75.25, 153, 4.75, 72.25, 151.5, 4.75, 71.25, 149.5, 4.75, 74.75, 140.5, 4.75, 75.25, 148, 4.75, 75.5, 142.75, 4.75, 66, 140.75, 4.75, 76.5, 148, 4.75, 76.25, 182.75, 4.75, 76, 183.25, 4.75, 76.75, 184.75, 4.75, 74, 183.25, 4.75, 72.5, 181.5, 4.75, 76, 174.5, 4.75, 67.5, 168.25, 4.75, 77, 183.25, 4.75, 71.5, 175.5, 4.75, 67.5, 180, 4.75, 77, 168.5, 4.75, 78, 180, 4.75, 77.75, 9.5, 4.75, 93, 9.75, 4.75, 93.25, 10.75, 4.75, 93.25, 12.25, 4.75, 94.75, 22.75, 4.75, 100, 25, 4.75, 100.5, 25, 4.75, 67, 12.25, 4.75, 95.75, 64, 4.75, 104.5, 65.75, 4.75, 105.25, 66.5, 4.75, 104.25, 74, 4.75, 90.25, 75.25, 4.75, 90, 75.5, 4.75, 78.75, 73, 4.75, 77.5, 73.75, 4.75, 92, 25.75, 4.75, 101, 25.5, 4.75, 102, 82.5, 4.75, 67.25, 82.75, 4.75, 67.75, 83.25, 4.75, 67.5, 83.25, 4.75, 67, 99.25, 4.75, 81.25, 96, 4.75, 78, 93.5, 4.75, 78.5, 76.75, 4.75, 78.25, 92.5, 4.75, 76.5, 76.25, 4.75, 92.5, 80.5, 4.75, 101.75, 82, 4.75, 101.75, 76.5, 4.75, 90.5, 82.25, 4.75, 102.25, 108.75, 4.75, 92.5, 108.25, 4.75, 92.25, 108.25, 4.75, 90.75, 127.25, 4.75, 80.75, 129.25, 4.75, 80.25, 129, 4.75, 77, 128, 4.75, 76.25, 114.5, 4.75, 80.5, 127, 4.75, 82, 115.5, 4.75, 82, 151.75, 4.75, 77.5, 165.75, 4.75, 78.5, 150.75, 4.75, 78, 153, 4.75, 89.75, 156, 4.75, 89.75, 156.25, 4.75, 90.25, 166.5, 4.75, 79.25, 188, 4.75, 74.75, 185.75, 4.75, 74, 190.25, 4.75, 76.75, 188.25, 4.75, 76.75, 183.75, 4.75, 78.5, 187.75, 4.75, 97.75, 188.25, 4.75, 99.25, 199.5, 4.75, 99.25, 186.25, 4.75, 98, 130.25, 4.75, 80.25, 130.25, 4.75, 76.75, 138.25, 4.75, 77.25, 130.5, 4.75, 80.75, 139, 4.75, 77.75, 74.75, 4.75, 76.25, 75, 4.75, 77, 75.75, 4.75, 76.5, 75.25, 4.75, 76, 94.25, 4.75, 76.25, 94.25, 4.75, 77, 95, 4.75, 76.75, 140.5, 4.75, 77.5, 149, 4.75, 78.25, 131, 4.75, 83.5, 128.5, 4.75, 84.25, 128.25, 4.75, 95.5, 129, 4.75, 95.5, 152.75, 4.75, 92.75, 112.5, 4.75, 81.75, 183.75, 4.75, 104.25, 184.75, 4.75, 104.25, 185.75, 4.75, 99.75, 185.5, 4.75, 98.75, 170, 4.75, 104.25, 171.75, 4.75, 105.75, 182.25, 4.75, 106.25, 155.5, 4.75, 93.25, 157.25, 4.75, 99.75, 158.75, 4.75, 99.5, 156.25, 4.75, 92.5, 181, 4.75, 79.75, 168, 4.75, 79, 171.75, 4.75, 106.25, 159.25, 4.75, 101.5, 169, 4.75, 104.25, 182.5, 4.75, 79.5, 110.5, 4.75, 90.25, 110.75, 4.75, 90.75, 113.75, 4.75, 83.75, 112.5, 4.75, 82.75, 108.5, 4.75, 90.25, 128.5, 4.75, 82, 129.25, 4.75, 82.5, 129.25, 4.75, 81.75, 114.25, 4.75, 83.75, 110.75, 4.75, 91.5, 126.5, 4.75, 95.75, 127.5, 4.75, 84, 8.25, 4.75, 94.75, 7.5, 4.75, 93.5, 0.5, 4.75, 110, 9, 4.75, 110, 9.5, 4.75, 109, 8.25, 4.75, 95.75, 6.75, 4.75, 92.5, 3, 4.75, 91.25, 2, 4.75, 91.25, 10.25, 4.75, 109, 10.25, 4.75, 97.5, 9.75, 4.75, 97.5, 0.5, 4.75, 90.25, 154, 4.75, 91.25, 154, 4.75, 91.75, 154.75, 4.75, 91.75, 154.75, 4.75, 91.25, 119.75, 4.75, 106.25, 120, 4.75, 106.75, 126.75, 4.75, 99.25, 126.25, 4.75, 99, 110.25, 4.75, 92.5, 117.5, 4.75, 106.75, 117.75, 4.75, 106.25, 110.75, 4.75, 92.25, 126, 4.75, 97.75, 126, 4.75, 96, 76, 4.75, 93, 79.75, 4.75, 102.25, 75, 4.75, 93, 80, 4.75, 103.75, 90, 4.75, 121.25, 90.5, 4.75, 122.5, 97, 4.75, 123.25, 99, 4.75, 123.75, 106, 4.75, 122.25, 105.75, 4.75, 120.5, 88.5, 4.75, 120.5, 82.5, 4.75, 103.5, 107.5, 4.75, 120, 117.5, 4.75, 108.25, 129.5, 4.75, 96, 153.25, 4.75, 93.25, 156.5, 4.75, 102, 156.75, 4.75, 101.75, 156.5, 4.75, 100.25, 129.75, 4.75, 98.5, 140.75, 4.75, 116, 141.5, 4.75, 115.75, 21.75, 4.75, 101.5, 10.75, 4.75, 97.5, 11.25, 4.75, 109, 11.5, 4.75, 109.5, 22.25, 4.75, 103.25, 21.75, 4.75, 103, 127.5, 4.75, 97, 127.5, 4.75, 97.75, 128.25, 4.75, 97.5, 128.25, 4.75, 97, 129, 4.75, 123.5, 131.5, 4.75, 122.75, 132, 4.75, 121.25, 123.5, 4.75, 120.25, 124, 4.75, 121.5, 126.75, 4.75, 123.5, 133.25, 4.75, 120.25, 120, 4.75, 108.25, 134.25, 4.75, 120.25, 139, 4.75, 118.5, 138.75, 4.75, 117.25, 129.5, 4.75, 99, 121.75, 4.75, 119.25, 186.25, 4.75, 100.5, 186, 4.75, 105, 187.5, 4.75, 100.5, 197.5, 4.75, 106.25, 198, 4.75, 105.25, 188.25, 4.75, 100, 186.75, 4.75, 106.25, 199.5, 4.75, 104.5, 157.25, 4.75, 102.25, 167.25, 4.75, 106, 158.5, 4.75, 102.25, 155.5, 4.75, 119.75, 156.25, 4.75, 120.25, 168, 4.75, 120.25, 169.75, 4.75, 108.75, 167.25, 4.75, 107.25, 156.25, 4.75, 121.25, 167.5, 4.75, 121.25, 169.5, 4.75, 119.5, 25, 4.75, 103.75, 24.5, 4.75, 104, 26.25, 4.75, 105.75, 62.75, 4.75, 106.25, 143.25, 4.75, 117.75, 143.25, 4.75, 118.5, 152.75, 4.75, 120, 153, 4.75, 119.5, 9.5, 4.75, 111.5, 0.5, 4.75, 136.75, 11.75, 4.75, 111, 11.25, 4.75, 111.5, 60, 4.75, 136.75, 60.5, 4.75, 134.75, 61.25, 4.75, 134, 83.75, 4.75, 123.5, 84, 4.75, 124, 87.25, 4.75, 123.25, 87, 4.75, 121.75, 82.25, 4.75, 123.75, 81.75, 4.75, 104.25, 66.25, 4.75, 105.5, 66.25, 4.75, 106.75, 67.5, 4.75, 110.5, 68.75, 4.75, 110.5, 65, 4.75, 108.25, 66, 4.75, 111.25, 69.25, 4.75, 111.25, 80.5, 4.75, 104.25, 69.75, 4.75, 112.25, 69.75, 4.75, 113.25, 81.5, 4.75, 124.5, 69.25, 4.75, 113.5, 63, 4.75, 107.5, 63.5, 4.75, 134.75, 66.5, 4.75, 113.5, 169, 4.75, 106.25, 169, 4.75, 106.75, 170, 4.75, 106.5, 169.75, 4.75, 106, 184, 4.75, 106.25, 184, 4.75, 106.75, 185, 4.75, 106.5, 184.75, 4.75, 106, 182.25, 4.75, 107.25, 170.75, 4.75, 108.25, 171.25, 4.75, 121.75, 177.25, 4.75, 129, 179.5, 4.75, 128.75, 170.5, 4.75, 120, 184.5, 4.75, 108.75, 179.75, 4.75, 129.25, 194.75, 4.75, 128.5, 195.5, 4.75, 131, 199.5, 4.75, 131, 199.5, 4.75, 108, 180, 4.75, 130.5, 191.5, 4.75, 130.25, 192, 4.75, 129, 185.75, 4.75, 108.25, 198.75, 4.75, 108, 119.25, 4.75, 108.75, 117.75, 4.75, 108.75, 108.5, 4.75, 121.75, 119.75, 4.75, 121.5, 119.75, 4.75, 121, 108.25, 4.75, 120.5, 64.25, 4.75, 135.5, 67, 4.75, 114, 63.75, 4.75, 138, 63, 4.75, 138.5, 73, 4.75, 139.75, 73.25, 4.75, 139.25, 75.75, 4.75, 139.25, 81.75, 4.75, 125.75, 140.75, 4.75, 117.75, 140.75, 4.75, 118.5, 141.5, 4.75, 118.25, 141.25, 4.75, 117.5, 135.75, 4.75, 121.75, 140.25, 4.75, 120.25, 136, 4.75, 123, 138.25, 4.75, 134.25, 140.75, 4.75, 134.5, 141.5, 4.75, 120.25, 141.5, 4.75, 135.25, 153, 4.75, 123, 152.5, 4.75, 122.75, 154, 4.75, 121.25, 154, 4.75, 121.75, 154.75, 4.75, 121.75, 154.75, 4.75, 121.25, 158.5, 4.75, 159, 163.75, 4.75, 159, 164.25, 4.75, 157, 157.75, 4.75, 157.5, 143.25, 4.75, 148.5, 155.75, 4.75, 158, 141.25, 4.75, 138.25, 140.75, 4.75, 138.5, 141, 4.75, 145.75, 142.25, 4.75, 146.25, 165.25, 4.75, 156.75, 155.75, 4.75, 123.25, 168, 4.75, 122.25, 168, 4.75, 134.75, 169, 4.75, 134.25, 169.25, 4.75, 123, 167.25, 4.75, 137, 126.25, 4.75, 123.75, 122.5, 4.75, 123.5, 108, 4.75, 122.5, 121.5, 4.75, 123.5, 108.75, 4.75, 137.25, 110.75, 4.75, 139.25, 112.5, 4.75, 137.75, 108.75, 4.75, 135.75, 127, 4.75, 128.25, 126.25, 4.75, 127.5, 113.5, 4.75, 137.75, 114.25, 4.75, 138.75, 107, 4.75, 122.75, 107.5, 4.75, 134.25, 107, 4.75, 134.25, 171.25, 4.75, 135, 171.75, 4.75, 135.75, 177.5, 4.75, 132.25, 176.75, 4.75, 131, 176.75, 4.75, 129.25, 99.5, 4.75, 124, 106.25, 4.75, 122.75, 99.5, 4.75, 125, 98.5, 4.75, 126.75, 105, 4.75, 135.75, 133.25, 4.75, 122.25, 133.5, 4.75, 123, 134, 4.75, 122.75, 134, 4.75, 122.25, 84.25, 4.75, 125.5, 88.25, 4.75, 124.25, 105, 4.75, 136.75, 89.25, 4.75, 124.25, 96.25, 4.75, 124, 96, 4.75, 126, 86.25, 4.75, 140.75, 88.25, 4.75, 141.75, 129, 4.75, 126.5, 129.5, 4.75, 126.75, 133, 4.75, 124.75, 129.5, 4.75, 127.75, 129, 4.75, 128, 137.75, 4.75, 134.75, 134.5, 4.75, 124.5, 127.5, 4.75, 124.75, 127.5, 4.75, 125.25, 128, 4.75, 125.25, 128, 4.75, 124.75, 76.25, 4.75, 139.5, 76, 4.75, 142.75, 84.25, 4.75, 143.5, 85.25, 4.75, 141, 82, 4.75, 126.25, 83.5, 4.75, 126.25, 137.5, 4.75, 137.75, 138.75, 4.75, 147.5, 127.25, 4.75, 128.75, 120, 4.75, 144.25, 120, 4.75, 146.75, 128.25, 4.75, 128.75, 119.25, 4.75, 143.75, 113.75, 4.75, 141.75, 116.75, 4.75, 144.5, 117, 4.75, 144, 115, 4.75, 140.75, 115, 4.75, 139.5, 197.5, 4.75, 149.5, 198.75, 4.75, 151.25, 199.5, 4.75, 151.25, 195.5, 4.75, 131.75, 194.75, 4.75, 132.25, 183.25, 4.75, 149.75, 195, 4.75, 151.25, 196.25, 4.75, 149.5, 192.25, 4.75, 132.5, 180.25, 4.75, 131.25, 182, 4.75, 149.5, 183.75, 4.75, 151.5, 193, 4.75, 130.25, 193.25, 4.75, 131, 193.75, 4.75, 130.75, 193.75, 4.75, 130.25, 179.75, 4.75, 132, 170.75, 4.75, 138.25, 180.25, 4.75, 150, 180, 4.75, 150.5, 61.75, 4.75, 136.75, 62.5, 4.75, 136.75, 62.75, 4.75, 136.25, 61.75, 4.75, 135.75, 139, 4.75, 136.75, 140, 4.75, 137, 140, 4.75, 136, 139, 4.75, 136, 169, 4.75, 136.25, 169.5, 4.75, 137, 170, 4.75, 136.5, 169.75, 4.75, 136, 21.25, 5.25, 179.25, 22.25, 5.25, 179.5, 23.5, 5.25, 179, 26, 5.25, 177.5, 20.5806, 4.75, 177.879, 24.3548, 4.75, 174.871, 0.5, 5.25, 187.75, 2.25, 5.25, 187.5, 4.25, 5.25, 186, 0.5, 4.75, 182.815, 3.8871, 4.75, 181.234, 61.25, 5.25, 172.25, 61.5, 4.75, 138.25, 60, 4.75, 137.5, 49.5, 5.25, 172.25, 61.2717, 4.75, 169.293, 50.34, 4.75, 169.47, 38.75, 5.25, 173.75, 41.25, 5.25, 173.75, 44, 5.25, 172.75, 40.2155, 4.75, 171.198, 44.5926, 4.75, 171.417, 16.25, 5.25, 181.25, 18.25, 5.25, 181, 46, 5.25, 173, 32.75, 5.25, 175.5, 35.25, 5.25, 175.25, 35.3871, 4.75, 171.75, 30, 5.25, 176.75, 9.25, 5.25, 184.5, 102, 4.75, 141.75, 106.5, 4.75, 138.25, 88.75, 4.75, 142.25, 167.25, 4.75, 157.5, 167, 4.75, 159.25, 171.75, 4.75, 160, 172.5, 4.75, 159.25, 170.5, 4.75, 138.75, 173.25, 4.75, 159.25, 169.5, 4.75, 138.75, 180.5, 4.75, 152.5, 110.5, 4.75, 140.25, 113.25, 4.75, 142.25, 112, 4.75, 142.25, 100.5, 4.75, 155.25, 112.75, 4.75, 155, 117, 4.75, 146.75, 101, 4.75, 155.5, 101, 4.75, 156.75, 112, 4.75, 156.75, 115.75, 4.75, 155.5, 117.75, 4.75, 147.25, 73, 4.75, 142.5, 73.25, 5.25, 173, 73.2262, 4.75, 170.095, 62.9916, 4.75, 169.492, 74, 4.75, 142.75, 73.3214, 4.75, 170.119, 112.5, 4.75, 139.75, 112.75, 4.75, 140.5, 113.25, 4.75, 140.25, 113, 4.75, 139.5, 74.25, 4.75, 140.5, 74.25, 4.75, 141.25, 75, 4.75, 141.25, 75, 4.75, 140.5, 88.5, 4.75, 144, 87.5, 4.75, 145.25, 97.25, 4.75, 155.5, 97.5, 4.75, 155, 86.25, 4.75, 143.5, 87, 4.75, 143.5, 87, 4.75, 142.75, 86.25, 4.75, 142.5, 81.25, 5.25, 174.75, 81.5, 5.25, 175.25, 84.75, 5.25, 175.5, 88, 5.25, 177.25, 89.75, 5.25, 177.25, 97, 4.75, 158.5, 86.5, 4.75, 173.071, 90.2679, 4.75, 175.911, 84.5, 4.75, 144.5, 116.25, 4.75, 155.75, 116.25, 4.75, 156.75, 130.25, 4.75, 163.5, 139.75, 4.75, 149.5, 138.75, 4.75, 148.25, 115.5, 4.75, 158.75, 127.75, 4.75, 164, 140.75, 4.75, 147.75, 140.75, 4.75, 148.5, 141.5, 4.75, 148.25, 141.25, 4.75, 147.5, 152, 4.75, 168, 155, 4.75, 168.25, 155.75, 4.75, 160.5, 151.5, 4.75, 168.75, 155.25, 4.75, 158.25, 141.75, 4.75, 150, 139.25, 4.75, 167.5, 139.25, 4.75, 168.5, 138.5, 4.75, 166.5, 140.5, 4.75, 150.25, 131, 4.75, 164.5, 131.25, 4.75, 166.75, 134.75, 4.75, 167.25, 136.75, 4.75, 165.5, 137.75, 4.75, 165.5, 198.75, 4.75, 151.75, 191.75, 4.75, 165.5, 192.75, 4.75, 164.75, 192.75, 4.75, 163.5, 186.5, 4.75, 161, 187.75, 4.75, 162.5, 197.25, 4.75, 153, 199, 4.75, 157.25, 199.5, 4.75, 157.25, 189, 4.75, 169.25, 191.75, 4.5, 166.75, 187.75, 4.75, 163.75, 186.25, 4.75, 164.75, 196.25, 4.75, 153, 183.75, 4.75, 152, 185.75, 4.75, 161, 183.25, 4.75, 152.75, 182.25, 4.75, 153, 180.75, 4.75, 153, 174.5, 4.75, 160.5, 174, 4.75, 161.75, 184, 4.75, 162.5, 98.5, 4.75, 156.5, 98.5, 4.75, 157.5, 99.5, 4.75, 157.5, 99.5, 4.75, 156.5, 113.5, 4.75, 156.75, 113.5, 4.75, 157.5, 114.5, 4.75, 157.25, 114, 4.75, 156.5, 112, 4.75, 159.25, 114.25, 4.75, 159.75, 114.25, 4.75, 159.25, 111.75, 4.75, 158.25, 100.75, 4.75, 159, 111.75, 4.75, 159.75, 92, 5.25, 178.5, 95.5, 5.25, 179.5, 97.5, 4.75, 159, 95.7857, 4.75, 176.571, 115.25, 4.75, 159.25, 114.5, 4.75, 161, 113.5, 4.75, 162.25, 127.25, 4.75, 164.75, 105.75, 5.25, 184.25, 106.25, 5.25, 185, 107, 5.25, 185, 107.75, 5.25, 186, 108.75, 5.25, 186, 110.25, 5.25, 187.75, 110.75, 5.25, 187.75, 112, 4.75, 162, 109.132, 4.75, 183.176, 110.889, 4.75, 184.889, 103, 5.25, 183, 103.75, 5.25, 184, 100.25, 5.25, 181.5, 100.75, 5.25, 182.25, 106.141, 4.75, 182.859, 99.25, 5.25, 181.5, 99.9062, 4.75, 178.688, 111.5, 4.75, 161.75, 164, 4.75, 159.75, 158.25, 4.75, 160.25, 166.25, 4.75, 169, 167.25, 4.75, 168.5, 166.25, 4.75, 160.25, 157.25, 4.75, 160.75, 155.5, 4.75, 169.25, 155.5, 4.75, 168.5, 166.25, 4.75, 169.5, 171.5, 4.75, 161.5, 169.5, 4.75, 168.25, 172.5, 4.75, 162.25, 169.75, 4.75, 168.75, 187.75, 4.75, 171.5, 188.75, 4.75, 170.75, 185.25, 4.75, 165, 184.5, 4.75, 164.25, 187.5, 4.75, 172.75, 170.25, 4.75, 171.5, 127.75, 4.75, 167, 115, 5.25, 190.75, 116.417, 4.75, 188.111, 128.75, 4.75, 165.25, 129, 4.75, 166, 129.5, 4.75, 165.75, 129.5, 4.75, 165.25, 156.75, 4.75, 199.5, 156.75, 4.75, 199, 156.25, 4.75, 198.25, 153.75, 4.75, 198.5, 154.75, 4.75, 199.5, 152.5, 4.75, 183, 152.5, 4.75, 172, 151.25, 4.75, 171.5, 151.5, 4.75, 184.25, 152, 4.75, 199.5, 152.5, 4.75, 198.5, 151.25, 4.75, 186, 136.25, 4.75, 170, 128.25, 4.75, 167.5, 127, 5, 199.5, 156.25, 4.75, 196, 154, 4.75, 187, 151.5, 4.75, 186.5, 134.75, 4.75, 168, 137.5, 4.75, 170, 123.25, 5.25, 197.5, 125, 5.25, 199.5, 119.5, 5.25, 194, 121.5, 5.25, 196.5, 120.421, 4.75, 191.211, 116, 5.25, 192, 136.75, 4.75, 167.5, 137, 4.75, 168.25, 137.5, 4.75, 168, 137.25, 4.75, 167.25, 178.75, 4.75, 188.5, 179.5, 4.5, 188, 179.25, 4.75, 187, 182.75, 4.75, 179.5, 183.75, 4.75, 178.75, 183.75, 4.75, 177.75, 169.75, 4.75, 171.75, 176.75, 4.75, 192.5, 177.75, 4.75, 191.75, 177.75, 4.75, 190.5, 178.75, 4.5, 189.75, 180.5, 4.75, 186, 180.25, 4.75, 185, 181.75, 4.75, 181.5, 182.75, 4.75, 180.75, 175, 4.75, 199.5, 175.75, 4.75, 198.75, 175.75, 4.75, 196.5, 159.75, 4.75, 195.5, 159.75, 4.75, 198.5, 181.75, 4.75, 183.75, 176.5, 4.75, 196, 167, 4.75, 172, 157.5, 4.75, 195.25, 154.75, 4.75, 186.5, 154.75, 4.75, 172, 155.25, 4.75, 184, 153, 4.75, 169.5, 152.75, 4.75, 170, 152.75, 4.75, 170.5, 153.75, 4.75, 170.5, 153.75, 4.75, 169.5, 168, 4.75, 170.5, 168.75, 4.75, 170.5, 168.5, 4.75, 169.75, 168, 4.75, 169.75, 185.75, 4.75, 175.75, 185.75, 4.75, 174.5, 157.75, 4.75, 196.75, 157.75, 4.75, 197.5, 158.5, 4.75, 197.5, 158.5, 4.75, 196.75)
@@ -86,7 +99,6 @@ Name = "dirt"
 AlbedoTexture = ExtResource("8_dt0r1")
 HeightTexture = ExtResource("8_r74th")
 TextureDetail = 50
-Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_o2rbt"]
@@ -94,8 +106,6 @@ script = ExtResource("7_7yui6")
 Name = "sand"
 AlbedoTexture = ExtResource("9_qebug")
 HeightTexture = ExtResource("8_r74th")
-TextureDetail = -1
-Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_coyub"]
@@ -103,8 +113,6 @@ script = ExtResource("7_7yui6")
 Name = "shallowocean"
 AlbedoTexture = ExtResource("10_3ua1v")
 HeightTexture = ExtResource("8_r74th")
-TextureDetail = -1
-Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_ochwf"]
@@ -112,8 +120,6 @@ script = ExtResource("7_7yui6")
 Name = "midocean"
 AlbedoTexture = ExtResource("11_r0ikl")
 HeightTexture = ExtResource("8_r74th")
-TextureDetail = -1
-Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_p5wkl"]
@@ -121,8 +127,6 @@ script = ExtResource("7_7yui6")
 Name = "deepocean"
 AlbedoTexture = ExtResource("12_opbav")
 HeightTexture = ExtResource("8_r74th")
-TextureDetail = -1
-Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_g44x5"]
@@ -131,7 +135,6 @@ Name = "swam_mud"
 AlbedoTexture = ExtResource("24_13n8b")
 HeightTexture = ExtResource("8_r74th")
 TextureDetail = 50
-Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_kwnki"]
@@ -140,7 +143,6 @@ Name = "swampgrass"
 AlbedoTexture = ExtResource("25_uqdn7")
 HeightTexture = ExtResource("8_r74th")
 TextureDetail = 50
-Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_cvubk"]
@@ -149,7 +151,6 @@ Name = "plainsgrass"
 AlbedoTexture = ExtResource("26_gwaj6")
 HeightTexture = ExtResource("8_r74th")
 TextureDetail = 50
-Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_eskoj"]
@@ -158,7 +159,6 @@ Name = "plainsdirt"
 AlbedoTexture = ExtResource("27_36g3o")
 HeightTexture = ExtResource("8_r74th")
 TextureDetail = 50
-Triplanar = false
 metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
 
 [sub_resource type="Resource" id="Resource_kn0ld"]
@@ -210,30 +210,21 @@ shadow_mesh = SubResource("ArrayMesh_0pcbe")
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pyn1s"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_no8kt"]
-color_ramp = SubResource("Gradient_yq1aw")
 noise = SubResource("FastNoiseLite_pyn1s")
+color_ramp = SubResource("Gradient_yq1aw")
 
 [sub_resource type="Resource" id="Resource_no8kt"]
 script = ExtResource("9_kn0ld")
-Strategy = 1
 Mesh = SubResource("ArrayMesh_pyn1s")
 MeshScale = Vector3(2, 2, 2)
-WindStrength = 0.1
 NoiseTexture = SubResource("NoiseTexture2D_no8kt")
-VisualInstanceLayers = 1
-LODLevels = 3
-LODRowsPerLevel = 50
 LODInitialCellWidth = 10.0
 Albedo = Color(0.418809, 0.588644, 0.472147, 1)
 AlbedoTextures = [ExtResource("10_yq1aw")]
 NearestTextureFilter = true
-UseGroundColor = false
 CastShadow = true
 UseBrushScale = false
 RandomPlacementRange = 1000.0
-ApplyOnTextureIndexes = PackedInt32Array()
-MaximumRenderDistance = 50
-EditorMaximumRenderDistance = 50
 metadata/_custom_type_script = "uid://dgf8vwa2n8r11"
 
 [sub_resource type="Resource" id="Resource_axeuq"]
@@ -282,25 +273,15 @@ shadow_mesh = SubResource("ArrayMesh_wigbs")
 
 [sub_resource type="Resource" id="Resource_xbk3s"]
 script = ExtResource("9_kn0ld")
-Strategy = 1
 Mesh = SubResource("ArrayMesh_y5c6l")
 MeshScale = Vector3(3.75, 7.5, 3.75)
 WindStrength = 0.3
 NoiseTexture = SubResource("NoiseTexture2D_no8kt")
-VisualInstanceLayers = 1
-LODLevels = 3
-LODRowsPerLevel = 50
-LODInitialCellWidth = 1.0
 Albedo = Color(0.156773, 0.338874, 0.221359, 1)
 AlbedoTextures = [ExtResource("20_r74th")]
-NearestTextureFilter = false
-UseGroundColor = false
 CastShadow = true
 UseBrushScale = false
 RandomPlacementRange = 50.0
-ApplyOnTextureIndexes = PackedInt32Array()
-MaximumRenderDistance = 50
-EditorMaximumRenderDistance = 50
 metadata/_custom_type_script = "uid://dgf8vwa2n8r11"
 
 [sub_resource type="Resource" id="Resource_i4fjy"]
@@ -313,12 +294,11 @@ metadata/_custom_type_script = "uid://d33x21vao7tj2"
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_o2rbt"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1vso6"]
-color_ramp = SubResource("Gradient_qebug")
 noise = SubResource("FastNoiseLite_o2rbt")
+color_ramp = SubResource("Gradient_qebug")
 
 [sub_resource type="Resource" id="Resource_3ua1v"]
 script = ExtResource("17_hmc15")
-Strategy = 1
 ObjectFrequency = 15
 RandomRange = 10.0
 NoiseTexture = SubResource("NoiseTexture2D_1vso6")
@@ -329,15 +309,11 @@ RandomSizeFactorMax = 1.5
 ObjectScenes = [ExtResource("16_pt3ps")]
 LODList = []
 LODMeshes = []
-UpdateDistanceThreshold = 1.0
-UpdateTimeFrequency = 0.1
-VisualInstanceLayers = 1
 metadata/_custom_type_script = "uid://cgf61yxk46wa4"
 
 [sub_resource type="Resource" id="Resource_r0ikl"]
 script = ExtResource("18_dt0r1")
 Definition = SubResource("Resource_3ua1v")
-Hide = false
 metadata/_custom_type_script = "uid://comabiqrwe5u0"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kw8us"]
@@ -346,8 +322,8 @@ seed = 1
 fractal_type = 0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nbiyt"]
-seamless = true
 noise = SubResource("FastNoiseLite_kw8us")
+seamless = true
 
 [sub_resource type="Resource" id="Resource_yq1aw"]
 script = ExtResource("14_1cojt")
@@ -358,25 +334,15 @@ WaterFresnelColor = Color(0, 0.404081, 0.340577, 1)
 WaterMetallic = 1.0
 WaterRoughness = 1.0
 WaterNormalMap = ExtResource("7_axeuq")
-WaterTimeScale = 0.1
 WaterStrength = 15.0
 WaterWave = SubResource("NoiseTexture2D_nbiyt")
-WaterNoiseScale = 10.0
-WaterHeightScale = 0.15
 WaterColorDeep = Color(0, 0, 0, 1)
-WaterColorShallow = Color(1, 1, 1, 1)
-WaterBeersLaw = 2.0
-WaterDepthOffset = -0.75
 WaterEdgeScale = 1.0
-WaterNear = 0.5
 WaterFar = 1000.0
-WaterEdgeColor = Color(1, 1, 1, 1)
-VisualInstanceLayers = 1
 metadata/_custom_type_script = "uid://k2tvfxm6feg5"
 
 [sub_resource type="Resource" id="Resource_hgpy0"]
 script = ExtResource("11_e0ngr")
-ZonePosition = Vector2i(0, 0)
 HeightMapTexture = ExtResource("9_7yui6")
 SplatmapsTexture = [ExtResource("10_c5t2i"), ExtResource("28_r0ikl"), ExtResource("45_vhf2b")]
 FoliagesTexture = [ExtResource("12_t2t4p"), ExtResource("17_pyn1s")]
@@ -389,6 +355,14 @@ Zones = [SubResource("Resource_hgpy0")]
 
 [node name="World" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gwaj6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
 [node name="MonsterHolder" type="Node3D" parent="."]
 
 [node name="Hold2" type="Node3D" parent="MonsterHolder"]
@@ -396,20 +370,16 @@ Zones = [SubResource("Resource_hgpy0")]
 [node name="Hold" type="Node3D" parent="MonsterHolder/Hold2"]
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -519.042, 0.732849, -44.3734)
 
 [node name="MonsterRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -635.903, -4.39457, -59.4284)
 navigation_mesh = SubResource("NavigationMesh_5a7ea")
 
 [node name="EnemySpawner" parent="MonsterRegion" instance=ExtResource("2_uqdn7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.2232, 5.35355, 21.508)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185.85953, 5.3535523, -22.379425)
 _maxMonsterCount = 10
-_monsterList = Array[PackedScene]([ExtResource("3_13n8b")])
+_monsterList = Array[PackedScene]([ExtResource("3_uqdn7")])
 _monsterCount = Array[int]([1])
-
-[node name="Range" parent="MonsterRegion/EnemySpawner" index="3"]
-omni_range = 11.2262
 
 [node name="VillageRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.254805, 0, -0.966993, 0, 1, 0, 0.966993, 0, 0.254805, -437.512, -4.30756, -130.386)
@@ -417,121 +387,115 @@ navigation_mesh = SubResource("NavigationMesh_8j60k")
 navigation_layers = 2
 travel_cost = 0.4
 
-[node name="John" parent="." instance=ExtResource("4_fo5ed")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -427.36, 0.0547366, -73.5424)
-script = ExtResource("4_ochwf")
-NPCName = "John"
-InitialDialogue = "Help! Help! Our Village needs help!"
-QuestDialogue = "There is a Cultist Tent right outside of our village, can you go kill the Cultists so they stop attacking us?"
-AcceptedDialogue = "Thank you! Our village is thankful for your bravery."
-IgnoredDialogue = "Do you want our village to be destroyed?"
-WaitingDialogue = "Those Cultists are still out there..."
-DoneDialogue = "Thank you! Our village is safe once again!"
-QuestTitle = "Kill 5 Cultists"
-QuestGoal = "0/5"
-
 [node name="Mary" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
 script = ExtResource("6_atqvy")
 NPCName = "Mary"
-InitialDialogue = "Where's my cat?!"
-QuestDialogue = "I lost my cat Butter! He ran off into the Woods somewhere! Will you go find him for me?"
-AcceptedDialogue = "Oh Thank you!"
-IgnoredDialogue = "Oh no, my poor cat!"
-WaitingDialogue = "Have you found him yet?"
-DoneDialogue = "Oh Thank you so much! Say thank you to the nice hero, Butter!"
-QuestTitle = "Find Mary's cat"
+InitialDialogue = "Taz! Oh Taz where are you?"
+QuestDialogue = Array[String](["Mister! Won't you help an old woman out? I've lost my young and dearest kitty.", "I fear he's lost somewhere in the woods. Would you please find him and bring him back home? "])
+AcceptedDialogue = Array[String](["Oh thank you! Please make sure he comes back safely."])
+IgnoredDialogue = "Oh dear. Maybe he'll come back on his own some day..."
+WaitingDialogue = "Have you found Taz yet?"
+DoneDialogue = Array[String](["Oh thank you mister! Don't ever leave me again Taz. "])
+PostDoneDialogue = "Oh Taz. Don't you ever leave me again!"
+QuestTitle = "Find Mary's cat Taz somewhere in the forest"
 QuestGoal = "0/1"
 
 [node name="Elizabeth" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
 script = ExtResource("7_atqvy")
 NPCName = "Elizabeth"
-InitialDialogue = "Im so Tired"
-QuestDialogue = "My Husband Died protecting us from the cultists, now I'm left to toke care of our son. I'm always so busy and we don't have firewood. Could you go find some for us Please?"
-AcceptedDialogue = "Thank you! Im so grateful!"
-IgnoredDialogue = "Oh ok."
-WaitingDialogue = "Sorry but thats not Enough."
-DoneDialogue = "Thank you so much!"
-QuestTitle = "Get elizabeth some firewood"
-QuestGoal = "0/10"
+InitialDialogue = "It's been getting colder and colder..."
+QuestDialogue = Array[String](["Hey there mister. Our town hasn't been holding up lately after we escaped our old village in the swamp a few months back. ", "It's been getting colder recently and the the town's lumberjacks haven't returned yet with the firewood. ", "Could you go out into the forest and fetch us some? "])
+AcceptedDialogue = Array[String](["Thank you so much mister! Return them to me once you have enough. "])
+IgnoredDialogue = "Oh, that's alright. Maybe the lumberjacks will come back soon. "
+WaitingDialogue = "Still waiting on that firewood once you gather enough."
+DoneDialogue = Array[String](["This is perfect. Thank you kind mister. Take these. They may help you on your journey. "])
+PostDoneDialogue = "Now everyone can keep warm near their fires. "
+QuestTitle = "Gather firewood from the forest for Elizabeth "
+QuestGoal = "0/15"
 
 [node name="Jacob" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
 script = ExtResource("8_w5giw")
 NPCName = "Jacob"
-InitialDialogue = "My apples!"
-QuestDialogue = "I dropped my basket and my apples whent everywhere! can you help me find them all?"
-AcceptedDialogue = "Thanks!"
-IgnoredDialogue = "Oh ok."
-WaitingDialogue = "I don't think thats all of them!"
-DoneDialogue = "Thanks for the help!"
-QuestTitle = "Find Jacobs apples"
-QuestGoal = "0/20"
-
-[node name="Matthew" parent="." instance=ExtResource("4_fo5ed")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
-script = ExtResource("9_jwdyn")
-NPCName = "Matthew"
-InitialDialogue = "my leg hurts."
-QuestDialogue = "I hurt my leg yesterday and I need to take this cake to the house 2 doors down. I cant get there by myself! can you take it for me please?"
-AcceptedDialogue = "oh thank you!"
-IgnoredDialogue = "Fine."
-WaitingDialogue = "the house if just 2 doors down."
-DoneDialogue = "Thank you so much!"
-QuestTitle = "take cake 2 doors down"
-QuestGoal = "0/1"
+InitialDialogue = "These damn rats are everywhere."
+QuestDialogue = Array[String](["Ugh. It's been getting difficult to manage our food due to rats scurring about. ", "You mind disposing of them? I'll give you something worth while. "])
+AcceptedDialogue = Array[String](["I appreciate it. Just use that trusty weapon of yours and it should do the trick. "])
+IgnoredDialogue = "Hm... Maybe I should find another way to deal with them."
+WaitingDialogue = "I think I still hear some rats about. "
+DoneDialogue = Array[String](["Man, you really got every last one. Here, take these. They're better in your hands than mine. "])
+PostDoneDialogue = "Now those rats won't mess with our food. "
+QuestTitle = "Kill the rats scurring about"
+QuestGoal = "0/10"
 
 [node name="Lukas" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -85.2256)
 script = ExtResource("10_t6yt7")
 NPCName = "Lukas"
-InitialDialogue = "Wheres my sheep!"
-QuestDialogue = "A Monster! It took my sheep! All of them! Deep in the forest! Please! Get them Back!"
-AcceptedDialogue = "Thank you!"
-IgnoredDialogue = "Will no one help me?"
-WaitingDialogue = "Have you found them yet?"
-DoneDialogue = "OH My Lord! Thank You! Thank You!"
-QuestTitle = "Find Lukas's sheep"
-QuestGoal = "0/30"
+InitialDialogue = "I know I saw it! Those damn Cultists are making more of them!"
+QuestDialogue = Array[String](["You there sir! Please, hear me out. Those Cultists are up to no good. ", "They've been making more of those shrines all over our land, spreading influence to others.  ", "Please, I beg of you. Destroy those shrines and end their evil guding light!"])
+AcceptedDialogue = Array[String](["Yes! Thank you so much! You should be able to find shrines around the land. I trust you'll destroy them all.  "])
+IgnoredDialogue = "Perhaps someone else will understand... "
+WaitingDialogue = "Keep looking around on your journey and you should find those shrines. "
+DoneDialogue = Array[String](["See! I knew you'd destroy those shrines!"])
+PostDoneDialogue = "Those Cultists won't influence nobody no more!"
+QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
+QuestGoal = "0/5"
 
 [node name="Samual" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -88.9519)
 script = ExtResource("11_al5m0")
 NPCName = "Samual"
-InitialDialogue = "My son."
-QuestDialogue = "Please, My son, He's sick! The doctor can't help him! We heard you can heal the infected! Please help my son!"
-AcceptedDialogue = "Thank you!"
-IgnoredDialogue = "No, My son."
-WaitingDialogue = "Is he ok?"
-DoneDialogue = "Oh Thank you! My son is ok!"
-QuestTitle = "find medicine and Heal Samual's son"
-QuestGoal = "0/2"
+InitialDialogue = "Somebody please! Help my son!"
+QuestDialogue = Array[String](["Mister! Please, my son is ill and needs medicine. I can't go and gather the necessary resources for the medicine and need someone's help. ", "Would you please help a poor soul out and gather what's needed to craft the medicine?"])
+AcceptedDialogue = Array[String](["Oh thank you kind sir! Once you gather the resources, head to the Wizard to craft the medicine. Give it to me once you have it. Please hurry! "])
+IgnoredDialogue = "No. But my son..."
+WaitingDialogue = "Please deliver the medicine to me soon. "
+DoneDialogue = Array[String](["Yes! You made the medicine just in time! I'll give it to my son shortly. Thank you so much sir!"])
+PostDoneDialogue = "Hopefully my son gets better with that medicine. "
+QuestTitle = "Gather resources to craft the medicine "
+QuestGoal = "Bleeding Heart: 0/3, Dead Ooze: 0/3, Seed: 0/3"
 
 [node name="Martha" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -86.1518)
 script = ExtResource("12_6mm6r")
 NPCName = "Martha"
-InitialDialogue = "Stupid darkness, never know when to sleep, and when to work."
-QuestDialogue = "I really hate this damned curse, don't you? y-know the only thing worse, are all the stupid monsters that used to ...be ...hey, if you would, go and kill a few cultists, for me! and they gotta be cultists. Do it with my knife too! I wanna see them cry help to their god for once."
-AcceptedDialogue = "Thanks! lift the curse soon, ok?"
-IgnoredDialogue = "ugh! your no fun. "
-WaitingDialogue = "c-mon you can do it!"
-DoneDialogue = "Thanks! How many of them went running?"
-QuestTitle = "Kill cultsits for Martha"
-QuestGoal = "0/5"
+InitialDialogue = "Those monsters! They took him away! "
+QuestDialogue = Array[String](["Those Cultists and their minions killed my husband. I don't know what to do without him. ", "He was a good man. Please. I'm asking from the bottom of my heart for you to avenge him. Will you?"])
+AcceptedDialogue = Array[String](["Thank you. Oh thank you so much. Deliver justice to those damn creatures of the night. "])
+IgnoredDialogue = "Maybe someone else can help me. "
+WaitingDialogue = "My husband won't be brought to justice until those monsters are dead! "
+DoneDialogue = Array[String](["I believe both him and I can be at peace now. Thank you. "])
+PostDoneDialogue = "Be careful of more creatures on your journey. "
+QuestTitle = "Kill creatures from different biomes to avenge Martha's husband "
+QuestGoal = "Forest: 0/5, Swamp: 0/5, Plains: 0/5"
 
-[node name="Ezekiel" parent="." instance=ExtResource("4_fo5ed")]
+[node name="Finn" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.9955)
 script = ExtResource("13_xcb5n")
-NPCName = "Ezekiel"
-InitialDialogue = "Please someone help me!"
-QuestDialogue = "Those cultists took my wife! I couldn't fight them! I sorry I couldn't.. Please, Please find my wife! Kill as many as you have to, Just get my wife back to me!, Please"
-AcceptedDialogue = "Thank you! so much, Thank you!"
-IgnoredDialogue = "No Please. please."
-WaitingDialogue = "Is she safe? Where is she?"
-DoneDialogue = "Oh Thank you Hero! Thank you! My wife."
-QuestTitle = "Find Ezekiel's wife"
+NPCName = "Finn"
+InitialDialogue = "Hey mister. I've got some valuable information you might want to hear. "
+QuestDialogue = Array[String](["I heard one of the villagers left behind an important tool on that swamp island before coming here. It could be a useful weapon.", "Maybe you should go check it out. "])
+AcceptedDialogue = Array[String](["I trust you'll find it. Good luck. "])
+IgnoredDialogue = "Welp. It could help you further down the road. "
+WaitingDialogue = "I still wonder what that tool could be."
+PostDoneDialogue = "Hey! You found the tool. Good work. "
+QuestTitle = "Find the hidden weapon on the swamp island"
+QuestGoal = "0/1"
+
+[node name="Matthew" parent="." instance=ExtResource("4_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
+script = ExtResource("9_jwdyn")
+NPCName = "Matthew"
+InitialDialogue = "Oh, young man. Please come and speak with me for a moment. "
+QuestDialogue = Array[String](["Young man. Our village has been in a troubling state after we had to evacuate from the swamp island South West of us. It use to be our home before it was corrupted. ", "A terrifying beast was created by the Cultists that plague the island. Please wandering traveller. Will you defeat the creature? (PROGRESS QUEST)  "])
+AcceptedDialogue = Array[String](["Thank you sir. We owe you a great debt if you manage to defeat it.  ", "Head South West of the village and follow a trail to reach the dock. It should have a boat to let you reach the island. Good luck sir. "])
+IgnoredDialogue = "Please reconsider. We truly need your help. "
+WaitingDialogue = "That beast still plauges the island. "
+DoneDialogue = Array[String](["You did it! You managed to defeat the beast! Thank you so much kind sir. The village can begin travelling back to claim back what was lost from us many months ago. ", "That Soul looks important. Keep it close. It may be important to you in your future. ", "Good luck on your journey. I believe you'll see it through to the end."])
+PostDoneDialogue = "The island is free of corruption once more. Thank you. "
+QuestTitle = "Defeat The Hollowed Bark on the swamp island"
 QuestGoal = "0/1"
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
@@ -622,6 +586,16 @@ size = Vector3(20, 4, 0.564453)
 [node name="Apple" parent="." instance=ExtResource("38_r74th")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -465.301, 0.51393, -115.831)
 
-[node name="Enviorment" parent="." instance=ExtResource("53_uqdn7")]
+[node name="HushedTrees" parent="." instance=ExtResource("52_uqdn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -751.4404, 0.7896781, -581.2709)
+
+[node name="Tree1" parent="HushedTrees" instance=ExtResource("53_gwaj6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.039978)
+
+[node name="Tree2" parent="HushedTrees" instance=ExtResource("53_gwaj6")]
+transform = Transform3D(0.48951945, 0, -0.87199235, 0, 1, 0, 0.87199235, 0, 0.48951945, -22.551453, 0, 2.5112305)
+
+[node name="Tree3" parent="HushedTrees" instance=ExtResource("53_gwaj6")]
+transform = Transform3D(-0.024135554, 0, 0.9997087, 0, 1, 0, -0.9997087, 0, -0.024135554, 0.7966919, 0, 12.644531)
 
 [editable path="MonsterRegion/EnemySpawner"]

@@ -120,6 +120,11 @@ public partial class Monster3d : CharacterBody3D
         _body.Visible = true;
     }
 
+    public async void Bleed(float bleedDamage, float bleedLength)
+    {
+        
+    }
+
 
     // --- CORE MONSTER AI LOOP --- //
     // Handles state: chase, attack, wander, despawn
@@ -297,7 +302,7 @@ public partial class Monster3d : CharacterBody3D
         if (Monster is hollowBrute hb) hb.Attack();
         else if (Monster is hollowNormal hn) hn.Attack();
         else if (Monster is hollowShadow hs) hs.Attack();
-        else if (Monster is vCultist vc) vc.Attack();
+        else if (Monster is sCultist sc) sc.Attack();
         else if (Monster is flyingPesk fp) fp.Fly();
         else if (Monster is underBrush ub) ub.Attack();
         else if (Monster is vineTangler vt) vt.Attack();

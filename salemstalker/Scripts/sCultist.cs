@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class vCultist : Monster3d
+public partial class sCultist : Monster3d
 {
     // Called when the node enters the scene tree for the first time.
 
