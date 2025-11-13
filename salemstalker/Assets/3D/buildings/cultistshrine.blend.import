@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://5ptxnyvv6q3c"
-path="res://.godot/imported/treasurechest.blend-0c0c2be2511fc7cb022160ddea51d32c.scn"
+uid="uid://c4rxmfdcn7o6j"
+path="res://.godot/imported/cultistshrine.blend-eae2e682bf64351d438c4cbf67680309.scn"
 
 [deps]
 
-source_file="res://Assets/3D/props/treasurechest.blend"
-dest_files=["res://.godot/imported/treasurechest.blend-0c0c2be2511fc7cb022160ddea51d32c.scn"]
+source_file="res://Assets/3D/buildings/cultistshrine.blend"
+dest_files=["res://.godot/imported/cultistshrine.blend-eae2e682bf64351d438c4cbf67680309.scn"]
 
 [params]
 

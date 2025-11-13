@@ -872,7 +872,14 @@ public partial class Player3d : CharacterBody3D
         {
 			_stamina -= _stamina*0.15f;
         }
-		_knockVelocity = 2f;
+		if (effect == "BarkSpikes")
+        {
+            _knockVelocity = 75f;
+        }
+        else
+        {
+            _knockVelocity = 2f;
+        }
 		if (_blocking == true && _parry == false)
 		{
 			// Regular block: reduce damage, deduct stamina, play block animation
@@ -982,7 +989,23 @@ public partial class Player3d : CharacterBody3D
 		Node3D weaponInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
 		holder.AddChild(weaponInstance);                                             // Add new weapon to holder node
 		weaponInstance.Position = holder.Position;
-		GD.Print("weaponswaped");
+		if (slot == 0)
+		{
+			_eSecWeapon1 = weaponInstance;
+		}
+		else if (slot == 1)
+		{
+			_eSecWeapon2 = weaponInstance;
+		}
+		else if (slot == 2)
+		{
+			_eSecWeapon3 = weaponInstance;
+		}
+		else
+		{
+			_eSecWeapon4 = weaponInstance;
+		}
+		GD.Print("weaponswapped");
     }
 	public async void play_sfx(AudioStreamOggVorbis soundeffect)
 	{
