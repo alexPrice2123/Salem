@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=4 uid="uid://ici31oveud84"]
+[gd_scene load_steps=93 format=4 uid="uid://ici31oveud84"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://bw2fjllusx7kw" path="res://Scenes/enemy_spawner.tscn" id="2_uqdn7"]
@@ -51,6 +51,8 @@
 [ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="35_coyub"]
 [ext_resource type="PackedScene" uid="uid://dqwfbyg6hnvlk" path="res://Scenes/apple.tscn" id="38_r74th"]
 [ext_resource type="Texture2D" uid="uid://m0yvspt7vwje" path="res://Scenes/World/Splatmap_0_0_2.res" id="45_vhf2b"]
+[ext_resource type="PackedScene" uid="uid://ctodbn6m6s5i2" path="res://Scenes/Monsters/Bosses/theHushedBark.tscn" id="52_uqdn7"]
+[ext_resource type="PackedScene" uid="uid://syqvg0yul3mk" path="res://Scenes/Monsters/MonsterAssets/fakeTree.tscn" id="53_gwaj6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_13n8b"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -368,7 +370,7 @@ directional_shadow_max_distance = 1.0
 [node name="Hold" type="Node3D" parent="MonsterHolder/Hold2"]
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.78598, 0.732849, -94.693436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -756.8213, 3.8675098, -585.5236)
 
 [node name="MonsterRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -635.903, -4.39457, -59.4284)
@@ -584,5 +586,17 @@ size = Vector3(20, 4, 0.564453)
 
 [node name="Apple" parent="." instance=ExtResource("38_r74th")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -465.301, 0.51393, -115.831)
+
+[node name="HushedTrees" parent="." instance=ExtResource("52_uqdn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -751.4404, 0.7896781, -581.2709)
+
+[node name="Tree1" parent="HushedTrees" instance=ExtResource("53_gwaj6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.039978)
+
+[node name="Tree2" parent="HushedTrees" instance=ExtResource("53_gwaj6")]
+transform = Transform3D(0.48951945, 0, -0.87199235, 0, 1, 0, 0.87199235, 0, 0.48951945, -22.551453, 0, 2.5112305)
+
+[node name="Tree3" parent="HushedTrees" instance=ExtResource("53_gwaj6")]
+transform = Transform3D(-0.024135554, 0, 0.9997087, 0, 1, 0, -0.9997087, 0, -0.024135554, 0.7966919, 0, 12.644531)
 
 [editable path="MonsterRegion/EnemySpawner"]
