@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="8_c5t2i"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="8_dt0r1"]
 [ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="8_r74th"]
-[ext_resource type="Script" uid="uid://fpbtgg4ofyo" path="res://Scripts/VillagerScripts/DillonVillager.cs" id="8_w5giw"]
+[ext_resource type="Script" path="res://Scripts/VillagerScripts/JacobVillager.cs" id="8_w5giw"]
 [ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="9_04jkj"]
 [ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Scenes/World/Heightmap_0_0.res" id="9_7yui6"]
 [ext_resource type="Script" uid="uid://deqndpcgi731" path="res://Scripts/VillagerScripts/MatthewVillager.cs" id="9_jwdyn"]
@@ -370,7 +370,6 @@ directional_shadow_max_distance = 1.0
 [node name="Hold" type="Node3D" parent="MonsterHolder/Hold2"]
 
 [node name="Player_3d" parent="." instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -756.8213, 3.8675098, -585.5236)
 
 [node name="MonsterRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -635.903, -4.39457, -59.4284)
@@ -416,10 +415,10 @@ PostDoneDialogue = "Now everyone can keep warm near their fires. "
 QuestTitle = "Gather firewood from the forest for Elizabeth "
 QuestGoal = "0/15"
 
-[node name="Dillon" parent="." instance=ExtResource("4_fo5ed")]
+[node name="Jacob" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -460.056, 0.0572574, -87.079)
 script = ExtResource("8_w5giw")
-NPCName = "Dillon"
+NPCName = "Jacob"
 InitialDialogue = "These damn rats are everywhere."
 QuestDialogue = Array[String](["Ugh. It's been getting difficult to manage our food due to rats scurring about. ", "You mind disposing of them? I'll give you something worth while. "])
 AcceptedDialogue = Array[String](["I appreciate it. Just use that trusty weapon of yours and it should do the trick. "])
