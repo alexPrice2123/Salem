@@ -4,12 +4,15 @@
 
 # Godot-specific ignores
 .import/
-*.import
 export.cfg
 export_credentials.cfg
 
 # Imported translations (automatically generated from CSV files)
 *.translation
+
+# Others To Ignore
+*.import
+*.DS_Store
 
 # Mono-specific ignores
 .mono/
