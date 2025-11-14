@@ -5,8 +5,18 @@
 [node name="HushedTrees" type="Node3D"]
 script = ExtResource("1_a6y03")
 
-[node name="PeskTimer" type="Timer" parent="."]
+[node name="TanglerTimer" type="Timer" parent="."]
+wait_time = 60.0
 
 [node name="UnderbrushTimer" type="Timer" parent="."]
+wait_time = 50.0
 
 [node name="WeepingTimer" type="Timer" parent="."]
+wait_time = 15.0
+
+[node name="Range" type="OmniLight3D" parent="."]
+light_energy = 0.0
+
+[connection signal="timeout" from="TanglerTimer" to="." method="_on_tangler_timer_timeout"]
+[connection signal="timeout" from="UnderbrushTimer" to="." method="_on_underbrush_timer_timeout"]
+[connection signal="timeout" from="WeepingTimer" to="." method="_on_weeping_timer_timeout"]

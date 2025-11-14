@@ -10,6 +10,7 @@ public partial class weepingSpine : Monster3d
 	private float _projectileSpeed = 25f;
 	private float _meleeRange = 2f;
 	private float _meleeDamage = 10f;
+	public bool _hushSpawned = false;
 	public override void _Ready()
 	{
         Speed = 0f;             // Movement speed
@@ -23,7 +24,11 @@ public partial class weepingSpine : Monster3d
         Monster = this;
 		Stationery = true;
 		Initialization();
-		 _spawn = GetNode<Node3D>("Spawn");
+		_spawn = GetNode<Node3D>("Spawn");
+		if (_hushSpawned == true)
+        {
+            _damageOffset += BaseDamage*-0.25f;
+        }
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,6 +42,10 @@ public partial class weepingSpine : Monster3d
 			{
 				if (GetParent().GetParent() is DebugHut dh) { dh._shouldSpawn = true; }
 			}
+			if (this.GetParent().GetParent().GetParent().GetParent().GetNode<Node3D>("HushedTrees") is theHushedBark thb && _hushSpawned == true)
+            {
+                thb._weepingCount -= 1;
+            }
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		_distance = (_player.GlobalPosition - GlobalPosition).Length();

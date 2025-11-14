@@ -17,7 +17,7 @@ public partial class fakeTree : Node3D
     {
         if (GetParent<Node3D>() is theHushedBark thb)
         {
-			thb.Damaged(body);
+			thb.Damaged(body, this);
         }
     }
 }

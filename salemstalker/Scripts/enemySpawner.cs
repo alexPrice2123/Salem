@@ -82,8 +82,10 @@ public partial class enemySpawner : Node3D
 			_currenctMonsterCount[monsterIndex] -= 1;
 			PackedScene monsterSelection = _monsterList[monsterIndex];
 			CharacterBody3D monsterInstance = monsterSelection.Instantiate<CharacterBody3D>(); // Create monster instance
+			float _spawnX = _rng.RandfRange(-SpawnRange, SpawnRange);
+			float _spawnZ = _rng.RandfRange(-SpawnRange, SpawnRange);
+			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, FindGroundY(_spawnX, _spawnZ), _spawnZ);                                    // Set monster spawn position
 			_holder.AddChild(monsterInstance);                                             // Add monster to holder node
-			monsterInstance.Position = _spawn.Position + new Vector3(_rng.RandfRange(-SpawnRange, SpawnRange), 0f, _rng.RandfRange(-SpawnRange, SpawnRange));                                    // Set monster spawn position
 			if (monsterInstance is Monster3d monster)
             {
 				monster.RandomRangedPosition();
@@ -107,6 +109,26 @@ public partial class enemySpawner : Node3D
 			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 			SpawnMonster();
 			//GD.Print("Tried to spawn" + _monsterList[monsterIndex] + " but was at max");
+        }
+    }
+
+	private float FindGroundY(float targetX, float targetZ)
+    {
+        var query = new PhysicsRayQueryParameters3D();
+        query.From = new Vector3(targetX, 100.0f, targetZ); 
+        query.To = new Vector3(targetX, -100.0f, targetZ); 
+
+        var spaceState = GetWorld3D().DirectSpaceState;
+        var result = spaceState.IntersectRay(query);
+
+        if (result.Count > 0)
+        {
+            Vector3 collisionPoint = (Vector3)result["position"];
+            return collisionPoint.Y;
+        }
+        else
+        {
+            return 0f;
         }
     }
 

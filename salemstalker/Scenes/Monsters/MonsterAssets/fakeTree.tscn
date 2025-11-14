@@ -2,15 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c0gtclfpd0kby" path="res://Scripts/fakeTree.cs" id="1_subrv"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="2_p2s7p"]
-[ext_resource type="PackedScene" uid="uid://dopp52d46332" path="res://Assets/3D/plants/swamptree2.blend" id="2_p8xk8"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="3_i5fsq"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="4_in1tx"]
 [ext_resource type="PackedScene" uid="uid://iljcylun6obp" path="res://Assets/3D/plants/tree3.blend" id="4_p2s7p"]
 [ext_resource type="PackedScene" uid="uid://ckgxsjfenmaig" path="res://Assets/3D/plants/swampbosstree.blend" id="4_v23y2"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v23y2"]
-albedo_color = Color(0.8111275, 0.8111274, 0.8111274, 1)
-albedo_texture = ExtResource("3_i5fsq")
+[ext_resource type="Texture2D" uid="uid://bufiigut0fj4n" path="res://Assets/2D/TreeFace.png" id="7_in1tx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2s7p"]
 albedo_color = Color(0.5931336, 0.59313357, 0.59313357, 1)
@@ -86,20 +82,35 @@ collision_use_scale = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_j3vkp"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_in1tx"]
+lifetime_randomness = 1.0
+emission_shape_scale = Vector3(10, 1, 10)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+radial_velocity_min = 9.999977
+radial_velocity_max = 19.999977
+radial_velocity_curve = SubResource("CurveTexture_nst8u")
+gravity = Vector3(0, -9.3, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_b1i4m")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2s7p"]
 size = Vector3(3, 7.376, 3)
 
 [node name="Tree" type="Node3D"]
 script = ExtResource("1_subrv")
 
-[node name="FakeTree" parent="." instance=ExtResource("2_p8xk8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6704136, 0)
-
-[node name="Cube" parent="FakeTree" index="0"]
-material_override = SubResource("StandardMaterial3D_v23y2")
-
 [node name="BossTree" parent="." instance=ExtResource("4_v23y2")]
-visible = false
 
 [node name="Cube" parent="BossTree" index="0"]
 material_override = SubResource("StandardMaterial3D_p2s7p")
@@ -133,8 +144,19 @@ collision_base_size = 0.0
 process_material = SubResource("ParticleProcessMaterial_p2s7p")
 draw_pass_1 = SubResource("BoxMesh_j3vkp")
 
+[node name="Charge" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00210285, 0.00185138, 0.00122893)
+material_override = SubResource("StandardMaterial3D_subrv")
+emitting = false
+amount = 250
+randomness = 1.0
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_in1tx")
+draw_pass_1 = SubResource("BoxMesh_j3vkp")
+
 [node name="Hurtbox" type="Area3D" parent="." groups=["Monster"]]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.053811, 0)
+visible = false
 collision_layer = 1024
 collision_mask = 1024
 input_ray_pickable = false
@@ -144,9 +166,15 @@ transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0,
 shape = SubResource("BoxShape3D_p2s7p")
 debug_color = Color(0.541872, 0.406451, 1, 0.42)
 
+[node name="Face" type="Decal" parent="."]
+transform = Transform3D(1, -4.371139e-08, 4.3711392e-08, 5.971087e-08, 0.49999988, -0.8660254, 1.5999483e-08, 0.8660254, 0.49999988, 0.04875227, 3.060825, 0.08938074)
+visible = false
+size = Vector3(2, 2.9858398, 2)
+texture_albedo = ExtResource("7_in1tx")
+modulate = Color(0, 0, 0, 1)
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 
-[editable path="FakeTree"]
 [editable path="BossTree"]
 [editable path="HitFX"]
 [editable path="Spikes"]

@@ -9,6 +9,7 @@ public partial class vineTangler : Monster3d
 	private Node3D _spawn;
 	private PackedScene _undergroundVine = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/vineUnderground.tscn");
 	public bool _hasVine = false;
+	private Node _holder;
 	public override void _Ready()
 	{
 		Speed = 4.6f;             // Movement speed
@@ -24,6 +25,7 @@ public partial class vineTangler : Monster3d
 		Initialization();
 
 		_spawn = GetNode<Node3D>("Spawn");
+		_holder = _player.GetParent();	
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -82,8 +84,8 @@ public partial class vineTangler : Monster3d
 		_hasVine = true;
 		await ToSignal(GetTree().CreateTimer(1.5), "timeout");
 		CharacterBody3D projectileInstance = _undergroundVine.Instantiate<CharacterBody3D>(); // Create monster instance
-        _player.GetParent().AddChild(projectileInstance);                                             // Add monster to holder node
-		projectileInstance.GlobalPosition = _spawn.GlobalPosition;
+        projectileInstance.GlobalPosition = _spawn.GlobalPosition;
+		_holder.AddChild(projectileInstance);                                             // Add monster to holder node
 		if (projectileInstance is vineUnderground vu)
         {
 			vu._player = _player;
