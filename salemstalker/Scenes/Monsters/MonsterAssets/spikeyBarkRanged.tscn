@@ -1,0 +1,118 @@
+[gd_scene load_steps=19 format=3 uid="uid://35dhawcm08kd"]
+
+[ext_resource type="Script" uid="uid://dgo2vsehawmyg" path="res://Scripts/spikeyBark.cs" id="1_k5553"]
+[ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="2_k5553"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_sldph"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2uev4"]
+albedo_texture = ExtResource("2_sldph")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ui1ly"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui1ly"]
+render_priority = 0
+shader = ExtResource("2_k5553")
+shader_parameter/Color = Color(0.38431373, 0.25882354, 0.24705882, 1)
+shader_parameter/glow_color = Color(0, 0, 0, 1)
+shader_parameter/dist = 2.0
+shader_parameter/speed = 3.0
+shader_parameter/glow_intensity = 0.0
+shader_parameter/glow_amount = 0.0
+shader_parameter/posMult = 2.0
+shader_parameter/noise = SubResource("NoiseTexture2D_xdlj8")
+
+[sub_resource type="Curve" id="Curve_r3x0a"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_im0l4"]
+curve = SubResource("Curve_r3x0a")
+
+[sub_resource type="Curve" id="Curve_gn4ky"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_c1cqh"]
+curve = SubResource("Curve_gn4ky")
+
+[sub_resource type="Curve" id="Curve_s3w5g"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ag22c"]
+curve = SubResource("Curve_s3w5g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ui1ly"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.31
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+orbit_velocity_curve = SubResource("CurveTexture_im0l4")
+radial_velocity_curve = SubResource("CurveTexture_c1cqh")
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_ag22c")
+
+[sub_resource type="BoxMesh" id="BoxMesh_k5553"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6l8s8"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.31
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.1
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_ag22c")
+
+[sub_resource type="BoxMesh" id="BoxMesh_sldph"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cp2bc"]
+radius = 0.140609
+
+[node name="Bark" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_k5553")
+
+[node name="Orb" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.1066851e-08, 0, -0.09214627, 0, 0.02830427, 0, 0.25318006, 0, -4.027841e-09, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2uev4")
+mesh = SubResource("BoxMesh_ui1ly")
+
+[node name="Magic" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.218391, 0.0843511, 0.356691, 0.0122694, 0.413292, -0.105249, -0.366323, 0.0641303, 0.209123, -0.00792608, -0.000746069, 0.00536308)
+material_override = SubResource("ShaderMaterial_ui1ly")
+amount = 10
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_ui1ly")
+draw_pass_1 = SubResource("BoxMesh_k5553")
+
+[node name="Boom" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.509754, 0.196887, 0.832565, 0.0286384, 0.96468, -0.245665, -0.855048, 0.149689, 0.488123, 0.00547312, -0.0699652, 0.617419)
+material_override = SubResource("ShaderMaterial_ui1ly")
+emitting = false
+amount = 100
+lifetime = 15.0
+one_shot = true
+speed_scale = 64.0
+process_material = SubResource("ParticleProcessMaterial_6l8s8")
+draw_pass_1 = SubResource("BoxMesh_sldph")
+
+[node name="Attackbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attackbox"]
+shape = SubResource("SphereShape3D_cp2bc")
+
+[connection signal="area_entered" from="Attackbox" to="." method="_on_attackbox_area_entered"]

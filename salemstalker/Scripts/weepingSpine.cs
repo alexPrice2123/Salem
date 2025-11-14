@@ -35,6 +35,13 @@ public partial class weepingSpine : Monster3d
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
+		if (this.GetParent().GetParent().GetParent().GetParent().GetNode<Node3D>("HushedTrees") is theHushedBark thb1 && _hushSpawned == true)
+		{
+			if (thb1._dead == true)
+            {
+                _health = 0;
+            }
+		}
 		if (_health <= 0)
 		{
 			_player.MonsterKilled("weepingSpine");

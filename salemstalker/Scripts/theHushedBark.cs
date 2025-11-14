@@ -12,17 +12,22 @@ public partial class theHushedBark : Node3D
 	private Node3D _hitFX;
 	private Node3D _body;
 	private int _maxTrees = 3;
-	private const float MaxHealth = 175f;
-	private float _health = 175f;
+	private const float MaxHealth = 200f;
+	private float _health = 200f;
 	private float _distance;
 	private bool _teleporting = false;
-	private float _spikeDamage = 0 * 35f;
+	private float _spikeDamage = 35f;
+	private float _barkDamage = 25f;
 	private Node3D _holder;
 	private float SpawnRange;
 	private PackedScene _vineTangler = GD.Load<PackedScene>("res://Scenes/Monsters/vineTangler.tscn");
 	private PackedScene _underBrush = GD.Load<PackedScene>("res://Scenes/Monsters/underBrush.tscn");
 	private PackedScene _weepingSpine = GD.Load<PackedScene>("res://Scenes/Monsters/weepingSpine.tscn");
+	private PackedScene _spikedBarkScene = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/spikeyBarkRanged.tscn");
 	public int _weepingCount = 0;
+	private float _barkCount = 5f;
+	private int _maxWeepings = 5;
+	public bool _dead = false;
 	public override void _Ready()
     {
 		_rng.Randomize();
@@ -45,10 +50,24 @@ public partial class theHushedBark : Node3D
 	public override void _Process(double delta)
     {
         _distance = (_player.GlobalPosition - _targetTree.GlobalPosition).Length();
+		_barkCount -= (float)delta;
+		if (_barkCount <= 0f)
+        {
+            _barkCount = 5f;
+			if (_health <= MaxHealth / 2)
+            {
+                ShootBark();
+            }
+        }
+		if (_dead == false && _health <= 0)
+        {
+			Death();
+        }
     }
 
 	public async void Damaged(Area3D body, Node3D tree)
 	{
+		if (_dead == true){return;}
 		if (body.IsInGroup("Weapon") && _canBeHit)
 		{
 			// Quick visual hit reaction
@@ -83,11 +102,13 @@ public partial class theHushedBark : Node3D
 
 	private async void DamageCooldown()
     {
-       await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
+		if (_dead == true){return;}
+       	await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
 		_canBeHit = true; 
     }
 	private async void DefensiveAttack(Node3D tree)
 	{
+		if (_dead == true){return;}
 		if (tree == _targetTree)
 		{
 			if (_health > MaxHealth / 2)
@@ -107,6 +128,7 @@ public partial class theHushedBark : Node3D
 				await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
 				_canBeHit = true;
 				await ToSignal(GetTree().CreateTimer(0.75f), "timeout");
+				if (_dead == true){return;}
 				_targetTree.GetNode<GpuParticles3D>("Charge").Emitting = false;
 				_targetTree.GetNode<AnimationPlayer>("AnimationPlayer").Play("Spikes");
 				_targetTree.GetNode<GpuParticles3D>("Attack").Emitting = true;
@@ -133,6 +155,7 @@ public partial class theHushedBark : Node3D
 
 	private void SelectNewTree()
 	{
+		if (_dead == true){return;}
 		string rngNumber = _rng.RandiRange(1, _maxTrees).ToString();
 		if ("Tree" + rngNumber == _targetTree.Name)
 		{
@@ -156,17 +179,26 @@ public partial class theHushedBark : Node3D
 
 	private void _on_tangler_timer_timeout()
 	{
-		SpawnMonster(_vineTangler);
+		if (_dead == true){return;}
+		if (_health > MaxHealth / 2)
+        {
+			SpawnMonster(_vineTangler);
+        }
 	}
 
 	private void _on_underbrush_timer_timeout()
 	{
-		SpawnMonster(_underBrush);
+		if (_dead == true){return;}
+		if (_health > MaxHealth / 2)
+        {
+			SpawnMonster(_underBrush);
+        }
 	}
 	
 	private void _on_weeping_timer_timeout()
     {
-		if (_weepingCount < 5)
+		if (_dead == true){return;}
+		if (_weepingCount < _maxWeepings)
         {
            SpawnMonster(_weepingSpine); 
 		   _weepingCount += 1;
@@ -208,5 +240,32 @@ public partial class theHushedBark : Node3D
         {
             return 0f;
         }
+    }
+
+	private void ShootBark()
+    {
+		if (_dead == true){return;}
+		_maxWeepings = 3;
+        RigidBody3D projectileInstance = _spikedBarkScene.Instantiate<RigidBody3D>(); // Create monster instance
+        projectileInstance.GlobalPosition = _targetTree.GetNode<Node3D>("Spawn").GlobalPosition;
+		_player.GetParent().AddChild(projectileInstance);                                             // Add monster to holder node
+        if (projectileInstance is spikeyBark sb)
+        {
+            sb._playerOrb = _player;
+            sb._damageOrb = _barkDamage;
+            sb.Shoot(25f);
+        }
+    }
+
+	private async void Death()
+    {
+        _dead = true;
+		_targetTree.GetNode<GpuParticles3D>("Charge").Emitting = false;
+		_targetTree.GetNode<GpuParticles3D>("Death").Emitting = true;
+		_targetTree.GetNode<Decal>("Face").Visible = false;
+		await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
+		_targetTree.GetNode<GpuParticles3D>("Attack").Emitting = true;
+		await ToSignal(GetTree().CreateTimer(0.25f), "timeout");		
+		_targetTree.GetNode<GpuParticles3D>("Death2").Emitting = true;
     }
 }
