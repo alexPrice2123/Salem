@@ -21,7 +21,6 @@ window/size/viewport_width=1079
 window/size/viewport_height=606
 window/size/mode=3
 window/stretch/mode="viewport"
-window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -38,6 +37,9 @@ Player=""
 Interactable=""
 Weapon=""
 PlayerProj=""
+Plains=""
+Swamp=""
+"Brittlebay Village"=""
 
 [input]
 

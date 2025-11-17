@@ -54,7 +54,7 @@ public partial class flyingPesk : Monster3d
         }
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("flyingPesk");
+			_player.MonsterKilled("flyingPesk", Biome);
 			if (Debug == true)
             {
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }

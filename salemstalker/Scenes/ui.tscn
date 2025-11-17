@@ -1,18 +1,18 @@
-[gd_scene load_steps=35 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=37 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
-[ext_resource type="Shader" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
+[ext_resource type="Shader" uid="uid://cdhocti5ssful" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
 [ext_resource type="PackedScene" uid="uid://dufmkp4txcmvx" path="res://Scenes/inv_world.tscn" id="3_nf4gj"]
 [ext_resource type="Shader" uid="uid://2qgp3gkiyw40" path="res://Shaders/ui.gdshader" id="3_q7pk6"]
-[ext_resource type="Shader" path="res://Shaders/border.gdshader" id="4_4vbiv"]
+[ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
-[ext_resource type="Shader" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
+[ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
 
@@ -96,6 +96,18 @@ outline_color = Color(0, 0, 0, 1)
 line_spacing = 3.08
 font_size = 25
 font_color = Color(1, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fcexb"]
+line_spacing = 3.08
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d42i4"]
+line_spacing = 3.08
+font_size = 25
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -231,7 +243,7 @@ grow_vertical = 2
 scale = Vector2(0.998655, 0.994391)
 
 [node name="Sense" type="HSlider" parent="PauseMenu"]
-layout_mode = 2
+layout_mode = 0
 anchor_left = 0.437
 anchor_top = 0.778
 anchor_right = 0.569
@@ -307,6 +319,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "Quit"
 
 [node name="Inv" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -326,7 +339,7 @@ offset_bottom = -0.296082
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1080, 605)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="longsword" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 37.0
@@ -525,6 +538,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DescriptionHeader" type="Label" parent="Quest"]
+visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -564,6 +578,37 @@ offset_bottom = 278.536
 theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "In Combat"
 label_settings = SubResource("LabelSettings_qdvrb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FPS" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.002
+anchor_bottom = 0.995
+offset_left = -514.0
+offset_top = 278.0
+offset_right = -515.3041
+offset_bottom = 278.536
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "FPS"
+label_settings = SubResource("LabelSettings_fcexb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.002
+anchor_bottom = 0.995
+offset_left = -3.0
+offset_top = -250.0
+offset_right = -4.304077
+offset_bottom = -249.46405
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Village"
+label_settings = SubResource("LabelSettings_d42i4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -626,7 +671,7 @@ offset_right = 742.0
 offset_bottom = -101.0
 
 [node name="QuestTemplate" type="VBoxContainer" parent="Container"]
-layout_mode = 2
+layout_mode = 0
 offset_top = 84.0
 offset_right = 295.0
 offset_bottom = 181.0
@@ -640,7 +685,7 @@ text = "Quest"
 label_settings = SubResource("LabelSettings_jxero")
 
 [node name="QuestButton" type="Button" parent="Container/QuestTemplate/Quest"]
-layout_mode = 2
+layout_mode = 0
 offset_top = 12.685
 offset_right = 295.0
 offset_bottom = 112.685

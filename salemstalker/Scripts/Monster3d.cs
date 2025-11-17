@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.IO;
+using System.Linq;
 
 public partial class Monster3d : CharacterBody3D
 {
@@ -56,6 +58,7 @@ public partial class Monster3d : CharacterBody3D
     protected float _veloThreshold = -5f;       // The velocity threshold that ranged monsters have to get to, to stop and attack
     protected bool _dashAnim = false;           // Should the dash anim be playing
 
+
     // --- READY --- //
     public void Initialization()
     {
@@ -76,6 +79,7 @@ public partial class Monster3d : CharacterBody3D
         _attackBox = GetNode<CollisionShape3D>("Attackbox/CollisionShape3D");
         _health = MaxHealth;
         _lookDirection = GetNode<Node3D>("Direction");
+
     }
 
 
@@ -366,4 +370,6 @@ public partial class Monster3d : CharacterBody3D
         _knockbackVelocity = knockbackDir * _player._knockbackStrength;
         _knockbackVelocity.Y = 0f;
     }
+
+
 }

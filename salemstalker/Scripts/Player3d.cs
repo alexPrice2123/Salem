@@ -92,6 +92,13 @@ public partial class Player3d : CharacterBody3D
 	public float _hallucinationFactor = 0f;
 	public float _speedOffset = 0f;
 	public float _speedCount = 0f;
+	public string _currentBiome = "Village";
+	public string _lastBiome = "Village";
+
+	public int _swampMonstersKilled = 0;
+	public int _plainsMonstersKilled = 0;
+	public int _forestMonstersKilled = 0;
+	public int _shrinesDestroyed = 0;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -381,6 +388,32 @@ public partial class Player3d : CharacterBody3D
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_currentBiome != _lastBiome)
+        {
+            _lastBiome = _currentBiome;
+			GetNode<Ui>("UI")._areaNameTween = 3;
+        }
+
+		_currentBiome = "Forest";
+
+		Godot.Collections.Array<Area3D> overlappingAreas = GetNode<Area3D>("Hurtbox").GetOverlappingAreas();
+		if (overlappingAreas.Count > 0)
+        {
+            Godot.Collections.Array<Godot.StringName> group = overlappingAreas[0].GetGroups();
+			if (group.Count > 0)
+            {
+				if ((string)group[0] == "Plains" || (string)group[0] == "Brittlebay Village" || (string)group[0] == "Swamp")
+				{
+					_currentBiome = (string)group[0];
+				} 
+            }
+        }
+
+		if (_currentBiome == "Brittlebay Village")
+        {
+            _health = _maxHealth;
+			_stamina = _maxStamina;
+        }
 		Vector3 velocity = Velocity; // Get the current velocity vector
 
 		ShaderMaterial shaderMaterial = GetNode<ColorRect>("UI/Dither").Material as ShaderMaterial;
@@ -456,11 +489,12 @@ public partial class Player3d : CharacterBody3D
 			}
 		}
 
-		// --- Quest Update (Find Bob's Apple) ---
-		if (_hasApple == true && _questBox.FindChild("Find Bob's Apple") != null)
+		if (_questBox.FindChild("Destroy the Cultist's shrines found around Brittlebay village") != null)
 		{
-			// Update quest display text to "1/1"
-			(_questBox.GetNode("Find Bob's Apple/Number") as Label).Text = "1/1";
+			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Destroy the Cultist's shrines found around Brittlebay village");
+			// Update the quest objective text
+			if (_shrinesDestroyed >= 5) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			else { (currentQuest.GetNode("Number") as Label).Text = _shrinesDestroyed+"/5"; }
 		}
 
 		// [Inventory Camera Transition - Commented Out]
@@ -516,7 +550,10 @@ public partial class Player3d : CharacterBody3D
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
 			velocity = velocity.Lerp(_cam.GlobalTransform.Basis.Z * -1 * (_dashVelocity - _knockVelocity), (float)delta * 10f);
-			velocity = new Vector3(velocity.X, 0f, velocity.Z); // Keep Y velocity (gravity/jump) separate
+			if (IsOnFloor())
+            {
+                velocity = new Vector3(velocity.X, 0f, velocity.Z); // Keep Y velocity (gravity/jump) separate
+            }
 		}
 
 		// --- Dash & Knockback Decay and Head Offset ---
@@ -809,14 +846,20 @@ public partial class Player3d : CharacterBody3D
 	}
 
 	// Updates the monster kill count, and updates the quest UI.
-	public void MonsterKilled(string MonsterType)
+	public void MonsterKilled(string MonsterType, string MonsterBiome)
 	{
 		_monstersKilled += 1;
-		if (_questBox.FindChild("Kill 5 Cultists") != null)
+		if (MonsterBiome == "Swamp"){_swampMonstersKilled += 1;}
+		else if (MonsterBiome == "Plains"){_plainsMonstersKilled += 1;}
+		else if (MonsterBiome == "Forest"){_forestMonstersKilled += 1;}
+		if (_questBox.FindChild("Kill creatures from different biomes to avenge Martha's husband") != null)
 		{
+			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Kill creatures from different biomes to avenge Martha's husband");
 			// Update the quest objective text
-			if (_monstersKilled >= 5) { (_questBox.GetNode("Kill 5 Cultists/Number") as Label).Text = "Complete!"; }
-			else { (_questBox.GetNode("Kill 5 Cultists/Number") as Label).Text = _monstersKilled + "/5"; }
+			if (_swampMonstersKilled >= 5 && _plainsMonstersKilled >=5 && _forestMonstersKilled >= 5) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			else { (currentQuest.GetNode("Number") as Label).Text = "Forest: "+_forestMonstersKilled + "/5 \n"
+			+"Swamp: "+_swampMonstersKilled+ "/5 \n"
+			+"Plains: "+_plainsMonstersKilled+ "/5 \n"; }
 		}
 	}
 
@@ -843,7 +886,7 @@ public partial class Player3d : CharacterBody3D
 		questText.Owner = _questBox; // Set owner for proper scene cleanup/handling
 		questText.Name = QuestTitle;
 		questText.GetNode<Label>("Quest").Text = QuestTitle;
-		questText.GetNode<Label>("Number").Text = QuestGoal;
+		questText.GetNode<Label>("Number").Text = QuestGoal.Replace(", ", "\n");
 	}
 
 	// Calls the Accepted/Ignored/Continue methods on the currently referenced NpcVillager.

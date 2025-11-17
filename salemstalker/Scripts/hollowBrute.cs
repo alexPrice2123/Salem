@@ -36,7 +36,7 @@ public partial class hollowBrute : Monster3d
 		}
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("hollowBrute");
+			_player.MonsterKilled("hollowBrute", Biome);
 			if (Debug == true)
             {
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
