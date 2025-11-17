@@ -84,8 +84,8 @@ public partial class enemySpawner : Node3D
 			CharacterBody3D monsterInstance = monsterSelection.Instantiate<CharacterBody3D>(); // Create monster instance
 			float _spawnX = _rng.RandfRange(-SpawnRange, SpawnRange);
 			float _spawnZ = _rng.RandfRange(-SpawnRange, SpawnRange);
-			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, FindGroundY(_spawnX, _spawnZ), _spawnZ);                                    // Set monster spawn position
 			_holder.AddChild(monsterInstance);                                             // Add monster to holder node
+			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, FindGroundY(_spawnX, _spawnZ), _spawnZ);                                    // Set monster spawn position
 			if (monsterInstance is Monster3d monster)
             {
 				monster.RandomRangedPosition();

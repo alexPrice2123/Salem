@@ -14,6 +14,8 @@ public partial class CultistHut : Node3D
 	private Player3d _player;                  // Reference to the player node
 	private Node3D _holder;                    // Node that holds all spawned monsters as children
 	private RandomNumberGenerator _rng = new RandomNumberGenerator();
+	[Export(PropertyHint.Enum, "Plains,Swamp,Forest")]
+	public string _biome = "Plains";
 	[Export]
 	public float _spawnTime = 6f;
 	[Export]
@@ -33,7 +35,7 @@ public partial class CultistHut : Node3D
 	{
 		_spawn = GetNode<CsgBox3D>("Spawn");             // Get the spawn point node
 		_countdown = GetNode<Timer>("SpawnTime");        // Get the timer node
-		_countdown.WaitTime = _spawnTime;
+		_countdown.WaitTime = _spawnTime + _rng.RandfRange(-1,1);
 		_countdown.Start();                              // Start the spawn timer
 		_currenctMonsterCount = _monsterCount;
 
@@ -46,6 +48,7 @@ public partial class CultistHut : Node3D
 	private void _on_spawn_time_timeout()
 	{
 		SpawnMonster();
+		_countdown.WaitTime = _spawnTime + _rng.RandfRange(-1,1);
 	}
 	
 	private async void SpawnMonster()
@@ -86,6 +89,7 @@ public partial class CultistHut : Node3D
 			if (monsterInstance is Monster3d monster)
             {
                 monster.RandomRangedPosition();
+				monster.Biome = _biome;
             }
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();
@@ -103,6 +107,10 @@ public partial class CultistHut : Node3D
 	// --- PROCESS LOOP ---
 	public override void _Process(double delta)
 	{
-		//
+		if (_holder.GetChildCount() <= 0 && _number >= _maxMonsterCount)
+        {
+            _player._shrinesDestroyed += 1;
+			QueueFree();
+        }
 	}
 }

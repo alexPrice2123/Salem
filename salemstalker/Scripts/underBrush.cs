@@ -31,7 +31,7 @@ public partial class underBrush : Monster3d
 		EveryFrame(delta);
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("underBrush");
+			_player.MonsterKilled("underBrush", Biome);
 			if (Debug == true)
 			{
 				if (GetParent().GetParent() is DebugHut dh) { dh._shouldSpawn = true; }

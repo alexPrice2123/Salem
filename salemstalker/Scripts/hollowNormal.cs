@@ -28,7 +28,7 @@ public partial class hollowNormal : Monster3d
 		EveryFrame(delta);
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("hollowNormal");
+			_player.MonsterKilled("hollowNormal", Biome);
 			if (Debug == true)
             {
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }

@@ -179,7 +179,7 @@ public partial class theHushedBark : Node3D
 
 	private void _on_tangler_timer_timeout()
 	{
-		if (_dead == true){return;}
+		if (_dead == true || _distance > 50f){return;}
 		if (_health > MaxHealth / 2)
         {
 			SpawnMonster(_vineTangler);
@@ -188,7 +188,7 @@ public partial class theHushedBark : Node3D
 
 	private void _on_underbrush_timer_timeout()
 	{
-		if (_dead == true){return;}
+		if (_dead == true || _distance > 50f){return;}
 		if (_health > MaxHealth / 2)
         {
 			SpawnMonster(_underBrush);
@@ -197,7 +197,7 @@ public partial class theHushedBark : Node3D
 	
 	private void _on_weeping_timer_timeout()
     {
-		if (_dead == true){return;}
+		if (_dead == true || _distance > 50f){return;}
 		if (_weepingCount < _maxWeepings)
         {
            SpawnMonster(_weepingSpine); 
@@ -209,8 +209,9 @@ public partial class theHushedBark : Node3D
 		CharacterBody3D monsterInstance = spawnedMonster.Instantiate<CharacterBody3D>(); // Create monster instance                                           // Add monster to holder node
 		float _spawnX = _rng.RandfRange(-SpawnRange, SpawnRange);
 		float _spawnZ = _rng.RandfRange(-SpawnRange, SpawnRange);
-		monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, FindGroundY(_spawnX, _spawnZ), _spawnZ);                                    // Set monster spawn position
 		_holder.AddChild(monsterInstance);  
+		monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, FindGroundY(_spawnX, _spawnZ), _spawnZ);                                    // Set monster spawn position
+
 		if (monsterInstance is Monster3d monster)
 		{
 			monster.RandomRangedPosition();

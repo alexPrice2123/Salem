@@ -79,7 +79,7 @@ public partial class sCultist : Monster3d
         }
         if (_health <= 0)
         {
-            _player.MonsterKilled("vCultist");
+            _player.MonsterKilled("sCultist", Biome);
             if (Debug == true)
             {
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }

@@ -20,6 +20,8 @@ public partial class Ui : Control
 	private Button _shopOption3;
 	private Button _shopOption4;
 	private string _shopSelection = "Shortsword";
+	private Label _areaName;
+	public float _areaNameTween = 0f;
 	public override void _Ready()
 	{
 
@@ -36,11 +38,20 @@ public partial class Ui : Control
 		_shopOption4 = GetNode<Button>("BlacksmithShop/ShopOption4");
 		_loadingUI.Visible = true;
 		_loadingMaterial = _loadingUI.Material as ShaderMaterial;
+		_areaName = GetNode<Label>("Area");
 		Load();
 	}
 
 	public override void _Process(double delta)
 	{
+		Color newTransparency = _areaName.Modulate;
+		newTransparency.A = Mathf.Lerp(_areaName.Modulate.A, _areaNameTween, (float)delta);
+		_areaName.Modulate = newTransparency;
+		_areaName.Text = _player._currentBiome;
+		GetNode<Label>("FPS").Text = Engine.GetFramesPerSecond().ToString();
+
+		_areaNameTween = Mathf.Lerp(_areaNameTween, 0f, (float)delta);
+
 		// Switch the titles of the buttons based on what shopOption you have selected
 		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
 		{

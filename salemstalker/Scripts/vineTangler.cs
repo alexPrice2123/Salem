@@ -34,7 +34,7 @@ public partial class vineTangler : Monster3d
 		EveryFrame(delta);
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("vineTangler");
+			_player.MonsterKilled("vineTangler", Biome);
 			if (Debug == true)
             {
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }

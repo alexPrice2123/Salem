@@ -44,7 +44,7 @@ public partial class weepingSpine : Monster3d
 		}
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("weepingSpine");
+			_player.MonsterKilled("weepingSpine", Biome);
 			if (Debug == true)
 			{
 				if (GetParent().GetParent() is DebugHut dh) { dh._shouldSpawn = true; }
