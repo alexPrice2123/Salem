@@ -40,7 +40,7 @@ public partial class Player3d : CharacterBody3D
 	private PackedScene _longsword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/longsword.tscn"); // Pre-load falchion scene resource
 	private PackedScene _flintGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Flintlock.tscn"); // Pre-load Flintlock scene resource
 	private PackedScene _stakeGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/stake_gun.tscn"); // Pre-load Stake Gun scene resource
-	private Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
+	public Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 	private Dictionary<string, PackedScene> _secWeapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
 	// --- VARIABLES ---
@@ -99,6 +99,7 @@ public partial class Player3d : CharacterBody3D
 	public int _plainsMonstersKilled = 0;
 	public int _forestMonstersKilled = 0;
 	public int _shrinesDestroyed = 0;
+	public int _ratsKilled = 0;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -860,6 +861,13 @@ public partial class Player3d : CharacterBody3D
 			else { (currentQuest.GetNode("Number") as Label).Text = "Forest: "+_forestMonstersKilled + "/5 \n"
 			+"Swamp: "+_swampMonstersKilled+ "/5 \n"
 			+"Plains: "+_plainsMonstersKilled+ "/5 \n"; }
+		}
+		else if (_questBox.FindChild("Find and kill rats around the Village") != null)
+		{
+			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Find and kill rats around the Village");
+			// Update the quest objective text
+			if (_ratsKilled >= 10) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			else { (currentQuest.GetNode("Number") as Label).Text = _ratsKilled+"/10"; }
 		}
 	}
 

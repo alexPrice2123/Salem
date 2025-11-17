@@ -21,12 +21,12 @@
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="8_dt0r1"]
 [ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="8_r74th"]
 [ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="9_04jkj"]
-[ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Scenes/World/Heightmap_0_0.res" id="9_7yui6"]
+[ext_resource type="Texture2D" uid="uid://uclbj7fkgund" path="res://Assets/2D/World/Heightmap_0_0.res" id="9_7yui6"]
 [ext_resource type="Script" uid="uid://deqndpcgi731" path="res://Scripts/VillagerScripts/MatthewVillager.cs" id="9_jwdyn"]
 [ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="9_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://chu6uwfbaqyat" path="res://Assets/2D/sand.png" id="9_qebug"]
 [ext_resource type="Texture2D" uid="uid://bdg05x8m3uscr" path="res://Assets/2D/shallowocean.png" id="10_3ua1v"]
-[ext_resource type="Texture2D" uid="uid://brgdqertk6qk0" path="res://Scenes/World/Splatmap_0_0_0.res" id="10_c5t2i"]
+[ext_resource type="Texture2D" uid="uid://brgdqertk6qk0" path="res://Assets/2D/World/Splatmap_0_0_0.res" id="10_c5t2i"]
 [ext_resource type="Script" uid="uid://d33x21vao7tj2" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="10_hgpy0"]
 [ext_resource type="Script" uid="uid://1j4tnfmggee4" path="res://Scripts/VillagerScripts/LukasVillager.cs" id="10_t6yt7"]
 [ext_resource type="Texture2D" uid="uid://duyqji6d5wl4n" path="res://Assets/3D/plants/bush_goodtreebkgdless_kat_px.png" id="10_yq1aw"]
@@ -36,27 +36,27 @@
 [ext_resource type="Script" uid="uid://brv6v4lm6cph8" path="res://Scripts/VillagerScripts/MarthaVillager.cs" id="12_6mm6r"]
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="12_kn0ld"]
 [ext_resource type="Texture2D" uid="uid://d0u1esu3iuflj" path="res://Assets/2D/deepocean.png" id="12_opbav"]
-[ext_resource type="Texture2D" uid="uid://dw2dxasfcx3dn" path="res://Scenes/World/Foliage_0_0_0.res" id="12_t2t4p"]
+[ext_resource type="Texture2D" uid="uid://dw2dxasfcx3dn" path="res://Assets/2D/World/Foliage_0_0_0.res" id="12_t2t4p"]
 [ext_resource type="Script" uid="uid://cd1hk520uuwo4" path="res://Scripts/VillagerScripts/FinnVillager.cs" id="13_xcb5n"]
 [ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="14_1cojt"]
 [ext_resource type="Texture2D" uid="uid://canhbg83j2nyd" path="res://Assets/3D/plants/grass_graass.png" id="14_no8kt"]
 [ext_resource type="PackedScene" uid="uid://blt7o2y8rc0lv" path="res://Assets/3D/plants/tree.blend" id="16_pt3ps"]
 [ext_resource type="Script" uid="uid://cgf61yxk46wa4" path="res://addons/terrabrush/Scripts/EditorResources/ObjectDefinitionResource.cs" id="17_hmc15"]
-[ext_resource type="Texture2D" uid="uid://dhiq8g2oi7i8y" path="res://Scenes/World/Foliage_0_0_1.res" id="17_pyn1s"]
-[ext_resource type="Texture2D" uid="uid://bmgn0uf61ja1u" path="res://Scenes/World/Water_0_0.res" id="18_1cojt"]
+[ext_resource type="Texture2D" uid="uid://dhiq8g2oi7i8y" path="res://Assets/2D/World/Foliage_0_0_1.res" id="17_pyn1s"]
+[ext_resource type="Texture2D" uid="uid://bmgn0uf61ja1u" path="res://Assets/2D/World/Water_0_0.res" id="18_1cojt"]
 [ext_resource type="Script" uid="uid://comabiqrwe5u0" path="res://addons/terrabrush/Scripts/EditorResources/ObjectResource.cs" id="18_dt0r1"]
 [ext_resource type="Texture2D" uid="uid://cck8lij4e7ufy" path="res://Assets/2D/grass_graass.png" id="20_r74th"]
-[ext_resource type="Texture2D" uid="uid://cssdsrd3rajc1" path="res://Scenes/World/Object_0_0_0.res" id="23_hmc15"]
+[ext_resource type="Texture2D" uid="uid://cssdsrd3rajc1" path="res://Assets/2D/World/Object_0_0_0.res" id="23_hmc15"]
 [ext_resource type="Texture2D" uid="uid://c2oao6p84hbwj" path="res://Assets/2D/swamp_dirt.png" id="24_13n8b"]
 [ext_resource type="Texture2D" uid="uid://c5fu5c6gcnf5r" path="res://Assets/2D/swamp_grass.png" id="25_uqdn7"]
 [ext_resource type="Texture2D" uid="uid://bjurhsgte1wdp" path="res://Assets/2D/plains_grass.png" id="26_gwaj6"]
 [ext_resource type="Texture2D" uid="uid://b7xplb2tbcaer" path="res://Assets/2D/plains_dirt.png" id="27_36g3o"]
 [ext_resource type="PackedScene" uid="uid://fodrwm4bj1gf" path="res://Assets/3D/buildings/house1.blend" id="27_hmc15"]
-[ext_resource type="Texture2D" uid="uid://cuwiqnxpnyifh" path="res://Scenes/World/Splatmap_0_0_1.res" id="28_r0ikl"]
+[ext_resource type="Texture2D" uid="uid://cuwiqnxpnyifh" path="res://Assets/2D/World/Splatmap_0_0_1.res" id="28_r0ikl"]
 [ext_resource type="PackedScene" uid="uid://dp8uiiauk5326" path="res://Scenes/lamp.tscn" id="34_opbav"]
 [ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="35_coyub"]
 [ext_resource type="PackedScene" uid="uid://dqwfbyg6hnvlk" path="res://Scenes/apple.tscn" id="38_r74th"]
-[ext_resource type="Texture2D" uid="uid://m0yvspt7vwje" path="res://Scenes/World/Splatmap_0_0_2.res" id="45_vhf2b"]
+[ext_resource type="Texture2D" uid="uid://m0yvspt7vwje" path="res://Assets/2D/World/Splatmap_0_0_2.res" id="45_vhf2b"]
 [ext_resource type="PackedScene" uid="uid://ctodbn6m6s5i2" path="res://Scenes/Monsters/Bosses/theHushedBark.tscn" id="52_uqdn7"]
 [ext_resource type="PackedScene" uid="uid://syqvg0yul3mk" path="res://Scenes/Monsters/MonsterAssets/fakeTree.tscn" id="53_gwaj6"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="54_36g3o"]
@@ -421,7 +421,6 @@ omni_range = 23.0
 
 [node name="Shrine" parent="MonsterHolder" instance=ExtResource("4_vhf2b")]
 transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -536.9121, 0.12273455, -41.042114)
-_biome = "Forest"
 _maxMonsterCount = 5
 SpawnDistance = 25.0
 _monsterList = Array[PackedScene]([ExtResource("5_g44x5"), ExtResource("6_cvubk"), ExtResource("6_kwnki")])
@@ -429,7 +428,6 @@ _monsterCount = Array[int]([3, 2, 1])
 
 [node name="Shrine2" parent="MonsterHolder" instance=ExtResource("4_vhf2b")]
 transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -496.84833, 0.12273455, -24.817505)
-_biome = "Forest"
 _maxMonsterCount = 5
 SpawnDistance = 25.0
 _monsterList = Array[PackedScene]([ExtResource("5_g44x5"), ExtResource("6_cvubk"), ExtResource("6_kwnki")])
@@ -437,7 +435,6 @@ _monsterCount = Array[int]([3, 2, 1])
 
 [node name="Shrine3" parent="MonsterHolder" instance=ExtResource("4_vhf2b")]
 transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -442.26776, 0.12273455, 2.5682373)
-_biome = "Forest"
 _maxMonsterCount = 5
 SpawnDistance = 25.0
 _monsterList = Array[PackedScene]([ExtResource("5_g44x5"), ExtResource("6_cvubk"), ExtResource("6_kwnki")])
@@ -445,7 +442,6 @@ _monsterCount = Array[int]([3, 2, 1])
 
 [node name="Shrine4" parent="MonsterHolder" instance=ExtResource("4_vhf2b")]
 transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -399.37634, 0.12273455, -21.773376)
-_biome = "Forest"
 _maxMonsterCount = 5
 SpawnDistance = 25.0
 _monsterList = Array[PackedScene]([ExtResource("5_g44x5"), ExtResource("6_cvubk"), ExtResource("6_kwnki")])
@@ -453,7 +449,6 @@ _monsterCount = Array[int]([3, 2, 1])
 
 [node name="Shrine5" parent="MonsterHolder" instance=ExtResource("4_vhf2b")]
 transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -386.7071, 0.12273455, -62.755188)
-_biome = "Forest"
 _maxMonsterCount = 5
 SpawnDistance = 25.0
 _monsterList = Array[PackedScene]([ExtResource("5_g44x5"), ExtResource("6_cvubk"), ExtResource("6_kwnki")])
@@ -505,8 +500,9 @@ QuestGoal = "0/15"
 
 [node name="Dillon" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -476.46802, 0.0572574, -87.079)
-visible = false
 script = ExtResource("7_gwaj6")
+QuestTitle = "Find and kill rats around the Village"
+QuestGoal = "0/10"
 
 [node name="Cube" parent="Dillon/villagerblank/metarig/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_36g3o")
