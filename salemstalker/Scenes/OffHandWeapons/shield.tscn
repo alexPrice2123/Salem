@@ -1,0 +1,54 @@
+[gd_scene load_steps=14 format=3 uid="uid://c1j84cwbl47ji"]
+
+[ext_resource type="Script" uid="uid://coplc8h7h0hsb" path="res://Shield.cs" id="1_n4iys"]
+[ext_resource type="PackedScene" uid="uid://bsiu7d2ekd8s6" path="res://Assets/Weapons/shield.blend" id="2_niepj"]
+[ext_resource type="Texture2D" uid="uid://1gnqrlkb0mma" path="res://Assets/weapontextures/shield/handle_Base_color.png" id="3_7blge"]
+[ext_resource type="Texture2D" uid="uid://djow1smvjuhvt" path="res://Assets/weapontextures/shield/shield_Base_color.png" id="3_kw78d"]
+[ext_resource type="Texture2D" uid="uid://bxkfswrcyarb" path="res://Assets/weapontextures/shield/shield_Metallic.png" id="4_kjrwa"]
+[ext_resource type="Texture2D" uid="uid://hbihoxrxwng0" path="res://Assets/weapontextures/shield/handle_Height.png" id="4_ljo2v"]
+[ext_resource type="Texture2D" uid="uid://bnlve6uaencqa" path="res://Assets/weapontextures/shield/handle_Metallic.png" id="5_5vpfc"]
+[ext_resource type="Texture2D" uid="uid://broqpavkvcjbf" path="res://Assets/weapontextures/shield/shield_Normal.png" id="5_px5da"]
+[ext_resource type="Texture2D" uid="uid://dl1e8yc0bjqt3" path="res://Assets/weapontextures/shield/handle_Normal.png" id="6_d5h4p"]
+[ext_resource type="Texture2D" uid="uid://dxjie5nn8lpq8" path="res://Assets/weapontextures/shield/shield_Roughness.png" id="6_kdhyj"]
+[ext_resource type="Texture2D" uid="uid://b7ergiblduv27" path="res://Assets/weapontextures/shield/handle_Roughness.png" id="7_kw78d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjrwa"]
+albedo_texture = ExtResource("3_kw78d")
+metallic = 1.0
+metallic_specular = 0.0
+metallic_texture = ExtResource("4_kjrwa")
+roughness_texture = ExtResource("6_kdhyj")
+normal_enabled = true
+normal_texture = ExtResource("5_px5da")
+heightmap_enabled = true
+heightmap_scale = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4iys"]
+albedo_texture = ExtResource("3_7blge")
+metallic = 1.0
+metallic_specular = 0.0
+metallic_texture = ExtResource("5_5vpfc")
+roughness_texture = ExtResource("7_kw78d")
+normal_enabled = true
+normal_texture = ExtResource("6_d5h4p")
+heightmap_enabled = true
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("4_ljo2v")
+
+[node name="shield" type="Node3D"]
+script = ExtResource("1_n4iys")
+
+[node name="shield" parent="." instance=ExtResource("2_niepj")]
+transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, -0.2490648, 1.1920929e-07, -0.17922091)
+
+[node name="Cube" parent="shield" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kjrwa")
+
+[node name="Cube_001" parent="shield" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n4iys")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="shield"]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[editable path="shield"]
