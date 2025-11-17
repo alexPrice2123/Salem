@@ -181,7 +181,7 @@ public partial class Ui : Control
 	// --- Longsword ---
 	private void _on_longsword_mouse_entered() { PlayInvAnim("longsword", true); }
 	private void _on_longsword_mouse_exited() { PlayInvAnim("longsword", false); }
-	private void _on_longsword_button_up(){ _player.SwitchPrimaryWeapon("longsword"); }
+	private void _on_longsword_button_up(){ _player.SwitchPrimaryWeapon("longsword",true); }
 
 	// --- StakeGun ---
 	private void _on_stake_gun_mouse_entered() { PlayInvAnim("StakeGun", true); }

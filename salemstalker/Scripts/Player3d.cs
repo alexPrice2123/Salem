@@ -330,56 +330,61 @@ public partial class Player3d : CharacterBody3D
 		// --- Swap equiped secondary weapon ---
 		else if (Input.IsActionJustPressed("specialSwap1")) { equipSec = 1; }
 		else if (Input.IsActionJustPressed("specialSwap2")) { equipSec = 2; }
-		else if (Input.IsActionJustPressed("specialSwap3")) { equipSec = 3; }
-		else if (Input.IsActionJustPressed("specialSwap4")) { equipSec = 4; }
+		else if (Input.IsActionJustPressed("specialSwap3")) { if (!_twoHand) { equipSec = 3; } 
+															else { play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/errorTemp.ogg")); }}
+		else if (Input.IsActionJustPressed("specialSwap4")) { if (!_twoHand) { equipSec = 4; }
+															else { play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/errorTemp.ogg")); } }
 
 		// --- Use secondary weapon ---
 		else if (Input.IsActionJustPressed("special"))
 		{
-			if (equipSec == 1)
+			if (_cooldownSec)
 			{
-				if (_eSecWeapon1 is Flintlock flintchild)
+				if (equipSec == 1)
 				{
-					GD.Print("wtf?");
-					flintchild.specAction();
+					if (_eSecWeapon1 is Flintlock flintchild)
+					{
+						GD.Print("wtf?");
+						flintchild.specAction();
+					}
+					else if (_eSecWeapon1 is StakeGun stakeChild)
+					{
+						GD.Print("ShootPlease");
+						stakeChild.specAction();
+					}
 				}
-				else if (_eSecWeapon1 is StakeGun stakeChild)
+				else if (equipSec == 2)
 				{
-					GD.Print("ShootPlease");
-					stakeChild.specAction();
+					if (_eSecWeapon2 is Flintlock flintchild)
+					{
+						flintchild.specAction();
+					}
+					else if (_eSecWeapon1 is StakeGun stakeChild)
+					{
+						stakeChild.specAction();
+					}
 				}
-			}
-			else if (equipSec == 2)
-			{
-				if (_eSecWeapon2 is Flintlock flintchild)
+				else if (equipSec == 3 && !_twoHand)
 				{
-					flintchild.specAction();
+					if (_eSecWeapon3 is Flintlock flintchild)
+					{
+						flintchild.specAction();
+					}
+					else if (_eSecWeapon1 is StakeGun stakeChild)
+					{
+						stakeChild.specAction();
+					}
 				}
-				else if (_eSecWeapon1 is StakeGun stakeChild)
+				else if (equipSec == 4 && !_twoHand)
 				{
-					stakeChild.specAction();
-				}
-			}
-			else if (equipSec == 3)
-			{
-				if (_eSecWeapon3 is Flintlock flintchild)
-				{
-					flintchild.specAction();
-				}
-				else if (_eSecWeapon1 is StakeGun stakeChild)
-				{
-					stakeChild.specAction();
-				}
-			}
-			else
-			{
-				if (_eSecWeapon4 is Flintlock flintchild)
-				{
-					flintchild.specAction();
-				}
-				else if (_eSecWeapon1 is StakeGun stakeChild)
-				{
-					stakeChild.specAction();
+					if (_eSecWeapon4 is Flintlock flintchild)
+					{
+						flintchild.specAction();
+					}
+					else if (_eSecWeapon1 is StakeGun stakeChild)
+					{
+						stakeChild.specAction();
+					}
 				}
 			}
 		}
@@ -675,7 +680,7 @@ public partial class Player3d : CharacterBody3D
 		float swingTime = (float)_sword.GetMeta("swingSpeed"); // Get swing time from weapon metadata
 		float comboTime = swingTime * 1000 + 400; // Time window for the next combo hit (in ms)
 		_rng.Randomize();
-		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
+		_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
 		_damage = (float)_sword.GetMeta("damage");
 		float tempHorSense = HorCamSense;
 		float tempVerSense = VerCamSense;
@@ -968,10 +973,10 @@ public partial class Player3d : CharacterBody3D
 	public void RangedDamaged(float takenDamage, RigidBody3D projectile, string effect)
 	{
 		_knockVelocity = 0.5f;
-		if (effect == "Slowed")
+		if (effect == "Slowed"  && _blocking == false)
         {
-			_speedOffset = -2.5f;
-			_speedCount = 1.5f;
+            _speedOffset = -2.5f;
+            _speedCount = 1.5f;
         }
 		if (_blocking == true && _parry == false)
 		{
@@ -1003,8 +1008,9 @@ public partial class Player3d : CharacterBody3D
 	}
 
 	// Switches the player's equipped primary weapon.
-	public void SwitchPrimaryWeapon(string wepaonName)
+	public void SwitchPrimaryWeapon(string wepaonName, bool twoHanded = false)
 	{
+		_twoHand = twoHanded;
 		PackedScene weaponScene = _weapon[wepaonName]; // Get the scene resource from the dictionary
 		Node3D holder = GetNode<Node3D>("Head/Camera3D/Sword");
 		holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
@@ -1018,7 +1024,7 @@ public partial class Player3d : CharacterBody3D
 
 	// Switches the player's secondary weapon slots.
 	public void SwitchSecondaryWeapon(string wepaonName, int slot)
-	{
+	{ 
 		PackedScene weaponScene = _secWeapon[wepaonName]; // Get the scene resource from the dictionary
 		Node3D holder;
 		if (slot == 0)
@@ -1098,4 +1104,25 @@ public partial class Player3d : CharacterBody3D
 		}
 	}
 
+	private async void secondaryCooldown()
+	{
+		_cooldownSec = false;
+		if (equipSec == 1)
+		{
+			await ToSignal(GetTree().CreateTimer((double)_eSecWeapon1.GetChild<Node3D>(0).GetMeta("cooldown")), "timeout");
+		}
+		else if (equipSec == 2)
+		{
+			await ToSignal(GetTree().CreateTimer((double)_eSecWeapon2.GetChild<Node3D>(0).GetMeta("cooldown")), "timeout");
+		}
+		else if (equipSec == 3)
+		{
+			await ToSignal(GetTree().CreateTimer((double)_eSecWeapon3.GetChild<Node3D>(0).GetMeta("cooldown")), "timeout");
+		}
+		else
+		{
+			await ToSignal(GetTree().CreateTimer((double)_eSecWeapon4.GetChild<Node3D>(0).GetMeta("cooldown")), "timeout");
+		}
+		_cooldownSec = true;
+	}
 }
