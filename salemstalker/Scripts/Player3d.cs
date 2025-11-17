@@ -853,6 +853,10 @@ public partial class Player3d : CharacterBody3D
 		if (MonsterBiome == "Swamp"){_swampMonstersKilled += 1;}
 		else if (MonsterBiome == "Plains"){_plainsMonstersKilled += 1;}
 		else if (MonsterBiome == "Forest"){_forestMonstersKilled += 1;}
+		if (MonsterType == "villageRat")
+        {
+            _ratsKilled += 1;
+        }
 		if (_questBox.FindChild("Kill creatures from different biomes to avenge Martha's husband") != null)
 		{
 			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Kill creatures from different biomes to avenge Martha's husband");

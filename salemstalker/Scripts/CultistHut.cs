@@ -29,6 +29,7 @@ public partial class CultistHut : Node3D
 	[Export]
 	public Godot.Collections.Array<int> _monsterCount { get; set; } = [];
 	public Godot.Collections.Array<int> _currenctMonsterCount { get; set; } = [];
+	private bool _destroyed = false;
 
 	// --- READY ---
 	public override void _Ready()
@@ -60,16 +61,6 @@ public partial class CultistHut : Node3D
 		}
 		// Distance between player and hut
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
-	
-		// --- Recount monsters if player is too far away (despawn management) ---
-		if (distance >= SpawnDistance)
-		{
-			_number = 0;
-			foreach (CharacterBody3D monster in _holder.GetChildren())
-			{
-				_number += 1;
-			}
-		}
 
 		// --- Prevent spawning if at max count or player too far ---
 		if (_number >= _maxMonsterCount || distance >= SpawnDistance)
@@ -107,10 +98,22 @@ public partial class CultistHut : Node3D
 	// --- PROCESS LOOP ---
 	public override void _Process(double delta)
 	{
-		if (_holder.GetChildCount() <= 0 && _number >= _maxMonsterCount)
+		if (_holder.GetChildCount() <= 0 && _number >= _maxMonsterCount && _destroyed == false)
         {
             _player._shrinesDestroyed += 1;
-			QueueFree();
+			_destroyed = true;
+			GetNode<MeshInstance3D>("Orb").Visible = false;
+			GetNode<OmniLight3D>("Light").Visible = false;
+			GetNode<GpuParticles3D>("Magic").Emitting = false;
+			GetNode<GpuParticles3D>("Boom").Emitting = true;
+        }
+		if (_destroyed == true)
+        {
+            GetNode<Node3D>("Shrine").Position -= new Vector3(0f, 0.01f, 0f);
+			if (GetNode<Node3D>("Shrine").Position.Y <= -3)
+            {
+                QueueFree();
+            }
         }
 	}
 }

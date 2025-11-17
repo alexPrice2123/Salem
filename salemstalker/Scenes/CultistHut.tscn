@@ -1,17 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmgtv0o1qnx6"]
+[gd_scene load_steps=27 format=3 uid="uid://dmgtv0o1qnx6"]
 
 [ext_resource type="Script" uid="uid://csc1wgxwkys3h" path="res://Scripts/CultistHut.cs" id="1_sak6b"]
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_n642y"]
-[ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="3_0bcjk"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_4aca4"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqdp6"]
-albedo_color = Color(0.601223, 0.601223, 0.60122293, 1)
-metallic_specular = 0.0
-normal_enabled = true
-normal_texture = ExtResource("3_0bcjk")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_ophlk"]
+[ext_resource type="PackedScene" uid="uid://c4rxmfdcn7o6j" path="res://Assets/3D/buildings/cultistshrine.blend" id="4_mqdp6"]
+[ext_resource type="Texture2D" uid="uid://cr4mihs0tdekp" path="res://Assets/2D/Stone.jpg" id="5_7m6cr"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]
 seamless = true
@@ -86,10 +79,56 @@ scale_curve = SubResource("CurveTexture_yr5wf")
 
 [sub_resource type="SphereMesh" id="SphereMesh_mdjrw"]
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mqdp6"]
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50012"]
+render_priority = 0
+shader = ExtResource("3_4aca4")
+shader_parameter/Color = Color(0.313726, 0.188235, 0.921569, 1)
+shader_parameter/glow_color = Color(0.258824, 0.0235294, 0.25098, 1)
+shader_parameter/dist = 2.0
+shader_parameter/speed = 1.0
+shader_parameter/glow_intensity = -0.1
+shader_parameter/glow_amount = 10.0
+shader_parameter/posMult = 1.58
+shader_parameter/noise = SubResource("NoiseTexture2D_mqdp6")
+
+[sub_resource type="Curve" id="Curve_nhjty"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ag22c"]
+curve = SubResource("Curve_nhjty")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mdjrw"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.31
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 0.25
+initial_velocity_max = 0.25
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_ag22c")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ve2r1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mqdp6"]
+radius = 0.5649414
+height = 3.314209
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50012"]
+albedo_texture = ExtResource("5_7m6cr")
+
 [node name="Shrine" type="Node3D"]
 script = ExtResource("1_sak6b")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="Light" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20485, 0)
 light_color = Color(0.313726, 0.188235, 0.921569, 1)
 light_energy = 5.0
@@ -107,17 +146,6 @@ wait_time = 7.5
 
 [node name="MonsterHolder" type="Node3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(0.785577, 0, 0, 0, 0.785577, 0, 0, 0, 0.785577, 0, 0.517149, -0.195278)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6751113, 0)
-material_override = SubResource("StandardMaterial3D_mqdp6")
-cast_shadow = 0
-mesh = SubResource("CylinderMesh_ophlk")
-
 [node name="Orb" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, -1, 9.015011e-14, 2.1874843, 9.313226e-10)
 material_override = SubResource("ShaderMaterial_0bcjk")
@@ -131,4 +159,33 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_4aca4")
 draw_pass_1 = SubResource("SphereMesh_mdjrw")
 
+[node name="Boom" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.72, 0, 0, 0, 1.72, 0, 0, 0, 1.72, 0, 2.2411585, 0)
+material_override = SubResource("ShaderMaterial_50012")
+emitting = false
+amount = 100
+lifetime = 15.0
+one_shot = true
+speed_scale = 64.0
+process_material = SubResource("ParticleProcessMaterial_mdjrw")
+draw_pass_1 = SubResource("SphereMesh_ve2r1")
+
+[node name="Shrine" parent="." instance=ExtResource("4_mqdp6")]
+transform = Transform3D(1.72, 0, 0, 0, 1.72, 0, 0, 0, 1.72, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Shrine"]
+transform = Transform3D(0.45673075, 0, 0, 0, 0.45673075, 0, 0, 0, 0.45673075, 0, 0.3031, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shrine/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6571043, 0)
+shape = SubResource("CapsuleShape3D_mqdp6")
+
+[node name="Cylinder" parent="Shrine" index="1"]
+material_override = SubResource("StandardMaterial3D_50012")
+
+[node name="Cube" parent="Shrine" index="2"]
+visible = false
+
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
+
+[editable path="Shrine"]

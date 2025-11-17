@@ -1,0 +1,144 @@
+[gd_scene load_steps=23 format=3 uid="uid://4khu1i6od862"]
+
+[ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_ae3ab"]
+[ext_resource type="PackedScene" uid="uid://bgbqme06le1v" path="res://Assets/3D/Rat/rat.blend" id="2_bsc2a"]
+[ext_resource type="Script" uid="uid://bitogrdp6qn5j" path="res://Scripts/villageRat.cs" id="2_ibm7t"]
+[ext_resource type="Material" uid="uid://buwj0qthcp8sm" path="res://Assets/3D/Rat/Rat.tres" id="3_raybr"]
+[ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="10_pfcjy"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_00oym"]
+animation = &"Action"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ci7oq"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ht62m"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ng0vc"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c1rs2"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "velocity.length() > 0.2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ci7oq"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "velocity.length() <= 0.2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m7bjp"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_attackAnim == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_00oym"]
+xfade_time = 1.0
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7ma6"]
+advance_mode = 2
+advance_expression = "_attackAnim == true"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nsxmw"]
+states/End/position = Vector2(882.5, 85.9062)
+states/Start/position = Vector2(253.5, 85.75)
+states/attack/node = SubResource("AnimationNodeAnimation_00oym")
+states/attack/position = Vector2(591.875, 158.5)
+states/idle/node = SubResource("AnimationNodeAnimation_ci7oq")
+states/idle/position = Vector2(467, 86.0625)
+states/walking/node = SubResource("AnimationNodeAnimation_ht62m")
+states/walking/position = Vector2(591.062, 11.375)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_m7bjp"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_00oym"), "walking", "attack", SubResource("AnimationNodeStateMachineTransition_v7ma6")]
+graph_offset = Vector2(197, -38)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_le60b"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="Curve" id="Curve_demp2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v7ma6"]
+curve = SubResource("Curve_demp2")
+
+[sub_resource type="Curve" id="Curve_wt77t"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ch86k"]
+curve = SubResource("Curve_wt77t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2r11o"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 0.999978
+radial_velocity_curve = SubResource("CurveTexture_v7ma6")
+gravity = Vector3(0, -2, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_ch86k")
+
+[sub_resource type="BoxMesh" id="BoxMesh_b6irl"]
+
+[node name="villageRat" instance=ExtResource("1_ae3ab")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_ibm7t")
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.7582249, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_nsxmw")
+advance_expression_base_node = NodePath("..")
+
+[node name="Hurtbox" parent="." index="3"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.1488323, 0)
+visible = false
+
+[node name="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -0.6746958, 0)
+
+[node name="Attackbox" parent="." index="4"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.1488323, 0)
+visible = false
+monitoring = false
+
+[node name="CollisionShape3D" parent="Attackbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0668074, -0.636108)
+disabled = false
+
+[node name="Stunned" type="GPUParticles3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00175359, 0.26114404, -0.369143)
+material_override = SubResource("StandardMaterial3D_le60b")
+emitting = false
+amount = 50
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_2r11o")
+draw_pass_1 = SubResource("BoxMesh_b6irl")
+
+[node name="Direction" type="Node3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0950214, 0)
+
+[node name="Body" parent="." index="7" instance=ExtResource("2_bsc2a")]
+
+[node name="rat2" parent="Body" index="0"]
+material_override = ExtResource("3_raybr")
+
+[node name="HitFX" parent="." index="8" instance=ExtResource("2_bsc2a")]
+visible = false
+
+[node name="rat2" parent="HitFX" index="0"]
+material_override = ExtResource("10_pfcjy")
+
+[editable path="Body"]
+[editable path="HitFX"]

@@ -6,7 +6,7 @@ public partial class flyingPesk : Monster3d
 	// Called when the node enters the scene tree for the first time.
 
 	private float _distance;
-	private float _attackingRange = 1f;
+	private float _attackingRange = 1.2f;
 	private float _attackingDistance = 10f;
 	private bool _fleeing = false;
 	private int _cooldown = 5;
@@ -45,6 +45,7 @@ public partial class flyingPesk : Monster3d
                 RandomRangedPosition();
             }
 		}
+		GD.Print(_distance);
 		if (_distance <= _attackingRange && _attacking == true && _fleeing == false)
 		{
 			if (_currentCooldown <= 0)
@@ -93,13 +94,13 @@ public partial class flyingPesk : Monster3d
 		{
 			RandomRangedPosition();
 			_currentCooldown -= 1;
-			GD.Print(_currentCooldown);
 		}
 		_fleeing = false;
 	}
 
 	public async void Attack()
 	{
+		GD.Print("PESK ATTACK");
 		_currentCooldown = _cooldown;
 		_attackAnim = true;
 		_attacking = false;
