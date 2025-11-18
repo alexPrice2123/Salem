@@ -1,4 +1,12 @@
-[gd_scene format=3 uid="uid://ugvn3fpfrh3c"]
+[gd_scene load_steps=8 format=3 uid="uid://ugvn3fpfrh3c"]
+
+[ext_resource type="Texture2D" uid="uid://c7w8ths6ksa2o" path="res://Assets/UI/title/boigosit.png" id="1_w7bgp"]
+[ext_resource type="Texture2D" uid="uid://2nlbwvdo1q4" path="res://Assets/UI/title/title.png" id="2_j0nra"]
+[ext_resource type="Texture2D" uid="uid://c38b5hfrm2qwt" path="res://Assets/UI/title/buttonuibase.png" id="3_sf6xc"]
+[ext_resource type="Texture2D" uid="uid://dhowkv2s0v52w" path="res://Assets/UI/title/QUIT.png" id="4_qr3m1"]
+[ext_resource type="Texture2D" uid="uid://6abs07pk13ms" path="res://Assets/UI/title/CREDIT.png" id="5_ghb0b"]
+[ext_resource type="Texture2D" uid="uid://dpka3b8c682w2" path="res://Assets/UI/title/OPTION.png" id="6_lkqyf"]
+[ext_resource type="Texture2D" uid="uid://cfg8qv5p3we3s" path="res://Assets/UI/title/PLAY.png" id="7_wf248"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -8,4 +16,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Boigosit" type="Sprite2D" parent="."]
+position = Vector2(540, 303)
+texture = ExtResource("1_w7bgp")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(530, 82)
+texture = ExtResource("2_j0nra")
+
+[node name="Buttonuibase4" type="Sprite2D" parent="."]
+position = Vector2(204, 539)
+texture = ExtResource("3_sf6xc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Buttonuibase4"]
+position = Vector2(-2.5197563, -1.5258789e-05)
+scale = Vector2(0.9900993, 0.9900993)
+texture = ExtResource("4_qr3m1")
+
+[node name="Buttonuibase3" type="Sprite2D" parent="."]
+position = Vector2(201, 430)
+texture = ExtResource("3_sf6xc")
+
+[node name="Credit" type="Sprite2D" parent="Buttonuibase3"]
+position = Vector2(-9, -2)
+texture = ExtResource("5_ghb0b")
+
+[node name="Buttonuibase2" type="Sprite2D" parent="."]
+position = Vector2(198, 321)
+texture = ExtResource("3_sf6xc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Buttonuibase2"]
+position = Vector2(-2, 0)
+texture = ExtResource("6_lkqyf")
+
+[node name="Buttonuibase" type="Sprite2D" parent="."]
+position = Vector2(195, 212)
+texture = ExtResource("3_sf6xc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Buttonuibase"]
+position = Vector2(7, 0)
+texture = ExtResource("7_wf248")
