@@ -421,7 +421,7 @@ omni_range = 20.619465
 
 [node name="RatSpawner" parent="MonsterHolder" instance=ExtResource("2_uqdn7")]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -454.10132, 4.3719983, -89.033936)
-_maxMonsterCount = 10
+_maxMonsterCount = 20
 _biome = "Forest"
 _monsterList = Array[PackedScene]([ExtResource("5_82dmg")])
 _monsterCount = Array[int]([10])
@@ -432,7 +432,6 @@ omni_range = 20.619465
 
 [node name="Shrine" parent="MonsterHolder" instance=ExtResource("4_vhf2b")]
 transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -536.9121, 0.12273455, -41.042114)
-_biome = "Forest"
 _spawnTime = 4.0
 _maxMonsterCount = 3
 SpawnDistance = 25.0
@@ -441,7 +440,6 @@ _monsterCount = Array[int]([3, 2, 1])
 
 [node name="Shrine2" parent="MonsterHolder" instance=ExtResource("4_vhf2b")]
 transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -496.84833, 0.12273455, -24.817505)
-_biome = "Forest"
 _spawnTime = 4.0
 _maxMonsterCount = 3
 SpawnDistance = 25.0
@@ -450,7 +448,6 @@ _monsterCount = Array[int]([3, 2, 1])
 
 [node name="Shrine3" parent="MonsterHolder" instance=ExtResource("4_vhf2b")]
 transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -442.26776, 0.12273455, 2.5682373)
-_biome = "Forest"
 _spawnTime = 4.0
 _maxMonsterCount = 3
 SpawnDistance = 25.0
@@ -459,7 +456,6 @@ _monsterCount = Array[int]([3, 2, 1])
 
 [node name="Shrine4" parent="MonsterHolder" instance=ExtResource("4_vhf2b")]
 transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -399.37634, 0.12273455, -21.773376)
-_biome = "Forest"
 _spawnTime = 4.0
 _maxMonsterCount = 3
 SpawnDistance = 25.0
@@ -468,7 +464,6 @@ _monsterCount = Array[int]([3, 2, 1])
 
 [node name="Shrine5" parent="MonsterHolder" instance=ExtResource("4_vhf2b")]
 transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -386.7071, 0.12273455, -62.755188)
-_biome = "Forest"
 _spawnTime = 4.0
 _maxMonsterCount = 3
 SpawnDistance = 25.0
@@ -512,18 +507,17 @@ visible = false
 script = ExtResource("7_atqvy")
 NPCName = "Elizabeth"
 InitialDialogue = "It's been getting colder and colder..."
-QuestDialogue = Array[String](["Hey there mister. Our town hasn't been holding up lately after we escaped our old village in the swamp a few months back. ", "It's been getting colder recently and the the town's lumberjacks haven't returned yet with the firewood. ", "Could you go out into the forest and fetch us some? "])
-AcceptedDialogue = Array[String](["Thank you so much mister! Return them to me once you have enough. "])
 IgnoredDialogue = "Oh, that's alright. Maybe the lumberjacks will come back soon. "
 WaitingDialogue = "Still waiting on that firewood once you gather enough."
-DoneDialogue = Array[String](["This is perfect. Thank you kind mister. Take these. They may help you on your journey. "])
-PostDoneDialogue = "Now everyone can keep warm near their fires. "
 QuestTitle = "Gather firewood from the forest for Elizabeth "
 QuestGoal = "0/15"
 
 [node name="Dillon" parent="." instance=ExtResource("4_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -476.46802, 0.0572574, -87.079)
 script = ExtResource("7_gwaj6")
+QuestDialogue = "Quest"
+AcceptedDialogue = "Accepted"
+DoneDialogue = "Done"
 QuestTitle = "Find and kill rats around the Village"
 QuestGoal = "0/10"
 
@@ -538,12 +532,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -443.3172, 0.0572574, -98.047
 script = ExtResource("10_t6yt7")
 NPCName = "Lukas"
 InitialDialogue = "I know I saw it! Those damn Cultists are making more of them!"
-QuestDialogue = Array[String](["You there sir! Please, hear me out. Those Cultists are up to no good. ", "They've been making more of those shrines all over our land, spreading influence to others.  ", "Please, I beg of you. Destroy those shrines and end their evil guding light!"])
-AcceptedDialogue = Array[String](["Yes! Thank you so much! You should be able to find shrines around the land. I trust you'll destroy them all.  "])
+QuestDialogue = "Quest"
+AcceptedDialogue = "Accepted"
 IgnoredDialogue = "Perhaps someone else will understand... "
 WaitingDialogue = "Keep looking around on your journey and you should find those shrines. "
-DoneDialogue = Array[String](["See! I knew you'd destroy those shrines!"])
-PostDoneDialogue = "Those Cultists won't influence nobody no more!"
+DoneDialogue = "Done"
 QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/5"
 
@@ -560,12 +553,11 @@ visible = false
 script = ExtResource("11_al5m0")
 NPCName = "Samual"
 InitialDialogue = "Somebody please! Help my son!"
-QuestDialogue = Array[String](["Mister! Please, my son is ill and needs medicine. I can't go and gather the necessary resources for the medicine and need someone's help. ", "Would you please help a poor soul out and gather what's needed to craft the medicine?"])
-AcceptedDialogue = Array[String](["Oh thank you kind sir! Once you gather the resources, head to the Wizard to craft the medicine. Give it to me once you have it. Please hurry! "])
+QuestDialogue = "Quest"
+AcceptedDialogue = "Accepted"
 IgnoredDialogue = "No. But my son..."
 WaitingDialogue = "Please deliver the medicine to me soon. "
-DoneDialogue = Array[String](["Yes! You made the medicine just in time! I'll give it to my son shortly. Thank you so much sir!"])
-PostDoneDialogue = "Hopefully my son gets better with that medicine. "
+DoneDialogue = "Done"
 QuestTitle = "Gather resources to craft the medicine "
 QuestGoal = "Bleeding Heart: 0/3, Dead Ooze: 0/3, Seed: 0/3"
 
@@ -574,12 +566,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -469.92426, 0.0572574, -79.33
 script = ExtResource("12_6mm6r")
 NPCName = "Martha"
 InitialDialogue = "Those monsters! They took him away! "
-QuestDialogue = Array[String](["Those Cultists and their minions killed my husband. I don't know what to do without him. ", "He was a good man. Please. I'm asking from the bottom of my heart for you to avenge him. Will you?"])
-AcceptedDialogue = Array[String](["Thank you. Oh thank you so much. Deliver justice to those damn creatures of the night. "])
+QuestDialogue = "Quest"
+AcceptedDialogue = "Accepted"
 IgnoredDialogue = "Maybe someone else can help me. "
 WaitingDialogue = "My husband won't be brought to justice until those monsters are dead! "
-DoneDialogue = Array[String](["I believe both him and I can be at peace now. Thank you. "])
-PostDoneDialogue = "Be careful of more creatures on your journey. "
+DoneDialogue = "Done"
 QuestTitle = "Kill creatures from different biomes to avenge Martha's husband"
 QuestGoal = "Forest: 0/5, Swamp: 0/5, Plains: 0/5"
 
@@ -596,11 +587,11 @@ visible = false
 script = ExtResource("13_xcb5n")
 NPCName = "Finn"
 InitialDialogue = "Hey mister. I've got some valuable information you might want to hear. "
-QuestDialogue = Array[String](["I heard one of the villagers left behind an important tool on that swamp island before coming here. It could be a useful weapon.", "Maybe you should go check it out. "])
-AcceptedDialogue = Array[String](["I trust you'll find it. Good luck. "])
+QuestDialogue = "Quest"
+AcceptedDialogue = "Accepted"
 IgnoredDialogue = "Welp. It could help you further down the road. "
 WaitingDialogue = "I still wonder what that tool could be."
-PostDoneDialogue = "Hey! You found the tool. Good work. "
+DoneDialogue = "Done"
 QuestTitle = "Find the hidden weapon on the swamp island"
 QuestGoal = "0/1"
 
@@ -610,12 +601,11 @@ visible = false
 script = ExtResource("9_jwdyn")
 NPCName = "Matthew"
 InitialDialogue = "Oh, young man. Please come and speak with me for a moment. "
-QuestDialogue = Array[String](["Young man. Our village has been in a troubling state after we had to evacuate from the swamp island South West of us. It use to be our home before it was corrupted. ", "A terrifying beast was created by the Cultists that plague the island. Please wandering traveller. Will you defeat the creature? (PROGRESS QUEST)  "])
-AcceptedDialogue = Array[String](["Thank you sir. We owe you a great debt if you manage to defeat it.  ", "Head South West of the village and follow a trail to reach the dock. It should have a boat to let you reach the island. Good luck sir. "])
+QuestDialogue = "Quest"
+AcceptedDialogue = "Accepted"
 IgnoredDialogue = "Please reconsider. We truly need your help. "
 WaitingDialogue = "That beast still plauges the island. "
-DoneDialogue = Array[String](["You did it! You managed to defeat the beast! Thank you so much kind sir. The village can begin travelling back to claim back what was lost from us many months ago. ", "That Soul looks important. Keep it close. It may be important to you in your future. ", "Good luck on your journey. I believe you'll see it through to the end."])
-PostDoneDialogue = "The island is free of corruption once more. Thank you. "
+DoneDialogue = "Done"
 QuestTitle = "Defeat The Hollowed Bark on the swamp island"
 QuestGoal = "0/1"
 

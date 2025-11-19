@@ -32,7 +32,10 @@ public partial class enemySpawner : Node3D
 	{
 		_spawn = GetNode<CsgBox3D>("Spawn");             // Get the spawn point node
 		_countdown = GetNode<Timer>("SpawnTime");        // Get the timer node
-		_countdown.WaitTime = 0.1f;
+		if (Name != "RatSpawner")
+        {
+            _countdown.WaitTime = 0.1f;
+        }
 		_countdown.Start();                              // Start the spawn timer
 		_currenctMonsterCount = _monsterCount;
 
@@ -46,7 +49,14 @@ public partial class enemySpawner : Node3D
 	// --- SPAWN HANDLER ---
 	private void _on_spawn_time_timeout()
 	{
-		SpawnMonster();
+		if (Name == "RatSpawner" && _player._questBox.FindChild("Find and kill rats around the Village") != null)
+        {
+            SpawnMonster();
+        }
+		else if (Name != "RatSpawner")
+        {
+            SpawnMonster();
+        }
 	}
 	
 	private async void SpawnMonster()
@@ -58,9 +68,9 @@ public partial class enemySpawner : Node3D
 		}
 		// Distance between player and hut
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
-	
+
 		// --- Recount monsters if player is too far away (despawn management) ---
-		if (distance >= SpawnRange+25f)
+		if (distance >= SpawnRange + 25f)
 		{
 			_number = 0;
 			foreach (CharacterBody3D monster in _holder.GetChildren())
@@ -68,6 +78,15 @@ public partial class enemySpawner : Node3D
 				_number += 1;
 			}
 		}
+		
+		if (Name == "RatSpawner" && _player._questBox.FindChild("Find and kill rats around the Village") == null && _player._ratsKilled > 0)
+        {
+			foreach (CharacterBody3D rat in _holder.GetChildren())
+			{
+				rat.QueueFree();
+			}
+			_number = 0;
+        }
 
 		// --- Prevent spawning if at max count or player too far ---
 		if (_number >= _maxMonsterCount || distance >= SpawnRange+25f)
