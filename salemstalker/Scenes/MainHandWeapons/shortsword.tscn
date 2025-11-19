@@ -376,7 +376,7 @@ metadata/cPercent2 = 1.2
 metadata/cPercent3 = 1.25
 
 [node name="Blood" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00812661, 1.10846, -0.080514)
+transform = Transform3D(1, 0, 6.82121e-13, 0, 1, 0, -6.82121e-13, 0, 1, 0.008128902, 1.3035117, -0.9847788)
 material_override = SubResource("StandardMaterial3D_wvryv")
 emitting = false
 amount = 100
@@ -385,7 +385,7 @@ process_material = SubResource("ParticleProcessMaterial_8th4x")
 draw_pass_1 = SubResource("BoxMesh_ki2ro")
 
 [node name="shortsword" parent="." instance=ExtResource("2_pkki5")]
-transform = Transform3D(-4.371168e-08, 0, 1, 0, 1, 0, -1, 0, -4.371168e-08, 4.0213317e-06, -0.25842655, -1.5862107)
+transform = Transform3D(-4.3712134e-08, 0, 1, 0, 1, 0, -1, 0, -4.3712134e-08, 6.3138054e-06, -0.06337471, -2.4904757)
 
 [node name="Cylinder" parent="shortsword" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_5pnml")
@@ -396,7 +396,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_oettj")
 surface_material_override/2 = SubResource("StandardMaterial3D_mkca1")
 
 [node name="Parry" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0693777, 0.654532, -0.193639)
+transform = Transform3D(1, 0, 6.82121e-13, 0, 1, 0, -6.82121e-13, 0, 1, 0.06937999, 0.84958386, -1.0979037)
 material_override = SubResource("StandardMaterial3D_1osjb")
 emitting = false
 amount = 100
@@ -407,27 +407,27 @@ process_material = SubResource("ParticleProcessMaterial_hraxq")
 draw_pass_1 = SubResource("BoxMesh_0eq1u")
 
 [node name="weaponAnimations" parent="." instance=ExtResource("22_4ujmf")]
-transform = Transform3D(2.01, 0, 2.2737368e-12, 0, 2.01, 0, -2.2737368e-12, 0, 2.01, 0.36619517, -2.7524824, -0.91429067)
+transform = Transform3D(2.01, 0, 2.2737368e-12, 0, 2.01, 0, -2.2737368e-12, 0, 2.01, 0.3661974, -2.5574303, -1.8185556)
 
 [node name="Skeleton3D" parent="weaponAnimations/metarig" index="0"]
-bones/0/position = Vector3(1.4638149e-10, 0.9402157, -0.06494776)
-bones/8/rotation = Quaternion(-0.34055507, 0.8070219, -0.3661749, 0.31409213)
-bones/9/rotation = Quaternion(0.5499285, 0.0012709876, -0.13263234, 0.82461244)
-bones/18/rotation = Quaternion(-0.21616365, -0.66549957, 0.59247065, 0.39920184)
-bones/19/rotation = Quaternion(0.58357465, -0.035395406, 0.035085876, 0.8105287)
-bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
-bones/21/rotation = Quaternion(-0.09666416, 0.25824094, 0.32191968, 0.90572375)
-bones/22/rotation = Quaternion(-0.047339372, 0.019785862, 0.29954648, 0.95270115)
-bones/23/rotation = Quaternion(-0.07824302, 0.05460053, 0.59484905, 0.79815507)
-bones/25/rotation = Quaternion(0.36719504, 0.110883355, 0.45398003, 0.8042232)
-bones/26/rotation = Quaternion(-0.30964947, -0.010137783, -0.10400324, 0.9450914)
-bones/27/rotation = Quaternion(-0.052768394, -0.029600598, -0.3409382, 0.9381367)
+bones/0/position = Vector3(-3.5527124e-15, 0.9426751, -0.06494778)
+bones/8/rotation = Quaternion(-0.28827924, 0.63253677, -0.5684554, 0.44005772)
+bones/9/rotation = Quaternion(0.023057815, 0.068592764, -0.12911308, 0.98898596)
+bones/18/rotation = Quaternion(0.3158483, -0.25832522, 0.32673997, 0.8524958)
+bones/19/rotation = Quaternion(0.21453986, -0.19116938, 0.13772069, 0.9478713)
+bones/20/rotation = Quaternion(0.023388265, -0.57662433, -0.52478087, 0.6257495)
+bones/21/rotation = Quaternion(-0.096664146, 0.25824094, 0.3219197, 0.90572375)
+bones/22/rotation = Quaternion(-0.047339384, 0.019785868, 0.2995465, 0.9527011)
+bones/23/rotation = Quaternion(-0.07824298, 0.054600537, 0.5948491, 0.79815495)
+bones/25/rotation = Quaternion(-0.011548594, -0.3830901, 0.2105748, 0.8993147)
+bones/26/rotation = Quaternion(-0.30964947, -0.010137768, -0.10400323, 0.9450914)
+bones/27/rotation = Quaternion(-0.052768398, -0.02960061, -0.34093818, 0.9381367)
 bones/28/rotation = Quaternion(-5.4202424e-08, 0.6961122, 0.717933, -5.255501e-08)
 bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994)
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.49890462, -0.018667318, 0.8664557, 0.3458144, 0.91244125, 0.21877748, -0.79467356, 0.40878215, -0.44876537, -0.18933928, 1.2322147, 0.31580117)
+transform = Transform3D(0.6311317, 0.21114647, -0.7463846, -0.73736, -0.13537249, -0.6617964, -0.24077566, 0.96803486, 0.07025295, -0.6355586, 1.7844205, 0.30332145)
 
 [node name="Hitbox" type="Area3D" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder" index="0" groups=["Player", "Weapon"]]
 transform = Transform3D(-0.24821101, -0.0031613163, -0.43116108, -0.009287038, 0.49742243, 0.0016991241, 0.4310725, 0.008896241, -0.24822545, 0.0029827952, 0.44373477, 0.0031459332)
