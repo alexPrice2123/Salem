@@ -263,6 +263,7 @@ transitions = ["Start", "Armed", SubResource("AnimationNodeStateMachineTransitio
 [node name="StakeGun" type="Node3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_lfwbr")
+metadata/cooldown = 15.0
 
 [node name="stake gun" parent="." instance=ExtResource("1_jmmew")]
 transform = Transform3D(-0.264955, 0, -6.717091e-07, 0, 0.264955, 0, 6.717091e-07, 0, -0.264955, 0, -0.542065, 0)

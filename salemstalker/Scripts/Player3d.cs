@@ -338,8 +338,9 @@ public partial class Player3d : CharacterBody3D
 		// --- Use secondary weapon ---
 		else if (Input.IsActionJustPressed("special"))
 		{
-			if (_cooldownSec)
+			if (!_cooldownSec)
 			{
+				secondaryCooldown();
 				if (equipSec == 1)
 				{
 					if (_eSecWeapon1 is Flintlock flintchild)
@@ -680,7 +681,7 @@ public partial class Player3d : CharacterBody3D
 		float swingTime = (float)_sword.GetMeta("swingSpeed"); // Get swing time from weapon metadata
 		float comboTime = swingTime * 1000 + 400; // Time window for the next combo hit (in ms)
 		_rng.Randomize();
-		_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
+		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
 		_damage = (float)_sword.GetMeta("damage");
 		float tempHorSense = HorCamSense;
 		float tempVerSense = VerCamSense;
@@ -936,10 +937,6 @@ public partial class Player3d : CharacterBody3D
         {
             _knockVelocity = 75f;
         }
-        else
-        {
-            _knockVelocity = 2f;
-        }
 		if (_blocking == true && _parry == false)
 		{
 			// Regular block: reduce damage, deduct stamina, play block animation
@@ -1066,7 +1063,6 @@ public partial class Player3d : CharacterBody3D
 		{
 			_eSecWeapon4 = weaponInstance;
 		}
-		GD.Print("weaponswapped");
     }
 	public async void play_sfx(AudioStreamOggVorbis soundeffect)
 	{
@@ -1106,23 +1102,23 @@ public partial class Player3d : CharacterBody3D
 
 	private async void secondaryCooldown()
 	{
-		_cooldownSec = false;
+		_cooldownSec = true;
 		if (equipSec == 1)
 		{
-			await ToSignal(GetTree().CreateTimer((double)_eSecWeapon1.GetChild<Node3D>(0).GetMeta("cooldown")), "timeout");
+			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon1.GetMeta("cooldown")), "timeout");
 		}
 		else if (equipSec == 2)
 		{
-			await ToSignal(GetTree().CreateTimer((double)_eSecWeapon2.GetChild<Node3D>(0).GetMeta("cooldown")), "timeout");
+			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon2.GetMeta("cooldown")), "timeout");
 		}
 		else if (equipSec == 3)
 		{
-			await ToSignal(GetTree().CreateTimer((double)_eSecWeapon3.GetChild<Node3D>(0).GetMeta("cooldown")), "timeout");
+			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon3.GetMeta("cooldown")), "timeout");
 		}
 		else
 		{
-			await ToSignal(GetTree().CreateTimer((double)_eSecWeapon4.GetChild<Node3D>(0).GetMeta("cooldown")), "timeout");
+			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon4.GetMeta("cooldown")), "timeout");
 		}
-		_cooldownSec = true;
+		_cooldownSec = false;	
 	}
 }

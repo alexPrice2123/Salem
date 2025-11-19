@@ -168,6 +168,7 @@ collision_use_scale = true
 
 [node name="FlintGun" type="Node3D"]
 script = ExtResource("1_wv7ev")
+metadata/cooldown = 45.0
 
 [node name="Flash" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07934766, 0.02991961, -0.735693)
@@ -189,15 +190,15 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.149
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0031770244, -1.7192955, 0.022668958)
 
 [node name="Skeleton3D" parent="flinklock_animtions/metarig" index="0"]
-bones/8/rotation = Quaternion(-0.3039815, 0.5951711, -0.6205913, 0.4101624)
-bones/9/rotation = Quaternion(0.1632557, 0.05904771, -0.13289073, 0.97580785)
-bones/10/rotation = Quaternion(-0.03865682, -0.21278863, 0.07799449, 0.9732131)
-bones/11/rotation = Quaternion(0.17976402, -0.20663747, 0.16775072, 0.94701934)
+bones/8/rotation = Quaternion(-0.29716015, 0.6603882, -0.5432395, 0.42482266)
+bones/9/rotation = Quaternion(0.10121383, 0.060014803, -0.13217439, 0.9842174)
+bones/10/rotation = Quaternion(0.024919773, -0.2100672, 0.10091673, 0.97214544)
+bones/11/rotation = Quaternion(0.17976402, -0.20663744, 0.16775073, 0.94701934)
 bones/12/rotation = Quaternion(-0.3082795, 0.1973927, -0.35761988, 0.8591321)
-bones/13/rotation = Quaternion(-0.3661315, -0.10245913, -0.24928345, 0.89067817)
-bones/15/rotation = Quaternion(0.1640689, -0.093246795, -0.43299505, 0.8814203)
-bones/16/rotation = Quaternion(-0.15249369, 0.032454494, 0.34006718, 0.92738706)
-bones/17/rotation = Quaternion(0.034487143, -0.045876052, 0.26540962, 0.962426)
+bones/13/rotation = Quaternion(-0.36613148, -0.10245915, -0.24928343, 0.8906783)
+bones/15/rotation = Quaternion(0.21346803, -0.05530236, -0.40708378, 0.88637227)
+bones/16/rotation = Quaternion(-0.15249363, 0.0324545, 0.34006724, 0.92738706)
+bones/17/rotation = Quaternion(0.034487158, -0.045876056, 0.26540962, 0.962426)
 bones/19/rotation = Quaternion(-0.21922302, -0.6732264, 0.5859349, 0.39419255)
 bones/20/rotation = Quaternion(0.16670354, -0.099851385, 0.14108498, 0.9707393)
 bones/21/rotation = Quaternion(0.06961127, -0.037877247, -0.24318211, 0.96673787)
@@ -212,7 +213,7 @@ bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.014643073, 0.0006828946, 0.0020376723, 0.0020550983, 0.008553564, 0.011901724, -0.00062849326, 0.012058526, -0.008557731, 0.12419078, 0.8886316, 0.2627433)
+transform = Transform3D(-0.014787305, 2.3283064e-09, -0.00061123725, -0.00055183494, 0.006364515, 0.013350144, 0.00026285928, 0.013361542, -0.0063590836, 0.22204852, 0.84092027, 0.11601922)
 
 [node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D/Cube" index="0"]
 transform = Transform3D(1, -1.86265e-09, 4.65661e-10, 0, 1, 8.9407e-08, -9.31323e-10, 0, 1, 0, 0, 0)
