@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfpffyfg2ismx"]
+
+[ext_resource type="PackedScene" uid="uid://bphw61mmo8r13" path="res://Assets/3D/buildings/sign.blend" id="1_m6mpx"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_6c32n"]
+[ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="2_hqvqy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v8ien"]
+albedo_texture = ExtResource("2_6c32n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6bny"]
+albedo_texture = ExtResource("2_6c32n")
+
+[node name="Sign" type="Node3D"]
+
+[node name="sign" parent="." instance=ExtResource("1_m6mpx")]
+
+[node name="Cylinder" parent="sign" index="0"]
+material_override = SubResource("StandardMaterial3D_v8ien")
+
+[node name="Cube" parent="sign" index="1"]
+material_override = SubResource("StandardMaterial3D_u6bny")
+
+[node name="RightLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5064072, 1.2075984, 0.11139989)
+text = "Swamp"
+font = ExtResource("2_hqvqy")
+font_size = 75
+
+[node name="LeftLabel" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.5064072, 1.2075984, -0.13331163)
+text = "Swamp"
+font = ExtResource("2_hqvqy")
+font_size = 75
+
+[editable path="sign"]

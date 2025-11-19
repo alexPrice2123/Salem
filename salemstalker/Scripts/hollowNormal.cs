@@ -6,6 +6,7 @@ public partial class hollowNormal : Monster3d
 	// Called when the node enters the scene tree for the first time.
 
 	private float _distance;
+	private int _attackAnimSwitch = 1;
 	public override void _Ready()
 	{
 		Speed = 4.6f;             // Movement speed
@@ -68,9 +69,17 @@ public partial class hollowNormal : Monster3d
 
 	public async void Attack()
 	{
+		if (_attackAnimSwitch == 1)
+        {
+            _attackAnimSwitch = 2;
+        }
+        else
+        {
+            _attackAnimSwitch = 1;
+        }
 		_hasHit = false;
 		_attackAnim = true;
-		await ToSignal(GetTree().CreateTimer(1.6), "timeout");
+		await ToSignal(GetTree().CreateTimer(0.48), "timeout");
 		_speedOffset = 2.5f;
 		_attackBox.GetParent<Area3D>().Monitoring = true;
         await ToSignal(GetTree().CreateTimer(0.2), "timeout");

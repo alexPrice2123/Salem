@@ -9,16 +9,17 @@ public partial class underBrush : Monster3d
 	private float _attackOffset = 0.437f;
 	public float _currentAttackOffset = 0f;
 	private float _countDown = 5f;
+	private int _attackAnimSwitch = 1;
 	public override void _Ready()
 	{
 		Speed = 5f;             // Movement speed
 		MaxHealth = 75.0f;         // Maximum monster health
 		Range = 30.0f;            // Detection range for chasing
 		SpawnDistance = 100;    // Distance from player before despawning
-		BaseDamage = 10.0f;
+		BaseDamage = 7.0f;
 		WanderRange = 50;
 		AttackSpeed = 1.33f;
-		AttackRange = 1f;
+		AttackRange = 1.5f;
 		Monster = this;
 		Chaser = true;
 		MoveWhileAttack = true;
@@ -83,14 +84,22 @@ public partial class underBrush : Monster3d
 	public async void Attack()
 	{
 		_hasHit = false;
+		if (_attackAnimSwitch == 1)
+        {
+            _attackAnimSwitch = 2;
+        }
+        else
+        {
+            _attackAnimSwitch = 1;
+        }
 		_attackAnim = true;
-		await ToSignal(GetTree().CreateTimer(1.6), "timeout");
+		await ToSignal(GetTree().CreateTimer(.34), "timeout");
 		_speedOffset = 2.5f;
 		_attackBox.GetParent<Area3D>().Monitoring = true;
-        await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+        await ToSignal(GetTree().CreateTimer(0.25), "timeout");
 		_attackBox.GetParent<Area3D>().Monitoring = false;
 		_canAttack = false;
-		await ToSignal(GetTree().CreateTimer(0.7), "timeout");
+		//await ToSignal(GetTree().CreateTimer(0.2), "timeout");
 		_attackAnim = false;
 		await ToSignal(GetTree().CreateTimer(AttackSpeed - _currentAttackOffset), "timeout");
         _canAttack = true;

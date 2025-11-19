@@ -1,37 +1,160 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp8uiiauk5326"]
+[gd_scene load_steps=17 format=4 uid="uid://dp8uiiauk5326"]
 
-[ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="1_3b5q5"]
+[ext_resource type="PackedScene" uid="uid://bf5rvpr8nixcm" path="res://Assets/3D/buildings/roadlamp.blend" id="1_xtpkl"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_qpe6n"]
+[ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_53l72"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_5vngr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fisej"]
+albedo_texture = ExtResource("2_qpe6n")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtpkl"]
-transparency = 1
-albedo_color = Color(0.956863, 0.882353, 0.541176, 0.647059)
-roughness = 0.0
+albedo_color = Color(1, 1, 0.41568628, 1)
 emission_enabled = true
-emission = Color(0.956863, 0.882353, 0.541176, 1)
+emission = Color(1, 1, 0.41568628, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_qpe6n"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5h4qh"]
+resource_name = "lantern"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jmk80"]
+_surfaces = [{
+"aabb": AABB(-1.2710991, -1.0147319, -1.2710991, 2.5421982, 3.4100332, 2.5421982),
+"format": 34896613377,
+"index_count": 156,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEABQAAAAIABgABAAQABwAEAAAABgAIAAEACAADAAEACQAGAAQACAAKAAMACQAEAAsABwALAAQACgAJAAsACgALAAMADAADAAsADAALAAcAAgADAAwADQACAAwABQACAA0ADgAMAAcADQAMAA4ADgAHAA8ADwAHAAAADwAAAAUADgAQAA0ABQARAA8ADwASAA4ADgASABAADwARABIADQAQABMADQATAAUAEgATABAABQATABEAEgARABMAFAAJAAoAFQAJABQAFQAGAAkAFAAKABYAFgAKAAgAFwAIAAYAFgAIABcAFwAGABUAGAAUABYAGQAXABUAGgAVABQAGgAZABUAGAAaABQAGQAbABcAGwAWABcAGwAZABoAGwAYABYAGwAaABgA"),
+"name": "lantern",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 28,
+"vertex_data": PackedByteArray("TBuJ3bLkAAAAAKXWAAAAAEwbid1MGwAA//+l1gAAAAAAAKXW//8AAGV0id2ZiwAAAAByav//AACy5IndsuQAAAAAcmoAAAAA//9yav//AAD//3JqAAAAAP//pdb//wAAsuSJ3UwbAABldIndZXQAAJmLid1ldAAAmYuJ3ZmLAABldP//ZXQAAJmL//+ZiwAAmYv//2V0AABldP//mYsAAMrmk2zK5gAANBmTbMrmAADK5pNsNBkAADQZk2w0GQAAXr4AAKBBAACgQQAAXr4AAF6+AABevgAAoEEAAKBBAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qmcl1"]
+resource_name = "roadlamp_Cube"
+_surfaces = [{
+"aabb": AABB(-1.2710991, -1.0147319, -1.2710991, 2.5421982, 3.4100332, 2.5421982),
+"attribute_data": PackedByteArray("mFXcH6gwfDMVMfwrjlnvJTuGuKiiU2G8t1cStV+N36y/ZCTidpZFzSWSbdWvXFvdKjvzV8VmokH6ZzlIZDmwUU9NaXa8dAeJQ1grkKZvpmrUQTANJ0EFAIZH5Qi3PCYDSI8jX/pnOUgKlDQ1pm+makNYK5A7hriot1cStbx0B4lPTWl2KwypYSo781ekKg2Epm+maio781f6ZzlIT01pdsVmokGoMHwzjlnvJWQ5sFFkObBRBQDyL6gwfDONAwBcolNhvHaWRc2vXFvdX43frHaWkSuOWe8lOYNmBsVmokFod7kDjlnvJZhV3B85g2YGKwypYWQ5sFEqO/NXjQMAXPpnOUh2lpErCpQ0NcVmokEVMfwrBQDyL3YH1CaoMHwz1EEwDRUx/CsuOBsQdgfUJlQwlw6YVdwfhkflCGh3uQPBfnjwJZJt1fWDB++/ZCTilYC7+juGtP/jgPn/EYYX+lQwlw62NysFLjgbEFAy4AT1gwfvlYC7+sF+ePARhhf6LjgbELc8JgPUQTANtjcrBQ=="),
+"format": 34896613399,
+"index_count": 156,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASgBJAEsASgBLAEwASABNAEkATgBNAEgATgBPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEA"),
+"material": SubResource("StandardMaterial3D_5h4qh"),
+"name": "lantern",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 100,
+"vertex_data": PackedByteArray("TBuJ3bLk5dIAAKXWAAB600wbid1MG3LTAACl1v//+9LK5pNsyuYfzf//cmoAAC7NyuaTbDQZLc3//3Jq//8hzbLkid1MG5Dk//+l1v//pOSy5IndsuSo5P//pdYAAI7kNBmTbDQZktIAAHJq///p0DQZk2zK5vzQAAByagAAVtKgQQAAoEFAzl6+AABevkDOXr4AAKBBSM+gQQAAXr4+zWV0id2Zi8CcmYv//5mL85iZi4ndmYufm2V0//+ZixSaXr4AAF6+A5I0GZNsyuYDksrmk2zK5gWSoEEAAF6+AZJevgAAoEH38Mrmk2zK5vfwyuaTbDQZ3vBevgAAXr4b8aBBAACgQe38yuaTbDQZ7v40GZNsNBkN/l6+AACgQR3+oEEAAF6+RcA0GZNsNBkJwDQZk2zK5hzAoEEAAKBBGsAAAHJq//8DwQAApdYAAKDAAACl1v//4MAAAHJqAAC+wAAAcmoAAP////+l1gAA//8AAKXWAAD/////cmoAAP////9yagAAgPj//6XW//8a+P//pdYAAF74//9yav//O/j//3Jq///wkQAApdb//5qR//+l1v//Q5IAAHJq//9HkbLkid2y5PK2AACl1v//2b5MG4ndsuSpwP//pdb//462yuaTbDQZRPsAAHJqAABK+TQZk2w0GfT4//9yagAAYvs0GZNsyuYxxf//cmr//1TFyuaTbMrmUsUAAHJq//82xUwbid1MG279//+l1gAAAP+y5IndTBvq/gAApdYAAKv9ZXSJ3ZmLDNhMG4ndTBtb62V0id1ldNbpsuSJ3Uwbhv2Zi4ndZXQd/Ewbid2y5NTSmYuJ3ZmLTsyy5IndsuQxypmLid1ldATcsuSJ3bLkCtyZi4ndmYvm27Lkid1MGxDcmYv//2V0TddldP//mYtN12V0//9ldI7WmYv//5mLDdiZi4ndZXT//2V0//9ldP//ZXSJ3WV0//+Zi///ZXT//5mLid2Zi7P4mYv//2V0bvyZi4ndZXTN+ZmL//+Zi1P7ZXSJ3WV0YcJldP//mYt1wWV0id2ZixbCZXT//2V0tcHbnvi2FZ49tx+eObe9ngO3TyrRzloq6c5aKujOUSrTznKoTKZgqFimXKhapnOoS6bJIxXNgSLIypAi48qcI8TM0CWhy9AlocucJjjN/yT+yf9//3//f/9//3//f/9//39aTNh2WkzYdmBM1nZTTNl2iQAov4sAKb9tABa/sgBCv7ZZ7eXDZ+T1SmGL7rdhBe+ZX+DXYGJT3yBh+ds1YTLceXDz4C5zXeZVcaviQ3KH5Mx0zPTYgiX9G3kb+ft9+v3eBxA8RAjdO/8H/zsiCO47/3//f/9//3//f/9//3//f9zLxZUzuPudSrUyn3vNGJVAOnT7YDmi+Tw5VPlMOo/7Kxm0clUbj3E9G5xxeBmKcuiDQsiLga7JrIGRyYyDe8h9p0CsY5TNtc2VGLWwgqa+LYTovc6tF6mctzCkmrsxojGjZq4ro2muUKNWriWjbK5XqNOrV6jTqzSpZKt8p0CsEozr81yHovhIj7bwuoND/KoHKjzZAxM+jga4PP8Efz21amrVLW5a3LBrYdcZbTPa")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_jmk80")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_loo6k"]
+render_priority = 0
+shader = ExtResource("3_53l72")
+shader_parameter/Color = Color(1, 1, 0.2509804, 1)
+shader_parameter/glow_color = Color(1, 0.5529412, 0, 1)
+shader_parameter/dist = 0.25
+shader_parameter/speed = 20.0
+shader_parameter/glow_intensity = 2.0
+shader_parameter/glow_amount = 1.0
+shader_parameter/posMult = 1.0
+
+[sub_resource type="Curve" id="Curve_nbhk8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nst8u"]
+curve = SubResource("Curve_nbhk8")
+
+[sub_resource type="Curve" id="Curve_7g52q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_b1i4m"]
+curve = SubResource("Curve_7g52q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6djt8"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 0.99997765
+radial_velocity_max = 1.9999776
+radial_velocity_curve = SubResource("CurveTexture_nst8u")
+gravity = Vector3(0, 10, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 0.999998
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_b1i4m")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cx5cv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtpkl"]
+render_priority = 0
+shader = ExtResource("3_53l72")
+shader_parameter/Color = Color(1, 0.5019608, 0, 1)
+shader_parameter/glow_color = Color(1, 0.5529412, 0, 1)
+shader_parameter/dist = 0.25
+shader_parameter/speed = 20.0
+shader_parameter/glow_intensity = 2.0
+shader_parameter/glow_amount = 1.0
+shader_parameter/posMult = 1.0
 
 [node name="Lamp" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.339865, 0, 0, 0, 4.85193, 0, 0, 0, 0.339865, 0, 0, 0)
-material_override = ExtResource("1_3b5q5")
-mesh = SubResource("BoxMesh_5vngr")
+[node name="roadlamp" parent="." instance=ExtResource("1_xtpkl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0437557, 0)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.752472, 0, 0, 0, 0.299706, 0, 0, 0, 0.339865, 0.49945, 2.27252, 0)
-material_override = ExtResource("1_3b5q5")
-mesh = SubResource("BoxMesh_5vngr")
+[node name="Cylinder" parent="roadlamp" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fisej")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.53671, 0, 0, 0, 0.53671, 0, 0, 0, 0.53671, 0.70633, 1.94946, 0)
+[node name="Cylinder_001" parent="roadlamp" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fisej")
+
+[node name="Cylinder_002" parent="roadlamp" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fisej")
+
+[node name="Cube" parent="roadlamp" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fisej")
+
+[node name="Cube2" type="MeshInstance3D" parent="roadlamp"]
+transform = Transform3D(0.202, 0, 0, 0, 0.202, 0, 0, 0, 0.202, 0, 2.42135, 1.273235)
 material_override = SubResource("StandardMaterial3D_xtpkl")
-mesh = SubResource("SphereMesh_qpe6n")
+mesh = SubResource("ArrayMesh_qmcl1")
+skeleton = NodePath("")
 
-[node name="Lantern" type="OmniLight3D" parent="MeshInstance3D3"]
-light_color = Color(0.956863, 0.882353, 0.541176, 1)
-light_energy = 8.0
-light_volumetric_fog_energy = 16.0
-omni_range = 150.0
+[node name="Fire" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00210285, 1.1036896, 1.288445)
+visible = false
+material_override = SubResource("ShaderMaterial_loo6k")
+amount = 25
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_6djt8")
+draw_pass_1 = SubResource("BoxMesh_cx5cv")
+
+[node name="Fire2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00210285, 1.1036896, 1.288445)
+visible = false
+material_override = SubResource("ShaderMaterial_xtpkl")
+amount = 25
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_6djt8")
+draw_pass_1 = SubResource("BoxMesh_cx5cv")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6938931, 1.2640598)
+light_color = Color(0.9999996, 0.8197806, 0.4698997, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 100.0
+omni_attenuation = 0.0
+
+[editable path="roadlamp"]

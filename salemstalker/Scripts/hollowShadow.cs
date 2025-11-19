@@ -64,7 +64,7 @@ public partial class hollowShadow : Monster3d
 	{
 		_hasHit = false;
 		_attackAnim = true;
-		await ToSignal(GetTree().CreateTimer(1), "timeout");
+		await ToSignal(GetTree().CreateTimer(.4), "timeout");
 		_fadeFactor = 10f;
 		_transparencyGoal = 1f;
 		GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;

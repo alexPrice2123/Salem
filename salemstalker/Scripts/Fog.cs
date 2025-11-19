@@ -4,7 +4,7 @@ using System;
 public partial class Fog : Node3D
 {
 	private Player3d _player;
-	private float _thickFog = 0.5f;
+	private float _thickFog = 0.75f;
 	private float _normalFog = 0.05f;
 	private PackedScene _hollowShadow = GD.Load<PackedScene>("res://Scenes/Monsters/hollowShadow.tscn"); // Scene reference for the hollow
 	private RandomNumberGenerator _rng = new RandomNumberGenerator();
