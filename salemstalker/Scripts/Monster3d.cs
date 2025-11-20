@@ -12,6 +12,7 @@ public partial class Monster3d : CharacterBody3D
     protected float Speed = 4.5f;               // Movement speed
     protected float MaxHealth = 100.0f;         // Maximum monster health
     protected float Range = 25.0f;              // Detection range for chasing
+    protected float agroRange = 15.0f;          // Detection range for agro
     protected double SpawnDistance = 100;       // Distance from player before despawning
     protected float BaseDamage = 10.0f;         // Base damage of the monster
     protected int WanderRange = 50;             // The range the monster can wander from its spawn point
@@ -34,6 +35,8 @@ public partial class Monster3d : CharacterBody3D
     protected Node3D _body;                     // Monster body mesh node
     protected CollisionShape3D _attackBox;      // The attack box of the monster
     protected Node3D _lookDirection;            // The goal look direction that the monster should lerp to
+    protected Area3D _visArea;
+    protected Area3D _agroArea;
 
     // --- VARIABLES ---
     public float _health;                       // Current health of the monster
@@ -58,6 +61,8 @@ public partial class Monster3d : CharacterBody3D
     protected Vector3 _rangedPosition;          // The point chosen by non chaser monsters to go to
     protected float _veloThreshold = -5f;       // The velocity threshold that ranged monsters have to get to, to stop and attack
     protected bool _dashAnim = false;           // Should the dash anim be playing
+    protected bool _canSeePlayer = false;
+    protected bool _agro = false;
 
 
     // --- READY --- //
@@ -80,7 +85,17 @@ public partial class Monster3d : CharacterBody3D
         _attackBox = GetNode<CollisionShape3D>("Attackbox/CollisionShape3D");
         _health = MaxHealth;
         _lookDirection = GetNode<Node3D>("Direction");
+        _visArea = GetNode<Area3D>("VisibilityRange");
+        _agroArea = GetNode<Area3D>("AgroRange");
 
+        if (_visArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape)
+        {
+            shape.Radius = Range;
+        }
+        if (_agroArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape2)
+        {
+            shape2.Radius = agroRange;
+        }
     }
 
 
@@ -90,7 +105,7 @@ public partial class Monster3d : CharacterBody3D
     {
         if (body.IsInGroup("Weapon") && _canBeHit)
         {
-            DamageHandler(true, _player._damage);
+            DamageHandler(false, _player._damage);
         }
         else if (body.IsInGroup("PlayerProj") && _canBeHit)
         {
@@ -431,5 +446,42 @@ public partial class Monster3d : CharacterBody3D
         _wanderPos = new Vector3(randX, _player.GlobalPosition.Y, randZ);
     }
 
+    private void _on_visibility_range_area_entered(Area3D area) //When the player gets in range of the monster to see them; not agro
+    {
+        if (area.IsInGroup("Player"))
+        {
+            _canSeePlayer = true;
+        }
+        else if (area.IsInGroup("Monster"))
+        {
+            if (_canSeePlayer == true && area.GetParent() is Monster3d visEnteredMonster) 
+            {
+                visEnteredMonster._canSeePlayer = true;
+            }
+        }
+    }
+    private void _on_visibility_range_area_exited(Area3D area) //When the player gets into the agro range
+    {
+        if (area.IsInGroup("Player"))
+        {
+            _canSeePlayer = false;
+        }
+        else if (area.IsInGroup("Monster"))
+        {
+            if (_canSeePlayer == true && area.GetParent() is Monster3d visEnteredMonster) 
+            {
+                visEnteredMonster._canSeePlayer = true;
+            }
+        }
+    }
+
+    private void _on_agro_range_area_entered(Area3D area) //When the player gets in range of the monster to see them; not agro
+    {
+        
+    }
+    private void _on_agro_range_area_exited(Area3D area) //When the player gets into the agro range
+    {
+        
+    }
 
 }

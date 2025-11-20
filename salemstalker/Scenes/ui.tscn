@@ -992,7 +992,6 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("13_whq80")
 
 [node name="Fill" type="Sprite2D" parent="Stamina"]
-modulate = Color(0.235305, 0.629091, 0.82479, 1)
 z_as_relative = false
 material = SubResource("ShaderMaterial_whq80")
 scale = Vector2(0.8, 0.8)

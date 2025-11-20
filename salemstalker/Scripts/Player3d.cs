@@ -51,7 +51,7 @@ public partial class Player3d : CharacterBody3D
 	public float _damage = 0.0f;                     	// Current attack damage value, adjusted by buffs/debuffs
 	private ulong _lastHit = 0;                      	// Stores the game time (in milliseconds) of the player's last attack
 	private int _comboNum = 0;						 	// Current step in the attack combo chain (0, 1, or 2)
-	public float _knockbackStrength = 0.0f;          	// Force applied to enemies upon hit
+	public float _knockbackStrength = 5.0f;          	// Force applied to enemies upon hit
 	public bool _inCombat = false;                   	// Flag: true if the player has recently attacked or been attacked
 	private float _combatCounter = 0;               	// Timer/frame counter for the combat cooldown
 	private bool _inInv;                             	// Tracks if the player is currently in the inventory state (commented out)
@@ -967,12 +967,12 @@ public partial class Player3d : CharacterBody3D
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)
 			{
-				cam.StartShake(takenDamage/90, shakeFade);
+				cam.StartShake(takenDamage/100, shakeFade);
 			}
 		}
 		else if (_cam is Camera cam)
         {
-            cam.StartShake(takenDamage/70, shakeFade);
+            cam.StartShake(takenDamage/90, shakeFade);
         }
 		
 		// Damage multiplier if player is out of stamina

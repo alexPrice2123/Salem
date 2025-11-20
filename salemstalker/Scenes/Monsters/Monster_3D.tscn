@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://u7yct1quu07a"]
+[gd_scene load_steps=6 format=3 uid="uid://u7yct1quu07a"]
 
 [ext_resource type="Script" uid="uid://ckmn7j07x5ubl" path="res://Scripts/Monster3d.cs" id="1_ayuld"]
 
@@ -12,6 +12,8 @@ height = 1.38319
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ci7oq"]
 size = Vector3(1.04077, 1.31622, 1.20215)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_beqai"]
 
 [node name="Monster_3d" type="CharacterBody3D" groups=["Monster"]]
 script = ExtResource("1_ayuld")
@@ -44,5 +46,19 @@ shape = SubResource("BoxShape3D_ci7oq")
 disabled = true
 debug_color = Color(0.987143, 0, 0.316185, 0.42)
 
+[node name="VisibilityRange" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisibilityRange"]
+shape = SubResource("SphereShape3D_beqai")
+
+[node name="AgroRange" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AgroRange"]
+shape = SubResource("SphereShape3D_beqai")
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="Attackbox" to="." method="_on_attackbox_area_entered"]
+[connection signal="area_entered" from="VisibilityRange" to="." method="_on_visibility_range_area_entered"]
+[connection signal="area_exited" from="VisibilityRange" to="." method="_on_visibility_range_area_exited"]
+[connection signal="area_entered" from="AgroRange" to="." method="_on_agro_range_area_entered"]
+[connection signal="area_exited" from="AgroRange" to="." method="_on_agro_range_area_exited"]
