@@ -182,7 +182,7 @@ public partial class Monster3d : CharacterBody3D
         _dashVelocity = Mathf.Lerp(_dashVelocity, 1f, 15f * (float)delta);
 
         // CHASE MODE: If player close enough and monster is a chaser
-        if (_player._currentBiome.Contains("Village") == false && distance <= Range && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false && Fleeing == false)
+        if (_player._currentBiome.Contains("Village") == false && _canSeePlayer && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false && Fleeing == false)
         {
             // Navigation pathing toward player
             _navAgent.TargetPosition = _player.GlobalPosition;
@@ -465,13 +465,6 @@ public partial class Monster3d : CharacterBody3D
         if (area.IsInGroup("Player"))
         {
             _canSeePlayer = false;
-        }
-        else if (area.IsInGroup("Monster"))
-        {
-            if (_canSeePlayer == true && area.GetParent() is Monster3d visEnteredMonster) 
-            {
-                visEnteredMonster._canSeePlayer = true;
-            }
         }
     }
 
