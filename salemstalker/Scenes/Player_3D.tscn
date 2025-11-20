@@ -86,7 +86,10 @@ debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
 
 [editable path="Head/Camera3D/Offhand2/FlintGun"]
 [editable path="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions"]
