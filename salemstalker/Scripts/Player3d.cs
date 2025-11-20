@@ -953,7 +953,7 @@ public partial class Player3d : CharacterBody3D
 			_knockVelocity = 1f;
 			if (_cam is Camera cam)
 			{
-				cam.StartShake(takenDamage/70, shakeFade);
+				cam.StartShake(takenDamage/80, shakeFade);
 			}
 			
 		}
@@ -968,12 +968,12 @@ public partial class Player3d : CharacterBody3D
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)
 			{
-				cam.StartShake(takenDamage/80, shakeFade);
+				cam.StartShake(takenDamage/90, shakeFade);
 			}
 		}
 		else if (_cam is Camera cam)
         {
-            cam.StartShake(takenDamage/60, shakeFade);
+            cam.StartShake(takenDamage/70, shakeFade);
         }
 		
 		// Damage multiplier if player is out of stamina
