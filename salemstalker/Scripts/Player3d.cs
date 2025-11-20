@@ -50,7 +50,7 @@ public partial class Player3d : CharacterBody3D
 	public float _damage = 0.0f;                     	// Current attack damage value, adjusted by buffs/debuffs
 	private ulong _lastHit = 0;                      	// Stores the game time (in milliseconds) of the player's last attack
 	private int _comboNum = 0;						 	// Current step in the attack combo chain (0, 1, or 2)
-	public float _knockbackStrength = 5.0f;          	// Force applied to enemies upon hit
+	public float _knockbackStrength = 0.0f;          	// Force applied to enemies upon hit
 	public bool _inCombat = false;                   	// Flag: true if the player has recently attacked or been attacked
 	private float _combatCounter = 0;               	// Timer/frame counter for the combat cooldown
 	private bool _inInv;                             	// Tracks if the player is currently in the inventory state (commented out)
@@ -156,7 +156,11 @@ public partial class Player3d : CharacterBody3D
 			// Clamp the vertical camera rotation to prevent looking too far up or down
 			Vector3 camRot = _cam.Rotation;
 			camRot.X = Mathf.Clamp(camRot.X, Mathf.DegToRad(-80f), Mathf.DegToRad(80f));
-			_cam.Rotation = camRot;
+			
+			if (_cam is Camera camRef)
+            {
+                camRef._initialRotation = camRot;
+            }
 		}
 
 		// --- Pause menu toggle (Escape) ---
@@ -937,6 +941,8 @@ public partial class Player3d : CharacterBody3D
         {
             _knockVelocity = 75f;
         }
+		float shakeFade = 1f;
+		if (takenDamage > _maxHealth/3){shakeFade = 0.5f;}
 		if (_blocking == true && _parry == false)
 		{
 			// Regular block: reduce damage, deduct stamina, play block animation
@@ -945,6 +951,11 @@ public partial class Player3d : CharacterBody3D
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			_knockVelocity = 1f;
+			if (_cam is Camera cam)
+			{
+				cam.StartShake(takenDamage/70, shakeFade);
+			}
+			
 		}
 		else if (_blocking == true && _parry == true)
 		{
@@ -955,7 +966,15 @@ public partial class Player3d : CharacterBody3D
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			_parried = true;
 			_knockVelocity = 0f;
+			if (_cam is Camera cam)
+			{
+				cam.StartShake(takenDamage/80, shakeFade);
+			}
 		}
+		else if (_cam is Camera cam)
+        {
+            cam.StartShake(takenDamage/60, shakeFade);
+        }
 		
 		// Damage multiplier if player is out of stamina
 		if (_stamina <= 0)

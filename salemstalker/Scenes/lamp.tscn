@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=4 uid="uid://dp8uiiauk5326"]
 
-[ext_resource type="PackedScene" uid="uid://bf5rvpr8nixcm" path="res://Assets/3D/buildings/roadlamp.blend" id="1_xtpkl"]
+[ext_resource type="PackedScene" uid="uid://dwc7nx231uuph" path="res://Assets/3D/buildings/roadlamp.blend" id="1_xtpkl"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_qpe6n"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_53l72"]
 
@@ -153,7 +153,6 @@ draw_pass_1 = SubResource("BoxMesh_cx5cv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6938931, 1.2640598)
 light_color = Color(0.9999996, 0.8197806, 0.4698997, 1)
 light_energy = 0.5
-shadow_enabled = true
 omni_range = 100.0
 omni_attenuation = 0.0
 

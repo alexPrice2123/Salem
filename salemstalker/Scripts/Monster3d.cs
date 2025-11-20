@@ -164,19 +164,10 @@ public partial class Monster3d : CharacterBody3D
         if (_count > 50 && _justSpawned)
             _justSpawned = false;
 
-        // Occasionally pick new wander location
-        if (_count >= 250)
-        {
-            _count = _rng.RandiRange(-100, 50);
-            float randZ = _startPos.Z + _rng.RandiRange(-WanderRange, WanderRange);
-            float randX = _startPos.X + _rng.RandiRange(-WanderRange, WanderRange);
-            _wanderPos = new Vector3(randX, _player.GlobalPosition.Y, randZ);
-        }
-
         _dashVelocity = Mathf.Lerp(_dashVelocity, 1f, 15f * (float)delta);
 
         // CHASE MODE: If player close enough and monster is a chaser
-        if (distance <= Range && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false && Fleeing == false)
+        if (_player._currentBiome.Contains("Village") == false && distance <= Range && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false && Fleeing == false)
         {
             // Navigation pathing toward player
             _navAgent.TargetPosition = _player.GlobalPosition;
@@ -216,7 +207,7 @@ public partial class Monster3d : CharacterBody3D
         }
 
         // RANGED ENEMY BEHAVIOR: maintain distance then fire
-        else if (distance <= Range && !_attackAnim && !Chaser && Stationery == false && Fleeing == false)
+        else if (_player._currentBiome.Contains("Village") == false && distance <= Range && !_attackAnim && !Chaser && Stationery == false && Fleeing == false)
         {
             _player._inCombat = true; _navAgent.TargetPosition = _rangedPosition;
             Vector3 nextPoint = _navAgent.GetNextPathPosition();
@@ -251,7 +242,7 @@ public partial class Monster3d : CharacterBody3D
                 _lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up); 
             }
         }
-        else if (Stationery == true && Fleeing == false)
+        else if (_player._currentBiome.Contains("Village") == false && Stationery == true && Fleeing == false)
         {
 
             // Rotate monster to face player
@@ -266,7 +257,7 @@ public partial class Monster3d : CharacterBody3D
             }
             else _attacking = false;
         }
-        else if (Fleeing == true && distance <= Range)
+        else if (_player._currentBiome.Contains("Village") == false && Fleeing == true && distance <= Range)
         {
             // how far the rat will try to get away from the player
         float _fleeDistance = 8f; // tweak to taste
@@ -314,6 +305,12 @@ public partial class Monster3d : CharacterBody3D
             _navAgent.TargetPosition = _wanderPos;
             Vector3 nextPoint = _navAgent.GetNextPathPosition();
             _targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * Speed;
+
+            if (GlobalPosition.Snapped(0.1f) == _wanderPos.Snapped(0.1f))
+            {
+                _targetVelocity = Vector3.Zero;
+                ChooseNewWander();
+            }
 
             // Make the monster look at where its moving
             Vector3 moveDirection = Velocity.Normalized(); 
@@ -424,6 +421,14 @@ public partial class Monster3d : CharacterBody3D
         Vector3 knockbackDir = (GlobalPosition - _player.Position).Normalized();
         _knockbackVelocity = knockbackDir * _player._knockbackStrength;
         _knockbackVelocity.Y = 0f;
+    }
+
+    private async void ChooseNewWander()
+    {
+        await ToSignal(GetTree().CreateTimer(_rng.RandfRange(1,4)), "timeout");
+        float randZ = _startPos.Z + _rng.RandiRange(-WanderRange, WanderRange);
+        float randX = _startPos.X + _rng.RandiRange(-WanderRange, WanderRange);
+        _wanderPos = new Vector3(randX, _player.GlobalPosition.Y, randZ);
     }
 
 

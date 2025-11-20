@@ -1,0 +1,1930 @@
+[gd_scene load_steps=545 format=4 uid="uid://bap0k6fax0p86"]
+
+[ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
+[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="2_eb0fy"]
+[ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="3_letqy"]
+[ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="4_aragi"]
+[ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="5_nc3gf"]
+[ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="6_r8fd3"]
+[ext_resource type="Texture2D" uid="uid://chu6uwfbaqyat" path="res://Assets/2D/sand.png" id="7_h8aoc"]
+[ext_resource type="Texture2D" uid="uid://bdg05x8m3uscr" path="res://Assets/2D/shallowocean.png" id="8_2rvlj"]
+[ext_resource type="Texture2D" uid="uid://xcspp642up40" path="res://Assets/2D/midocean.png" id="9_1uftk"]
+[ext_resource type="Texture2D" uid="uid://d0u1esu3iuflj" path="res://Assets/2D/deepocean.png" id="10_43n44"]
+[ext_resource type="Texture2D" uid="uid://c2oao6p84hbwj" path="res://Assets/2D/swamp_dirt.png" id="11_o70cm"]
+[ext_resource type="Texture2D" uid="uid://c5fu5c6gcnf5r" path="res://Assets/2D/swamp_grass.png" id="12_37xqj"]
+[ext_resource type="Texture2D" uid="uid://bjurhsgte1wdp" path="res://Assets/2D/plains_grass.png" id="13_n5auh"]
+[ext_resource type="Texture2D" uid="uid://b7xplb2tbcaer" path="res://Assets/2D/plains_dirt.png" id="14_ejjek"]
+[ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="15_v02e0"]
+[ext_resource type="Texture2D" uid="uid://duyqji6d5wl4n" path="res://Assets/3D/plants/bush_goodtreebkgdless_kat_px.png" id="16_hs260"]
+[ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="17_rjq1j"]
+[ext_resource type="Script" uid="uid://d33x21vao7tj2" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="18_osg54"]
+[ext_resource type="Texture2D" uid="uid://cck8lij4e7ufy" path="res://Assets/2D/grass_graass.png" id="19_o2cid"]
+[ext_resource type="Texture2D" uid="uid://canhbg83j2nyd" path="res://Assets/3D/plants/grass_graass.png" id="20_ve2tm"]
+[ext_resource type="PackedScene" uid="uid://blt7o2y8rc0lv" path="res://Assets/3D/plants/tree.blend" id="21_rxyfw"]
+[ext_resource type="Script" uid="uid://cgf61yxk46wa4" path="res://addons/terrabrush/Scripts/EditorResources/ObjectDefinitionResource.cs" id="22_rabu8"]
+[ext_resource type="Script" uid="uid://comabiqrwe5u0" path="res://addons/terrabrush/Scripts/EditorResources/ObjectResource.cs" id="23_r0smi"]
+[ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="24_nly56"]
+[ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="25_tjcsd"]
+[ext_resource type="Texture2D" uid="uid://tjq33somhl15" path="res://Scenes/World/Foliage_0_0_0.res" id="26_n5auh"]
+[ext_resource type="Texture2D" uid="uid://daaucpomjga2y" path="res://Scenes/World/Foliage_0_0_1.res" id="27_ejjek"]
+[ext_resource type="Texture2D" uid="uid://mngvtc65froj" path="res://Scenes/World/Heightmap_0_0.res" id="28_v02e0"]
+[ext_resource type="Texture2D" uid="uid://jljni2un267f" path="res://Scenes/World/Object_0_0_0.res" id="29_hs260"]
+[ext_resource type="Texture2D" uid="uid://c6b2si6o2cvl0" path="res://Scenes/World/Splatmap_0_0_0.res" id="30_rjq1j"]
+[ext_resource type="Texture2D" uid="uid://c1h7belsbf2yo" path="res://Scenes/World/Splatmap_0_0_1.res" id="31_osg54"]
+[ext_resource type="Texture2D" uid="uid://b0mpdy7tb6ldf" path="res://Scenes/World/Splatmap_0_0_2.res" id="32_o2cid"]
+[ext_resource type="Texture2D" uid="uid://dhejp87xfpifv" path="res://Scenes/World/Water_0_0.res" id="33_ve2tm"]
+[ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="34_rxyfw"]
+[ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="35_rabu8"]
+[ext_resource type="Texture2D" uid="uid://cels2dpuuom03" path="res://Scenes/World/Foliage_-1_0_0.res" id="36_g5cmj"]
+[ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="36_r0smi"]
+[ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="37_rjq1j"]
+[ext_resource type="Texture2D" uid="uid://ndwxshctfwxv" path="res://Scenes/World/Foliage_-1_0_1.res" id="37_y2u06"]
+[ext_resource type="Texture2D" uid="uid://bkln8nthucnkb" path="res://Scenes/World/Heightmap_-1_0.res" id="38_13etl"]
+[ext_resource type="PackedScene" uid="uid://dbhqhurkcdks0" path="res://Scenes/Monsters/hollowNormal.tscn" id="38_osg54"]
+[ext_resource type="Texture2D" uid="uid://nx01e1rsa1yk" path="res://Scenes/World/Object_-1_0_0.res" id="39_gvihv"]
+[ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/sCultist.tscn" id="39_o2cid"]
+[ext_resource type="Texture2D" uid="uid://cnshr2h3d25vv" path="res://Scenes/World/Splatmap_-1_0_0.res" id="40_n36u0"]
+[ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/hollowBrute.tscn" id="40_ve2tm"]
+[ext_resource type="Texture2D" uid="uid://c6wsk0flnno4h" path="res://Scenes/World/Splatmap_-1_0_1.res" id="41_f1a1r"]
+[ext_resource type="Texture2D" uid="uid://2x1sktrokhi5" path="res://Scenes/World/Splatmap_-1_0_2.res" id="42_k7atx"]
+[ext_resource type="Texture2D" uid="uid://bfpa532cel4s0" path="res://Scenes/World/Water_-1_0.res" id="43_xxkyo"]
+[ext_resource type="Texture2D" uid="uid://0k258of2hevp" path="res://Scenes/World/Foliage_-1_-1_0.res" id="44_jmvp8"]
+[ext_resource type="Texture2D" uid="uid://c5yaql3r6joop" path="res://Scenes/World/Foliage_-1_-1_1.res" id="45_nncql"]
+[ext_resource type="Texture2D" uid="uid://c3p4davitlja2" path="res://Scenes/World/Heightmap_-1_-1.res" id="46_yj2l7"]
+[ext_resource type="Texture2D" uid="uid://mfr7for7bcvx" path="res://Scenes/World/Object_-1_-1_0.res" id="47_fx6sd"]
+[ext_resource type="Texture2D" uid="uid://dkte2sl1mbgpf" path="res://Scenes/World/Splatmap_-1_-1_0.res" id="48_8b3bu"]
+[ext_resource type="Texture2D" uid="uid://65ijvriu6fwq" path="res://Scenes/World/Splatmap_-1_-1_1.res" id="49_pj1wl"]
+[ext_resource type="Texture2D" uid="uid://mtwre2rra1n2" path="res://Scenes/World/Splatmap_-1_-1_2.res" id="50_1nepi"]
+[ext_resource type="Texture2D" uid="uid://ckyrpt0n5xjqb" path="res://Scenes/World/Water_-1_-1.res" id="51_xydo5"]
+[ext_resource type="Texture2D" uid="uid://cyrwnwba6l2dj" path="res://Scenes/World/Foliage_0_-1_0.res" id="52_7lsta"]
+[ext_resource type="Texture2D" uid="uid://byefs5t43eeiw" path="res://Scenes/World/Foliage_0_-1_1.res" id="53_81rqo"]
+[ext_resource type="Texture2D" uid="uid://f4ry2x28khk" path="res://Scenes/World/Heightmap_0_-1.res" id="54_pvlar"]
+[ext_resource type="Texture2D" uid="uid://djnefmcwptfwe" path="res://Scenes/World/Object_0_-1_0.res" id="55_e2eg3"]
+[ext_resource type="Texture2D" uid="uid://cx7qyaen1jt5o" path="res://Scenes/World/Splatmap_0_-1_0.res" id="56_nr7af"]
+[ext_resource type="Texture2D" uid="uid://eops2soyvhag" path="res://Scenes/World/Splatmap_0_-1_1.res" id="57_ym0xd"]
+[ext_resource type="Texture2D" uid="uid://dec53p7jw8j2k" path="res://Scenes/World/Splatmap_0_-1_2.res" id="58_xyhap"]
+[ext_resource type="Texture2D" uid="uid://e6x1ni5klegs" path="res://Scenes/World/Water_0_-1.res" id="59_46020"]
+[ext_resource type="Texture2D" uid="uid://b3axyrp1woolk" path="res://Scenes/World/Foliage_1_-1_0.res" id="60_of432"]
+[ext_resource type="Texture2D" uid="uid://bkj00nlxxc46r" path="res://Scenes/World/Foliage_1_-1_1.res" id="61_wkm1a"]
+[ext_resource type="Texture2D" uid="uid://8shrob030qh8" path="res://Scenes/World/Heightmap_1_-1.res" id="62_2rj2p"]
+[ext_resource type="Texture2D" uid="uid://db61tf0wr8xrq" path="res://Scenes/World/Object_1_-1_0.res" id="63_wrhnx"]
+[ext_resource type="Texture2D" uid="uid://r01aqhxtgg82" path="res://Scenes/World/Splatmap_1_-1_0.res" id="64_p2h30"]
+[ext_resource type="Texture2D" uid="uid://c0qyop35lti82" path="res://Scenes/World/Splatmap_1_-1_1.res" id="65_jsh0i"]
+[ext_resource type="Texture2D" uid="uid://c6qqr20xtiewx" path="res://Scenes/World/Splatmap_1_-1_2.res" id="66_jgbub"]
+[ext_resource type="Texture2D" uid="uid://cr7wa4pk1ucyr" path="res://Scenes/World/Water_1_-1.res" id="67_r6r1r"]
+[ext_resource type="Texture2D" uid="uid://3yxfl1oitblo" path="res://Scenes/World/Foliage_1_0_0.res" id="68_wk3sn"]
+[ext_resource type="Texture2D" uid="uid://d37c1p8qk5nfk" path="res://Scenes/World/Foliage_1_0_1.res" id="69_bxpwq"]
+[ext_resource type="Texture2D" uid="uid://xq7548vk75dm" path="res://Scenes/World/Heightmap_1_0.res" id="70_v2isk"]
+[ext_resource type="Texture2D" uid="uid://d1ld7311hfnwr" path="res://Scenes/World/Object_1_0_0.res" id="71_rjbv3"]
+[ext_resource type="Texture2D" uid="uid://u3hk6qdpvxun" path="res://Scenes/World/Splatmap_1_0_0.res" id="72_l4l1r"]
+[ext_resource type="Texture2D" uid="uid://cjbv28bxine4w" path="res://Scenes/World/Splatmap_1_0_1.res" id="73_wg0hf"]
+[ext_resource type="Texture2D" uid="uid://ks1u5apcrebl" path="res://Scenes/World/Splatmap_1_0_2.res" id="74_x5sta"]
+[ext_resource type="Texture2D" uid="uid://pxvkw10c5148" path="res://Scenes/World/Water_1_0.res" id="75_81wgp"]
+[ext_resource type="Texture2D" uid="uid://dnihmip8isqu1" path="res://Scenes/World/Foliage_1_1_0.res" id="76_cnlug"]
+[ext_resource type="Texture2D" uid="uid://desol5naxpidi" path="res://Scenes/World/Foliage_1_1_1.res" id="77_1d31q"]
+[ext_resource type="Texture2D" uid="uid://t1a7i5sculge" path="res://Scenes/World/Heightmap_1_1.res" id="78_2l5oe"]
+[ext_resource type="Texture2D" uid="uid://mid411qje5q2" path="res://Scenes/World/Object_1_1_0.res" id="79_4tjdn"]
+[ext_resource type="Texture2D" uid="uid://c1nmd81hobsxc" path="res://Scenes/World/Splatmap_1_1_0.res" id="80_enjp3"]
+[ext_resource type="Texture2D" uid="uid://c2jtn5tr5pdw5" path="res://Scenes/World/Splatmap_1_1_1.res" id="81_l87i6"]
+[ext_resource type="Texture2D" uid="uid://cs5cdgiboxv7o" path="res://Scenes/World/Splatmap_1_1_2.res" id="82_0k8bs"]
+[ext_resource type="Texture2D" uid="uid://c5slssekt6pfp" path="res://Scenes/World/Water_1_1.res" id="83_or0hy"]
+[ext_resource type="Texture2D" uid="uid://b3lw0d3i3boa5" path="res://Scenes/World/Foliage_0_1_0.res" id="84_7raob"]
+[ext_resource type="Texture2D" uid="uid://cmab0shhwcv1g" path="res://Scenes/World/Foliage_0_1_1.res" id="85_x33qj"]
+[ext_resource type="Texture2D" uid="uid://3box7aabtkdy" path="res://Scenes/World/Heightmap_0_1.res" id="86_0p3ye"]
+[ext_resource type="Texture2D" uid="uid://cpuconi4rtg6y" path="res://Scenes/World/Object_0_1_0.res" id="87_6y3jj"]
+[ext_resource type="Texture2D" uid="uid://bclkqcru4o56d" path="res://Scenes/World/Splatmap_0_1_0.res" id="88_hdfep"]
+[ext_resource type="Texture2D" uid="uid://bxf0wqwhujouo" path="res://Scenes/World/Splatmap_0_1_1.res" id="89_gm54p"]
+[ext_resource type="Texture2D" uid="uid://chvxj17mfe1pb" path="res://Scenes/World/Splatmap_0_1_2.res" id="90_d10hb"]
+[ext_resource type="Texture2D" uid="uid://cwkglm0ns6n31" path="res://Scenes/World/Water_0_1.res" id="91_j1kvn"]
+[ext_resource type="Texture2D" uid="uid://x3lab63a6it" path="res://Scenes/World/Foliage_-1_1_0.res" id="92_phlb0"]
+[ext_resource type="Texture2D" uid="uid://d2j116ooxlb7q" path="res://Scenes/World/Foliage_-1_1_1.res" id="93_yh0mm"]
+[ext_resource type="Texture2D" uid="uid://caavmsi5euykb" path="res://Scenes/World/Heightmap_-1_1.res" id="94_m6obd"]
+[ext_resource type="Texture2D" uid="uid://yrd0lylw0qbe" path="res://Scenes/World/Object_-1_1_0.res" id="95_4qxu6"]
+[ext_resource type="Texture2D" uid="uid://op81owoul4qa" path="res://Scenes/World/Splatmap_-1_1_0.res" id="96_ns5xa"]
+[ext_resource type="Texture2D" uid="uid://85enw8o4ykha" path="res://Scenes/World/Splatmap_-1_1_1.res" id="97_7wkcv"]
+[ext_resource type="Texture2D" uid="uid://c8urrhgjct6v3" path="res://Scenes/World/Splatmap_-1_1_2.res" id="98_i7q85"]
+[ext_resource type="Texture2D" uid="uid://dwugls74173wk" path="res://Scenes/World/Water_-1_1.res" id="99_soowo"]
+[ext_resource type="Texture2D" uid="uid://cq2i6h2b0pxw6" path="res://Scenes/World/Foliage_-2_1_0.res" id="100_lgc0t"]
+[ext_resource type="Texture2D" uid="uid://b4c7cu2vrxegb" path="res://Scenes/World/Foliage_-2_1_1.res" id="101_1dypy"]
+[ext_resource type="Texture2D" uid="uid://cy8jxooltuspv" path="res://Scenes/World/Heightmap_-2_1.res" id="102_rlxc0"]
+[ext_resource type="Texture2D" uid="uid://bwv4jo5p4idr" path="res://Scenes/World/Object_-2_1_0.res" id="103_gumej"]
+[ext_resource type="Texture2D" uid="uid://c3gbn2teo88u8" path="res://Scenes/World/Splatmap_-2_1_0.res" id="104_wu4hr"]
+[ext_resource type="Texture2D" uid="uid://d2srvnt5ss4rc" path="res://Scenes/World/Splatmap_-2_1_1.res" id="105_07fgs"]
+[ext_resource type="Texture2D" uid="uid://kq03v2ccfw2u" path="res://Scenes/World/Splatmap_-2_1_2.res" id="106_0yd4p"]
+[ext_resource type="Texture2D" uid="uid://c8bmjmo8rs31q" path="res://Scenes/World/Water_-2_1.res" id="107_q6xjr"]
+[ext_resource type="Texture2D" uid="uid://0bcuamt8mu81" path="res://Scenes/World/Foliage_-2_0_0.res" id="108_suvwx"]
+[ext_resource type="Texture2D" uid="uid://cs7mvwloiepsq" path="res://Scenes/World/Foliage_-2_0_1.res" id="109_nqj5c"]
+[ext_resource type="Texture2D" uid="uid://dm6xli007x7h1" path="res://Scenes/World/Heightmap_-2_0.res" id="110_euvpd"]
+[ext_resource type="Texture2D" uid="uid://bxynhuq1pnvki" path="res://Scenes/World/Object_-2_0_0.res" id="111_gacqc"]
+[ext_resource type="Texture2D" uid="uid://cfbn51xygvou1" path="res://Scenes/World/Splatmap_-2_0_0.res" id="112_map5x"]
+[ext_resource type="Texture2D" uid="uid://cgm7dehfvw8jx" path="res://Scenes/World/Splatmap_-2_0_1.res" id="113_r1b1d"]
+[ext_resource type="Texture2D" uid="uid://2rfxfvf838yq" path="res://Scenes/World/Splatmap_-2_0_2.res" id="114_igk5s"]
+[ext_resource type="Texture2D" uid="uid://ctckk146r6ggn" path="res://Scenes/World/Water_-2_0.res" id="115_0ktac"]
+[ext_resource type="Texture2D" uid="uid://4djrjk0aulkp" path="res://Scenes/World/Foliage_-2_-1_0.res" id="116_s7pwp"]
+[ext_resource type="Texture2D" uid="uid://dwo0papmry4g" path="res://Scenes/World/Foliage_-2_-1_1.res" id="117_ptdsg"]
+[ext_resource type="Texture2D" uid="uid://bc72cg0gxw5b1" path="res://Scenes/World/Heightmap_-2_-1.res" id="118_3emuh"]
+[ext_resource type="Texture2D" uid="uid://lw4pg4b33r8k" path="res://Scenes/World/Object_-2_-1_0.res" id="119_t3n51"]
+[ext_resource type="Texture2D" uid="uid://p62ltlchdsiu" path="res://Scenes/World/Splatmap_-2_-1_0.res" id="120_k0hdb"]
+[ext_resource type="Texture2D" uid="uid://cthl8v2og787d" path="res://Scenes/World/Splatmap_-2_-1_1.res" id="121_uhd2t"]
+[ext_resource type="Texture2D" uid="uid://ckqlmw0o5rlik" path="res://Scenes/World/Splatmap_-2_-1_2.res" id="122_wu4mf"]
+[ext_resource type="Texture2D" uid="uid://djgetuno2ou8i" path="res://Scenes/World/Water_-2_-1.res" id="123_ju2s7"]
+[ext_resource type="Texture2D" uid="uid://cvcieafl6m4rp" path="res://Scenes/World/Foliage_-2_-2_0.res" id="124_cunwq"]
+[ext_resource type="Texture2D" uid="uid://b1t1lgiht8k2w" path="res://Scenes/World/Foliage_-2_-2_1.res" id="125_vh0sa"]
+[ext_resource type="Texture2D" uid="uid://bcil031h5xf8r" path="res://Scenes/World/Heightmap_-2_-2.res" id="126_hh17a"]
+[ext_resource type="Texture2D" uid="uid://bv7recly4ju3t" path="res://Scenes/World/Object_-2_-2_0.res" id="127_6cf34"]
+[ext_resource type="Texture2D" uid="uid://dmuy0qw1myak4" path="res://Scenes/World/Splatmap_-2_-2_0.res" id="128_t6evk"]
+[ext_resource type="Texture2D" uid="uid://bmrqnfwgd0jyu" path="res://Scenes/World/Splatmap_-2_-2_1.res" id="129_vjp4y"]
+[ext_resource type="Texture2D" uid="uid://bvcu5hi0nnkms" path="res://Scenes/World/Splatmap_-2_-2_2.res" id="130_gy5ag"]
+[ext_resource type="Texture2D" uid="uid://bn1taek0hjavf" path="res://Scenes/World/Water_-2_-2.res" id="131_3maoo"]
+[ext_resource type="Texture2D" uid="uid://b8w2t64h28oht" path="res://Scenes/World/Foliage_-1_-2_0.res" id="132_1cdjv"]
+[ext_resource type="Texture2D" uid="uid://b1vqxk0rvkcha" path="res://Scenes/World/Foliage_-1_-2_1.res" id="133_fu4tr"]
+[ext_resource type="Texture2D" uid="uid://c3te2umio3515" path="res://Scenes/World/Heightmap_-1_-2.res" id="134_h133x"]
+[ext_resource type="Texture2D" uid="uid://df5726f7vaujv" path="res://Scenes/World/Object_-1_-2_0.res" id="135_btk82"]
+[ext_resource type="Texture2D" uid="uid://b30irbj3202ho" path="res://Scenes/World/Splatmap_-1_-2_0.res" id="136_dmnga"]
+[ext_resource type="Texture2D" uid="uid://c3bs7174m3cg2" path="res://Scenes/World/Splatmap_-1_-2_1.res" id="137_t3616"]
+[ext_resource type="Texture2D" uid="uid://tqe2ffn45yfa" path="res://Scenes/World/Splatmap_-1_-2_2.res" id="138_tqghj"]
+[ext_resource type="Texture2D" uid="uid://cr834vvju0gw8" path="res://Scenes/World/Water_-1_-2.res" id="139_grskf"]
+[ext_resource type="Texture2D" uid="uid://cduoo0kbm2cl" path="res://Scenes/World/Foliage_0_-2_0.res" id="140_4exn6"]
+[ext_resource type="Texture2D" uid="uid://jv6n6ptbjvpc" path="res://Scenes/World/Foliage_0_-2_1.res" id="141_j38e7"]
+[ext_resource type="Texture2D" uid="uid://cvxgj7c8s7yip" path="res://Scenes/World/Heightmap_0_-2.res" id="142_4w4o6"]
+[ext_resource type="Texture2D" uid="uid://co1e3v01ybh50" path="res://Scenes/World/Object_0_-2_0.res" id="143_tmt0m"]
+[ext_resource type="Texture2D" uid="uid://d1muqv5qv4rm5" path="res://Scenes/World/Splatmap_0_-2_0.res" id="144_5umxo"]
+[ext_resource type="Texture2D" uid="uid://b3650mlt8opub" path="res://Scenes/World/Splatmap_0_-2_1.res" id="145_px36d"]
+[ext_resource type="Texture2D" uid="uid://k7mfx7kf5enh" path="res://Scenes/World/Splatmap_0_-2_2.res" id="146_f1m12"]
+[ext_resource type="Texture2D" uid="uid://bab7lncf5gkvc" path="res://Scenes/World/Water_0_-2.res" id="147_qukh6"]
+[ext_resource type="Texture2D" uid="uid://r5axun111kpu" path="res://Scenes/World/Foliage_1_-2_0.res" id="148_e2slq"]
+[ext_resource type="Texture2D" uid="uid://c7mpwtv4apvas" path="res://Scenes/World/Foliage_1_-2_1.res" id="149_0m7x8"]
+[ext_resource type="Texture2D" uid="uid://dh6tqw5tqdvf5" path="res://Scenes/World/Heightmap_1_-2.res" id="150_pcumd"]
+[ext_resource type="Texture2D" uid="uid://qweyjt0jwkdh" path="res://Scenes/World/Object_1_-2_0.res" id="151_w4rlq"]
+[ext_resource type="Texture2D" uid="uid://b73sift8p30mh" path="res://Scenes/World/Splatmap_1_-2_0.res" id="152_h2qpt"]
+[ext_resource type="Texture2D" uid="uid://dt0c1tcj2ubrg" path="res://Scenes/World/Splatmap_1_-2_1.res" id="153_764xv"]
+[ext_resource type="Texture2D" uid="uid://cqyffm2upkovk" path="res://Scenes/World/Splatmap_1_-2_2.res" id="154_k08fu"]
+[ext_resource type="Texture2D" uid="uid://dt5wvmg3bafsu" path="res://Scenes/World/Water_1_-2.res" id="155_s2yc2"]
+[ext_resource type="Texture2D" uid="uid://btxhpfsk63f68" path="res://Scenes/World/Foliage_2_-2_0.res" id="156_rfmk8"]
+[ext_resource type="Texture2D" uid="uid://c2jn331pv63g7" path="res://Scenes/World/Foliage_2_-2_1.res" id="157_mxcgt"]
+[ext_resource type="Texture2D" uid="uid://cr8gvhjp8ahva" path="res://Scenes/World/Heightmap_2_-2.res" id="158_8lrhb"]
+[ext_resource type="Texture2D" uid="uid://doul202npb6q6" path="res://Scenes/World/Object_2_-2_0.res" id="159_medvj"]
+[ext_resource type="Texture2D" uid="uid://c88erb1m20dkt" path="res://Scenes/World/Splatmap_2_-2_0.res" id="160_j53hi"]
+[ext_resource type="Texture2D" uid="uid://cn38ffqbs2qpe" path="res://Scenes/World/Splatmap_2_-2_1.res" id="161_0veb2"]
+[ext_resource type="Texture2D" uid="uid://cs17uwxbq1sjc" path="res://Scenes/World/Splatmap_2_-2_2.res" id="162_8ihdf"]
+[ext_resource type="Texture2D" uid="uid://dpr6oo5bdxqfw" path="res://Scenes/World/Water_2_-2.res" id="163_kn3mn"]
+[ext_resource type="Texture2D" uid="uid://cnq2b7t8ptguj" path="res://Scenes/World/Foliage_2_-1_0.res" id="164_t7rqt"]
+[ext_resource type="Texture2D" uid="uid://byswtvs8d8omo" path="res://Scenes/World/Foliage_2_-1_1.res" id="165_pe2pk"]
+[ext_resource type="Texture2D" uid="uid://c055ptva5ykas" path="res://Scenes/World/Heightmap_2_-1.res" id="166_f7he5"]
+[ext_resource type="Texture2D" uid="uid://0yc3dtf0aiwk" path="res://Scenes/World/Object_2_-1_0.res" id="167_8bon8"]
+[ext_resource type="Texture2D" uid="uid://b83fuaqr88jt3" path="res://Scenes/World/Splatmap_2_-1_0.res" id="168_7yost"]
+[ext_resource type="Texture2D" uid="uid://dmmnyjwwuuu07" path="res://Scenes/World/Splatmap_2_-1_1.res" id="169_a6nrb"]
+[ext_resource type="Texture2D" uid="uid://dslm7ub0geh53" path="res://Scenes/World/Splatmap_2_-1_2.res" id="170_ycr5r"]
+[ext_resource type="Texture2D" uid="uid://rpljpdv6gp1b" path="res://Scenes/World/Water_2_-1.res" id="171_pcsbl"]
+[ext_resource type="Texture2D" uid="uid://cqxrxwtteoxp5" path="res://Scenes/World/Foliage_2_0_0.res" id="172_fqa13"]
+[ext_resource type="Texture2D" uid="uid://i5yln7w7kmk2" path="res://Scenes/World/Foliage_2_0_1.res" id="173_jd0l7"]
+[ext_resource type="Texture2D" uid="uid://5a6ufbh6o8y7" path="res://Scenes/World/Heightmap_2_0.res" id="174_jdxg0"]
+[ext_resource type="Texture2D" uid="uid://53jvjascihj8" path="res://Scenes/World/Object_2_0_0.res" id="175_6ccoq"]
+[ext_resource type="Texture2D" uid="uid://dqrwp0gkpuuh6" path="res://Scenes/World/Splatmap_2_0_0.res" id="176_4cjq6"]
+[ext_resource type="Texture2D" uid="uid://csi28jb4w20wo" path="res://Scenes/World/Splatmap_2_0_1.res" id="177_qhq7m"]
+[ext_resource type="Texture2D" uid="uid://dcjqcej5oo1yi" path="res://Scenes/World/Splatmap_2_0_2.res" id="178_0my4s"]
+[ext_resource type="Texture2D" uid="uid://b2u5fwmbcghvt" path="res://Scenes/World/Water_2_0.res" id="179_q3kvd"]
+[ext_resource type="Texture2D" uid="uid://dl2o70mnmgx84" path="res://Scenes/World/Foliage_2_1_0.res" id="180_eehd7"]
+[ext_resource type="Texture2D" uid="uid://cv0n4ogxdo2tn" path="res://Scenes/World/Foliage_2_1_1.res" id="181_msogf"]
+[ext_resource type="Texture2D" uid="uid://b5qd77pbc4l7r" path="res://Scenes/World/Heightmap_2_1.res" id="182_nstq3"]
+[ext_resource type="Texture2D" uid="uid://btvanbsdaatsp" path="res://Scenes/World/Object_2_1_0.res" id="183_ibnpc"]
+[ext_resource type="Texture2D" uid="uid://ckygx7xxuxwg6" path="res://Scenes/World/Splatmap_2_1_0.res" id="184_fwbgc"]
+[ext_resource type="Texture2D" uid="uid://bqrwksqdfh2uk" path="res://Scenes/World/Splatmap_2_1_1.res" id="185_k4ff6"]
+[ext_resource type="Texture2D" uid="uid://bro2w8vbd43d4" path="res://Scenes/World/Splatmap_2_1_2.res" id="186_gdbcs"]
+[ext_resource type="Texture2D" uid="uid://btlrw0tx8i25j" path="res://Scenes/World/Water_2_1.res" id="187_ajatb"]
+[ext_resource type="Texture2D" uid="uid://dvql1jw2e3657" path="res://Scenes/World/Foliage_1_2_0.res" id="188_ahg4v"]
+[ext_resource type="Texture2D" uid="uid://cio2yuyjqbcug" path="res://Scenes/World/Foliage_1_2_1.res" id="189_4o8n3"]
+[ext_resource type="Texture2D" uid="uid://bf54wlorv6ecs" path="res://Scenes/World/Heightmap_1_2.res" id="190_h6vpm"]
+[ext_resource type="Texture2D" uid="uid://cysqx4sn0g080" path="res://Scenes/World/Object_1_2_0.res" id="191_wxnst"]
+[ext_resource type="Texture2D" uid="uid://c3377kdwokg5k" path="res://Scenes/World/Splatmap_1_2_0.res" id="192_6nay0"]
+[ext_resource type="Texture2D" uid="uid://bgr6clbqkda0y" path="res://Scenes/World/Splatmap_1_2_1.res" id="193_f1wpr"]
+[ext_resource type="Texture2D" uid="uid://jpigyu08uflf" path="res://Scenes/World/Splatmap_1_2_2.res" id="194_nm7gi"]
+[ext_resource type="Texture2D" uid="uid://1dd0hf4qjema" path="res://Scenes/World/Water_1_2.res" id="195_6oub2"]
+[ext_resource type="Texture2D" uid="uid://dduscmcbvlgqs" path="res://Scenes/World/Foliage_2_2_0.res" id="196_lvqbu"]
+[ext_resource type="Texture2D" uid="uid://bhglojlbmyhks" path="res://Scenes/World/Foliage_2_2_1.res" id="197_pmo7h"]
+[ext_resource type="Texture2D" uid="uid://cvh3yx1lcklyw" path="res://Scenes/World/Heightmap_2_2.res" id="198_j14kg"]
+[ext_resource type="Texture2D" uid="uid://cuxfm80lwwbr3" path="res://Scenes/World/Object_2_2_0.res" id="199_dgxa5"]
+[ext_resource type="Texture2D" uid="uid://bm6jam0bnpii2" path="res://Scenes/World/Splatmap_2_2_0.res" id="200_b4llk"]
+[ext_resource type="Texture2D" uid="uid://l2opq10gayjb" path="res://Scenes/World/Splatmap_2_2_1.res" id="201_3pkt8"]
+[ext_resource type="Texture2D" uid="uid://dxp22y0ayv7xa" path="res://Scenes/World/Splatmap_2_2_2.res" id="202_co01k"]
+[ext_resource type="Texture2D" uid="uid://cfydxyevjimat" path="res://Scenes/World/Water_2_2.res" id="203_wiajr"]
+[ext_resource type="Texture2D" uid="uid://bjhla5yf80q7i" path="res://Scenes/World/Foliage_0_2_0.res" id="204_n1bqm"]
+[ext_resource type="Texture2D" uid="uid://bx6g5uhio24uw" path="res://Scenes/World/Foliage_0_2_1.res" id="205_bw50e"]
+[ext_resource type="Texture2D" uid="uid://dq3w54smv6jjr" path="res://Scenes/World/Heightmap_0_2.res" id="206_cqc0x"]
+[ext_resource type="Texture2D" uid="uid://boxs10kdr01o1" path="res://Scenes/World/Object_0_2_0.res" id="207_joeud"]
+[ext_resource type="Texture2D" uid="uid://dexlphl7wg76a" path="res://Scenes/World/Splatmap_0_2_0.res" id="208_86ftq"]
+[ext_resource type="Texture2D" uid="uid://dbkw146px6p47" path="res://Scenes/World/Splatmap_0_2_1.res" id="209_nupp3"]
+[ext_resource type="Texture2D" uid="uid://chg0a3v3f04f4" path="res://Scenes/World/Splatmap_0_2_2.res" id="210_7cc5f"]
+[ext_resource type="Texture2D" uid="uid://duwt5ue6ta6v7" path="res://Scenes/World/Water_0_2.res" id="211_hnsfd"]
+[ext_resource type="Texture2D" uid="uid://7axjwghdd4kg" path="res://Scenes/World/Foliage_-1_2_0.res" id="212_0sgjx"]
+[ext_resource type="Texture2D" uid="uid://bdwcrbatrxhpw" path="res://Scenes/World/Foliage_-1_2_1.res" id="213_hs43h"]
+[ext_resource type="Texture2D" uid="uid://byop0jsjrcke8" path="res://Scenes/World/Heightmap_-1_2.res" id="214_1f6nm"]
+[ext_resource type="Texture2D" uid="uid://c51u1necbu8um" path="res://Scenes/World/Object_-1_2_0.res" id="215_slinn"]
+[ext_resource type="Texture2D" uid="uid://gl7aheenudhb" path="res://Scenes/World/Splatmap_-1_2_0.res" id="216_g632x"]
+[ext_resource type="Texture2D" uid="uid://ilcm0f4racm7" path="res://Scenes/World/Splatmap_-1_2_1.res" id="217_whg8j"]
+[ext_resource type="Texture2D" uid="uid://bneheksk37iqu" path="res://Scenes/World/Splatmap_-1_2_2.res" id="218_dru3u"]
+[ext_resource type="Texture2D" uid="uid://rsug7oas8qmh" path="res://Scenes/World/Water_-1_2.res" id="219_3td5l"]
+[ext_resource type="Texture2D" uid="uid://cp6vc3fkk8i6e" path="res://Scenes/World/Foliage_-2_2_0.res" id="220_40afu"]
+[ext_resource type="Texture2D" uid="uid://bv1vymoircwu1" path="res://Scenes/World/Foliage_-2_2_1.res" id="221_chyek"]
+[ext_resource type="Texture2D" uid="uid://cykcpy1brnr24" path="res://Scenes/World/Heightmap_-2_2.res" id="222_gxpy0"]
+[ext_resource type="Texture2D" uid="uid://dh5agymx22v0" path="res://Scenes/World/Object_-2_2_0.res" id="223_rk4yy"]
+[ext_resource type="Texture2D" uid="uid://bpxfa3iedrthk" path="res://Scenes/World/Splatmap_-2_2_0.res" id="224_4sp72"]
+[ext_resource type="Texture2D" uid="uid://bnfelrrogew80" path="res://Scenes/World/Splatmap_-2_2_1.res" id="225_5r1vi"]
+[ext_resource type="Texture2D" uid="uid://pmgaseialbpt" path="res://Scenes/World/Splatmap_-2_2_2.res" id="226_t7jka"]
+[ext_resource type="Texture2D" uid="uid://cpxnsft3sdths" path="res://Scenes/World/Water_-2_2.res" id="227_hlhw6"]
+[ext_resource type="Texture2D" uid="uid://3ihtk6yd0o42" path="res://Scenes/World/Foliage_2_3_0.res" id="228_lycv8"]
+[ext_resource type="Texture2D" uid="uid://b6poi444igr6b" path="res://Scenes/World/Foliage_2_3_1.res" id="229_ife7n"]
+[ext_resource type="Texture2D" uid="uid://oapcsf51svxq" path="res://Scenes/World/Heightmap_2_3.res" id="230_3d2g6"]
+[ext_resource type="Texture2D" uid="uid://bfxsvv5ps78t3" path="res://Scenes/World/Object_2_3_0.res" id="231_u7fgm"]
+[ext_resource type="Texture2D" uid="uid://ckxkiiax8kdtk" path="res://Scenes/World/Splatmap_2_3_0.res" id="232_on75t"]
+[ext_resource type="Texture2D" uid="uid://nevadolgchik" path="res://Scenes/World/Splatmap_2_3_1.res" id="233_p5ni1"]
+[ext_resource type="Texture2D" uid="uid://bj6nky33vhst8" path="res://Scenes/World/Splatmap_2_3_2.res" id="234_ghmfx"]
+[ext_resource type="Texture2D" uid="uid://csacj573hodjy" path="res://Scenes/World/Water_2_3.res" id="235_ow66n"]
+[ext_resource type="Texture2D" uid="uid://bvwf3uas1hi6t" path="res://Scenes/World/Foliage_1_3_0.res" id="236_125wo"]
+[ext_resource type="Texture2D" uid="uid://b2p8yn1lwsstx" path="res://Scenes/World/Foliage_1_3_1.res" id="237_tc8r4"]
+[ext_resource type="Texture2D" uid="uid://6g68erqco24d" path="res://Scenes/World/Heightmap_1_3.res" id="238_4qa1w"]
+[ext_resource type="Texture2D" uid="uid://bolpw2h34ncfi" path="res://Scenes/World/Object_1_3_0.res" id="239_wkrhb"]
+[ext_resource type="Texture2D" uid="uid://c2233hticl3sw" path="res://Scenes/World/Splatmap_1_3_0.res" id="240_ekr2v"]
+[ext_resource type="Texture2D" uid="uid://cs3ic3r5bpdo8" path="res://Scenes/World/Splatmap_1_3_1.res" id="241_v3p6u"]
+[ext_resource type="Texture2D" uid="uid://crtysbn7v4onc" path="res://Scenes/World/Splatmap_1_3_2.res" id="242_8qtul"]
+[ext_resource type="Texture2D" uid="uid://dohq6g7qy51ne" path="res://Scenes/World/Water_1_3.res" id="243_jlato"]
+[ext_resource type="Texture2D" uid="uid://c3qmv83mka8cm" path="res://Scenes/World/Foliage_0_3_0.res" id="244_6ts1r"]
+[ext_resource type="Texture2D" uid="uid://2ktf0epo6f8l" path="res://Scenes/World/Foliage_0_3_1.res" id="245_mnx08"]
+[ext_resource type="Texture2D" uid="uid://d2x8hg2aeva3v" path="res://Scenes/World/Heightmap_0_3.res" id="246_d6sdr"]
+[ext_resource type="Texture2D" uid="uid://c8yrtmdlh0qby" path="res://Scenes/World/Object_0_3_0.res" id="247_bd6i5"]
+[ext_resource type="Texture2D" uid="uid://367py1veanea" path="res://Scenes/World/Splatmap_0_3_0.res" id="248_4us8m"]
+[ext_resource type="Texture2D" uid="uid://vl64slxcdlni" path="res://Scenes/World/Splatmap_0_3_1.res" id="249_8m7o3"]
+[ext_resource type="Texture2D" uid="uid://dv42ka68fp40v" path="res://Scenes/World/Splatmap_0_3_2.res" id="250_sla70"]
+[ext_resource type="Texture2D" uid="uid://sb6aato4is7r" path="res://Scenes/World/Water_0_3.res" id="251_35m2y"]
+[ext_resource type="Texture2D" uid="uid://d2a81bek0madk" path="res://Scenes/World/Foliage_-1_3_0.res" id="252_5f46b"]
+[ext_resource type="Texture2D" uid="uid://cfibaqctxe2ro" path="res://Scenes/World/Foliage_-1_3_1.res" id="253_cq35o"]
+[ext_resource type="Texture2D" uid="uid://bk22je47m2fsk" path="res://Scenes/World/Heightmap_-1_3.res" id="254_hvkk6"]
+[ext_resource type="Texture2D" uid="uid://b7yhoerxmuwoi" path="res://Scenes/World/Object_-1_3_0.res" id="255_lsps4"]
+[ext_resource type="Texture2D" uid="uid://cegsyi1i7smau" path="res://Scenes/World/Splatmap_-1_3_0.res" id="256_gbjvf"]
+[ext_resource type="Texture2D" uid="uid://cfnmdxsh4yvmv" path="res://Scenes/World/Splatmap_-1_3_1.res" id="257_e65xy"]
+[ext_resource type="Texture2D" uid="uid://doph0tsgv5my3" path="res://Scenes/World/Splatmap_-1_3_2.res" id="258_hdlnl"]
+[ext_resource type="Texture2D" uid="uid://bnqtu6ivfwxlx" path="res://Scenes/World/Water_-1_3.res" id="259_lpqse"]
+[ext_resource type="Texture2D" uid="uid://cop1fd7nm575j" path="res://Scenes/World/Foliage_-2_3_0.res" id="260_o3s2b"]
+[ext_resource type="Texture2D" uid="uid://bfh5m33wo7ll" path="res://Scenes/World/Foliage_-2_3_1.res" id="261_rfxeh"]
+[ext_resource type="Texture2D" uid="uid://cdnfjb5v1pi4h" path="res://Scenes/World/Heightmap_-2_3.res" id="262_og24w"]
+[ext_resource type="Texture2D" uid="uid://c1s470wpfcitr" path="res://Scenes/World/Object_-2_3_0.res" id="263_57v73"]
+[ext_resource type="Texture2D" uid="uid://cv2aps6rogn4s" path="res://Scenes/World/Splatmap_-2_3_0.res" id="264_gyhjf"]
+[ext_resource type="Texture2D" uid="uid://dtde43v7n6rei" path="res://Scenes/World/Splatmap_-2_3_1.res" id="265_ixuc5"]
+[ext_resource type="Texture2D" uid="uid://ct45hm718j63o" path="res://Scenes/World/Splatmap_-2_3_2.res" id="266_ft6ni"]
+[ext_resource type="Texture2D" uid="uid://cyrsado7vcto2" path="res://Scenes/World/Water_-2_3.res" id="267_gyial"]
+[ext_resource type="Texture2D" uid="uid://dnwt8e6kiru5y" path="res://Scenes/World/Foliage_-3_3_0.res" id="268_5brbo"]
+[ext_resource type="Texture2D" uid="uid://bf5f0xpbj6v7x" path="res://Scenes/World/Foliage_-3_3_1.res" id="269_l0qe3"]
+[ext_resource type="Texture2D" uid="uid://dwlmsu2ymd1pf" path="res://Scenes/World/Heightmap_-3_3.res" id="270_03drx"]
+[ext_resource type="Texture2D" uid="uid://d3n0edmfgud70" path="res://Scenes/World/Object_-3_3_0.res" id="271_1m7ww"]
+[ext_resource type="Texture2D" uid="uid://ythueae6we4l" path="res://Scenes/World/Splatmap_-3_3_0.res" id="272_0qu5i"]
+[ext_resource type="Texture2D" uid="uid://bulloky7orryc" path="res://Scenes/World/Splatmap_-3_3_1.res" id="273_honoj"]
+[ext_resource type="Texture2D" uid="uid://djk5xkpsfosh6" path="res://Scenes/World/Splatmap_-3_3_2.res" id="274_i6lac"]
+[ext_resource type="Texture2D" uid="uid://b2bb113o4cdr6" path="res://Scenes/World/Water_-3_3.res" id="275_nv55e"]
+[ext_resource type="Texture2D" uid="uid://cbadvjc7u58th" path="res://Scenes/World/Foliage_-3_2_0.res" id="276_4mbw5"]
+[ext_resource type="Texture2D" uid="uid://viiiiysxyqr4" path="res://Scenes/World/Foliage_-3_2_1.res" id="277_4amgw"]
+[ext_resource type="Texture2D" uid="uid://beqy5tqmjgakx" path="res://Scenes/World/Heightmap_-3_2.res" id="278_c5p7u"]
+[ext_resource type="Texture2D" uid="uid://b3gklfkptwhvw" path="res://Scenes/World/Object_-3_2_0.res" id="279_vuran"]
+[ext_resource type="Texture2D" uid="uid://dgt0hnwlnagxa" path="res://Scenes/World/Splatmap_-3_2_0.res" id="280_w0pf6"]
+[ext_resource type="Texture2D" uid="uid://bxo77ldrg38g6" path="res://Scenes/World/Splatmap_-3_2_1.res" id="281_nqiiv"]
+[ext_resource type="Texture2D" uid="uid://dn7t454cfvjdk" path="res://Scenes/World/Splatmap_-3_2_2.res" id="282_nu3hp"]
+[ext_resource type="Texture2D" uid="uid://76opnrpr7qi8" path="res://Scenes/World/Water_-3_2.res" id="283_ouy4t"]
+[ext_resource type="Texture2D" uid="uid://dvc3oukr334ul" path="res://Scenes/World/Foliage_-3_1_0.res" id="284_ixyha"]
+[ext_resource type="Texture2D" uid="uid://dm0oxfpaj31i2" path="res://Scenes/World/Foliage_-3_1_1.res" id="285_4pe7v"]
+[ext_resource type="Texture2D" uid="uid://qcm0c4wkurxy" path="res://Scenes/World/Heightmap_-3_1.res" id="286_dkonl"]
+[ext_resource type="Texture2D" uid="uid://b6m2ju2s8oitb" path="res://Scenes/World/Object_-3_1_0.res" id="287_5i57m"]
+[ext_resource type="Texture2D" uid="uid://dqdkbcqtstav6" path="res://Scenes/World/Splatmap_-3_1_0.res" id="288_bqqba"]
+[ext_resource type="Texture2D" uid="uid://bg38kam23njl4" path="res://Scenes/World/Splatmap_-3_1_1.res" id="289_1722b"]
+[ext_resource type="Texture2D" uid="uid://bccb3mgwel6fm" path="res://Scenes/World/Splatmap_-3_1_2.res" id="290_bg6oj"]
+[ext_resource type="Texture2D" uid="uid://bx41lu2ugi64s" path="res://Scenes/World/Water_-3_1.res" id="291_c7grx"]
+[ext_resource type="Texture2D" uid="uid://divxuo4hbeeac" path="res://Scenes/World/Foliage_-3_0_0.res" id="292_4pkxe"]
+[ext_resource type="Texture2D" uid="uid://b1cqtu3tln67v" path="res://Scenes/World/Foliage_-3_0_1.res" id="293_i2w7f"]
+[ext_resource type="Texture2D" uid="uid://shixqxpl1apc" path="res://Scenes/World/Heightmap_-3_0.res" id="294_5t7tj"]
+[ext_resource type="Texture2D" uid="uid://bjb2qdlbcip4r" path="res://Scenes/World/Object_-3_0_0.res" id="295_iawqp"]
+[ext_resource type="Texture2D" uid="uid://dqqvectpawlap" path="res://Scenes/World/Splatmap_-3_0_0.res" id="296_pxv54"]
+[ext_resource type="Texture2D" uid="uid://dwf8gl8meyg1t" path="res://Scenes/World/Splatmap_-3_0_1.res" id="297_xwtxv"]
+[ext_resource type="Texture2D" uid="uid://cpvup6u5di6ep" path="res://Scenes/World/Splatmap_-3_0_2.res" id="298_wuivs"]
+[ext_resource type="Texture2D" uid="uid://d1q1da1fp6m58" path="res://Scenes/World/Water_-3_0.res" id="299_mi4cr"]
+[ext_resource type="Texture2D" uid="uid://drdny2tpt7s8" path="res://Scenes/World/Foliage_-3_-1_0.res" id="300_qyps4"]
+[ext_resource type="Texture2D" uid="uid://kay6dm5pvwg2" path="res://Scenes/World/Foliage_-3_-1_1.res" id="301_mmlco"]
+[ext_resource type="Texture2D" uid="uid://dcb10cqmjetoi" path="res://Scenes/World/Heightmap_-3_-1.res" id="302_2lcan"]
+[ext_resource type="Texture2D" uid="uid://diccpd1x7824w" path="res://Scenes/World/Object_-3_-1_0.res" id="303_n6qkg"]
+[ext_resource type="Texture2D" uid="uid://d0v5yc2tpgnsu" path="res://Scenes/World/Splatmap_-3_-1_0.res" id="304_b88qu"]
+[ext_resource type="Texture2D" uid="uid://3p7mdcavuixt" path="res://Scenes/World/Splatmap_-3_-1_1.res" id="305_20pku"]
+[ext_resource type="Texture2D" uid="uid://c6oxqscdscs5v" path="res://Scenes/World/Splatmap_-3_-1_2.res" id="306_r13e0"]
+[ext_resource type="Texture2D" uid="uid://dqoaqt5h15m5b" path="res://Scenes/World/Water_-3_-1.res" id="307_e0dko"]
+[ext_resource type="Texture2D" uid="uid://deicnkt6ecrw4" path="res://Scenes/World/Foliage_-3_-2_0.res" id="308_plvv2"]
+[ext_resource type="Texture2D" uid="uid://c5g84s7vumhua" path="res://Scenes/World/Foliage_-3_-2_1.res" id="309_3tct4"]
+[ext_resource type="Texture2D" uid="uid://co5uh7r7d1y1" path="res://Scenes/World/Heightmap_-3_-2.res" id="310_pluev"]
+[ext_resource type="Texture2D" uid="uid://d1xcnprx22yn6" path="res://Scenes/World/Object_-3_-2_0.res" id="311_hfyme"]
+[ext_resource type="Texture2D" uid="uid://cuen1f281k4iq" path="res://Scenes/World/Splatmap_-3_-2_0.res" id="312_1aqcl"]
+[ext_resource type="Texture2D" uid="uid://ckdgd0nanww3a" path="res://Scenes/World/Splatmap_-3_-2_1.res" id="313_i0ejg"]
+[ext_resource type="Texture2D" uid="uid://dwbh2bp8fml7q" path="res://Scenes/World/Splatmap_-3_-2_2.res" id="314_7k5o7"]
+[ext_resource type="Texture2D" uid="uid://c38jwpkp5h7s6" path="res://Scenes/World/Water_-3_-2.res" id="315_lfajx"]
+[ext_resource type="Texture2D" uid="uid://cdp8lloeaqhyf" path="res://Scenes/World/Foliage_-3_-3_0.res" id="316_33n82"]
+[ext_resource type="Texture2D" uid="uid://bj6jw7ke7toum" path="res://Scenes/World/Foliage_-3_-3_1.res" id="317_eli1r"]
+[ext_resource type="Texture2D" uid="uid://cmbir7igmsnw4" path="res://Scenes/World/Heightmap_-3_-3.res" id="318_2t11w"]
+[ext_resource type="Texture2D" uid="uid://6hcjic1bseu6" path="res://Scenes/World/Object_-3_-3_0.res" id="319_tqfs6"]
+[ext_resource type="Texture2D" uid="uid://6vm1y13wekdc" path="res://Scenes/World/Splatmap_-3_-3_0.res" id="320_dgsrl"]
+[ext_resource type="Texture2D" uid="uid://d0ab668spq0er" path="res://Scenes/World/Splatmap_-3_-3_1.res" id="321_u844l"]
+[ext_resource type="Texture2D" uid="uid://btag143bptrxy" path="res://Scenes/World/Splatmap_-3_-3_2.res" id="322_3kjt4"]
+[ext_resource type="Texture2D" uid="uid://bucjqpfbaqu1g" path="res://Scenes/World/Water_-3_-3.res" id="323_hm7dm"]
+[ext_resource type="Texture2D" uid="uid://c56hg2r6as5bq" path="res://Scenes/World/Foliage_-2_-3_0.res" id="324_fvc0h"]
+[ext_resource type="Texture2D" uid="uid://c0pxlqskir8kp" path="res://Scenes/World/Foliage_-2_-3_1.res" id="325_f5pl2"]
+[ext_resource type="Texture2D" uid="uid://de6iw1681mdvn" path="res://Scenes/World/Heightmap_-2_-3.res" id="326_8r8pr"]
+[ext_resource type="Texture2D" uid="uid://cuqptk2loxum4" path="res://Scenes/World/Object_-2_-3_0.res" id="327_jo6f7"]
+[ext_resource type="Texture2D" uid="uid://cgc3oglf57o4h" path="res://Scenes/World/Splatmap_-2_-3_0.res" id="328_fybvo"]
+[ext_resource type="Texture2D" uid="uid://cttspw7x7d4lt" path="res://Scenes/World/Splatmap_-2_-3_1.res" id="329_5qykd"]
+[ext_resource type="Texture2D" uid="uid://bif87yakp2frp" path="res://Scenes/World/Splatmap_-2_-3_2.res" id="330_d7p1a"]
+[ext_resource type="Texture2D" uid="uid://27eahwgc864q" path="res://Scenes/World/Water_-2_-3.res" id="331_r6d16"]
+[ext_resource type="Texture2D" uid="uid://snjyqwk1x7ci" path="res://Scenes/World/Foliage_-1_-3_0.res" id="332_wqude"]
+[ext_resource type="Texture2D" uid="uid://c5nvmxc152h7v" path="res://Scenes/World/Foliage_-1_-3_1.res" id="333_m2qhm"]
+[ext_resource type="Texture2D" uid="uid://bdtxocdoewi5c" path="res://Scenes/World/Heightmap_-1_-3.res" id="334_yglyy"]
+[ext_resource type="Texture2D" uid="uid://dbo4jdq5736vs" path="res://Scenes/World/Object_-1_-3_0.res" id="335_vr5b1"]
+[ext_resource type="Texture2D" uid="uid://cc1rvy4gjiesf" path="res://Scenes/World/Splatmap_-1_-3_0.res" id="336_6i8sk"]
+[ext_resource type="Texture2D" uid="uid://cecow124wwqx8" path="res://Scenes/World/Splatmap_-1_-3_1.res" id="337_jburx"]
+[ext_resource type="Texture2D" uid="uid://ctdnkwvs242ru" path="res://Scenes/World/Splatmap_-1_-3_2.res" id="338_id3w4"]
+[ext_resource type="Texture2D" uid="uid://4g2707wh45ra" path="res://Scenes/World/Water_-1_-3.res" id="339_wgsp7"]
+[ext_resource type="Texture2D" uid="uid://b3rpugnnguc5w" path="res://Scenes/World/Foliage_0_-3_0.res" id="340_bkeq0"]
+[ext_resource type="Texture2D" uid="uid://0oad41mxuvv7" path="res://Scenes/World/Foliage_0_-3_1.res" id="341_bjdiu"]
+[ext_resource type="Texture2D" uid="uid://e1gb3fq3wy3h" path="res://Scenes/World/Heightmap_0_-3.res" id="342_448ib"]
+[ext_resource type="Texture2D" uid="uid://blrsg3x2k7shj" path="res://Scenes/World/Object_0_-3_0.res" id="343_cjqbs"]
+[ext_resource type="Texture2D" uid="uid://cbiy35v1001p" path="res://Scenes/World/Splatmap_0_-3_0.res" id="344_33e24"]
+[ext_resource type="Texture2D" uid="uid://dwc2cbarvfj7u" path="res://Scenes/World/Splatmap_0_-3_1.res" id="345_ijxvc"]
+[ext_resource type="Texture2D" uid="uid://1v15b77b0qoi" path="res://Scenes/World/Splatmap_0_-3_2.res" id="346_5nxfk"]
+[ext_resource type="Texture2D" uid="uid://crf504krsyvy6" path="res://Scenes/World/Water_0_-3.res" id="347_jv0vl"]
+[ext_resource type="Texture2D" uid="uid://m14lw86nnyxy" path="res://Scenes/World/Foliage_1_-3_0.res" id="348_mjt34"]
+[ext_resource type="Texture2D" uid="uid://dgxjribsm2t7i" path="res://Scenes/World/Foliage_1_-3_1.res" id="349_2ctns"]
+[ext_resource type="Texture2D" uid="uid://c74rlml8qpt7" path="res://Scenes/World/Heightmap_1_-3.res" id="350_poy7t"]
+[ext_resource type="Texture2D" uid="uid://bgme4lccrpihr" path="res://Scenes/World/Object_1_-3_0.res" id="351_dlygi"]
+[ext_resource type="Texture2D" uid="uid://d1bp6lh48jq6q" path="res://Scenes/World/Splatmap_1_-3_0.res" id="352_hrex7"]
+[ext_resource type="Texture2D" uid="uid://d2oski4x4rfln" path="res://Scenes/World/Splatmap_1_-3_1.res" id="353_is2qr"]
+[ext_resource type="Texture2D" uid="uid://w0o6va87vqin" path="res://Scenes/World/Splatmap_1_-3_2.res" id="354_q0fob"]
+[ext_resource type="Texture2D" uid="uid://diflwvvm1gem8" path="res://Scenes/World/Water_1_-3.res" id="355_4nalf"]
+[ext_resource type="Texture2D" uid="uid://c5w6mejfhocqm" path="res://Scenes/World/Foliage_2_-3_0.res" id="356_4ll4h"]
+[ext_resource type="Texture2D" uid="uid://dpwtrfryido4d" path="res://Scenes/World/Foliage_2_-3_1.res" id="357_ph3qv"]
+[ext_resource type="Texture2D" uid="uid://7xm2ccsd3nb5" path="res://Scenes/World/Heightmap_2_-3.res" id="358_0tsex"]
+[ext_resource type="Texture2D" uid="uid://p4alwmw5yx3a" path="res://Scenes/World/Object_2_-3_0.res" id="359_oo171"]
+[ext_resource type="Texture2D" uid="uid://gjtr5bimwuhs" path="res://Scenes/World/Splatmap_2_-3_0.res" id="360_rml0p"]
+[ext_resource type="Texture2D" uid="uid://btit5uu2wccfo" path="res://Scenes/World/Splatmap_2_-3_1.res" id="361_sj8d8"]
+[ext_resource type="Texture2D" uid="uid://cm6gvhq18ril3" path="res://Scenes/World/Splatmap_2_-3_2.res" id="362_p8pqq"]
+[ext_resource type="Texture2D" uid="uid://buu8vi2flk0vf" path="res://Scenes/World/Water_2_-3.res" id="363_vqhks"]
+[ext_resource type="Texture2D" uid="uid://b6k6o085jlxo3" path="res://Scenes/World/Foliage_3_-3_0.res" id="364_dshqo"]
+[ext_resource type="Texture2D" uid="uid://drhirl6up2dgn" path="res://Scenes/World/Foliage_3_-3_1.res" id="365_rl53u"]
+[ext_resource type="Texture2D" uid="uid://c8mo1y1unuia3" path="res://Scenes/World/Heightmap_3_-3.res" id="366_q6xnt"]
+[ext_resource type="Texture2D" uid="uid://rgn0xtbrqmie" path="res://Scenes/World/Object_3_-3_0.res" id="367_iimqp"]
+[ext_resource type="Texture2D" uid="uid://bwmyckqaoyuni" path="res://Scenes/World/Splatmap_3_-3_0.res" id="368_jgaq1"]
+[ext_resource type="Texture2D" uid="uid://bjb7y1bve8j12" path="res://Scenes/World/Splatmap_3_-3_1.res" id="369_dqhsd"]
+[ext_resource type="Texture2D" uid="uid://bfbopawupbwvb" path="res://Scenes/World/Splatmap_3_-3_2.res" id="370_kx454"]
+[ext_resource type="Texture2D" uid="uid://c5mi8qpef6l1o" path="res://Scenes/World/Water_3_-3.res" id="371_hv7on"]
+[ext_resource type="Texture2D" uid="uid://bwb4imxdw2doq" path="res://Scenes/World/Foliage_3_-2_0.res" id="372_76v7d"]
+[ext_resource type="Texture2D" uid="uid://dh7bfs10mqt4k" path="res://Scenes/World/Foliage_3_-2_1.res" id="373_6fjhc"]
+[ext_resource type="Texture2D" uid="uid://ccyyg8w4h112p" path="res://Scenes/World/Heightmap_3_-2.res" id="374_ie8n5"]
+[ext_resource type="Texture2D" uid="uid://bmupabw72nhoy" path="res://Scenes/World/Object_3_-2_0.res" id="375_stitw"]
+[ext_resource type="Texture2D" uid="uid://t3vu8pnkygm2" path="res://Scenes/World/Splatmap_3_-2_0.res" id="376_0ap2v"]
+[ext_resource type="Texture2D" uid="uid://egnkhxpikqph" path="res://Scenes/World/Splatmap_3_-2_1.res" id="377_owixw"]
+[ext_resource type="Texture2D" uid="uid://d2cgv3jqwdktg" path="res://Scenes/World/Splatmap_3_-2_2.res" id="378_0v05p"]
+[ext_resource type="Texture2D" uid="uid://bfp5uhv70ud6l" path="res://Scenes/World/Water_3_-2.res" id="379_o36du"]
+[ext_resource type="Texture2D" uid="uid://dgexv3nvrmm1n" path="res://Scenes/World/Foliage_3_-1_0.res" id="380_bcxqa"]
+[ext_resource type="Texture2D" uid="uid://c4xy4jvr5l8pa" path="res://Scenes/World/Foliage_3_-1_1.res" id="381_5wl47"]
+[ext_resource type="Texture2D" uid="uid://ka0puc7lb1gq" path="res://Scenes/World/Heightmap_3_-1.res" id="382_hs4bn"]
+[ext_resource type="Texture2D" uid="uid://cptbl74fy3exh" path="res://Scenes/World/Object_3_-1_0.res" id="383_h0loy"]
+[ext_resource type="Texture2D" uid="uid://cr16f37huspai" path="res://Scenes/World/Splatmap_3_-1_0.res" id="384_ruxh4"]
+[ext_resource type="Texture2D" uid="uid://bj4ijc3jnr1wi" path="res://Scenes/World/Splatmap_3_-1_1.res" id="385_m351m"]
+[ext_resource type="Texture2D" uid="uid://bruytav3jfsik" path="res://Scenes/World/Splatmap_3_-1_2.res" id="386_crt1i"]
+[ext_resource type="Texture2D" uid="uid://b5755mh2sfai6" path="res://Scenes/World/Water_3_-1.res" id="387_tspmx"]
+[ext_resource type="Texture2D" uid="uid://bqwk6xpv42oos" path="res://Scenes/World/Foliage_3_0_0.res" id="388_nx3aq"]
+[ext_resource type="Texture2D" uid="uid://b1o4q2jtoavuj" path="res://Scenes/World/Foliage_3_0_1.res" id="389_w2nlc"]
+[ext_resource type="Texture2D" uid="uid://poh6oxdjo74v" path="res://Scenes/World/Heightmap_3_0.res" id="390_wpxbi"]
+[ext_resource type="Texture2D" uid="uid://dpq7tns41inid" path="res://Scenes/World/Object_3_0_0.res" id="391_et6nw"]
+[ext_resource type="Texture2D" uid="uid://dx1uyxjhu3udu" path="res://Scenes/World/Splatmap_3_0_0.res" id="392_gtcan"]
+[ext_resource type="Texture2D" uid="uid://bwvbjsthhk1cj" path="res://Scenes/World/Splatmap_3_0_1.res" id="393_ua4sc"]
+[ext_resource type="Texture2D" uid="uid://ckur7u20fcws1" path="res://Scenes/World/Splatmap_3_0_2.res" id="394_s3pg1"]
+[ext_resource type="Texture2D" uid="uid://ykpo0af6ufkf" path="res://Scenes/World/Water_3_0.res" id="395_uuglo"]
+[ext_resource type="Texture2D" uid="uid://bg517mht0xwia" path="res://Scenes/World/Foliage_3_1_0.res" id="396_egcrv"]
+[ext_resource type="Texture2D" uid="uid://d25av3qbus046" path="res://Scenes/World/Foliage_3_1_1.res" id="397_npxt8"]
+[ext_resource type="Texture2D" uid="uid://d175smapvg6i2" path="res://Scenes/World/Heightmap_3_1.res" id="398_5av82"]
+[ext_resource type="Texture2D" uid="uid://blxakj3nkpttv" path="res://Scenes/World/Object_3_1_0.res" id="399_dd5us"]
+[ext_resource type="Texture2D" uid="uid://tbbptdci1cdl" path="res://Scenes/World/Splatmap_3_1_0.res" id="400_htoa0"]
+[ext_resource type="Texture2D" uid="uid://c2p18aqeuhg05" path="res://Scenes/World/Splatmap_3_1_1.res" id="401_wfhr6"]
+[ext_resource type="Texture2D" uid="uid://bm8e1vyd24w1c" path="res://Scenes/World/Splatmap_3_1_2.res" id="402_p8fdf"]
+[ext_resource type="Texture2D" uid="uid://dy0r26i1fr0w5" path="res://Scenes/World/Water_3_1.res" id="403_ujxt1"]
+[ext_resource type="Texture2D" uid="uid://it25atrq8qfc" path="res://Scenes/World/Foliage_3_2_0.res" id="404_ny238"]
+[ext_resource type="Texture2D" uid="uid://cv0p6v3mfhbqk" path="res://Scenes/World/Foliage_3_2_1.res" id="405_ksnvr"]
+[ext_resource type="Texture2D" uid="uid://likesuplafjs" path="res://Scenes/World/Heightmap_3_2.res" id="406_wkvq6"]
+[ext_resource type="Texture2D" uid="uid://1wbp4umntdw6" path="res://Scenes/World/Object_3_2_0.res" id="407_7pfrm"]
+[ext_resource type="Texture2D" uid="uid://d261c6dk3r0ny" path="res://Scenes/World/Splatmap_3_2_0.res" id="408_uit06"]
+[ext_resource type="Texture2D" uid="uid://b3rrxgvd4gg7o" path="res://Scenes/World/Splatmap_3_2_1.res" id="409_tqwhd"]
+[ext_resource type="Texture2D" uid="uid://q8s8kstle5u4" path="res://Scenes/World/Splatmap_3_2_2.res" id="410_v8gv0"]
+[ext_resource type="Texture2D" uid="uid://b2lncltcm3agb" path="res://Scenes/World/Water_3_2.res" id="411_7inf7"]
+[ext_resource type="Texture2D" uid="uid://ldaly3bx465m" path="res://Scenes/World/Foliage_3_3_0.res" id="412_i85qj"]
+[ext_resource type="Texture2D" uid="uid://oebkfhji8j6s" path="res://Scenes/World/Foliage_3_3_1.res" id="413_gd7ms"]
+[ext_resource type="Texture2D" uid="uid://785nc1pk5eoo" path="res://Scenes/World/Heightmap_3_3.res" id="414_sebch"]
+[ext_resource type="Texture2D" uid="uid://dvqseiyncwuke" path="res://Scenes/World/Object_3_3_0.res" id="415_has30"]
+[ext_resource type="Texture2D" uid="uid://bpraka0crc806" path="res://Scenes/World/Splatmap_3_3_0.res" id="416_io2m4"]
+[ext_resource type="Texture2D" uid="uid://5qfkke8m3vfq" path="res://Scenes/World/Splatmap_3_3_1.res" id="417_nw14b"]
+[ext_resource type="Texture2D" uid="uid://b40ld4sk4krj3" path="res://Scenes/World/Splatmap_3_3_2.res" id="418_kto18"]
+[ext_resource type="Texture2D" uid="uid://p1n4vggvfhyq" path="res://Scenes/World/Water_3_3.res" id="419_rjsgy"]
+[ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="421_81rqo"]
+[ext_resource type="PackedScene" uid="uid://bw2fjllusx7kw" path="res://Scenes/enemy_spawner.tscn" id="421_wrhnx"]
+[ext_resource type="PackedScene" uid="uid://cdyf44r2hpl3e" path="res://Scenes/Monsters/vineTangler.tscn" id="422_p2h30"]
+[ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/VillagerScripts/MaryVillager.cs" id="422_pvlar"]
+[ext_resource type="Script" uid="uid://bwc5be1j0grxx" path="res://Scripts/VillagerScripts/ElizabethVillager.cs" id="423_e2eg3"]
+[ext_resource type="PackedScene" uid="uid://c3gi3vrev7n0x" path="res://Scenes/Monsters/underBrush.tscn" id="423_jsh0i"]
+[ext_resource type="PackedScene" uid="uid://bliqfpjmneg1" path="res://Scenes/Monsters/weepingSpine.tscn" id="424_jgbub"]
+[ext_resource type="Script" uid="uid://fpbtgg4ofyo" path="res://Scripts/VillagerScripts/DillonVillager.cs" id="424_nr7af"]
+[ext_resource type="Script" uid="uid://1j4tnfmggee4" path="res://Scripts/VillagerScripts/LukasVillager.cs" id="425_ym0xd"]
+[ext_resource type="Script" uid="uid://cvaa6k23p1fy6" path="res://Scripts/VillagerScripts/SamualVillager.cs" id="426_xyhap"]
+[ext_resource type="Script" uid="uid://brv6v4lm6cph8" path="res://Scripts/VillagerScripts/MarthaVillager.cs" id="427_46020"]
+[ext_resource type="Script" uid="uid://cd1hk520uuwo4" path="res://Scripts/VillagerScripts/FinnVillager.cs" id="428_of432"]
+[ext_resource type="PackedScene" uid="uid://crxygapcq66ft" path="res://Scenes/Monsters/flyingPesk.tscn" id="428_r6r1r"]
+[ext_resource type="PackedScene" uid="uid://4khu1i6od862" path="res://Scenes/Monsters/villageRat.tscn" id="429_wk3sn"]
+[ext_resource type="Script" uid="uid://deqndpcgi731" path="res://Scripts/VillagerScripts/MatthewVillager.cs" id="429_wkm1a"]
+[ext_resource type="PackedScene" uid="uid://ctodbn6m6s5i2" path="res://Scenes/Monsters/Bosses/theHushedBark.tscn" id="430_2rj2p"]
+[ext_resource type="PackedScene" uid="uid://syqvg0yul3mk" path="res://Scenes/Monsters/MonsterAssets/fakeTree.tscn" id="431_wrhnx"]
+[ext_resource type="PackedScene" uid="uid://fodrwm4bj1gf" path="res://Assets/3D/buildings/house1.blend" id="432_p2h30"]
+[ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="433_jsh0i"]
+[ext_resource type="PackedScene" uid="uid://dp8uiiauk5326" path="res://Scenes/lamp.tscn" id="434_jgbub"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="435_r6r1r"]
+[ext_resource type="PackedScene" uid="uid://bfpffyfg2ismx" path="res://Scenes/sign.tscn" id="436_wk3sn"]
+[ext_resource type="PackedScene" uid="uid://dgw0pwu2iwx5p" path="res://Scenes/biome_zone.tscn" id="437_bxpwq"]
+[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="448_p2h30"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_wrhnx"]
+vertices = PackedVector3Array(73.5, 7, 121.25, 78, 7, 117.5, 78, 7, 116.75, 71.75, 7, 122, 48.25, 6.75, 131.5, 51.25, 7, 130.75, 52.75, 7, 125.75, 53.5, 7, 122.5, 0.5, 6.75, 141, 30.75, 6.75, 141, 31, 6.75, 139, 79.5, 7, 115.25, 79.5, 6.75, 0.5, 56.75, 7, 123.25, 0.5, 7, 0.5, 71.75, 7, 123, 33.75, 6.75, 139, 48.5, 6.75, 134.25, 81.5, 7, 117.5, 81, 7, 118, 83.75, 7, 118.75, 81.5, 7, 116.25, 85.5, 7, 118.75, 97.75, 7, 118.5, 99.25, 7, 118.25, 99.25, 6.75, 0.5, 86, 7, 119.75, 97.75, 7, 119.75, 100.5, 7, 118.5, 100.5, 7, 120.25, 132, 7, 121, 142.5, 7, 102.75, 156, 6.75, 0.5, 156.25, 7, 99.25, 167.5, 7, 96.25, 167.25, 6.75, 0.5, 172.25, 6.75, 94.75, 172.25, 6.75, 0.5, 172.75, 6.75, 94.75, 218, 6.5, 140, 218, 6.5, 140.5, 349.5, 6.75, 140.5, 349.5, 7, 0.5, 258.0161, 7, 0.5, 246.58064, 8, 0.5, 240.8629, 9, 0.5, 229.42741, 7.25, 0.5, 217.99194, 6.75, 0.5, 227.99594, 7, 18.010921, 239.9904, 8.5, 12.00686, 259.48813, 6.75, 36.01753, 246.0125, 7.25, 19.478256, 236.99884, 7.75, 20.997824, 216.00124, 6.75, 45.01184, 232.48303, 7, 25.521332, 238.52309, 7.5, 25.51528, 245.98404, 8, 10.515319, 238.51616, 8.75, 7.4894037, 242.98196, 8.75, 3.0158966, 234.00728, 7, 29.988787, 248.9933, 7.5, 14.993762, 238.50873, 7.25, 31.507238, 252.00255, 7, 19.522205, 232.50458, 7.25, 16.508394, 241.48567, 7, 49.50509, 280.51428, 6.5, 112.52432, 231.00546, 7.25, 1.4925097, 251.98845, 7.25, 4.5173087, 254.99411, 7.25, 10.481241, 191, 6.75, 137, 192.5, 6.75, 136.75, 193.75, 6.75, 135.25, 197.75, 6.75, 122.75, 155, 7, 101.5, 155, 7, 111, 155.75, 7, 111.5, 157.25, 7, 116, 172.25, 6.75, 97, 157.25, 7, 117.25, 156.75, 7, 117.5, 187.5, 6.75, 139.75, 139.25, 7, 112.5, 145.5, 7, 114.25, 146.25, 7, 113.5, 143.75, 7, 104.5, 146.75, 11.5, 114.5, 148, 11.5, 119, 156, 11.5, 116.5, 154.75, 11.5, 112, 147.25, 7, 120, 126, 6.75, 135.25, 146, 6.75, 171.5, 153.5, 6.75, 159.25, 153.5, 6.75, 158.5, 132.75, 6.75, 164, 126, 6.75, 154.75, 126.75, 6.75, 154.75, 150, 7, 119.75, 148.75, 7, 120.25, 156, 6.75, 156, 148.25, 7, 118.75, 155.75, 7, 116.25, 154.5, 7, 112.5, 147, 7, 114.75, 83.25, 7, 119.5, 80.25, 7, 118.75, 79.5, 7, 118.75, 74.5, 7, 122.25, 74.5, 7, 123.25, 72.5, 6.75, 146.25, 73.5, 6.75, 147, 76.75, 6.75, 145.25, 73.75, 7, 124, 72.75, 7, 124, 83.5, 7, 121.25, 163.75, 6.75, 159.5, 187, 6.75, 140.75, 187, 6.75, 140, 159.75, 6.75, 155.5, 157.75, 6.75, 154.25, 156.25, 7, 117.75, 97.75, 7, 120.75, 85.75, 7, 121.25, 97.5, 6.75, 142.5, 98.5, 6.75, 142.5, 98.75, 7, 121, 85.25, 7, 121.5, 96.75, 6.75, 143.5, 126, 6.75, 131.25, 99.75, 7, 121, 100, 6.75, 143.75, 124, 6.75, 134.75, 100, 6.75, 144.25, 124.25, 6.75, 144.25, 96.25, 6.75, 144.75, 207.5, 6.75, 132.5, 66.5, 6.75, 146.25, 66.75, 6.75, 147.5, 70.25, 6.75, 147.75, 53.75, 7, 126.5, 71.5, 6.75, 146, 65.5, 6.75, 145, 52, 7, 132, 56, 7, 126.75, 52, 7, 134, 63.25, 6.75, 146, 57, 7, 124.25, 54.5, 13.75, 125, 55.25, 13.75, 125, 55, 13.75, 124.25, 54.5, 13.75, 124.25, 49.75, 13, 132.5, 50.5, 13, 133, 50.5, 13, 132.5, 195, 6.75, 140, 212.5, 6.75, 137.5, 64, 6.75, 149.5, 64.25, 6.75, 149.25, 62.75, 6.75, 147.25, 37.5, 6.75, 147.75, 38.25, 6.75, 149, 39.75, 6.75, 149.25, 40, 6.75, 146.5, 62.75, 6.75, 146.25, 51.75, 6.75, 134.5, 41.25, 6.75, 150.75, 40, 6.75, 145.25, 49, 6.75, 134.75, 39.25, 6.75, 143.75, 34.5, 6.75, 142.75, 34, 6.75, 143, 35.75, 6.75, 144.75, 36.25, 6.75, 144, 39, 6.75, 143.25, 38, 6.75, 143.25, 34.5, 6.75, 139.5, 212, 6.5, 146, 215.5, 6.5, 140.5, 198.25, 6.75, 144.75, 188.25, 11.5, 140.5, 193, 11.5, 147.25, 193.75, 11.5, 147.25, 197, 11.5, 144.75, 192.25, 11.5, 138, 191.5, 11.5, 138, 188.75, 6.75, 140.5, 193.25, 6.75, 147, 196.5, 6.75, 144.75, 192, 6.75, 138.25, 32.25, 13.75, 141.5, 33, 13.75, 141.5, 33, 13.75, 140.75, 32.25, 13.75, 140.5, 188, 6.5, 192.25, 186.75, 6.5, 193.75, 186.25, 6.5, 195.5, 207, 6.25, 245, 207, 6.25, 246, 219.5, 6.25, 247.75, 220.25, 6.25, 247, 206.25, 6.25, 244, 223, 6.25, 249.5, 233.5, 6.25, 255.5, 235.5, 6.25, 256, 251, 6.25, 244, 250.75, 6.25, 243, 221.25, 6.25, 247, 218, 6.5, 141, 198.25, 6.5, 174.5, 252.75, 6.25, 241.5, 253.75, 6.25, 241.75, 194.25, 6.5, 180.75, 216.5, 6.5, 142.25, 205, 6.25, 244.25, 254.75, 6.25, 243.75, 349.5, 6.25, 243.75, 349.5, 6.5, 220.43549, 165.25, 6.75, 160.75, 165.25, 6.75, 161.5, 176.75, 6.75, 169.75, 185.25, 6.75, 166.75, 192.25, 6.75, 148, 36.5, 6.75, 147.25, 37, 6.75, 150.5, 25.75, 6.75, 163, 31, 6.75, 143, 0.5, 7.25, 178, 23.25, 7, 168.5, 25.5, 7, 168, 26, 6.75, 166.25, 36.75, 6.75, 151.75, 21.5, 7, 175, 22.25, 7, 175, 23.5, 7, 170.5, 19.75, 7, 177.75, 19.75, 7, 176.75, 28.75, 6.75, 162.75, 127.75, 6.75, 168.25, 131, 6.75, 165, 124.25, 6.75, 155.75, 98.75, 6.75, 146.25, 97.75, 6.75, 146.25, 97, 6.75, 145.5, 83.75, 6.75, 158.5, 83.25, 6.75, 160.75, 91, 6.25, 205, 91.5, 6.25, 206.25, 111.25, 6.25, 207.5, 113.25, 6.25, 207.5, 73.5, 6.5, 188.75, 73, 6.5, 190, 89, 6.25, 204.25, 81.5, 6.75, 160.5, 74, 6.75, 147.25, 74, 6.75, 148.25, 72.75, 6.75, 149.5, 81, 6.75, 158.5, 81.5, 6.75, 157.75, 82.75, 6.75, 157.75, 207.25, 6.5, 154.5, 197, 6.75, 146, 37.5, 13, 145.25, 38.25, 13, 145.75, 38.25, 13, 145.25, 186.25, 6.75, 167.75, 187.75, 6.5, 172.75, 196, 6.5, 173.75, 193.75, 6.75, 148.5, 192.5, 6.75, 148.5, 66.5, 6.75, 148.25, 71.25, 6.75, 149.5, 70.25, 6.75, 148.5, 80.75, 6.75, 159.75, 53.5, 6.75, 177.75, 59.75, 6.75, 186.5, 61.25, 6.75, 186.25, 53, 6.75, 176, 70.75, 6.5, 187.25, 72, 6.5, 187.5, 62, 6.75, 188.5, 69.5, 6.5, 188.75, 49, 6.75, 173.75, 50.75, 6.75, 176, 51.5, 6.75, 175.5, 52.75, 6.75, 175.5, 41.25, 6.75, 151.75, 40.5, 6.75, 152.5, 38.5, 13.5, 151.25, 38.75, 13.5, 151.75, 39.5, 13.5, 151.25, 38.75, 13.5, 150.75, 38.5, 6.75, 153.5, 29.25, 6.75, 163, 39.75, 6.75, 153.5, 29.25, 6.75, 165.75, 164, 11.5, 161.5, 163.5, 11.5, 160.5, 163, 11.5, 160.5, 160.75, 11.5, 164.75, 158, 11.5, 155.5, 154.75, 11.5, 158.75, 154.75, 11.5, 159.25, 163.5, 6.75, 161.5, 163.25, 6.75, 160.75, 162.75, 6.75, 160.75, 160.75, 6.75, 164.25, 158, 6.75, 156, 155.25, 6.75, 158.75, 155.25, 6.75, 159.25, 152, 6.75, 175, 154.5, 6.75, 160.5, 160.25, 6.75, 179.75, 160.75, 6.75, 166, 176, 6.75, 170.5, 161, 6.75, 166, 27.25, 13, 164.25, 27.25, 13, 164.75, 27.75, 13, 164.75, 27.75, 13, 164.25, 131.75, 6.75, 166, 132.25, 6.75, 165.75, 126.5, 6.25, 195.25, 145.75, 6.75, 173.75, 26, 7, 168.25, 50.25, 6.75, 176.25, 50.25, 6.75, 177, 29, 6.75, 166.25, 24.25, 7, 177, 26.25, 7, 170.5, 23.75, 7, 171, 170.25, 6.75, 185.5, 177.75, 6.75, 175.75, 178.75, 11.5, 175.25, 186.5, 11.5, 172.25, 185, 11.5, 168, 177, 11.5, 170.75, 113.75, 6.25, 208, 177.5, 6.75, 171, 178.75, 6.75, 174.75, 186.25, 6.75, 172, 184.75, 6.75, 168.25, 187.5, 6.5, 173.25, 178.5, 6.75, 176.5, 177.25, 6.75, 189.5, 184.75, 6.5, 193.75, 110.75, 6, 236.5, 111.25, 6, 237.25, 112.75, 6, 237, 112.75, 6, 235.5, 103.25, 6, 222.5, 102.75, 6, 224.75, 113.25, 6, 234.75, 115.75, 6, 235, 113.25, 6.25, 210, 111.5, 6.25, 210, 108.75, 6, 236.75, 101, 6, 231.5, 100.75, 6, 232.75, 101, 6, 225, 100.25, 6, 230.75, 155.75, 6.75, 179.5, 116, 6, 236, 145, 6, 239.25, 145.75, 6, 240.25, 154.5, 6, 231.5, 143.75, 6, 239, 21.5, 13.5, 177, 21.75, 13.5, 177.75, 22.25, 13.5, 177.5, 22, 13.5, 176.75, 21.5, 7, 179.5, 21, 7, 180, 22, 7, 180.75, 22.5, 7, 179.5, 46.5, 6.75, 185.25, 49, 6.75, 184.5, 24.25, 7, 177.75, 27.25, 7, 190.75, 21.5, 7, 182.5, 24.5, 7.25, 188.75, 25.25, 7.25, 190.75, 46.5, 6.75, 187.25, 23.5, 7.25, 188.5, 50.5, 6.75, 178, 19.25, 7, 179.75, 18.5, 7.25, 181.75, 0.5, 7.25, 181.75, 51, 6.75, 178.75, 49.75, 6.75, 185, 52.25, 6.75, 178.75, 50.5, 6.75, 187.25, 59, 6.75, 187.5, 163.75, 6.75, 184.25, 21, 7.25, 183.25, 21.75, 7.25, 189.25, 20, 7.25, 183.25, 18.5, 7.25, 182.25, 21.5, 7.25, 190.25, 0.5, 7.5, 190.25, 174.25, 6, 248.25, 184, 6.25, 244.75, 184.25, 6.25, 241.75, 145.75, 6, 240.5, 171.75, 6, 248.5, 184.75, 6.5, 196.5, 182.5, 6.5, 194.75, 184.75, 6.25, 241.5, 167.98305, 6.5, 216.00473, 48, 13, 186.25, 48, 13, 187, 48.5, 13, 187, 48.5, 13, 186.25, 27.75, 7, 191.25, 47.5, 6.75, 188.75, 55.5, 6.5, 196, 56, 6.5, 196.75, 59.75, 6.75, 189.25, 59, 6.75, 188.5, 54, 6.5, 196, 49.25, 6.75, 188.25, 53.25, 6.5, 196.75, 54.5, 6.5, 203, 55, 6.5, 202.75, 54.75, 6.5, 198.75, 53.5, 6.5, 198.25, 27.75, 7, 194, 27.25, 7.25, 194.25, 30.5, 7, 197.5, 43.75, 6.75, 208.25, 54.5, 6.5, 205, 45.25, 6.75, 208.5, 56.25, 6.5, 198, 57.25, 6.5, 203.25, 65, 6.25, 211.75, 73.25, 6.25, 207.75, 73.75, 6.25, 207.5, 69.25, 6.5, 189.75, 56.5, 6.5, 205.75, 61.5, 6.25, 212.25, 61.75, 6.25, 211.75, 57.25, 6.5, 204.75, 61, 6.75, 189.25, 70.25, 6.5, 190.75, 65.25, 6.25, 212.25, 73.75, 6.25, 210.25, 73.25, 6.25, 210, 71, 6.5, 191.25, 72.5, 6.5, 190.75, 76, 6.25, 208, 87.5, 6.25, 207.25, 87.25, 6.25, 206.25, 75.75, 6.25, 207.5, 24.5, 7.25, 194, 24.5, 7.25, 191.75, 22.5, 7.25, 192.25, 40.25, 6.75, 212.5, 40.5, 6.75, 211.25, 0.5, 8, 212.75, 15.222221, 8.25, 212.65741, 12.001387, 8, 202.48851, 25.75, 13, 192.25, 25.75, 13, 192.75, 26.25, 13, 192.75, 26.25, 13, 192.25, 201.5, 6.25, 247, 202.25, 6.25, 247.75, 204.5, 6.25, 246.25, 204, 6.25, 245, 200.75, 6.25, 247, 187.5, 6.25, 241.5, 185.75, 6.5, 196.25, 188, 6.25, 242, 188, 6.25, 244.25, 41, 6.75, 210.5, 43, 6.75, 210.75, 43, 6.75, 208.75, 52.5, 6.25, 238.25, 53, 6, 239.5, 53.5, 6, 239.25, 54, 6.25, 238, 54.75, 6.5, 205.5, 45.75, 6.5, 208.75, 45.75, 6.5, 210.5, 45.25, 6.5, 211.25, 44.25, 6.5, 211.25, 43.75, 6.5, 214.25, 50.25, 6.25, 238.25, 56.25, 6, 237.25, 61.25, 6.25, 215, 89, 12, 206.25, 89.75, 12, 206.5, 89.75, 12, 206, 96.25, 6, 223.75, 99.75, 6, 223.75, 100, 6, 222, 95.75, 6, 222.25, 103, 6, 222, 110.75, 6.25, 209.5, 100.5, 6, 221.75, 94.25, 6, 222, 90.75, 6.25, 207.5, 65.25, 6.25, 215.25, 75.75, 6.25, 210.25, 93.25, 6, 224.5, 90, 6.25, 208.25, 70.5, 6, 238.5, 71.25, 6, 238.5, 89, 6.25, 208.25, 93.75, 6, 224.75, 93.5, 6, 222.75, 41.75, 13.5, 212.25, 41.75, 13.5, 213, 42.5, 13.5, 213, 42.5, 13.5, 212.25, 31.5, 6.75, 239.25, 33.25, 6.75, 239, 40.25, 6.75, 213.75, 0.5, 7.5, 240.25, 18.214287, 8, 239.67857, 16.51387, 8.25, 234.00186, 31.501749, 7, 222.01813, 25.496109, 7.75, 218.98581, 31.25, 6.75, 240.25, 18.07143, 8, 240.25, 63, 13.25, 213.25, 63, 13.25, 214, 63.75, 13.25, 214, 63.75, 13.25, 213.25, 34.25, 6.5, 240.5, 49.75, 6.25, 240.5, 49.75, 6.25, 238.75, 43.25, 6.5, 214.75, 40.5, 6.75, 214.25, 57, 6, 238, 61.75, 6.25, 215.5, 57.75, 6, 240, 69, 6, 240.25, 65, 6.25, 215.75, 99.75, 6, 224.5, 95.5, 6, 225, 98, 6, 231.25, 98.5, 6, 230.5, 97.5, 6, 232.75, 73, 6, 240, 85.25, 6, 246.5, 86, 6, 246.5, 73, 6, 240.5, 109.25, 6, 241.5, 111, 6, 240.75, 110.25, 6, 239.25, 108.5, 6, 239, 108.25, 6, 237, 100, 6, 234, 99, 6, 234, 109.5, 6, 243.25, 110.5, 6, 244.25, 87.25, 6, 247.75, 113, 6, 237.75, 111.25, 6, 238.75, 143.75, 6, 248.25, 143.25, 6, 241.75, 142.5, 6, 241, 129.5, 5.75, 255.5, 130.75, 5.75, 255, 112.5, 6, 241.25, 144.25, 6, 250.25, 115.25, 6, 238, 113, 6, 243, 142.75, 6, 239.75, 145, 6, 247.75, 144.5, 6, 242, 52.75, 6, 241.25, 54.75, 6, 241.75, 57, 6, 256.5, 56, 6, 241.5, 50, 6.25, 241.25, 43.25, 6.25, 253.25, 43.5, 6, 255, 55.5, 6, 257, 55.25, 12.5, 239.25, 55.25, 12.5, 239.75, 56, 12.5, 239.75, 56, 12.5, 239.25, 51, 11.25, 239.5, 51, 11.25, 240, 51.5, 11.25, 240, 51.5, 11.25, 239.5, 69, 6, 241, 57.5, 6, 240.75, 58, 6, 256.5, 58.25, 6, 257, 70.75, 11.75, 240, 70.75, 11.75, 240.75, 71.25, 11.75, 240.5, 35.75, 6.25, 263.5, 37.75, 6.25, 263.5, 40.75, 6.25, 255, 40.75, 6.25, 253.5, 34, 6.5, 241.5, 31.75, 6.75, 242, 35.5, 6.25, 265, 0.5, 6.25, 265, 9.25, 6.75, 265, 23.833334, 6.75, 265, 13.502351, 7.5, 255.01749, 43, 6.25, 252.75, 41.75, 6.25, 252.75, 71.25, 6, 242.5, 71.25, 6, 242.75, 84.25, 6, 247.5, 146.5, 6, 247.5, 147.25, 6, 248.75, 171.25, 6, 248.75, 70.5, 6, 242.5, 58.75, 6, 259.5, 69.75, 6, 260, 71.5, 6, 258.5, 86.5, 5.75, 258.5, 86, 6, 250.75, 84.75, 6, 251, 84.75, 5.75, 259.25, 84.25, 6, 250.5, 72.25, 6, 258.5, 84.75, 5.75, 260.25, 73.75, 6, 260.25, 114.5, 5.75, 261, 116, 5.75, 261.75, 128.25, 5.75, 257, 113.25, 5.75, 261, 111.75, 6, 244, 113, 5.75, 261.5, 185.75, 13, 243, 185.75, 13, 243.75, 186.5, 13, 243.75, 186.5, 13, 243, 239.5, 6, 270.25, 238, 6, 270.75, 238, 6, 271.5, 239.5, 6, 273, 238, 6, 275.25, 237, 6, 275, 236.5, 6, 277.5, 239.5, 6, 273.75, 236.75, 6, 279.75, 235, 5.75, 349.5, 349.5, 5.5, 349.5, 349.5, 6, 298.33063, 334.48917, 5.75, 287.99313, 280.48898, 6.25, 271.52002, 262.5175, 5.75, 302.9962, 306.0193, 6, 297.01263, 240, 6.25, 268.25, 254, 6.25, 245, 235, 6, 280.25, 235.75, 6.25, 258.5, 237.75, 6.25, 267.25, 238.75, 6.25, 267.25, 252.25, 6.25, 245.5, 236.25, 6.25, 256.75, 88.25, 5.75, 258.5, 87.5, 6, 250.25, 88.75, 5.75, 261.5, 112.5, 5.75, 262.5, 190.25, 6.25, 257, 191, 6.25, 257.25, 191.25, 6.25, 256.75, 194, 6.25, 257, 199.25, 6.25, 249.25, 199.25, 6.25, 248.5, 188, 6.25, 245, 187, 6.25, 245.5, 174.75, 6, 248.5, 184.25, 6.25, 245.25, 174.75, 6, 251.75, 174.25, 6, 252, 202.75, 6.25, 248, 205, 6.25, 247, 201.25, 6.25, 250.5, 199.5, 6, 260.5, 200.25, 6, 262.5, 202.75, 6.25, 249.25, 206, 6.25, 247, 218.5, 6.25, 249.75, 218.5, 6.25, 248.75, 210, 6, 273.25, 213.25, 6, 272.25, 212.25, 6, 269.75, 208.25, 6, 271.25, 219.25, 6.25, 250.5, 212.25, 6, 268.25, 207.25, 6, 271.25, 214.5, 6, 267.5, 158, 6, 262.25, 158, 6, 264.5, 161.25, 6, 265, 162.5, 6, 263.25, 147.5, 6, 250, 155.25, 6, 261.75, 163.75, 6, 263.5, 171.25, 6, 251.75, 171.75, 6, 252, 146.75, 6, 250.5, 220.25, 12.75, 249, 220.5, 12.75, 249.75, 221, 12.75, 249.5, 220.75, 12.75, 248.75, 194, 6, 260.5, 196.25, 6, 261.25, 198, 6, 260, 194.5, 6.25, 257.25, 199.25, 6, 260, 200.5, 6.25, 250.5, 235.25, 6.25, 259.25, 234, 6.25, 259.25, 236.25, 6, 268.75, 232.25, 6.25, 258.5, 221.25, 6.25, 251.5, 220.25, 6.25, 251.5, 215, 6, 268, 215.25, 6, 269, 232.75, 6.25, 256.25, 172.75, 12.25, 249.75, 172.75, 12.25, 250.5, 173.25, 12.25, 250.5, 173.25, 12.25, 249.75, 132.25, 5.75, 256.5, 145, 6, 251, 131, 5.75, 258.75, 131.75, 5.75, 266.75, 132.5, 5.75, 267, 132.5, 5.75, 257.5, 154.5, 6, 262.5, 154.25, 6, 265, 190.75, 6, 260, 165.25, 6, 265, 191.25, 6, 260.25, 41, 6.25, 255.5, 38.5, 6.25, 264.25, 56, 6, 260.5, 54.75, 6, 258.5, 43.25, 6, 255.5, 54.75, 6, 257.5, 116.75, 5.75, 262.5, 130, 5.75, 259, 234, 12, 257.25, 234, 12, 257.75, 234.5, 12, 257.75, 234.5, 12, 257.25, 56.5, 12.25, 258.25, 56.5, 12.25, 258.75, 57.25, 12.25, 258.75, 192.25, 12, 258.25, 192.25, 12, 258.75, 193, 12, 258.75, 193, 12, 258.25, 115.75, 5.75, 265.25, 115.25, 5.75, 265.5, 115.75, 5.75, 268.5, 117, 5.75, 268.25, 117.75, 5.75, 269.75, 130, 5.75, 268.25, 130, 5.75, 269.25, 58.25, 6, 260, 61, 6, 269, 62.5, 6, 267.25, 63, 6, 267.25, 69.75, 6, 261, 61, 6, 269.5, 44.25, 6, 282.25, 55.75, 6, 283, 58.25, 5.75, 282.75, 41.25, 6, 282, 44.5, 6, 284.25, 55.25, 6, 284.25, 38.5, 6, 266, 86.5, 12, 260.25, 86.5, 12, 260.75, 87.25, 12, 260.75, 87, 12, 260, 71.5, 11.5, 260.25, 71.5, 11.5, 260.75, 72, 11.5, 260.75, 72, 11.5, 260.25, 130.75, 5.75, 284.5, 131.75, 5.75, 283.25, 129, 5.75, 281.25, 117.25, 5.75, 275.25, 116.5, 5.75, 272.25, 114.75, 5.75, 272.5, 130.75, 5.75, 285.25, 127.25, 5.75, 281.5, 133.5, 5.75, 287, 117, 5.75, 277.5, 88.25, 5.75, 262, 59.25, 5.75, 286, 57, 5.75, 349.5, 133.5, 5.75, 349.5, 69, 5.75, 273, 63.5, 6, 271, 62.75, 6, 271.25, 58.75, 5.75, 283.25, 70, 5.75, 274.75, 85.5, 5.75, 262.5, 72.25, 5.75, 273.75, 71.25, 5.75, 274.75, 126.75, 5.75, 279.75, 119.25, 5.75, 277.75, 72.25, 5.75, 262.5, 71.5, 6, 262.5, 71.25, 5.75, 271.75, 72.25, 5.75, 272.75, 57, 5.75, 286.5, 113.75, 5.75, 269.75, 189, 6, 284.25, 190.25, 6, 282, 189.75, 6, 281.75, 187.5, 6, 282.75, 163.75, 6, 267.25, 163, 6, 267.25, 162.25, 6, 273.75, 163.25, 6, 274.75, 186.5, 6, 282.75, 189.75, 6, 279.25, 174, 6, 281.5, 176.25, 6, 282, 192.25, 6, 279, 193, 6, 277.75, 197, 6, 263.25, 169.5, 6, 284.25, 173.25, 6, 284, 173.25, 6, 282.75, 168.25, 6, 283, 163.25, 6, 275.75, 167.25, 6, 283, 176.5, 6, 283.75, 185.5, 6, 284.25, 64.75, 6, 270, 70, 5.75, 271.75, 64.75, 6, 268.75, 114.25, 5.75, 269, 112, 5.75, 264.25, 198.75, 6, 263.75, 205.5, 6, 272.75, 197.25, 6, 263.75, 205.5, 6, 273.75, 114, 12.5, 263, 114, 12.5, 263.5, 114.75, 12.5, 263.5, 114.5, 12.5, 262.75, 156.75, 12.75, 264, 156.75, 12.75, 263.5, 156, 12.75, 263.5, 155.75, 12.75, 264, 161.25, 6, 266, 157.5, 6, 266, 160, 6, 274.75, 161.25, 6, 273.5, 154.75, 6, 265.5, 152, 6, 267, 145.75, 5.75, 281, 160.25, 6, 276, 36.75, 11.25, 264.75, 36.75, 11.25, 265.25, 37.25, 11.25, 265.25, 37.25, 11.25, 264.75, 162.75, 11.5, 265, 163, 11.5, 265.5, 163.5, 11.5, 265.25, 163.25, 11.5, 264.75, 40.75, 6, 282.5, 38, 6.25, 266.5, 35.75, 6.25, 266.5, 40.75, 6, 284, 0.5, 5.25, 284, 16.898148, 6, 284, 9.3125, 6.75, 265.375, 13.516736, 6, 276.00714, 19.516495, 6.5, 274.4874, 22.51517, 6.75, 266.97882, 134, 5.75, 268.5, 129.5, 5.75, 281, 132.5, 5.75, 282.25, 129.25, 5.75, 279.25, 133.25, 5.75, 282.25, 135.25, 5.75, 283.5, 133.75, 5.75, 269.75, 132.5, 5.75, 271, 141.5, 5.75, 282.25, 143.75, 5.75, 283.25, 135.5, 5.75, 284.5, 140, 5.75, 284.75, 131.5, 5.75, 270.75, 131.75, 11.5, 268.5, 131.75, 11.5, 269.25, 132.25, 11.5, 269.25, 237, 6, 271.5, 236.25, 6, 269.5, 215.5, 6, 269.75, 216.5, 6, 270, 216.25, 6, 271.75, 233.75, 6, 278, 235.75, 6, 272.75, 234.5, 6, 277.25, 235.75, 6, 274, 215.25, 6, 272.75, 62.75, 11.5, 269, 62.75, 11.5, 269.75, 63.25, 11.5, 269.5, 118, 5.75, 271.5, 120, 5.75, 275.25, 128, 5.75, 278.75, 129, 5.75, 278.75, 120, 5.75, 277, 115.5, 12, 270.25, 116.25, 12, 270.75, 116.25, 12, 270, 188.75, 6, 285.25, 192.75, 6, 282, 210, 6, 274, 208.25, 6, 275.75, 187.25, 6, 286.25, 234, 6, 280, 207.5, 6, 275.75, 192.75, 6, 279.5, 187.25, 5.75, 349.5, 207.25, 12.5, 273.25, 207.5, 12.5, 274, 208, 12.5, 273.75, 207.75, 12.5, 273, 144.75, 5.75, 284.5, 162, 6, 277, 161.25, 5.75, 291.75, 167, 6, 286, 166, 6, 285.25, 160.25, 5.75, 290.5, 166, 6, 284.25, 161, 6, 277, 159, 5.75, 291, 42.25, 12.75, 284.25, 43, 12.75, 284.5, 43, 12.75, 283.5, 42.25, 12.75, 283.5, 169.5, 6, 285, 174, 6, 284.75, 168.25, 6, 286.5, 185.5, 6, 285.25, 175.75, 6, 285, 161.5, 5.75, 293, 159.75, 5.75, 294.25, 159.75, 6, 349.5, 41, 6, 285.75, 17.857143, 6, 284.75, 43, 6, 286, 0.5, 4.75, 349.5, 43, 5.5, 349.5, 0.5, 4.75, 303.0161, 25.413794, 4.75, 349.5, 23.986519, 6, 292.50937, 14.978134, 5, 299.98166, 26.982956, 5.5, 320.97647, 18.00491, 4.75, 330.00638, 44.5, 6, 285.5, 55.75, 6, 286.25, 57, 12, 284.25, 57, 12, 285, 57.5, 12, 285, 57.5, 12, 284.25, 132.75, 12.5, 284.5, 133.5, 12.5, 285, 133.5, 12.5, 284.25, 142, 12.5, 284.25, 142, 12.5, 285, 142.75, 12.5, 284.75, 140.5, 5.75, 286, 134.25, 5.75, 286.75, 142.5, 5.75, 349.5, 142.5, 5.75, 287, 158, 5.75, 292, 143.25, 5.75, 286.75, 158.25, 5.75, 293.25)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(10, 9, 8), PackedInt32Array(2, 3, 11), PackedInt32Array(11, 3, 13), PackedInt32Array(11, 13, 7), PackedInt32Array(11, 7, 12), PackedInt32Array(4, 10, 7), PackedInt32Array(7, 10, 8), PackedInt32Array(7, 8, 14), PackedInt32Array(7, 14, 12), PackedInt32Array(3, 15, 13), PackedInt32Array(17, 16, 4), PackedInt32Array(4, 16, 10), PackedInt32Array(20, 19, 18), PackedInt32Array(18, 21, 20), PackedInt32Array(20, 21, 22), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(21, 11, 24), PackedInt32Array(24, 11, 12), PackedInt32Array(24, 12, 25), PackedInt32Array(27, 26, 23), PackedInt32Array(23, 26, 22), PackedInt32Array(30, 29, 28), PackedInt32Array(28, 24, 30), PackedInt32Array(30, 24, 31), PackedInt32Array(31, 24, 25), PackedInt32Array(31, 25, 32), PackedInt32Array(31, 32, 33), PackedInt32Array(35, 34, 32), PackedInt32Array(32, 34, 33), PackedInt32Array(37, 36, 35), PackedInt32Array(35, 36, 34), PackedInt32Array(38, 36, 37), PackedInt32Array(41, 40, 39), PackedInt32Array(41, 65, 42), PackedInt32Array(42, 50, 43), PackedInt32Array(43, 67, 44), PackedInt32Array(44, 58, 45), PackedInt32Array(45, 66, 46), PackedInt32Array(46, 48, 47), PackedInt32Array(47, 53, 37), PackedInt32Array(37, 53, 38), PackedInt32Array(38, 53, 39), PackedInt32Array(39, 65, 41), PackedInt32Array(65, 50, 42), PackedInt32Array(50, 68, 43), PackedInt32Array(67, 58, 44), PackedInt32Array(43, 68, 67), PackedInt32Array(58, 57, 45), PackedInt32Array(66, 48, 46), PackedInt32Array(45, 57, 66), PackedInt32Array(48, 53, 47), PackedInt32Array(53, 64, 39), PackedInt32Array(39, 64, 65), PackedInt32Array(65, 64, 50), PackedInt32Array(50, 62, 68), PackedInt32Array(67, 56, 58), PackedInt32Array(68, 56, 67), PackedInt32Array(58, 56, 57), PackedInt32Array(66, 63, 48), PackedInt32Array(57, 63, 66), PackedInt32Array(48, 54, 53), PackedInt32Array(53, 59, 64), PackedInt32Array(64, 61, 50), PackedInt32Array(62, 60, 68), PackedInt32Array(50, 61, 62), PackedInt32Array(68, 60, 56), PackedInt32Array(56, 49, 57), PackedInt32Array(63, 54, 48), PackedInt32Array(57, 49, 63), PackedInt32Array(54, 59, 53), PackedInt32Array(59, 61, 64), PackedInt32Array(62, 51, 60), PackedInt32Array(61, 51, 62), PackedInt32Array(60, 51, 56), PackedInt32Array(56, 51, 49), PackedInt32Array(63, 52, 54), PackedInt32Array(49, 52, 63), PackedInt32Array(54, 55, 59), PackedInt32Array(59, 55, 61), PackedInt32Array(61, 55, 51), PackedInt32Array(51, 52, 49), PackedInt32Array(52, 55, 54), PackedInt32Array(55, 52, 51), PackedInt32Array(70, 69, 71), PackedInt32Array(71, 69, 72), PackedInt32Array(75, 74, 73), PackedInt32Array(75, 73, 76), PackedInt32Array(76, 73, 77), PackedInt32Array(80, 79, 78), PackedInt32Array(69, 80, 72), PackedInt32Array(72, 80, 78), PackedInt32Array(72, 78, 76), PackedInt32Array(72, 76, 77), PackedInt32Array(83, 82, 81), PackedInt32Array(81, 84, 83), PackedInt32Array(83, 84, 74), PackedInt32Array(74, 84, 73), PackedInt32Array(88, 87, 85), PackedInt32Array(85, 87, 86), PackedInt32Array(82, 89, 81), PackedInt32Array(81, 89, 90), PackedInt32Array(92, 91, 93), PackedInt32Array(93, 91, 94), PackedInt32Array(96, 95, 90), PackedInt32Array(98, 97, 90), PackedInt32Array(90, 97, 96), PackedInt32Array(96, 97, 94), PackedInt32Array(94, 97, 99), PackedInt32Array(99, 93, 94), PackedInt32Array(90, 89, 98), PackedInt32Array(102, 101, 103), PackedInt32Array(103, 101, 100), PackedInt32Array(20, 104, 19), PackedInt32Array(19, 104, 105), PackedInt32Array(107, 1, 108), PackedInt32Array(108, 1, 106), PackedInt32Array(106, 105, 104), PackedInt32Array(110, 109, 111), PackedInt32Array(111, 109, 112), PackedInt32Array(112, 109, 113), PackedInt32Array(104, 114, 106), PackedInt32Array(106, 114, 108), PackedInt32Array(108, 114, 112), PackedInt32Array(112, 114, 111), PackedInt32Array(1, 107, 0), PackedInt32Array(116, 115, 117), PackedInt32Array(117, 115, 118), PackedInt32Array(117, 119, 80), PackedInt32Array(80, 119, 79), PackedInt32Array(79, 119, 120), PackedInt32Array(119, 117, 118), PackedInt32Array(99, 97, 119), PackedInt32Array(119, 97, 120), PackedInt32Array(27, 121, 26), PackedInt32Array(26, 121, 122), PackedInt32Array(125, 124, 123), PackedInt32Array(122, 121, 126), PackedInt32Array(126, 121, 125), PackedInt32Array(126, 125, 123), PackedInt32Array(126, 123, 127), PackedInt32Array(129, 29, 128), PackedInt32Array(128, 29, 30), PackedInt32Array(125, 129, 124), PackedInt32Array(124, 129, 130), PackedInt32Array(130, 129, 131), PackedInt32Array(131, 129, 128), PackedInt32Array(132, 130, 133), PackedInt32Array(133, 130, 131), PackedInt32Array(134, 111, 127), PackedInt32Array(127, 111, 126), PackedInt32Array(126, 111, 114), PackedInt32Array(72, 135, 71), PackedInt32Array(138, 137, 136), PackedInt32Array(5, 6, 139), PackedInt32Array(136, 141, 138), PackedInt32Array(138, 141, 140), PackedInt32Array(5, 139, 142), PackedInt32Array(142, 139, 143), PackedInt32Array(113, 109, 140), PackedInt32Array(141, 145, 144), PackedInt32Array(142, 143, 144), PackedInt32Array(144, 143, 141), PackedInt32Array(141, 143, 140), PackedInt32Array(140, 143, 113), PackedInt32Array(146, 13, 15), PackedInt32Array(15, 113, 146), PackedInt32Array(146, 113, 143), PackedInt32Array(150, 149, 147), PackedInt32Array(147, 149, 148), PackedInt32Array(153, 152, 151), PackedInt32Array(70, 71, 154), PackedInt32Array(154, 71, 135), PackedInt32Array(154, 135, 155), PackedInt32Array(156, 158, 157), PackedInt32Array(160, 159, 161), PackedInt32Array(161, 159, 162), PackedInt32Array(164, 163, 158), PackedInt32Array(165, 161, 162), PackedInt32Array(165, 162, 166), PackedInt32Array(166, 168, 167), PackedInt32Array(167, 164, 166), PackedInt32Array(166, 164, 165), PackedInt32Array(165, 164, 158), PackedInt32Array(165, 158, 156), PackedInt32Array(163, 164, 145), PackedInt32Array(145, 164, 144), PackedInt32Array(169, 172, 170), PackedInt32Array(170, 172, 171), PackedInt32Array(173, 17, 168), PackedInt32Array(168, 17, 167), PackedInt32Array(174, 172, 169), PackedInt32Array(174, 169, 173), PackedInt32Array(173, 169, 175), PackedInt32Array(173, 175, 17), PackedInt32Array(17, 175, 16), PackedInt32Array(177, 176, 155), PackedInt32Array(155, 176, 178), PackedInt32Array(155, 178, 154), PackedInt32Array(184, 183, 179), PackedInt32Array(179, 183, 180), PackedInt32Array(180, 183, 181), PackedInt32Array(181, 183, 182), PackedInt32Array(188, 187, 185), PackedInt32Array(185, 187, 186), PackedInt32Array(190, 189, 191), PackedInt32Array(191, 189, 192), PackedInt32Array(195, 194, 193), PackedInt32Array(198, 197, 196), PackedInt32Array(198, 196, 199), PackedInt32Array(199, 196, 200), PackedInt32Array(202, 201, 203), PackedInt32Array(203, 201, 206), PackedInt32Array(203, 206, 204), PackedInt32Array(204, 206, 205), PackedInt32Array(208, 207, 195), PackedInt32Array(195, 207, 209), PackedInt32Array(209, 207, 210), PackedInt32Array(199, 200, 206), PackedInt32Array(206, 200, 205), PackedInt32Array(205, 200, 209), PackedInt32Array(209, 200, 195), PackedInt32Array(193, 211, 195), PackedInt32Array(195, 211, 208), PackedInt32Array(208, 212, 207), PackedInt32Array(200, 213, 195), PackedInt32Array(214, 210, 215), PackedInt32Array(215, 210, 216), PackedInt32Array(216, 210, 41), PackedInt32Array(41, 210, 207), PackedInt32Array(41, 207, 40), PackedInt32Array(219, 218, 217), PackedInt32Array(217, 115, 219), PackedInt32Array(219, 115, 220), PackedInt32Array(220, 115, 221), PackedInt32Array(221, 115, 116), PackedInt32Array(159, 160, 222), PackedInt32Array(222, 160, 223), PackedInt32Array(225, 224, 9), PackedInt32Array(9, 224, 227), PackedInt32Array(9, 227, 8), PackedInt32Array(8, 227, 226), PackedInt32Array(228, 227, 229), PackedInt32Array(229, 227, 224), PackedInt32Array(222, 223, 230), PackedInt32Array(233, 232, 231), PackedInt32Array(170, 171, 222), PackedInt32Array(235, 234, 226), PackedInt32Array(233, 231, 227), PackedInt32Array(227, 231, 235), PackedInt32Array(227, 235, 226), PackedInt32Array(170, 222, 225), PackedInt32Array(225, 222, 230), PackedInt32Array(225, 230, 236), PackedInt32Array(225, 236, 224), PackedInt32Array(238, 237, 239), PackedInt32Array(239, 237, 240), PackedInt32Array(241, 243, 242), PackedInt32Array(241, 240, 243), PackedInt32Array(243, 240, 244), PackedInt32Array(246, 245, 247), PackedInt32Array(247, 245, 248), PackedInt32Array(245, 249, 248), PackedInt32Array(248, 249, 244), PackedInt32Array(248, 244, 240), PackedInt32Array(248, 240, 237), PackedInt32Array(250, 249, 251), PackedInt32Array(251, 249, 245), PackedInt32Array(249, 252, 244), PackedInt32Array(132, 133, 240), PackedInt32Array(240, 133, 239), PackedInt32Array(253, 110, 111), PackedInt32Array(254, 253, 111), PackedInt32Array(257, 256, 255), PackedInt32Array(255, 254, 257), PackedInt32Array(257, 254, 258), PackedInt32Array(258, 254, 243), PackedInt32Array(243, 254, 111), PackedInt32Array(243, 111, 134), PackedInt32Array(243, 134, 242), PackedInt32Array(260, 178, 259), PackedInt32Array(259, 178, 176), PackedInt32Array(263, 262, 261), PackedInt32Array(266, 265, 264), PackedInt32Array(264, 220, 266), PackedInt32Array(266, 220, 268), PackedInt32Array(266, 268, 267), PackedInt32Array(266, 267, 259), PackedInt32Array(259, 267, 260), PackedInt32Array(220, 221, 268), PackedInt32Array(157, 269, 156), PackedInt32Array(156, 269, 271), PackedInt32Array(156, 271, 270), PackedInt32Array(138, 271, 137), PackedInt32Array(137, 271, 269), PackedInt32Array(256, 272, 255), PackedInt32Array(255, 272, 270), PackedInt32Array(275, 274, 273), PackedInt32Array(270, 272, 156), PackedInt32Array(156, 272, 276), PackedInt32Array(276, 272, 277), PackedInt32Array(277, 272, 278), PackedInt32Array(280, 279, 275), PackedInt32Array(280, 275, 277), PackedInt32Array(277, 275, 273), PackedInt32Array(277, 273, 276), PackedInt32Array(282, 281, 283), PackedInt32Array(283, 281, 284), PackedInt32Array(284, 281, 286), PackedInt32Array(284, 286, 285), PackedInt32Array(165, 156, 285), PackedInt32Array(285, 156, 284), PackedInt32Array(284, 156, 276), PackedInt32Array(287, 290, 288), PackedInt32Array(288, 290, 289), PackedInt32Array(292, 236, 291), PackedInt32Array(291, 236, 230), PackedInt32Array(293, 286, 281), PackedInt32Array(291, 293, 292), PackedInt32Array(292, 293, 294), PackedInt32Array(294, 293, 281), PackedInt32Array(296, 295, 297), PackedInt32Array(297, 295, 298), PackedInt32Array(300, 299, 301), PackedInt32Array(301, 299, 297), PackedInt32Array(301, 297, 298), PackedInt32Array(303, 302, 304), PackedInt32Array(304, 302, 305), PackedInt32Array(307, 306, 308), PackedInt32Array(308, 306, 304), PackedInt32Array(308, 304, 305), PackedInt32Array(92, 310, 91), PackedInt32Array(91, 310, 309), PackedInt32Array(272, 252, 278), PackedInt32Array(278, 252, 249), PackedInt32Array(310, 312, 309), PackedInt32Array(309, 312, 311), PackedInt32Array(219, 313, 218), PackedInt32Array(218, 313, 314), PackedInt32Array(318, 317, 315), PackedInt32Array(315, 317, 316), PackedInt32Array(237, 238, 319), PackedInt32Array(319, 320, 237), PackedInt32Array(237, 320, 322), PackedInt32Array(237, 322, 321), PackedInt32Array(323, 228, 229), PackedInt32Array(324, 281, 282), PackedInt32Array(324, 325, 281), PackedInt32Array(281, 325, 294), PackedInt32Array(294, 325, 326), PackedInt32Array(326, 325, 327), PackedInt32Array(323, 229, 328), PackedInt32Array(328, 229, 326), PackedInt32Array(232, 233, 329), PackedInt32Array(327, 328, 326), PackedInt32Array(329, 328, 232), PackedInt32Array(232, 328, 327), PackedInt32Array(312, 314, 311), PackedInt32Array(311, 314, 330), PackedInt32Array(330, 314, 331), PackedInt32Array(331, 314, 313), PackedInt32Array(333, 332, 334), PackedInt32Array(334, 332, 335), PackedInt32Array(336, 248, 321), PackedInt32Array(321, 248, 237), PackedInt32Array(337, 340, 338), PackedInt32Array(338, 340, 339), PackedInt32Array(341, 265, 266), PackedInt32Array(341, 266, 342), PackedInt32Array(342, 266, 343), PackedInt32Array(343, 266, 344), PackedInt32Array(346, 345, 347), PackedInt32Array(347, 345, 348), PackedInt32Array(350, 349, 351), PackedInt32Array(351, 349, 352), PackedInt32Array(352, 349, 354), PackedInt32Array(352, 354, 353), PackedInt32Array(351, 348, 345), PackedInt32Array(345, 355, 351), PackedInt32Array(351, 355, 357), PackedInt32Array(351, 357, 356), PackedInt32Array(351, 356, 350), PackedInt32Array(359, 358, 356), PackedInt32Array(356, 358, 350), PackedInt32Array(321, 322, 360), PackedInt32Array(361, 352, 353), PackedInt32Array(364, 363, 362), PackedInt32Array(353, 336, 321), PackedInt32Array(365, 364, 362), PackedInt32Array(365, 361, 364), PackedInt32Array(364, 361, 353), PackedInt32Array(364, 353, 321), PackedInt32Array(364, 321, 360), PackedInt32Array(331, 342, 330), PackedInt32Array(330, 342, 343), PackedInt32Array(369, 368, 366), PackedInt32Array(366, 368, 367), PackedInt32Array(370, 373, 371), PackedInt32Array(371, 373, 372), PackedInt32Array(375, 374, 325), PackedInt32Array(325, 374, 377), PackedInt32Array(325, 377, 376), PackedInt32Array(325, 376, 327), PackedInt32Array(372, 373, 378), PackedInt32Array(378, 373, 376), PackedInt32Array(378, 376, 379), PackedInt32Array(379, 376, 377), PackedInt32Array(377, 380, 379), PackedInt32Array(374, 381, 377), PackedInt32Array(378, 379, 382), PackedInt32Array(325, 383, 375), PackedInt32Array(371, 384, 370), PackedInt32Array(370, 384, 234), PackedInt32Array(384, 385, 234), PackedInt32Array(234, 385, 226), PackedInt32Array(226, 385, 386), PackedInt32Array(375, 383, 387), PackedInt32Array(375, 387, 388), PackedInt32Array(388, 387, 389), PackedInt32Array(389, 273, 388), PackedInt32Array(388, 273, 390), PackedInt32Array(390, 273, 391), PackedInt32Array(391, 273, 274), PackedInt32Array(364, 360, 392), PackedInt32Array(393, 378, 382), PackedInt32Array(393, 382, 395), PackedInt32Array(395, 382, 394), PackedInt32Array(386, 385, 396), PackedInt32Array(394, 397, 395), PackedInt32Array(395, 397, 396), PackedInt32Array(396, 397, 386), PackedInt32Array(386, 397, 398), PackedInt32Array(401, 400, 399), PackedInt32Array(363, 364, 402), PackedInt32Array(402, 364, 403), PackedInt32Array(403, 364, 399), PackedInt32Array(399, 364, 401), PackedInt32Array(401, 407, 406), PackedInt32Array(406, 407, 404), PackedInt32Array(404, 407, 405), PackedInt32Array(405, 407, 392), PackedInt32Array(392, 407, 364), PackedInt32Array(364, 407, 401), PackedInt32Array(411, 410, 408), PackedInt32Array(408, 410, 409), PackedInt32Array(377, 381, 412), PackedInt32Array(412, 381, 413), PackedInt32Array(416, 415, 414), PackedInt32Array(416, 414, 417), PackedInt32Array(417, 414, 418), PackedInt32Array(391, 417, 390), PackedInt32Array(390, 417, 419), PackedInt32Array(419, 417, 418), PackedInt32Array(419, 418, 420), PackedInt32Array(422, 421, 423), PackedInt32Array(423, 421, 424), PackedInt32Array(427, 426, 425), PackedInt32Array(429, 428, 420), PackedInt32Array(420, 428, 413), PackedInt32Array(413, 428, 427), PackedInt32Array(413, 427, 412), PackedInt32Array(424, 421, 429), PackedInt32Array(427, 425, 412), PackedInt32Array(420, 424, 429), PackedInt32Array(413, 419, 420), PackedInt32Array(429, 430, 428), PackedInt32Array(423, 431, 422), PackedInt32Array(422, 431, 432), PackedInt32Array(435, 434, 433), PackedInt32Array(280, 436, 279), PackedInt32Array(438, 437, 439), PackedInt32Array(439, 437, 440), PackedInt32Array(279, 436, 441), PackedInt32Array(441, 436, 442), PackedInt32Array(445, 444, 443), PackedInt32Array(431, 441, 432), PackedInt32Array(432, 441, 446), PackedInt32Array(432, 446, 433), PackedInt32Array(433, 446, 435), PackedInt32Array(443, 433, 445), PackedInt32Array(445, 433, 434), PackedInt32Array(416, 441, 415), PackedInt32Array(415, 441, 431), PackedInt32Array(446, 447, 435), PackedInt32Array(441, 442, 446), PackedInt32Array(440, 432, 439), PackedInt32Array(439, 432, 433), PackedInt32Array(451, 450, 448), PackedInt32Array(448, 450, 449), PackedInt32Array(451, 435, 450), PackedInt32Array(450, 435, 251), PackedInt32Array(251, 435, 447), PackedInt32Array(251, 447, 250), PackedInt32Array(454, 453, 452), PackedInt32Array(452, 426, 427), PackedInt32Array(398, 459, 457), PackedInt32Array(457, 459, 458), PackedInt32Array(458, 427, 455), PackedInt32Array(455, 427, 456), PackedInt32Array(427, 459, 452), PackedInt32Array(452, 459, 398), PackedInt32Array(459, 427, 458), PackedInt32Array(398, 397, 454), PackedInt32Array(398, 454, 452), PackedInt32Array(463, 462, 460), PackedInt32Array(460, 462, 461), PackedInt32Array(466, 465, 464), PackedInt32Array(466, 464, 467), PackedInt32Array(467, 464, 468), PackedInt32Array(404, 470, 406), PackedInt32Array(406, 470, 469), PackedInt32Array(213, 467, 468), PackedInt32Array(468, 472, 471), PackedInt32Array(471, 469, 468), PackedInt32Array(468, 469, 213), PackedInt32Array(213, 469, 470), PackedInt32Array(213, 470, 195), PackedInt32Array(474, 473, 475), PackedInt32Array(475, 473, 427), PackedInt32Array(473, 456, 427), PackedInt32Array(427, 428, 475), PackedInt32Array(477, 476, 478), PackedInt32Array(478, 476, 479), PackedInt32Array(429, 480, 481), PackedInt32Array(481, 480, 482), PackedInt32Array(485, 484, 483), PackedInt32Array(476, 486, 479), PackedInt32Array(479, 486, 487), PackedInt32Array(482, 485, 483), PackedInt32Array(482, 480, 485), PackedInt32Array(485, 480, 488), PackedInt32Array(485, 488, 487), PackedInt32Array(485, 487, 486), PackedInt32Array(481, 430, 429), PackedInt32Array(437, 438, 480), PackedInt32Array(480, 438, 488), PackedInt32Array(491, 490, 489), PackedInt32Array(492, 495, 493), PackedInt32Array(493, 495, 494), PackedInt32Array(354, 496, 497), PackedInt32Array(497, 496, 498), PackedInt32Array(494, 495, 498), PackedInt32Array(498, 495, 499), PackedInt32Array(500, 246, 499), PackedInt32Array(499, 246, 498), PackedInt32Array(498, 246, 497), PackedInt32Array(497, 246, 247), PackedInt32Array(354, 349, 496), PackedInt32Array(444, 502, 443), PackedInt32Array(443, 502, 501), PackedInt32Array(505, 501, 506), PackedInt32Array(506, 501, 502), PackedInt32Array(506, 502, 503), PackedInt32Array(503, 502, 504), PackedInt32Array(448, 449, 502), PackedInt32Array(502, 449, 507), PackedInt32Array(503, 508, 506), PackedInt32Array(502, 507, 504), PackedInt32Array(504, 509, 503), PackedInt32Array(500, 499, 504), PackedInt32Array(504, 499, 509), PackedInt32Array(513, 512, 510), PackedInt32Array(510, 512, 511), PackedInt32Array(457, 519, 517), PackedInt32Array(517, 519, 518), PackedInt32Array(518, 519, 514), PackedInt32Array(514, 520, 515), PackedInt32Array(515, 520, 516), PackedInt32Array(516, 521, 455), PackedInt32Array(455, 521, 458), PackedInt32Array(458, 519, 457), PackedInt32Array(519, 520, 514), PackedInt32Array(520, 521, 516), PackedInt32Array(521, 519, 458), PackedInt32Array(519, 521, 520), PackedInt32Array(514, 522, 518), PackedInt32Array(518, 522, 523), PackedInt32Array(518, 523, 517), PackedInt32Array(527, 526, 524), PackedInt32Array(524, 526, 525), PackedInt32Array(529, 528, 530), PackedInt32Array(530, 528, 515), PackedInt32Array(530, 515, 531), PackedInt32Array(531, 515, 532), PackedInt32Array(515, 516, 532), PackedInt32Array(485, 486, 531), PackedInt32Array(531, 486, 530), PackedInt32Array(488, 534, 487), PackedInt32Array(487, 534, 533), PackedInt32Array(535, 533, 536), PackedInt32Array(536, 533, 505), PackedInt32Array(505, 533, 537), PackedInt32Array(537, 533, 534), PackedInt32Array(537, 501, 505), PackedInt32Array(492, 493, 538), PackedInt32Array(492, 538, 539), PackedInt32Array(539, 538, 358), PackedInt32Array(539, 358, 541), PackedInt32Array(539, 541, 540), PackedInt32Array(358, 359, 541), PackedInt32Array(539, 540, 508), PackedInt32Array(508, 540, 542), PackedInt32Array(544, 543, 545), PackedInt32Array(545, 543, 506), PackedInt32Array(545, 506, 542), PackedInt32Array(542, 506, 508), PackedInt32Array(544, 546, 543), PackedInt32Array(548, 547, 549), PackedInt32Array(549, 547, 550), PackedInt32Array(552, 551, 553), PackedInt32Array(553, 551, 550), PackedInt32Array(547, 554, 550), PackedInt32Array(550, 554, 553), PackedInt32Array(355, 551, 357), PackedInt32Array(357, 551, 552), PackedInt32Array(554, 555, 553), PackedInt32Array(553, 555, 542), PackedInt32Array(542, 555, 556), PackedInt32Array(542, 556, 545), PackedInt32Array(347, 557, 346), PackedInt32Array(346, 557, 558), PackedInt32Array(548, 549, 558), PackedInt32Array(560, 559, 561), PackedInt32Array(561, 559, 563), PackedInt32Array(561, 563, 562), PackedInt32Array(548, 558, 564), PackedInt32Array(564, 558, 557), PackedInt32Array(565, 563, 559), PackedInt32Array(557, 566, 564), PackedInt32Array(564, 566, 567), PackedInt32Array(567, 566, 562), PackedInt32Array(361, 365, 568), PackedInt32Array(570, 569, 560), PackedInt32Array(560, 569, 559), PackedInt32Array(561, 562, 568), PackedInt32Array(568, 562, 566), PackedInt32Array(568, 566, 361), PackedInt32Array(477, 478, 571), PackedInt32Array(571, 478, 572), PackedInt32Array(572, 574, 573), PackedInt32Array(575, 571, 572), PackedInt32Array(577, 576, 578), PackedInt32Array(578, 576, 573), PackedInt32Array(573, 576, 575), PackedInt32Array(573, 575, 572), PackedInt32Array(582, 581, 579), PackedInt32Array(579, 581, 580), PackedInt32Array(586, 585, 583), PackedInt32Array(583, 585, 584), PackedInt32Array(536, 587, 535), PackedInt32Array(535, 587, 588), PackedInt32Array(589, 573, 574), PackedInt32Array(588, 587, 574), PackedInt32Array(574, 587, 589), PackedInt32Array(589, 587, 590), PackedInt32Array(593, 592, 591), PackedInt32Array(595, 594, 596), PackedInt32Array(596, 594, 597), PackedInt32Array(597, 594, 598), PackedInt32Array(598, 594, 599), PackedInt32Array(517, 604, 601), PackedInt32Array(601, 604, 602), PackedInt32Array(602, 604, 603), PackedInt32Array(603, 594, 600), PackedInt32Array(594, 603, 599), PackedInt32Array(599, 523, 522), PackedInt32Array(523, 604, 517), PackedInt32Array(604, 599, 603), PackedInt32Array(599, 604, 523), PackedInt32Array(575, 576, 605), PackedInt32Array(606, 597, 598), PackedInt32Array(575, 605, 529), PackedInt32Array(529, 605, 606), PackedInt32Array(529, 606, 598), PackedInt32Array(529, 598, 528), PackedInt32Array(607, 546, 608), PackedInt32Array(608, 546, 609), PackedInt32Array(609, 546, 544), PackedInt32Array(610, 569, 570), PackedInt32Array(610, 570, 611), PackedInt32Array(611, 570, 402), PackedInt32Array(611, 402, 612), PackedInt32Array(612, 402, 403), PackedInt32Array(613, 607, 608), PackedInt32Array(614, 590, 615), PackedInt32Array(615, 590, 616), PackedInt32Array(616, 590, 613), PackedInt32Array(613, 590, 587), PackedInt32Array(613, 608, 616), PackedInt32Array(619, 618, 617), PackedInt32Array(619, 617, 621), PackedInt32Array(621, 617, 620), PackedInt32Array(622, 616, 621), PackedInt32Array(621, 616, 609), PackedInt32Array(609, 616, 608), PackedInt32Array(620, 623, 621), PackedInt32Array(621, 623, 624), PackedInt32Array(621, 624, 622), PackedInt32Array(627, 626, 625), PackedInt32Array(625, 628, 627), PackedInt32Array(627, 628, 562), PackedInt32Array(562, 628, 629), PackedInt32Array(562, 629, 567), PackedInt32Array(628, 630, 629), PackedInt32Array(634, 633, 631), PackedInt32Array(631, 633, 632), PackedInt32Array(636, 635, 637), PackedInt32Array(637, 635, 638), PackedInt32Array(639, 641, 640), PackedInt32Array(646, 647, 215), PackedInt32Array(215, 648, 214), PackedInt32Array(214, 648, 642), PackedInt32Array(642, 649, 643), PackedInt32Array(643, 649, 644), PackedInt32Array(644, 650, 645), PackedInt32Array(645, 650, 646), PackedInt32Array(647, 648, 215), PackedInt32Array(646, 650, 647), PackedInt32Array(648, 649, 642), PackedInt32Array(649, 650, 644), PackedInt32Array(647, 650, 648), PackedInt32Array(648, 650, 649), PackedInt32Array(639, 642, 641), PackedInt32Array(641, 642, 643), PackedInt32Array(638, 635, 651), PackedInt32Array(638, 651, 642), PackedInt32Array(642, 651, 652), PackedInt32Array(644, 653, 643), PackedInt32Array(656, 655, 654), PackedInt32Array(656, 654, 651), PackedInt32Array(651, 654, 658), PackedInt32Array(651, 658, 657), PackedInt32Array(651, 657, 652), PackedInt32Array(642, 652, 214), PackedInt32Array(617, 618, 659), PackedInt32Array(659, 618, 660), PackedInt32Array(555, 629, 630), PackedInt32Array(659, 660, 661), PackedInt32Array(660, 556, 661), PackedInt32Array(661, 556, 555), PackedInt32Array(661, 555, 630), PackedInt32Array(661, 630, 662), PackedInt32Array(203, 204, 658), PackedInt32Array(658, 204, 657), PackedInt32Array(663, 665, 664), PackedInt32Array(667, 666, 668), PackedInt32Array(668, 666, 665), PackedInt32Array(669, 472, 668), PackedInt32Array(668, 472, 468), PackedInt32Array(665, 663, 668), PackedInt32Array(668, 663, 669), PackedInt32Array(669, 663, 670), PackedInt32Array(672, 671, 400), PackedInt32Array(400, 671, 399), PackedInt32Array(663, 674, 673), PackedInt32Array(671, 672, 673), PackedInt32Array(673, 672, 670), PackedInt32Array(673, 670, 663), PackedInt32Array(465, 466, 675), PackedInt32Array(675, 466, 676), PackedInt32Array(679, 678, 677), PackedInt32Array(676, 681, 675), PackedInt32Array(675, 681, 680), PackedInt32Array(197, 683, 682), PackedInt32Array(685, 684, 686), PackedInt32Array(686, 684, 687), PackedInt32Array(682, 688, 197), PackedInt32Array(197, 688, 681), PackedInt32Array(687, 690, 686), PackedInt32Array(686, 690, 689), PackedInt32Array(689, 690, 679), PackedInt32Array(689, 679, 691), PackedInt32Array(691, 679, 677), PackedInt32Array(691, 677, 681), PackedInt32Array(691, 681, 688), PackedInt32Array(677, 680, 681), PackedInt32Array(683, 197, 198), PackedInt32Array(693, 692, 694), PackedInt32Array(694, 692, 695), PackedInt32Array(696, 611, 697), PackedInt32Array(697, 611, 692), PackedInt32Array(695, 692, 698), PackedInt32Array(698, 692, 699), PackedInt32Array(699, 692, 612), PackedInt32Array(612, 692, 611), PackedInt32Array(699, 700, 698), PackedInt32Array(697, 701, 696), PackedInt32Array(705, 704, 702), PackedInt32Array(702, 704, 703), PackedInt32Array(707, 706, 708), PackedInt32Array(708, 706, 709), PackedInt32Array(677, 678, 710), PackedInt32Array(708, 709, 710), PackedInt32Array(710, 709, 711), PackedInt32Array(710, 711, 677), PackedInt32Array(709, 666, 711), PackedInt32Array(711, 666, 667), PackedInt32Array(712, 654, 655), PackedInt32Array(713, 712, 655), PackedInt32Array(655, 714, 713), PackedInt32Array(713, 714, 715), PackedInt32Array(716, 715, 717), PackedInt32Array(717, 715, 714), PackedInt32Array(717, 714, 718), PackedInt32Array(718, 714, 719), PackedInt32Array(201, 202, 720), PackedInt32Array(201, 720, 716), PackedInt32Array(716, 720, 715), PackedInt32Array(724, 723, 721), PackedInt32Array(721, 723, 722), PackedInt32Array(726, 725, 565), PackedInt32Array(565, 725, 563), PackedInt32Array(728, 727, 729), PackedInt32Array(729, 727, 730), PackedInt32Array(701, 731, 726), PackedInt32Array(726, 731, 732), PackedInt32Array(726, 732, 730), PackedInt32Array(730, 732, 729), PackedInt32Array(730, 725, 726), PackedInt32Array(701, 697, 731), PackedInt32Array(718, 691, 717), PackedInt32Array(717, 691, 688), PackedInt32Array(664, 733, 663), PackedInt32Array(663, 733, 674), PackedInt32Array(698, 700, 734), PackedInt32Array(734, 700, 674), PackedInt32Array(734, 674, 733), PackedInt32Array(734, 733, 735), PackedInt32Array(595, 596, 736), PackedInt32Array(595, 736, 737), PackedInt32Array(737, 736, 740), PackedInt32Array(737, 740, 739), PackedInt32Array(737, 739, 738), PackedInt32Array(577, 741, 740), PackedInt32Array(740, 741, 739), PackedInt32Array(741, 577, 578), PackedInt32Array(626, 627, 742), PackedInt32Array(742, 627, 743), PackedInt32Array(747, 746, 744), PackedInt32Array(744, 746, 745), PackedInt32Array(750, 749, 748), PackedInt32Array(754, 753, 751), PackedInt32Array(751, 753, 752), PackedInt32Array(756, 755, 757), PackedInt32Array(757, 755, 758), PackedInt32Array(727, 728, 743), PackedInt32Array(743, 728, 760), PackedInt32Array(743, 760, 742), PackedInt32Array(742, 760, 759), PackedInt32Array(758, 755, 759), PackedInt32Array(759, 755, 742), PackedInt32Array(760, 761, 759), PackedInt32Array(764, 763, 762), PackedInt32Array(764, 762, 765), PackedInt32Array(765, 762, 614), PackedInt32Array(765, 614, 766), PackedInt32Array(766, 614, 615), PackedInt32Array(763, 767, 762), PackedInt32Array(762, 767, 738), PackedInt32Array(769, 768, 770), PackedInt32Array(770, 768, 771), PackedInt32Array(773, 772, 769), PackedInt32Array(769, 772, 768), PackedInt32Array(774, 737, 771), PackedInt32Array(771, 737, 738), PackedInt32Array(771, 738, 767), PackedInt32Array(771, 767, 770), PackedInt32Array(775, 778, 776), PackedInt32Array(776, 778, 777), PackedInt32Array(782, 781, 779), PackedInt32Array(779, 781, 780), PackedInt32Array(783, 785, 784), PackedInt32Array(788, 787, 786), PackedInt32Array(783, 789, 785), PackedInt32Array(785, 789, 790), PackedInt32Array(792, 791, 793), PackedInt32Array(793, 791, 794), PackedInt32Array(794, 791, 796), PackedInt32Array(794, 796, 795), PackedInt32Array(786, 792, 788), PackedInt32Array(788, 792, 793), PackedInt32Array(798, 797, 799), PackedInt32Array(799, 797, 801), PackedInt32Array(799, 801, 800), PackedInt32Array(804, 803, 802), PackedInt32Array(806, 805, 790), PackedInt32Array(809, 808, 807), PackedInt32Array(809, 807, 810), PackedInt32Array(810, 807, 624), PackedInt32Array(806, 790, 792), PackedInt32Array(792, 790, 789), PackedInt32Array(623, 802, 624), PackedInt32Array(624, 802, 810), PackedInt32Array(810, 802, 803), PackedInt32Array(802, 793, 804), PackedInt32Array(804, 793, 794), PackedInt32Array(794, 795, 811), PackedInt32Array(789, 791, 792), PackedInt32Array(801, 804, 800), PackedInt32Array(800, 804, 794), PackedInt32Array(788, 793, 812), PackedInt32Array(814, 813, 815), PackedInt32Array(815, 813, 816), PackedInt32Array(818, 817, 819), PackedInt32Array(819, 817, 820), PackedInt32Array(816, 821, 815), PackedInt32Array(815, 821, 822), PackedInt32Array(822, 821, 824), PackedInt32Array(822, 824, 823), PackedInt32Array(825, 822, 826), PackedInt32Array(826, 822, 827), PackedInt32Array(829, 828, 830), PackedInt32Array(830, 828, 831), PackedInt32Array(707, 827, 706), PackedInt32Array(706, 827, 735), PackedInt32Array(832, 734, 823), PackedInt32Array(823, 734, 822), PackedInt32Array(822, 734, 735), PackedInt32Array(822, 735, 827), PackedInt32Array(820, 817, 832), PackedInt32Array(832, 817, 734), PackedInt32Array(831, 833, 830), PackedInt32Array(830, 833, 823), PackedInt32Array(823, 833, 832), PackedInt32Array(834, 824, 835), PackedInt32Array(835, 824, 821), PackedInt32Array(797, 798, 836), PackedInt32Array(797, 836, 837), PackedInt32Array(837, 836, 838), PackedInt32Array(837, 838, 809), PackedInt32Array(809, 838, 765), PackedInt32Array(809, 765, 808), PackedInt32Array(808, 765, 766), PackedInt32Array(756, 757, 839), PackedInt32Array(839, 812, 756), PackedInt32Array(756, 812, 840), PackedInt32Array(840, 812, 661), PackedInt32Array(661, 812, 793), PackedInt32Array(661, 662, 840), PackedInt32Array(679, 690, 841), PackedInt32Array(841, 690, 842), PackedInt32Array(843, 826, 827), PackedInt32Array(842, 844, 841), PackedInt32Array(841, 844, 843), PackedInt32Array(843, 844, 826), PackedInt32Array(845, 848, 846), PackedInt32Array(846, 848, 847), PackedInt32Array(850, 849, 851), PackedInt32Array(851, 849, 852), PackedInt32Array(693, 694, 853), PackedInt32Array(693, 853, 854), PackedInt32Array(854, 853, 818), PackedInt32Array(854, 818, 856), PackedInt32Array(854, 856, 855), PackedInt32Array(857, 854, 858), PackedInt32Array(858, 854, 855), PackedInt32Array(858, 855, 860), PackedInt32Array(858, 860, 859), PackedInt32Array(818, 819, 856), PackedInt32Array(864, 863, 861), PackedInt32Array(861, 863, 862), PackedInt32Array(868, 867, 865), PackedInt32Array(865, 867, 866), PackedInt32Array(871, 870, 869), PackedInt32Array(601, 876, 873), PackedInt32Array(873, 876, 874), PackedInt32Array(874, 869, 872), PackedInt32Array(869, 877, 871), PackedInt32Array(871, 878, 875), PackedInt32Array(875, 876, 601), PackedInt32Array(876, 877, 874), PackedInt32Array(874, 877, 869), PackedInt32Array(877, 878, 871), PackedInt32Array(878, 877, 875), PackedInt32Array(875, 877, 876), PackedInt32Array(601, 602, 875), PackedInt32Array(875, 602, 603), PackedInt32Array(875, 603, 600), PackedInt32Array(875, 600, 871), PackedInt32Array(857, 858, 732), PackedInt32Array(732, 858, 879), PackedInt32Array(732, 879, 729), PackedInt32Array(774, 771, 870), PackedInt32Array(870, 771, 869), PackedInt32Array(785, 880, 784), PackedInt32Array(784, 880, 881), PackedInt32Array(883, 882, 884), PackedInt32Array(884, 882, 886), PackedInt32Array(884, 886, 885), PackedInt32Array(881, 880, 883), PackedInt32Array(883, 880, 882), PackedInt32Array(859, 888, 887), PackedInt32Array(889, 884, 890), PackedInt32Array(890, 884, 887), PackedInt32Array(886, 882, 891), PackedInt32Array(887, 884, 859), PackedInt32Array(859, 884, 885), PackedInt32Array(859, 885, 879), PackedInt32Array(859, 879, 858), PackedInt32Array(894, 893, 892), PackedInt32Array(637, 895, 636), PackedInt32Array(636, 895, 896), PackedInt32Array(898, 897, 719), PackedInt32Array(900, 899, 898), PackedInt32Array(896, 895, 901), PackedInt32Array(640, 641, 903), PackedInt32Array(903, 641, 902), PackedInt32Array(900, 904, 899), PackedInt32Array(896, 901, 714), PackedInt32Array(714, 901, 900), PackedInt32Array(714, 900, 898), PackedInt32Array(714, 898, 719), PackedInt32Array(902, 900, 903), PackedInt32Array(903, 900, 901), PackedInt32Array(907, 906, 905), PackedInt32Array(787, 908, 786), PackedInt32Array(786, 908, 909), PackedInt32Array(891, 911, 910), PackedInt32Array(909, 908, 759), PackedInt32Array(805, 806, 912), PackedInt32Array(805, 912, 909), PackedInt32Array(891, 882, 911), PackedInt32Array(805, 909, 910), PackedInt32Array(910, 909, 759), PackedInt32Array(910, 759, 761), PackedInt32Array(910, 761, 891), PackedInt32Array(800, 770, 799), PackedInt32Array(799, 770, 767), PackedInt32Array(915, 914, 913), PackedInt32Array(813, 814, 916), PackedInt32Array(916, 814, 917), PackedInt32Array(918, 684, 685), PackedInt32Array(919, 920, 916), PackedInt32Array(685, 904, 918), PackedInt32Array(918, 904, 919), PackedInt32Array(919, 904, 900), PackedInt32Array(919, 900, 921), PackedInt32Array(919, 916, 917), PackedInt32Array(922, 919, 923), PackedInt32Array(923, 919, 917), PackedInt32Array(921, 653, 919), PackedInt32Array(919, 653, 920), PackedInt32Array(920, 653, 924), PackedInt32Array(924, 653, 644), PackedInt32Array(928, 927, 925), PackedInt32Array(925, 927, 926), PackedInt32Array(825, 826, 923), PackedInt32Array(923, 826, 844), PackedInt32Array(923, 844, 922), PackedInt32Array(929, 888, 859), PackedInt32Array(930, 832, 833), PackedInt32Array(933, 932, 934), PackedInt32Array(934, 932, 931), PackedInt32Array(936, 935, 860), PackedInt32Array(860, 935, 937), PackedInt32Array(860, 937, 859), PackedInt32Array(859, 937, 929), PackedInt32Array(930, 833, 936), PackedInt32Array(936, 833, 935), PackedInt32Array(933, 934, 935), PackedInt32Array(935, 934, 937), PackedInt32Array(941, 940, 938), PackedInt32Array(938, 940, 939), PackedInt32Array(942, 828, 829), PackedInt32Array(829, 943, 942), PackedInt32Array(942, 943, 944), PackedInt32Array(834, 945, 946), PackedInt32Array(946, 945, 920), PackedInt32Array(943, 946, 944), PackedInt32Array(944, 946, 931), PackedInt32Array(931, 946, 947), PackedInt32Array(931, 932, 944), PackedInt32Array(834, 835, 945), PackedInt32Array(947, 946, 948), PackedInt32Array(948, 946, 920), PackedInt32Array(948, 920, 949), PackedInt32Array(949, 920, 924), PackedInt32Array(873, 874, 951), PackedInt32Array(951, 874, 872), PackedInt32Array(951, 872, 950), PackedInt32Array(956, 959, 954), PackedInt32Array(954, 959, 952), PackedInt32Array(952, 959, 950), PackedInt32Array(950, 957, 951), PackedInt32Array(951, 958, 873), PackedInt32Array(873, 958, 955), PackedInt32Array(955, 960, 953), PackedInt32Array(953, 960, 956), PackedInt32Array(956, 960, 959), PackedInt32Array(959, 957, 950), PackedInt32Array(957, 958, 951), PackedInt32Array(958, 960, 955), PackedInt32Array(960, 958, 959), PackedInt32Array(959, 958, 957), PackedInt32Array(772, 773, 961), PackedInt32Array(961, 773, 962), PackedInt32Array(962, 811, 961), PackedInt32Array(961, 811, 952), PackedInt32Array(952, 811, 795), PackedInt32Array(952, 795, 954), PackedInt32Array(966, 965, 963), PackedInt32Array(963, 965, 964), PackedInt32Array(969, 968, 967), PackedInt32Array(972, 971, 970), PackedInt32Array(890, 973, 889), PackedInt32Array(889, 973, 974), PackedInt32Array(974, 973, 791), PackedInt32Array(791, 973, 976), PackedInt32Array(791, 976, 975), PackedInt32Array(791, 975, 796), PackedInt32Array(937, 977, 929), PackedInt32Array(929, 977, 978), PackedInt32Array(978, 977, 976), PackedInt32Array(976, 977, 979), PackedInt32Array(979, 948, 976), PackedInt32Array(976, 948, 949), PackedInt32Array(976, 949, 975)]
+geometry_parsed_geometry_type = 1
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"Terrain"
+filter_baking_aabb = AABB(0, 0, 0, 350, 150, 350)
+
+[sub_resource type="Resource" id="Resource_e0ngr"]
+script = ExtResource("5_nc3gf")
+Name = "Grass"
+AlbedoTexture = ExtResource("2_eb0fy")
+NormalTexture = ExtResource("4_aragi")
+HeightTexture = ExtResource("3_letqy")
+TextureDetail = 50
+Triplanar = true
+metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
+
+[sub_resource type="Resource" id="Resource_c5t2i"]
+script = ExtResource("5_nc3gf")
+Name = "dirt"
+AlbedoTexture = ExtResource("6_r8fd3")
+HeightTexture = ExtResource("3_letqy")
+TextureDetail = 50
+metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
+
+[sub_resource type="Resource" id="Resource_o2rbt"]
+script = ExtResource("5_nc3gf")
+Name = "sand"
+AlbedoTexture = ExtResource("7_h8aoc")
+HeightTexture = ExtResource("3_letqy")
+metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
+
+[sub_resource type="Resource" id="Resource_coyub"]
+script = ExtResource("5_nc3gf")
+Name = "shallowocean"
+AlbedoTexture = ExtResource("8_2rvlj")
+HeightTexture = ExtResource("3_letqy")
+metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
+
+[sub_resource type="Resource" id="Resource_ochwf"]
+script = ExtResource("5_nc3gf")
+Name = "midocean"
+AlbedoTexture = ExtResource("9_1uftk")
+HeightTexture = ExtResource("3_letqy")
+metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
+
+[sub_resource type="Resource" id="Resource_p5wkl"]
+script = ExtResource("5_nc3gf")
+Name = "deepocean"
+AlbedoTexture = ExtResource("10_43n44")
+HeightTexture = ExtResource("3_letqy")
+metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
+
+[sub_resource type="Resource" id="Resource_g44x5"]
+script = ExtResource("5_nc3gf")
+Name = "swam_mud"
+AlbedoTexture = ExtResource("11_o70cm")
+HeightTexture = ExtResource("3_letqy")
+TextureDetail = 50
+metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
+
+[sub_resource type="Resource" id="Resource_kwnki"]
+script = ExtResource("5_nc3gf")
+Name = "swampgrass"
+AlbedoTexture = ExtResource("12_37xqj")
+HeightTexture = ExtResource("3_letqy")
+TextureDetail = 50
+metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
+
+[sub_resource type="Resource" id="Resource_cvubk"]
+script = ExtResource("5_nc3gf")
+Name = "plainsgrass"
+AlbedoTexture = ExtResource("13_n5auh")
+HeightTexture = ExtResource("3_letqy")
+TextureDetail = 50
+metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
+
+[sub_resource type="Resource" id="Resource_eskoj"]
+script = ExtResource("5_nc3gf")
+Name = "plainsdirt"
+AlbedoTexture = ExtResource("14_ejjek")
+HeightTexture = ExtResource("3_letqy")
+TextureDetail = 50
+metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
+
+[sub_resource type="Resource" id="Resource_vbfps"]
+script = ExtResource("15_v02e0")
+TextureSets = [SubResource("Resource_e0ngr"), SubResource("Resource_c5t2i"), SubResource("Resource_o2rbt"), SubResource("Resource_coyub"), SubResource("Resource_ochwf"), SubResource("Resource_p5wkl"), SubResource("Resource_g44x5"), SubResource("Resource_kwnki"), SubResource("Resource_cvubk"), SubResource("Resource_eskoj")]
+metadata/_custom_type_script = "uid://043vjblb04jf"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2t4p"]
+resource_name = "Material.002"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("16_hs260")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0pcbe"]
+_surfaces = [{
+"aabb": AABB(-1, -0.0677842, -1, 2, 1.37746, 2),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP9/AAD//////38AAP//AAD/fwAAAAD///9/AAD/fwAA//8AAP9///8AAAAA/38AAAAAAAD/f/////8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jajq2"]
+resource_name = "bush_Plane_002"
+_surfaces = [{
+"aabb": AABB(-1, -0.0677842, -1, 2, 1.37746, 2),
+"attribute_data": PackedByteArray("viFUxtbShA3W0lTGviGEDRUsNMRkzVITZM00xBUsUhM="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_t2t4p"),
+"name": "Material.002",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP9/AID//////38AgP//AAD/fwCAAAD///9/AID/fwAA////v/9///8AAP+//38AAAAA/7//f///////v/9/////f////3////9/////fwAA/38AAP9/AAD/fwAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_0pcbe")
+
+[sub_resource type="Gradient" id="Gradient_yq1aw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pyn1s"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m7vjf"]
+noise = SubResource("FastNoiseLite_pyn1s")
+color_ramp = SubResource("Gradient_yq1aw")
+
+[sub_resource type="Resource" id="Resource_no8kt"]
+script = ExtResource("17_rjq1j")
+Mesh = SubResource("ArrayMesh_jajq2")
+MeshScale = Vector3(2, 2, 2)
+NoiseTexture = SubResource("NoiseTexture2D_m7vjf")
+LODInitialCellWidth = 10.0
+Albedo = Color(0.418809, 0.588644, 0.472147, 1)
+AlbedoTextures = [ExtResource("16_hs260")]
+NearestTextureFilter = true
+CastShadow = true
+UseBrushScale = false
+RandomPlacementRange = 1000.0
+metadata/_custom_type_script = "uid://dgf8vwa2n8r11"
+
+[sub_resource type="Resource" id="Resource_axeuq"]
+script = ExtResource("18_osg54")
+Definition = SubResource("Resource_no8kt")
+metadata/_custom_type_script = "uid://d33x21vao7tj2"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akjvr"]
+resource_name = "grasstexture"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("20_ve2tm")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wigbs"]
+_surfaces = [{
+"aabb": AABB(-0.46418, -0.178487, -0.46418, 0.928361, 0.356975, 0.928361),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "grasstexture",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/3//////AAD/fwAAAAAAAP9/AAD//wAA/3///wAAAAD//////38AAAAAAAD/fwAA//8AAP9/AAAAAP///38AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dyk4i"]
+resource_name = "grass_Plane_001"
+_surfaces = [{
+"aabb": AABB(-0.46418, -0.178487, -0.46418, 0.928361, 0.356975, 0.928361),
+"attribute_data": PackedByteArray("iommf///lv9Hi///Qf4+f4qJpn///5b/R4v//0H+Pn8="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_akjvr"),
+"name": "grasstexture",
+"primitive": 3,
+"uv_scale": Vector4(1.85276, 1.78257, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/3///////7//fwAAAAD/v/9/AAD///+//3///wAA/7///////3///wAAAAD/f/////8AAP9///8AAP///3///xOAJwATgCcAE4AnABOAJwDrf+v/63/r/+t/6//rf+v/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wigbs")
+
+[sub_resource type="Resource" id="Resource_xbk3s"]
+script = ExtResource("17_rjq1j")
+Mesh = SubResource("ArrayMesh_dyk4i")
+MeshScale = Vector3(3.75, 7.5, 3.75)
+WindStrength = 0.3
+NoiseTexture = SubResource("NoiseTexture2D_m7vjf")
+Albedo = Color(0.156773, 0.338874, 0.221359, 1)
+AlbedoTextures = [ExtResource("19_o2cid")]
+CastShadow = true
+RandomPlacementRange = 50.0
+metadata/_custom_type_script = "uid://dgf8vwa2n8r11"
+
+[sub_resource type="Resource" id="Resource_i4fjy"]
+script = ExtResource("18_osg54")
+Definition = SubResource("Resource_xbk3s")
+metadata/_custom_type_script = "uid://d33x21vao7tj2"
+
+[sub_resource type="Gradient" id="Gradient_qebug"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o2rbt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m6kd0"]
+noise = SubResource("FastNoiseLite_o2rbt")
+color_ramp = SubResource("Gradient_qebug")
+
+[sub_resource type="Resource" id="Resource_3ua1v"]
+script = ExtResource("22_rabu8")
+ObjectFrequency = 15
+RandomRange = 10.0
+NoiseTexture = SubResource("NoiseTexture2D_m6kd0")
+RandomYRotation = true
+RandomSize = true
+RandomSizeFactorMin = 0.75
+RandomSizeFactorMax = 1.5
+ObjectScenes = [ExtResource("21_rxyfw")]
+LODList = []
+LODMeshes = []
+metadata/_custom_type_script = "uid://cgf61yxk46wa4"
+
+[sub_resource type="Resource" id="Resource_r0ikl"]
+script = ExtResource("23_r0smi")
+Definition = SubResource("Resource_3ua1v")
+metadata/_custom_type_script = "uid://comabiqrwe5u0"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_58dda"]
+noise_type = 0
+seed = 1
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nbiyt"]
+noise = SubResource("FastNoiseLite_58dda")
+seamless = true
+
+[sub_resource type="Resource" id="Resource_b7wla"]
+script = ExtResource("25_tjcsd")
+WaterFactor = 10.0
+WaterInnerOffset = 0.3
+WaterColor = Color(0, 0.262061, 0.434977, 1)
+WaterFresnelColor = Color(0, 0.404081, 0.340577, 1)
+WaterMetallic = 1.0
+WaterRoughness = 1.0
+WaterNormalMap = ExtResource("24_nly56")
+WaterStrength = 15.0
+WaterWave = SubResource("NoiseTexture2D_nbiyt")
+WaterColorDeep = Color(0, 0, 0, 1)
+WaterEdgeScale = 1.0
+WaterFar = 1000.0
+metadata/_custom_type_script = "uid://k2tvfxm6feg5"
+
+[sub_resource type="Resource" id="Resource_o85u2"]
+script = ExtResource("34_rxyfw")
+HeightMapTexture = ExtResource("28_v02e0")
+SplatmapsTexture = [ExtResource("30_rjq1j"), ExtResource("31_osg54"), ExtResource("32_o2cid")]
+FoliagesTexture = [ExtResource("26_n5auh"), ExtResource("27_ejjek")]
+ObjectsTexture = [ExtResource("29_hs260")]
+WaterTexture = ExtResource("33_ve2tm")
+
+[sub_resource type="Resource" id="Resource_t6r75"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-1, 0)
+HeightMapTexture = ExtResource("38_13etl")
+SplatmapsTexture = [ExtResource("40_n36u0"), ExtResource("41_f1a1r"), ExtResource("42_k7atx")]
+FoliagesTexture = [ExtResource("36_g5cmj"), ExtResource("37_y2u06")]
+ObjectsTexture = [ExtResource("39_gvihv")]
+WaterTexture = ExtResource("43_xxkyo")
+
+[sub_resource type="Resource" id="Resource_blvde"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-1, -1)
+HeightMapTexture = ExtResource("46_yj2l7")
+SplatmapsTexture = [ExtResource("48_8b3bu"), ExtResource("49_pj1wl"), ExtResource("50_1nepi")]
+FoliagesTexture = [ExtResource("44_jmvp8"), ExtResource("45_nncql")]
+ObjectsTexture = [ExtResource("47_fx6sd")]
+WaterTexture = ExtResource("51_xydo5")
+
+[sub_resource type="Resource" id="Resource_1v7uh"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(0, -1)
+HeightMapTexture = ExtResource("54_pvlar")
+SplatmapsTexture = [ExtResource("56_nr7af"), ExtResource("57_ym0xd"), ExtResource("58_xyhap")]
+FoliagesTexture = [ExtResource("52_7lsta"), ExtResource("53_81rqo")]
+ObjectsTexture = [ExtResource("55_e2eg3")]
+WaterTexture = ExtResource("59_46020")
+
+[sub_resource type="Resource" id="Resource_uvywb"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(1, -1)
+HeightMapTexture = ExtResource("62_2rj2p")
+SplatmapsTexture = [ExtResource("64_p2h30"), ExtResource("65_jsh0i"), ExtResource("66_jgbub")]
+FoliagesTexture = [ExtResource("60_of432"), ExtResource("61_wkm1a")]
+ObjectsTexture = [ExtResource("63_wrhnx")]
+WaterTexture = ExtResource("67_r6r1r")
+
+[sub_resource type="Resource" id="Resource_x3ctk"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(1, 0)
+HeightMapTexture = ExtResource("70_v2isk")
+SplatmapsTexture = [ExtResource("72_l4l1r"), ExtResource("73_wg0hf"), ExtResource("74_x5sta")]
+FoliagesTexture = [ExtResource("68_wk3sn"), ExtResource("69_bxpwq")]
+ObjectsTexture = [ExtResource("71_rjbv3")]
+WaterTexture = ExtResource("75_81wgp")
+
+[sub_resource type="Resource" id="Resource_u16f3"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(1, 1)
+HeightMapTexture = ExtResource("78_2l5oe")
+SplatmapsTexture = [ExtResource("80_enjp3"), ExtResource("81_l87i6"), ExtResource("82_0k8bs")]
+FoliagesTexture = [ExtResource("76_cnlug"), ExtResource("77_1d31q")]
+ObjectsTexture = [ExtResource("79_4tjdn")]
+WaterTexture = ExtResource("83_or0hy")
+
+[sub_resource type="Resource" id="Resource_y5j26"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(0, 1)
+HeightMapTexture = ExtResource("86_0p3ye")
+SplatmapsTexture = [ExtResource("88_hdfep"), ExtResource("89_gm54p"), ExtResource("90_d10hb")]
+FoliagesTexture = [ExtResource("84_7raob"), ExtResource("85_x33qj")]
+ObjectsTexture = [ExtResource("87_6y3jj")]
+WaterTexture = ExtResource("91_j1kvn")
+
+[sub_resource type="Resource" id="Resource_kbvy4"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-1, 1)
+HeightMapTexture = ExtResource("94_m6obd")
+SplatmapsTexture = [ExtResource("96_ns5xa"), ExtResource("97_7wkcv"), ExtResource("98_i7q85")]
+FoliagesTexture = [ExtResource("92_phlb0"), ExtResource("93_yh0mm")]
+ObjectsTexture = [ExtResource("95_4qxu6")]
+WaterTexture = ExtResource("99_soowo")
+
+[sub_resource type="Resource" id="Resource_pbvhv"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-2, 1)
+HeightMapTexture = ExtResource("102_rlxc0")
+SplatmapsTexture = [ExtResource("104_wu4hr"), ExtResource("105_07fgs"), ExtResource("106_0yd4p")]
+FoliagesTexture = [ExtResource("100_lgc0t"), ExtResource("101_1dypy")]
+ObjectsTexture = [ExtResource("103_gumej")]
+WaterTexture = ExtResource("107_q6xjr")
+
+[sub_resource type="Resource" id="Resource_6hfvg"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-2, 0)
+HeightMapTexture = ExtResource("110_euvpd")
+SplatmapsTexture = [ExtResource("112_map5x"), ExtResource("113_r1b1d"), ExtResource("114_igk5s")]
+FoliagesTexture = [ExtResource("108_suvwx"), ExtResource("109_nqj5c")]
+ObjectsTexture = [ExtResource("111_gacqc")]
+WaterTexture = ExtResource("115_0ktac")
+
+[sub_resource type="Resource" id="Resource_wr3ri"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-2, -1)
+HeightMapTexture = ExtResource("118_3emuh")
+SplatmapsTexture = [ExtResource("120_k0hdb"), ExtResource("121_uhd2t"), ExtResource("122_wu4mf")]
+FoliagesTexture = [ExtResource("116_s7pwp"), ExtResource("117_ptdsg")]
+ObjectsTexture = [ExtResource("119_t3n51")]
+WaterTexture = ExtResource("123_ju2s7")
+
+[sub_resource type="Resource" id="Resource_6l4xh"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-2, -2)
+HeightMapTexture = ExtResource("126_hh17a")
+SplatmapsTexture = [ExtResource("128_t6evk"), ExtResource("129_vjp4y"), ExtResource("130_gy5ag")]
+FoliagesTexture = [ExtResource("124_cunwq"), ExtResource("125_vh0sa")]
+ObjectsTexture = [ExtResource("127_6cf34")]
+WaterTexture = ExtResource("131_3maoo")
+
+[sub_resource type="Resource" id="Resource_t1tko"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-1, -2)
+HeightMapTexture = ExtResource("134_h133x")
+SplatmapsTexture = [ExtResource("136_dmnga"), ExtResource("137_t3616"), ExtResource("138_tqghj")]
+FoliagesTexture = [ExtResource("132_1cdjv"), ExtResource("133_fu4tr")]
+ObjectsTexture = [ExtResource("135_btk82")]
+WaterTexture = ExtResource("139_grskf")
+
+[sub_resource type="Resource" id="Resource_mw7dp"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(0, -2)
+HeightMapTexture = ExtResource("142_4w4o6")
+SplatmapsTexture = [ExtResource("144_5umxo"), ExtResource("145_px36d"), ExtResource("146_f1m12")]
+FoliagesTexture = [ExtResource("140_4exn6"), ExtResource("141_j38e7")]
+ObjectsTexture = [ExtResource("143_tmt0m")]
+WaterTexture = ExtResource("147_qukh6")
+
+[sub_resource type="Resource" id="Resource_1f2k4"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(1, -2)
+HeightMapTexture = ExtResource("150_pcumd")
+SplatmapsTexture = [ExtResource("152_h2qpt"), ExtResource("153_764xv"), ExtResource("154_k08fu")]
+FoliagesTexture = [ExtResource("148_e2slq"), ExtResource("149_0m7x8")]
+ObjectsTexture = [ExtResource("151_w4rlq")]
+WaterTexture = ExtResource("155_s2yc2")
+
+[sub_resource type="Resource" id="Resource_dr4aa"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(2, -2)
+HeightMapTexture = ExtResource("158_8lrhb")
+SplatmapsTexture = [ExtResource("160_j53hi"), ExtResource("161_0veb2"), ExtResource("162_8ihdf")]
+FoliagesTexture = [ExtResource("156_rfmk8"), ExtResource("157_mxcgt")]
+ObjectsTexture = [ExtResource("159_medvj")]
+WaterTexture = ExtResource("163_kn3mn")
+
+[sub_resource type="Resource" id="Resource_6h07c"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(2, -1)
+HeightMapTexture = ExtResource("166_f7he5")
+SplatmapsTexture = [ExtResource("168_7yost"), ExtResource("169_a6nrb"), ExtResource("170_ycr5r")]
+FoliagesTexture = [ExtResource("164_t7rqt"), ExtResource("165_pe2pk")]
+ObjectsTexture = [ExtResource("167_8bon8")]
+WaterTexture = ExtResource("171_pcsbl")
+
+[sub_resource type="Resource" id="Resource_be4ww"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(2, 0)
+HeightMapTexture = ExtResource("174_jdxg0")
+SplatmapsTexture = [ExtResource("176_4cjq6"), ExtResource("177_qhq7m"), ExtResource("178_0my4s")]
+FoliagesTexture = [ExtResource("172_fqa13"), ExtResource("173_jd0l7")]
+ObjectsTexture = [ExtResource("175_6ccoq")]
+WaterTexture = ExtResource("179_q3kvd")
+
+[sub_resource type="Resource" id="Resource_neouf"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(2, 1)
+HeightMapTexture = ExtResource("182_nstq3")
+SplatmapsTexture = [ExtResource("184_fwbgc"), ExtResource("185_k4ff6"), ExtResource("186_gdbcs")]
+FoliagesTexture = [ExtResource("180_eehd7"), ExtResource("181_msogf")]
+ObjectsTexture = [ExtResource("183_ibnpc")]
+WaterTexture = ExtResource("187_ajatb")
+
+[sub_resource type="Resource" id="Resource_kubqb"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(1, 2)
+HeightMapTexture = ExtResource("190_h6vpm")
+SplatmapsTexture = [ExtResource("192_6nay0"), ExtResource("193_f1wpr"), ExtResource("194_nm7gi")]
+FoliagesTexture = [ExtResource("188_ahg4v"), ExtResource("189_4o8n3")]
+ObjectsTexture = [ExtResource("191_wxnst")]
+WaterTexture = ExtResource("195_6oub2")
+
+[sub_resource type="Resource" id="Resource_to16w"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(2, 2)
+HeightMapTexture = ExtResource("198_j14kg")
+SplatmapsTexture = [ExtResource("200_b4llk"), ExtResource("201_3pkt8"), ExtResource("202_co01k")]
+FoliagesTexture = [ExtResource("196_lvqbu"), ExtResource("197_pmo7h")]
+ObjectsTexture = [ExtResource("199_dgxa5")]
+WaterTexture = ExtResource("203_wiajr")
+
+[sub_resource type="Resource" id="Resource_o1h65"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(0, 2)
+HeightMapTexture = ExtResource("206_cqc0x")
+SplatmapsTexture = [ExtResource("208_86ftq"), ExtResource("209_nupp3"), ExtResource("210_7cc5f")]
+FoliagesTexture = [ExtResource("204_n1bqm"), ExtResource("205_bw50e")]
+ObjectsTexture = [ExtResource("207_joeud")]
+WaterTexture = ExtResource("211_hnsfd")
+
+[sub_resource type="Resource" id="Resource_jxier"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-1, 2)
+HeightMapTexture = ExtResource("214_1f6nm")
+SplatmapsTexture = [ExtResource("216_g632x"), ExtResource("217_whg8j"), ExtResource("218_dru3u")]
+FoliagesTexture = [ExtResource("212_0sgjx"), ExtResource("213_hs43h")]
+ObjectsTexture = [ExtResource("215_slinn")]
+WaterTexture = ExtResource("219_3td5l")
+
+[sub_resource type="Resource" id="Resource_ua8fq"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-2, 2)
+HeightMapTexture = ExtResource("222_gxpy0")
+SplatmapsTexture = [ExtResource("224_4sp72"), ExtResource("225_5r1vi"), ExtResource("226_t7jka")]
+FoliagesTexture = [ExtResource("220_40afu"), ExtResource("221_chyek")]
+ObjectsTexture = [ExtResource("223_rk4yy")]
+WaterTexture = ExtResource("227_hlhw6")
+
+[sub_resource type="Resource" id="Resource_8ihfp"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(2, 3)
+HeightMapTexture = ExtResource("230_3d2g6")
+SplatmapsTexture = [ExtResource("232_on75t"), ExtResource("233_p5ni1"), ExtResource("234_ghmfx")]
+FoliagesTexture = [ExtResource("228_lycv8"), ExtResource("229_ife7n")]
+ObjectsTexture = [ExtResource("231_u7fgm")]
+WaterTexture = ExtResource("235_ow66n")
+
+[sub_resource type="Resource" id="Resource_2qiml"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(1, 3)
+HeightMapTexture = ExtResource("238_4qa1w")
+SplatmapsTexture = [ExtResource("240_ekr2v"), ExtResource("241_v3p6u"), ExtResource("242_8qtul")]
+FoliagesTexture = [ExtResource("236_125wo"), ExtResource("237_tc8r4")]
+ObjectsTexture = [ExtResource("239_wkrhb")]
+WaterTexture = ExtResource("243_jlato")
+
+[sub_resource type="Resource" id="Resource_7h484"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(0, 3)
+HeightMapTexture = ExtResource("246_d6sdr")
+SplatmapsTexture = [ExtResource("248_4us8m"), ExtResource("249_8m7o3"), ExtResource("250_sla70")]
+FoliagesTexture = [ExtResource("244_6ts1r"), ExtResource("245_mnx08")]
+ObjectsTexture = [ExtResource("247_bd6i5")]
+WaterTexture = ExtResource("251_35m2y")
+
+[sub_resource type="Resource" id="Resource_p6ko8"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-1, 3)
+HeightMapTexture = ExtResource("254_hvkk6")
+SplatmapsTexture = [ExtResource("256_gbjvf"), ExtResource("257_e65xy"), ExtResource("258_hdlnl")]
+FoliagesTexture = [ExtResource("252_5f46b"), ExtResource("253_cq35o")]
+ObjectsTexture = [ExtResource("255_lsps4")]
+WaterTexture = ExtResource("259_lpqse")
+
+[sub_resource type="Resource" id="Resource_sr5pp"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-2, 3)
+HeightMapTexture = ExtResource("262_og24w")
+SplatmapsTexture = [ExtResource("264_gyhjf"), ExtResource("265_ixuc5"), ExtResource("266_ft6ni")]
+FoliagesTexture = [ExtResource("260_o3s2b"), ExtResource("261_rfxeh")]
+ObjectsTexture = [ExtResource("263_57v73")]
+WaterTexture = ExtResource("267_gyial")
+
+[sub_resource type="Resource" id="Resource_c7tgv"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-3, 3)
+HeightMapTexture = ExtResource("270_03drx")
+SplatmapsTexture = [ExtResource("272_0qu5i"), ExtResource("273_honoj"), ExtResource("274_i6lac")]
+FoliagesTexture = [ExtResource("268_5brbo"), ExtResource("269_l0qe3")]
+ObjectsTexture = [ExtResource("271_1m7ww")]
+WaterTexture = ExtResource("275_nv55e")
+
+[sub_resource type="Resource" id="Resource_v1rb2"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-3, 2)
+HeightMapTexture = ExtResource("278_c5p7u")
+SplatmapsTexture = [ExtResource("280_w0pf6"), ExtResource("281_nqiiv"), ExtResource("282_nu3hp")]
+FoliagesTexture = [ExtResource("276_4mbw5"), ExtResource("277_4amgw")]
+ObjectsTexture = [ExtResource("279_vuran")]
+WaterTexture = ExtResource("283_ouy4t")
+
+[sub_resource type="Resource" id="Resource_73rvk"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-3, 1)
+HeightMapTexture = ExtResource("286_dkonl")
+SplatmapsTexture = [ExtResource("288_bqqba"), ExtResource("289_1722b"), ExtResource("290_bg6oj")]
+FoliagesTexture = [ExtResource("284_ixyha"), ExtResource("285_4pe7v")]
+ObjectsTexture = [ExtResource("287_5i57m")]
+WaterTexture = ExtResource("291_c7grx")
+
+[sub_resource type="Resource" id="Resource_em3fd"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-3, 0)
+HeightMapTexture = ExtResource("294_5t7tj")
+SplatmapsTexture = [ExtResource("296_pxv54"), ExtResource("297_xwtxv"), ExtResource("298_wuivs")]
+FoliagesTexture = [ExtResource("292_4pkxe"), ExtResource("293_i2w7f")]
+ObjectsTexture = [ExtResource("295_iawqp")]
+WaterTexture = ExtResource("299_mi4cr")
+
+[sub_resource type="Resource" id="Resource_vj8q7"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-3, -1)
+HeightMapTexture = ExtResource("302_2lcan")
+SplatmapsTexture = [ExtResource("304_b88qu"), ExtResource("305_20pku"), ExtResource("306_r13e0")]
+FoliagesTexture = [ExtResource("300_qyps4"), ExtResource("301_mmlco")]
+ObjectsTexture = [ExtResource("303_n6qkg")]
+WaterTexture = ExtResource("307_e0dko")
+
+[sub_resource type="Resource" id="Resource_toqpc"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-3, -2)
+HeightMapTexture = ExtResource("310_pluev")
+SplatmapsTexture = [ExtResource("312_1aqcl"), ExtResource("313_i0ejg"), ExtResource("314_7k5o7")]
+FoliagesTexture = [ExtResource("308_plvv2"), ExtResource("309_3tct4")]
+ObjectsTexture = [ExtResource("311_hfyme")]
+WaterTexture = ExtResource("315_lfajx")
+
+[sub_resource type="Resource" id="Resource_21lex"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-3, -3)
+HeightMapTexture = ExtResource("318_2t11w")
+SplatmapsTexture = [ExtResource("320_dgsrl"), ExtResource("321_u844l"), ExtResource("322_3kjt4")]
+FoliagesTexture = [ExtResource("316_33n82"), ExtResource("317_eli1r")]
+ObjectsTexture = [ExtResource("319_tqfs6")]
+WaterTexture = ExtResource("323_hm7dm")
+
+[sub_resource type="Resource" id="Resource_ulfop"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-2, -3)
+HeightMapTexture = ExtResource("326_8r8pr")
+SplatmapsTexture = [ExtResource("328_fybvo"), ExtResource("329_5qykd"), ExtResource("330_d7p1a")]
+FoliagesTexture = [ExtResource("324_fvc0h"), ExtResource("325_f5pl2")]
+ObjectsTexture = [ExtResource("327_jo6f7")]
+WaterTexture = ExtResource("331_r6d16")
+
+[sub_resource type="Resource" id="Resource_ex5iw"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(-1, -3)
+HeightMapTexture = ExtResource("334_yglyy")
+SplatmapsTexture = [ExtResource("336_6i8sk"), ExtResource("337_jburx"), ExtResource("338_id3w4")]
+FoliagesTexture = [ExtResource("332_wqude"), ExtResource("333_m2qhm")]
+ObjectsTexture = [ExtResource("335_vr5b1")]
+WaterTexture = ExtResource("339_wgsp7")
+
+[sub_resource type="Resource" id="Resource_h0qrt"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(0, -3)
+HeightMapTexture = ExtResource("342_448ib")
+SplatmapsTexture = [ExtResource("344_33e24"), ExtResource("345_ijxvc"), ExtResource("346_5nxfk")]
+FoliagesTexture = [ExtResource("340_bkeq0"), ExtResource("341_bjdiu")]
+ObjectsTexture = [ExtResource("343_cjqbs")]
+WaterTexture = ExtResource("347_jv0vl")
+
+[sub_resource type="Resource" id="Resource_jkp8m"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(1, -3)
+HeightMapTexture = ExtResource("350_poy7t")
+SplatmapsTexture = [ExtResource("352_hrex7"), ExtResource("353_is2qr"), ExtResource("354_q0fob")]
+FoliagesTexture = [ExtResource("348_mjt34"), ExtResource("349_2ctns")]
+ObjectsTexture = [ExtResource("351_dlygi")]
+WaterTexture = ExtResource("355_4nalf")
+
+[sub_resource type="Resource" id="Resource_noeqk"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(2, -3)
+HeightMapTexture = ExtResource("358_0tsex")
+SplatmapsTexture = [ExtResource("360_rml0p"), ExtResource("361_sj8d8"), ExtResource("362_p8pqq")]
+FoliagesTexture = [ExtResource("356_4ll4h"), ExtResource("357_ph3qv")]
+ObjectsTexture = [ExtResource("359_oo171")]
+WaterTexture = ExtResource("363_vqhks")
+
+[sub_resource type="Resource" id="Resource_kcxqc"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(3, -3)
+HeightMapTexture = ExtResource("366_q6xnt")
+SplatmapsTexture = [ExtResource("368_jgaq1"), ExtResource("369_dqhsd"), ExtResource("370_kx454")]
+FoliagesTexture = [ExtResource("364_dshqo"), ExtResource("365_rl53u")]
+ObjectsTexture = [ExtResource("367_iimqp")]
+WaterTexture = ExtResource("371_hv7on")
+
+[sub_resource type="Resource" id="Resource_0hv1u"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(3, -2)
+HeightMapTexture = ExtResource("374_ie8n5")
+SplatmapsTexture = [ExtResource("376_0ap2v"), ExtResource("377_owixw"), ExtResource("378_0v05p")]
+FoliagesTexture = [ExtResource("372_76v7d"), ExtResource("373_6fjhc")]
+ObjectsTexture = [ExtResource("375_stitw")]
+WaterTexture = ExtResource("379_o36du")
+
+[sub_resource type="Resource" id="Resource_kien6"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(3, -1)
+HeightMapTexture = ExtResource("382_hs4bn")
+SplatmapsTexture = [ExtResource("384_ruxh4"), ExtResource("385_m351m"), ExtResource("386_crt1i")]
+FoliagesTexture = [ExtResource("380_bcxqa"), ExtResource("381_5wl47")]
+ObjectsTexture = [ExtResource("383_h0loy")]
+WaterTexture = ExtResource("387_tspmx")
+
+[sub_resource type="Resource" id="Resource_58ro3"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(3, 0)
+HeightMapTexture = ExtResource("390_wpxbi")
+SplatmapsTexture = [ExtResource("392_gtcan"), ExtResource("393_ua4sc"), ExtResource("394_s3pg1")]
+FoliagesTexture = [ExtResource("388_nx3aq"), ExtResource("389_w2nlc")]
+ObjectsTexture = [ExtResource("391_et6nw")]
+WaterTexture = ExtResource("395_uuglo")
+
+[sub_resource type="Resource" id="Resource_niw5w"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(3, 1)
+HeightMapTexture = ExtResource("398_5av82")
+SplatmapsTexture = [ExtResource("400_htoa0"), ExtResource("401_wfhr6"), ExtResource("402_p8fdf")]
+FoliagesTexture = [ExtResource("396_egcrv"), ExtResource("397_npxt8")]
+ObjectsTexture = [ExtResource("399_dd5us")]
+WaterTexture = ExtResource("403_ujxt1")
+
+[sub_resource type="Resource" id="Resource_wsujw"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(3, 2)
+HeightMapTexture = ExtResource("406_wkvq6")
+SplatmapsTexture = [ExtResource("408_uit06"), ExtResource("409_tqwhd"), ExtResource("410_v8gv0")]
+FoliagesTexture = [ExtResource("404_ny238"), ExtResource("405_ksnvr")]
+ObjectsTexture = [ExtResource("407_7pfrm")]
+WaterTexture = ExtResource("411_7inf7")
+
+[sub_resource type="Resource" id="Resource_k2my5"]
+script = ExtResource("34_rxyfw")
+ZonePosition = Vector2i(3, 3)
+HeightMapTexture = ExtResource("414_sebch")
+SplatmapsTexture = [ExtResource("416_io2m4"), ExtResource("417_nw14b"), ExtResource("418_kto18")]
+FoliagesTexture = [ExtResource("412_i85qj"), ExtResource("413_gd7ms")]
+ObjectsTexture = [ExtResource("415_has30")]
+WaterTexture = ExtResource("419_rjsgy")
+
+[sub_resource type="Resource" id="Resource_o26ql"]
+script = ExtResource("35_rabu8")
+Zones = [SubResource("Resource_o85u2"), SubResource("Resource_t6r75"), SubResource("Resource_blvde"), SubResource("Resource_1v7uh"), SubResource("Resource_uvywb"), SubResource("Resource_x3ctk"), SubResource("Resource_u16f3"), SubResource("Resource_y5j26"), SubResource("Resource_kbvy4"), SubResource("Resource_pbvhv"), SubResource("Resource_6hfvg"), SubResource("Resource_wr3ri"), SubResource("Resource_6l4xh"), SubResource("Resource_t1tko"), SubResource("Resource_mw7dp"), SubResource("Resource_1f2k4"), SubResource("Resource_dr4aa"), SubResource("Resource_6h07c"), SubResource("Resource_be4ww"), SubResource("Resource_neouf"), SubResource("Resource_kubqb"), SubResource("Resource_to16w"), SubResource("Resource_o1h65"), SubResource("Resource_jxier"), SubResource("Resource_ua8fq"), SubResource("Resource_8ihfp"), SubResource("Resource_2qiml"), SubResource("Resource_7h484"), SubResource("Resource_p6ko8"), SubResource("Resource_sr5pp"), SubResource("Resource_c7tgv"), SubResource("Resource_v1rb2"), SubResource("Resource_73rvk"), SubResource("Resource_em3fd"), SubResource("Resource_vj8q7"), SubResource("Resource_toqpc"), SubResource("Resource_21lex"), SubResource("Resource_ulfop"), SubResource("Resource_ex5iw"), SubResource("Resource_h0qrt"), SubResource("Resource_jkp8m"), SubResource("Resource_noeqk"), SubResource("Resource_kcxqc"), SubResource("Resource_0hv1u"), SubResource("Resource_kien6"), SubResource("Resource_58ro3"), SubResource("Resource_niw5w"), SubResource("Resource_wsujw"), SubResource("Resource_k2my5")]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wg0hf"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5sta"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81wgp"]
+albedo_color = Color(0, 0.39215687, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cnlug"]
+albedo_texture = ExtResource("435_r6r1r")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1d31q"]
+radius = 100.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2l5oe"]
+radius = 271.11072
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4tjdn"]
+radius = 73.89649
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_enjp3"]
+radius = 112.44456
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l87i6"]
+radius = 90.69312
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0k8bs"]
+size = Vector3(61.277534, 6.7435303, 62.40515)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_or0hy"]
+size = Vector3(62.293976, 6.7435303, 28.871185)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7raob"]
+size = Vector3(36.497078, 6.7435303, 28.871185)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x33qj"]
+size = Vector3(19.32947, 6.7435303, 14.118698)
+
+[node name="World2" type="Node3D"]
+
+[node name="MonsterHolder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 430.2035, 1.2354126, 125.51587)
+
+[node name="Hold2" type="Node3D" parent="MonsterHolder"]
+
+[node name="Hold" type="Node3D" parent="MonsterHolder/Hold2"]
+
+[node name="EnemySpawner3" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -514.92114, 4.3719983, -34.992493)
+_maxMonsterCount = 4
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("422_p2h30"), ExtResource("423_jsh0i"), ExtResource("424_jgbub")])
+_monsterCount = Array[int]([1, 2, 1])
+
+[node name="Range" parent="MonsterHolder/EnemySpawner3" index="3"]
+transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 0, -1.997643, 0)
+omni_range = 23.0
+
+[node name="EnemySpawner4" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -458.40787, 4.3719983, -6.6500664)
+_maxMonsterCount = 4
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("422_p2h30"), ExtResource("423_jsh0i"), ExtResource("424_jgbub")])
+_monsterCount = Array[int]([1, 2, 1])
+
+[node name="Range" parent="MonsterHolder/EnemySpawner4" index="3"]
+transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 0, -1.997643, 0)
+omni_range = 23.0
+
+[node name="EnemySpawner5" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -399.18417, 4.3719983, -43.600353)
+_maxMonsterCount = 4
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("422_p2h30"), ExtResource("423_jsh0i"), ExtResource("424_jgbub")])
+_monsterCount = Array[int]([1, 2, 1])
+
+[node name="Range" parent="MonsterHolder/EnemySpawner5" index="3"]
+transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 0, -1.997643, 0)
+omni_range = 20.619465
+
+[node name="EnemySpawner6" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -911.96027, 4.3719983, 154.0402)
+_maxMonsterCount = 20
+_monsterList = Array[PackedScene]([ExtResource("40_ve2tm"), ExtResource("38_osg54"), ExtResource("39_o2cid"), ExtResource("428_r6r1r")])
+_monsterCount = Array[int]([3, 10, 6, 1])
+
+[node name="Range" parent="MonsterHolder/EnemySpawner6" index="3"]
+transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 0, -1.997643, 0)
+omni_range = 118.60186
+
+[node name="EnemySpawner8" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, 160.48029, 4.3719983, 234.02765)
+_maxMonsterCount = 20
+_monsterList = Array[PackedScene]([ExtResource("40_ve2tm"), ExtResource("38_osg54"), ExtResource("39_o2cid"), ExtResource("428_r6r1r")])
+_monsterCount = Array[int]([3, 10, 6, 1])
+
+[node name="Range" parent="MonsterHolder/EnemySpawner8" index="3"]
+transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 0, -1.997643, 0)
+omni_range = 118.60186
+
+[node name="EnemySpawner9" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -239.96677, 24.92995, -824.29175)
+_maxMonsterCount = 10
+_biome = "Swamp"
+_monsterList = Array[PackedScene]([ExtResource("39_o2cid"), ExtResource("428_r6r1r"), ExtResource("422_p2h30"), ExtResource("424_jgbub")])
+_monsterCount = Array[int]([4, 1, 1, 4])
+
+[node name="Range" parent="MonsterHolder/EnemySpawner9" index="3"]
+transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 0, -1.997643, 0)
+omni_range = 118.60186
+
+[node name="EnemySpawner10" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -33.882736, 24.92995, -914.3638)
+_maxMonsterCount = 10
+_biome = "Swamp"
+_monsterList = Array[PackedScene]([ExtResource("39_o2cid"), ExtResource("428_r6r1r"), ExtResource("422_p2h30"), ExtResource("424_jgbub")])
+_monsterCount = Array[int]([4, 1, 1, 4])
+
+[node name="Range" parent="MonsterHolder/EnemySpawner10" index="3"]
+transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 0, -1.997643, 0)
+omni_range = 74.38524
+
+[node name="EnemySpawner7" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -971.6968, 4.3719983, -65.80209)
+_maxMonsterCount = 10
+_monsterList = Array[PackedScene]([ExtResource("40_ve2tm"), ExtResource("38_osg54"), ExtResource("39_o2cid"), ExtResource("428_r6r1r")])
+_monsterCount = Array[int]([2, 5, 3, 1])
+
+[node name="Range" parent="MonsterHolder/EnemySpawner7" index="3"]
+transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 0, -1.997643, 0)
+omni_range = 50.981968
+
+[node name="RatSpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -454.10132, 4.3719983, -89.033936)
+_maxMonsterCount = 20
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("429_wk3sn")])
+_monsterCount = Array[int]([10])
+
+[node name="Range" parent="MonsterHolder/RatSpawner" index="3"]
+transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 0, -1.997643, 0)
+omni_range = 20.619465
+
+[node name="Shrine" parent="MonsterHolder" instance=ExtResource("37_rjq1j")]
+transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -536.9121, 0.12273455, -41.042114)
+_spawnTime = 4.0
+_maxMonsterCount = 3
+SpawnDistance = 25.0
+_monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("39_o2cid"), ExtResource("40_ve2tm")])
+_monsterCount = Array[int]([3, 2, 1])
+
+[node name="Shrine2" parent="MonsterHolder" instance=ExtResource("37_rjq1j")]
+transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -496.84833, 0.12273455, -24.817505)
+_spawnTime = 4.0
+_maxMonsterCount = 3
+SpawnDistance = 25.0
+_monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("39_o2cid"), ExtResource("40_ve2tm")])
+_monsterCount = Array[int]([3, 2, 1])
+
+[node name="Shrine3" parent="MonsterHolder" instance=ExtResource("37_rjq1j")]
+transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -442.26776, 0.12273455, 2.5682373)
+_spawnTime = 4.0
+_maxMonsterCount = 3
+SpawnDistance = 25.0
+_monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("39_o2cid"), ExtResource("40_ve2tm")])
+_monsterCount = Array[int]([3, 2, 1])
+
+[node name="Shrine4" parent="MonsterHolder" instance=ExtResource("37_rjq1j")]
+transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -399.37634, 0.12273455, -21.773376)
+_spawnTime = 4.0
+_maxMonsterCount = 3
+SpawnDistance = 25.0
+_monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("39_o2cid"), ExtResource("40_ve2tm")])
+_monsterCount = Array[int]([3, 2, 1])
+
+[node name="Shrine5" parent="MonsterHolder" instance=ExtResource("37_rjq1j")]
+transform = Transform3D(-0.6988772, 0, 0.71524185, 0, 1, 0, -0.71524185, 0, -0.6988772, -386.7071, 0.12273455, -62.755188)
+_spawnTime = 4.0
+_maxMonsterCount = 3
+SpawnDistance = 25.0
+_monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("39_o2cid"), ExtResource("40_ve2tm")])
+_monsterCount = Array[int]([3, 2, 1])
+
+[node name="MonsterRegion" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -191.71265, -4.39457, -104.8787)
+navigation_mesh = SubResource("NavigationMesh_wrhnx")
+navigation_layers = 3
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="MonsterRegion" groups=["Terrain"]]
+transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 125.143585, 4.389398, 154.22969)
+height = 5.0
+vertices = PackedVector3Array(1.4814758, 0, 0.57881165, 8.356087, 0, 10.833141, 6.7892494, 0, 11.771034, -0.91018677, 0, 1.2920227, -0.10202026, 0, 0.4247284)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+avoidance_layers = 3
+
+[node name="Player_3d" parent="." instance=ExtResource("36_r0smi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.99289, 3.6940613, 35.92012)
+
+[node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
+script = ExtResource("1_fb5os")
+DataPath = "res://Scenes/World"
+CollisionLayers = -1
+CollisionMask = -1
+TextureSets = SubResource("Resource_vbfps")
+NearestTextureFilter = true
+Foliages = [SubResource("Resource_axeuq"), SubResource("Resource_i4fjy")]
+Objects = [SubResource("Resource_r0ikl")]
+WaterDefinition = SubResource("Resource_b7wla")
+MetaInfoLayers = []
+TerrainZones = SubResource("Resource_o26ql")
+metadata/_custom_type_script = "uid://i5jcj7ukvoen"
+metadata/_edit_lock_ = false
+
+[node name="Mary" parent="." instance=ExtResource("421_81rqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.560577, 1.9490459, 16.670944)
+visible = false
+script = ExtResource("422_pvlar")
+NPCName = "Mary"
+InitialDialogue = "Taz! Oh Taz where are you?"
+QuestDialogue = Array[String](["Mister! Won't you help an old woman out? I've lost my young and dearest kitty.", "I fear he's lost somewhere in the woods. Would you please find him and bring him back home? "])
+AcceptedDialogue = Array[String](["Oh thank you! Please make sure he comes back safely."])
+IgnoredDialogue = "Oh dear. Maybe he'll come back on his own some day..."
+WaitingDialogue = "Have you found Taz yet?"
+DoneDialogue = Array[String](["Oh thank you mister! Don't ever leave me again Taz. "])
+PostDoneDialogue = "Oh Taz. Don't you ever leave me again!"
+QuestTitle = "Find Mary's cat Taz somewhere in the forest"
+QuestGoal = "0/1"
+
+[node name="Elizabeth" parent="." instance=ExtResource("421_81rqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.254059, 1.9490459, 35.37815)
+visible = false
+script = ExtResource("423_e2eg3")
+NPCName = "Elizabeth"
+InitialDialogue = "It's been getting colder and colder..."
+IgnoredDialogue = "Oh, that's alright. Maybe the lumberjacks will come back soon. "
+WaitingDialogue = "Still waiting on that firewood once you gather enough."
+QuestTitle = "Gather firewood from the forest for Elizabeth "
+QuestGoal = "0/15"
+
+[node name="Dillon" parent="." instance=ExtResource("421_81rqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.972595, 1.9490459, 35.37815)
+visible = false
+script = ExtResource("424_nr7af")
+QuestTitle = "Find and kill rats around the Village"
+QuestGoal = "0/10"
+
+[node name="Cube" parent="Dillon/villagerblank/metarig/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wg0hf")
+
+[node name="Cube_002" parent="Dillon/villagerblank/metarig/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wg0hf")
+
+[node name="Lukas" parent="." instance=ExtResource("421_81rqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.821777, 1.9490459, 24.409164)
+script = ExtResource("425_ym0xd")
+NPCName = "Lukas"
+InitialDialogue = "I know I saw it! Those damn Cultists are making more of them!"
+QuestDialogue = Array[String](["Sir! Please wait and listen!", "Those Cultists and setting up shrines around our village and I have a feeling something terrible might happen.", "Will you find them and destroy them to save our village?"])
+AcceptedDialogue = Array[String](["Delightful! Return to me once they're all destroyed. "])
+IgnoredDialogue = "Perhaps someone else will understand... "
+WaitingDialogue = "Keep looking around on your journey and you should find those shrines. "
+DoneDialogue = Array[String](["You did it! Our village is now safe once again.", "I'll look into those shrines more in the meantime. "])
+PostDoneDialogue = "Those shrines were quite fascinating... "
+QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
+QuestGoal = "0/5"
+
+[node name="Cube" parent="Lukas/villagerblank/metarig/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_x5sta")
+surface_material_override/1 = SubResource("StandardMaterial3D_x5sta")
+
+[node name="Cube_002" parent="Lukas/villagerblank/metarig/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_x5sta")
+
+[node name="Samual" parent="." instance=ExtResource("421_81rqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.565277, 1.9490459, 53.176186)
+visible = false
+script = ExtResource("426_xyhap")
+NPCName = "Samual"
+InitialDialogue = "Somebody please! Help my son!"
+IgnoredDialogue = "No. But my son..."
+WaitingDialogue = "Please deliver the medicine to me soon. "
+QuestTitle = "Gather resources to craft the medicine "
+QuestGoal = "Bleeding Heart: 0/3, Dead Ooze: 0/3, Seed: 0/3"
+
+[node name="Martha" parent="." instance=ExtResource("421_81rqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.428833, 1.9490459, 43.124916)
+script = ExtResource("427_46020")
+NPCName = "Martha"
+InitialDialogue = "Those monsters! They took him away! "
+QuestDialogue = Array[String](["So many. So many monsters came and took my husband from me.", "Please, won't you avenge him for me?"])
+AcceptedDialogue = Array[String](["Oh may Zorroptaz bless you. Return to me once those monsters are brought to justice. "])
+IgnoredDialogue = "Maybe someone else can help me. "
+WaitingDialogue = "My husband won't be brought to justice until those monsters are dead! "
+DoneDialogue = Array[String](["Thank you, oh thank you so much sir. My husband can now rest in peace now. "])
+PostDoneDialogue = "My dear husband can now rest in peace. Thank you. "
+QuestTitle = "Kill creatures from different biomes to avenge Martha's husband"
+QuestGoal = "Forest: 0/5, Swamp: 0/5, Plains: 0/5"
+
+[node name="Cube" parent="Martha/villagerblank/metarig/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_81wgp")
+surface_material_override/1 = SubResource("StandardMaterial3D_81wgp")
+
+[node name="Cube_002" parent="Martha/villagerblank/metarig/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_81wgp")
+
+[node name="Finn" parent="." instance=ExtResource("421_81rqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6124573, 1.9490459, 27.18628)
+visible = false
+script = ExtResource("428_of432")
+NPCName = "Finn"
+InitialDialogue = "Hey mister. I've got some valuable information you might want to hear. "
+IgnoredDialogue = "Welp. It could help you further down the road. "
+WaitingDialogue = "I still wonder what that tool could be."
+QuestTitle = "Find the hidden weapon on the swamp island"
+QuestGoal = "0/1"
+
+[node name="Matthew" parent="." instance=ExtResource("421_81rqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.463165, 1.9490459, 44.75682)
+visible = false
+script = ExtResource("429_wkm1a")
+NPCName = "Matthew"
+InitialDialogue = "Oh, young man. Please come and speak with me for a moment. "
+IgnoredDialogue = "Please reconsider. We truly need your help. "
+WaitingDialogue = "That beast still plauges the island. "
+QuestTitle = "Defeat The Hollowed Bark on the swamp island"
+QuestGoal = "0/1"
+
+[node name="HushedTrees" parent="." instance=ExtResource("430_2rj2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -332.43335, 4.019948, -460.9262)
+
+[node name="Range" parent="HushedTrees" index="3"]
+omni_range = 18.891981
+
+[node name="Tree1" parent="HushedTrees" instance=ExtResource("431_wrhnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28782654, -15.039978)
+
+[node name="Tree2" parent="HushedTrees" instance=ExtResource("431_wrhnx")]
+transform = Transform3D(0.48951945, 0, -0.87199235, 0, 1, 0, 0.87199235, 0, 0.48951945, -22.551453, 0.5660734, 2.5112305)
+
+[node name="Tree3" parent="HushedTrees" instance=ExtResource("431_wrhnx")]
+transform = Transform3D(-0.024135554, 0, 0.9997087, 0, 1, 0, -0.9997087, 0, -0.024135554, 0.7966919, -1.3460913, 12.644531)
+
+[node name="Map" type="Node3D" parent="." groups=["Terrain"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 426.49542, 1.8917885, 122.45715)
+
+[node name="house2" parent="Map" instance=ExtResource("432_p2h30")]
+transform = Transform3D(0.9342421, 0, 0.35664, 0, 1, 0, -0.35664, 0, 0.9342421, -441.42502, 0, -56.489685)
+
+[node name="house3" parent="Map" instance=ExtResource("432_p2h30")]
+transform = Transform3D(0.72882503, 0, -0.6847, 0, 1, 0, 0.6847, 0, 0.72882503, -460.104, 4.7683716e-07, -72.157684)
+
+[node name="house1" parent="Map" instance=ExtResource("432_p2h30")]
+transform = Transform3D(-0.94969904, 0, -0.31316403, 0, 1, 0, 0.31316403, 0, -0.94969904, -461.37402, 0, -110.442986)
+
+[node name="house4" parent="Map" instance=ExtResource("432_p2h30")]
+transform = Transform3D(-0.59201306, 0, 0.805928, 0, 1, 0, -0.805928, 0, -0.59201306, -424.842, 0, -79.2056)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.8660251, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660251, -459.34604, -0.6109519, -47.112793)
+material_override = ExtResource("433_jsh0i")
+use_collision = true
+size = Vector3(62, 4, 0.564453)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.5, 0, 0.8660251, 0, 1, 0, -0.8660251, 0, 0.5, -417.346, -0.6109519, -59.112785)
+material_override = ExtResource("433_jsh0i")
+use_collision = true
+size = Vector3(64, 4, 0.564453)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map"]
+transform = Transform3D(-0.70710707, 0, 0.70710707, 0, 1, 0, -0.70710707, 0, -0.70710707, -423.346, -0.6109519, -109.11301)
+material_override = ExtResource("433_jsh0i")
+use_collision = true
+size = Vector3(64, 4, 0.564453)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map"]
+transform = Transform3D(-0.9659261, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, -0.9659261, -460.40903, -0.6109519, -127.383)
+material_override = ExtResource("433_jsh0i")
+use_collision = true
+size = Vector3(31, 4, 0.564453)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Map"]
+transform = Transform3D(-0.5, 0, -0.8660251, 0, 1, 0, 0.8660251, 0, -0.5, -483.909, -0.6109519, -107.784996)
+material_override = ExtResource("433_jsh0i")
+use_collision = true
+size = Vector3(37, 4, 0.564453)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Map"]
+transform = Transform3D(2.9802322e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 2.9802322e-08, -492.90903, -0.6109519, -82.2852)
+material_override = ExtResource("433_jsh0i")
+use_collision = true
+size = Vector3(20, 4, 0.564453)
+
+[node name="Lamp" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(0.72087777, 0, 0.6930619, 0, 1, 0, -0.6930619, 0, 0.72087777, -474.899, 1.7474592, -98.895)
+
+[node name="Lamp13" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(0.84344745, 0, -0.53721136, 0, 1, 0, 0.53721136, 0, 0.84344745, -294.40503, 1.7474592, -230.26703)
+
+[node name="Lamp11" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(-0.84599763, 0, -0.5331861, 0, 1, 0, 0.5331861, 0, -0.84599763, -600.7366, 1.7474592, 90.56048)
+
+[node name="Lamp7" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -490.899, 1.7474592, -59.895)
+
+[node name="Lamp8" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(0.4576724, 0, 0.8891213, 0, 1, 0, -0.8891213, 0, 0.4576724, -504.57623, 1.7474592, -69.729355)
+
+[node name="Lamp9" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(0.4576724, 0, 0.8891213, 0, 1, 0, -0.8891213, 0, 0.4576724, -526.2732, 1.7474592, -48.144047)
+
+[node name="Lamp10" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(-0.88233256, 0, -0.47062704, 0, 1, 0, 0.47062704, 0, -0.88233256, -526.6208, 1.7474592, -34.34395)
+
+[node name="Lamp2" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(-0.41351756, 0, 0.91049623, 0, 1, 0, -0.91049623, 0, -0.41351756, -474.899, 1.7474592, -80.202)
+
+[node name="Lamp3" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(-0.9971957, 0, 0.07483949, 0, 1, 0, -0.07483949, 0, -0.9971957, -447.384, 1.7474592, -61.68)
+
+[node name="Lamp4" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(-0.45475242, 0, -0.89061755, 0, 1, 0, 0.89061755, 0, -0.45475242, -424.941, 1.7474592, -67.2492)
+
+[node name="Lamp5" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(0.5054312, 0, -0.86286664, 0, 1, 0, 0.86286664, 0, 0.5054312, -424.941, 1.7474592, -103.98)
+
+[node name="Lamp6" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(0.9883908, 0, -0.15193361, 0, 1, 0, 0.15193361, 0, 0.9883908, -449.538, 1.7474592, -113.572)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Map"]
+transform = Transform3D(0.33794922, -0.008161129, 0.94112897, 0.029712088, 0.9995565, -0.0020014856, -0.94069517, 0.028639298, 0.33804187, -695.21405, -1.2415715, 86.76223)
+material_override = SubResource("StandardMaterial3D_cnlug")
+use_collision = true
+size = Vector3(6.4814453, 2.6633844, 53.181618)
+
+[node name="Sign" parent="Map" instance=ExtResource("436_wk3sn")]
+transform = Transform3D(0.10924861, 0, 0.99401444, 0, 1, 0, -0.99401444, 0, 0.10924861, -502.92334, 0.26515073, -69.58231)
+
+[node name="LeftLabel" parent="Map/Sign" index="2"]
+visible = false
+
+[node name="Sign2" parent="Map" instance=ExtResource("436_wk3sn")]
+transform = Transform3D(-0.75903285, 0, -0.6510525, 0, 1, 0, 0.6510525, 0, -0.75903285, -503.2888, 0.26515073, -68.63092)
+
+[node name="RightLabel" parent="Map/Sign2" index="1"]
+visible = false
+
+[node name="LeftLabel" parent="Map/Sign2" index="2"]
+text = "Plains"
+
+[node name="Sign4" parent="Map" instance=ExtResource("436_wk3sn")]
+transform = Transform3D(-0.75903285, 0, -0.6510525, 0, 1, 0, 0.6510525, 0, -0.75903285, -503.2888, 0.94732064, -68.63092)
+
+[node name="RightLabel" parent="Map/Sign4" index="1"]
+visible = false
+
+[node name="LeftLabel" parent="Map/Sign4" index="2"]
+text = "Dock"
+
+[node name="Sign3" parent="Map" instance=ExtResource("436_wk3sn")]
+transform = Transform3D(-0.828647, 0, -0.55977154, 0, 1, 0, 0.55977154, 0, -0.828647, -527.36536, 0.26515073, -35.386368)
+
+[node name="RightLabel" parent="Map/Sign3" index="1"]
+text = "Plains"
+
+[node name="LeftLabel" parent="Map/Sign3" index="2"]
+visible = false
+
+[node name="Sign6" parent="Map" instance=ExtResource("436_wk3sn")]
+transform = Transform3D(-0.86136335, 0, -0.5079894, 0, 1, 0, 0.5079894, 0, -0.86136335, -601.59283, 0.26515073, 88.55361)
+
+[node name="RightLabel" parent="Map/Sign6" index="1"]
+text = "Plains"
+
+[node name="LeftLabel" parent="Map/Sign6" index="2"]
+visible = false
+
+[node name="Lamp12" parent="Map" instance=ExtResource("434_jgbub")]
+transform = Transform3D(-0.84599763, 0, -0.5331861, 0, 1, 0, 0.5331861, 0, -0.84599763, -722.98804, 1.7474592, 84.61499)
+
+[node name="Sign9" parent="Map" instance=ExtResource("436_wk3sn")]
+transform = Transform3D(0.95897335, 0, 0.2834964, 0, 1, 0, -0.2834964, 0, 0.95897335, -723.8443, 0.26515073, 82.60812)
+
+[node name="RightLabel" parent="Map/Sign9" index="1"]
+visible = false
+text = "Plains"
+
+[node name="LeftLabel" parent="Map/Sign9" index="2"]
+text = "Brittlebay"
+
+[node name="Sign5" parent="Map" instance=ExtResource("436_wk3sn")]
+transform = Transform3D(-0.17718777, 0, 0.98417705, 0, 1, 0, -0.98417705, 0, -0.17718777, -524.69543, 0.26515073, -47.391502)
+
+[node name="RightLabel" parent="Map/Sign5" index="1"]
+text = "Dock"
+
+[node name="LeftLabel" parent="Map/Sign5" index="2"]
+visible = false
+
+[node name="Sign7" parent="Map" instance=ExtResource("436_wk3sn")]
+transform = Transform3D(0.9521668, 0, -0.30557913, 0, 1, 0, 0.30557913, 0, 0.9521668, -294.67566, 0.26515073, -228.81152)
+
+[node name="RightLabel" parent="Map/Sign7" index="1"]
+text = "Nowhere"
+
+[node name="LeftLabel" parent="Map/Sign7" index="2"]
+visible = false
+
+[node name="Sign8" parent="Map" instance=ExtResource("436_wk3sn")]
+transform = Transform3D(-0.8387847, 0, 0.5444634, 0, 1, 0, -0.5444634, 0, -0.8387847, -295.79285, 0.26515073, -229.446)
+
+[node name="RightLabel" parent="Map/Sign8" index="1"]
+visible = false
+text = "Dock"
+
+[node name="Biomes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 426.49542, 1.8917885, 122.45715)
+visible = false
+
+[node name="Swamp" type="Node3D" parent="Biomes"]
+
+[node name="BiomeZone13" parent="Biomes/Swamp" groups=["Swamp"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -364.05136, 0, -748.1858)
+
+[node name="CollisionShape3D" parent="Biomes/Swamp/BiomeZone13" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34552002, 0, 32.52942)
+shape = SubResource("SphereShape3D_1d31q")
+
+[node name="BiomeZone14" parent="Biomes/Swamp" groups=["Swamp"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -324.48676, 0, -912.32477)
+
+[node name="CollisionShape3D" parent="Biomes/Swamp/BiomeZone14" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34552002, 0, 32.52942)
+shape = SubResource("SphereShape3D_1d31q")
+
+[node name="BiomeZone15" parent="Biomes/Swamp" groups=["Swamp"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -247.46227, 0, -974.29114)
+
+[node name="CollisionShape3D" parent="Biomes/Swamp/BiomeZone15" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34552002, 0, 32.52942)
+shape = SubResource("SphereShape3D_1d31q")
+
+[node name="BiomeZone16" parent="Biomes/Swamp" groups=["Swamp"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.30884, 0, -1000.0846)
+
+[node name="CollisionShape3D" parent="Biomes/Swamp/BiomeZone16" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34552002, 0, 32.52942)
+shape = SubResource("SphereShape3D_1d31q")
+
+[node name="BiomeZone17" parent="Biomes/Swamp" groups=["Swamp"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.675507, 0, -1000.0846)
+
+[node name="CollisionShape3D" parent="Biomes/Swamp/BiomeZone17" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34552002, 0, 32.52942)
+shape = SubResource("SphereShape3D_1d31q")
+
+[node name="BiomeZone18" parent="Biomes/Swamp" groups=["Swamp"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.324944, 0, -888.00006)
+
+[node name="CollisionShape3D" parent="Biomes/Swamp/BiomeZone18" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34552002, 0, 32.52942)
+shape = SubResource("SphereShape3D_1d31q")
+
+[node name="BiomeZone19" parent="Biomes/Swamp" groups=["Swamp"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -168.40411, 0, -811.6921)
+
+[node name="CollisionShape3D" parent="Biomes/Swamp/BiomeZone19" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34552002, 0, 32.52942)
+shape = SubResource("SphereShape3D_1d31q")
+
+[node name="BiomeZone20" parent="Biomes/Swamp" groups=["Swamp"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -262.8996, 0, -809.9759)
+
+[node name="CollisionShape3D" parent="Biomes/Swamp/BiomeZone20" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34552002, 0, 32.52942)
+shape = SubResource("SphereShape3D_1d31q")
+
+[node name="BiomeZone21" parent="Biomes/Swamp" groups=["Swamp"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -179.45282, 0, -924.7681)
+
+[node name="CollisionShape3D" parent="Biomes/Swamp/BiomeZone21" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34552002, 0, 32.52942)
+shape = SubResource("SphereShape3D_1d31q")
+
+[node name="BiomeZone22" parent="Biomes/Swamp" groups=["Swamp"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -728.3843, 0, -779.7527)
+
+[node name="CollisionShape3D" parent="Biomes/Swamp/BiomeZone22" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34552002, 0, 32.52942)
+shape = SubResource("SphereShape3D_2l5oe")
+
+[node name="BiomeZone23" parent="Biomes/Swamp" groups=["Swamp"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -853.7304, 0, -576.5283)
+
+[node name="CollisionShape3D" parent="Biomes/Swamp/BiomeZone23" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34552002, 0, 32.52942)
+shape = SubResource("SphereShape3D_2l5oe")
+
+[node name="Plains" type="Node3D" parent="Biomes"]
+
+[node name="BiomeZone" parent="Biomes/Plains" groups=["Plains"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 173.91318, 0, 206.30539)
+
+[node name="CollisionShape3D" parent="Biomes/Plains/BiomeZone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.517456, 0, 0)
+
+[node name="BiomeZone5" parent="Biomes/Plains" groups=["Plains"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -941.2263, 0, 179.18826)
+
+[node name="CollisionShape3D" parent="Biomes/Plains/BiomeZone5" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.517456, 0, 0)
+
+[node name="BiomeZone6" parent="Biomes/Plains" groups=["Plains"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -941.2263, 0, -56.04622)
+
+[node name="CollisionShape3D" parent="Biomes/Plains/BiomeZone6" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1348877, 0, 30.595177)
+shape = SubResource("SphereShape3D_4tjdn")
+
+[node name="BiomeZone7" parent="Biomes/Plains" groups=["Plains"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -941.2263, 0, -137.17351)
+
+[node name="CollisionShape3D" parent="Biomes/Plains/BiomeZone7" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1348877, 0, 30.595177)
+shape = SubResource("SphereShape3D_4tjdn")
+
+[node name="BiomeZone8" parent="Biomes/Plains" groups=["Plains"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1005.4315, 0, -207.74329)
+
+[node name="CollisionShape3D" parent="Biomes/Plains/BiomeZone8" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1348877, 0, 30.595177)
+shape = SubResource("SphereShape3D_4tjdn")
+
+[node name="BiomeZone9" parent="Biomes/Plains" groups=["Plains"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1005.4315, 0, -118.98783)
+
+[node name="CollisionShape3D" parent="Biomes/Plains/BiomeZone9" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1348877, 0, 30.595177)
+shape = SubResource("SphereShape3D_4tjdn")
+
+[node name="BiomeZone10" parent="Biomes/Plains" groups=["Plains"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1025.6484, 0, -14.498863)
+
+[node name="CollisionShape3D" parent="Biomes/Plains/BiomeZone10" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1348877, 0, 30.595177)
+shape = SubResource("SphereShape3D_4tjdn")
+
+[node name="BiomeZone11" parent="Biomes/Plains" groups=["Plains"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -996.0144, 0, 331.5151)
+
+[node name="CollisionShape3D" parent="Biomes/Plains/BiomeZone11" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1348877, 0, 30.595177)
+shape = SubResource("SphereShape3D_4tjdn")
+
+[node name="BiomeZone4" parent="Biomes/Plains" groups=["Plains"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 375.7163, 0, 623.1212)
+
+[node name="CollisionShape3D" parent="Biomes/Plains/BiomeZone4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.281311, 0, 51.392334)
+shape = SubResource("SphereShape3D_enjp3")
+
+[node name="BiomeZone2" parent="Biomes/Plains" groups=["Plains"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.60344, 0, 355.79947)
+
+[node name="CollisionShape3D" parent="Biomes/Plains/BiomeZone2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.517456, 0, 0)
+shape = SubResource("SphereShape3D_l87i6")
+
+[node name="BiomeZone3" parent="Biomes/Plains" groups=["Plains"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.798927, 0, 297.53735)
+
+[node name="CollisionShape3D" parent="Biomes/Plains/BiomeZone3" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.517456, 0, 0)
+shape = SubResource("SphereShape3D_l87i6")
+
+[node name="Village" type="Node3D" parent="Biomes"]
+
+[node name="BiomeZone12" parent="Biomes/Village" groups=["Brittlebay Village"] instance=ExtResource("437_bxpwq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -450.29138, 0, -115.99284)
+
+[node name="CollisionShape3D" parent="Biomes/Village/BiomeZone12" index="0"]
+transform = Transform3D(0.862116, 0, -0.506711, 0, 1, 0, 0.506711, 0, 0.862116, 6.5650024, 1.1852417, 41.28675)
+shape = SubResource("BoxShape3D_0k8bs")
+debug_color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Biomes/Village/BiomeZone12"]
+transform = Transform3D(0.7054758, 0, -0.7087339, 0, 1, 0, 0.7087339, 0, 0.7054758, 4.6768494, 1.1852417, 29.118484)
+shape = SubResource("BoxShape3D_0k8bs")
+debug_color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Biomes/Village/BiomeZone12"]
+transform = Transform3D(0.23678727, 0, -0.97156143, 0, 1, 0, 0.97156143, 0, 0.23678727, -3.2071838, 1.1852417, 19.641006)
+shape = SubResource("BoxShape3D_or0hy")
+debug_color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Biomes/Village/BiomeZone12"]
+transform = Transform3D(-0.5110231, 0, -0.85956705, 0, 1, 0, 0.85956705, 0, -0.5110231, -21.078796, 1.1852417, 15.903557)
+shape = SubResource("BoxShape3D_7raob")
+debug_color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Biomes/Village/BiomeZone12"]
+transform = Transform3D(-0.0012391806, 0, -0.9999993, 0, 1, 0, 0.9999993, 0, -0.0012391806, -34.9982, 1.1852417, 34.28412)
+shape = SubResource("BoxShape3D_x33qj")
+debug_color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Biomes/Village/BiomeZone12"]
+transform = Transform3D(-0.81935227, 0, -0.5732904, 0, 1, 0, 0.5732904, 0, -0.81935227, -30.883942, 1.1852417, 42.731377)
+shape = SubResource("BoxShape3D_x33qj")
+debug_color = Color(0, 1, 0, 1)
+
+[node name="Enviorment" parent="." instance=ExtResource("448_p2h30")]
+
+[editable path="MonsterHolder/EnemySpawner3"]
+[editable path="MonsterHolder/EnemySpawner4"]
+[editable path="MonsterHolder/EnemySpawner5"]
+[editable path="MonsterHolder/EnemySpawner6"]
+[editable path="MonsterHolder/EnemySpawner8"]
+[editable path="MonsterHolder/EnemySpawner9"]
+[editable path="MonsterHolder/EnemySpawner10"]
+[editable path="MonsterHolder/EnemySpawner7"]
+[editable path="MonsterHolder/RatSpawner"]
+[editable path="Dillon"]
+[editable path="Dillon/villagerblank"]
+[editable path="Lukas"]
+[editable path="Lukas/villagerblank"]
+[editable path="Martha"]
+[editable path="Martha/villagerblank"]
+[editable path="HushedTrees"]
+[editable path="Map/Sign"]
+[editable path="Map/Sign/sign"]
+[editable path="Map/Sign2"]
+[editable path="Map/Sign2/sign"]
+[editable path="Map/Sign4"]
+[editable path="Map/Sign4/sign"]
+[editable path="Map/Sign3"]
+[editable path="Map/Sign3/sign"]
+[editable path="Map/Sign6"]
+[editable path="Map/Sign6/sign"]
+[editable path="Map/Sign9"]
+[editable path="Map/Sign9/sign"]
+[editable path="Map/Sign5"]
+[editable path="Map/Sign5/sign"]
+[editable path="Map/Sign7"]
+[editable path="Map/Sign7/sign"]
+[editable path="Map/Sign8"]
+[editable path="Map/Sign8/sign"]
+[editable path="Biomes/Swamp/BiomeZone13"]
+[editable path="Biomes/Swamp/BiomeZone14"]
+[editable path="Biomes/Swamp/BiomeZone15"]
+[editable path="Biomes/Swamp/BiomeZone16"]
+[editable path="Biomes/Swamp/BiomeZone17"]
+[editable path="Biomes/Swamp/BiomeZone18"]
+[editable path="Biomes/Swamp/BiomeZone19"]
+[editable path="Biomes/Swamp/BiomeZone20"]
+[editable path="Biomes/Swamp/BiomeZone21"]
+[editable path="Biomes/Swamp/BiomeZone22"]
+[editable path="Biomes/Swamp/BiomeZone23"]
+[editable path="Biomes/Plains/BiomeZone"]
+[editable path="Biomes/Plains/BiomeZone5"]
+[editable path="Biomes/Plains/BiomeZone6"]
+[editable path="Biomes/Plains/BiomeZone7"]
+[editable path="Biomes/Plains/BiomeZone8"]
+[editable path="Biomes/Plains/BiomeZone9"]
+[editable path="Biomes/Plains/BiomeZone10"]
+[editable path="Biomes/Plains/BiomeZone11"]
+[editable path="Biomes/Plains/BiomeZone4"]
+[editable path="Biomes/Plains/BiomeZone2"]
+[editable path="Biomes/Plains/BiomeZone3"]
+[editable path="Biomes/Village/BiomeZone12"]
