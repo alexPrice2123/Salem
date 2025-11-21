@@ -48,13 +48,13 @@ shape = SubResource("BoxShape3D_ci7oq")
 disabled = true
 debug_color = Color(0.987143, 0, 0.316185, 0.42)
 
-[node name="VisibilityRange" type="Area3D" parent="."]
+[node name="VisibilityRange" type="Area3D" parent="." groups=["Monster"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VisibilityRange"]
 shape = SubResource("SphereShape3D_beqai")
 debug_color = Color(0, 0, 1, 1)
 
-[node name="AgroRange" type="Area3D" parent="."]
+[node name="AgroRange" type="Area3D" parent="." groups=["Monster"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AgroRange"]
 shape = SubResource("SphereShape3D_agcab")

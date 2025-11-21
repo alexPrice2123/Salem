@@ -26,14 +26,6 @@ public partial class hollowBrute : Monster3d
 	{
 		EveryFrame(delta);
 		_distance = (_player.GlobalPosition - GlobalPosition).Length();
-		if (_distance < 5 && _attackException == false)
-		{
-			_speedOffset = 2f;
-		}
-		else if (_attackException == false)
-		{
-			_speedOffset = 0f;
-		}
 		if (_health <= 0)
 		{
 			_player.MonsterKilled("hollowBrute", Biome);
