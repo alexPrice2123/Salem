@@ -1,4 +1,4 @@
-[gd_scene load_steps=575 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=574 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="2_eb0fy"]
@@ -459,7 +459,6 @@
 [ext_resource type="Texture2D" uid="uid://majaedyxi61x" path="res://Scenes/World/Foliage_0_4_0.res" id="446_r1b1d"]
 [ext_resource type="Texture2D" uid="uid://dxchlrf6g1bt3" path="res://Scenes/World/Foliage_0_4_1.res" id="447_igk5s"]
 [ext_resource type="Texture2D" uid="uid://cbkgmfeco4txs" path="res://Scenes/World/Heightmap_0_4.res" id="448_0ktac"]
-[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="448_p2h30"]
 [ext_resource type="PackedScene" uid="uid://d1omoohngw1as" path="res://Scenes/goal_area.tscn" id="449_jsh0i"]
 [ext_resource type="Texture2D" uid="uid://dkfj5iffr6f03" path="res://Scenes/World/Object_0_4_0.res" id="449_s7pwp"]
 [ext_resource type="Texture2D" uid="uid://ek3lly3aldh8" path="res://Scenes/World/Splatmap_0_4_0.res" id="450_ptdsg"]
@@ -1268,15 +1267,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 430.2035, 1.2354126, 125.5158
 [node name="Hold" type="Node3D" parent="MonsterHolder/Hold2"]
 
 [node name="EnemySpawner3" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
-transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -499.55292, 4.3719983, -67.25326)
-_maxMonsterCount = 1
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -544.94147, 1.3142262, -29.36026)
+_maxMonsterCount = 10
 _biome = "Forest"
 _monsterList = Array[PackedScene]([ExtResource("38_osg54")])
-_monsterCount = Array[int]([1])
+_monsterCount = Array[int]([10])
 
 [node name="Range" parent="MonsterHolder/EnemySpawner3" index="3"]
-transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 0, -1.997643, 0)
-omni_range = 3.26535
+transform = Transform3D(0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0, 0.9988214, 0, 0, 0)
+light_color = Color(0, 1, 1, 1)
+omni_range = 61.024147
 
 [node name="RatSpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -454.10132, 4.3719983, -89.033936)
@@ -1291,6 +1291,7 @@ omni_range = 20.619465
 
 [node name="MonsterRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -193.05112, -6.027062, -103.820694)
+visible = false
 navigation_mesh = SubResource("NavigationMesh_wrhnx")
 navigation_layers = 3
 
@@ -1816,8 +1817,6 @@ debug_color = Color(0, 1, 0, 1)
 transform = Transform3D(-0.81935227, 0, -0.5732904, 0, 1, 0, 0.5732904, 0, -0.81935227, -30.883942, 1.1852417, 42.731377)
 shape = SubResource("BoxShape3D_x33qj")
 debug_color = Color(0, 1, 0, 1)
-
-[node name="Enviorment" parent="." instance=ExtResource("448_p2h30")]
 
 [node name="GoalArea" parent="." instance=ExtResource("449_jsh0i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.107456, 0, 85.99831)
