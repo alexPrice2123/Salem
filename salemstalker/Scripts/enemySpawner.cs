@@ -103,12 +103,13 @@ public partial class enemySpawner : Node3D
 			CharacterBody3D monsterInstance = monsterSelection.Instantiate<CharacterBody3D>(); // Create monster instance
 			float _spawnX = _rng.RandfRange(-SpawnRange, SpawnRange);
 			float _spawnZ = _rng.RandfRange(-SpawnRange, SpawnRange);
-			_holder.AddChild(monsterInstance);                                             // Add monster to holder node
-			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, FindGroundY(_spawnX, _spawnZ), _spawnZ);                                    // Set monster spawn position
 			if (monsterInstance is Monster3d monster)
             {
 				monster.RandomRangedPosition();
 				monster.Biome = _biome;
+				monster.SpawnRange = SpawnRange;
+				monster._currentSpawnRange = SpawnRange;
+				monster._startPos = GlobalPosition;
 				if (_canShadow == true)
                 {
 					float shadowChange = _rng.RandfRange(1, 10);
@@ -118,6 +119,8 @@ public partial class enemySpawner : Node3D
                     }
                 }
             }
+			_holder.AddChild(monsterInstance);                                             // Add monster to holder node
+			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, FindGroundY(_spawnX, _spawnZ), _spawnZ);                                    // Set monster spawn position
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();
 			
