@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=9 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
+[ext_resource type="Script" uid="uid://jtdlrcwrnc4t" path="res://Scripts/Camera.cs" id="2_mawk5"]
 [ext_resource type="PackedScene" uid="uid://3v4hdgpge0v6" path="res://Scenes/MainHandWeapons/shortsword.tscn" id="2_sb0or"]
 [ext_resource type="PackedScene" uid="uid://do3u2x5avpy72" path="res://Scenes/OffHandWeapons/stake_gun.tscn" id="3_cvtri"]
 [ext_resource type="PackedScene" uid="uid://c3ix37nxvhxo5" path="res://Scenes/OffHandWeapons/Flintlock.tscn" id="3_mawk5"]
@@ -22,6 +23,7 @@ shape = SubResource("CapsuleShape3D_6lgym")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673132, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+script = ExtResource("2_mawk5")
 
 [node name="Sword" type="Node3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.42244637)
@@ -84,7 +86,10 @@ debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
 
 [editable path="Head/Camera3D/Offhand2/FlintGun"]
 [editable path="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions"]

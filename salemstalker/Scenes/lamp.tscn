@@ -152,9 +152,8 @@ draw_pass_1 = SubResource("BoxMesh_cx5cv")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6938931, 1.2640598)
 light_color = Color(0.9999996, 0.8197806, 0.4698997, 1)
-light_energy = 0.5
-shadow_enabled = true
-omni_range = 100.0
+light_energy = 0.35
+omni_range = 75.0
 omni_attenuation = 0.0
 
 [editable path="roadlamp"]

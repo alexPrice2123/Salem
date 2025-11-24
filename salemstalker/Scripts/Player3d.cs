@@ -1,7 +1,8 @@
 using Godot;
 using System;
 using System.Runtime.CompilerServices; // Usually for specific internal compiler needs, less common in game scripts.
-using System.Collections.Generic; // For using Dictionary.
+using System.Collections.Generic;
+using System.Linq; // For using Dictionary.
 
 // Defines the player class, inheriting from Godot's 3D physics-based character node.
 public partial class Player3d : CharacterBody3D
@@ -100,6 +101,9 @@ public partial class Player3d : CharacterBody3D
 	public int _forestMonstersKilled = 0;
 	public int _shrinesDestroyed = 0;
 	public int _ratsKilled = 0;
+ 	public bool _inGoalArea = true;
+	private List<string> _overlappingAreas = new List<string>();
+	public float _lookingAtGoalPoint;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -156,7 +160,13 @@ public partial class Player3d : CharacterBody3D
 			// Clamp the vertical camera rotation to prevent looking too far up or down
 			Vector3 camRot = _cam.Rotation;
 			camRot.X = Mathf.Clamp(camRot.X, Mathf.DegToRad(-80f), Mathf.DegToRad(80f));
-			_cam.Rotation = camRot;
+			
+			if (_cam is Camera camRef)
+            {
+                camRef._initialRotation = camRot;
+            }
+
+			_lookingAtGoalPoint = CalculateLookAtAlignment();
 		}
 
 		// --- Pause menu toggle (Escape) ---
@@ -402,21 +412,14 @@ public partial class Player3d : CharacterBody3D
         }
 
 		_currentBiome = "Forest";
+		_inGoalArea = false;
 
-		Godot.Collections.Array<Area3D> overlappingAreas = GetNode<Area3D>("Hurtbox").GetOverlappingAreas();
-		if (overlappingAreas.Count > 0)
-        {
-            Godot.Collections.Array<Godot.StringName> group = overlappingAreas[0].GetGroups();
-			if (group.Count > 0)
-            {
-				if ((string)group[0] == "Plains" || (string)group[0] == "Brittlebay Village" || (string)group[0] == "Swamp")
-				{
-					_currentBiome = (string)group[0];
-				} 
-            }
-        }
+		if (_overlappingAreas.Contains("Plains")){_currentBiome = "Plains";}
+		if (_overlappingAreas.Contains("Brittlebay Village")){_currentBiome = "Brittlebay Village";}
+		if (_overlappingAreas.Contains("Swamp")){_currentBiome = "Swamp";}
+		if (_overlappingAreas.Contains("GoalArea")){_inGoalArea = true;}
 
-		if (_currentBiome == "Brittlebay Village")
+		if (_currentBiome.Contains("Brittlebay Village"))
         {
             _health = _maxHealth;
 			_stamina = _maxStamina;
@@ -937,6 +940,8 @@ public partial class Player3d : CharacterBody3D
         {
             _knockVelocity = 75f;
         }
+		float shakeFade = 1f;
+		if (takenDamage > _maxHealth/3){shakeFade = 0.5f;}
 		if (_blocking == true && _parry == false)
 		{
 			// Regular block: reduce damage, deduct stamina, play block animation
@@ -945,6 +950,11 @@ public partial class Player3d : CharacterBody3D
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			_knockVelocity = 1f;
+			if (_cam is Camera cam)
+			{
+				cam.StartShake(takenDamage/80, shakeFade);
+			}
+			
 		}
 		else if (_blocking == true && _parry == true)
 		{
@@ -955,7 +965,15 @@ public partial class Player3d : CharacterBody3D
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			_parried = true;
 			_knockVelocity = 0f;
+			if (_cam is Camera cam)
+			{
+				cam.StartShake(takenDamage/100, shakeFade);
+			}
 		}
+		else if (_cam is Camera cam)
+        {
+            cam.StartShake(takenDamage/90, shakeFade);
+        }
 		
 		// Damage multiplier if player is out of stamina
 		if (_stamina <= 0)
@@ -1121,4 +1139,66 @@ public partial class Player3d : CharacterBody3D
 		}
 		_cooldownSec = false;	
 	}
+
+	private void _on_hurtbox_area_entered(Area3D zone)
+    {
+         // Add all groups of the entered area to our tracking list
+        foreach (string group in zone.GetGroups())
+        {
+            if (!_overlappingAreas.Contains(group))
+            {
+                _overlappingAreas.Add(group);
+            }
+        }
+    }
+	private void _on_hurtbox_area_exited(Area3D zone)
+    {
+        // Remove groups of the exited area from our tracking list
+        foreach (string group in zone.GetGroups())
+        {
+            // Only remove if no other overlapping area belongs to that group
+            bool groupStillPresent = false;
+            Area3D playerArea = GetNode<Area3D>("Hurtbox");
+            foreach (Area3D currentOverlap in playerArea.GetOverlappingAreas())
+            {
+                if (currentOverlap.IsInGroup(group))
+                {
+                    groupStillPresent = true;
+                    break;
+                }
+            }
+
+            if (!groupStillPresent)
+            {
+                _overlappingAreas.Remove(group);
+            }
+        }
+    }
+
+	public float CalculateLookAtAlignment()
+    {
+        if (GetParent().GetNode<Node3D>("GoalArea") == null)
+        {
+            GD.PrintErr("Target point not assigned or found.");
+            return 1.0f; // Return maximum unalignment if no target
+        }
+
+        // 1. Get the player's forward direction (assuming the player node is this script's owner)
+        // Adjust if your camera is separate or has a different forward axis
+        Vector3 playerForward = _cam.GlobalTransform.Basis.Z.Normalized(); 
+
+        // 2. Get the vector from the player to the target point
+        Vector3 playerToTarget = (GetParent().GetNode<Node3D>("GoalArea").GlobalTransform.Origin - GlobalTransform.Origin).Normalized();
+
+        // 3. Calculate the dot product
+        float dotProduct = playerForward.Dot(playerToTarget);
+
+        // 4. Convert to the desired 0-1 range (0 = aligned, 1 = unaligned)
+        // The dot product ranges from 1 (aligned) to -1 (opposite).
+        // We want 1 to become 0, and -1 to become 1.
+        // A simple way is: (1 - dotProduct) / 2
+        float alignment = (1.0f - dotProduct) / 2.0f;
+
+        return alignment;
+    }
 }

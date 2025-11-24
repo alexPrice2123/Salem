@@ -7,7 +7,7 @@
 script = ExtResource("1_4l55s")
 
 [node name="Spawn" type="CSGBox3D" parent="."]
-transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 0, 1.86531, 0)
+transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 0, 0, 0)
 visible = false
 size = Vector3(0.1, 0.1, 0.1)
 material = ExtResource("2_8h7h8")

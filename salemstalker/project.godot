@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="SalemStalker"
-run/main_scene="uid://ici31oveud84"
+config/name="Nightshatter"
+run/main_scene="uid://bap0k6fax0p86"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -40,6 +40,7 @@ PlayerProj=""
 Plains=""
 Swamp=""
 "Brittlebay Village"=""
+GoalArea=""
 
 [input]
 

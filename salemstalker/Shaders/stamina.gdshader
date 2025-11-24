@@ -37,7 +37,7 @@ bool reverse_wave(vec2 uv){
 
 void fragment() {
     if (wave(UV)&&draw_circle_polar(0.8,UV)) {
-        COLOR = vec4(0.0, 0.8, 1.0, 1.0);
+        COLOR = vec4(0.8, 0.7, 1.0, 1.0);
 	}else if (reverse_wave(UV)&&draw_circle_polar(0.8,UV)) {
         COLOR = vec4(0.0, 0.0, 0.0, 1.0);
     } else {

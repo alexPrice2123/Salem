@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_n642y"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_4aca4"]
 [ext_resource type="PackedScene" uid="uid://c4rxmfdcn7o6j" path="res://Assets/3D/buildings/cultistshrine.blend" id="4_mqdp6"]
-[ext_resource type="Texture2D" uid="uid://cr4mihs0tdekp" path="res://Assets/2D/Stone.jpg" id="5_7m6cr"]
+[ext_resource type="Texture2D" uid="uid://ciyfo4dsw5dun" path="res://Assets/2D/Stone.jpg" id="5_7m6cr"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]
 seamless = true
@@ -118,12 +118,12 @@ scale_curve = SubResource("CurveTexture_ag22c")
 
 [sub_resource type="SphereMesh" id="SphereMesh_ve2r1"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50012"]
+albedo_texture = ExtResource("5_7m6cr")
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mqdp6"]
 radius = 0.5649414
 height = 3.314209
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50012"]
-albedo_texture = ExtResource("5_7m6cr")
 
 [node name="Shrine" type="Node3D"]
 script = ExtResource("1_sak6b")
@@ -132,7 +132,6 @@ script = ExtResource("1_sak6b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20485, 0)
 light_color = Color(0.313726, 0.188235, 0.921569, 1)
 light_energy = 5.0
-shadow_enabled = true
 omni_range = 6.0
 
 [node name="Spawn" type="CSGBox3D" parent="."]
@@ -161,6 +160,7 @@ draw_pass_1 = SubResource("SphereMesh_mdjrw")
 
 [node name="Boom" type="GPUParticles3D" parent="."]
 transform = Transform3D(1.72, 0, 0, 0, 1.72, 0, 0, 0, 1.72, 0, 2.2411585, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_50012")
 emitting = false
 amount = 100
@@ -173,18 +173,18 @@ draw_pass_1 = SubResource("SphereMesh_ve2r1")
 [node name="Shrine" parent="." instance=ExtResource("4_mqdp6")]
 transform = Transform3D(1.72, 0, 0, 0, 1.72, 0, 0, 0, 1.72, 0, 0, 0)
 
+[node name="Cylinder" parent="Shrine" index="0"]
+material_override = SubResource("StandardMaterial3D_50012")
+
+[node name="Cube" parent="Shrine" index="1"]
+visible = false
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Shrine"]
 transform = Transform3D(0.45673075, 0, 0, 0, 0.45673075, 0, 0, 0, 0.45673075, 0, 0.3031, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Shrine/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6571043, 0)
 shape = SubResource("CapsuleShape3D_mqdp6")
-
-[node name="Cylinder" parent="Shrine" index="1"]
-material_override = SubResource("StandardMaterial3D_50012")
-
-[node name="Cube" parent="Shrine" index="2"]
-visible = false
 
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
 
