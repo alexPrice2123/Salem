@@ -72,7 +72,7 @@ public partial class Monster3d : CharacterBody3D
     // --- READY --- //
     public void Initialization()
     {
-        _player = this.GetParent().GetParent().GetParent().GetParent().GetNode<Player3d>("Player_3d");
+        _player = GetParent().GetParent().GetParent().GetParent().GetNode<Player3d>("Player_3d");
         _rng.Randomize();
         _navAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
 

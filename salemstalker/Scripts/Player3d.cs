@@ -20,7 +20,7 @@ public partial class Player3d : CharacterBody3D
 	private Control _interface;                      // Reference to the main Pause menu UI
 	private Slider _senseBar;                        // Slider control within the pause menu for adjusting sensitivity
 	public Control _inv;                             // Reference to the Inventory UI
-	private Node3D _sword;                           // The currently equipped sword's mesh/root node
+	public Node3D _sword;                           // The currently equipped sword's mesh/root node
 	private Node3D _eSecWeapon1;					 // The secondary weapon slot 1's root node
 	private Node3D _eSecWeapon2;					 // The secondary weapon slot 2's root node
 	private Node3D _eSecWeapon3;					 // The secondary weapon slot 3's root node
@@ -227,14 +227,6 @@ public partial class Player3d : CharacterBody3D
 				 && IsInstanceValid(_lastSeen) // Looking at an interactable object
 				 && _inv.Visible == false)
 		{
-			// If the interactable object is an "Apple", pick it up and destroy the item instance
-			if (_lastSeen.Name == "Apple")
-			{
-				CharacterBody3D toDestroy = _lastSeen;
-				_lastSeen = null;
-				toDestroy.QueueFree();
-				_hasApple = true;
-			}
 			if (_lastSeen.Name == "Anvil")
 			{
 				_lastSeen = null;
@@ -582,12 +574,7 @@ public partial class Player3d : CharacterBody3D
 		if (GetMouseCollision() != null)
 		{
 			CharacterBody3D targetNode = GetMouseCollision();
-			_lastSeen = targetNode;
-			// Specific handling for the "Apple" item (shows a title)
-			if (targetNode.Name == "Apple")
-			{
-				targetNode.GetNode<Label3D>("Title").Visible = true;
-			}
+			if (!targetNode.IsInGroup("Monster")){_lastSeen = targetNode;}
 			if (targetNode.Name == "Anvil")
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
@@ -664,6 +651,11 @@ public partial class Player3d : CharacterBody3D
 		{
 			_stamina = 0; // Limit minimum stamina
 		}
+
+		if (GetMouseCollision()  == null)
+        {
+            _lastSeen = null;
+        }
 		
 		// --- Apply movement ---
 		Velocity = velocity;
