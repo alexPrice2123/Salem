@@ -104,6 +104,8 @@ public partial class Player3d : CharacterBody3D
  	public bool _inGoalArea = true;
 	private List<string> _overlappingAreas = new List<string>();
 	public float _lookingAtGoalPoint;
+	public Vector3 _goalPointPos = new Vector3(999, 999, 999);
+	public CollisionShape3D _goalPoint;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -1134,14 +1136,25 @@ public partial class Player3d : CharacterBody3D
 
 	private void _on_hurtbox_area_entered(Area3D zone)
     {
-         // Add all groups of the entered area to our tracking list
-        foreach (string group in zone.GetGroups())
-        {
-            if (!_overlappingAreas.Contains(group))
-            {
-                _overlappingAreas.Add(group);
-            }
-        }
+		// Add all groups of the entered area to our tracking list
+		foreach (string group in zone.GetGroups())
+		{
+			if (!_overlappingAreas.Contains(group))
+			{
+				_overlappingAreas.Add(group);
+			}
+			if (zone.GetGroups().Contains("GoalArea"))
+			{
+				foreach (CollisionShape3D collision in zone.GetChildren())
+				{
+					if ((collision.GlobalPosition - GlobalPosition).Length() < (_goalPointPos - GlobalPosition).Length())
+                    {
+						_goalPointPos = collision.GlobalPosition;
+						_goalPoint = collision;
+                    }
+				}
+			}
+		}
     }
 	private void _on_hurtbox_area_exited(Area3D zone)
     {
@@ -1169,7 +1182,7 @@ public partial class Player3d : CharacterBody3D
 
 	public float CalculateLookAtAlignment()
     {
-        if (GetParent().GetNode<Node3D>("GoalArea") == null)
+        if (_goalPoint == null)
         {
             GD.PrintErr("Target point not assigned or found.");
             return 1.0f; // Return maximum unalignment if no target
@@ -1180,7 +1193,7 @@ public partial class Player3d : CharacterBody3D
         Vector3 playerForward = _cam.GlobalTransform.Basis.Z.Normalized(); 
 
         // 2. Get the vector from the player to the target point
-        Vector3 playerToTarget = (GetParent().GetNode<Node3D>("GoalArea").GlobalTransform.Origin - GlobalTransform.Origin).Normalized();
+        Vector3 playerToTarget = (_goalPoint.GlobalTransform.Origin - GlobalTransform.Origin).Normalized();
 
         // 3. Calculate the dot product
         float dotProduct = playerForward.Dot(playerToTarget);
