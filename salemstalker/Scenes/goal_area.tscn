@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://d1omoohngw1as"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hfxqn"]
-radius = 17.747046
+radius = 185.44435
 
 [node name="GoalArea" type="Node3D"]
 

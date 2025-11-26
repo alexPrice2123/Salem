@@ -105,7 +105,7 @@ public partial class Player3d : CharacterBody3D
 	private List<string> _overlappingAreas = new List<string>();
 	public float _lookingAtGoalPoint;
 	public Vector3 _goalPointPos = new Vector3(999, 999, 999);
-	public CollisionShape3D _goalPoint;
+	public Node3D _goalPoint;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -132,6 +132,7 @@ public partial class Player3d : CharacterBody3D
 		_lantern = GetNode<OmniLight3D>("Head/Camera3D/Lantern");
 		_dialogue = GetNode<Control>("UI/Dialogue");
 		_smithShop = GetNode<Control>("UI/BlacksmithShop");
+		_goalPoint = GetParent().GetNode<Node3D>("GoalArea/GoalPoint");
 		
 		// Initialize starting values
 		_health = _maxHealth;
@@ -1143,41 +1144,47 @@ public partial class Player3d : CharacterBody3D
 			{
 				_overlappingAreas.Add(group);
 			}
-			if (zone.GetGroups().Contains("GoalArea"))
-			{
-				foreach (CollisionShape3D collision in zone.GetChildren())
-				{
-					if ((collision.GlobalPosition - GlobalPosition).Length() < (_goalPointPos - GlobalPosition).Length())
-                    {
-						_goalPointPos = collision.GlobalPosition;
-						_goalPoint = collision;
-                    }
-				}
-			}
+			FindClosestGoal(zone);
 		}
     }
 	private void _on_hurtbox_area_exited(Area3D zone)
-    {
-        // Remove groups of the exited area from our tracking list
-        foreach (string group in zone.GetGroups())
-        {
-            // Only remove if no other overlapping area belongs to that group
-            bool groupStillPresent = false;
-            Area3D playerArea = GetNode<Area3D>("Hurtbox");
-            foreach (Area3D currentOverlap in playerArea.GetOverlappingAreas())
-            {
-                if (currentOverlap.IsInGroup(group))
-                {
-                    groupStillPresent = true;
-                    break;
-                }
-            }
+	{
+		// Remove groups of the exited area from our tracking list
+		foreach (string group in zone.GetGroups())
+		{
+			// Only remove if no other overlapping area belongs to that group
+			FindClosestGoal(zone);
+			bool groupStillPresent = false;
+			Area3D playerArea = GetNode<Area3D>("Hurtbox");
+			foreach (Area3D currentOverlap in playerArea.GetOverlappingAreas())
+			{
+				if (currentOverlap.IsInGroup(group))
+				{
+					groupStillPresent = true;
+					break;
+				}
+			}
 
-            if (!groupStillPresent)
-            {
-                _overlappingAreas.Remove(group);
-            }
-        }
+			if (!groupStillPresent)
+			{
+				_overlappingAreas.Remove(group);
+			}
+		}
+	}
+	
+	private void FindClosestGoal(Area3D zone)
+    {
+		if (zone.GetGroups().Contains("GoalArea"))
+		{
+			foreach (CollisionShape3D collision in zone.GetChildren())
+			{
+				if ((collision.GlobalPosition - GlobalPosition).Length() < (_goalPointPos - GlobalPosition).Length())
+				{
+					_goalPointPos = collision.GlobalPosition;
+					_goalPoint.GlobalPosition = GlobalPosition;
+				}
+			}
+		}
     }
 
 	public float CalculateLookAtAlignment()
