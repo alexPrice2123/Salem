@@ -106,6 +106,7 @@ public partial class Player3d : CharacterBody3D
 	public float _lookingAtGoalPoint;
 	public Vector3 _goalPointPos = new Vector3(999, 999, 999);
 	public Node3D _goalPoint;
+	public bool _inWater = false;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -412,7 +413,8 @@ public partial class Player3d : CharacterBody3D
 		if (_overlappingAreas.Contains("Plains")){_currentBiome = "Plains";}
 		if (_overlappingAreas.Contains("Brittlebay Village")){_currentBiome = "Brittlebay Village";}
 		if (_overlappingAreas.Contains("Swamp")){_currentBiome = "Swamp";}
-		if (_overlappingAreas.Contains("GoalArea")){_inGoalArea = true;}
+		if (_overlappingAreas.Contains("GoalArea")) { _inGoalArea = true; }
+		if (_overlappingAreas.Contains("Water")){ _knockVelocity = 15; }
 
 		if (_currentBiome.Contains("Brittlebay Village"))
         {
@@ -529,8 +531,8 @@ public partial class Player3d : CharacterBody3D
 				_stamina = 0f;
 			}
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
-			velocity.X = direction.X * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
-			velocity.Z = direction.Z * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
+			velocity.X = direction.X * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (direction.X * _knockVelocity) + _dashVelocity);
+			velocity.Z = direction.Z * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (direction.Z * _knockVelocity) + _dashVelocity);
 
 			if (_running == true)
 			{
