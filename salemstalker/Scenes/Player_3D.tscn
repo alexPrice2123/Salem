@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=10 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
+[ext_resource type="Texture2D" uid="uid://ev57xs1xu0ue" path="res://Assets/2D/Arrow.png" id="2_cvtri"]
 [ext_resource type="Script" uid="uid://jtdlrcwrnc4t" path="res://Scripts/Camera.cs" id="2_mawk5"]
 [ext_resource type="PackedScene" uid="uid://3v4hdgpge0v6" path="res://Scenes/MainHandWeapons/shortsword.tscn" id="2_sb0or"]
 [ext_resource type="PackedScene" uid="uid://do3u2x5avpy72" path="res://Scenes/OffHandWeapons/stake_gun.tscn" id="3_cvtri"]
@@ -23,7 +24,14 @@ shape = SubResource("CapsuleShape3D_6lgym")
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673132, 0)
 
+[node name="Sprite3D" type="Sprite3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 326.74033, 0)
+layers = 2
+pixel_size = 0.1
+texture = ExtResource("2_cvtri")
+
 [node name="Camera3D" type="Camera3D" parent="Head"]
+cull_mask = 1048573
 script = ExtResource("2_mawk5")
 
 [node name="Sword" type="Node3D" parent="Head/Camera3D"]

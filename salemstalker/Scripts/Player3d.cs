@@ -108,6 +108,7 @@ public partial class Player3d : CharacterBody3D
 	public Node3D _goalPoint;
 	public bool _inWater = false;
 	public bool _dead = false;
+	private SubViewportContainer _map;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -135,6 +136,7 @@ public partial class Player3d : CharacterBody3D
 		_dialogue = GetNode<Control>("UI/Dialogue");
 		_smithShop = GetNode<Control>("UI/BlacksmithShop");
 		_goalPoint = GetParent().GetNode<Node3D>("GoalArea/GoalPoint");
+		_map = GetParent().GetNode<SubViewportContainer>("PaperMap");
 		
 		// Initialize starting values
 		_health = _maxHealth;
@@ -270,7 +272,7 @@ public partial class Player3d : CharacterBody3D
 		else if (Input.IsActionJustPressed("inventory"))
 		{
 			GD.Print("INV");
-			if (_inCombat == true || _questBook.Visible == true) { return; } // Cannot open in combat or if quest book is open
+			if (_inCombat == true || _questBook.Visible == true || _map.Visible == true) { return; } // Cannot open in combat or if quest book is open
 
 			if (_inv.Visible == true)
 			{
@@ -290,7 +292,7 @@ public partial class Player3d : CharacterBody3D
 		// --- Questbook toggle (L Key) ---
 		else if (Input.IsActionJustPressed("questOpen"))
 		{
-			if (_inv.Visible == true) { return; }
+			if (_inv.Visible == true || _map.Visible == true) { return; }
 
 			if (_questBook.Visible == true)
 			{
@@ -298,11 +300,28 @@ public partial class Player3d : CharacterBody3D
 				_questBook.Visible = false;
 				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}
-			else if (_inv.Visible == false)
+			else
 			{
 				// Show quest book, un-capture mouse
 				_questBook.Visible = true;
 				Input.MouseMode = Input.MouseModeEnum.Visible;
+			}
+		}
+
+		// --- Map toggle (M Key) ---
+		else if (Input.IsActionJustPressed("mapOpen"))
+		{
+			if (_inv.Visible == true || _questBook.Visible == true) { return; }
+
+			if (_map.Visible == true)
+			{
+				// Hide map
+				_map.Visible = false;
+			}
+			else 
+			{
+				// Show map
+				_map.Visible = true;
 			}
 		}
 
@@ -676,14 +695,14 @@ public partial class Player3d : CharacterBody3D
 		{
 			_stamina = 0; // Limit minimum stamina
 		}
-
+ 
 		if (GetMouseCollision()  == null)
         {
             _lastSeen = null;
         }
 
 		// --- Gravity ---
-		if (!IsOnFloor()) { velocity += new Vector3(0f,-9.8f,0f) * (float)delta; } // Apply gravity if not on the floor
+		if (!IsOnFloor()) { velocity += new Vector3(0f,-3.8f,0f) * (float)delta; } // Apply gravity if not on the floor
 		
 		// --- Apply movement ---
 		Velocity = velocity;

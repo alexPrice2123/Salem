@@ -236,6 +236,7 @@ grow_vertical = 2
 script = ExtResource("1_smcll")
 
 [node name="Loading" type="ColorRect" parent="."]
+visible = false
 z_index = 4096
 material = SubResource("ShaderMaterial_3r70p")
 layout_mode = 1
