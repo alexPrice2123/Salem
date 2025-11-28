@@ -243,11 +243,18 @@ public partial class NpcVillager : CharacterBody3D
 
 	public void Ignored()
 	{
-		_currentDialouge = "Ignored";
-		_dialogueBox.Text = IgnoredDialogue;
-		_dialogue.GetNode<Button>("Continue").Visible = true;
-		_dialogue.GetNode<Button>("AcceptButton").Visible = false;
-		_dialogue.GetNode<Button>("IgnoreButton").Visible = false;
+		if (_object != "None")
+        {
+            EndDialouge();
+        }
+        else
+        {
+           	_currentDialouge = "Ignored";
+			_dialogueBox.Text = IgnoredDialogue;
+			_dialogue.GetNode<Button>("Continue").Visible = true;
+			_dialogue.GetNode<Button>("AcceptButton").Visible = false;
+			_dialogue.GetNode<Button>("IgnoreButton").Visible = false; 
+        }
 	}
 
 	public void Continue()
