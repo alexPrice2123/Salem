@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=43 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
@@ -45,6 +45,33 @@ shader_parameter/progress_bias = Vector2(0, 0)
 line_spacing = 3.08
 font_size = 75
 outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pmm21"]
+line_spacing = 3.08
+font_size = 50
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_85lyl"]
+line_spacing = 3.08
+font_size = 200
+font_color = Color(0, 0, 0, 1)
+stacked_outline_count = 5
+stacked_outline_0/size = 20
+stacked_outline_0/color = Color(1, 0, 0, 1)
+stacked_outline_1/size = 20
+stacked_outline_1/color = Color(0.78431374, 0, 0, 1)
+stacked_outline_2/size = 20
+stacked_outline_2/color = Color(0.5882353, 0, 0, 1)
+stacked_outline_3/size = 20
+stacked_outline_3/color = Color(0.39215687, 0, 0, 1)
+stacked_outline_4/size = 20
+stacked_outline_4/color = Color(0.19607843, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mplvk"]
+line_spacing = 3.08
+font_size = 50
+font_color = Color(1, 0, 0, 1)
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fs27"]
@@ -209,7 +236,6 @@ grow_vertical = 2
 script = ExtResource("1_smcll")
 
 [node name="Loading" type="ColorRect" parent="."]
-visible = false
 z_index = 4096
 material = SubResource("ShaderMaterial_3r70p")
 layout_mode = 1
@@ -220,9 +246,10 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(539, 303)
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Combat" type="Label" parent="Loading"]
+[node name="Text" type="Label" parent="Loading"]
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
@@ -235,6 +262,84 @@ text = "Loading..."
 label_settings = SubResource("LabelSettings_4vbiv")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Q" type="Label" parent="Loading"]
+visible = false
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -91.18182
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "'Q' to quit"
+label_settings = SubResource("LabelSettings_pmm21")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Dead" type="ColorRect" parent="."]
+visible = false
+z_index = 4000
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(539, 303)
+color = Color(0, 0, 0, 1)
+
+[node name="Text" type="Label" parent="Dead"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "You Died"
+label_settings = SubResource("LabelSettings_85lyl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="R" type="Label" parent="Dead"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 63.545475
+offset_top = -27.909075
+offset_right = 63.545532
+offset_bottom = -27.909058
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "'R' to try again"
+label_settings = SubResource("LabelSettings_mplvk")
+vertical_alignment = 2
+
+[node name="Q" type="Label" parent="Dead"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -65.54544
+offset_top = -27.909075
+offset_right = -65.54541
+offset_bottom = -27.909058
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "'Q' to quit"
+label_settings = SubResource("LabelSettings_mplvk")
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="Border" type="ColorRect" parent="."]
 z_index = 100

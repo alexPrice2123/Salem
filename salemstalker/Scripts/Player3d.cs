@@ -63,7 +63,7 @@ public partial class Player3d : CharacterBody3D
 	private bool _inStep = false;					 	// Prevents footstep audio from playing if player is already playing a step.
 	private float _bobTime = 0.0f;                   	// Accumulator for the head-bob sine wave function
 	public string _originalDialouge;                 	// Stores an NPC's default dialogue to restore it after interaction
-	private CharacterBody3D _lastSeen;               	// Reference to the last interactable object the raycast hit
+	public CharacterBody3D _lastSeen;               	// Reference to the last interactable object the raycast hit
 	public int _monstersKilled = 0;                  	// Counter for monsters killed (for quest tracking)
 	public float _maxHealth = 100f;					 	// Maximum player health
 	public float _health; 								// Current player health
@@ -107,6 +107,7 @@ public partial class Player3d : CharacterBody3D
 	public Vector3 _goalPointPos = new Vector3(999, 999, 999);
 	public Node3D _goalPoint;
 	public bool _inWater = false;
+	public bool _dead = false;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -154,6 +155,15 @@ public partial class Player3d : CharacterBody3D
 	// Called when an input event occurs.
 	public override void _Input(InputEvent @event)
 	{
+		if (Input.IsActionJustPressed("retry") && _dead == true)
+        {
+			GetNode<Ui>("UI")._loadingGoal = -1f;
+        }
+		if (Input.IsActionJustPressed("quit") && _dead == true)
+        {
+            GetTree().Quit(); // Quit the scene 
+        }
+		if (_dead == true){return;}
 		// --- Camera look ---
 		if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
 		{
@@ -401,6 +411,7 @@ public partial class Player3d : CharacterBody3D
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_dead == true){return;}
 		if (_currentBiome != _lastBiome)
         {
             _lastBiome = _currentBiome;
@@ -435,7 +446,6 @@ public partial class Player3d : CharacterBody3D
 		if (_currentStaminaTimer > 0f)
 		{
 			_currentStaminaTimer -= (float)delta;
-			GD.Print(_currentStaminaTimer);
 		}
 		// --- Lantern/Light Effects (Based on Health) ---
 		// Smoothly interpolate the lantern's color between max and min health colors
@@ -454,7 +464,8 @@ public partial class Player3d : CharacterBody3D
 		// --- Death Condition ---
 		if (_health <= 0)
 		{
-			GetTree().ReloadCurrentScene(); // Reload the scene (player dies)
+			_dead = true;
+			GetNode<ColorRect>("UI/Dead").Visible = true;
 		}
 
 		// --- Parry Window Countdown ---
@@ -513,9 +524,6 @@ public partial class Player3d : CharacterBody3D
 			VerCamSense = Convert.ToSingle(_senseBar.Value / 1000);
 		}
 
-		// --- Gravity ---
-		if (!IsOnFloor()) { velocity += GetGravity() * (float)delta; } // Apply gravity if not on the floor
-
 		// --- Movement input calculation ---
 		Vector2 inputDir = Input.GetVector("left", "right", "forward", "back"); // Get normalized 2D input
 		// Convert 2D input to 3D direction relative to the player's head/facing
@@ -531,8 +539,8 @@ public partial class Player3d : CharacterBody3D
 				_stamina = 0f;
 			}
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
-			velocity.X = direction.X * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (direction.X * _knockVelocity) + _dashVelocity);
-			velocity.Z = direction.Z * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (direction.Z * _knockVelocity) + _dashVelocity);
+			velocity.X = direction.X * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.X) * -_knockVelocity) + _dashVelocity);
+			velocity.Z = direction.Z * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.Z) * -_knockVelocity) + _dashVelocity);
 
 			if (_running == true)
 			{
@@ -556,7 +564,9 @@ public partial class Player3d : CharacterBody3D
 			// Player is stationary (no directional input)
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
-			velocity = velocity.Lerp(_cam.GlobalTransform.Basis.Z * -1 * (_dashVelocity - _knockVelocity), (float)delta * 10f);
+			Vector3 tempvelo = velocity;
+			tempvelo = tempvelo.Lerp(_cam.GlobalTransform.Basis.Z * -1 * (_dashVelocity - _knockVelocity), (float)delta * 10f);
+			velocity = new Vector3(tempvelo.X, velocity.Y, tempvelo.Z);
 			if (IsOnFloor())
             {
                 velocity = new Vector3(velocity.X, 0f, velocity.Z); // Keep Y velocity (gravity/jump) separate
@@ -574,7 +584,7 @@ public partial class Player3d : CharacterBody3D
 		// Smoothly scale FOV based on current movement speed (for a "speed effect")
 		float fovGoal = Mathf.Lerp(_cam.Fov, Velocity.Length() + 80, (float)delta * 10f);
 		_cam.Fov = fovGoal;
-
+		
 		// --- Interaction detection (General) ---
 		if (GetMouseCollision() != null)
 		{
@@ -584,6 +594,13 @@ public partial class Player3d : CharacterBody3D
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
 			}
+			if (targetNode is NpcVillager node)
+			{
+				if (node._object == "Boat")
+                {
+                    node._questPrompt.Visible = true;
+                }
+			}
 		}
 
 		// --- NPC Interaction detection (Dialogue/Quest Prompt) ---
@@ -592,25 +609,28 @@ public partial class Player3d : CharacterBody3D
 			CharacterBody3D targetNode = GetMouseCollision();
 			if (targetNode is NpcVillager villager)
 			{
-				// Handle different quest states by modifying the NPC's displayed dialogue
-				if (villager._questComplete == false && villager._questInProgress == false) // Initial quest state
-				{
-					_lastSeen = villager;
-					_originalDialouge = villager._questPrompt.Text;
-					villager._questPrompt.Text = villager._questPrompt.Text + "\n" + "E to Talk";
-				}
-				else if (villager._questComplete == false && villager._questInProgress == true) // Quest in progress
-				{
-					_lastSeen = villager;
-					_originalDialouge = villager.WaitingDialogue;
-					villager._questPrompt.Text = villager.WaitingDialogue;
-				}
-				else if (villager._questComplete == true & villager._questInProgress == true) // Quest complete, ready for turn-in
-				{
-					_lastSeen = villager;
-					_originalDialouge = villager.WaitingDialogue;
-					villager._questPrompt.Text = villager.WaitingDialogue + "\n" + "E to Talk";
-				}
+				if (villager._object == "None")
+                {
+                    // Handle different quest states by modifying the NPC's displayed dialogue
+					if (villager._questComplete == false && villager._questInProgress == false) // Initial quest state
+					{
+						_lastSeen = villager;
+						_originalDialouge = villager._questPrompt.Text;
+						villager._questPrompt.Text = villager._questPrompt.Text + "\n" + "E to Talk";
+					}
+					else if (villager._questComplete == false && villager._questInProgress == true) // Quest in progress
+					{
+						_lastSeen = villager;
+						_originalDialouge = villager.WaitingDialogue;
+						villager._questPrompt.Text = villager.WaitingDialogue;
+					}
+					else if (villager._questComplete == true & villager._questInProgress == true) // Quest complete, ready for turn-in
+					{
+						_lastSeen = villager;
+						_originalDialouge = villager.WaitingDialogue;
+						villager._questPrompt.Text = villager.WaitingDialogue + "\n" + "E to Talk";
+					}
+                }
 			}
 		}
 		// --- Interaction End ---
@@ -661,6 +681,9 @@ public partial class Player3d : CharacterBody3D
         {
             _lastSeen = null;
         }
+
+		// --- Gravity ---
+		if (!IsOnFloor()) { velocity += new Vector3(0f,-9.8f,0f) * (float)delta; } // Apply gravity if not on the floor
 		
 		// --- Apply movement ---
 		Velocity = velocity;
@@ -1193,7 +1216,6 @@ public partial class Player3d : CharacterBody3D
     {
         if (_goalPoint == null)
         {
-            GD.PrintErr("Target point not assigned or found.");
             return 1.0f; // Return maximum unalignment if no target
         }
 

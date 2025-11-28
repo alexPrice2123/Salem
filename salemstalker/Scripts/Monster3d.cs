@@ -173,7 +173,7 @@ public partial class Monster3d : CharacterBody3D
     // Handles state: chase, attack, wander, despawn
     public void EveryFrame(double delta)
     {
-        if (Debug == true)
+        if (Debug == true || _player._dead == true)
         {
             return;
         }

@@ -26,6 +26,10 @@ public partial class Ui : Control
 	private Dictionary<string, float> _upgrades = new Dictionary<string, float>();
 	private Dictionary<string, string> _specialAttacks = new Dictionary<string, string>();
 	private Dictionary<string, int> _levels = new Dictionary<string, int>();
+	private float _loadingValue = -1f;
+	public float _loadingGoal = 3f;
+	public bool _loadingDone = false;
+	public string _loadingObjective = "None";
 	public override void _Ready()
 	{
 		if (GetParent() is Player3d player)
@@ -100,17 +104,20 @@ public partial class Ui : Control
 			GetNode<Button>("BlacksmithShop/ShopOption3").Text = "Holy Relic";
 			GetNode<Button>("BlacksmithShop/ShopOption4").Visible = false;
 		}
-		
-		if (_loaded == true)
-		{
-			_loadingMaterial.SetShaderParameter("progress", (float)_loadingMaterial.GetShaderParameter("progress") + 0.05f);
-			GD.Print((float)_loadingMaterial.GetShaderParameter("progress"));
-			if ((float)_loadingMaterial.GetShaderParameter("progress") >= 3f)
+		if (_loaded == true) //Waits 1 second for the game to load before the ui tweens
+        {
+            _loadingValue = Mathf.Lerp(_loadingValue, _loadingGoal, (float)delta);
+			_loadingMaterial.SetShaderParameter("progress", _loadingValue);
+			if (_loadingValue <= -0.8f && _player._dead == true && _loadingUI.GetNode<Label>("Text").Text == "Loading...")
 			{
-				_loaded = false;
-				_loadingUI.Visible = false;
+				GetTree().ReloadCurrentScene(); // Reload the scene 
 			}
-		}
+			else if (_loadingValue <= -0.8f && _loadingUI.GetNode<Label>("Text").Text == "Loading...")
+			{
+				_loadingGoal = 3f;
+				_loadingDone = true;
+			}
+        }
 	}
 
 	//--- Dialouge ---
