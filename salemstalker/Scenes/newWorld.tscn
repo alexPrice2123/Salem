@@ -2386,6 +2386,13 @@ QuestGoal = "0/15"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.972595, 1.9490459, 35.37815)
 script = ExtResource("424_nr7af")
 NPCName = "Dillon"
+InitialDialogue = "Gosh darn it! Those damn rats keep eating our food! "
+QuestDialogue = Array[String](["Those dang rats are eating all of our food in our village. Please sir, will you help us by killing those rodents?"])
+AcceptedDialogue = Array[String](["Thank you very much. Make sure those rodents never try eating our food again."])
+IgnoredDialogue = "Hmph. Guess I gotta try getting rid of them myself..."
+WaitingDialogue = "I still see rats scurrying about. "
+DoneDialogue = Array[String](["Yes! We'll finally be able to eat food in peace. Thank you again mister."])
+PostDoneDialogue = "We can finally eat food again. Thank you. "
 QuestTitle = "Find and kill rats around the Village"
 QuestGoal = "0/5"
 
@@ -2438,8 +2445,8 @@ IgnoredDialogue = "Maybe someone else can help me. "
 WaitingDialogue = "My husband won't be brought to justice until those monsters are dead! "
 DoneDialogue = Array[String](["Thank you, oh thank you so much sir. My husband may now rest in peace knowing you gave those Cultists what they deserved. "])
 PostDoneDialogue = "My dear husband can now rest in peace. Thank you. "
-QuestTitle = "Kill creatures from different biomes to avenge Martha's husband"
-QuestGoal = "Forest: 0/5, Swamp: 0/5, Plains: 0/5"
+QuestTitle = "Kill creatures from the forest biome to avenge Martha's husband"
+QuestGoal = "Forest: 0/5"
 
 [node name="Cube" parent="Martha/villagerblank/metarig/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_81wgp")
