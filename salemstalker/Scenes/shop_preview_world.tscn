@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6vrp768yxybg"]
+[gd_scene load_steps=6 format=3 uid="uid://b6vrp768yxybg"]
 
-[ext_resource type="PackedScene" uid="uid://3v4hdgpge0v6" path="res://Scenes/MainHandWeapons/shortsword.tscn" id="1_ic87m"]
+[ext_resource type="PackedScene" uid="uid://c1ixg535pupsm" path="res://Assets/Weapons/shortsword.blend" id="1_542hg"]
+[ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="2_8uyb0"]
 
 [sub_resource type="Animation" id="Animation_ic87m"]
 resource_name = "PreviewAnim"
@@ -15,7 +16,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(-2.5, -2.5),
 "update": 0,
-"values": [Vector3(-1.7, -0.11, -1.68), Vector3(0.22, 0.63, -1.4)]
+"values": [Vector3(-1.7, -0.11, -1.68), Vector3(-0.24, 0.12, -1.4)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -27,7 +28,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(-2.5, -2.5),
 "update": 0,
-"values": [Vector3(-1.20428, 1.90241, 0.837758), Vector3(0, 1.5708, 0)]
+"values": [Vector3(-1.20428, 1.90241, 0.837758), Vector3(0, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -39,7 +40,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(-2.5, -2.5),
 "update": 0,
-"values": [Vector3(3.39, 3.39, 3.39), Vector3(1.5, 1.5, 1.5)]
+"values": [Vector3(3.39, 3.39, 3.39), Vector3(1.43, 1.43, 1.43)]
 }
 
 [sub_resource type="Animation" id="Animation_542hg"]
@@ -109,10 +110,18 @@ omni_attenuation = 0.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27959, -1.688)
 size = Vector3(4.15332, 2.99432, 0.185547)
 
-[node name="Shortsword" parent="." instance=ExtResource("1_ic87m")]
+[node name="shortsword" parent="." instance=ExtResource("1_542hg")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
-[node name="PreviewAnim" type="AnimationPlayer" parent="Shortsword"]
+[node name="PreviewAnim" type="AnimationPlayer" parent="shortsword"]
+libraries = {
+&"": SubResource("AnimationLibrary_8uyb0")
+}
+
+[node name="falchion" parent="." instance=ExtResource("2_8uyb0")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="PreviewAnim" type="AnimationPlayer" parent="falchion"]
 libraries = {
 &"": SubResource("AnimationLibrary_8uyb0")
 }

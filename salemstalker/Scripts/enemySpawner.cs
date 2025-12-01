@@ -107,8 +107,8 @@ public partial class enemySpawner : Node3D
             {
 				monster.RandomRangedPosition();
 				monster.Biome = _biome;
-				monster.SpawnRange = SpawnRange;
-				monster._currentSpawnRange = SpawnRange;
+				monster.SpawnRange = SpawnRange*1.5f;
+				monster._currentSpawnRange = SpawnRange*1.5f;
 				monster._startPos = GlobalPosition;
 				if (_canShadow == true)
                 {

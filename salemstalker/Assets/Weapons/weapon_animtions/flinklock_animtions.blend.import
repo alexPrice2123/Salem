@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cyf8c2ed65om1"
-path="res://.godot/imported/flinklock_animtions.blend-bae6caa0bbe2954ebb76a93c188464fe.scn"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Weapons/weapon_animtions/flinklock_animtions.blend"
-dest_files=["res://.godot/imported/flinklock_animtions.blend-bae6caa0bbe2954ebb76a93c188464fe.scn"]
 
 [params]
 

@@ -30,8 +30,8 @@ public partial class Fog : Node3D
 		if (_player._inGoalArea == false)
         {
 			_exitFadeTime = 2f;
-            float distance = (_player.GlobalPosition - GetParent().GetNode<Node3D>("GoalArea").GlobalPosition).Length();
-			_normalFog = ((1-_player._lookingAtGoalPoint)*distance*0.0015f)+0.055f;
+            float distance = (_player.GlobalPosition - GetParent().GetNode<Node3D>("GoalArea/GoalPoint").GlobalPosition).Length();
+			_normalFog = ((1-_player._lookingAtGoalPoint)*distance*0.015f)+0.055f;
         }
         else
         {

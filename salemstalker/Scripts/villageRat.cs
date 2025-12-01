@@ -15,7 +15,7 @@ public partial class villageRat : Monster3d
 		BaseDamage = 0f;
 		WanderRange = 25;
 		AttackSpeed = 1.5f;
-		AttackRange = 0f;
+		AttackRange = 2f;
 		Monster = this;
 		Fleeing = true;
 		Initialization();

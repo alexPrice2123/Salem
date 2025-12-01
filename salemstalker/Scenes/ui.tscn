@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=43 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
@@ -45,6 +45,33 @@ shader_parameter/progress_bias = Vector2(0, 0)
 line_spacing = 3.08
 font_size = 75
 outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pmm21"]
+line_spacing = 3.08
+font_size = 50
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_85lyl"]
+line_spacing = 3.08
+font_size = 200
+font_color = Color(0, 0, 0, 1)
+stacked_outline_count = 5
+stacked_outline_0/size = 20
+stacked_outline_0/color = Color(1, 0, 0, 1)
+stacked_outline_1/size = 20
+stacked_outline_1/color = Color(0.78431374, 0, 0, 1)
+stacked_outline_2/size = 20
+stacked_outline_2/color = Color(0.5882353, 0, 0, 1)
+stacked_outline_3/size = 20
+stacked_outline_3/color = Color(0.39215687, 0, 0, 1)
+stacked_outline_4/size = 20
+stacked_outline_4/color = Color(0.19607843, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mplvk"]
+line_spacing = 3.08
+font_size = 50
+font_color = Color(1, 0, 0, 1)
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fs27"]
@@ -167,6 +194,25 @@ font_size = 26
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_v4f2e"]
+line_spacing = -5.0
+font_size = 20
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fe2sg"]
+line_spacing = -5.0
+font_size = 20
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jd57c"]
+line_spacing = -5.0
+font_size = 20
+font_color = Color(0.5540922, 0.84772754, 0.40119067, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_whq80"]
 shader = ExtResource("13_3r70p")
 shader_parameter/freq_times_PI = 1.0
@@ -201,9 +247,10 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(539, 303)
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Combat" type="Label" parent="Loading"]
+[node name="Text" type="Label" parent="Loading"]
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
@@ -216,6 +263,84 @@ text = "Loading..."
 label_settings = SubResource("LabelSettings_4vbiv")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Q" type="Label" parent="Loading"]
+visible = false
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -91.18182
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "'Q' to quit"
+label_settings = SubResource("LabelSettings_pmm21")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Dead" type="ColorRect" parent="."]
+visible = false
+z_index = 4000
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(539, 303)
+color = Color(0, 0, 0, 1)
+
+[node name="Text" type="Label" parent="Dead"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "You Died"
+label_settings = SubResource("LabelSettings_85lyl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="R" type="Label" parent="Dead"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 63.545475
+offset_top = -27.909075
+offset_right = 63.545532
+offset_bottom = -27.909058
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "'R' to try again"
+label_settings = SubResource("LabelSettings_mplvk")
+vertical_alignment = 2
+
+[node name="Q" type="Label" parent="Dead"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -65.54544
+offset_top = -27.909075
+offset_right = -65.54541
+offset_bottom = -27.909058
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "'Q' to quit"
+label_settings = SubResource("LabelSettings_mplvk")
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="Border" type="ColorRect" parent="."]
 z_index = 100
@@ -798,10 +923,10 @@ anchor_left = 0.059
 anchor_top = 0.157
 anchor_right = 0.69
 anchor_bottom = 0.856
-offset_left = 0.338997
-offset_top = -0.142006
-offset_right = -0.510071
-offset_bottom = 0.263977
+offset_left = 0.3390007
+offset_top = -0.14200592
+offset_right = -0.5100708
+offset_bottom = 0.26397705
 
 [node name="ShopTypeOptions" type="OptionButton" parent="BlacksmithShop"]
 layout_mode = 0
@@ -934,28 +1059,30 @@ layout_mode = 0
 offset_right = 242.0
 offset_bottom = 92.0
 theme_override_fonts/font = ExtResource("10_nt8jn")
-text = "Upgrade
-Greatsword?"
+text = "Shortsword
+Upgraded!"
 label_settings = SubResource("LabelSettings_whq80")
 horizontal_alignment = 1
 
-[node name="Requirements" type="Label" parent="BlacksmithShop/View/UpgradeMenu"]
+[node name="Requirements" type="Control" parent="BlacksmithShop/View/UpgradeMenu"]
+anchors_preset = 0
+offset_right = 242.0
+offset_bottom = 422.0
+
+[node name="Requirements" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
 z_index = 2
 layout_mode = 0
 offset_left = 11.0
 offset_top = 132.0
 offset_right = 232.0
-offset_bottom = 360.0
+offset_bottom = 241.0
 theme_override_fonts/font = ExtResource("10_nt8jn")
 text = "Reqirements:
-
-Great stuff x2
-Sword stuff x10
-Upgrade stuff x3"
+FREEEEE!!!"
 label_settings = SubResource("LabelSettings_kuui0")
 horizontal_alignment = 1
 
-[node name="UpgradeConf" type="Button" parent="BlacksmithShop/View/UpgradeMenu"]
+[node name="UpgradeConf" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
 z_index = 2
 layout_mode = 0
 offset_left = 14.0
@@ -964,7 +1091,7 @@ offset_right = 116.0
 offset_bottom = 412.0
 text = "Yes"
 
-[node name="UpgradeDeny" type="Button" parent="BlacksmithShop/View/UpgradeMenu"]
+[node name="UpgradeDeny" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
 z_index = 2
 layout_mode = 0
 offset_left = 126.0
@@ -972,6 +1099,80 @@ offset_top = 377.0
 offset_right = 228.0
 offset_bottom = 412.0
 text = "No"
+
+[node name="Results" type="Control" parent="BlacksmithShop/View/UpgradeMenu"]
+visible = false
+z_index = 1
+anchors_preset = 0
+offset_right = 242.0
+offset_bottom = 422.0
+
+[node name="Results" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
+z_index = 2
+layout_mode = 0
+offset_left = 7.0
+offset_top = 209.0
+offset_right = 113.0
+offset_bottom = 250.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+text = "Results:"
+label_settings = SubResource("LabelSettings_d42i4")
+
+[node name="Unlocks" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
+z_index = 2
+layout_mode = 0
+offset_left = 10.0
+offset_top = 119.0
+offset_right = 232.0
+offset_bottom = 178.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+text = "Unlocked: Pommel Strike
+More info on the view page"
+label_settings = SubResource("LabelSettings_fcexb")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="StatName" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
+z_index = 2
+layout_mode = 0
+offset_left = 11.0
+offset_top = 244.0
+offset_right = 141.0
+offset_bottom = 373.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+label_settings = SubResource("LabelSettings_v4f2e")
+text_overrun_behavior = 1
+
+[node name="Amount" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
+z_index = 2
+layout_mode = 0
+offset_left = 139.0
+offset_top = 244.0
+offset_right = 178.0
+offset_bottom = 373.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+label_settings = SubResource("LabelSettings_fe2sg")
+autowrap_mode = 1
+
+[node name="Addition" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
+z_index = 2
+layout_mode = 0
+offset_left = 175.0
+offset_top = 244.0
+offset_right = 242.0
+offset_bottom = 373.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+label_settings = SubResource("LabelSettings_jd57c")
+autowrap_mode = 1
+
+[node name="Done" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Results"]
+z_index = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 377.0
+offset_right = 228.0
+offset_bottom = 412.0
+text = "All Done"
 
 [node name="WizardShop" type="Control" parent="."]
 visible = false
@@ -1036,5 +1237,6 @@ texture = ExtResource("14_8fs27")
 [connection signal="button_up" from="BlacksmithShop/ShopOption4" to="." method="_on_shop_option4_button_up"]
 [connection signal="button_up" from="BlacksmithShop/View/Upgrade" to="." method="_on_upgrade_button_up"]
 [connection signal="button_up" from="BlacksmithShop/View/View" to="." method="_on_view_button_up"]
-[connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/UpgradeConf" to="." method="_on_upgrade_conf_button_up"]
-[connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/UpgradeDeny" to="." method="_on_upgrade_deny_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/Requirements/UpgradeConf" to="." method="_on_upgrade_conf_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/Requirements/UpgradeDeny" to="." method="_on_upgrade_deny_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/Results/Done" to="." method="_on_done_button_up"]

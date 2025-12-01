@@ -20,7 +20,7 @@ public partial class Player3d : CharacterBody3D
 	private Control _interface;                      // Reference to the main Pause menu UI
 	private Slider _senseBar;                        // Slider control within the pause menu for adjusting sensitivity
 	public Control _inv;                             // Reference to the Inventory UI
-	private Node3D _sword;                           // The currently equipped sword's mesh/root node
+	public Node3D _sword;                           // The currently equipped sword's mesh/root node
 	private Node3D _eSecWeapon1;					 // The secondary weapon slot 1's root node
 	private Node3D _eSecWeapon2;					 // The secondary weapon slot 2's root node
 	private Node3D _eSecWeapon3;					 // The secondary weapon slot 3's root node
@@ -63,7 +63,7 @@ public partial class Player3d : CharacterBody3D
 	private bool _inStep = false;					 	// Prevents footstep audio from playing if player is already playing a step.
 	private float _bobTime = 0.0f;                   	// Accumulator for the head-bob sine wave function
 	public string _originalDialouge;                 	// Stores an NPC's default dialogue to restore it after interaction
-	private CharacterBody3D _lastSeen;               	// Reference to the last interactable object the raycast hit
+	public CharacterBody3D _lastSeen;               	// Reference to the last interactable object the raycast hit
 	public int _monstersKilled = 0;                  	// Counter for monsters killed (for quest tracking)
 	public float _maxHealth = 100f;					 	// Maximum player health
 	public float _health; 								// Current player health
@@ -104,6 +104,11 @@ public partial class Player3d : CharacterBody3D
  	public bool _inGoalArea = true;
 	private List<string> _overlappingAreas = new List<string>();
 	public float _lookingAtGoalPoint;
+	public Vector3 _goalPointPos = new Vector3(999, 999, 999);
+	public Node3D _goalPoint;
+	public bool _inWater = false;
+	public bool _dead = false;
+	private SubViewportContainer _map;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -130,6 +135,8 @@ public partial class Player3d : CharacterBody3D
 		_lantern = GetNode<OmniLight3D>("Head/Camera3D/Lantern");
 		_dialogue = GetNode<Control>("UI/Dialogue");
 		_smithShop = GetNode<Control>("UI/BlacksmithShop");
+		_goalPoint = GetParent().GetNode<Node3D>("GoalArea/GoalPoint");
+		_map = GetParent().GetNode<SubViewportContainer>("PaperMap");
 		
 		// Initialize starting values
 		_health = _maxHealth;
@@ -150,6 +157,15 @@ public partial class Player3d : CharacterBody3D
 	// Called when an input event occurs.
 	public override void _Input(InputEvent @event)
 	{
+		if (Input.IsActionJustPressed("retry") && _dead == true)
+        {
+			GetNode<Ui>("UI")._loadingGoal = -1f;
+        }
+		if (Input.IsActionJustPressed("quit") && _dead == true)
+        {
+            GetTree().Quit(); // Quit the scene 
+        }
+		if (_dead == true){return;}
 		// --- Camera look ---
 		if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
 		{
@@ -227,14 +243,6 @@ public partial class Player3d : CharacterBody3D
 				 && IsInstanceValid(_lastSeen) // Looking at an interactable object
 				 && _inv.Visible == false)
 		{
-			// If the interactable object is an "Apple", pick it up and destroy the item instance
-			if (_lastSeen.Name == "Apple")
-			{
-				CharacterBody3D toDestroy = _lastSeen;
-				_lastSeen = null;
-				toDestroy.QueueFree();
-				_hasApple = true;
-			}
 			if (_lastSeen.Name == "Anvil")
 			{
 				_lastSeen = null;
@@ -264,7 +272,7 @@ public partial class Player3d : CharacterBody3D
 		else if (Input.IsActionJustPressed("inventory"))
 		{
 			GD.Print("INV");
-			if (_inCombat == true || _questBook.Visible == true) { return; } // Cannot open in combat or if quest book is open
+			if (_inCombat == true || _questBook.Visible == true || _map.Visible == true) { return; } // Cannot open in combat or if quest book is open
 
 			if (_inv.Visible == true)
 			{
@@ -284,7 +292,7 @@ public partial class Player3d : CharacterBody3D
 		// --- Questbook toggle (L Key) ---
 		else if (Input.IsActionJustPressed("questOpen"))
 		{
-			if (_inv.Visible == true) { return; }
+			if (_inv.Visible == true || _map.Visible == true) { return; }
 
 			if (_questBook.Visible == true)
 			{
@@ -292,11 +300,28 @@ public partial class Player3d : CharacterBody3D
 				_questBook.Visible = false;
 				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}
-			else if (_inv.Visible == false)
+			else
 			{
 				// Show quest book, un-capture mouse
 				_questBook.Visible = true;
 				Input.MouseMode = Input.MouseModeEnum.Visible;
+			}
+		}
+
+		// --- Map toggle (M Key) ---
+		else if (Input.IsActionJustPressed("mapOpen"))
+		{
+			if (_inv.Visible == true || _questBook.Visible == true) { return; }
+
+			if (_map.Visible == true)
+			{
+				// Hide map
+				_map.Visible = false;
+			}
+			else 
+			{
+				// Show map
+				_map.Visible = true;
 			}
 		}
 
@@ -405,6 +430,7 @@ public partial class Player3d : CharacterBody3D
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_dead == true){return;}
 		if (_currentBiome != _lastBiome)
         {
             _lastBiome = _currentBiome;
@@ -417,7 +443,8 @@ public partial class Player3d : CharacterBody3D
 		if (_overlappingAreas.Contains("Plains")){_currentBiome = "Plains";}
 		if (_overlappingAreas.Contains("Brittlebay Village")){_currentBiome = "Brittlebay Village";}
 		if (_overlappingAreas.Contains("Swamp")){_currentBiome = "Swamp";}
-		if (_overlappingAreas.Contains("GoalArea")){_inGoalArea = true;}
+		if (_overlappingAreas.Contains("GoalArea")) { _inGoalArea = true; }
+		if (_overlappingAreas.Contains("Water")){ _knockVelocity = 15; }
 
 		if (_currentBiome.Contains("Brittlebay Village"))
         {
@@ -438,7 +465,6 @@ public partial class Player3d : CharacterBody3D
 		if (_currentStaminaTimer > 0f)
 		{
 			_currentStaminaTimer -= (float)delta;
-			GD.Print(_currentStaminaTimer);
 		}
 		// --- Lantern/Light Effects (Based on Health) ---
 		// Smoothly interpolate the lantern's color between max and min health colors
@@ -457,7 +483,8 @@ public partial class Player3d : CharacterBody3D
 		// --- Death Condition ---
 		if (_health <= 0)
 		{
-			GetTree().ReloadCurrentScene(); // Reload the scene (player dies)
+			_dead = true;
+			GetNode<ColorRect>("UI/Dead").Visible = true;
 		}
 
 		// --- Parry Window Countdown ---
@@ -516,9 +543,6 @@ public partial class Player3d : CharacterBody3D
 			VerCamSense = Convert.ToSingle(_senseBar.Value / 1000);
 		}
 
-		// --- Gravity ---
-		if (!IsOnFloor()) { velocity += GetGravity() * (float)delta; } // Apply gravity if not on the floor
-
 		// --- Movement input calculation ---
 		Vector2 inputDir = Input.GetVector("left", "right", "forward", "back"); // Get normalized 2D input
 		// Convert 2D input to 3D direction relative to the player's head/facing
@@ -534,8 +558,8 @@ public partial class Player3d : CharacterBody3D
 				_stamina = 0f;
 			}
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
-			velocity.X = direction.X * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
-			velocity.Z = direction.Z * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (_dashVelocity - _knockVelocity));
+			velocity.X = direction.X * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.X) * -_knockVelocity) + _dashVelocity);
+			velocity.Z = direction.Z * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.Z) * -_knockVelocity) + _dashVelocity);
 
 			if (_running == true)
 			{
@@ -559,7 +583,9 @@ public partial class Player3d : CharacterBody3D
 			// Player is stationary (no directional input)
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
-			velocity = velocity.Lerp(_cam.GlobalTransform.Basis.Z * -1 * (_dashVelocity - _knockVelocity), (float)delta * 10f);
+			Vector3 tempvelo = velocity;
+			tempvelo = tempvelo.Lerp(_cam.GlobalTransform.Basis.Z * -1 * (_dashVelocity - _knockVelocity), (float)delta * 10f);
+			velocity = new Vector3(tempvelo.X, velocity.Y, tempvelo.Z);
 			if (IsOnFloor())
             {
                 velocity = new Vector3(velocity.X, 0f, velocity.Z); // Keep Y velocity (gravity/jump) separate
@@ -577,20 +603,22 @@ public partial class Player3d : CharacterBody3D
 		// Smoothly scale FOV based on current movement speed (for a "speed effect")
 		float fovGoal = Mathf.Lerp(_cam.Fov, Velocity.Length() + 80, (float)delta * 10f);
 		_cam.Fov = fovGoal;
-
+		
 		// --- Interaction detection (General) ---
 		if (GetMouseCollision() != null)
 		{
 			CharacterBody3D targetNode = GetMouseCollision();
-			_lastSeen = targetNode;
-			// Specific handling for the "Apple" item (shows a title)
-			if (targetNode.Name == "Apple")
-			{
-				targetNode.GetNode<Label3D>("Title").Visible = true;
-			}
+			if (!targetNode.IsInGroup("Monster")){_lastSeen = targetNode;}
 			if (targetNode.Name == "Anvil")
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
+			}
+			if (targetNode is NpcVillager node)
+			{
+				if (node._object == "Boat")
+                {
+                    node._questPrompt.Visible = true;
+                }
 			}
 		}
 
@@ -600,25 +628,28 @@ public partial class Player3d : CharacterBody3D
 			CharacterBody3D targetNode = GetMouseCollision();
 			if (targetNode is NpcVillager villager)
 			{
-				// Handle different quest states by modifying the NPC's displayed dialogue
-				if (villager._questComplete == false && villager._questInProgress == false) // Initial quest state
-				{
-					_lastSeen = villager;
-					_originalDialouge = villager._questPrompt.Text;
-					villager._questPrompt.Text = villager._questPrompt.Text + "\n" + "E to Talk";
-				}
-				else if (villager._questComplete == false && villager._questInProgress == true) // Quest in progress
-				{
-					_lastSeen = villager;
-					_originalDialouge = villager.WaitingDialogue;
-					villager._questPrompt.Text = villager.WaitingDialogue;
-				}
-				else if (villager._questComplete == true & villager._questInProgress == true) // Quest complete, ready for turn-in
-				{
-					_lastSeen = villager;
-					_originalDialouge = villager.WaitingDialogue;
-					villager._questPrompt.Text = villager.WaitingDialogue + "\n" + "E to Talk";
-				}
+				if (villager._object == "None")
+                {
+                    // Handle different quest states by modifying the NPC's displayed dialogue
+					if (villager._questComplete == false && villager._questInProgress == false) // Initial quest state
+					{
+						_lastSeen = villager;
+						_originalDialouge = villager._questPrompt.Text;
+						villager._questPrompt.Text = villager._questPrompt.Text + "\n" + "E to Talk";
+					}
+					else if (villager._questComplete == false && villager._questInProgress == true) // Quest in progress
+					{
+						_lastSeen = villager;
+						_originalDialouge = villager.WaitingDialogue;
+						villager._questPrompt.Text = villager.WaitingDialogue;
+					}
+					else if (villager._questComplete == true & villager._questInProgress == true) // Quest complete, ready for turn-in
+					{
+						_lastSeen = villager;
+						_originalDialouge = villager.WaitingDialogue;
+						villager._questPrompt.Text = villager.WaitingDialogue + "\n" + "E to Talk";
+					}
+                }
 			}
 		}
 		// --- Interaction End ---
@@ -664,6 +695,14 @@ public partial class Player3d : CharacterBody3D
 		{
 			_stamina = 0; // Limit minimum stamina
 		}
+ 
+		if (GetMouseCollision()  == null)
+        {
+            _lastSeen = null;
+        }
+
+		// --- Gravity ---
+		if (!IsOnFloor()) { velocity += new Vector3(0f,-3.8f,0f) * (float)delta; } // Apply gravity if not on the floor
 		
 		// --- Apply movement ---
 		Velocity = velocity;
@@ -1142,44 +1181,60 @@ public partial class Player3d : CharacterBody3D
 
 	private void _on_hurtbox_area_entered(Area3D zone)
     {
-         // Add all groups of the entered area to our tracking list
-        foreach (string group in zone.GetGroups())
-        {
-            if (!_overlappingAreas.Contains(group))
-            {
-                _overlappingAreas.Add(group);
-            }
-        }
+		// Add all groups of the entered area to our tracking list
+		foreach (string group in zone.GetGroups())
+		{
+			if (!_overlappingAreas.Contains(group))
+			{
+				_overlappingAreas.Add(group);
+			}
+			FindClosestGoal(zone);
+		}
     }
 	private void _on_hurtbox_area_exited(Area3D zone)
-    {
-        // Remove groups of the exited area from our tracking list
-        foreach (string group in zone.GetGroups())
-        {
-            // Only remove if no other overlapping area belongs to that group
-            bool groupStillPresent = false;
-            Area3D playerArea = GetNode<Area3D>("Hurtbox");
-            foreach (Area3D currentOverlap in playerArea.GetOverlappingAreas())
-            {
-                if (currentOverlap.IsInGroup(group))
-                {
-                    groupStillPresent = true;
-                    break;
-                }
-            }
+	{
+		// Remove groups of the exited area from our tracking list
+		foreach (string group in zone.GetGroups())
+		{
+			// Only remove if no other overlapping area belongs to that group
+			FindClosestGoal(zone);
+			bool groupStillPresent = false;
+			Area3D playerArea = GetNode<Area3D>("Hurtbox");
+			foreach (Area3D currentOverlap in playerArea.GetOverlappingAreas())
+			{
+				if (currentOverlap.IsInGroup(group))
+				{
+					groupStillPresent = true;
+					break;
+				}
+			}
 
-            if (!groupStillPresent)
-            {
-                _overlappingAreas.Remove(group);
-            }
-        }
+			if (!groupStillPresent)
+			{
+				_overlappingAreas.Remove(group);
+			}
+		}
+	}
+	
+	private void FindClosestGoal(Area3D zone)
+    {
+		if (zone.GetGroups().Contains("GoalArea"))
+		{
+			foreach (CollisionShape3D collision in zone.GetChildren())
+			{
+				if ((collision.GlobalPosition - GlobalPosition).Length() < (_goalPointPos - GlobalPosition).Length())
+				{
+					_goalPointPos = collision.GlobalPosition;
+					_goalPoint.GlobalPosition = GlobalPosition;
+				}
+			}
+		}
     }
 
 	public float CalculateLookAtAlignment()
     {
-        if (GetParent().GetNode<Node3D>("GoalArea") == null)
+        if (_goalPoint == null)
         {
-            GD.PrintErr("Target point not assigned or found.");
             return 1.0f; // Return maximum unalignment if no target
         }
 
@@ -1188,7 +1243,7 @@ public partial class Player3d : CharacterBody3D
         Vector3 playerForward = _cam.GlobalTransform.Basis.Z.Normalized(); 
 
         // 2. Get the vector from the player to the target point
-        Vector3 playerToTarget = (GetParent().GetNode<Node3D>("GoalArea").GlobalTransform.Origin - GlobalTransform.Origin).Normalized();
+        Vector3 playerToTarget = (_goalPoint.GlobalTransform.Origin - GlobalTransform.Origin).Normalized();
 
         // 3. Calculate the dot product
         float dotProduct = playerForward.Dot(playerToTarget);

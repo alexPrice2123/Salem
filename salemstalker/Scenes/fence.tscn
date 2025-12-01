@@ -1,0 +1,133 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkhqy1flvmad"]
+
+[ext_resource type="PackedScene" uid="uid://cy6aer0u11dyw" path="res://Assets/3D/buildings/fence2.blend" id="1_fsj86"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_0m5cy"]
+[ext_resource type="PackedScene" uid="uid://bg0f8jemngmha" path="res://Assets/3D/buildings/fence3.blend" id="3_oklvd"]
+[ext_resource type="PackedScene" uid="uid://dob75n3iwb2rp" path="res://Assets/3D/buildings/fence.blend" id="4_xg3b5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qc61"]
+albedo_texture = ExtResource("2_0m5cy")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fsj86"]
+size = Vector3(0.4560547, 1.6235352, 10.529053)
+
+[node name="Fence" type="StaticBody3D"]
+
+[node name="fence2" parent="." instance=ExtResource("1_fsj86")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08192353, 1.6561832)
+
+[node name="Cube" parent="fence2" index="0"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_001" parent="fence2" index="1"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_002" parent="fence2" index="2"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_003" parent="fence2" index="3"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_004" parent="fence2" index="4"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="fence3" parent="." instance=ExtResource("3_oklvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08192353, -0.14604807)
+
+[node name="Cube" parent="fence3" index="0"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_001" parent="fence3" index="1"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_002" parent="fence3" index="2"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_003" parent="fence3" index="3"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_004" parent="fence3" index="4"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_005" parent="fence3" index="5"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="fence" parent="." instance=ExtResource("4_xg3b5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08192353, -1.8687341)
+
+[node name="Cube" parent="fence" index="0"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_001" parent="fence" index="1"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_002" parent="fence" index="2"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_003" parent="fence" index="3"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="fence4" parent="." instance=ExtResource("1_fsj86")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.12996563, -0.08192353, 1.7144804)
+
+[node name="Cube" parent="fence4" index="0"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_001" parent="fence4" index="1"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_002" parent="fence4" index="2"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_003" parent="fence4" index="3"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_004" parent="fence4" index="4"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="fence5" parent="." instance=ExtResource("3_oklvd")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.12996548, -0.08192353, 0.0029683113)
+
+[node name="Cube" parent="fence5" index="0"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_001" parent="fence5" index="1"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_002" parent="fence5" index="2"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_003" parent="fence5" index="3"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_004" parent="fence5" index="4"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_005" parent="fence5" index="5"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="fence6" parent="." instance=ExtResource("4_xg3b5")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.12996534, -0.08192353, -1.703638)
+
+[node name="Cube" parent="fence6" index="0"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_001" parent="fence6" index="1"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_002" parent="fence6" index="2"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="Cube_003" parent="fence6" index="3"]
+material_override = SubResource("StandardMaterial3D_4qc61")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.751709, 0)
+shape = SubResource("BoxShape3D_fsj86")
+
+[editable path="fence2"]
+[editable path="fence3"]
+[editable path="fence"]
+[editable path="fence4"]
+[editable path="fence5"]
+[editable path="fence6"]
