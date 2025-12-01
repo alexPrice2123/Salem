@@ -95,6 +95,7 @@ public partial class Player3d : CharacterBody3D
 	public float _speedCount = 0f;
 	public string _currentBiome = "Village";
 	public string _lastBiome = "Village";
+	private float _backSpeed = 0f;
 
 	public int _swampMonstersKilled = 0;
 	public int _plainsMonstersKilled = 0;
@@ -166,6 +167,7 @@ public partial class Player3d : CharacterBody3D
             GetTree().Quit(); // Quit the scene 
         }
 		if (_dead == true){return;}
+		
 		// --- Camera look ---
 		if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
 		{
@@ -332,7 +334,7 @@ public partial class Player3d : CharacterBody3D
 			if (_dashVelocity <= 0.1f && _stamina >= 0.1f * _maxStamina)
 			{
 				_dashVelocity = _fullDashValue; // Apply max dash speed
-				_stamina -= 10f; // Deduct stamina
+				_stamina -= 20f; // Deduct stamina
 			}
 		}
 
@@ -424,6 +426,16 @@ public partial class Player3d : CharacterBody3D
 				}
 			}
 		}
+
+		if (Input.IsActionPressed("back"))
+        {
+            _backSpeed = Speed*(-0.30f);
+			_running = false;
+        }
+        else
+        {
+            _backSpeed = 0;
+        }
 	}
 
 	// --- PHYSICS LOOP ---
@@ -519,7 +531,14 @@ public partial class Player3d : CharacterBody3D
 		// --- Stamina Regeneration ---
 		if (_running == false && _currentStaminaTimer <= 0)
 		{
-			_stamina += 0.02f * _maxStamina * (float)delta; // Regenerate stamina slowly
+			if (_inCombat == true)
+			{
+				_stamina += 0.04f * _maxStamina * (float)delta; // Regenerate stamina slowly in combat
+			}
+			else
+			{
+				_stamina += 0.08f * _maxStamina * (float)delta; // Regenerate stamina slowly out of combat
+			}
 			if (_stamina >= _maxStamina)
 			{
 				_stamina = _maxStamina; // Cap stamina at max
@@ -544,32 +563,34 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		// --- Movement input calculation ---
+
 		Vector2 inputDir = Input.GetVector("left", "right", "forward", "back"); // Get normalized 2D input
 		// Convert 2D input to 3D direction relative to the player's head/facing
 		Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
+		GD.Print(_backSpeed);
 
 		if (direction != Vector3.Zero)
 		{
 			// Player is moving
 			_fullDashValue = 10f; // Reset dash value to standard
-			if (_stamina <= 0f)
+			if (_stamina <= 0.02f * _maxStamina)
 			{
 				_running = false; // Force stop running if stamina is too low
 				_stamina = 0f;
 			}
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
-			velocity.X = direction.X * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.X) * -_knockVelocity) + _dashVelocity);
-			velocity.Z = direction.Z * (Speed + _speedOffset + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.Z) * -_knockVelocity) + _dashVelocity);
+			velocity.X = direction.X * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.X) * -_knockVelocity) + _dashVelocity);
+			velocity.Z = direction.Z * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.Z) * -_knockVelocity) + _dashVelocity);
 
 			if (_running == true)
 			{
 				if (_inCombat == true)
 				{
-					_stamina -= 10f * (float)delta; // Deduct stamina while running  
+					_stamina -= 8f * (float)delta; // Deduct stamina while running  
 				}
 				else
 				{
-					_stamina -= 4f * (float)delta; // Deduct stamina while running  
+					_stamina -= 2f * (float)delta; // Deduct stamina while running  
 				}
 				play_footstep(0.35f);
 			}
@@ -729,9 +750,9 @@ public partial class Player3d : CharacterBody3D
 		float tempVerSense = VerCamSense;
 
 		// Damage penalty if stamina is too low
-		if (_stamina <= 0.05f * _maxStamina)
+		if (_stamina <= 0.02f * _maxStamina)
 		{
-			_damage *= 0.7f;
+			_damage *= 0.75f;
 		}
 
 		// Skip stamina deduction and set swing time to zero if just equipping the weapon (for animation only)
@@ -909,17 +930,17 @@ public partial class Player3d : CharacterBody3D
 		{
 			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Kill creatures from different biomes to avenge Martha's husband");
 			// Update the quest objective text
-			if (_swampMonstersKilled >= 5 && _plainsMonstersKilled >=5 && _forestMonstersKilled >= 5) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			if (/*_swampMonstersKilled >= 5 && _plainsMonstersKilled >=5 && */_forestMonstersKilled >= 5) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
 			else { (currentQuest.GetNode("Number") as Label).Text = "Forest: "+_forestMonstersKilled + "/5 \n"
-			+"Swamp: "+_swampMonstersKilled+ "/5 \n"
-			+"Plains: "+_plainsMonstersKilled+ "/5 \n"; }
+			//+"Swamp: "+_swampMonstersKilled+ "/5 \n"
+			/*+"Plains: "+_plainsMonstersKilled+ "/5 \n"*/; }
 		}
 		else if (_questBox.FindChild("Find and kill rats around the Village") != null)
 		{
 			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Find and kill rats around the Village");
 			// Update the quest objective text
-			if (_ratsKilled >= 10) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
-			else { (currentQuest.GetNode("Number") as Label).Text = _ratsKilled+"/10"; }
+			if (_ratsKilled >= 5) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			else { (currentQuest.GetNode("Number") as Label).Text = _ratsKilled+"/5"; }
 		}
 	}
 
@@ -998,7 +1019,7 @@ public partial class Player3d : CharacterBody3D
 		else if (_blocking == true && _parry == true)
 		{
 			// Successful parry: restore stamina, negate damage, stun the monster, set parried flag
-			_stamina += 0.25f * _maxHealth;
+			_stamina += 0.20f * _maxStamina;
 			takenDamage = 0f;
 			monster.Stunned();
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
@@ -1015,10 +1036,10 @@ public partial class Player3d : CharacterBody3D
         }
 		
 		// Damage multiplier if player is out of stamina
-		if (_stamina <= 0)
+		if (_stamina <= 0.02f * _maxStamina)
 		{
-			takenDamage *= 1.3f;
-			_knockVelocity *= 1.3f;
+			takenDamage *= 1.1f;
+			_knockVelocity *= 1.1f;
 		}
 		_health -= takenDamage; // Apply final damage
 	}
@@ -1045,7 +1066,7 @@ public partial class Player3d : CharacterBody3D
 		else if (_blocking == true && _parry == true)
 		{
 			// Successful parry: restore stamina, negate damage, destroy projectile, set parried flag
-			_stamina += 0.10f * _maxStamina;
+			_stamina += 0.15f * _maxStamina;
 			takenDamage = 0f;
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			projectile.QueueFree();
@@ -1053,11 +1074,6 @@ public partial class Player3d : CharacterBody3D
 			_knockVelocity = 0f;
 		}
 		
-		// Damage multiplier if player is out of stamina (Note: this is a damage reduction, which might be a bug/typo for out-of-stamina)
-		if (_stamina <= 0)
-		{
-			takenDamage *= 0.7f;
-		}
 		_health -= takenDamage; // Apply final damage
 	}
 

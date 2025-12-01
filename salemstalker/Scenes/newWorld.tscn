@@ -2342,8 +2342,6 @@ transform = Transform3D(0.9041945, 0, 0.42712098, 0, 1, 0, -0.42712098, 0, 0.904
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("1_fb5os")
 DataPath = "res://Scenes/World"
-LODLevels = 3
-LODInitialCellWidth = 0.25
 CollisionLayers = -1
 CollisionMask = -1
 TextureSets = SubResource("Resource_vbfps")
@@ -2354,7 +2352,7 @@ WaterDefinition = SubResource("Resource_b7wla")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_6rohr")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = true
+metadata/_edit_lock_ = false
 
 [node name="Mary" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.560577, 1.9490459, 16.670944)
@@ -2388,6 +2386,7 @@ script = ExtResource("424_nr7af")
 NPCName = "Dillon"
 QuestTitle = "Find and kill rats around the Village"
 QuestGoal = "0/5"
+_questComplete = true
 
 [node name="Cube" parent="Dillon/villagerblank/metarig/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_wg0hf")
@@ -2408,6 +2407,7 @@ DoneDialogue = Array[String](["You did it! Our village is now safe once again. I
 PostDoneDialogue = "I heard of Shrine sightings in the next village over."
 QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/5"
+_questComplete = true
 
 [node name="Cube" parent="Lukas/villagerblank/metarig/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_x5sta")
@@ -2440,6 +2440,7 @@ DoneDialogue = Array[String](["Thank you, oh thank you so much sir. My husband m
 PostDoneDialogue = "My dear husband can now rest in peace. Thank you. "
 QuestTitle = "Kill creatures from different biomes to avenge Martha's husband"
 QuestGoal = "Forest: 0/5, Swamp: 0/5, Plains: 0/5"
+_questComplete = true
 
 [node name="Cube" parent="Martha/villagerblank/metarig/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_81wgp")
@@ -2940,7 +2941,6 @@ debug_color = Color(0, 1, 0, 1)
 
 [node name="GoalArea" parent="." instance=ExtResource("449_jsh0i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.735676, 0, 26.98191)
-visible = false
 
 [node name="Area" parent="GoalArea" index="0" groups=["GoalArea"]]
 

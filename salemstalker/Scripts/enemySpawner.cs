@@ -18,7 +18,7 @@ public partial class enemySpawner : Node3D
 	public int _maxMonsterCount = 70;
 	[Export]
 	public bool _canShadow = false;
-	[Export(PropertyHint.Enum, "Plains,Swamp,Forest")]
+	[Export(PropertyHint.Enum, "Plains,Swamp,Forest,Misc")]
 	public string _biome = "Plains";
 	public float SpawnRange;        
 	[Export]
