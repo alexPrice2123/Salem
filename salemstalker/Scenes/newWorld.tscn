@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
 [ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="2_eb0fy"]
+[ext_resource type="Texture2D" uid="uid://cknlmd0xqnxbe" path="res://Assets/UI/mapagainagain.png" id="2_v8qwt"]
 [ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="3_letqy"]
 [ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="4_aragi"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="5_nc3gf"]
@@ -922,7 +923,6 @@
 [ext_resource type="Texture2D" uid="uid://c1v1wcwnfmerq" path="res://Scenes/World/Water_-3_-4.res" id="854_7cg25"]
 [ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://Assets/2D/WoodPlank.png" id="919_h1utm"]
 [ext_resource type="PackedScene" uid="uid://cw86i51qs7jry" path="res://Scenes/boat.tscn" id="922_qtthl"]
-[ext_resource type="Texture2D" uid="uid://dl5aiy3qb3nqh" path="res://Assets/2D/Map.png" id="923_v8qwt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
 
@@ -1152,6 +1152,7 @@ color_ramp = SubResource("Gradient_qebug")
 [sub_resource type="Resource" id="Resource_3ua1v"]
 script = ExtResource("22_rabu8")
 ObjectFrequency = 7
+RandomRange = 10.0
 NoiseTexture = SubResource("NoiseTexture2D_m6kd0")
 RandomYRotation = true
 RandomSize = true
@@ -2260,9 +2261,9 @@ offset_bottom = -0.29608154
 [node name="Sprite2D" type="Sprite2D" parent="PaperMap"]
 z_index = -1
 material = SubResource("ShaderMaterial_70xvq")
-position = Vector2(594, 295)
-scale = Vector2(0.5057118, 0.50571173)
-texture = ExtResource("923_v8qwt")
+position = Vector2(599, 297)
+scale = Vector2(0.9857143, 0.9857142)
+texture = ExtResource("2_v8qwt")
 
 [node name="Sub" type="SubViewport" parent="PaperMap"]
 transparent_bg = true
