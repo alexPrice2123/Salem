@@ -1,4 +1,4 @@
-[gd_scene load_steps=1091 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1087 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -1152,7 +1152,6 @@ color_ramp = SubResource("Gradient_qebug")
 [sub_resource type="Resource" id="Resource_3ua1v"]
 script = ExtResource("22_rabu8")
 ObjectFrequency = 7
-RandomRange = 10.0
 NoiseTexture = SubResource("NoiseTexture2D_m6kd0")
 RandomYRotation = true
 RandomSize = true
@@ -2177,14 +2176,6 @@ WaterTexture = ExtResource("387_tspmx")
 script = ExtResource("35_rabu8")
 Zones = [SubResource("Resource_nnpdm"), SubResource("Resource_sd5fx"), SubResource("Resource_jrrcy"), SubResource("Resource_fa8ee"), SubResource("Resource_anrnj"), SubResource("Resource_nl4gh"), SubResource("Resource_7xwpq"), SubResource("Resource_s0h5c"), SubResource("Resource_cx2gm"), SubResource("Resource_xv778"), SubResource("Resource_shbtp"), SubResource("Resource_6an2s"), SubResource("Resource_d4ulm"), SubResource("Resource_bj83l"), SubResource("Resource_fasa8"), SubResource("Resource_a3apw"), SubResource("Resource_wisbv"), SubResource("Resource_643b0"), SubResource("Resource_dq1xa"), SubResource("Resource_6d7hv"), SubResource("Resource_v86w0"), SubResource("Resource_g0chq"), SubResource("Resource_7i4pd"), SubResource("Resource_7dafi"), SubResource("Resource_uk4ah"), SubResource("Resource_suw56"), SubResource("Resource_f83po"), SubResource("Resource_f1g14"), SubResource("Resource_oawgc"), SubResource("Resource_8yamd"), SubResource("Resource_mwpet"), SubResource("Resource_bkyuq"), SubResource("Resource_5bdvf"), SubResource("Resource_xn7kl"), SubResource("Resource_v4u2a"), SubResource("Resource_ggxlf"), SubResource("Resource_8080r"), SubResource("Resource_v1vhd"), SubResource("Resource_yjgbj"), SubResource("Resource_vwdx7"), SubResource("Resource_4wskq"), SubResource("Resource_1xx48"), SubResource("Resource_vctx6"), SubResource("Resource_av47l"), SubResource("Resource_5an6s"), SubResource("Resource_rnxk2"), SubResource("Resource_0q5mx"), SubResource("Resource_io0bp"), SubResource("Resource_0ttad"), SubResource("Resource_67jo4"), SubResource("Resource_doppe"), SubResource("Resource_gh1vi"), SubResource("Resource_s1hlr"), SubResource("Resource_r8rpl"), SubResource("Resource_w8u3n"), SubResource("Resource_yrmv1"), SubResource("Resource_kolvd"), SubResource("Resource_h4o0s"), SubResource("Resource_yg4ii"), SubResource("Resource_ybtom"), SubResource("Resource_ovmsd"), SubResource("Resource_ph82a"), SubResource("Resource_kesn2"), SubResource("Resource_4ehfs"), SubResource("Resource_4pw2d"), SubResource("Resource_idue8"), SubResource("Resource_h6erx"), SubResource("Resource_ln07d"), SubResource("Resource_dl1ju"), SubResource("Resource_to78q"), SubResource("Resource_68d03"), SubResource("Resource_iv20s"), SubResource("Resource_pqaej"), SubResource("Resource_e0q3j"), SubResource("Resource_ouux6"), SubResource("Resource_mebdv"), SubResource("Resource_nsm8h"), SubResource("Resource_gyek8"), SubResource("Resource_s6jwa"), SubResource("Resource_40pjx"), SubResource("Resource_1ykm7"), SubResource("Resource_jr812"), SubResource("Resource_sbkpg"), SubResource("Resource_rop4m"), SubResource("Resource_lv45h"), SubResource("Resource_7m2jm"), SubResource("Resource_1ltla"), SubResource("Resource_tehjn"), SubResource("Resource_qx545"), SubResource("Resource_yhmh7"), SubResource("Resource_42nok"), SubResource("Resource_bxmsx"), SubResource("Resource_r62ax"), SubResource("Resource_yu6qg"), SubResource("Resource_bkb5c"), SubResource("Resource_0d05w"), SubResource("Resource_xv1la"), SubResource("Resource_8lvpu"), SubResource("Resource_c1d64"), SubResource("Resource_bp6m1"), SubResource("Resource_y6tt4"), SubResource("Resource_pfdvi"), SubResource("Resource_y2vpo"), SubResource("Resource_fuflx"), SubResource("Resource_ohooj"), SubResource("Resource_31l1t"), SubResource("Resource_vhxcp"), SubResource("Resource_r4nu6"), SubResource("Resource_wb4aw")]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wg0hf"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5sta"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81wgp"]
-albedo_color = Color(0, 0.39215687, 0, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtthl"]
 albedo_texture = ExtResource("919_h1utm")
 
@@ -2223,9 +2214,6 @@ radius = 185.44435
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_677id"]
 radius = 56.763847
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_70xvq"]
-radius = 126.31037
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_db4bj"]
 radius = 178.56998
@@ -2393,12 +2381,6 @@ PostDoneDialogue = "We can finally eat food again. Thank you. "
 QuestTitle = "Find and kill rats around the Village"
 QuestGoal = "0/5"
 
-[node name="Cube" parent="Dillon/villagerblank/metarig/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_wg0hf")
-
-[node name="Cube_002" parent="Dillon/villagerblank/metarig/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_wg0hf")
-
 [node name="Lukas" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.821777, 1.9490459, 24.409164)
 script = ExtResource("425_ym0xd")
@@ -2412,13 +2394,6 @@ DoneDialogue = Array[String](["You did it! Our village is now safe once again. I
 PostDoneDialogue = "I heard of Shrine sightings in the next village over."
 QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/5"
-
-[node name="Cube" parent="Lukas/villagerblank/metarig/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_x5sta")
-surface_material_override/1 = SubResource("StandardMaterial3D_x5sta")
-
-[node name="Cube_002" parent="Lukas/villagerblank/metarig/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_x5sta")
 
 [node name="Samual" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.565277, 1.9490459, 53.176186)
@@ -2444,13 +2419,6 @@ DoneDialogue = Array[String](["Thank you, oh thank you so much sir. My husband m
 PostDoneDialogue = "My dear husband can now rest in peace. Thank you. "
 QuestTitle = "Kill creatures from the forest biome to avenge Martha's husband"
 QuestGoal = "Forest: 0/5"
-
-[node name="Cube" parent="Martha/villagerblank/metarig/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_81wgp")
-surface_material_override/1 = SubResource("StandardMaterial3D_81wgp")
-
-[node name="Cube_002" parent="Martha/villagerblank/metarig/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_81wgp")
 
 [node name="Finn" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6124573, 1.9490459, 27.18628)
@@ -2995,57 +2963,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.76709, 0, -290.6185)
 shape = SubResource("SphereShape3D_677id")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume14" type="CollisionShape3D" parent="GoalArea/Area" index="10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 137.58052, 0, -208.83344)
-shape = SubResource("SphereShape3D_677id")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume15" type="CollisionShape3D" parent="GoalArea/Area" index="11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.18124, 0, -273.68445)
-shape = SubResource("SphereShape3D_677id")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume16" type="CollisionShape3D" parent="GoalArea/Area" index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 251.80284, 0, -338.09076)
-shape = SubResource("SphereShape3D_677id")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume17" type="CollisionShape3D" parent="GoalArea/Area" index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 355.53796, 0, -221.63321)
-shape = SubResource("SphereShape3D_70xvq")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume18" type="CollisionShape3D" parent="GoalArea/Area" index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 365.42566, 0, -113.235664)
-shape = SubResource("SphereShape3D_70xvq")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume13" type="CollisionShape3D" parent="GoalArea/Area" index="15"]
+[node name="Volume13" type="CollisionShape3D" parent="GoalArea/Area" index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.33975, 0, -469.6636)
 shape = SubResource("SphereShape3D_db4bj")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume4" type="CollisionShape3D" parent="GoalArea/Area" index="16"]
+[node name="Volume4" type="CollisionShape3D" parent="GoalArea/Area" index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -163.10774, 0, 248.49753)
 shape = SubResource("SphereShape3D_677id")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume6" type="CollisionShape3D" parent="GoalArea/Area" index="17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -255.96477, 0, 582.4177)
-shape = SubResource("SphereShape3D_677id")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume7" type="CollisionShape3D" parent="GoalArea/Area" index="18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -220.53215, 0, 678.1704)
-shape = SubResource("SphereShape3D_677id")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume19" type="CollisionShape3D" parent="GoalArea/Area" index="19"]
+[node name="Volume19" type="CollisionShape3D" parent="GoalArea/Area" index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -255.12163, 0, 244.89929)
 shape = SubResource("SphereShape3D_4wxgn")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume5" type="CollisionShape3D" parent="GoalArea/Area" index="20"]
+[node name="Volume5" type="CollisionShape3D" parent="GoalArea/Area" index="13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -173.87381, 0, 417.8605)
 shape = SubResource("SphereShape3D_4psjf")
 debug_color = Color(0, 1, 0, 1)
