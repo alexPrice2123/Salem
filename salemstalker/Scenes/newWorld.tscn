@@ -1,8 +1,9 @@
-[gd_scene load_steps=1092 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1091 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
 [ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="2_eb0fy"]
+[ext_resource type="Texture2D" uid="uid://cknlmd0xqnxbe" path="res://Assets/UI/mapagainagain.png" id="2_v8qwt"]
 [ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="3_letqy"]
 [ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="4_aragi"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="5_nc3gf"]
@@ -922,8 +923,6 @@
 [ext_resource type="Texture2D" uid="uid://c1v1wcwnfmerq" path="res://Scenes/World/Water_-3_-4.res" id="854_7cg25"]
 [ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://Assets/2D/WoodPlank.png" id="919_h1utm"]
 [ext_resource type="PackedScene" uid="uid://cw86i51qs7jry" path="res://Scenes/boat.tscn" id="922_qtthl"]
-[ext_resource type="Texture2D" uid="uid://dl5aiy3qb3nqh" path="res://Assets/2D/Map.png" id="923_v8qwt"]
-[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="924_677id"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
 
@@ -1152,7 +1151,7 @@ color_ramp = SubResource("Gradient_qebug")
 
 [sub_resource type="Resource" id="Resource_3ua1v"]
 script = ExtResource("22_rabu8")
-ObjectFrequency = 15
+ObjectFrequency = 7
 RandomRange = 10.0
 NoiseTexture = SubResource("NoiseTexture2D_m6kd0")
 RandomYRotation = true
@@ -2262,9 +2261,9 @@ offset_bottom = -0.29608154
 [node name="Sprite2D" type="Sprite2D" parent="PaperMap"]
 z_index = -1
 material = SubResource("ShaderMaterial_70xvq")
-position = Vector2(594, 295)
-scale = Vector2(0.5057118, 0.50571173)
-texture = ExtResource("923_v8qwt")
+position = Vector2(599, 297)
+scale = Vector2(0.9857143, 0.9857142)
+texture = ExtResource("2_v8qwt")
 
 [node name="Sub" type="SubViewport" parent="PaperMap"]
 transparent_bg = true
@@ -2303,7 +2302,7 @@ omni_range = 40.0
 [node name="RatSpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -454.10132, 4.3719983, -89.033936)
 _maxMonsterCount = 20
-_biome = "Forest"
+_biome = "Misc"
 _monsterList = Array[PackedScene]([ExtResource("429_wk3sn")])
 _monsterCount = Array[int]([20])
 
@@ -2342,8 +2341,6 @@ transform = Transform3D(0.9041945, 0, 0.42712098, 0, 1, 0, -0.42712098, 0, 0.904
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("1_fb5os")
 DataPath = "res://Scenes/World"
-LODLevels = 3
-LODInitialCellWidth = 0.25
 CollisionLayers = -1
 CollisionMask = -1
 TextureSets = SubResource("Resource_vbfps")
@@ -2386,6 +2383,13 @@ QuestGoal = "0/15"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.972595, 1.9490459, 35.37815)
 script = ExtResource("424_nr7af")
 NPCName = "Dillon"
+InitialDialogue = "Gosh darn it! Those damn rats keep eating our food! "
+QuestDialogue = Array[String](["Those dang rats are eating all of our food in our village. Please sir, will you help us by killing those rodents?"])
+AcceptedDialogue = Array[String](["Thank you very much. Make sure those rodents never try eating our food again."])
+IgnoredDialogue = "Hmph. Guess I gotta try getting rid of them myself..."
+WaitingDialogue = "I still see rats scurrying about. "
+DoneDialogue = Array[String](["Yes! We'll finally be able to eat food in peace. Thank you again mister."])
+PostDoneDialogue = "We can finally eat food again. Thank you. "
 QuestTitle = "Find and kill rats around the Village"
 QuestGoal = "0/5"
 
@@ -2438,8 +2442,8 @@ IgnoredDialogue = "Maybe someone else can help me. "
 WaitingDialogue = "My husband won't be brought to justice until those monsters are dead! "
 DoneDialogue = Array[String](["Thank you, oh thank you so much sir. My husband may now rest in peace knowing you gave those Cultists what they deserved. "])
 PostDoneDialogue = "My dear husband can now rest in peace. Thank you. "
-QuestTitle = "Kill creatures from different biomes to avenge Martha's husband"
-QuestGoal = "Forest: 0/5, Swamp: 0/5, Plains: 0/5"
+QuestTitle = "Kill creatures from the forest biome to avenge Martha's husband"
+QuestGoal = "Forest: 0/5"
 
 [node name="Cube" parent="Martha/villagerblank/metarig/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_81wgp")
@@ -2940,7 +2944,6 @@ debug_color = Color(0, 1, 0, 1)
 
 [node name="GoalArea" parent="." instance=ExtResource("449_jsh0i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.735676, 0, 26.98191)
-visible = false
 
 [node name="Area" parent="GoalArea" index="0" groups=["GoalArea"]]
 
@@ -3057,6 +3060,7 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Border" type="Area3D" parent="." groups=["Water"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.560577, 1.9490459, 16.670944)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Border" groups=["Water"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1125.014, -53.79166, 407.20886)
@@ -3082,8 +3086,6 @@ transform = Transform3D(0.5959586, 0, -0.8030152, 0, 1, 0, 0.8030152, 0, 0.59595
 _teleportPoint = "Brittlebay Dock"
 NPCName = "Old Boat"
 InitialDialogue = "E to Interact"
-
-[node name="Enviorment" parent="." instance=ExtResource("924_677id")]
 
 [editable path="MonsterHolder/EnemySpawner3"]
 [editable path="MonsterHolder/RatSpawner"]

@@ -16,13 +16,13 @@
 [ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4vbiv"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3r70p"]
 shader = ExtResource("2_g0wmg")
 shader_parameter/use_sprite_alpha = true
 shader_parameter/use_transition_texture = false
-shader_parameter/transition_texture = SubResource("NoiseTexture2D_4vbiv")
+shader_parameter/transition_texture = SubResource("NoiseTexture2D_whq80")
 shader_parameter/transition_type = 0
 shader_parameter/position = Vector2(0, 0)
 shader_parameter/invert = false
@@ -49,7 +49,8 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pmm21"]
 line_spacing = 3.08
-font_size = 50
+font_size = 35
+outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_85lyl"]
@@ -126,12 +127,6 @@ font_color = Color(1, 0, 0, 1)
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_fcexb"]
-line_spacing = 3.08
-font_size = 25
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_d42i4"]
 line_spacing = 3.08
 font_size = 25
@@ -192,6 +187,13 @@ line_spacing = 0.0
 paragraph_spacing = -7.0
 font_size = 26
 outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fcexb"]
+line_spacing = 3.08
+font = ExtResource("1_qdvrb")
+font_size = 80
+font_color = Color(0.85882354, 0.8117647, 0.89411765, 1)
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_v4f2e"]
@@ -711,13 +713,13 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.002
 anchor_bottom = 0.995
-offset_left = -514.0
+offset_left = -505.0
 offset_top = 278.0
-offset_right = -515.3041
+offset_right = -506.30408
 offset_bottom = 278.536
 theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "FPS"
-label_settings = SubResource("LabelSettings_fcexb")
+label_settings = SubResource("LabelSettings_pmm21")
 horizontal_alignment = 1
 vertical_alignment = 1
 
