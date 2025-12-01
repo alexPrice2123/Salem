@@ -2303,7 +2303,7 @@ omni_range = 40.0
 [node name="RatSpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -454.10132, 4.3719983, -89.033936)
 _maxMonsterCount = 20
-_biome = "Forest"
+_biome = "Misc"
 _monsterList = Array[PackedScene]([ExtResource("429_wk3sn")])
 _monsterCount = Array[int]([20])
 
