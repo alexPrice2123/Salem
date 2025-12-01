@@ -1,4 +1,4 @@
-[gd_scene load_steps=1092 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1091 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -923,7 +923,6 @@
 [ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://Assets/2D/WoodPlank.png" id="919_h1utm"]
 [ext_resource type="PackedScene" uid="uid://cw86i51qs7jry" path="res://Scenes/boat.tscn" id="922_qtthl"]
 [ext_resource type="Texture2D" uid="uid://dl5aiy3qb3nqh" path="res://Assets/2D/Map.png" id="923_v8qwt"]
-[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="924_677id"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
 
@@ -1152,8 +1151,7 @@ color_ramp = SubResource("Gradient_qebug")
 
 [sub_resource type="Resource" id="Resource_3ua1v"]
 script = ExtResource("22_rabu8")
-ObjectFrequency = 15
-RandomRange = 10.0
+ObjectFrequency = 7
 NoiseTexture = SubResource("NoiseTexture2D_m6kd0")
 RandomYRotation = true
 RandomSize = true
@@ -2342,8 +2340,6 @@ transform = Transform3D(0.9041945, 0, 0.42712098, 0, 1, 0, -0.42712098, 0, 0.904
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("1_fb5os")
 DataPath = "res://Scenes/World"
-LODLevels = 3
-LODInitialCellWidth = 0.25
 CollisionLayers = -1
 CollisionMask = -1
 TextureSets = SubResource("Resource_vbfps")
@@ -2947,7 +2943,6 @@ debug_color = Color(0, 1, 0, 1)
 
 [node name="GoalArea" parent="." instance=ExtResource("449_jsh0i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.735676, 0, 26.98191)
-visible = false
 
 [node name="Area" parent="GoalArea" index="0" groups=["GoalArea"]]
 
@@ -3064,6 +3059,7 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Border" type="Area3D" parent="." groups=["Water"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.560577, 1.9490459, 16.670944)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Border" groups=["Water"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1125.014, -53.79166, 407.20886)
@@ -3089,8 +3085,6 @@ transform = Transform3D(0.5959586, 0, -0.8030152, 0, 1, 0, 0.8030152, 0, 0.59595
 _teleportPoint = "Brittlebay Dock"
 NPCName = "Old Boat"
 InitialDialogue = "E to Interact"
-
-[node name="Enviorment" parent="." instance=ExtResource("924_677id")]
 
 [editable path="MonsterHolder/EnemySpawner3"]
 [editable path="MonsterHolder/RatSpawner"]
