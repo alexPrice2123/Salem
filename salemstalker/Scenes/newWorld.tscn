@@ -1,4 +1,4 @@
-[gd_scene load_steps=1087 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1092 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -6,12 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://cknlmd0xqnxbe" path="res://Assets/UI/mapagainagain.png" id="2_v8qwt"]
 [ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="3_letqy"]
 [ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="4_aragi"]
+[ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/hollowBrute.tscn" id="5_4psjf"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="5_nc3gf"]
+[ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/sCultist.tscn" id="6_81ace"]
+[ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="6_677id"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="6_r8fd3"]
+[ext_resource type="PackedScene" uid="uid://cdyf44r2hpl3e" path="res://Scenes/Monsters/vineTangler.tscn" id="7_5m6g4"]
 [ext_resource type="Texture2D" uid="uid://chu6uwfbaqyat" path="res://Assets/2D/sand.png" id="7_h8aoc"]
 [ext_resource type="Texture2D" uid="uid://bdg05x8m3uscr" path="res://Assets/2D/shallowocean.png" id="8_2rvlj"]
 [ext_resource type="Texture2D" uid="uid://xcspp642up40" path="res://Assets/2D/midocean.png" id="9_1uftk"]
 [ext_resource type="Texture2D" uid="uid://d0u1esu3iuflj" path="res://Assets/2D/deepocean.png" id="10_43n44"]
+[ext_resource type="PackedScene" uid="uid://c3gi3vrev7n0x" path="res://Scenes/Monsters/underBrush.tscn" id="10_ptcpy"]
 [ext_resource type="Texture2D" uid="uid://c2oao6p84hbwj" path="res://Assets/2D/swamp_dirt.png" id="11_o70cm"]
 [ext_resource type="Texture2D" uid="uid://c5fu5c6gcnf5r" path="res://Assets/2D/swamp_grass.png" id="12_37xqj"]
 [ext_resource type="Texture2D" uid="uid://bjurhsgte1wdp" path="res://Assets/2D/plains_grass.png" id="13_n5auh"]
@@ -2275,18 +2280,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 430.2035, 1.2354126, 125.5158
 
 [node name="Hold" type="Node3D" parent="MonsterHolder/Hold2"]
 
-[node name="EnemySpawner3" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
-transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -544.94147, 1.3142262, -29.36026)
-_maxMonsterCount = 10
-_biome = "Forest"
-_monsterList = Array[PackedScene]([ExtResource("38_osg54")])
-_monsterCount = Array[int]([10])
-
-[node name="Range" parent="MonsterHolder/EnemySpawner3" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.103485)
-light_color = Color(0, 1, 1, 1)
-omni_range = 40.0
-
 [node name="RatSpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -454.10132, 4.3719983, -89.033936)
 _maxMonsterCount = 20
@@ -2300,6 +2293,63 @@ wait_time = 1.0
 [node name="Range" parent="MonsterHolder/RatSpawner" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.997643, 0)
 omni_range = 33.142544
+
+[node name="Shrine1EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -518.83124, 1.3142262, -143.62323)
+_maxMonsterCount = 10
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("5_4psjf"), ExtResource("6_81ace")])
+_monsterCount = Array[int]([1, 2])
+
+[node name="Range" parent="MonsterHolder/Shrine1EnemySpawner" index="3"]
+light_color = Color(0, 1, 1, 1)
+omni_range = 14.357763
+
+[node name="Shrine2EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -539.85846, 1.687819, -40.037697)
+_maxMonsterCount = 10
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("7_5m6g4"), ExtResource("38_osg54")])
+_monsterCount = Array[int]([2, 1, 1])
+
+[node name="Range" parent="MonsterHolder/Shrine2EnemySpawner" index="3"]
+light_color = Color(0, 1, 1, 1)
+omni_range = 14.357763
+
+[node name="Shrine3EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -442.2512, 1.6115086, -234.91791)
+_maxMonsterCount = 10
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("7_5m6g4")])
+_monsterCount = Array[int]([2, 1])
+
+[node name="Range" parent="MonsterHolder/Shrine3EnemySpawner" index="3"]
+light_color = Color(0, 1, 1, 1)
+omni_range = 14.357763
+
+[node name="Shrine1" parent="MonsterHolder" instance=ExtResource("6_677id")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -518.7776, -0.5746945, -143.53026)
+_spawnTime = 7.0
+_maxMonsterCount = 10
+SpawnDistance = 45.0
+_monsterList = Array[PackedScene]([ExtResource("38_osg54")])
+_monsterCount = Array[int]([3])
+
+[node name="Shrine2" parent="MonsterHolder" instance=ExtResource("6_677id")]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0.0006632251, 0, -0.0006632251, 0.99999976, -539.9761, -0.5746945, -40.186897)
+_spawnTime = 7.0
+_maxMonsterCount = 10
+SpawnDistance = 40.0
+_monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("10_ptcpy")])
+_monsterCount = Array[int]([2, 1])
+
+[node name="Shrine3" parent="MonsterHolder" instance=ExtResource("6_677id")]
+transform = Transform3D(0.9992508, -2.5667963e-05, 0.038701728, 0, 0.9999999, 0.0006632252, -0.03870174, -0.00066272833, 0.9992507, -442.28094, -0.5746945, -234.93701)
+_spawnTime = 7.0
+_maxMonsterCount = 10
+SpawnDistance = 40.0
+_monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("10_ptcpy"), ExtResource("5_4psjf")])
+_monsterCount = Array[int]([1, 1, 1])
 
 [node name="MonsterRegion" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -193.05112, -6.027062, -103.820694)
@@ -2339,7 +2389,7 @@ WaterDefinition = SubResource("Resource_b7wla")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_6rohr")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = true
+metadata/_edit_lock_ = false
 
 [node name="Mary" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.560577, 1.9490459, 16.670944)
@@ -2393,7 +2443,7 @@ WaitingDialogue = "Keep looking around Brittlebay village and you should find th
 DoneDialogue = Array[String](["You did it! Our village is now safe once again. I'll look into those Shrines more in the meantime. "])
 PostDoneDialogue = "I heard of Shrine sightings in the next village over."
 QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
-QuestGoal = "0/5"
+QuestGoal = "0/3"
 
 [node name="Samual" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.565277, 1.9490459, 53.176186)
@@ -3020,8 +3070,10 @@ _teleportPoint = "Brittlebay Dock"
 NPCName = "Old Boat"
 InitialDialogue = "E to Interact"
 
-[editable path="MonsterHolder/EnemySpawner3"]
 [editable path="MonsterHolder/RatSpawner"]
+[editable path="MonsterHolder/Shrine1EnemySpawner"]
+[editable path="MonsterHolder/Shrine2EnemySpawner"]
+[editable path="MonsterHolder/Shrine3EnemySpawner"]
 [editable path="Dillon"]
 [editable path="Dillon/villagerblank"]
 [editable path="Lukas"]
