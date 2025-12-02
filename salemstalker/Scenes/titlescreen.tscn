@@ -1,4 +1,3 @@
-[ext_resource type="Texture2D" uid="uid://c5fu5c6gcnf5r" path="res://Assets/2D/swamp_grass.png" id="12_b4lda"]
 [gd_scene load_steps=106 format=4 uid="uid://ugvn3fpfrh3c"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="11_rsi7w"]
