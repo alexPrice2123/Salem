@@ -1,5 +1,6 @@
-[gd_scene load_steps=106 format=4 uid="uid://ugvn3fpfrh3c"]
+[gd_scene load_steps=108 format=4 uid="uid://ugvn3fpfrh3c"]
 
+[ext_resource type="Script" uid="uid://ps4omxss41de" path="res://Scripts/Titlescreen.cs" id="1_k87f7"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="11_rsi7w"]
 [ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="12_6ay2x"]
 [ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="13_8840v"]
@@ -44,7 +45,6 @@
 [ext_resource type="PackedScene" uid="uid://dbhqhurkcdks0" path="res://Scenes/Monsters/hollowNormal.tscn" id="44_dqy74"]
 [ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/hollowBrute.tscn" id="45_74t71"]
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="45_s1v1w"]
-[ext_resource type="Shader" uid="uid://cdhocti5ssful" path="res://Shaders/transitioni.gdshader" id="46_akvjm"]
 [ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="46_ax5fl"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="47_ax5fl"]
 [ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/sCultist.tscn" id="48_ko6j5"]
@@ -124,10 +124,180 @@ font_size = 80
 font_color = Color(0.85882354, 0.8117647, 0.89411765, 1)
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Shader" id="Shader_ko6j5"]
+code = "shader_type canvas_item;
+
+uniform bool use_sprite_alpha = true;
+uniform bool use_transition_texture = false;
+uniform sampler2D transition_texture;
+uniform int transition_type: hint_enum(\"Basic\", \"Mask\", \"Shape\", \"Clock\") = 0;
+
+group_uniforms positioning;
+uniform vec2 position = vec2(0,0);
+uniform bool invert = false;
+uniform vec2 grid_size = vec2(1.0, 1.0);
+uniform float rotation_angle = 0.0;
+
+group_uniforms positioning.stagger;
+uniform vec2 stagger = vec2(0.0, 0.0);
+uniform ivec2 stagger_frequency = ivec2(2, 2);
+uniform ivec2 flip_frequency = ivec2(1, 1);
+
+group_uniforms basic_transition_controls;
+uniform float basic_feather = 0.0;
+
+group_uniforms mask_transition_controls;
+uniform sampler2D mask_texture;
+uniform bool use_mask_size = false;
+uniform vec2 mask_size = vec2(100.0);
+
+group_uniforms shape_transition_controls;
+uniform int edges : hint_range(3, 64) = 6; // default hexagon
+uniform float shape_feather : hint_range(0.0, 10.0) = 0.1;
+
+group_uniforms clock_transition_controls;
+uniform int sectors : hint_range(1, 128) = 1;
+uniform float clock_feather : hint_range(0.0, 16.0) = 0.0;
+
+group_uniforms animation;
+uniform float progress = 0.0;
+uniform vec2 progress_bias = vec2(0.0);
+
+varying vec4 modulate;
+
+vec2 use_actual_texture_size(vec2 uv, vec2 texture_size) {
+
+	uv -= 0.5;
+	vec2 uv_deriv = fwidth(uv);
+	float screen_ratio = uv_deriv.x / uv_deriv.y;
+	float texture_ratio = texture_size.x / texture_size.y;
+	float mixed_ratio = texture_ratio * screen_ratio;
+
+	if (screen_ratio > texture_ratio) {
+		uv.x /= mixed_ratio;
+	} else {
+		uv.y *= mixed_ratio;
+	}
+
+	return uv + 0.5;
+}
+
+vec2 get_stagger_offset(vec2 grid) {
+	vec2 cells = floor(grid);
+	float offset_row = mod(cells.y, float(stagger_frequency.x)) == 0.0 ? 0.5 : 0.0;
+	float offset_col = mod(cells.x, float(stagger_frequency.y)) == 0.0 ? 0.5 : 0.0;
+
+	return vec2(
+		offset_row * stagger.x,
+		offset_col * stagger.y
+	);
+}
+
+vec2 get_grid_flip(vec2 grid) {
+	vec2 cells = floor(grid);
+	float flip_row = mod(cells.y, float(flip_frequency.x)) == 0.0 ? 1.0 : -1.0;
+	float flip_col = mod(cells.x, float(flip_frequency.y)) == 0.0 ? 1.0 : -1.0;
+
+	return vec2(
+		flip_row * grid.x,
+		flip_col * grid.y
+	);
+}
+
+vec2 rotate(vec2 v, float angle) {
+	return mat2(
+		vec2(cos(angle), sin(angle)),
+		vec2(-sin(angle), cos(angle))
+		) * v;
+}
+
+vec2 get_edges(float center, float width) {
+	float half_width = width * 0.5;
+	float edge0 = center - half_width;
+	float edge1 = center + half_width + 1e-5;
+	return vec2(edge0, edge1);
+}
+
+float get_local_progress(vec2 grid) {
+    vec2 cell = floor(grid);
+	// Easier to control bias values
+	vec2 pretty_bias = progress_bias / 10.0;
+    float offset = dot(cell, pretty_bias);
+    return progress - offset;
+}
+
+void vertex() {
+	modulate = COLOR;
+}
+
+void fragment() {
+	vec2 grid = UV * grid_size;
+	vec2 offset_uv = grid + get_stagger_offset(grid);
+	vec2 grid_flipped_uv = get_grid_flip(offset_uv);
+	vec2 tiled_uv = fract(grid_flipped_uv);
+	vec2 uv = (tiled_uv - position) * 2.0;
+	uv = rotate(uv, radians(rotation_angle));
+
+	float local_progress = get_local_progress(grid);
+
+	COLOR = texture(TEXTURE, UV) * modulate;
+	float alpha = COLOR.a;
+	float transition_progress = 0.0;
+
+	if (transition_type == 1) {
+		vec2 mask_zoom_uv = uv / local_progress;
+		vec2 mask_zoom_uv_01 = mask_zoom_uv * 0.5 + 0.5;
+		mask_zoom_uv_01 = use_mask_size ? use_actual_texture_size(mask_zoom_uv_01, mask_size) : mask_zoom_uv_01;
+
+		transition_progress = texture(mask_texture, mask_zoom_uv_01).r;
+
+	} else if(transition_type == 2) {
+    	float radius = length(uv);
+	    float angle = atan(uv.y, uv.x);
+		float sector_angle = 2.0 * PI / float(edges);
+		float half_sector = sector_angle / 2.0;
+		// Define polygon sectors using the power of trigonometry
+		float d = cos(half_sector) / cos(mod(angle + half_sector, sector_angle) - half_sector);
+
+		vec2 smooth_edges = get_edges(local_progress, shape_feather);
+		transition_progress = smoothstep(smooth_edges.x, smooth_edges.y, radius / d);
+
+	} else if (transition_type == 3) {
+		float radius = length(uv);
+		float angle = atan(uv.y, uv.x);
+		float sector_angle = 2.0 * PI / float(sectors);
+		float half_sector = sector_angle / 2.0;
+		angle = mod(angle - half_sector, sector_angle);
+
+		float progress_angle = local_progress * 2.0 * PI / float(sectors);
+		float smooth_angle = smoothstep(0.0, clock_feather, progress_angle - angle);
+		transition_progress = smooth_angle;
+
+	} else {
+		vec2 smooth_edges = get_edges(local_progress, basic_feather);
+
+		float separation_x = smoothstep(smooth_edges.x, smooth_edges.y, abs(uv.x));
+		float separation_y = smoothstep(smooth_edges.x, smooth_edges.y, abs(uv.y));
+		transition_progress = max(separation_x, separation_y);
+	}
+
+	alpha = invert ? 1.0 - transition_progress : transition_progress;
+	alpha = use_sprite_alpha ? min(COLOR.a, alpha) : alpha;
+
+	vec4 transition_color = texture(transition_texture, UV);
+
+	if (use_transition_texture) {
+		vec4 chosen_color = mix(transition_color, COLOR, alpha);
+		COLOR = chosen_color;
+	} else {
+		COLOR.a = alpha;
+	}
+}"
+
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4vbiv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ax5fl"]
-shader = ExtResource("46_akvjm")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k87f7"]
+shader = SubResource("Shader_ko6j5")
 shader_parameter/use_sprite_alpha = true
 shader_parameter/use_transition_texture = false
 shader_parameter/transition_texture = SubResource("NoiseTexture2D_4vbiv")
@@ -146,12 +316,18 @@ shader_parameter/edges = 6
 shader_parameter/shape_feather = 0.1
 shader_parameter/sectors = 1
 shader_parameter/clock_feather = 0.0
-shader_parameter/progress = -1.0
+shader_parameter/progress = 3.0
 shader_parameter/progress_bias = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ko6j5"]
 line_spacing = 3.08
 font_size = 75
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k87f7"]
+line_spacing = 3.08
+font_size = 45
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -459,6 +635,7 @@ transitions = ["Start", "scared_idle", SubResource("AnimationNodeStateMachineTra
 graph_offset = Vector2(56, -2)
 
 [node name="Title" type="Node3D"]
+script = ExtResource("1_k87f7")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5723777, 0.89524734, 3.1989727)
@@ -714,9 +891,8 @@ text = "Quit"
 label_settings = SubResource("LabelSettings_fcexb")
 
 [node name="Loading" type="ColorRect" parent="."]
-visible = false
 z_index = 4096
-material = SubResource("ShaderMaterial_ax5fl")
+material = SubResource("ShaderMaterial_k87f7")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -738,6 +914,63 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("43_dqy74")
 text = "Loading..."
 label_settings = SubResource("LabelSettings_ko6j5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="ColorRect" parent="."]
+visible = false
+z_index = 4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(539, 303)
+color = Color(0, 0, 0, 1)
+
+[node name="Back" type="TextureButton" parent="Credits"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 78.090935
+offset_top = 266.6364
+offset_right = 385.09094
+offset_bottom = 367.6364
+scale = Vector2(0.71999955, 0.71999955)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("42_v7j45")
+texture_pressed = ExtResource("42_v7j45")
+texture_hover = ExtResource("42_v7j45")
+
+[node name="Label" type="Label" parent="Credits/Back"]
+layout_mode = 0
+offset_left = 90.909134
+offset_top = -5.60838e-05
+offset_right = 289.90918
+offset_bottom = 109.99995
+text = "Back"
+label_settings = SubResource("LabelSettings_fcexb")
+
+[node name="Text" type="Label" parent="Credits"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("43_dqy74")
+text = "Credits (Ranked By Github Pushes)
+Alex - Head Programmer
+Callen - Head 3D Artist
+Dillon - 3D Artist
+Kat - 2D/UI Artist
+Isaac - Programmer
+Lauren - Designer
+Mason - Programmer
+Lukas - Project Manager/Designer"
+label_settings = SubResource("LabelSettings_k87f7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -768,15 +1001,15 @@ metadata/_edit_lock_ = false
 transform = Transform3D(-0.25881916, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.25881916, 5.3384056, 0, 1.0159346)
 
 [node name="Skeleton3D" parent="WarmVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 1.0060842, -0.055199984)
-bones/2/rotation = Quaternion(-0.07493087, 0, 0, 0.99718875)
-bones/5/rotation = Quaternion(0.06170125, 0.009564261, 0.021531604, 0.99781656)
-bones/8/rotation = Quaternion(-0.23173952, 0.37148532, -0.7265925, 0.5294891)
-bones/15/rotation = Quaternion(-0.21774006, -0.3861838, 0.73933816, 0.5067845)
-bones/25/rotation = Quaternion(0.9826583, 0.012408227, -0.008784256, 0.18480168)
-bones/26/rotation = Quaternion(0.121718116, 0.0015971701, 0.009757268, 0.99251556)
-bones/34/rotation = Quaternion(0.9826583, -0.01240823, 0.008784212, 0.18480168)
-bones/35/rotation = Quaternion(0.1217181, -0.0015971699, -0.009757268, 0.99251556)
+bones/0/position = Vector3(0, 0.9995989, -0.055199992)
+bones/2/rotation = Quaternion(-0.067929834, 0, 0, 0.9976901)
+bones/5/rotation = Quaternion(0.04790171, 0.009345537, 0.021574559, 0.99857527)
+bones/8/rotation = Quaternion(-0.22936799, 0.4025758, -0.71117723, 0.5287249)
+bones/15/rotation = Quaternion(-0.23342973, -0.40271595, 0.71933985, 0.5156362)
+bones/25/rotation = Quaternion(0.9781879, 0.014405477, -0.008950415, 0.20702825)
+bones/26/rotation = Quaternion(0.1667094, 0.0015865478, 0.013363898, 0.98591423)
+bones/34/rotation = Quaternion(0.9781879, -0.01440548, 0.008950372, 0.20702825)
+bones/35/rotation = Quaternion(0.1667094, -0.0015865476, -0.013363898, 0.98591423)
 
 [node name="Cube" parent="WarmVillager/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ax5fl")
@@ -799,10 +1032,10 @@ anim_player = NodePath("../villagerblank/AnimationPlayer")
 transform = Transform3D(-0.9990978, 0, 0.04246843, 0, 1, 0, -0.04246843, 0, -0.9990978, 4.3761067, 0, 0.24955976)
 
 [node name="Skeleton3D" parent="ColdVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99599016, -0.05519999)
+bones/0/position = Vector3(0, 0.99023503, -0.055199992)
 bones/1/rotation = Quaternion(0.02974452, 0, 0, 0.9995576)
-bones/2/rotation = Quaternion(-0.07628066, 0, 0, 0.9970864)
-bones/5/rotation = Quaternion(-0.07268048, 0.007364706, 0.021773802, 0.9970904)
+bones/2/rotation = Quaternion(-0.017149504, 0, 0, 0.99985296)
+bones/5/rotation = Quaternion(-0.12371536, 0.006488579, 0.021762578, 0.9920579)
 bones/8/rotation = Quaternion(-0.25204387, 0.4770401, -0.6706099, 0.5091061)
 bones/9/rotation = Quaternion(0.20272473, 0.094213, -0.6563358, 0.72059)
 bones/10/rotation = Quaternion(-0.1702162, 0.16236909, -0.16637525, 0.95759183)
@@ -811,11 +1044,11 @@ bones/15/rotation = Quaternion(-0.10761373, -0.41021964, 0.8555811, 0.2968504)
 bones/16/rotation = Quaternion(0.35960385, -0.07531826, 0.5145085, 0.7747859)
 bones/17/rotation = Quaternion(-0.24278422, -0.20150147, 0.13319576, 0.9395275)
 bones/19/rotation = Quaternion(-0.05178894, -0.040206723, 0.5085042, 0.8585597)
-bones/25/rotation = Quaternion(0.9761278, 0.015261652, -0.009031302, 0.21647201)
-bones/26/rotation = Quaternion(0.18518582, 0.0015811985, 0.0148450155, 0.9825902)
+bones/25/rotation = Quaternion(0.97280943, 0.016572976, -0.009166118, 0.2308314)
+bones/26/rotation = Quaternion(0.21484618, 0.001571392, 0.017222673, 0.97649485)
 bones/27/rotation = Quaternion(-0.56675655, -0.06371846, -0.08171159, 0.8173434)
-bones/34/rotation = Quaternion(0.9761278, -0.015261656, 0.009031259, 0.21647201)
-bones/35/rotation = Quaternion(0.18518582, -0.001581199, -0.0148450155, 0.9825902)
+bones/34/rotation = Quaternion(0.97280943, -0.016572975, 0.009166074, 0.23083138)
+bones/35/rotation = Quaternion(0.21484618, -0.001571392, -0.01722267, 0.97649485)
 bones/36/rotation = Quaternion(-0.56219697, 0.06322342, 0.082132496, 0.82048255)
 bones/37/rotation = Quaternion(-0.01838452, 0.9591089, -0.27506912, -0.06410314)
 
@@ -840,25 +1073,25 @@ anim_player = NodePath("../villagerblank/AnimationPlayer")
 transform = Transform3D(-0.9686959, 0, -0.2482504, 0, 1, 0, 0.2482504, 0, -0.9686959, 2.0089931, 0, -5.417067)
 
 [node name="Skeleton3D" parent="vCultist/Body/metarig" index="0"]
-bones/0/position = Vector3(-3.114139e-10, 0.93187314, -0.06494778)
-bones/1/rotation = Quaternion(-0.049616575, -5.466813e-11, -1.3107253e-08, 0.9987684)
-bones/5/rotation = Quaternion(-0.09773299, 1.19018154e-07, -9.041842e-09, 0.99521273)
-bones/9/rotation = Quaternion(-0.15610704, 0.44887906, -0.6381489, 0.6057262)
-bones/10/rotation = Quaternion(0.7182741, 0.0004842393, -0.15876234, 0.6774044)
-bones/21/rotation = Quaternion(0.6181109, -0.050184876, 0.33436224, 0.7096635)
-bones/34/rotation = Quaternion(0.96676064, 0.058352165, -0.117787056, 0.21930592)
-bones/35/rotation = Quaternion(0.16182417, 0.0042589707, 0.020713648, 0.98659307)
-bones/39/rotation = Quaternion(0.9698884, -0.05726704, 0.078417085, 0.22335584)
-bones/40/rotation = Quaternion(0.17279759, -0.0042333817, -0.037550736, 0.98423225)
+bones/0/position = Vector3(3.3388875e-10, 0.93706524, -0.06494777)
+bones/1/rotation = Quaternion(-0.04820054, 5.5493558e-11, -1.019606e-08, 0.9988377)
+bones/5/rotation = Quaternion(-0.10873629, 1.18115246e-07, -1.5719733e-08, 0.9940707)
+bones/9/rotation = Quaternion(-0.15869357, 0.46102893, -0.63265526, 0.60167766)
+bones/10/rotation = Quaternion(0.7041955, -0.010879088, -0.090177655, 0.70417213)
+bones/21/rotation = Quaternion(0.6198123, -0.04720827, 0.331985, 0.7095)
+bones/34/rotation = Quaternion(0.9723572, 0.052034598, -0.11755532, 0.19492228)
+bones/35/rotation = Quaternion(0.11847771, 0.004285901, 0.015165251, 0.99283165)
+bones/39/rotation = Quaternion(0.97503334, -0.05060927, 0.07784846, 0.20171387)
+bones/40/rotation = Quaternion(0.13443056, -0.0042602676, -0.029213173, 0.9904832)
 
 [node name="Plane" parent="vCultist/Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, -2.7250617e-09, 2.6860325e-10, 2.7371516e-09, 0.99758303, -0.0694836, -7.8693885e-11, 0.06948365, 0.99758303, 6.853941e-10, 1.7491413, 0.0020810645)
+transform = Transform3D(1, 2.990548e-09, -2.3834273e-10, -2.9987346e-09, 0.99873763, -0.050229024, 8.77155e-11, 0.050229035, 0.99873763, -6.462134e-10, 1.7545271, 0.0009867372)
 
 [node name="arur_l" parent="vCultist/Body/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.0327262, -0.023129508, -0.24772032, 0.1636822, 0.8597091, 0.6021064, 0.18737245, -0.6235293, 0.83936024, 0.27627254, 1.4424641, 0.2737601)
+transform = Transform3D(1.0494254, -0.11546765, -0.11746168, 0.16064237, 0.88485545, 0.56537485, 0.036387987, -0.5763001, 0.8916151, 0.3028391, 1.4364285, 0.27576387)
 
 [node name="arua_r" parent="vCultist/Body/metarig/Skeleton3D" index="2"]
-transform = Transform3D(1.0029205, -0.0012093335, 0.35010362, 0.019901618, 1.0607457, -0.053347647, -0.34953964, 0.056925952, 1.0015013, -0.23968348, 1.2896394, 0.1745681)
+transform = Transform3D(1.0051724, -0.0024130642, 0.34357852, 0.019904256, 1.0608716, -0.050781727, -0.34301004, 0.05448976, 1.0038917, -0.24094243, 1.2953188, 0.17583774)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3398342, 28.027174, -7.351434)
@@ -869,6 +1102,11 @@ light_indirect_energy = 16.0
 light_volumetric_fog_energy = 16.0
 light_specular = 8.0
 omni_range = 75.0
+
+[connection signal="button_up" from="Control/Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="Control/Credits" to="." method="_on_credits_button_up"]
+[connection signal="button_up" from="Control/Quit" to="." method="_on_quit_button_up"]
+[connection signal="button_up" from="Credits/Back" to="." method="_on_back_button_up"]
 
 [editable path="campfire"]
 [editable path="WarmVillager"]
