@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=4 uid="uid://ugvn3fpfrh3c"]
+[gd_scene load_steps=96 format=4 uid="uid://ugvn3fpfrh3c"]
 
 [ext_resource type="Script" uid="uid://ps4omxss41de" path="res://Scripts/titleScreen.cs" id="1_ax5fl"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_qbqvj"]
@@ -26,17 +26,16 @@
 [ext_resource type="Script" uid="uid://comabiqrwe5u0" path="res://addons/terrabrush/Scripts/EditorResources/ObjectResource.cs" id="23_au4w4"]
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="24_4rij6"]
 [ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="25_b3o2p"]
-[ext_resource type="Texture2D" uid="uid://tjq33somhl15" path="res://Scenes/World/Foliage_0_0_0.res" id="26_gegoo"]
-[ext_resource type="Texture2D" uid="uid://daaucpomjga2y" path="res://Scenes/World/Foliage_0_0_1.res" id="27_i7ytt"]
-[ext_resource type="Texture2D" uid="uid://mngvtc65froj" path="res://Scenes/World/Heightmap_0_0.res" id="28_1iv40"]
-[ext_resource type="Texture2D" uid="uid://jljni2un267f" path="res://Scenes/World/Object_0_0_0.res" id="29_37fbk"]
-[ext_resource type="Texture2D" uid="uid://c6b2si6o2cvl0" path="res://Scenes/World/Splatmap_0_0_0.res" id="30_trubd"]
-[ext_resource type="Texture2D" uid="uid://c1h7belsbf2yo" path="res://Scenes/World/Splatmap_0_0_1.res" id="31_7q8i2"]
-[ext_resource type="Texture2D" uid="uid://b0mpdy7tb6ldf" path="res://Scenes/World/Splatmap_0_0_2.res" id="32_af120"]
-[ext_resource type="Texture2D" uid="uid://dhejp87xfpifv" path="res://Scenes/World/Water_0_0.res" id="33_v7j45"]
+[ext_resource type="Texture2D" path="res://Scenes/World/Foliage_-41_0_0.res" id="27_akvjm"]
+[ext_resource type="Texture2D" path="res://Scenes/World/Foliage_-41_0_1.res" id="28_ax5fl"]
+[ext_resource type="Texture2D" path="res://Scenes/World/Heightmap_-41_0.res" id="29_ko6j5"]
+[ext_resource type="Texture2D" path="res://Scenes/World/Object_-41_0_0.res" id="30_k87f7"]
+[ext_resource type="Texture2D" uid="uid://dl6jp57jkgsop" path="res://Scenes/World/Splatmap_-41_0_0.res" id="31_tngvy"]
+[ext_resource type="Texture2D" uid="uid://c32csopk4saxy" path="res://Scenes/World/Splatmap_-41_0_1.res" id="32_dec1v"]
+[ext_resource type="Texture2D" uid="uid://cvyndpuh57bc5" path="res://Scenes/World/Splatmap_-41_0_2.res" id="33_j7io7"]
+[ext_resource type="Texture2D" path="res://Scenes/World/Water_-41_0.res" id="34_7ux86"]
 [ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="34_onk8b"]
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="35_dqy74"]
-[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="36_i7ytt"]
 [ext_resource type="PackedScene" uid="uid://dw6hxbmy4e6g5" path="res://Assets/3D/props/campfire.blend" id="37_1iv40"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="38_37fbk"]
 [ext_resource type="Texture2D" uid="uid://cr4mihs0tdekp" path="res://Assets/2D/Stone.jpg" id="39_trubd"]
@@ -301,17 +300,18 @@ WaterEdgeScale = 1.0
 WaterFar = 1000.0
 metadata/_custom_type_script = "uid://k2tvfxm6feg5"
 
-[sub_resource type="Resource" id="Resource_74t71"]
+[sub_resource type="Resource" id="Resource_s1v1w"]
 script = ExtResource("34_onk8b")
-HeightMapTexture = ExtResource("28_1iv40")
-SplatmapsTexture = [ExtResource("30_trubd"), ExtResource("31_7q8i2"), ExtResource("32_af120")]
-FoliagesTexture = [ExtResource("26_gegoo"), ExtResource("27_i7ytt")]
-ObjectsTexture = [ExtResource("29_37fbk")]
-WaterTexture = ExtResource("33_v7j45")
+ZonePosition = Vector2i(-41, 0)
+HeightMapTexture = ExtResource("29_ko6j5")
+SplatmapsTexture = [ExtResource("31_tngvy"), ExtResource("32_dec1v"), ExtResource("33_j7io7")]
+FoliagesTexture = [ExtResource("27_akvjm"), ExtResource("28_ax5fl")]
+ObjectsTexture = [ExtResource("30_k87f7")]
+WaterTexture = ExtResource("34_7ux86")
 
 [sub_resource type="Resource" id="Resource_akvjm"]
 script = ExtResource("35_dqy74")
-Zones = [SubResource("Resource_74t71")]
+Zones = [SubResource("Resource_s1v1w")]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trubd"]
 albedo_texture = ExtResource("38_37fbk")
@@ -423,6 +423,7 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_ax5fl")
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10443.33, 0, 0)
 script = ExtResource("1_qbqvj")
 DataPath = "res://Scenes/World"
 CollisionLayers = -1
@@ -439,8 +440,6 @@ metadata/_edit_lock_ = false
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.833164, 1.1404479, 18.025173)
-
-[node name="Enviorment" parent="." instance=ExtResource("36_i7ytt")]
 
 [node name="campfire" parent="." instance=ExtResource("37_1iv40")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.125053, 0.48778537, 16.474651)

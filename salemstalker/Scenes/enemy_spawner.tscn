@@ -18,6 +18,7 @@ wait_time = 7.5
 [node name="MonsterHolder" type="Node3D" parent="."]
 
 [node name="Range" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0, 1)
 light_energy = 0.0
 
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
