@@ -1,7 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl3y8nfncided"]
+[gd_scene load_steps=23 format=3 uid="uid://dl3y8nfncided"]
 
 [ext_resource type="PackedScene" uid="uid://c6jmp7jqyytkw" path="res://Assets/3D/charatermodel/villagerblank.blend" id="2_8tk1i"]
+[ext_resource type="Texture2D" uid="uid://bwaigs2xiy21k" path="res://Assets/othermodeltxt/villager/body_Base_color.png" id="2_h5qdd"]
+[ext_resource type="Texture2D" uid="uid://bcut85ivpps6a" path="res://Assets/othermodeltxt/villager/pants_Base_color.png" id="3_2nh1k"]
+[ext_resource type="Texture2D" uid="uid://dec7pgme6o76v" path="res://Assets/othermodeltxt/villager/body_Height.png" id="3_morsg"]
+[ext_resource type="Texture2D" uid="uid://dnroknxeakgh" path="res://Assets/othermodeltxt/villager/shoes_Base_color.png" id="4_7eycp"]
+[ext_resource type="Texture2D" uid="uid://dcuqrk4qjec81" path="res://Assets/othermodeltxt/villager/body_Normal_OpenGL.png" id="4_6212y"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="4_l2tj8"]
+[ext_resource type="Texture2D" uid="uid://pquuq2mdwjrv" path="res://Assets/othermodeltxt/villager/skin_Base_color.png" id="5_morsg"]
+[ext_resource type="Texture2D" uid="uid://ccnep0bi2bma7" path="res://Assets/othermodeltxt/villager/shoes_Roughness.png" id="7_tjcig"]
+[ext_resource type="Texture2D" uid="uid://bx0u04csmo0qe" path="res://Assets/othermodeltxt/villager/arms_Base_color.png" id="9_ilb84"]
+[ext_resource type="Texture2D" uid="uid://unirocct1ndc" path="res://Assets/othermodeltxt/villager/arms_Height.png" id="10_27dgc"]
+[ext_resource type="Texture2D" uid="uid://tj1mk72fja4x" path="res://Assets/othermodeltxt/villager/arms_Normal_OpenGL.png" id="11_funfr"]
+[ext_resource type="Texture2D" uid="uid://8mv7hpypaeab" path="res://Assets/othermodeltxt/villager/arms_Roughness.png" id="12_p10au"]
+[ext_resource type="Texture2D" uid="uid://uvus35kw7x21" path="res://Assets/othermodeltxt/villager/face_Base_color.png" id="13_27dgc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h5qdd"]
+albedo_texture = ExtResource("2_h5qdd")
+normal_enabled = true
+normal_texture = ExtResource("4_6212y")
+heightmap_enabled = true
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("3_morsg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_820w5"]
+albedo_texture = ExtResource("3_2nh1k")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2tj8"]
+albedo_texture = ExtResource("4_7eycp")
+roughness_texture = ExtResource("7_tjcig")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2v6d"]
+albedo_texture = ExtResource("5_morsg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ada2i"]
+albedo_texture = ExtResource("9_ilb84")
+roughness_texture = ExtResource("12_p10au")
+normal_enabled = true
+normal_texture = ExtResource("11_funfr")
+heightmap_enabled = true
+heightmap_texture = ExtResource("10_27dgc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilb84"]
+albedo_texture = ExtResource("5_morsg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmdon"]
+albedo_texture = ExtResource("13_27dgc")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n6gic"]
 height = 3.13692
@@ -11,6 +55,9 @@ collision_layer = 2
 
 [node name="villagerblank" parent="." instance=ExtResource("2_8tk1i")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="metarig" parent="villagerblank" index="0"]
+visible = false
 
 [node name="Skeleton3D" parent="villagerblank/metarig_001" index="0"]
 bones/0/position = Vector3(0, 1.0028101, -0.0552)
@@ -34,6 +81,19 @@ bones/34/rotation = Quaternion(0.98022187, -0.013522929, 0.00887299, 0.19723986)
 bones/35/rotation = Quaternion(0.14695452, -0.0015916282, -0.011780295, 0.9890719)
 bones/36/rotation = Quaternion(-0.5135951, 0.05794249, 0.08637085, 0.85170585)
 bones/37/rotation = Quaternion(-0.018384513, 0.9591089, -0.27506912, -0.064103134)
+
+[node name="Cube" parent="villagerblank/metarig_001/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h5qdd")
+surface_material_override/1 = SubResource("StandardMaterial3D_820w5")
+surface_material_override/2 = SubResource("StandardMaterial3D_l2tj8")
+surface_material_override/3 = SubResource("StandardMaterial3D_p2v6d")
+
+[node name="Cube_002" parent="villagerblank/metarig_001/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ada2i")
+surface_material_override/1 = SubResource("StandardMaterial3D_ilb84")
+
+[node name="Cube_003" parent="villagerblank/metarig_001/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_tmdon")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 1.0
