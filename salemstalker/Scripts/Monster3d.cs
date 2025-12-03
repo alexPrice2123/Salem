@@ -99,7 +99,6 @@ public partial class Monster3d : CharacterBody3D
         {
             shape2.Radius = agroRange;
         }
-        
     }
 
 
@@ -443,7 +442,7 @@ public partial class Monster3d : CharacterBody3D
         _rng.Randomize();
         float angle = GD.Randf() * 2 * MathF.PI;
 
-        Vector3 center = _player.GlobalPosition;
+        Vector3 center = GlobalPosition;
         _rangedPosition = new Vector3(
             center.X + AttackRange * Mathf.Cos(angle),
             center.Y,

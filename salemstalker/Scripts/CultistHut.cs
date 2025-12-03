@@ -81,6 +81,10 @@ public partial class CultistHut : Node3D
             {
                 monster.RandomRangedPosition();
 				monster.Biome = _biome;
+				monster.SpawnRange = (float)SpawnDistance*1.5f;
+				monster._currentSpawnRange = (float)SpawnDistance*1.5f;
+				monster._startPos = GlobalPosition;
+				monster.GetNode<GpuParticles3D>("Shrined").Emitting = true;
             }
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();
@@ -97,23 +101,15 @@ public partial class CultistHut : Node3D
 
 	// --- PROCESS LOOP ---
 	public override void _Process(double delta)
-	{
+	{	
 		if (_holder.GetChildCount() <= 0 && _number >= _maxMonsterCount && _destroyed == false)
         {
             _player._shrinesDestroyed += 1;
-			_destroyed = true;
-			GetNode<MeshInstance3D>("Orb").Visible = false;
+			_destroyed = true;	
 			GetNode<OmniLight3D>("Light").Visible = false;
 			GetNode<GpuParticles3D>("Magic").Emitting = false;
 			GetNode<GpuParticles3D>("Boom").Emitting = true;
-        }
-		if (_destroyed == true)
-        {
-            GetNode<Node3D>("Shrine").Position -= new Vector3(0f, 0.01f, 0f);
-			if (GetNode<Node3D>("Shrine").Position.Y <= -3)
-            {
-                QueueFree();
-            }
+			GetNode<MeshInstance3D>("Model/Sphere_002").Visible = false;
         }
 	}
 }
