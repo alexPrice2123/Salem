@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=4 uid="uid://ugvn3fpfrh3c"]
+[gd_scene load_steps=107 format=4 uid="uid://ugvn3fpfrh3c"]
 
 [ext_resource type="Script" uid="uid://ps4omxss41de" path="res://Scripts/titleScreen.cs" id="1_k87f7"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="11_rsi7w"]
@@ -62,8 +62,8 @@ uv1_scale = Vector3(0.25, 0.25, 0.25)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_af120"]
 render_priority = 0
 shader = ExtResource("40_7q8i2")
-shader_parameter/Color = Color(1, 1, 0.2509804, 1)
-shader_parameter/glow_color = Color(1, 0.5529412, 0, 1)
+shader_parameter/Color = Color(0.5254902, 0.54901963, 0.078431375, 1)
+shader_parameter/glow_color = Color(0.8, 0.18800001, 0.11999998, 1)
 shader_parameter/dist = 0.25
 shader_parameter/speed = 20.0
 shader_parameter/glow_intensity = 2.0
@@ -106,11 +106,22 @@ collision_use_scale = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_74t71"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ko6j5"]
+render_priority = 0
+shader = ExtResource("40_7q8i2")
+shader_parameter/Color = Color(0.07699999, 0.12430008, 0.55, 1)
+shader_parameter/glow_color = Color(0.11999998, 0.8, 0.76600003, 1)
+shader_parameter/dist = 0.25
+shader_parameter/speed = 20.0
+shader_parameter/glow_intensity = 2.0
+shader_parameter/glow_amount = 1.0
+shader_parameter/posMult = 1.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_akvjm"]
 render_priority = 0
 shader = ExtResource("40_7q8i2")
-shader_parameter/Color = Color(1, 0.5019608, 0, 1)
-shader_parameter/glow_color = Color(1, 0.5529412, 0, 1)
+shader_parameter/Color = Color(0.8117647, 0.1882353, 0.06666667, 1)
+shader_parameter/glow_color = Color(0.8, 0.6, 0.23137255, 1)
 shader_parameter/dist = 0.25
 shader_parameter/speed = 20.0
 shader_parameter/glow_intensity = 2.0
@@ -796,6 +807,14 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_dqy74")
 draw_pass_1 = SubResource("BoxMesh_74t71")
 
+[node name="Fire3" type="GPUParticles3D" parent="campfire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23237294, 0)
+material_override = SubResource("ShaderMaterial_ko6j5")
+amount = 25
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_dqy74")
+draw_pass_1 = SubResource("BoxMesh_74t71")
+
 [node name="Fire2" type="GPUParticles3D" parent="campfire"]
 material_override = SubResource("ShaderMaterial_akvjm")
 amount = 25
@@ -972,7 +991,7 @@ vertical_alignment = 1
 transform = Transform3D(-0.8067153, 0, -1.5303955, 0, 1.73, 0, 1.5303955, 0, -0.8067153, -25.056038, 0.21340585, -19.38391)
 
 [node name="hollowBrute" parent="." instance=ExtResource("45_74t71")]
-transform = Transform3D(-0.92330414, 0, -0.3840696, 0, 1, 0, 0.3840696, 0, -0.92330414, 1.1828406, 0.51218677, -6.391266)
+transform = Transform3D(-0.92330414, 0, -0.3840696, 0, 1, 0, 0.3840696, 0, -0.92330414, 1.1828406, 0.78501296, -5.8071365)
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("11_rsi7w")
@@ -995,15 +1014,15 @@ metadata/_edit_lock_ = false
 transform = Transform3D(-0.25881916, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.25881916, 5.3384056, 0, 1.0159346)
 
 [node name="Skeleton3D" parent="WarmVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 1.0006622, -0.0552)
-bones/2/rotation = Quaternion(-0.07012915, 0, 0, 0.997538)
-bones/5/rotation = Quaternion(0.04278621, 0.009264038, 0.021589424, 0.998808)
-bones/8/rotation = Quaternion(-0.24420044, 0.38751495, -0.7178017, 0.5243655)
-bones/15/rotation = Quaternion(-0.2288521, -0.40153903, 0.7267917, 0.5081015)
-bones/25/rotation = Quaternion(0.97875, 0.01416558, -0.008928795, 0.20437272)
-bones/26/rotation = Quaternion(0.16146243, 0.0015879615, 0.012943282, 0.98679274)
-bones/34/rotation = Quaternion(0.97875, -0.014165582, 0.008928751, 0.20437272)
-bones/35/rotation = Quaternion(0.16146243, -0.0015879615, -0.012943284, 0.98679274)
+bones/0/position = Vector3(0, 1.0087384, -0.055199984)
+bones/2/rotation = Quaternion(-0.07671052, 0, 0, 0.9970534)
+bones/5/rotation = Quaternion(0.078378856, 0.00982641, 0.021474147, 0.9966439)
+bones/8/rotation = Quaternion(-0.21810763, 0.36681387, -0.7282154, 0.53626406)
+bones/15/rotation = Quaternion(-0.21762829, -0.371115, 0.7388571, 0.5186539)
+bones/25/rotation = Quaternion(0.9848158, 0.011357843, -0.00870939, 0.17301194)
+bones/26/rotation = Quaternion(0.09779813, 0.0016014483, 0.007839778, 0.99517417)
+bones/34/rotation = Quaternion(0.9848158, -0.011357843, 0.008709347, 0.17301193)
+bones/35/rotation = Quaternion(0.09779813, -0.001601448, -0.0078397775, 0.99517417)
 bones/43/position = Vector3(0.11409071, 0.0852, -0.014552689)
 bones/45/position = Vector3(-0.11409071, 0.0852, -0.014552689)
 
@@ -1019,10 +1038,10 @@ anim_player = NodePath("../villagerblank/AnimationPlayer")
 transform = Transform3D(-0.9990978, 0, 0.04246843, 0, 1, 0, -0.04246843, 0, -0.9990978, 4.3761067, 0, 0.24955976)
 
 [node name="Skeleton3D" parent="ColdVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98620766, -0.055199996)
+bones/0/position = Vector3(0, 0.9954092, -0.0552)
 bones/1/rotation = Quaternion(0.02974452, 0, 0, 0.9995576)
-bones/2/rotation = Quaternion(0.003760614, 0, 0, 0.999993)
-bones/5/rotation = Quaternion(-0.14158589, 0.0061764065, 0.021745024, 0.98966795)
+bones/2/rotation = Quaternion(-0.06521006, 0, 0, 0.99787164)
+bones/5/rotation = Quaternion(-0.082268015, 0.007201843, 0.02177606, 0.9963463)
 bones/8/rotation = Quaternion(-0.25204387, 0.4770401, -0.6706099, 0.5091061)
 bones/9/rotation = Quaternion(0.20272473, 0.094213, -0.6563358, 0.72059)
 bones/10/rotation = Quaternion(-0.1702162, 0.16236909, -0.16637525, 0.95759183)
@@ -1031,11 +1050,11 @@ bones/15/rotation = Quaternion(-0.10761373, -0.41021964, 0.8555811, 0.2968504)
 bones/16/rotation = Quaternion(0.35960385, -0.07531826, 0.5145085, 0.7747859)
 bones/17/rotation = Quaternion(-0.24278422, -0.20150147, 0.13319576, 0.9395275)
 bones/19/rotation = Quaternion(-0.05178894, -0.040206723, 0.5085042, 0.8585597)
-bones/25/rotation = Quaternion(0.9706604, 0.017384138, -0.009256095, 0.23964694)
-bones/26/rotation = Quaternion(0.23269309, 0.0015647552, 0.01865333, 0.97237015)
+bones/25/rotation = Quaternion(0.97567827, 0.015443893, -0.009049248, 0.21847528)
+bones/26/rotation = Quaternion(0.18991448, 0.0015797367, 0.015224078, 0.98168135)
 bones/27/rotation = Quaternion(-0.56675655, -0.06371846, -0.08171159, 0.8173434)
-bones/34/rotation = Quaternion(0.9706604, -0.017384136, 0.00925605, 0.23964694)
-bones/35/rotation = Quaternion(0.23269309, -0.001564755, -0.01865333, 0.97237015)
+bones/34/rotation = Quaternion(0.97567827, -0.015443893, 0.009049204, 0.21847528)
+bones/35/rotation = Quaternion(0.18991448, -0.0015797367, -0.015224078, 0.98168135)
 bones/36/rotation = Quaternion(-0.56219697, 0.06322342, 0.082132496, 0.82048255)
 bones/37/rotation = Quaternion(-0.01838452, 0.9591089, -0.27506912, -0.06410314)
 bones/43/position = Vector3(0.11409071, 0.0852, -0.014552689)
@@ -1050,28 +1069,28 @@ tree_root = SubResource("AnimationNodeStateMachine_k87f7")
 anim_player = NodePath("../villagerblank/AnimationPlayer")
 
 [node name="vCultist" parent="." instance=ExtResource("48_ko6j5")]
-transform = Transform3D(-0.9686959, 0, -0.2482504, 0, 1, 0, 0.2482504, 0, -0.9686959, 2.0089931, 0, -5.417067)
+transform = Transform3D(-0.9781476, 0, -0.20791161, 0, 1, 0, 0.20791161, 0, -0.9781476, 2.2111597, 0.44426322, -5.417067)
 
 [node name="Skeleton3D" parent="vCultist/Body/metarig" index="0"]
-bones/0/position = Vector3(5.947677e-10, 0.9326821, -0.064947784)
-bones/1/rotation = Quaternion(-0.052094556, 9.524419e-11, -1.0195767e-08, 0.9986422)
-bones/5/rotation = Quaternion(-0.09934738, 1.1791955e-07, -1.6827924e-08, 0.9950529)
-bones/9/rotation = Quaternion(-0.16061799, 0.4701063, -0.62843966, 0.5985528)
-bones/10/rotation = Quaternion(0.6843045, -0.008900579, -0.07619812, 0.72514975)
-bones/21/rotation = Quaternion(0.62106556, -0.058866013, 0.33904433, 0.70417416)
-bones/34/rotation = Quaternion(0.96753603, 0.05751576, -0.11774365, 0.21610792)
-bones/35/rotation = Quaternion(0.15614542, 0.004262974, 0.019986765, 0.9875227)
-bones/39/rotation = Quaternion(0.97061276, -0.056367163, 0.07833178, 0.22044942)
-bones/40/rotation = Quaternion(0.1676507, -0.0042373817, -0.036432266, 0.985164)
+bones/0/position = Vector3(-8.442888e-10, 0.9408263, -0.06494776)
+bones/1/rotation = Quaternion(-0.043889947, -1.1311962e-10, -1.3107451e-08, 0.9990364)
+bones/5/rotation = Quaternion(-0.11652911, 1.1940307e-07, -6.8221793e-09, 0.99318737)
+bones/9/rotation = Quaternion(-0.15334792, 0.4359805, -0.6437982, 0.6098602)
+bones/10/rotation = Quaternion(0.7333845, -0.008716801, -0.12720259, 0.66775066)
+bones/21/rotation = Quaternion(0.6363025, -0.030319253, 0.31288764, 0.70448655)
+bones/34/rotation = Quaternion(0.97738296, 0.045643017, -0.11756382, 0.16975929)
+bones/35/rotation = Quaternion(0.0736967, 0.0043048747, 0.009433235, 0.9972268)
+bones/39/rotation = Quaternion(0.97932035, -0.04448038, 0.07745311, 0.18153338)
+bones/40/rotation = Quaternion(0.09859466, -0.0042792177, -0.021425655, 0.9948878)
 
 [node name="Plane" parent="vCultist/Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, 5.635104e-09, 3.3517936e-10, -5.6039453e-09, 0.9981197, -0.06129426, -6.800134e-10, 0.061294273, 0.9981196, 3.0490255e-10, 1.7501342, -0.0017083939)
+transform = Transform3D(1, -9.027084e-09, 1.2025474e-09, 9.070608e-09, 0.9990671, -0.043181628, -8.117031e-10, 0.043181643, 0.99906707, 2.0799542e-09, 1.7581892, 0.0046762386)
 
 [node name="arur_l" parent="vCultist/Body/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.0506423, -0.13703243, -0.07613232, 0.15676123, 0.9182844, 0.5104934, -4.0762126e-05, -0.51613915, 0.9284521, 0.31112275, 1.4194326, 0.27528524)
+transform = Transform3D(1.0400767, -0.059761688, -0.20758645, 0.17860463, 0.8120993, 0.66107404, 0.1215071, -0.6821634, 0.8051782, 0.2845762, 1.4658428, 0.27562714)
 
 [node name="arua_r" parent="vCultist/Body/metarig/Skeleton3D" index="2"]
-transform = Transform3D(0.9948194, 0.0031013787, 0.3724891, 0.013313711, 1.0612612, -0.044394746, -0.37226412, 0.04624416, 0.99383307, -0.23536995, 1.292217, 0.17195569)
+transform = Transform3D(1.017875, -0.0017837286, 0.30389234, 0.005490437, 1.062189, -0.01215598, -0.30384806, 0.013218477, 1.0178039, -0.24878983, 1.3065919, 0.18189307)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3398342, 28.027174, -7.351434)
