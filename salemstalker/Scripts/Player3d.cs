@@ -741,18 +741,19 @@ public partial class Player3d : CharacterBody3D
 	{
 		_swordInst.ResetMonsterDebounce(); // Allow the sword to hit new monsters
 		_attackCooldown = true; // Start the attack cooldown
-		float swingTime = (float)_sword.GetMeta("swingSpeed"); // Get swing time from weapon metadata
-		float comboTime = swingTime * 1000 + 400; // Time window for the next combo hit (in ms)
+		float comboTime = (float)_sword.GetMeta("SwingSpeed1") * 1000 + 400; // Time window for the next combo hit (in ms)
+		float swingTime = (float)_sword.GetMeta("swingSpeed1");
 		_rng.Randomize();
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
 		_damage = (float)_sword.GetMeta("damage");
 		float tempHorSense = HorCamSense;
 		float tempVerSense = VerCamSense;
+		string swingMeta = "swingSpeed1";
 
 		// Damage penalty if stamina is too low
-		if (_stamina <= 0.02f * _maxStamina)
+		if (_stamina <= 0.05f * _maxStamina)
 		{
-			_damage *= 0.75f;
+			_damage *= 0.7f;
 		}
 
 		// Skip stamina deduction and set swing time to zero if just equipping the weapon (for animation only)
@@ -798,40 +799,41 @@ public partial class Player3d : CharacterBody3D
 				_swordInst._crit = true;
 			}
 		}
-
 		// --- Play Animation based on Combo ---
 		if (_comboNum == 0)
 		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
+			_swordInst.updateVar(swingUpdate:1);
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
 			HorCamSense /= 2.5f;
 			VerCamSense /= 3f;
 		}
 		else if (_comboNum == 1)
 		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
+			_swordInst.updateVar(swingUpdate:2);
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
 			HorCamSense /= 2.5f;
 			VerCamSense /= 3f;
+			swingMeta = "swingSpeed2";
 		}
 		else if (_comboNum == 2)
 		{
+			_swordInst.updateVar(swingUpdate:3);
 			_damage = (float)_sword.GetMeta("hDamage"); // Use a special high-damage value for the final hit
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
 			HorCamSense /= 2f;
 			VerCamSense /= 5f;
+			swingMeta = "SwingSpeed3";
 		}
-
 		if (justEqquipped == true)
 		{
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Stop(); // Don't animate if just equipped
 		}
-
-		GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
+		swingTime = (float)_sword.GetMeta(swingMeta);
 		_lastHit = Time.GetTicksMsec(); // Record the time of this hit
 		play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));
 		// Wait for the main part of the swing animation to finish
 		await ToSignal(GetTree().CreateTimer(swingTime * 0.7), "timeout");
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
-
 		// Wait for the remainder of the swing (0 seconds in this case, a slight delay might be intended)
 		await ToSignal(GetTree().CreateTimer(swingTime * 0), "timeout");
 		_attackCooldown = false; // End the attack cooldown
@@ -839,6 +841,8 @@ public partial class Player3d : CharacterBody3D
 		// Reset the players sensitivity
 		HorCamSense = tempHorSense;
 		VerCamSense = tempVerSense;
+		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+		_swordInst.updateVar(swingUpdate:0);
 	}
 
 	// Handles the blocking and parrying mechanic.
@@ -847,7 +851,7 @@ public partial class Player3d : CharacterBody3D
 		_blocking = block;
 		if (block == true)
 		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Parry"); // Start the parry animation
+			_swordInst.updateVar(blockUpdate: true);
 			await ToSignal(GetTree().CreateTimer(0.05), "timeout"); // Wait for a brief moment
 			_parry = block; // Set parry flag to true (the active parry window)
 			_currentParryWindow = _parryWindow; // Start the parry timer
@@ -855,7 +859,7 @@ public partial class Player3d : CharacterBody3D
 		else
 		{
 			_parry = block; // Set parry flag to false
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").PlayBackwards("Parry"); // Reverse the animation
+			_swordInst.updateVar(blockUpdate: false);
 		}
 	}
 	
