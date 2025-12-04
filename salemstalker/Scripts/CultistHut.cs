@@ -76,7 +76,7 @@ public partial class CultistHut : Node3D
 			PackedScene monsterSelection = _monsterList[monsterIndex];
 			CharacterBody3D monsterInstance = monsterSelection.Instantiate<CharacterBody3D>(); // Create monster instance
 			_holder.AddChild(monsterInstance);                                             // Add monster to holder node
-			monsterInstance.Position = _spawn.Position;                                    // Set monster spawn position
+			monsterInstance.Position = _spawn.Position;                                    // Set monster spawn position  
 			if (monsterInstance is Monster3d monster)
             {
                 monster.RandomRangedPosition();
