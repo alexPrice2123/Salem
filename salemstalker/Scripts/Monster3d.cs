@@ -99,7 +99,6 @@ public partial class Monster3d : CharacterBody3D
         {
             shape2.Radius = agroRange;
         }
-        
     }
 
 
