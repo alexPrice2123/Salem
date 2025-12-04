@@ -1,4 +1,4 @@
-[gd_scene load_steps=1099 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1097 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -2194,12 +2194,6 @@ albedo_color = Color(0.6706895, 0.6706895, 0.6706895, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81ace"]
 albedo_color = Color(0.14406255, 0.14406255, 0.14406255, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5m6g4"]
-albedo_color = Color(0, 0.36078432, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptcpy"]
-albedo_color = Color(0.14406255, 0.14406255, 0.14406249, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtthl"]
 albedo_texture = ExtResource("919_h1utm")
 
@@ -2450,22 +2444,10 @@ PostDoneDialogue = "We can finally eat food again. Thank you. "
 QuestTitle = "Find and kill rats around the Village"
 QuestGoal = "0/5"
 
-[node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9929998, -0.05519999)
-bones/2/rotation = Quaternion(-0.04099137, 0, 0, 0.9991595)
-bones/5/rotation = Quaternion(-0.10318733, 0.0068437136, 0.02177399, 0.9944)
-bones/25/rotation = Quaternion(0.974317, 0.015986746, -0.009104231, 0.22442798)
-bones/26/rotation = Quaternion(0.20197715, 0.0015758331, 0.016191058, 0.9792552)
-bones/34/rotation = Quaternion(0.974317, -0.015986746, 0.0091041885, 0.22442798)
-bones/35/rotation = Quaternion(0.20197715, -0.0015758331, -0.016191056, 0.9792552)
-
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_4aw2u")
 surface_material_override/1 = SubResource("StandardMaterial3D_4aw2u")
 surface_material_override/2 = SubResource("StandardMaterial3D_obu7h")
-
-[node name="Cube_002" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_4aw2u")
 
 [node name="Lukas" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.821777, 1.9490459, 24.409164)
@@ -2481,22 +2463,10 @@ PostDoneDialogue = "I heard of Shrine sightings in the next village over."
 QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
-[node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9929998, -0.05519999)
-bones/2/rotation = Quaternion(-0.04099137, 0, 0, 0.9991595)
-bones/5/rotation = Quaternion(-0.10318733, 0.0068437136, 0.02177399, 0.9944)
-bones/25/rotation = Quaternion(0.974317, 0.015986746, -0.009104231, 0.22442798)
-bones/26/rotation = Quaternion(0.20197715, 0.0015758331, 0.016191058, 0.9792552)
-bones/34/rotation = Quaternion(0.974317, -0.015986746, 0.0091041885, 0.22442798)
-bones/35/rotation = Quaternion(0.20197715, -0.0015758331, -0.016191056, 0.9792552)
-
 [node name="Cube" parent="Lukas/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_4psjf")
 surface_material_override/1 = SubResource("StandardMaterial3D_4psjf")
 surface_material_override/2 = SubResource("StandardMaterial3D_81ace")
-
-[node name="Cube_002" parent="Lukas/villagerblank/metarig_001/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_4psjf")
 
 [node name="Samual" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.565277, 1.9490459, 53.176186)
@@ -2522,23 +2492,6 @@ DoneDialogue = Array[String](["Thank you, oh thank you so much sir. My husband m
 PostDoneDialogue = "My dear husband can now rest in peace. Thank you. "
 QuestTitle = "Kill creatures from the forest biome to avenge Martha's husband"
 QuestGoal = "Forest: 0/5"
-
-[node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9929998, -0.05519999)
-bones/2/rotation = Quaternion(-0.04099137, 0, 0, 0.9991595)
-bones/5/rotation = Quaternion(-0.10318733, 0.0068437136, 0.02177399, 0.9944)
-bones/25/rotation = Quaternion(0.974317, 0.015986746, -0.009104231, 0.22442798)
-bones/26/rotation = Quaternion(0.20197715, 0.0015758331, 0.016191058, 0.9792552)
-bones/34/rotation = Quaternion(0.974317, -0.015986746, 0.0091041885, 0.22442798)
-bones/35/rotation = Quaternion(0.20197715, -0.0015758331, -0.016191056, 0.9792552)
-
-[node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_5m6g4")
-surface_material_override/1 = SubResource("StandardMaterial3D_5m6g4")
-surface_material_override/2 = SubResource("StandardMaterial3D_ptcpy")
-
-[node name="Cube_002" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_5m6g4")
 
 [node name="Finn" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6124573, 1.9490459, 27.18628)
@@ -2594,25 +2547,25 @@ transform = Transform3D(-0.94969904, 0, -0.31316403, 0, 1, 0, 0.31316403, 0, -0.
 transform = Transform3D(-0.59201306, 0, 0.805928, 0, 1, 0, -0.805928, 0, -0.59201306, -424.842, 1.0230646, -79.2056)
 
 [node name="Lamp" parent="Map" instance=ExtResource("434_jgbub")]
-transform = Transform3D(0.72087777, 0, 0.6930619, 0, 1, 0, -0.6930619, 0, 0.72087777, -474.899, 1.7474592, -98.895)
+transform = Transform3D(0.72087777, 0, 0.6930619, 0, 1, 0, -0.6930619, 0, 0.72087777, -474.899, 4.3737926, -98.895)
 
 [node name="Lamp7" parent="Map" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.90675753, 0, -0.42165318, 0, 1, 0, 0.42165318, 0, -0.90675753, -490.899, 1.7474592, -60.535236)
+transform = Transform3D(-0.90675753, 0, -0.42165318, 0, 1, 0, 0.42165318, 0, -0.90675753, -490.899, 4.3737926, -60.535236)
 
 [node name="Lamp2" parent="Map" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.41351756, 0, 0.91049623, 0, 1, 0, -0.91049623, 0, -0.41351756, -474.899, 1.7474592, -80.202)
+transform = Transform3D(-0.41351756, 0, 0.91049623, 0, 1, 0, -0.91049623, 0, -0.41351756, -474.899, 4.3737926, -80.202)
 
 [node name="Lamp3" parent="Map" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.9971957, 0, 0.07483949, 0, 1, 0, -0.07483949, 0, -0.9971957, -447.384, 1.7474592, -61.68)
+transform = Transform3D(-0.9971957, 0, 0.07483949, 0, 1, 0, -0.07483949, 0, -0.9971957, -447.384, 4.3737926, -61.68)
 
 [node name="Lamp4" parent="Map" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.45475242, 0, -0.89061755, 0, 1, 0, 0.89061755, 0, -0.45475242, -424.941, 1.7474592, -67.2492)
+transform = Transform3D(-0.45475242, 0, -0.89061755, 0, 1, 0, 0.89061755, 0, -0.45475242, -424.941, 4.3737926, -67.2492)
 
 [node name="Lamp5" parent="Map" instance=ExtResource("434_jgbub")]
-transform = Transform3D(0.5054312, 0, -0.86286664, 0, 1, 0, 0.86286664, 0, 0.5054312, -424.941, 1.7474592, -103.98)
+transform = Transform3D(0.5054312, 0, -0.86286664, 0, 1, 0, 0.86286664, 0, 0.5054312, -424.941, 4.3737926, -103.98)
 
 [node name="Lamp6" parent="Map" instance=ExtResource("434_jgbub")]
-transform = Transform3D(0.9883908, 0, -0.15193361, 0, 1, 0, 0.15193361, 0, 0.9883908, -449.538, 1.7474592, -113.572)
+transform = Transform3D(0.9883908, 0, -0.15193361, 0, 1, 0, 0.15193361, 0, 0.9883908, -449.538, 4.3737926, -113.572)
 
 [node name="Sign2" parent="Map" instance=ExtResource("436_wk3sn")]
 transform = Transform3D(-0.75903285, 0, -0.6510525, 0, 1, 0, 0.6510525, 0, -0.75903285, -496.1352, 1.1935117, -71.86034)
@@ -2624,10 +2577,10 @@ visible = false
 text = "Plains"
 
 [node name="Lamp8" parent="Map/Sign2" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.9994844, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.9994844, 0.2620697, 0.55394745, 1.671936)
+transform = Transform3D(-0.99948424, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.99948424, 0.2620697, 3.180281, 1.671936)
 
 [node name="Lamp8" parent="Map" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.8368219, 0, -0.5474757, 0, 1, 0, 0.5474757, 0, -0.8368219, -424.76297, 1.7474592, -116.81695)
+transform = Transform3D(-0.8368219, 0, -0.5474757, 0, 1, 0, 0.5474757, 0, -0.8368219, -424.76297, 4.3737926, -116.81695)
 
 [node name="Sign7" parent="Map" instance=ExtResource("436_wk3sn")]
 transform = Transform3D(-0.65769094, 0, -0.75328803, 0, 1, 0, 0.75328803, 0, -0.65769094, -431.57095, 1.1935117, -127.27289)
@@ -2644,7 +2597,7 @@ visible = false
 text = "Plains"
 
 [node name="Lamp8" parent="Map/Sign7" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.9994844, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.9994844, 0.2620697, 0.55394745, 1.671936)
+transform = Transform3D(-0.9994844, 0, -0.032108575, 0, 1, 0, 0.032108575, 0, -0.9994844, 0.26206994, 3.180281, 1.6719365)
 
 [node name="Sign9" parent="Map" instance=ExtResource("436_wk3sn")]
 transform = Transform3D(-0.99524796, 0, 0.09737453, 0, 1, 0, -0.09737453, 0, -0.99524796, -422.6654, 0.7114985, -179.18483)
@@ -2661,7 +2614,7 @@ visible = false
 text = "Plains"
 
 [node name="Lamp8" parent="Map/Sign9" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.9994844, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.9994844, 0.2620697, 0.55394745, 1.671936)
+transform = Transform3D(-0.9994843, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.9994843, 0.26207018, 3.1802814, 1.6719284)
 
 [node name="Sign13" parent="Map" instance=ExtResource("436_wk3sn")]
 transform = Transform3D(-0.9085374, 0, 0.4178037, 0, 1, 0, -0.4178037, 0, -0.9085374, -408.6459, 0.7114985, -283.0799)
@@ -2679,7 +2632,7 @@ visible = false
 text = "Plains"
 
 [node name="Lamp8" parent="Map/Sign13" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.9994844, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.9994844, 0.2620697, 0.55394745, 1.671936)
+transform = Transform3D(-0.9994844, 0, -0.032108605, 0, 1, 0, 0.032108605, 0, -0.9994844, 0.26206207, 3.1802814, 1.671936)
 
 [node name="Sign14" parent="Map" instance=ExtResource("436_wk3sn")]
 transform = Transform3D(-0.9085374, 0, 0.4178037, 0, 1, 0, -0.4178037, 0, -0.9085374, -408.6459, 0.7114985, -283.0799)
@@ -2710,7 +2663,7 @@ text = "Willow-Mire"
 font_size = 55
 
 [node name="Lamp8" parent="Map/Sign12" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.9994844, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.9994844, 0.2620697, 0.55394745, 1.671936)
+transform = Transform3D(-0.9994843, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.9994843, 0.2620697, 3.1802812, 1.6719055)
 
 [node name="Sign11" parent="Map" instance=ExtResource("436_wk3sn")]
 transform = Transform3D(-0.99524796, 0, 0.09737453, 0, 1, 0, -0.09737453, 0, -0.99524796, -422.6654, 1.311054, -179.18483)
@@ -2766,7 +2719,7 @@ visible = false
 text = "Plains"
 
 [node name="Lamp8" parent="Map/Sign3" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.9994844, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.9994844, 0.2620697, 0.55394745, 1.671936)
+transform = Transform3D(-0.99948436, 0, -0.032108635, 0, 1, 0, 0.032108635, 0, -0.99948436, 0.26203918, 3.180281, 1.6719513)
 
 [node name="Sign6" parent="Map" instance=ExtResource("436_wk3sn")]
 transform = Transform3D(-0.40845796, 0, -0.9127772, 0, 1, 0, 0.9127772, 0, -0.40845796, -577.88086, 1.1935117, 69.351074)
@@ -2784,7 +2737,7 @@ visible = false
 text = "Plains"
 
 [node name="Lamp8" parent="Map/Sign6" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.9994844, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.9994844, 0.2620697, 0.55394745, 1.671936)
+transform = Transform3D(-0.99948436, 0, -0.032108635, 0, 1, 0, 0.032108635, 0, -0.99948436, 0.26203918, 3.180281, 1.6719513)
 
 [node name="Sign4" parent="Map" instance=ExtResource("436_wk3sn")]
 transform = Transform3D(0.91959536, 0, -0.3928669, 0, 1, 0, 0.3928669, 0, 0.91959536, -579.7199, 1.1935117, 108.42822)
@@ -2802,7 +2755,7 @@ text = "Elderstraud"
 font_size = 65
 
 [node name="Lamp8" parent="Map/Sign4" instance=ExtResource("434_jgbub")]
-transform = Transform3D(-0.9994844, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.9994844, 0.2620697, 0.55394745, 1.671936)
+transform = Transform3D(-0.9994845, 0, -0.032108694, 0, 1, 0, 0.032108694, 0, -0.9994845, 0.2620697, 3.180281, 1.671936)
 
 [node name="Sign5" parent="Map" instance=ExtResource("436_wk3sn")]
 transform = Transform3D(-0.96074045, 0, -0.2774488, 0, 1, 0, 0.2774488, 0, -0.96074045, -579.8744, 1.1935117, 108.42822)
