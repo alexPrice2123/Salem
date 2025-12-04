@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 public partial class NpcVillager : CharacterBody3D
 {
 	// - Constants -
-	public const float Speed = 3.0f;                       // The AI's speed
+	public const float Speed = 1f;                       // The AI's speed
 	public const float Range = 3.0f;                       // The max range between player and AI
 
 	// - Variables -
