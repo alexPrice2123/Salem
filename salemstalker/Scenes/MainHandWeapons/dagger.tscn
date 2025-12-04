@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dt4yf12xhv7s3"]
+[gd_scene load_steps=23 format=3 uid="uid://dt4yf12xhv7s3"]
 
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="1_elou5"]
 [ext_resource type="Script" uid="uid://cq6a0knyhqwm7" path="res://Scenes/MainHandWeapons/Dagger.cs" id="1_yfl0d"]
@@ -79,7 +79,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("dagger:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -91,7 +91,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("dagger:rotation")
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -107,39 +107,97 @@ length = 0.375
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("dagger:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.06, 0, 0.28), Vector3(-0.17, 0, -0.565), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("dagger:rotation")
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-1.2653637, 0.5131268, 0), Vector3(-1.2571932, 0.50981355, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yfl0d"]
+resource_name = "Swing2"
+length = 0.375
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.62, 0.2, 0.15), Vector3(-0.296, 0, -0.53), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.23333333, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-2.719223, 0, 0), Vector3(-2.0629792, -0.09424778, 0), Vector3(-1.4538592, -0.37350047, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rk2qu"]
+resource_name = "Swing3"
+length = 0.375
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.41, -0.18, -0.16), Vector3(0.475, -0.178, -0.45), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.9424778), Vector3(0, -2.3038347, 1.5184364), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hry07"]
 _data = {
 &"RESET": SubResource("Animation_gbebq"),
-&"Swing1": SubResource("Animation_uebnu")
+&"Swing1": SubResource("Animation_uebnu"),
+&"Swing2": SubResource("Animation_yfl0d"),
+&"Swing3": SubResource("Animation_rk2qu")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gopbf"]
 size = Vector3(0.21177, 0.65658045, 0.321355)
 
 [node name="dagger" type="Node3D"]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+transform = Transform3D(0.49, 0, 0, 0, 0.49, 0, 0, 0, 0.49, 0, 0, 0)
 script = ExtResource("1_yfl0d")
 metadata/swingSpeed = 0.375
 metadata/hDamage = 4.0
@@ -150,7 +208,7 @@ metadata/cPercent2 = 1.75
 metadata/cPercent3 = 1.8
 
 [node name="Blood" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00812661, 1.10846, -0.080514)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00812661, 0.7084739, -0.080514014)
 material_override = SubResource("StandardMaterial3D_gbebq")
 emitting = false
 amount = 100
