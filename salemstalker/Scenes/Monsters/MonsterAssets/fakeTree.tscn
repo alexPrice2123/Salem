@@ -254,6 +254,13 @@ modulate = Color(0, 0, 0, 1)
 [node name="Spawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7684302, 0.4002992)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1.1999998, 0, 0, 0, 1.1999998, 0, 0, 0, 1.1999998, 0, 1.9079671, 0)
+shape = SubResource("BoxShape3D_p2s7p")
+debug_color = Color(0.541872, 0.406451, 1, 0.42)
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 
 [editable path="BossTree"]
