@@ -15,7 +15,7 @@ public partial class hollowBrute : Monster3d
 		BaseDamage = 35.0f;
 		WanderRange = 50;
 		AttackSpeed = 2.5f;
-		AttackRange = 1.5f;
+		AttackRange = 2f;
 		Monster = this;
 		Chaser = true;
 		Initialization();

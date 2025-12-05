@@ -440,33 +440,6 @@ graph_offset = Vector2(10.912842, 71.76184)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
 size = Vector3(0.21177, 1.52848, 0.321355)
 
-[sub_resource type="Animation" id="Animation_kwmjs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -3.14159, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_mw22n"]
 resource_name = "Block"
 length = 0.1
@@ -523,32 +496,31 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(1.0472, -1.39626, -0.0872665)]
 }
 
-[sub_resource type="Animation" id="Animation_jta0k"]
-resource_name = "Swing2"
-length = 0.6
+[sub_resource type="Animation" id="Animation_kwmjs"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.36666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.15, 0.14, 0.06), Vector3(-0.29, -0.12, -0.41), Vector3(0, 0, 0)]
+"values": [Vector3(0, -3.14159, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.36666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.366519, 0.418879, -0.349066), Vector3(-0.71384, 1.95477, -1.5708), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_x5r1y"]
@@ -577,6 +549,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.383972, 0, 0.628319), Vector3(-0.268781, -2.54818, 1.69471), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jta0k"]
+resource_name = "Swing2"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.36666667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.15, 0.14, 0.06), Vector3(-0.29, -0.12, -0.41), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.36666667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.366519, 0.418879, -0.349066), Vector3(-0.71384, 1.95477, -1.5708), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_floln"]
@@ -627,7 +627,7 @@ metadata/cChance = 0.25
 metadata/cPercent1 = 1.2
 metadata/cPercent2 = 1.2
 metadata/cPercent3 = 1.25
-metadata/bChance = 0.0
+metadata/bChance = 0.2
 metadata/level = 0
 
 [node name="Blood" type="GPUParticles3D" parent="."]
@@ -669,8 +669,8 @@ visible = false
 bones/0/position = Vector3(-3.5527124e-15, 0.9426751, -0.06494778)
 bones/8/rotation = Quaternion(-0.28827924, 0.63253677, -0.5684554, 0.44005772)
 bones/9/rotation = Quaternion(0.5499285, 0.0012709559, -0.13263234, 0.82461244)
-bones/18/rotation = Quaternion(-0.15373778, -0.5200879, 0.6979764, 0.46765614)
-bones/19/rotation = Quaternion(0.6113451, -0.03577021, 0.023097059, 0.7902179)
+bones/18/rotation = Quaternion(-0.1559692, -0.5153972, 0.69575053, 0.47536376)
+bones/19/rotation = Quaternion(0.58988345, -0.03548375, 0.032395497, 0.80605763)
 bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
 bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
 bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
@@ -683,7 +683,7 @@ bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5199334, -0.009158894, 0.8541576, -0.051301956, 0.9984727, -0.020521864, -0.8526647, -0.054489806, -0.5196087, -0.17733784, 1.4184647, 0.41251343)
+transform = Transform3D(-0.5054222, -0.016478807, 0.8627144, -0.015533537, 0.99982953, 0.009997398, -0.86273193, -0.008347802, -0.5055917, -0.18567237, 1.4048809, 0.41826877)
 
 [node name="Cylinder_001" parent="weaponAnimations" index="1"]
 transform = Transform3D(-0.5017525, -0.0032141083, 0.86500525, -0.003631327, 0.99999213, 0.0016093028, -0.8650036, -0.0023336455, -0.5017601, -0.19114703, 1.4032985, -31.179735)
