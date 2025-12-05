@@ -1,4 +1,4 @@
-[gd_scene load_steps=1097 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1100 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -928,7 +928,8 @@
 [ext_resource type="Texture2D" uid="uid://c1v1wcwnfmerq" path="res://Scenes/World/Water_-3_-4.res" id="854_7cg25"]
 [ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://Assets/2D/WoodPlank.png" id="919_h1utm"]
 [ext_resource type="PackedScene" uid="uid://cw86i51qs7jry" path="res://Scenes/boat.tscn" id="922_qtthl"]
-[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="929_81ace"]
+[ext_resource type="PackedScene" uid="uid://cy7jmu4cqns65" path="res://Assets/3D/charatermodel/long_fence.blend" id="926_ptcpy"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="927_4aw2u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
 
@@ -2197,6 +2198,12 @@ albedo_color = Color(0.14406255, 0.14406255, 0.14406255, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtthl"]
 albedo_texture = ExtResource("919_h1utm")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qcek0"]
+albedo_texture = ExtResource("927_4aw2u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkflp"]
+albedo_texture = ExtResource("927_4aw2u")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nufjf"]
 albedo_texture = ExtResource("919_h1utm")
 
@@ -2444,6 +2451,15 @@ PostDoneDialogue = "We can finally eat food again. Thank you. "
 QuestTitle = "Find and kill rats around the Village"
 QuestGoal = "0/5"
 
+[node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
+bones/0/position = Vector3(0, 0.98955137, -0.055199992)
+bones/2/rotation = Quaternion(-0.011967056, 0, 0, 0.9999285)
+bones/5/rotation = Quaternion(-0.12816972, 0.006411029, 0.021758867, 0.9914928)
+bones/25/rotation = Quaternion(0.9724335, 0.016716924, -0.009181731, 0.23239952)
+bones/26/rotation = Quaternion(0.21802552, 0.0015702497, 0.017477538, 0.9757853)
+bones/34/rotation = Quaternion(0.9724335, -0.016716927, 0.009181685, 0.23239952)
+bones/35/rotation = Quaternion(0.21802552, -0.0015702499, -0.017477538, 0.9757853)
+
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_4aw2u")
 surface_material_override/1 = SubResource("StandardMaterial3D_4aw2u")
@@ -2462,6 +2478,15 @@ DoneDialogue = Array[String](["You did it! Our village is now safe once again. I
 PostDoneDialogue = "I heard of Shrine sightings in the next village over."
 QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
+
+[node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
+bones/0/position = Vector3(0, 0.98955137, -0.055199992)
+bones/2/rotation = Quaternion(-0.011967056, 0, 0, 0.9999285)
+bones/5/rotation = Quaternion(-0.12816972, 0.006411029, 0.021758867, 0.9914928)
+bones/25/rotation = Quaternion(0.9724335, 0.016716924, -0.009181731, 0.23239952)
+bones/26/rotation = Quaternion(0.21802552, 0.0015702497, 0.017477538, 0.9757853)
+bones/34/rotation = Quaternion(0.9724335, -0.016716927, 0.009181685, 0.23239952)
+bones/35/rotation = Quaternion(0.21802552, -0.0015702499, -0.017477538, 0.9757853)
 
 [node name="Cube" parent="Lukas/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_4psjf")
@@ -2492,6 +2517,15 @@ DoneDialogue = Array[String](["Thank you, oh thank you so much sir. My husband m
 PostDoneDialogue = "My dear husband can now rest in peace. Thank you. "
 QuestTitle = "Kill creatures from the forest biome to avenge Martha's husband"
 QuestGoal = "Forest: 0/5"
+
+[node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
+bones/0/position = Vector3(0, 0.98955137, -0.055199992)
+bones/2/rotation = Quaternion(-0.011967056, 0, 0, 0.9999285)
+bones/5/rotation = Quaternion(-0.12816972, 0.006411029, 0.021758867, 0.9914928)
+bones/25/rotation = Quaternion(0.9724335, 0.016716924, -0.009181731, 0.23239952)
+bones/26/rotation = Quaternion(0.21802552, 0.0015702497, 0.017477538, 0.9757853)
+bones/34/rotation = Quaternion(0.9724335, -0.016716927, 0.009181685, 0.23239952)
+bones/35/rotation = Quaternion(0.21802552, -0.0015702499, -0.017477538, 0.9757853)
 
 [node name="Finn" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6124573, 1.9490459, 27.18628)
@@ -2773,23 +2807,105 @@ material_override = SubResource("StandardMaterial3D_qtthl")
 use_collision = true
 size = Vector3(6.262268, 0.6543274, 27.471313)
 
-[node name="Fence" type="CSGBox3D" parent="Map"]
-transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -460.80786, 1.0997467, -47.361)
-material_override = SubResource("StandardMaterial3D_nufjf")
-use_collision = true
-size = Vector3(65.5022, 3.9361572, 0.15283203)
+[node name="Fence8" parent="Map" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.6216723, -0.06430865, -1.1399069, 0.012036348, 1.2974948, -0.07976336, 1.141656, -0.048697684, -0.6198789, -489.17572, 1.2176735, -63.7035)
 
-[node name="Fence2" type="CSGBox3D" parent="Map"]
-transform = Transform3D(0.50000006, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, 0.50000006, -416.4323, 1.0997467, -58.74352)
-material_override = SubResource("StandardMaterial3D_nufjf")
-use_collision = true
-size = Vector3(64, 3.9361572, 0.15283203)
+[node name="fence" parent="Map/Fence8" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qcek0")
 
-[node name="Fence3" type="CSGBox3D" parent="Map"]
-transform = Transform3D(-0.70710677, 0, 0.7071069, 0, 1, 0, -0.7071069, 0, -0.70710677, -414.1025, 1.0997467, -99.97325)
-material_override = SubResource("StandardMaterial3D_nufjf")
-use_collision = true
-size = Vector3(38.587036, 3.9361572, 0.15283203)
+[node name="pole" parent="Map/Fence8" index="1"]
+visible = false
+material_override = SubResource("StandardMaterial3D_bkflp")
+
+[node name="Fence9" parent="Map" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.6216723, -0.06430865, -1.1399069, 0.012036348, 1.2974948, -0.07976336, 1.141656, -0.048697684, -0.6198789, -478.27234, 2.0724316, -57.77855)
+
+[node name="fence" parent="Map/Fence9" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qcek0")
+
+[node name="pole" parent="Map/Fence9" index="1"]
+visible = false
+material_override = SubResource("StandardMaterial3D_bkflp")
+
+[node name="Fence10" parent="Map" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.62015593, 0.004682733, -1.1425341, 0.045031916, 1.2990791, -0.019118533, 1.1416559, -0.048697677, -0.61987877, -467.30194, 2.8608248, -51.80992)
+
+[node name="fence" parent="Map/Fence10" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qcek0")
+
+[node name="pole" parent="Map/Fence10" index="1"]
+visible = false
+material_override = SubResource("StandardMaterial3D_bkflp")
+
+[node name="Fence11" parent="Map" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.61753833, 0.062475685, -1.1422534, 0.0725788, 1.2975843, 0.031733114, 1.1416559, -0.048697677, -0.6198787, -456.1604, 3.0552344, -45.785126)
+
+[node name="fence" parent="Map/Fence11" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qcek0")
+
+[node name="pole" parent="Map/Fence11" index="1"]
+visible = false
+material_override = SubResource("StandardMaterial3D_bkflp")
+
+[node name="Fence12" parent="Map" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.6125277, 0.13476628, -1.1387043, 0.106916174, 1.2920783, 0.0954062, 1.1416559, -0.048697677, -0.6198787, -445.1832, 2.7214563, -39.839714)
+
+[node name="fence" parent="Map/Fence12" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qcek0")
+
+[node name="pole" parent="Map/Fence12" index="1"]
+visible = false
+material_override = SubResource("StandardMaterial3D_bkflp")
+
+[node name="Fence13" parent="Map" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(1.131949, -0.046586692, -0.63758963, 0.05435615, 1.2988619, 0.0015977472, 0.6369744, -0.02805037, 1.1329062, -434.14557, 1.6459043, -33.979744)
+
+[node name="fence" parent="Map/Fence13" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qcek0")
+
+[node name="pole" parent="Map/Fence13" index="1"]
+visible = false
+material_override = SubResource("StandardMaterial3D_bkflp")
+
+[node name="Fence14" parent="Map" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(1.131949, -0.046586692, -0.63758963, 0.05435615, 1.2988619, 0.0015977472, 0.6369744, -0.02805037, 1.1329062, -427.9965, 1.6459042, -44.929695)
+
+[node name="fence" parent="Map/Fence14" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qcek0")
+
+[node name="pole" parent="Map/Fence14" index="1"]
+visible = false
+material_override = SubResource("StandardMaterial3D_bkflp")
+
+[node name="Fence15" parent="Map" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(1.131949, -0.046586692, -0.63758963, 0.05435615, 1.2988619, 0.0015977472, 0.6369744, -0.02805037, 1.1329062, -421.85086, 1.6459041, -55.819717)
+
+[node name="fence" parent="Map/Fence15" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qcek0")
+
+[node name="pole" parent="Map/Fence15" index="1"]
+visible = false
+material_override = SubResource("StandardMaterial3D_bkflp")
+
+[node name="Fence16" parent="Map" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(1.131949, -0.046586692, -0.63758963, 0.07317344, 1.2974639, 0.035107296, 0.63508785, -0.06645715, 1.1323632, -415.67047, 1.6459041, -66.79199)
+
+[node name="fence" parent="Map/Fence16" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qcek0")
+
+[node name="pole" parent="Map/Fence16" index="1"]
+visible = false
+material_override = SubResource("StandardMaterial3D_bkflp")
+
+[node name="Fence17" parent="Map" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(1.131949, -0.046586692, -0.63758963, 0.07317344, 1.2974639, 0.035107296, 0.63508785, -0.06645715, 1.1323632, -409.4865, 1.3602931, -77.76497)
+
+[node name="fence" parent="Map/Fence17" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qcek0")
+
+[node name="pole" parent="Map/Fence17" index="1"]
+transform = Transform3D(1, 1.8626451e-09, -5.9604645e-08, 3.7252903e-09, 1.0000001, 7.450581e-09, -8.940697e-08, 0, 1, -27.520863, 1.7541851, -17.165127)
+material_override = SubResource("StandardMaterial3D_bkflp")
 
 [node name="Fence4" type="CSGBox3D" parent="Map"]
 transform = Transform3D(-0.70710677, 0, 0.7071069, 0, 1, 0, -0.7071069, 0, -0.70710677, -440.30585, 1.0997486, -126.43342)
@@ -3093,8 +3209,6 @@ _teleportPoint = "Brittlebay Dock"
 NPCName = "Old Boat"
 InitialDialogue = "E to Interact"
 
-[node name="Enviorment" parent="." instance=ExtResource("929_81ace")]
-
 [editable path="MonsterHolder/RatSpawner"]
 [editable path="MonsterHolder/Shrine1EnemySpawner"]
 [editable path="MonsterHolder/Shrine2EnemySpawner"]
@@ -3132,6 +3246,16 @@ InitialDialogue = "E to Interact"
 [editable path="Map/Sign4/sign"]
 [editable path="Map/Sign5"]
 [editable path="Map/Sign5/sign"]
+[editable path="Map/Fence8"]
+[editable path="Map/Fence9"]
+[editable path="Map/Fence10"]
+[editable path="Map/Fence11"]
+[editable path="Map/Fence12"]
+[editable path="Map/Fence13"]
+[editable path="Map/Fence14"]
+[editable path="Map/Fence15"]
+[editable path="Map/Fence16"]
+[editable path="Map/Fence17"]
 [editable path="Biomes/Swamp"]
 [editable path="Biomes/Plains"]
 [editable path="Biomes/Village/Brittlebay"]
