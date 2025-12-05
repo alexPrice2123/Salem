@@ -55,4 +55,15 @@ public partial class SwordHandler : Node3D
 		swingStat = swingUpdate;
 		parryStat = parryUpdate;
 	}
+	public bool getBoolVar(int which)
+	{
+		if(which == 0) {return walking;}
+		else if(which == 1) {return running;}
+        else {return blocking;}
+	}
+	public int getIntVar(int which)
+    {
+		if(which == 0) {return swingStat;}
+        else {return parryStat;}
+    }
 }

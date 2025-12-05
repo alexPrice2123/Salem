@@ -224,18 +224,23 @@ public partial class Player3d : CharacterBody3D
 
 		// --- Sword attack (Attack Action) ---
 		else if (Input.IsActionPressed("attack")
-				 && _attackCooldown == false
 				 && !IsInstanceValid(_lastSeen) // Not looking at an interactable object
 				 && _inv.Visible == false)
 		{
-			// This block handles the first attack, potentially hiding a "Controls" overlay
-			if (GetNode<Sprite2D>("UI/Controls").Visible == true && GetNode<ColorRect>("UI/Loading").Visible == false)
-			{
-				GetNode<Sprite2D>("UI/Controls").Visible = false;
+			if(_attackCooldown == false){
+				// This block handles the first attack, potentially hiding a "Controls" overlay
+				if (GetNode<Sprite2D>("UI/Controls").Visible == true && GetNode<ColorRect>("UI/Loading").Visible == false)
+				{
+					GetNode<Sprite2D>("UI/Controls").Visible = false;
+				}
+				else
+				{
+					Swing(false); // Perform a normal sword swing
+				}
 			}
 			else
 			{
-				Swing(false); // Perform a normal sword swing
+				
 			}
 		}
 
@@ -584,6 +589,7 @@ public partial class Player3d : CharacterBody3D
 
 			if (_running == true)
 			{
+				_swordInst.updateVar(false,true,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 				if (_inCombat == true)
 				{
 					_stamina -= 8f * (float)delta; // Deduct stamina while running  
@@ -596,11 +602,13 @@ public partial class Player3d : CharacterBody3D
 			}
 			else
 			{
+				_swordInst.updateVar(true,false,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 				play_footstep(0.7f);
 			}
 		}
 		else
 		{
+			_swordInst.updateVar(false,false,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 			// Player is stationary (no directional input)
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
@@ -757,11 +765,7 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		// Skip stamina deduction and set swing time to zero if just equipping the weapon (for animation only)
-		if (justEqquipped == true)
-		{
-			swingTime = 0f;
-		}
-		else
+		if (!justEqquipped)
 		{
 			_stamina -= 0.05f * _maxStamina; // Deduct stamina for the attack
 		}
@@ -824,11 +828,12 @@ public partial class Player3d : CharacterBody3D
 			VerCamSense /= 5f;
 			swingMeta = "SwingSpeed3";
 		}
+		swingTime = (float)_sword.GetMeta(swingMeta);
 		if (justEqquipped == true)
 		{
+			swingTime = 0; 
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Stop(); // Don't animate if just equipped
 		}
-		swingTime = (float)_sword.GetMeta(swingMeta);
 		_lastHit = Time.GetTicksMsec(); // Record the time of this hit
 		play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));
 		// Wait for the main part of the swing animation to finish
@@ -1011,7 +1016,8 @@ public partial class Player3d : CharacterBody3D
 			// Regular block: reduce damage, deduct stamina, play block animation
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			_knockVelocity = 1f;
 			if (_cam is Camera cam)
@@ -1026,7 +1032,8 @@ public partial class Player3d : CharacterBody3D
 			_stamina += 0.20f * _maxStamina;
 			takenDamage = 0f;
 			monster.Stunned();
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 			_parried = true;
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)
@@ -1062,7 +1069,8 @@ public partial class Player3d : CharacterBody3D
 			// Regular block: reduce damage, deduct stamina, play block animation, destroy projectile
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			projectile.QueueFree();
 			_knockVelocity = 0.25f;
@@ -1072,7 +1080,8 @@ public partial class Player3d : CharacterBody3D
 			// Successful parry: restore stamina, negate damage, destroy projectile, set parried flag
 			_stamina += 0.15f * _maxStamina;
 			takenDamage = 0f;
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 			projectile.QueueFree();
 			_parried = true;
 			_knockVelocity = 0f;
