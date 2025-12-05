@@ -1,8 +1,8 @@
-[gd_scene load_steps=118 format=4 uid="uid://ugvn3fpfrh3c"]
+[gd_scene load_steps=115 format=4 uid="uid://ugvn3fpfrh3c"]
 
 [ext_resource type="Script" uid="uid://ps4omxss41de" path="res://Scripts/titleScreen.cs" id="1_k87f7"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="11_rsi7w"]
-[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/grass.png" id="12_6ay2x"]
+[ext_resource type="Texture2D" uid="uid://t547gwa8vawn" path="res://Assets/2D/Grass.png" id="12_6ay2x"]
 [ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="13_8840v"]
 [ext_resource type="Texture2D" uid="uid://1ww7oogaqk3h" path="res://Assets/2D/GrassNormal.png" id="14_51im7"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="15_7tuqe"]
@@ -32,13 +32,13 @@
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="38_37fbk"]
 [ext_resource type="Texture2D" uid="uid://dn82dxn1qopy1" path="res://Scenes/Titlescreen/Heightmap_0_0.res" id="38_ax5fl"]
 [ext_resource type="Texture2D" uid="uid://syhoun3s31pg" path="res://Scenes/Titlescreen/Object_0_0_0.res" id="39_ko6j5"]
-[ext_resource type="Texture2D" uid="uid://ciyfo4dsw5dun" path="res://Assets/2D/Stone.jpg" id="39_trubd"]
+[ext_resource type="Texture2D" uid="uid://cr4mihs0tdekp" path="res://Assets/2D/Stone.jpg" id="39_trubd"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="40_7q8i2"]
 [ext_resource type="Texture2D" uid="uid://ceu3xnqmtrfjw" path="res://Scenes/Titlescreen/Splatmap_0_0_0.res" id="40_k87f7"]
 [ext_resource type="Texture2D" uid="uid://2nlbwvdo1q4" path="res://Assets/UI/title/title.png" id="41_af120"]
 [ext_resource type="Texture2D" uid="uid://dgjejfje3c334" path="res://Scenes/Titlescreen/Splatmap_0_0_1.res" id="41_tngvy"]
 [ext_resource type="Texture2D" uid="uid://dyic2wm6w2aus" path="res://Scenes/Titlescreen/Splatmap_0_0_2.res" id="42_dec1v"]
-[ext_resource type="Texture2D" uid="uid://bfhrw1kwnsf06" path="res://Assets/UI/title/buttonuibase.png" id="42_v7j45"]
+[ext_resource type="Texture2D" uid="uid://c38b5hfrm2qwt" path="res://Assets/UI/title/buttonuibase.png" id="42_v7j45"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="43_dqy74"]
 [ext_resource type="Texture2D" uid="uid://degt1xxutm6ns" path="res://Scenes/Titlescreen/Water_0_0.res" id="43_j7io7"]
 [ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="44_7ux86"]
@@ -47,14 +47,10 @@
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="45_s1v1w"]
 [ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="46_ax5fl"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="47_ax5fl"]
-[ext_resource type="Texture2D" uid="uid://bwaigs2xiy21k" path="res://Assets/othermodeltxt/villager/body_Base_color.png" id="48_b1qc0"]
+[ext_resource type="Texture2D" uid="uid://bf7b14xp8kqy8" path="res://Assets/othermodeltxt/villager/Arms.jpg" id="48_6rplc"]
+[ext_resource type="Texture2D" uid="uid://biknle7w1b6ou" path="res://Assets/othermodeltxt/villager/Body.jpg" id="48_ftf3f"]
 [ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/sCultist.tscn" id="48_ko6j5"]
-[ext_resource type="Texture2D" uid="uid://dec7pgme6o76v" path="res://Assets/othermodeltxt/villager/body_Height.png" id="49_6rplc"]
-[ext_resource type="Texture2D" uid="uid://dcuqrk4qjec81" path="res://Assets/othermodeltxt/villager/body_Normal_OpenGL.png" id="50_ftf3f"]
-[ext_resource type="Texture2D" uid="uid://bx0u04csmo0qe" path="res://Assets/othermodeltxt/villager/arms_Base_color.png" id="51_po0vr"]
-[ext_resource type="Texture2D" uid="uid://unirocct1ndc" path="res://Assets/othermodeltxt/villager/arms_Height.png" id="52_tcsql"]
-[ext_resource type="Texture2D" uid="uid://tj1mk72fja4x" path="res://Assets/othermodeltxt/villager/arms_Normal_OpenGL.png" id="53_8kdhe"]
-[ext_resource type="Texture2D" uid="uid://8mv7hpypaeab" path="res://Assets/othermodeltxt/villager/arms_Roughness.png" id="54_567tt"]
+[ext_resource type="Texture2D" uid="uid://bab2pb0j3q745" path="res://Assets/othermodeltxt/villager/Pants.jpg" id="49_po0vr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trubd"]
 albedo_texture = ExtResource("38_37fbk")
@@ -112,17 +108,6 @@ collision_bounce = 0.0
 collision_use_scale = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_74t71"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ko6j5"]
-render_priority = 0
-shader = ExtResource("40_7q8i2")
-shader_parameter/Color = Color(0.07699999, 0.12430008, 0.55, 1)
-shader_parameter/glow_color = Color(0.11999998, 0.8, 0.76600003, 1)
-shader_parameter/dist = 0.25
-shader_parameter/speed = 20.0
-shader_parameter/glow_intensity = 2.0
-shader_parameter/glow_amount = 1.0
-shader_parameter/posMult = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_akvjm"]
 render_priority = 0
@@ -615,23 +600,17 @@ WaterTexture = ExtResource("43_j7io7")
 script = ExtResource("45_s1v1w")
 Zones = [SubResource("Resource_b1qc0")]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dlun1"]
-albedo_color = Color(0.6839902, 0.66616005, 0.25343403, 1)
-albedo_texture = ExtResource("48_b1qc0")
-normal_enabled = true
-normal_texture = ExtResource("50_ftf3f")
-heightmap_enabled = true
-heightmap_scale = 0.0
-heightmap_texture = ExtResource("49_6rplc")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_po0vr"]
+albedo_color = Color(0, 0.5019608, 0, 1)
+albedo_texture = ExtResource("48_ftf3f")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gk43b"]
-albedo_color = Color(0.68235296, 0.6666667, 0.25490198, 1)
-albedo_texture = ExtResource("51_po0vr")
-roughness_texture = ExtResource("54_567tt")
-normal_enabled = true
-normal_texture = ExtResource("53_8kdhe")
-heightmap_enabled = true
-heightmap_texture = ExtResource("52_tcsql")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcsql"]
+albedo_color = Color(0, 0.5019608, 0, 1)
+albedo_texture = ExtResource("49_po0vr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ftf3f"]
+albedo_color = Color(0, 0.5019608, 0, 1)
+albedo_texture = ExtResource("48_6rplc")
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8tk1i"]
 animation = &"campfire_idle"
@@ -652,23 +631,17 @@ states/scared_idle/position = Vector2(388, 159)
 transitions = ["Start", "campfire_idle", SubResource("AnimationNodeStateMachineTransition_l2tj8")]
 graph_offset = Vector2(56, -2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkbh8"]
-albedo_color = Color(0.70612025, 0.091482125, 0.22136176, 1)
-albedo_texture = ExtResource("48_b1qc0")
-normal_enabled = true
-normal_texture = ExtResource("50_ftf3f")
-heightmap_enabled = true
-heightmap_scale = 0.0
-heightmap_texture = ExtResource("49_6rplc")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dec1v"]
+albedo_color = Color(0.2784314, 0, 0, 0.9843137)
+albedo_texture = ExtResource("48_ftf3f")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05066"]
-albedo_color = Color(0.84705883, 0.13725491, 0.2784314, 1)
-albedo_texture = ExtResource("51_po0vr")
-roughness_texture = ExtResource("54_567tt")
-normal_enabled = true
-normal_texture = ExtResource("53_8kdhe")
-heightmap_enabled = true
-heightmap_texture = ExtResource("52_tcsql")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ux86"]
+albedo_color = Color(0.2784314, 0, 0, 1)
+albedo_texture = ExtResource("49_po0vr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7io7"]
+albedo_color = Color(0.2784314, 0, 0, 1)
+albedo_texture = ExtResource("48_6rplc")
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ax5fl"]
 advance_mode = 2
@@ -837,22 +810,21 @@ material_override = SubResource("StandardMaterial3D_7q8i2")
 visible = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="campfire"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4622403, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.46224034, -0.091536045)
 light_color = Color(1, 0.73333335, 0, 1)
-light_energy = 5.0
+light_energy = 2.5
+shadow_enabled = true
+omni_range = 5.428
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="campfire"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.46224034, 0.11386448)
+light_color = Color(1, 0.73333335, 0, 1)
+light_energy = 2.5
 shadow_enabled = true
 omni_range = 5.428
 
 [node name="Fire" type="GPUParticles3D" parent="campfire"]
 material_override = SubResource("ShaderMaterial_af120")
-amount = 25
-lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_dqy74")
-draw_pass_1 = SubResource("BoxMesh_74t71")
-
-[node name="Fire3" type="GPUParticles3D" parent="campfire"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23237294, 0)
-material_override = SubResource("ShaderMaterial_ko6j5")
 amount = 25
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_dqy74")
@@ -865,19 +837,19 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_dqy74")
 draw_pass_1 = SubResource("BoxMesh_74t71")
 
-[node name="Control" type="Control" parent="."]
+[node name="Buttons" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Title" type="Sprite2D" parent="Control"]
+[node name="Title" type="Sprite2D" parent="Buttons"]
 texture_filter = 1
 position = Vector2(540, 87)
 scale = Vector2(0.7599988, 0.7599988)
 texture = ExtResource("41_af120")
 
-[node name="Play" type="TextureButton" parent="Control"]
+[node name="Play" type="TextureButton" parent="Buttons"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 61.000004
@@ -885,13 +857,14 @@ offset_top = 213.99998
 offset_right = 368.0
 offset_bottom = 315.0
 scale = Vector2(0.71999955, 0.71999955)
+pivot_offset = Vector2(0, 50)
 focus_mode = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("42_v7j45")
 texture_pressed = ExtResource("42_v7j45")
 texture_hover = ExtResource("42_v7j45")
 
-[node name="Label" type="Label" parent="Control/Play"]
+[node name="Label" type="Label" parent="Buttons/Play"]
 layout_mode = 0
 offset_left = 108.3334
 offset_top = -6.9444275
@@ -900,7 +873,7 @@ offset_bottom = 103.05557
 text = "Play"
 label_settings = SubResource("LabelSettings_fcexb")
 
-[node name="Credits" type="TextureButton" parent="Control"]
+[node name="Credits" type="TextureButton" parent="Buttons"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 61.000004
@@ -908,13 +881,14 @@ offset_top = 318.99997
 offset_right = 368.0
 offset_bottom = 420.0
 scale = Vector2(0.71999955, 0.71999955)
+pivot_offset = Vector2(0, 50)
 focus_mode = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("42_v7j45")
 texture_pressed = ExtResource("42_v7j45")
 texture_hover = ExtResource("42_v7j45")
 
-[node name="Label" type="Label" parent="Control/Credits"]
+[node name="Label" type="Label" parent="Buttons/Credits"]
 layout_mode = 0
 offset_left = 75.000046
 offset_top = 2.0980835e-05
@@ -923,7 +897,7 @@ offset_bottom = 110.00002
 text = "Credits"
 label_settings = SubResource("LabelSettings_fcexb")
 
-[node name="Quit" type="TextureButton" parent="Control"]
+[node name="Quit" type="TextureButton" parent="Buttons"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 61.0
@@ -931,13 +905,14 @@ offset_top = 423.00003
 offset_right = 368.0
 offset_bottom = 524.00006
 scale = Vector2(0.71999955, 0.71999955)
+pivot_offset = Vector2(0, 50)
 focus_mode = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("42_v7j45")
 texture_pressed = ExtResource("42_v7j45")
 texture_hover = ExtResource("42_v7j45")
 
-[node name="Label" type="Label" parent="Control/Quit"]
+[node name="Label" type="Label" parent="Buttons/Quit"]
 layout_mode = 0
 offset_left = 106.9445
 offset_top = -6.9444275
@@ -993,6 +968,7 @@ offset_top = 266.6364
 offset_right = 385.09094
 offset_bottom = 367.6364
 scale = Vector2(0.71999955, 0.71999955)
+pivot_offset = Vector2(0, 50)
 focus_mode = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("42_v7j45")
@@ -1032,9 +1008,11 @@ vertical_alignment = 1
 
 [node name="hollowNormal" parent="." instance=ExtResource("44_dqy74")]
 transform = Transform3D(-0.8067153, 0, -1.5303955, 0, 1.73, 0, 1.5303955, 0, -0.8067153, -25.056038, 0.21340585, -19.38391)
+script = null
 
 [node name="hollowBrute" parent="." instance=ExtResource("45_74t71")]
-transform = Transform3D(-0.92330414, 0, -0.3840696, 0, 1, 0, 0.3840696, 0, -0.92330414, 1.1828406, 0.78501296, -5.8071365)
+transform = Transform3D(-0.92330414, 0, -0.3840696, 0, 1, 0, 0.3840696, 0, -0.92330414, 1.1828406, 0.1223667, -5.8071365)
+script = null
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("11_rsi7w")
@@ -1052,100 +1030,100 @@ metadata/_custom_type_script = "uid://i5jcj7ukvoen"
 metadata/_edit_lock_ = false
 
 [node name="Enviorment" parent="." instance=ExtResource("46_ax5fl")]
+script = null
 
 [node name="WarmVillager" parent="." instance=ExtResource("47_ax5fl")]
 transform = Transform3D(-0.25881916, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.25881916, 5.3384056, 0, 1.0159346)
+script = null
 
 [node name="Skeleton3D" parent="WarmVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 1.0088472, -0.055199984)
-bones/2/rotation = Quaternion(-0.07681303, 0, 0, 0.9970455)
-bones/5/rotation = Quaternion(0.07927879, 0.0098404875, 0.021470875, 0.99657273)
-bones/8/rotation = Quaternion(-0.21736129, 0.3665995, -0.7282634, 0.5366483)
-bones/15/rotation = Quaternion(-0.21769837, -0.37025225, 0.7387485, 0.51939523)
-bones/25/rotation = Quaternion(0.9849327, 0.011298947, -0.0087054735, 0.17234886)
-bones/26/rotation = Quaternion(0.09645207, 0.001601661, 0.007731874, 0.9953063)
-bones/34/rotation = Quaternion(0.9849327, -0.011298949, 0.00870543, 0.17234886)
-bones/35/rotation = Quaternion(0.09645207, -0.0016016609, -0.007731873, 0.9953063)
-bones/43/position = Vector3(0.11409071, 0.0852, -0.014552689)
-bones/45/position = Vector3(-0.11409071, 0.0852, -0.014552689)
+bones/0/position = Vector3(0, 1.0003824, -0.055199996)
+bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
+bones/2/rotation = Quaternion(-0.06745739, 0, 0, 0.9977222)
+bones/5/rotation = Quaternion(0.05271284, 0.009421982, 0.021560052, 0.99833256)
+bones/8/rotation = Quaternion(-0.21675734, 0.40819842, -0.7073216, 0.53487056)
+bones/9/rotation = Quaternion(0.37500882, 0.2711096, -0.18186662, 0.86763626)
+bones/10/rotation = Quaternion(0.24329028, 0.45849064, 0.45827863, 0.72151023)
+bones/12/rotation = Quaternion(0.24474108, 0.6032071, 0.02517328, 0.7586893)
+bones/15/rotation = Quaternion(-0.23325446, -0.4027544, 0.71968484, 0.5152038)
+bones/16/rotation = Quaternion(0.36446658, -0.25167373, 0.1729833, 0.87971663)
+bones/17/rotation = Quaternion(0.28736565, -0.43814325, -0.4520288, 0.7218875)
+bones/19/rotation = Quaternion(0.29157862, -0.5994292, -0.023846436, 0.745049)
+bones/25/rotation = Quaternion(0.9786378, 0.0142137185, -0.008933095, 0.2049059)
+bones/26/rotation = Quaternion(0.1625594, 0.0015876695, 0.013031218, 0.9866115)
+bones/27/rotation = Quaternion(-0.5135951, -0.057942487, -0.08637086, 0.85170585)
+bones/34/rotation = Quaternion(0.9786378, -0.014213719, 0.0089330515, 0.2049059)
+bones/35/rotation = Quaternion(0.1625594, -0.0015876695, -0.01303122, 0.9866115)
+bones/36/rotation = Quaternion(-0.5135951, 0.05794249, 0.08637085, 0.85170585)
+bones/37/rotation = Quaternion(-0.018384513, 0.9591089, -0.27506912, -0.064103134)
 
 [node name="Cube" parent="WarmVillager/villagerblank/metarig_001/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_dlun1")
+surface_material_override/0 = SubResource("StandardMaterial3D_po0vr")
+surface_material_override/1 = SubResource("StandardMaterial3D_tcsql")
 
 [node name="Cube_002" parent="WarmVillager/villagerblank/metarig_001/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_gk43b")
+surface_material_override/0 = SubResource("StandardMaterial3D_ftf3f")
 
 [node name="QuestPrompt" parent="WarmVillager" index="3"]
 visible = false
 
-[node name="AnimationTree" type="AnimationTree" parent="WarmVillager"]
+[node name="AnimationTree2" type="AnimationTree" parent="WarmVillager"]
 root_node = NodePath("../villagerblank")
 tree_root = SubResource("AnimationNodeStateMachine_ko6j5")
 anim_player = NodePath("../villagerblank/AnimationPlayer")
 
 [node name="ColdVillager" parent="." instance=ExtResource("47_ax5fl")]
 transform = Transform3D(-0.9990978, 0, 0.04246843, 0, 1, 0, -0.04246843, 0, -0.9990978, 4.3761067, 0, 0.24955976)
+script = null
 
 [node name="Skeleton3D" parent="ColdVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99551415, -0.0552)
-bones/1/rotation = Quaternion(0.02974452, 0, 0, 0.9995576)
-bones/2/rotation = Quaternion(-0.06661545, 0, 0, 0.9977787)
-bones/5/rotation = Quaternion(-0.08105178, 0.0072225467, 0.021775888, 0.9964459)
-bones/8/rotation = Quaternion(-0.25204387, 0.4770401, -0.6706099, 0.5091061)
-bones/9/rotation = Quaternion(0.20272473, 0.094213, -0.6563358, 0.72059)
-bones/10/rotation = Quaternion(-0.1702162, 0.16236909, -0.16637525, 0.95759183)
-bones/12/rotation = Quaternion(0.031431206, 0.022740133, -0.5360797, 0.84327555)
-bones/15/rotation = Quaternion(-0.10761373, -0.41021964, 0.8555811, 0.2968504)
-bones/16/rotation = Quaternion(0.35960385, -0.07531826, 0.5145085, 0.7747859)
-bones/17/rotation = Quaternion(-0.24278422, -0.20150147, 0.13319576, 0.9395275)
-bones/19/rotation = Quaternion(-0.05178894, -0.040206723, 0.5085042, 0.8585597)
-bones/25/rotation = Quaternion(0.975756, 0.015412537, -0.009046142, 0.21813078)
-bones/26/rotation = Quaternion(0.18923168, 0.0015799504, 0.015169341, 0.9818141)
-bones/27/rotation = Quaternion(-0.56675655, -0.06371846, -0.08171159, 0.8173434)
-bones/34/rotation = Quaternion(0.975756, -0.015412537, 0.009046098, 0.21813078)
-bones/35/rotation = Quaternion(0.18923168, -0.0015799502, -0.015169341, 0.9818141)
-bones/36/rotation = Quaternion(-0.56219697, 0.06322342, 0.082132496, 0.82048255)
-bones/37/rotation = Quaternion(-0.01838452, 0.9591089, -0.27506912, -0.06410314)
-bones/43/position = Vector3(0.11409071, 0.0852, -0.014552689)
-bones/45/position = Vector3(-0.11409071, 0.0852, -0.014552689)
+bones/0/position = Vector3(0, 0.98502535, -0.055199992)
+bones/2/rotation = Quaternion(-0.010513174, 0, 0, 0.99994475)
+bones/5/rotation = Quaternion(-0.12941886, 0.006389252, 0.021757746, 0.9913307)
+bones/25/rotation = Quaternion(0.9696609, 0.017752355, -0.009298575, 0.24363124)
+bones/26/rotation = Quaternion(0.24092175, 0.0015615067, 0.01931296, 0.9703512)
+bones/34/rotation = Quaternion(0.9696609, -0.017752355, 0.009298531, 0.24363124)
+bones/35/rotation = Quaternion(0.24092175, -0.0015615064, -0.01931296, 0.9703512)
 
 [node name="Cube" parent="ColdVillager/villagerblank/metarig_001/Skeleton3D" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_pkbh8")
+surface_material_override/0 = SubResource("StandardMaterial3D_dec1v")
+surface_material_override/1 = SubResource("StandardMaterial3D_7ux86")
 
 [node name="Cube_002" parent="ColdVillager/villagerblank/metarig_001/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_05066")
+surface_material_override/0 = SubResource("StandardMaterial3D_j7io7")
 
 [node name="QuestPrompt" parent="ColdVillager" index="3"]
 visible = false
 
-[node name="AnimationTree" type="AnimationTree" parent="ColdVillager"]
+[node name="AnimationTree2" type="AnimationTree" parent="ColdVillager"]
 root_node = NodePath("../villagerblank")
 tree_root = SubResource("AnimationNodeStateMachine_k87f7")
 anim_player = NodePath("../villagerblank/AnimationPlayer")
 
 [node name="vCultist" parent="." instance=ExtResource("48_ko6j5")]
-transform = Transform3D(-0.9781476, 0, -0.20791161, 0, 1, 0, 0.20791161, 0, -0.9781476, 2.2111597, 0.44426322, -5.417067)
+transform = Transform3D(-0.9781476, 0, -0.20791161, 0, 1, 0, 0.20791161, 0, -0.9781476, 2.2111597, 0.06379658, -5.417067)
+script = null
 
 [node name="Skeleton3D" parent="vCultist/Body/metarig" index="0"]
-bones/0/position = Vector3(3.55748e-11, 0.94207734, -0.06494778)
-bones/1/rotation = Quaternion(-0.04337735, 6.2619974e-12, -1.019621e-08, 0.9990588)
-bones/5/rotation = Quaternion(-0.11953117, 1.1832748e-07, -1.44424535e-08, 0.99283046)
-bones/9/rotation = Quaternion(-0.15312958, 0.43496254, -0.6442361, 0.6101793)
-bones/10/rotation = Quaternion(0.7344395, -0.012838789, -0.11225846, 0.66920245)
-bones/21/rotation = Quaternion(0.640385, -0.027580434, 0.30880785, 0.7026978)
-bones/34/rotation = Quaternion(0.98060024, 0.041007586, -0.11769723, 0.15129125)
-bones/35/rotation = Quaternion(0.04079477, 0.0043131546, 0.0052217543, 0.9991447)
-bones/39/rotation = Quaternion(0.9815755, -0.04097009, 0.07728336, 0.16987757)
-bones/40/rotation = Quaternion(0.07788661, -0.004287474, -0.01692558, 0.9968093)
+bones/0/position = Vector3(-6.088262e-10, 0.9420753, -0.06494777)
+bones/1/rotation = Quaternion(-0.043042734, -1.2176181e-10, -1.3107446e-08, 0.99907327)
+bones/5/rotation = Quaternion(-0.119428, 1.1945872e-07, -6.4791874e-09, 0.992843)
+bones/9/rotation = Quaternion(-0.15298106, 0.43427005, -0.6445334, 0.6103958)
+bones/10/rotation = Quaternion(0.73513705, -0.011838302, -0.11670817, 0.66769207)
+bones/21/rotation = Quaternion(0.64023405, -0.027579447, 0.3088925, 0.70279825)
+bones/34/rotation = Quaternion(0.9800281, 0.04187178, -0.1176603, 0.15475084)
+bones/35/rotation = Quaternion(0.046952955, 0.004311966, 0.0060100146, 0.9988697)
+bones/39/rotation = Quaternion(0.9812254, -0.041530546, 0.07730769, 0.17174286)
+bones/40/rotation = Quaternion(0.08120065, -0.0042862864, -0.017645761, 0.99653244)
 
 [node name="Plane" parent="vCultist/Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.0110064e-10, 7.3887124e-10, -7.280704e-11, 0.9992714, -0.038165513, -7.4226786e-10, 0.038165532, 0.99927133, 1.2162436e-09, 1.7594668, 0.0045454036)
+transform = Transform3D(1, -1.0019012e-08, 1.2112278e-09, 1.005867e-08, 0.9992375, -0.039042614, -8.192223e-10, 0.039042667, 0.9992374, 2.396753e-09, 1.7594405, 0.0050257687)
 
 [node name="arur_l" parent="vCultist/Body/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.043559, -0.07834898, -0.18239963, 0.17758681, 0.80465466, 0.6703863, 0.08871959, -0.68906903, 0.80357695, 0.28972465, 1.4691211, 0.27557218)
+transform = Transform3D(1.0424873, -0.07243298, -0.19078015, 0.17864175, 0.8039818, 0.6709129, 0.0986444, -0.69050014, 0.801188, 0.2880157, 1.469357, 0.275786)
 
 [node name="arua_r" parent="vCultist/Body/metarig/Skeleton3D" index="2"]
-transform = Transform3D(1.0198286, -0.00039120018, 0.29727596, 0.00096027553, 1.0622706, -0.0018973053, -0.29727474, 0.0020901188, 1.0198268, -0.25012892, 1.3098506, 0.18283981)
+transform = Transform3D(1.019831, -0.00048308074, 0.29726762, 0.0013636798, 1.0622678, -0.0029530227, -0.29726508, 0.003216669, 1.0198267, -0.25012845, 1.3096341, 0.18298125)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3398342, 28.027174, -7.351434)
@@ -1157,9 +1135,9 @@ light_volumetric_fog_energy = 16.0
 light_specular = 8.0
 omni_range = 75.0
 
-[connection signal="button_up" from="Control/Play" to="." method="_on_play_button_up"]
-[connection signal="button_up" from="Control/Credits" to="." method="_on_credits_button_up"]
-[connection signal="button_up" from="Control/Quit" to="." method="_on_quit_button_up"]
+[connection signal="button_up" from="Buttons/Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="Buttons/Credits" to="." method="_on_credits_button_up"]
+[connection signal="button_up" from="Buttons/Quit" to="." method="_on_quit_button_up"]
 [connection signal="button_up" from="Credits/Back" to="." method="_on_back_button_up"]
 
 [editable path="campfire"]
