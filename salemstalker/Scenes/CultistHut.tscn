@@ -198,7 +198,7 @@ material_override = SubResource("StandardMaterial3D_mqdp6")
 material_override = SubResource("StandardMaterial3D_mqdp6")
 
 [node name="Sphere_002" parent="Model" index="4"]
-transform = Transform3D(-0.081136115, -0.0022221364, -0.05078588, 0.006392984, 0.09444855, -0.014346105, 0.05043088, -0.015548088, -0.07988866, -0.00052637234, 1.0754052, 0.0016484503)
+transform = Transform3D(-0.05405041, -0.022552654, 0.07574394, -0.0054102303, 0.092604905, 0.023712283, -0.07884477, 0.009106074, -0.05355181, -0.00052637234, 1.0754052, 0.0016484503)
 material_override = SubResource("ShaderMaterial_mqdp6")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Model"]
