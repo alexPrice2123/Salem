@@ -146,7 +146,7 @@ public partial class Player3d : CharacterBody3D
 		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
 
 		// Populate the weapon dictionary
-		_weapon.Add("ShortSword", _shortSword);
+		_weapon.Add("Shortsword", _shortSword);
 		_weapon.Add("Falchion", _falchion);
 		_weapon.Add("longsword", _longsword);
 		_weapon.Add("dagger", _dagger);
