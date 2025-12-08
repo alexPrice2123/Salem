@@ -146,7 +146,7 @@ public partial class Player3d : CharacterBody3D
 		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
 
 		// Populate the weapon dictionary
-		_weapon.Add("ShortSword", _shortSword);
+		_weapon.Add("Shortsword", _shortSword);
 		_weapon.Add("Falchion", _falchion);
 		_weapon.Add("longsword", _longsword);
 		_weapon.Add("dagger", _dagger);
@@ -856,7 +856,7 @@ public partial class Player3d : CharacterBody3D
 		_blocking = block;
 		if (block == true)
 		{
-			_swordInst.updateVar(blockUpdate: true);
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,0,_swordInst.getIntVar(1));
 			await ToSignal(GetTree().CreateTimer(0.05), "timeout"); // Wait for a brief moment
 			_parry = block; // Set parry flag to true (the active parry window)
 			_currentParryWindow = _parryWindow; // Start the parry timer
@@ -864,7 +864,7 @@ public partial class Player3d : CharacterBody3D
 		else
 		{
 			_parry = block; // Set parry flag to false
-			_swordInst.updateVar(blockUpdate: false);
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,0,_swordInst.getIntVar(1));
 		}
 	}
 	
