@@ -1,4 +1,4 @@
-[gd_scene load_steps=1104 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1105 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -931,8 +931,9 @@
 [ext_resource type="Texture2D" uid="uid://bf7b14xp8kqy8" path="res://Assets/othermodeltxt/villager/Arms.jpg" id="917_qcek0"]
 [ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://Assets/2D/WoodPlank.png" id="919_h1utm"]
 [ext_resource type="PackedScene" uid="uid://cw86i51qs7jry" path="res://Scenes/boat.tscn" id="922_qtthl"]
-[ext_resource type="PackedScene" uid="uid://cy7jmu4cqns65" path="res://Assets/3D/charatermodel/long_fence.blend" id="926_ptcpy"]
+[ext_resource type="PackedScene" uid="uid://07sk25v6dh1t" path="res://Assets/3D/charatermodel/long_fence.blend" id="926_ptcpy"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="927_4aw2u"]
+[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="934_qcek0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
 
@@ -2463,13 +2464,13 @@ QuestTitle = "Find and kill rats around the Village"
 QuestGoal = "0/5"
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99344015, -0.055199992)
-bones/2/rotation = Quaternion(-0.06424278, 0, 0, 0.99793434)
-bones/5/rotation = Quaternion(-0.08310487, 0.007187587, 0.021776162, 0.9962769)
-bones/25/rotation = Quaternion(0.97457796, 0.015883772, -0.009093694, 0.22330002)
-bones/26/rotation = Quaternion(0.1996585, 0.0015766034, 0.016005185, 0.97973365)
-bones/34/rotation = Quaternion(0.97457796, -0.015883772, 0.00909365, 0.22330001)
-bones/35/rotation = Quaternion(0.19962914, -0.0015766129, -0.016002832, 0.97973967)
+bones/0/position = Vector3(0, 0.9965212, -0.05519999)
+bones/2/rotation = Quaternion(-0.07739978, 0, 0, 0.99700016)
+bones/5/rotation = Quaternion(-0.07175027, 0.0073804636, 0.021773472, 0.99715763)
+bones/25/rotation = Quaternion(0.9763217, 0.01518256, -0.009023582, 0.21560192)
+bones/26/rotation = Quaternion(0.18410079, 0.0015815287, 0.014758041, 0.9827953)
+bones/34/rotation = Quaternion(0.9763217, -0.015182562, 0.009023541, 0.21560192)
+bones/35/rotation = Quaternion(0.18410079, -0.0015815294, -0.01475804, 0.9827953)
 
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obu7h")
@@ -2493,13 +2494,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99344015, -0.055199992)
-bones/2/rotation = Quaternion(-0.06424278, 0, 0, 0.99793434)
-bones/5/rotation = Quaternion(-0.08310487, 0.007187587, 0.021776162, 0.9962769)
-bones/25/rotation = Quaternion(0.97457796, 0.015883772, -0.009093694, 0.22330002)
-bones/26/rotation = Quaternion(0.1996585, 0.0015766034, 0.016005185, 0.97973365)
-bones/34/rotation = Quaternion(0.97457796, -0.015883772, 0.00909365, 0.22330001)
-bones/35/rotation = Quaternion(0.19962914, -0.0015766129, -0.016002832, 0.97973967)
+bones/0/position = Vector3(0, 0.9965212, -0.05519999)
+bones/2/rotation = Quaternion(-0.07739978, 0, 0, 0.99700016)
+bones/5/rotation = Quaternion(-0.07175027, 0.0073804636, 0.021773472, 0.99715763)
+bones/25/rotation = Quaternion(0.9763217, 0.01518256, -0.009023582, 0.21560192)
+bones/26/rotation = Quaternion(0.18410079, 0.0015815287, 0.014758041, 0.9827953)
+bones/34/rotation = Quaternion(0.9763217, -0.015182562, 0.009023541, 0.21560192)
+bones/35/rotation = Quaternion(0.18410079, -0.0015815294, -0.01475804, 0.9827953)
 
 [node name="Samual" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.565277, 1.9490459, 53.176186)
@@ -2527,13 +2528,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's husband"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99344015, -0.055199992)
-bones/2/rotation = Quaternion(-0.06424278, 0, 0, 0.99793434)
-bones/5/rotation = Quaternion(-0.08310487, 0.007187587, 0.021776162, 0.9962769)
-bones/25/rotation = Quaternion(0.97457796, 0.015883772, -0.009093694, 0.22330002)
-bones/26/rotation = Quaternion(0.1996585, 0.0015766034, 0.016005185, 0.97973365)
-bones/34/rotation = Quaternion(0.97457796, -0.015883772, 0.00909365, 0.22330001)
-bones/35/rotation = Quaternion(0.19962914, -0.0015766129, -0.016002832, 0.97973967)
+bones/0/position = Vector3(0, 0.9965212, -0.05519999)
+bones/2/rotation = Quaternion(-0.07739978, 0, 0, 0.99700016)
+bones/5/rotation = Quaternion(-0.07175027, 0.0073804636, 0.021773472, 0.99715763)
+bones/25/rotation = Quaternion(0.9763217, 0.01518256, -0.009023582, 0.21560192)
+bones/26/rotation = Quaternion(0.18410079, 0.0015815287, 0.014758041, 0.9827953)
+bones/34/rotation = Quaternion(0.9763217, -0.015182562, 0.009023541, 0.21560192)
+bones/35/rotation = Quaternion(0.18410079, -0.0015815294, -0.01475804, 0.9827953)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ub1ot")
@@ -2565,20 +2566,37 @@ QuestTitle = "Defeat The Hollowed Bark on the swamp island"
 QuestGoal = "0/1"
 
 [node name="HushedTrees" parent="." groups=["Terrain"] instance=ExtResource("430_2rj2p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -332.43335, 4.019948, -460.9262)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -276.6255, 2.0945015, -188.06227)
+
+[node name="TanglerTimer" parent="HushedTrees" index="0"]
+wait_time = 65.0
+
+[node name="UnderbrushTimer" parent="HushedTrees" index="1"]
+wait_time = 55.0
+
+[node name="WeepingTimer" parent="HushedTrees" index="2"]
+wait_time = 20.0
 
 [node name="Range" parent="HushedTrees" index="3"]
 omni_range = 18.891981
 
 [node name="Tree1" parent="HushedTrees" instance=ExtResource("431_wrhnx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28782654, -15.039978)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.638855, -1.3355656, -15.039978)
 
 [node name="Tree2" parent="HushedTrees" instance=ExtResource("431_wrhnx")]
-transform = Transform3D(0.48951945, 0, -0.87199235, 0, 1, 0, 0.87199235, 0, 0.48951945, -22.551453, 0.5660734, 2.5112305)
+transform = Transform3D(0.48951945, 0, -0.87199235, 0, 1, 0, 0.87199235, 0, 0.48951945, -17.162506, -1.4231329, 5.965042)
 
 [node name="Tree3" parent="HushedTrees" instance=ExtResource("431_wrhnx")]
-transform = Transform3D(-0.024135554, 0, 0.9997087, 0, 1, 0, -0.9997087, 0, -0.024135554, 0.7966919, -1.3460913, 12.644531)
+transform = Transform3D(-0.024135554, 0, 0.9997087, 0, 1, 0, -0.9997087, 0, -0.024135554, 5.4847107, -1.3460913, 8.437927)
+
+[node name="Tree4" parent="HushedTrees" instance=ExtResource("431_wrhnx")]
+transform = Transform3D(-0.9883057, 0, -0.15248567, 0, 1, 0, 0.15248567, 0, -0.9883057, -26.641205, -1.3460913, 19.973328)
+
+[node name="Tree5" parent="HushedTrees" instance=ExtResource("431_wrhnx")]
+transform = Transform3D(-0.19082613, 0, -0.9816239, 0, 1, 0, 0.9816239, 0, -0.19082613, -11.255127, -1.3460913, 36.28714)
+
+[node name="Tree6" parent="HushedTrees" instance=ExtResource("431_wrhnx")]
+transform = Transform3D(-0.9827519, 0, -0.18492913, 0, 1, 0, 0.18492913, 0, -0.9827519, -27.437408, -1.3460913, -13.205658)
 
 [node name="Map" type="Node3D" parent="." groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 426.49542, -0.26628494, 122.45715)
@@ -3319,6 +3337,9 @@ transform = Transform3D(0.5959586, 0, -0.8030152, 0, 1, 0, 0.8030152, 0, 0.59595
 _teleportPoint = "Brittlebay Dock"
 NPCName = "Old Boat"
 InitialDialogue = "E to Interact"
+
+[node name="Enviorment" parent="." instance=ExtResource("934_qcek0")]
+_defaultNormalFog = 0.055
 
 [editable path="MonsterHolder/RatSpawner"]
 [editable path="MonsterHolder/Shrine1EnemySpawner"]
