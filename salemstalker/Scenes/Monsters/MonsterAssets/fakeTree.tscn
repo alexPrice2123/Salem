@@ -261,6 +261,12 @@ transform = Transform3D(1.1999998, 0, 0, 0, 1.1999998, 0, 0, 0, 1.1999998, 0, 1.
 shape = SubResource("BoxShape3D_p2s7p")
 debug_color = Color(0.541872, 0.406451, 1, 0.42)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5896635, 8.6513405, -1.284648)
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+omni_range = 10.990868
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 
 [editable path="BossTree"]

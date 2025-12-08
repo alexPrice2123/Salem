@@ -43,7 +43,8 @@ public partial class enemySpawner : Node3D
 		_holder = GetNode<Node3D>("MonsterHolder");      // Get the monster holder node
 		_rng.Randomize();
 
-		SpawnRange = GetNode<OmniLight3D>("Range").OmniRange;
+		SpawnRange = GetNode<CsgSphere3D>("Range").Radius;
+		GetNode<CsgSphere3D>("Range").QueueFree();
 	}
 
 	// --- SPAWN HANDLER ---
