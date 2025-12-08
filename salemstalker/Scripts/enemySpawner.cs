@@ -20,7 +20,9 @@ public partial class enemySpawner : Node3D
 	public bool _canShadow = false;
 	[Export(PropertyHint.Enum, "Plains,Swamp,Forest,Misc")]
 	public string _biome = "Plains";
-	public float SpawnRange;        
+	public float SpawnRange;  
+	[Export]
+	public float _distFromPlayer = 40f;      
 	[Export]
 	public Godot.Collections.Array<PackedScene> _monsterList { get; set; } = [];
 	[Export]
@@ -33,9 +35,9 @@ public partial class enemySpawner : Node3D
 		_spawn = GetNode<CsgBox3D>("Spawn");             // Get the spawn point node
 		_countdown = GetNode<Timer>("SpawnTime");        // Get the timer node
 		if (Name != "RatSpawner")
-        {
-            _countdown.WaitTime = 0.1f;
-        }
+		{
+			_countdown.WaitTime = 0.1f;
+		}
 		_countdown.Start();                              // Start the spawn timer
 		_currenctMonsterCount = _monsterCount;
 
@@ -51,18 +53,18 @@ public partial class enemySpawner : Node3D
 	private void _on_spawn_time_timeout()
 	{
 		if (Name == "RatSpawner" && _player._questBox.FindChild("Find and kill rats around the Village") != null)
-        {
-            SpawnMonster();
-        }
+		{
+			SpawnMonster();
+		}
 		else if (Name != "RatSpawner")
-        {
-            SpawnMonster();
-        }
+		{
+			SpawnMonster();
+		}
 	}
 	
 	private async void SpawnMonster()
-    {
-        // Prevent spawning if player is in inventory
+	{
+		// Prevent spawning if player is in inventory
 		if (_player._inv.Visible == true)
 		{
 			return;
@@ -71,7 +73,7 @@ public partial class enemySpawner : Node3D
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
 
 		// --- Recount monsters if player is too far away (despawn management) ---
-		if (distance >= SpawnRange + 25f)
+		if (distance >= SpawnRange + _distFromPlayer)
 		{
 			_number = 0;
 			foreach (CharacterBody3D monster in _holder.GetChildren())
@@ -81,16 +83,16 @@ public partial class enemySpawner : Node3D
 		}
 		
 		if (Name == "RatSpawner" && _player._questBox.FindChild("Find and kill rats around the Village") == null && _player._ratsKilled > 0)
-        {
+		{
 			foreach (CharacterBody3D rat in _holder.GetChildren())
 			{
 				rat.QueueFree();
 			}
 			_number = 0;
-        }
+		}
 
 		// --- Prevent spawning if at max count or player too far ---
-		if (_number >= _maxMonsterCount || distance >= SpawnRange+25f)
+		if (_number >= _maxMonsterCount || distance >= SpawnRange+_distFromPlayer)
 		{
 			return;
 		}
@@ -106,54 +108,54 @@ public partial class enemySpawner : Node3D
 			float _spawnZ = _rng.RandfRange(-SpawnRange, SpawnRange);
 			_holder.AddChild(monsterInstance);     
 			if (monsterInstance is Monster3d monster)
-            {
+			{
 				monster.RandomRangedPosition();
 				monster.Biome = _biome;
 				monster.SpawnRange = SpawnRange*1.5f;
 				monster._currentSpawnRange = SpawnRange*1.5f;
 				monster._startPos = GlobalPosition;
 				if (_canShadow == true)
-                {
+				{
 					float shadowChange = _rng.RandfRange(1, 10);
 					if (shadowChange == 1)
-                    {
+					{
 						monster.Shadow = true;
-                    }
-                }
-            }                                        // Add monster to holder node
+					}
+				}
+			}                                        // Add monster to holder node
 			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, FindGroundY(_spawnX, _spawnZ), _spawnZ);                                    // Set monster spawn position
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();
 			
 			GD.Print("There are " + _number + " monsters and its running at " + fps + " FPS");
 		}
-        else
+		else
 		{
 			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 			SpawnMonster();
 			//GD.Print("Tried to spawn" + _monsterList[monsterIndex] + " but was at max");
-        }
-    }
+		}
+	}
 
 	private float FindGroundY(float targetX, float targetZ)
-    {
-        var query = new PhysicsRayQueryParameters3D();
-        query.From = new Vector3(targetX, 100.0f, targetZ); 
-        query.To = new Vector3(targetX, -100.0f, targetZ); 
+	{
+		var query = new PhysicsRayQueryParameters3D();
+		query.From = new Vector3(targetX, 100.0f, targetZ); 
+		query.To = new Vector3(targetX, -100.0f, targetZ); 
 
-        var spaceState = GetWorld3D().DirectSpaceState;
-        var result = spaceState.IntersectRay(query);
+		var spaceState = GetWorld3D().DirectSpaceState;
+		var result = spaceState.IntersectRay(query);
 
-        if (result.Count > 0)
-        {
-            Vector3 collisionPoint = (Vector3)result["position"];
-            return collisionPoint.Y;
-        }
-        else
-        {
-            return 0f;
-        }
-    }
+		if (result.Count > 0)
+		{
+			Vector3 collisionPoint = (Vector3)result["position"];
+			return collisionPoint.Y;
+		}
+		else
+		{
+			return 0f;
+		}
+	}
 
 	// --- PROCESS LOOP ---
 	public override void _Process(double delta)

@@ -33,26 +33,26 @@ public partial class hollowNormal : Monster3d
 		{
 			_player.MonsterKilled("hollowNormal", Biome);
 			if (Debug == true)
-            {
+			{
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
-            }
+			}
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		RotateFunc(delta);
 	}
 
 	private void RotateFunc(double delta)
-    {
-        if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
-        {
-            GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
-        }
-        else
-        {
-            float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
-            GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
-        }
-    }
+	{
+		if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
+		{
+			GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
+		}
+		else
+		{
+			float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
+			GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
+		}
+	}
 
 	public void _on_hurtbox_area_entered(Area3D body)
 	{
@@ -72,24 +72,24 @@ public partial class hollowNormal : Monster3d
 	public async void Attack()
 	{
 		if (_attackAnimSwitch == 1)
-        {
-            _attackAnimSwitch = 2;
-        }
-        else
-        {
-            _attackAnimSwitch = 1;
-        }
+		{
+			_attackAnimSwitch = 2;
+		}
+		else
+		{
+			_attackAnimSwitch = 1;
+		}
 		_hasHit = false;
 		_attackAnim = true;
 		await ToSignal(GetTree().CreateTimer(0.48), "timeout");
 		_speedOffset = 2.5f;
 		_attackBox.GetParent<Area3D>().Monitoring = true;
-        await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
 		_attackBox.GetParent<Area3D>().Monitoring = false;
 		_canAttack = false;
 		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
 		_attackAnim = false;
-        await ToSignal(GetTree().CreateTimer(AttackSpeed-0.1f), "timeout");
-        _canAttack = true;
+		await ToSignal(GetTree().CreateTimer(AttackSpeed-0.1f), "timeout");
+		_canAttack = true;
 	}
 }
