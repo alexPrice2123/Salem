@@ -1,4 +1,4 @@
-[gd_scene load_steps=1105 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1103 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://xcspp642up40" path="res://Assets/2D/midocean.png" id="9_1uftk"]
 [ext_resource type="Texture2D" uid="uid://d0u1esu3iuflj" path="res://Assets/2D/deepocean.png" id="10_43n44"]
 [ext_resource type="PackedScene" uid="uid://c3gi3vrev7n0x" path="res://Scenes/Monsters/underBrush.tscn" id="10_ptcpy"]
+[ext_resource type="PackedScene" uid="uid://crxygapcq66ft" path="res://Scenes/Monsters/flyingPesk.tscn" id="10_qcek0"]
 [ext_resource type="Texture2D" uid="uid://c2oao6p84hbwj" path="res://Assets/2D/swamp_dirt.png" id="11_o70cm"]
 [ext_resource type="Texture2D" uid="uid://c5fu5c6gcnf5r" path="res://Assets/2D/swamp_grass.png" id="12_37xqj"]
 [ext_resource type="Texture2D" uid="uid://bjurhsgte1wdp" path="res://Assets/2D/plains_grass.png" id="13_n5auh"]
@@ -933,7 +934,6 @@
 [ext_resource type="PackedScene" uid="uid://cw86i51qs7jry" path="res://Scenes/boat.tscn" id="922_qtthl"]
 [ext_resource type="PackedScene" uid="uid://07sk25v6dh1t" path="res://Assets/3D/charatermodel/long_fence.blend" id="926_ptcpy"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="927_4aw2u"]
-[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="934_qcek0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
 
@@ -2247,20 +2247,14 @@ size = Vector3(36.497078, 6.7435303, 28.871185)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x33qj"]
 size = Vector3(19.32947, 6.7435303, 14.118698)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_hfxqn"]
-radius = 185.44435
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_677id"]
 radius = 56.763847
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_db4bj"]
-radius = 178.56998
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4wxgn"]
 radius = 86.89174
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4psjf"]
-radius = 151.41194
+radius = 124.364525
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v8qwt"]
 albedo_color = Color(1, 1, 0, 1)
@@ -2327,40 +2321,128 @@ wait_time = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.997643, 0)
 omni_range = 33.142544
 
-[node name="Shrine1EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+[node name="Z1Shrine1EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -518.83124, 1.3142262, -143.62323)
 _maxMonsterCount = 10
 _biome = "Forest"
 _monsterList = Array[PackedScene]([ExtResource("5_4psjf"), ExtResource("6_81ace")])
 _monsterCount = Array[int]([1, 2])
 
-[node name="Range" parent="MonsterHolder/Shrine1EnemySpawner" index="3"]
+[node name="Range" parent="MonsterHolder/Z1Shrine1EnemySpawner" index="3"]
 light_color = Color(0, 1, 1, 1)
 omni_range = 14.357763
 
-[node name="Shrine2EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+[node name="Z1Shrine2EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -539.85846, 1.687819, -40.037697)
 _maxMonsterCount = 10
 _biome = "Forest"
 _monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("7_5m6g4"), ExtResource("38_osg54")])
 _monsterCount = Array[int]([2, 1, 1])
 
-[node name="Range" parent="MonsterHolder/Shrine2EnemySpawner" index="3"]
+[node name="Range" parent="MonsterHolder/Z1Shrine2EnemySpawner" index="3"]
 light_color = Color(0, 1, 1, 1)
 omni_range = 14.357763
 
-[node name="Shrine3EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+[node name="Z1Shrine3EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -442.2512, 1.6115086, -234.91791)
 _maxMonsterCount = 10
 _biome = "Forest"
 _monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("7_5m6g4")])
 _monsterCount = Array[int]([2, 1])
 
-[node name="Range" parent="MonsterHolder/Shrine3EnemySpawner" index="3"]
+[node name="Range" parent="MonsterHolder/Z1Shrine3EnemySpawner" index="3"]
 light_color = Color(0, 1, 1, 1)
 omni_range = 14.357763
 
-[node name="Shrine1" parent="MonsterHolder" groups=["Terrain"] instance=ExtResource("6_677id")]
+[node name="Z1TempTent2" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -415.13425, 1.687819, -310.409)
+_maxMonsterCount = 10
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("38_osg54")])
+_monsterCount = Array[int]([2, 1])
+
+[node name="Range" parent="MonsterHolder/Z1TempTent2" index="3"]
+light_color = Color(0, 1, 1, 1)
+omni_range = 14.357763
+
+[node name="Z1TempTent4" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -570.6078, 0.6889825, 146.39545)
+_maxMonsterCount = 10
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("5_4psjf")])
+_monsterCount = Array[int]([3, 1])
+
+[node name="Range" parent="MonsterHolder/Z1TempTent4" index="3"]
+light_color = Color(0, 0, 0.39215687, 1)
+omni_range = 11.612807
+
+[node name="Z1TempTent5" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -717.36383, 0.6889825, 232.07178)
+_maxMonsterCount = 10
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("5_4psjf")])
+_monsterCount = Array[int]([2])
+
+[node name="Range" parent="MonsterHolder/Z1TempTent5" index="3"]
+light_color = Color(0, 0, 0.39215687, 1)
+omni_range = 11.612807
+
+[node name="Z1EnemySpawner5" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -645.0487, 1.687819, -40.037697)
+_maxMonsterCount = 10
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("10_ptcpy"), ExtResource("7_5m6g4")])
+_monsterCount = Array[int]([1, 1, 1])
+
+[node name="Range" parent="MonsterHolder/Z1EnemySpawner5" index="3"]
+light_color = Color(0, 1, 1, 1)
+omni_range = 14.357763
+
+[node name="Z1EnemySpawner10" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -591.7835, 1.687819, 83.22485)
+_maxMonsterCount = 10
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("10_ptcpy"), ExtResource("7_5m6g4")])
+_monsterCount = Array[int]([2, 1])
+
+[node name="Range" parent="MonsterHolder/Z1EnemySpawner10" index="3"]
+light_color = Color(0, 1, 1, 1)
+omni_range = 14.357763
+
+[node name="Z1EnemySpawner11" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -676.4641, 1.687819, 92.971664)
+_maxMonsterCount = 10
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("10_qcek0")])
+_monsterCount = Array[int]([3, 1])
+
+[node name="Range" parent="MonsterHolder/Z1EnemySpawner11" index="3"]
+light_color = Color(0, 1, 1, 1)
+omni_range = 14.357763
+
+[node name="Z1EnemySpawner12" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -580.42883, 1.687819, 309.22052)
+_maxMonsterCount = 10
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("10_qcek0")])
+_monsterCount = Array[int]([2, 1])
+
+[node name="Range" parent="MonsterHolder/Z1EnemySpawner12" index="3"]
+light_color = Color(0, 1, 1, 1)
+omni_range = 14.357763
+
+[node name="Z1EnemySpawner13" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
+transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -675.19836, 1.687819, 361.1797)
+_maxMonsterCount = 10
+_biome = "Forest"
+_monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("5_4psjf")])
+_monsterCount = Array[int]([2, 1])
+
+[node name="Range" parent="MonsterHolder/Z1EnemySpawner13" index="3"]
+light_color = Color(0, 1, 1, 1)
+omni_range = 14.357763
+
+[node name="Z1Shrine1" parent="MonsterHolder" groups=["Terrain"] instance=ExtResource("6_677id")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -518.7776, -0.5746945, -143.53026)
 _spawnTime = 7.0
 _maxMonsterCount = 3
@@ -2368,7 +2450,7 @@ SpawnDistance = 45.0
 _monsterList = Array[PackedScene]([ExtResource("38_osg54")])
 _monsterCount = Array[int]([3])
 
-[node name="Shrine2" parent="MonsterHolder" groups=["Terrain"] instance=ExtResource("6_677id")]
+[node name="Z1Shrine2" parent="MonsterHolder" groups=["Terrain"] instance=ExtResource("6_677id")]
 transform = Transform3D(1, 0, 0, 0, 0.99999976, 0.0006632251, 0, -0.0006632251, 0.99999976, -539.9761, -0.5746945, -40.186897)
 _spawnTime = 7.0
 _maxMonsterCount = 3
@@ -2376,7 +2458,7 @@ SpawnDistance = 40.0
 _monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("10_ptcpy")])
 _monsterCount = Array[int]([2, 1])
 
-[node name="Shrine3" parent="MonsterHolder" groups=["Terrain"] instance=ExtResource("6_677id")]
+[node name="Z1Shrine3" parent="MonsterHolder" groups=["Terrain"] instance=ExtResource("6_677id")]
 transform = Transform3D(0.9992508, -2.5667963e-05, 0.038701728, 0, 0.9999999, 0.0006632252, -0.03870174, -0.00066272833, 0.9992507, -442.28094, -0.5746945, -234.93701)
 _spawnTime = 7.0
 _maxMonsterCount = 3
@@ -2464,13 +2546,13 @@ QuestTitle = "Find and kill rats around the Village"
 QuestGoal = "0/5"
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9965212, -0.05519999)
-bones/2/rotation = Quaternion(-0.07739978, 0, 0, 0.99700016)
-bones/5/rotation = Quaternion(-0.07175027, 0.0073804636, 0.021773472, 0.99715763)
-bones/25/rotation = Quaternion(0.9763217, 0.01518256, -0.009023582, 0.21560192)
-bones/26/rotation = Quaternion(0.18410079, 0.0015815287, 0.014758041, 0.9827953)
-bones/34/rotation = Quaternion(0.9763217, -0.015182562, 0.009023541, 0.21560192)
-bones/35/rotation = Quaternion(0.18410079, -0.0015815294, -0.01475804, 0.9827953)
+bones/0/position = Vector3(0, 0.9899192, -0.055199984)
+bones/2/rotation = Quaternion(-0.04721747, 0, 0, 0.9988846)
+bones/5/rotation = Quaternion(-0.09786467, 0.0069351946, 0.021775434, 0.99493736)
+bones/25/rotation = Quaternion(0.97260535, 0.016651252, -0.0091746, 0.23168422)
+bones/26/rotation = Quaternion(0.21662836, 0.0015707548, 0.017365536, 0.9760985)
+bones/34/rotation = Quaternion(0.97260535, -0.016651252, 0.009174557, 0.23168422)
+bones/35/rotation = Quaternion(0.21662836, -0.0015707541, -0.017365536, 0.9760985)
 
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obu7h")
@@ -2494,13 +2576,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9965212, -0.05519999)
-bones/2/rotation = Quaternion(-0.07739978, 0, 0, 0.99700016)
-bones/5/rotation = Quaternion(-0.07175027, 0.0073804636, 0.021773472, 0.99715763)
-bones/25/rotation = Quaternion(0.9763217, 0.01518256, -0.009023582, 0.21560192)
-bones/26/rotation = Quaternion(0.18410079, 0.0015815287, 0.014758041, 0.9827953)
-bones/34/rotation = Quaternion(0.9763217, -0.015182562, 0.009023541, 0.21560192)
-bones/35/rotation = Quaternion(0.18410079, -0.0015815294, -0.01475804, 0.9827953)
+bones/0/position = Vector3(0, 0.9899192, -0.055199984)
+bones/2/rotation = Quaternion(-0.04721747, 0, 0, 0.9988846)
+bones/5/rotation = Quaternion(-0.09786467, 0.0069351946, 0.021775434, 0.99493736)
+bones/25/rotation = Quaternion(0.97260535, 0.016651252, -0.0091746, 0.23168422)
+bones/26/rotation = Quaternion(0.21662836, 0.0015707548, 0.017365536, 0.9760985)
+bones/34/rotation = Quaternion(0.97260535, -0.016651252, 0.009174557, 0.23168422)
+bones/35/rotation = Quaternion(0.21662836, -0.0015707541, -0.017365536, 0.9760985)
 
 [node name="Samual" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.565277, 1.9490459, 53.176186)
@@ -2528,13 +2610,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's husband"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9965212, -0.05519999)
-bones/2/rotation = Quaternion(-0.07739978, 0, 0, 0.99700016)
-bones/5/rotation = Quaternion(-0.07175027, 0.0073804636, 0.021773472, 0.99715763)
-bones/25/rotation = Quaternion(0.9763217, 0.01518256, -0.009023582, 0.21560192)
-bones/26/rotation = Quaternion(0.18410079, 0.0015815287, 0.014758041, 0.9827953)
-bones/34/rotation = Quaternion(0.9763217, -0.015182562, 0.009023541, 0.21560192)
-bones/35/rotation = Quaternion(0.18410079, -0.0015815294, -0.01475804, 0.9827953)
+bones/0/position = Vector3(0, 0.9899192, -0.055199984)
+bones/2/rotation = Quaternion(-0.04721747, 0, 0, 0.9988846)
+bones/5/rotation = Quaternion(-0.09786467, 0.0069351946, 0.021775434, 0.99493736)
+bones/25/rotation = Quaternion(0.97260535, 0.016651252, -0.0091746, 0.23168422)
+bones/26/rotation = Quaternion(0.21662836, 0.0015707548, 0.017365536, 0.9760985)
+bones/34/rotation = Quaternion(0.97260535, -0.016651252, 0.009174557, 0.23168422)
+bones/35/rotation = Quaternion(0.21662836, -0.0015707541, -0.017365536, 0.9760985)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ub1ot")
@@ -3236,68 +3318,48 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.735676, 0, 26.98191)
 [node name="Volume" parent="GoalArea/Area" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.683105, 0, 86.003975)
 
-[node name="Volume2" type="CollisionShape3D" parent="GoalArea/Area" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -459.2266, 0, -100.079445)
-shape = SubResource("SphereShape3D_hfxqn")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume3" type="CollisionShape3D" parent="GoalArea/Area" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -459.2266, 0, -369.5159)
-shape = SubResource("SphereShape3D_hfxqn")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume20" type="CollisionShape3D" parent="GoalArea/Area" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -383.22455, 0, -523.69244)
-shape = SubResource("SphereShape3D_hfxqn")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume21" type="CollisionShape3D" parent="GoalArea/Area" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -333.4314, 0, -262.56424)
-shape = SubResource("SphereShape3D_hfxqn")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume8" type="CollisionShape3D" parent="GoalArea/Area" index="5"]
+[node name="Volume8" type="CollisionShape3D" parent="GoalArea/Area" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.256416, 0, -73.051636)
 shape = SubResource("SphereShape3D_677id")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume9" type="CollisionShape3D" parent="GoalArea/Area" index="6"]
+[node name="Volume9" type="CollisionShape3D" parent="GoalArea/Area" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.26953, 0, -141.0659)
 shape = SubResource("SphereShape3D_677id")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume10" type="CollisionShape3D" parent="GoalArea/Area" index="7"]
+[node name="Volume10" type="CollisionShape3D" parent="GoalArea/Area" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.360855, 0, -141.0659)
 shape = SubResource("SphereShape3D_677id")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume11" type="CollisionShape3D" parent="GoalArea/Area" index="8"]
+[node name="Volume11" type="CollisionShape3D" parent="GoalArea/Area" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.360855, 0, -222.37274)
 shape = SubResource("SphereShape3D_677id")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume12" type="CollisionShape3D" parent="GoalArea/Area" index="9"]
+[node name="Volume12" type="CollisionShape3D" parent="GoalArea/Area" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.76709, 0, -290.6185)
 shape = SubResource("SphereShape3D_677id")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume13" type="CollisionShape3D" parent="GoalArea/Area" index="10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.33975, 0, -469.6636)
-shape = SubResource("SphereShape3D_db4bj")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="Volume4" type="CollisionShape3D" parent="GoalArea/Area" index="11"]
+[node name="Volume4" type="CollisionShape3D" parent="GoalArea/Area" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -163.10774, 0, 248.49753)
 shape = SubResource("SphereShape3D_677id")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume19" type="CollisionShape3D" parent="GoalArea/Area" index="12"]
+[node name="Volume19" type="CollisionShape3D" parent="GoalArea/Area" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -255.12163, 0, 244.89929)
 shape = SubResource("SphereShape3D_4wxgn")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume5" type="CollisionShape3D" parent="GoalArea/Area" index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -173.87381, 0, 417.8605)
+[node name="Volume5" type="CollisionShape3D" parent="GoalArea/Area" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.32597, 0, 386.28848)
+shape = SubResource("SphereShape3D_4psjf")
+debug_color = Color(0, 1, 0, 1)
+
+[node name="Volume6" type="CollisionShape3D" parent="GoalArea/Area" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -265.6813, 0, -210.5557)
 shape = SubResource("SphereShape3D_4psjf")
 debug_color = Color(0, 1, 0, 1)
 
@@ -3338,13 +3400,18 @@ _teleportPoint = "Brittlebay Dock"
 NPCName = "Old Boat"
 InitialDialogue = "E to Interact"
 
-[node name="Enviorment" parent="." instance=ExtResource("934_qcek0")]
-_defaultNormalFog = 0.055
-
 [editable path="MonsterHolder/RatSpawner"]
-[editable path="MonsterHolder/Shrine1EnemySpawner"]
-[editable path="MonsterHolder/Shrine2EnemySpawner"]
-[editable path="MonsterHolder/Shrine3EnemySpawner"]
+[editable path="MonsterHolder/Z1Shrine1EnemySpawner"]
+[editable path="MonsterHolder/Z1Shrine2EnemySpawner"]
+[editable path="MonsterHolder/Z1Shrine3EnemySpawner"]
+[editable path="MonsterHolder/Z1TempTent2"]
+[editable path="MonsterHolder/Z1TempTent4"]
+[editable path="MonsterHolder/Z1TempTent5"]
+[editable path="MonsterHolder/Z1EnemySpawner5"]
+[editable path="MonsterHolder/Z1EnemySpawner10"]
+[editable path="MonsterHolder/Z1EnemySpawner11"]
+[editable path="MonsterHolder/Z1EnemySpawner12"]
+[editable path="MonsterHolder/Z1EnemySpawner13"]
 [editable path="Dillon"]
 [editable path="Dillon/villagerblank"]
 [editable path="Lukas"]
