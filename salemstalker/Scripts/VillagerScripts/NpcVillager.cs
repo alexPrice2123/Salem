@@ -227,7 +227,7 @@ public partial class NpcVillager : CharacterBody3D
         }
         else
         {
-			_player.GetQuest(QuestTitle, QuestGoal);
+			_player.GetQuest(QuestTitle, QuestGoal, NPCName);
 			_dialougeIndex = 0;
 			_currentDialouge = "Accepted";
 			_hasTalked = true;

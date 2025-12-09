@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=44 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -95,6 +95,19 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_d42i4"]
+line_spacing = 3.08
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8fs27"]
+line_spacing = 3.08
+font_size = 25
+font_color = Color(1, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dx4fu"]
 line_spacing = 3.08
 font_size = 25
 outline_size = 10
@@ -632,6 +645,38 @@ offset_bottom = -249.46405
 theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "Village"
 label_settings = SubResource("LabelSettings_d42i4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DemoWarning" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.002
+anchor_bottom = 0.995
+offset_left = -3.0
+offset_top = -212.0
+offset_right = -4.304077
+offset_bottom = -211.46405
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Turn Back Now
+30"
+label_settings = SubResource("LabelSettings_8fs27")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Light" type="Label" parent="DemoWarning"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.002
+anchor_bottom = 0.995
+offset_top = -35.0
+offset_right = -1.3040771
+offset_bottom = -34.46405
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Follow The Light
+"
+label_settings = SubResource("LabelSettings_dx4fu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
