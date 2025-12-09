@@ -856,7 +856,7 @@ public partial class Player3d : CharacterBody3D
 		_blocking = block;
 		if (block == true)
 		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Parry"); // Start the parry animation
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 			await ToSignal(GetTree().CreateTimer(0.05), "timeout"); // Wait for a brief moment
 			_parry = block; // Set parry flag to true (the active parry window)
 			_currentParryWindow = _parryWindow; // Start the parry timer
@@ -864,7 +864,7 @@ public partial class Player3d : CharacterBody3D
 		else
 		{
 			_parry = block; // Set parry flag to false
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").PlayBackwards("Parry"); // Reverse the animation
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 		}
 	}
 	
@@ -1016,7 +1016,8 @@ public partial class Player3d : CharacterBody3D
 			// Regular block: reduce damage, deduct stamina, play block animation
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			_knockVelocity = 1f;
 			if (_cam is Camera cam)
@@ -1031,7 +1032,8 @@ public partial class Player3d : CharacterBody3D
 			_stamina += 0.20f * _maxStamina;
 			takenDamage = 0f;
 			monster.Stunned();
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
 			_parried = true;
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)
@@ -1067,7 +1069,8 @@ public partial class Player3d : CharacterBody3D
 			// Regular block: reduce damage, deduct stamina, play block animation, destroy projectile
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			projectile.QueueFree();
 			_knockVelocity = 0.25f;
@@ -1077,7 +1080,8 @@ public partial class Player3d : CharacterBody3D
 			// Successful parry: restore stamina, negate damage, destroy projectile, set parried flag
 			_stamina += 0.15f * _maxStamina;
 			takenDamage = 0f;
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
 			projectile.QueueFree();
 			_parried = true;
 			_knockVelocity = 0f;
