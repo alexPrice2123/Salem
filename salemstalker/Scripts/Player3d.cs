@@ -45,6 +45,7 @@ public partial class Player3d : CharacterBody3D
 	private Dictionary<string, PackedScene> _secWeapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
 	// --- VARIABLES ---
+	private PackedScene _pauseMenu = GD.Load<PackedScene>("res://Scenes/inv_world.tscn");
 	public float HorCamSense = 0.002f;                  // Horizontal camera mouse sensitivity multiplier
 	public float VerCamSense = 0.002f;                  // Vertical camera mouse sensitivity multiplier
 	protected RandomNumberGenerator _rng = new();       // Generator for random events like critical hits and effects
@@ -120,8 +121,6 @@ public partial class Player3d : CharacterBody3D
 		// Get references to child nodes
 		_head = GetNode<Node3D>("Head");
 		_cam = GetNode<Camera3D>("Head/Camera3D");
-		_interface = GetNode<Control>("UI/PauseMenu");
-		_senseBar = GetNode<Slider>("UI/PauseMenu/Sense");
 		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
 		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
 		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
@@ -146,7 +145,7 @@ public partial class Player3d : CharacterBody3D
 		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
 
 		// Populate the weapon dictionary
-		_weapon.Add("ShortSword", _shortSword);
+		_weapon.Add("Shortsword", _shortSword);
 		_weapon.Add("Falchion", _falchion);
 		_weapon.Add("longsword", _longsword);
 		_weapon.Add("dagger", _dagger);
@@ -211,14 +210,20 @@ public partial class Player3d : CharacterBody3D
 			{
 				// Un-capture mouse, show pause menu, update sensitivity slider to current value
 				Input.MouseMode = Input.MouseModeEnum.Visible;
-				_interface.Visible = true;
+				Control pauseInst = _pauseMenu.Instantiate<Control>(); // Create monster instance
+       			AddChild(pauseInst);
+				_interface = pauseInst;
+				_senseBar = _interface.GetNode<HSlider>("Sense");
 				_senseBar.Value = HorCamSense * 1000;
+				GetTree().Paused = true;	
 			}
 			else
 			{
 				// Re-capture mouse, hide pause menu
 				Input.MouseMode = Input.MouseModeEnum.Captured;
-				_interface.Visible = false;
+				GetTree().Paused = false;
+				_interface = null;
+				
 			}
 		}
 
@@ -556,7 +561,7 @@ public partial class Player3d : CharacterBody3D
 		// [Inventory Camera Transition - Commented Out]
 
 		// --- Update sensitivity from pause menu ---
-		if (_interface.Visible == true)
+		if (_interface != null)
 		{
 			HorCamSense = Convert.ToSingle(_senseBar.Value / 1000);
 			VerCamSense = Convert.ToSingle(_senseBar.Value / 1000);
