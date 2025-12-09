@@ -160,10 +160,19 @@ public partial class Ui : Control
 	}*/
 	private void _on_upgrade_button_up()
 	{
-		ColorRect _desc = GetNode<ColorRect>("BlacksmithShop/View/WeaponDesc");
+		//ColorRect _desc = GetNode<ColorRect>("BlacksmithShop/View/WeaponDesc");
 		Control _upg = GetNode<Control>("BlacksmithShop/View/UpgradeMenu");
+		Node3D swordInst = (Node3D)_player._weapon[_shopSelection].Instantiate();
 		_upg.GetNode<Label>("UpgradePrompt").Text = "Upgrade\n" + _shopSelection + "?";
 		_upg.GetNode<Control>("Requirements").Visible = true;
+		foreach (string stat in GetUpgrades(swordInst))
+		{
+			if( !(stat.IndexOf("Percent") >= 0))
+            {
+				_upg.GetNode<Label>("Requirements/Details").Text += _upgradeNames[stat] + "\n";
+            }
+		}
+
 		if (!_upg.Visible)
 		{
 			_upg.Visible = true;
