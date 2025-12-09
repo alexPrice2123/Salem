@@ -18,7 +18,7 @@ wait_time = 7.5
 [node name="MonsterHolder" type="Node3D" parent="."]
 
 [node name="Range" type="CSGSphere3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, 0, 0)
 radius = 5.0
 radial_segments = 25
 rings = 3

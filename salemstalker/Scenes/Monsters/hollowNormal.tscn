@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dbhqhurkcdks0"]
+[gd_scene load_steps=39 format=3 uid="uid://dbhqhurkcdks0"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_v7ma6"]
 [ext_resource type="Script" uid="uid://bxb1y2t4f6ni6" path="res://Scripts/hollowNormal.cs" id="2_v7ma6"]
@@ -137,6 +137,8 @@ normal_texture = ExtResource("8_vvqnv")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ox1ja"]
 albedo_texture = ExtResource("9_v5m3q")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_v7ma6"]
+
 [node name="hollowNormal" instance=ExtResource("1_v7ma6")]
 script = ExtResource("2_v7ma6")
 
@@ -181,12 +183,12 @@ transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, -
 visible = false
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
-bones/0/position = Vector3(0, 0.9729822, -0.08378379)
-bones/1/rotation = Quaternion(0.08132297, 0, 0, 0.9966879)
+bones/0/position = Vector3(0, 0.95425487, -0.08378379)
+bones/1/rotation = Quaternion(0.12767062, 0, 0, 0.9918167)
 bones/4/rotation = Quaternion(0.07990848, -6.99452e-05, 0.00052662584, 0.99680203)
-bones/5/rotation = Quaternion(-0.07784651, -0.00016875709, 0.00019336463, 0.99696535)
-bones/8/rotation = Quaternion(-0.20718421, 0.6550541, -0.53687876, 0.48963264)
-bones/9/rotation = Quaternion(0.61735284, 0.021345893, -0.037958898, 0.78548)
+bones/5/rotation = Quaternion(-0.14441903, -8.489772e-05, 0.00021344905, 0.9895167)
+bones/8/rotation = Quaternion(-0.23944966, 0.6494134, -0.5874965, 0.41925395)
+bones/9/rotation = Quaternion(0.6178764, 0.02262637, -0.038512554, 0.78500545)
 bones/10/rotation = Quaternion(-0.17648596, -0.13238297, 0.358038, 0.9072686)
 bones/11/rotation = Quaternion(0.2341306, 0.073000036, -0.3427318, 0.9068566)
 bones/12/rotation = Quaternion(0.2788015, 0.0056021214, -0.49506328, 0.8228917)
@@ -194,28 +196,29 @@ bones/13/rotation = Quaternion(0.12077942, 0.019475518, -0.6396718, 0.75884974)
 bones/14/rotation = Quaternion(0.21833448, 0.021116681, -0.28930128, 0.9317666)
 bones/16/rotation = Quaternion(-0.025217649, -0.30915818, 0.43549407, 0.8450623)
 bones/17/rotation = Quaternion(0.5999251, -0.016435407, -0.096393615, 0.7940579)
-bones/18/rotation = Quaternion(-0.26694915, 0.06277342, -0.030787757, 0.96117103)
+bones/18/rotation = Quaternion(-0.22539136, 0.069823235, 0.0020995531, 0.97176087)
+bones/19/rotation = Quaternion(-0.34619248, -0.06891396, -0.09533282, 0.93075955)
 bones/20/rotation = Quaternion(0.084632516, -0.021971382, 0.06313108, 0.99416757)
-bones/21/rotation = Quaternion(-0.27281347, -0.3591555, 0.30694625, 0.8380717)
-bones/22/rotation = Quaternion(-0.12211758, 0.10268797, 0.13887508, 0.97737217)
-bones/23/rotation = Quaternion(-0.24930418, 0.035604015, 0.13896005, 0.95774204)
-bones/24/rotation = Quaternion(-0.1793535, 0.09341918, 0.22217456, 0.9538049)
-bones/25/rotation = Quaternion(-0.11824517, -0.043796513, 0.09467485, 0.98749006)
-bones/27/rotation = Quaternion(-0.49467567, 0.18025468, 0.37817058, 0.7614402)
-bones/28/rotation = Quaternion(-0.04977389, 0.21366543, -0.28090537, 0.9343243)
-bones/29/rotation = Quaternion(0.027032213, 0.18416923, -0.022029541, 0.9822758)
-bones/30/rotation = Quaternion(0.03718365, 0.16960585, -0.046114173, 0.9837301)
-bones/31/rotation = Quaternion(0.043891992, 0.11314447, -0.050161716, 0.99134034)
-bones/32/rotation = Quaternion(-0.02742867, -0.0030479745, -0.011926394, 0.99954796)
-bones/33/rotation = Quaternion(0.09072825, -0.040943332, -0.07099197, 0.9924979)
-bones/34/rotation = Quaternion(-0.08282425, 0.039151285, 0.039092414, 0.99502724)
+bones/21/rotation = Quaternion(-0.3019157, -0.2588692, 0.19832437, 0.8958244)
+bones/22/rotation = Quaternion(-0.050495632, 0.14734621, 0.1253724, 0.97980666)
+bones/23/rotation = Quaternion(-0.27091312, 0.18694492, 0.056572888, 0.94258004)
+bones/24/rotation = Quaternion(-0.028908975, 0.08420898, 0.29358307, 0.9517785)
+bones/25/rotation = Quaternion(0.07900509, -0.18189318, 0.13597696, 0.97066134)
+bones/27/rotation = Quaternion(-0.34408548, 0.22278807, 0.4018297, 0.81884295)
+bones/28/rotation = Quaternion(-0.40192378, 0.19984493, -0.46982512, 0.7601208)
+bones/29/rotation = Quaternion(-0.037969798, 0.2015342, -0.1040063, 0.97320354)
+bones/30/rotation = Quaternion(0.14035456, 0.20172733, 0.2540497, 0.9354494)
+bones/31/rotation = Quaternion(0.07952614, 0.22500353, 0.15571491, 0.9585416)
+bones/32/rotation = Quaternion(-0.17709485, -0.21998782, -0.11101217, 0.95284796)
+bones/33/rotation = Quaternion(-0.07110819, 0.37208548, 0.1467444, 0.9137626)
+bones/34/rotation = Quaternion(-0.002018864, 0.1562154, 0.15663014, 0.97522295)
 bones/35/rotation = Quaternion(-5.4142056e-08, 0.6969362, 0.7171332, -5.2617224e-08)
 bones/36/rotation = Quaternion(-5.4142056e-08, 0.6969362, 0.7171332, -5.2617224e-08)
-bones/39/rotation = Quaternion(0.9548977, 0.061947905, -0.12750886, 0.2609106)
-bones/40/rotation = Quaternion(0.26587808, 8.545792e-05, 0.054388907, 0.9624711)
+bones/39/rotation = Quaternion(0.9464584, 0.071708426, -0.12895432, 0.2871329)
+bones/40/rotation = Quaternion(0.32459113, 8.378596e-05, 0.06639942, 0.9435209)
 bones/41/rotation = Quaternion(-0.5559221, -0.054189734, -0.07426182, 0.8261351)
-bones/44/rotation = Quaternion(0.9558726, 0.0009833779, 0.13161044, 0.2626509)
-bones/45/rotation = Quaternion(0.24771746, -0.0026210195, 0.09349968, 0.96430653)
+bones/44/rotation = Quaternion(0.94788474, 0.00643846, 0.13078465, 0.2904625)
+bones/45/rotation = Quaternion(0.30504447, -0.0025695623, 0.115137495, 0.94534904)
 bones/46/rotation = Quaternion(-0.5841617, -0.08634694, -0.077696845, 0.8032824)
 bones/47/rotation = Quaternion(-0.02009681, 0.9586914, -0.27494845, -0.07007381)
 bones/49/position = Vector3(0.19424377, 0.08358507, -0.012024247)
@@ -306,6 +309,9 @@ surface_material_override/1 = SubResource("StandardMaterial3D_267gr")
 material_override = ExtResource("10_5nsuk")
 surface_material_override/0 = SubResource("StandardMaterial3D_ox1ja")
 surface_material_override/1 = SubResource("StandardMaterial3D_267gr")
+
+[node name="CollisionShape3D" parent="VisibilityRange" index="0"]
+shape = SubResource("SphereShape3D_v7ma6")
 
 [editable path="Body"]
 [editable path="HitFX"]
