@@ -45,6 +45,7 @@ public partial class Player3d : CharacterBody3D
 	private Dictionary<string, PackedScene> _secWeapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
 	// --- VARIABLES ---
+	private PackedScene _pauseMenu = GD.Load<PackedScene>("res://Scenes/pause_menu.tscn");
 	public float HorCamSense = 0.002f;                  // Horizontal camera mouse sensitivity multiplier
 	public float VerCamSense = 0.002f;                  // Vertical camera mouse sensitivity multiplier
 	protected RandomNumberGenerator _rng = new();       // Generator for random events like critical hits and effects
@@ -120,8 +121,6 @@ public partial class Player3d : CharacterBody3D
 		// Get references to child nodes
 		_head = GetNode<Node3D>("Head");
 		_cam = GetNode<Camera3D>("Head/Camera3D");
-		_interface = GetNode<Control>("UI/PauseMenu");
-		_senseBar = GetNode<Slider>("UI/PauseMenu/Sense");
 		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
 		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
 		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
@@ -211,36 +210,33 @@ public partial class Player3d : CharacterBody3D
 			{
 				// Un-capture mouse, show pause menu, update sensitivity slider to current value
 				Input.MouseMode = Input.MouseModeEnum.Visible;
-				_interface.Visible = true;
-				_senseBar.Value = HorCamSense * 1000;
-			}
-			else
-			{
-				// Re-capture mouse, hide pause menu
-				Input.MouseMode = Input.MouseModeEnum.Captured;
-				_interface.Visible = false;
+				GetTree().Paused = true;
+				Control pauseInst = _pauseMenu.Instantiate<Control>();
+       			GetTree().Root.AddChild(pauseInst);
+				_interface = pauseInst;
+				_senseBar = _interface.GetNode<HSlider>("Sense");
+				_senseBar.Value = HorCamSense * 1000;	
+				if (pauseInst is PauseMenu menu)
+                {
+                    menu._player = this;
+                }	
 			}
 		}
 
 		// --- Sword attack (Attack Action) ---
 		else if (Input.IsActionPressed("attack")
+				 && _attackCooldown == false
 				 && !IsInstanceValid(_lastSeen) // Not looking at an interactable object
 				 && _inv.Visible == false)
 		{
-			if(_attackCooldown == false){
-				// This block handles the first attack, potentially hiding a "Controls" overlay
-				if (GetNode<Sprite2D>("UI/Controls").Visible == true && GetNode<ColorRect>("UI/Loading").Visible == false)
-				{
-					GetNode<Sprite2D>("UI/Controls").Visible = false;
-				}
-				else
-				{
-					Swing(false); // Perform a normal sword swing
-				}
+			// This block handles the first attack, potentially hiding a "Controls" overlay
+			if (GetNode<Sprite2D>("UI/Controls").Visible == true && GetNode<ColorRect>("UI/Loading").Visible == false)
+			{
+				GetNode<Sprite2D>("UI/Controls").Visible = false;
 			}
 			else
 			{
-				
+				Swing(false); // Perform a normal sword swing
 			}
 		}
 
@@ -443,6 +439,14 @@ public partial class Player3d : CharacterBody3D
         }
 	}
 
+	public void UnPause()
+    {
+		HorCamSense = Convert.ToSingle(_senseBar.Value / 1000);
+		VerCamSense = Convert.ToSingle(_senseBar.Value / 1000);
+        Input.MouseMode = Input.MouseModeEnum.Captured;
+		_interface = null;
+    }
+
 	// --- PHYSICS LOOP ---
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.
 	public override void _PhysicsProcess(double delta)
@@ -561,7 +565,7 @@ public partial class Player3d : CharacterBody3D
 		// [Inventory Camera Transition - Commented Out]
 
 		// --- Update sensitivity from pause menu ---
-		if (_interface.Visible == true)
+		if (_interface != null)
 		{
 			HorCamSense = Convert.ToSingle(_senseBar.Value / 1000);
 			VerCamSense = Convert.ToSingle(_senseBar.Value / 1000);
@@ -589,7 +593,6 @@ public partial class Player3d : CharacterBody3D
 
 			if (_running == true)
 			{
-				_swordInst.updateVar(false,true,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 				if (_inCombat == true)
 				{
 					_stamina -= 8f * (float)delta; // Deduct stamina while running  
@@ -602,13 +605,11 @@ public partial class Player3d : CharacterBody3D
 			}
 			else
 			{
-				_swordInst.updateVar(true,false,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 				play_footstep(0.7f);
 			}
 		}
 		else
 		{
-			_swordInst.updateVar(false,false,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 			// Player is stationary (no directional input)
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
@@ -749,23 +750,26 @@ public partial class Player3d : CharacterBody3D
 	{
 		_swordInst.ResetMonsterDebounce(); // Allow the sword to hit new monsters
 		_attackCooldown = true; // Start the attack cooldown
-		float comboTime = (float)_sword.GetMeta("SwingSpeed1") * 1000 + 400; // Time window for the next combo hit (in ms)
-		float swingTime = (float)_sword.GetMeta("swingSpeed1");
+		float swingTime = (float)_sword.GetMeta("swingSpeed"); // Get swing time from weapon metadata
+		float comboTime = swingTime * 1000 + 400; // Time window for the next combo hit (in ms)
 		_rng.Randomize();
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
 		_damage = (float)_sword.GetMeta("damage");
 		float tempHorSense = HorCamSense;
 		float tempVerSense = VerCamSense;
-		string swingMeta = "swingSpeed1";
 
 		// Damage penalty if stamina is too low
-		if (_stamina <= 0.05f * _maxStamina)
+		if (_stamina <= 0.02f * _maxStamina)
 		{
-			_damage *= 0.7f;
+			_damage *= 0.75f;
 		}
 
 		// Skip stamina deduction and set swing time to zero if just equipping the weapon (for animation only)
-		if (!justEqquipped)
+		if (justEqquipped == true)
+		{
+			swingTime = 0f;
+		}
+		else
 		{
 			_stamina -= 0.05f * _maxStamina; // Deduct stamina for the attack
 		}
@@ -803,42 +807,40 @@ public partial class Player3d : CharacterBody3D
 				_swordInst._crit = true;
 			}
 		}
+
 		// --- Play Animation based on Combo ---
 		if (_comboNum == 0)
 		{
-			_swordInst.updateVar(swingUpdate:1);
-			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
 			HorCamSense /= 2.5f;
 			VerCamSense /= 3f;
 		}
 		else if (_comboNum == 1)
 		{
-			_swordInst.updateVar(swingUpdate:2);
-			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
 			HorCamSense /= 2.5f;
 			VerCamSense /= 3f;
-			swingMeta = "swingSpeed2";
 		}
 		else if (_comboNum == 2)
 		{
-			_swordInst.updateVar(swingUpdate:3);
 			_damage = (float)_sword.GetMeta("hDamage"); // Use a special high-damage value for the final hit
-			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
 			HorCamSense /= 2f;
 			VerCamSense /= 5f;
-			swingMeta = "SwingSpeed3";
 		}
-		swingTime = (float)_sword.GetMeta(swingMeta);
+
 		if (justEqquipped == true)
 		{
-			swingTime = 0; 
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Stop(); // Don't animate if just equipped
 		}
+
+		GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
 		_lastHit = Time.GetTicksMsec(); // Record the time of this hit
 		play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));
 		// Wait for the main part of the swing animation to finish
 		await ToSignal(GetTree().CreateTimer(swingTime * 0.7), "timeout");
 		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
+
 		// Wait for the remainder of the swing (0 seconds in this case, a slight delay might be intended)
 		await ToSignal(GetTree().CreateTimer(swingTime * 0), "timeout");
 		_attackCooldown = false; // End the attack cooldown
@@ -846,8 +848,6 @@ public partial class Player3d : CharacterBody3D
 		// Reset the players sensitivity
 		HorCamSense = tempHorSense;
 		VerCamSense = tempVerSense;
-		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
-		_swordInst.updateVar(swingUpdate:0);
 	}
 
 	// Handles the blocking and parrying mechanic.
@@ -856,7 +856,7 @@ public partial class Player3d : CharacterBody3D
 		_blocking = block;
 		if (block == true)
 		{
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,0,_swordInst.getIntVar(1));
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Parry"); // Start the parry animation
 			await ToSignal(GetTree().CreateTimer(0.05), "timeout"); // Wait for a brief moment
 			_parry = block; // Set parry flag to true (the active parry window)
 			_currentParryWindow = _parryWindow; // Start the parry timer
@@ -864,7 +864,7 @@ public partial class Player3d : CharacterBody3D
 		else
 		{
 			_parry = block; // Set parry flag to false
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,0,_swordInst.getIntVar(1));
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").PlayBackwards("Parry"); // Reverse the animation
 		}
 	}
 	
@@ -1016,8 +1016,7 @@ public partial class Player3d : CharacterBody3D
 			// Regular block: reduce damage, deduct stamina, play block animation
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
-			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			_knockVelocity = 1f;
 			if (_cam is Camera cam)
@@ -1032,8 +1031,7 @@ public partial class Player3d : CharacterBody3D
 			_stamina += 0.20f * _maxStamina;
 			takenDamage = 0f;
 			monster.Stunned();
-			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			_parried = true;
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)
@@ -1069,8 +1067,7 @@ public partial class Player3d : CharacterBody3D
 			// Regular block: reduce damage, deduct stamina, play block animation, destroy projectile
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
-			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			projectile.QueueFree();
 			_knockVelocity = 0.25f;
@@ -1080,8 +1077,7 @@ public partial class Player3d : CharacterBody3D
 			// Successful parry: restore stamina, negate damage, destroy projectile, set parried flag
 			_stamina += 0.15f * _maxStamina;
 			takenDamage = 0f;
-			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
+			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			projectile.QueueFree();
 			_parried = true;
 			_knockVelocity = 0f;

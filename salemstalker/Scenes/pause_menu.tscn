@@ -1,0 +1,224 @@
+[gd_scene load_steps=14 format=3 uid="uid://curyc0tilssiy"]
+
+[ext_resource type="Shader" uid="uid://2qgp3gkiyw40" path="res://Shaders/ui.gdshader" id="1_1och7"]
+[ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="2_bpi0q"]
+[ext_resource type="Script" uid="uid://cqtwaf0av7yfp" path="res://Scripts/PauseMenu.cs" id="2_myy0f"]
+[ext_resource type="Texture2D" uid="uid://bgg2bugx1ccon" path="res://Assets/UI/slidericonopen.png" id="3_myy0f"]
+[ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="3_vmyb1"]
+[ext_resource type="Texture2D" uid="uid://5875opjoc8d2" path="res://Assets/UI/slidericonclosed.png" id="4_myy0f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_myy0f"]
+shader = ExtResource("1_1och7")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.05
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 3.0
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.07
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpi0q"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.627451, 0.56078434, 0.8, 1)
+border_width_left = 80
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.10980392, 0.08627451, 0.3137255, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.11764706)
+shadow_size = 2
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myy0f"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.47058824, 0.09803922, 0.40392157, 0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjs17"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.7520431, 0.70715606, 0.88108075, 1)
+border_width_left = 80
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.10980392, 0.08627451, 0.3137255, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.11764706)
+shadow_size = 2
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sjs17"]
+line_spacing = 3.08
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u8tnp"]
+shader = ExtResource("3_vmyb1")
+shader_parameter/blur_amount = 1.0
+shader_parameter/mix_amount = 0.0
+shader_parameter/color_over = Color(0, 0, 0, 1)
+shader_parameter/r_displacement = Vector2(0, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_stj27"]
+line_spacing = 3.08
+font_size = 60
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" type="Control"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_myy0f")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.998655, 0.994391)
+script = ExtResource("2_myy0f")
+
+[node name="Sense" type="HSlider" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.29000002
+anchor_top = 0.74700004
+anchor_right = 0.71500003
+anchor_bottom = 0.83300006
+offset_left = -0.48983765
+offset_top = -0.14376831
+offset_right = -306.2213
+offset_bottom = -34.828674
+scale = Vector2(3, 3)
+mouse_default_cursor_shape = 2
+theme_override_icons/grabber = ExtResource("3_myy0f")
+theme_override_icons/grabber_highlight = ExtResource("4_myy0f")
+theme_override_styles/slider = SubResource("StyleBoxFlat_bpi0q")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_myy0f")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_sjs17")
+min_value = 0.1
+max_value = 5.0
+step = 0.5
+value = 5.0
+
+[node name="CamSense" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.639
+anchor_right = 1.0
+anchor_bottom = 0.758
+offset_top = -0.072052
+offset_right = 1.0
+offset_bottom = -0.184021
+theme_override_fonts/font = ExtResource("2_bpi0q")
+text = "Camera Sensitivity"
+label_settings = SubResource("LabelSettings_sjs17")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackgroundBlur" type="ColorRect" parent="."]
+z_index = -100
+material = SubResource("ShaderMaterial_u8tnp")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -57.0
+offset_right = 179.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.054
+anchor_right = 1.0
+anchor_bottom = 0.173
+offset_top = 0.00799942
+offset_right = 1.0
+offset_bottom = -0.104004
+theme_override_fonts/font = ExtResource("2_bpi0q")
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_stj27")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="Button" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.058000002
+anchor_right = 0.091000006
+anchor_bottom = 0.147
+offset_left = 477.47083
+offset_top = 220.2847
+offset_right = 477.49387
+offset_bottom = 220.35071
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_bpi0q")
+theme_override_font_sizes/font_size = 35
+text = "Quit"
+
+[node name="Resume" type="Button" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.453
+anchor_top = 0.30900002
+anchor_right = 0.55
+anchor_bottom = 0.39800003
+offset_left = -0.12979126
+offset_top = -0.20484924
+offset_right = 0.20721436
+offset_bottom = -0.13885498
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_bpi0q")
+theme_override_font_sizes/font_size = 35
+text = "Resume"
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]

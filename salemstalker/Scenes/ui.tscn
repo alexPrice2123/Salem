@@ -1,17 +1,15 @@
-[gd_scene load_steps=47 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=42 format=3 uid="uid://dwpo6a7lu68jh"]
 
-[ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
 [ext_resource type="Shader" uid="uid://cdhocti5ssful" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
 [ext_resource type="PackedScene" uid="uid://dufmkp4txcmvx" path="res://Scenes/inv_world.tscn" id="3_nf4gj"]
-[ext_resource type="Shader" uid="uid://2qgp3gkiyw40" path="res://Shaders/ui.gdshader" id="3_q7pk6"]
 [ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
-[ext_resource type="Texture2D" uid="uid://bhqxe1yu68n7c" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
+[ext_resource type="Texture2D" uid="uid://c4cernxpmcelt" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
@@ -82,38 +80,6 @@ shader_parameter/rect_size = Vector2(0.455, 0.44)
 shader_parameter/bness = 0.1
 shader_parameter/fall_off_scale = 3.0
 shader_parameter/b_offset = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2246s"]
-shader = ExtResource("3_q7pk6")
-shader_parameter/exposure = 1.0
-shader_parameter/contrast = 1.05
-shader_parameter/saturation = 0.9
-shader_parameter/enable_pixelate = true
-shader_parameter/pixel_factor = 3.0
-shader_parameter/enable_posterize = true
-shader_parameter/color_levels = 16.0
-shader_parameter/dither_strength = 0.35
-shader_parameter/chrom_aberration = 0.07
-shader_parameter/vignette_strength = 1.0
-shader_parameter/grain_strength = 0.2
-shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
-shader_parameter/tint_strength = 0.15
-shader_parameter/viewport_size_override = Vector2(0, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_wviqb"]
-line_spacing = 3.08
-font_size = 25
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jxero"]
-shader = ExtResource("1_jxero")
-shader_parameter/blur_amount = 1.0
-shader_parameter/mix_amount = 0.0
-shader_parameter/color_over = Color(0, 0, 0, 1)
-shader_parameter/r_displacement = Vector2(0, 0)
-shader_parameter/g_displacement = Vector2(0, 0)
-shader_parameter/b_displacement = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxero"]
 line_spacing = 3.08
@@ -201,7 +167,9 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_fcexb"]
 line_spacing = 3.08
+font = ExtResource("1_qdvrb")
 font_size = 25
+font_color = Color(0.85882354, 0.8117647, 0.89411765, 1)
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
@@ -372,94 +340,6 @@ grow_vertical = 2
 scale = Vector2(1, 1.01247)
 pivot_offset = Vector2(539, 303)
 mouse_filter = 2
-
-[node name="PauseMenu" type="Control" parent="."]
-visible = false
-texture_filter = 1
-material = SubResource("ShaderMaterial_2246s")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.998655, 0.994391)
-
-[node name="Sense" type="HSlider" parent="PauseMenu"]
-layout_mode = 0
-anchor_left = 0.437
-anchor_top = 0.778
-anchor_right = 0.569
-anchor_bottom = 0.802
-offset_left = 0.575989
-offset_top = -0.144043
-offset_right = -0.488037
-offset_bottom = 0.303955
-grow_horizontal = 2
-grow_vertical = 2
-min_value = 0.1
-max_value = 5.0
-step = 0.5
-value = 5.0
-
-[node name="CamSense" type="Label" parent="PauseMenu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.639
-anchor_right = 1.0
-anchor_bottom = 0.758
-offset_top = -0.072052
-offset_right = 1.0
-offset_bottom = -0.184021
-theme_override_fonts/font = ExtResource("1_qdvrb")
-text = "Camera Sensitivity"
-label_settings = SubResource("LabelSettings_wviqb")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BackgroundBlur" type="ColorRect" parent="PauseMenu"]
-z_index = -100
-material = SubResource("ShaderMaterial_jxero")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -122.0
-offset_top = -57.0
-offset_right = 179.0
-offset_bottom = 58.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Title" type="Label" parent="PauseMenu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.054
-anchor_right = 1.0
-anchor_bottom = 0.173
-offset_top = 0.00799942
-offset_right = 1.0
-offset_bottom = -0.104004
-theme_override_fonts/font = ExtResource("1_qdvrb")
-text = "PAUSE"
-label_settings = SubResource("LabelSettings_jxero")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="PauseMenu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.027
-anchor_top = 0.037
-anchor_right = 0.027
-anchor_bottom = 0.037
-offset_left = 0.866999
-offset_top = 12.578
-offset_right = 58.867
-offset_bottom = 39.578
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-text = "Quit"
 
 [node name="Inv" type="Control" parent="."]
 visible = false
@@ -935,6 +815,7 @@ theme_override_font_sizes/font_size = 22
 text = "Ignore"
 
 [node name="BlacksmithShop" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchor_left = 0.059
 anchor_top = 0.157
@@ -949,6 +830,8 @@ offset_bottom = 0.26397705
 layout_mode = 0
 offset_right = 415.0
 offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+theme_override_font_sizes/font_size = 26
 selected = 0
 item_count = 2
 popup/item_0/text = "One-Handed Primary"
@@ -1046,7 +929,7 @@ offset_bottom = 422.0
 [node name="Port" type="SubViewport" parent="BlacksmithShop/View/PortContainer"]
 handle_input_locally = false
 size = Vector2i(242, 422)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="ShopPreviewWorld" parent="BlacksmithShop/View/PortContainer/Port" instance=ExtResource("12_whq80")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.51964, -10.136, 0)
@@ -1058,6 +941,8 @@ offset_left = 161.0
 offset_top = 4.0
 offset_right = 236.0
 offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+theme_override_font_sizes/font_size = 20
 text = "Upgrade"
 
 [node name="View" type="Button" parent="BlacksmithShop/View"]
@@ -1297,7 +1182,6 @@ position = Vector2(538, 305)
 scale = Vector2(0.561458, 0.559259)
 texture = ExtResource("14_8fs27")
 
-[connection signal="button_down" from="PauseMenu/Button" to="." method="_on_button_button_down"]
 [connection signal="button_up" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_mouse_exited"]

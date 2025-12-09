@@ -50,7 +50,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265332, -0.769787, -0.31310
 light_color = Color(0.956863, 0.882353, 0.541176, 1)
 light_energy = 4.0
 light_volumetric_fog_energy = 10.0
-shadow_enabled = true
 omni_range = 25.0
 
 [node name="Offhand1" type="Node3D" parent="Head/Camera3D"]
