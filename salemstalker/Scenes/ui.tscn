@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=47 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="1_jxero"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
+[ext_resource type="Texture2D" uid="uid://bhqxe1yu68n7c" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
@@ -165,6 +166,15 @@ font_size = 45
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_wc4t8"]
+font = ExtResource("10_nt8jn")
+font_size = 45
+outline_size = 8
+outline_color = Color(0.14225578, 0.14225581, 0.14225578, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nbcfj"]
+line_spacing = -5.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_smy1h"]
 font_size = 37
 outline_size = 7
@@ -191,15 +201,21 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_fcexb"]
 line_spacing = 3.08
-font = ExtResource("1_qdvrb")
-font_size = 80
-font_color = Color(0.85882354, 0.8117647, 0.89411765, 1)
+font_size = 25
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3g2cg"]
+line_spacing = 3.08
+font = ExtResource("10_nt8jn")
+font_size = 20
+outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_v4f2e"]
-line_spacing = -5.0
-font_size = 20
-outline_size = 4
+line_spacing = -3.0
+font_size = 18
+outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_fe2sg"]
@@ -210,7 +226,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jd57c"]
 line_spacing = -5.0
-font_size = 20
+font_size = 19
 font_color = Color(0.5540922, 0.84772754, 0.40119067, 1)
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
@@ -764,10 +780,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -109.0
-offset_top = -39.0
-offset_right = 192.0
-offset_bottom = 76.0
+offset_left = -130.0
+offset_top = -55.0
+offset_right = 171.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
@@ -919,7 +935,6 @@ theme_override_font_sizes/font_size = 22
 text = "Ignore"
 
 [node name="BlacksmithShop" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchor_left = 0.059
 anchor_top = 0.157
@@ -941,33 +956,81 @@ popup/item_0/id = 0
 popup/item_1/text = "Two-Handed Primary"
 popup/item_1/id = 1
 
-[node name="ShopOption1" type="Button" parent="BlacksmithShop"]
+[node name="ShopOption1" type="TextureButton" parent="BlacksmithShop"]
 layout_mode = 0
 offset_top = 50.0
 offset_right = 415.0
 offset_bottom = 121.0
-text = "Option1"
+texture_normal = ExtResource("12_kuui0")
+texture_pressed = ExtResource("12_kuui0")
+texture_hover = ExtResource("12_kuui0")
 
-[node name="ShopOption2" type="Button" parent="BlacksmithShop"]
+[node name="Label" type="Label" parent="BlacksmithShop/ShopOption1"]
+layout_mode = 0
+offset_left = 33.0
+offset_right = 400.0
+offset_bottom = 71.0
+text = "Option 1"
+label_settings = SubResource("LabelSettings_wc4t8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShopOption2" type="TextureButton" parent="BlacksmithShop"]
 layout_mode = 0
 offset_top = 150.0
 offset_right = 415.0
 offset_bottom = 221.0
-text = "Option2"
+texture_normal = ExtResource("12_kuui0")
+texture_pressed = ExtResource("12_kuui0")
+texture_hover = ExtResource("12_kuui0")
 
-[node name="ShopOption3" type="Button" parent="BlacksmithShop"]
+[node name="Label" type="Label" parent="BlacksmithShop/ShopOption2"]
+layout_mode = 0
+offset_left = 33.0
+offset_right = 400.0
+offset_bottom = 71.0
+text = "Option 2"
+label_settings = SubResource("LabelSettings_wc4t8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShopOption3" type="TextureButton" parent="BlacksmithShop"]
 layout_mode = 0
 offset_top = 250.0
 offset_right = 415.0
 offset_bottom = 321.0
-text = "Option3"
+texture_normal = ExtResource("12_kuui0")
+texture_pressed = ExtResource("12_kuui0")
+texture_hover = ExtResource("12_kuui0")
 
-[node name="ShopOption4" type="Button" parent="BlacksmithShop"]
+[node name="Label" type="Label" parent="BlacksmithShop/ShopOption3"]
+layout_mode = 0
+offset_left = 33.0
+offset_right = 400.0
+offset_bottom = 71.0
+text = "Option 3"
+label_settings = SubResource("LabelSettings_wc4t8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShopOption4" type="TextureButton" parent="BlacksmithShop"]
 layout_mode = 0
 offset_top = 350.0
 offset_right = 415.0
 offset_bottom = 421.0
-text = "Option4"
+texture_normal = ExtResource("12_kuui0")
+texture_pressed = ExtResource("12_kuui0")
+texture_hover = ExtResource("12_kuui0")
+
+[node name="Label" type="Label" parent="BlacksmithShop/ShopOption4"]
+layout_mode = 0
+offset_left = 33.0
+offset_right = 400.0
+offset_bottom = 71.0
+text = "Option 4"
+label_settings = SubResource("LabelSettings_wc4t8")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="View" type="Control" parent="BlacksmithShop"]
 anchors_preset = 0
@@ -983,7 +1046,7 @@ offset_bottom = 422.0
 [node name="Port" type="SubViewport" parent="BlacksmithShop/View/PortContainer"]
 handle_input_locally = false
 size = Vector2i(242, 422)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="ShopPreviewWorld" parent="BlacksmithShop/View/PortContainer/Port" instance=ExtResource("12_whq80")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.51964, -10.136, 0)
@@ -998,6 +1061,7 @@ offset_bottom = 38.0
 text = "Upgrade"
 
 [node name="View" type="Button" parent="BlacksmithShop/View"]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 188.0
@@ -1006,6 +1070,28 @@ offset_right = 236.0
 offset_bottom = 76.0
 text = "View"
 
+[node name="Warning" type="ColorRect" parent="BlacksmithShop/View"]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_left = 29.0
+offset_top = 54.0
+offset_right = 177.0
+offset_bottom = 98.0
+color = Color(0.29411766, 0.29411766, 0.29411766, 0.9254902)
+
+[node name="Warning" type="Label" parent="BlacksmithShop/View/Warning"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_right = 0.027
+offset_left = 0.0039999485
+offset_right = 140.004
+offset_bottom = 44.0
+text = "This weapon is already max level!"
+label_settings = SubResource("LabelSettings_nbcfj")
+autowrap_mode = 2
+
 [node name="WeaponDesc" type="ColorRect" parent="BlacksmithShop/View"]
 visible = false
 z_index = 1
@@ -1013,7 +1099,7 @@ layout_mode = 0
 offset_left = 6.0
 offset_top = 68.0
 offset_right = 236.0
-offset_bottom = 411.0
+offset_bottom = 416.0
 color = Color(0.760784, 0.760784, 0.760784, 1)
 
 [node name="ViewWeapon" type="Label" parent="BlacksmithShop/View/WeaponDesc"]
@@ -1061,8 +1147,8 @@ layout_mode = 0
 offset_right = 242.0
 offset_bottom = 92.0
 theme_override_fonts/font = ExtResource("10_nt8jn")
-text = "Shortsword
-Upgraded!"
+text = "Upgrade
+Shortsword?"
 label_settings = SubResource("LabelSettings_whq80")
 horizontal_alignment = 1
 
@@ -1071,7 +1157,7 @@ anchors_preset = 0
 offset_right = 242.0
 offset_bottom = 422.0
 
-[node name="Requirements" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
+[node name="Details" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
 z_index = 2
 layout_mode = 0
 offset_left = 11.0
@@ -1080,18 +1166,12 @@ offset_right = 232.0
 offset_bottom = 241.0
 theme_override_fonts/font = ExtResource("10_nt8jn")
 text = "Reqirements:
-FREEEEE!!!"
+None
+
+Upgrades:
+"
 label_settings = SubResource("LabelSettings_kuui0")
 horizontal_alignment = 1
-
-[node name="UpgradeConf" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
-z_index = 2
-layout_mode = 0
-offset_left = 14.0
-offset_top = 377.0
-offset_right = 116.0
-offset_bottom = 412.0
-text = "Yes"
 
 [node name="UpgradeDeny" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
 z_index = 2
@@ -1101,6 +1181,15 @@ offset_top = 377.0
 offset_right = 228.0
 offset_bottom = 412.0
 text = "No"
+
+[node name="UpgradeConf" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
+z_index = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 377.0
+offset_right = 116.0
+offset_bottom = 412.0
+text = "Yes"
 
 [node name="Results" type="Control" parent="BlacksmithShop/View/UpgradeMenu"]
 visible = false
@@ -1118,9 +1207,10 @@ offset_right = 113.0
 offset_bottom = 250.0
 theme_override_fonts/font = ExtResource("10_nt8jn")
 text = "Results:"
-label_settings = SubResource("LabelSettings_d42i4")
+label_settings = SubResource("LabelSettings_fcexb")
 
 [node name="Unlocks" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
+visible = false
 z_index = 2
 layout_mode = 0
 offset_left = 10.0
@@ -1128,9 +1218,9 @@ offset_top = 119.0
 offset_right = 232.0
 offset_bottom = 178.0
 theme_override_fonts/font = ExtResource("10_nt8jn")
-text = "Unlocked: Pommel Strike
+text = "Unlocked: [ability]
 More info on the view page"
-label_settings = SubResource("LabelSettings_fcexb")
+label_settings = SubResource("LabelSettings_3g2cg")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -1139,27 +1229,28 @@ z_index = 2
 layout_mode = 0
 offset_left = 11.0
 offset_top = 244.0
-offset_right = 141.0
+offset_right = 180.0
 offset_bottom = 373.0
 theme_override_fonts/font = ExtResource("10_nt8jn")
 label_settings = SubResource("LabelSettings_v4f2e")
 text_overrun_behavior = 1
 
 [node name="Amount" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
+visible = false
 z_index = 2
 layout_mode = 0
-offset_left = 139.0
+offset_left = 125.0
 offset_top = 244.0
-offset_right = 178.0
+offset_right = 180.0
 offset_bottom = 373.0
 theme_override_fonts/font = ExtResource("10_nt8jn")
 label_settings = SubResource("LabelSettings_fe2sg")
-autowrap_mode = 1
+text_overrun_behavior = 1
 
 [node name="Addition" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
 z_index = 2
 layout_mode = 0
-offset_left = 175.0
+offset_left = 177.0
 offset_top = 244.0
 offset_right = 242.0
 offset_bottom = 373.0
@@ -1238,7 +1329,9 @@ texture = ExtResource("14_8fs27")
 [connection signal="button_up" from="BlacksmithShop/ShopOption3" to="." method="_on_shop_option3_button_up"]
 [connection signal="button_up" from="BlacksmithShop/ShopOption4" to="." method="_on_shop_option4_button_up"]
 [connection signal="button_up" from="BlacksmithShop/View/Upgrade" to="." method="_on_upgrade_button_up"]
+[connection signal="mouse_entered" from="BlacksmithShop/View/Upgrade" to="." method="_on_upgrade_mouse_entered"]
+[connection signal="mouse_exited" from="BlacksmithShop/View/Upgrade" to="." method="_on_upgrade_mouse_exited"]
 [connection signal="button_up" from="BlacksmithShop/View/View" to="." method="_on_view_button_up"]
-[connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/Requirements/UpgradeConf" to="." method="_on_upgrade_conf_button_up"]
 [connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/Requirements/UpgradeDeny" to="." method="_on_upgrade_deny_button_up"]
+[connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/Requirements/UpgradeConf" to="." method="_on_upgrade_conf_button_up"]
 [connection signal="button_up" from="BlacksmithShop/View/UpgradeMenu/Results/Done" to="." method="_on_done_button_up"]

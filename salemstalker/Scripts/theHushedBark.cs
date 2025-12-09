@@ -127,7 +127,7 @@ public partial class theHushedBark : Node3D
 				_targetTree.GetNode<GpuParticles3D>("Charge").Emitting = true;
 				await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
 				_canBeHit = true;
-				await ToSignal(GetTree().CreateTimer(0.75f), "timeout");
+				await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
 				if (_dead == true){return;}
 				_targetTree.GetNode<GpuParticles3D>("Charge").Emitting = false;
 				_targetTree.GetNode<AnimationPlayer>("AnimationPlayer").Play("Spikes");
