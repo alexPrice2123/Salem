@@ -8,6 +8,11 @@ public partial class SwordHandler : Node3D
 	protected float _firstDelay = 0.05f;
 	protected float _secondDelay = 0.2f;
 	public bool _crit = false;
+	protected bool walking = false;
+	protected bool running = false;
+	protected bool blocking = false;
+	protected int swingStat = 0;
+	protected int parryStat = 0;
 	protected async void _on_hitbox_body_entered(Node3D body)
 	{
 		if (body.IsInGroup("Monster"))
@@ -35,11 +40,30 @@ public partial class SwordHandler : Node3D
 	}
 	public void ResetMonsterList()
 	{
-		if (_monsterList.Count <= 0){ return; }
+		if (_monsterList.Count <= 0) { return; }
 		foreach (Monster3d monsterInstence in _monsterList)
-        {
+		{
 			_monsterList.Remove(monsterInstence);
-        }
-        
+		}
+
+	}
+	public void updateVar(bool walkUpdate = false, bool runUpdate = false, bool blockUpdate = false, int swingUpdate = 0, int parryUpdate = 0)
+	{
+		walking = walkUpdate;
+		running = runUpdate;
+		blocking = blockUpdate;
+		swingStat = swingUpdate;
+		parryStat = parryUpdate;
+	}
+	public bool getBoolVar(int which)
+	{
+		if(which == 0) {return walking;}
+		else if(which == 1) {return running;}
+        else {return blocking;}
+	}
+	public int getIntVar(int which)
+    {
+		if(which == 0) {return swingStat;}
+        else {return parryStat;}
     }
 }
