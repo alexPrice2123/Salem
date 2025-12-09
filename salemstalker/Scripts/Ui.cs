@@ -16,10 +16,10 @@ public partial class Ui : Control
 	private Control _slotSelect;
 	private OptionButton _shopTypeSelection;
 	private int _typeSelection;
-	private Button _shopOption1;
-	private Button _shopOption2;
-	private Button _shopOption3;
-	private Button _shopOption4;
+	private TextureButton _shopOption1;
+	private TextureButton _shopOption2;
+	private TextureButton _shopOption3;
+	private TextureButton _shopOption4;
 	private string _shopSelection = "Shortsword";
 	private Label _areaName;
 	public float _areaNameTween = 0f;
@@ -39,10 +39,10 @@ public partial class Ui : Control
 		_slotSelect = GetNode<Control>("Inv/SubPort/Sub/SlotSelector");
 		_loadingUI = GetNode<Control>("Loading");
 		_shopTypeSelection = GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions");
-		_shopOption1 = GetNode<Button>("BlacksmithShop/ShopOption1");
-		_shopOption2 = GetNode<Button>("BlacksmithShop/ShopOption2");
-		_shopOption3 = GetNode<Button>("BlacksmithShop/ShopOption3");
-		_shopOption4 = GetNode<Button>("BlacksmithShop/ShopOption4");
+		_shopOption1 = GetNode<TextureButton>("BlacksmithShop/ShopOption1");
+		_shopOption2 = GetNode<TextureButton>("BlacksmithShop/ShopOption2");
+		_shopOption3 = GetNode<TextureButton>("BlacksmithShop/ShopOption3");
+		_shopOption4 = GetNode<TextureButton>("BlacksmithShop/ShopOption4");
 		_loadingUI.Visible = true;
 		_loadingMaterial = _loadingUI.Material as ShaderMaterial;
 		_areaName = GetNode<Label>("Area");
@@ -79,33 +79,33 @@ public partial class Ui : Control
 		// Switch the titles of the buttons based on what shopOption you have selected
 		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
 		{
-			GetNode<Button>("BlacksmithShop/ShopOption1").Text = "Shortsword";
-			GetNode<Button>("BlacksmithShop/ShopOption2").Text = "Falchion";
-			GetNode<Button>("BlacksmithShop/ShopOption3").Text = "Rapier";
-			GetNode<Button>("BlacksmithShop/ShopOption4").Text = "Dagger";
-			GetNode<Button>("BlacksmithShop/ShopOption4").Visible = true;
+			GetNode<Label>("BlacksmithShop/ShopOption1/Label").Text = "Shortsword";
+			GetNode<Label>("BlacksmithShop/ShopOption2/Label").Text = "Falchion";
+			GetNode<Label>("BlacksmithShop/ShopOption3/Label").Text = "Rapier";
+			GetNode<Label>("BlacksmithShop/ShopOption4/Label").Text = "Dagger";
+			_shopOption4.Visible = true;
 		}
 		else if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 1)
 		{
-			GetNode<Button>("BlacksmithShop/ShopOption1").Text = "Longsword";
-			GetNode<Button>("BlacksmithShop/ShopOption2").Text = "Greatsword";
-			GetNode<Button>("BlacksmithShop/ShopOption3").Text = "Battle Axe";
-			GetNode<Button>("BlacksmithShop/ShopOption4").Text = "Halberd";
-			GetNode<Button>("BlacksmithShop/ShopOption4").Visible = true;
+			GetNode<Label>("BlacksmithShop/ShopOption1/Label").Text = "Longsword";
+			GetNode<Label>("BlacksmithShop/ShopOption2/Label").Text = "Greatsword";
+			GetNode<Label>("BlacksmithShop/ShopOption3/Label").Text = "Battle Axe";
+			GetNode<Label>("BlacksmithShop/ShopOption4/Label").Text = "Halberd";
+			_shopOption4.Visible = true;
 		}
 		else if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 2)
 		{
-			GetNode<Button>("BlacksmithShop/ShopOption1").Text = "Flintlock";
-			GetNode<Button>("BlacksmithShop/ShopOption2").Text = "Stake Launcher";
-			GetNode<Button>("BlacksmithShop/ShopOption3").Text = "Throwables";
-			GetNode<Button>("BlacksmithShop/ShopOption4").Visible = false;
+			GetNode<Label>("BlacksmithShop/ShopOption1/Label").Text = "Flintlock";
+			GetNode<Label>("BlacksmithShop/ShopOption2/Label").Text = "Stake Launcher";
+			GetNode<Label>("BlacksmithShop/ShopOption3/Label").Text = "Throwables";
+			_shopOption4.Visible = false;
 		}
 		else
 		{
-			GetNode<Button>("BlacksmithShop/ShopOption1").Text = "Shield";
-			GetNode<Button>("BlacksmithShop/ShopOption2").Text = "Chain Hook";
-			GetNode<Button>("BlacksmithShop/ShopOption3").Text = "Holy Relic";
-			GetNode<Button>("BlacksmithShop/ShopOption4").Visible = false;
+			GetNode<Label>("BlacksmithShop/ShopOption1").Text = "Shield";
+			GetNode<Label>("BlacksmithShop/ShopOption2").Text = "Chain Hook";
+			GetNode<Label>("BlacksmithShop/ShopOption3").Text = "Holy Relic";
+			_shopOption4.Visible = false;
 		}
 		if (_loaded == true) //Waits 1 second for the game to load before the ui tweens
 		{

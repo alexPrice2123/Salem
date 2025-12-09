@@ -142,7 +142,7 @@ public partial class sCultist : Monster3d
         projectileInstance.GlobalPosition = _spawn.GlobalPosition;
         _rightArmMagic.Emitting = true;
         _leftArmMagic.Emitting = true;
-        _orbTweenTime = 100f;
+        _orbTweenTime = 5f;
         _orbGoal = new Vector3(0f, 0f, 0f);
         _magicOrbParticle.Emitting = false;
         if (projectileInstance is Orb orb)

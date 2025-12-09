@@ -1,0 +1,136 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwkpl5pwiwino"]
+
+[ext_resource type="Shader" uid="uid://2qgp3gkiyw40" path="res://Shaders/ui.gdshader" id="1_1och7"]
+[ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="2_bpi0q"]
+[ext_resource type="Shader" uid="uid://bj68jf2hlrgge" path="res://Shaders/blur.gdshader" id="3_vmyb1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_myy0f"]
+shader = ExtResource("1_1och7")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.05
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 3.0
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.07
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sjs17"]
+line_spacing = 3.08
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u8tnp"]
+shader = ExtResource("3_vmyb1")
+shader_parameter/blur_amount = 1.0
+shader_parameter/mix_amount = 0.0
+shader_parameter/color_over = Color(0, 0, 0, 1)
+shader_parameter/r_displacement = Vector2(0, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_stj27"]
+line_spacing = 3.08
+font_size = 60
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" type="Control"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_myy0f")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.998655, 0.994391)
+
+[node name="Sense" type="HSlider" parent="."]
+layout_mode = 0
+anchor_left = 0.437
+anchor_top = 0.778
+anchor_right = 0.569
+anchor_bottom = 0.802
+offset_left = 0.575989
+offset_top = -0.144043
+offset_right = -0.488037
+offset_bottom = 0.303955
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 0.1
+max_value = 5.0
+step = 0.5
+value = 5.0
+
+[node name="CamSense" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.639
+anchor_right = 1.0
+anchor_bottom = 0.758
+offset_top = -0.072052
+offset_right = 1.0
+offset_bottom = -0.184021
+theme_override_fonts/font = ExtResource("2_bpi0q")
+text = "Camera Sensitivity"
+label_settings = SubResource("LabelSettings_sjs17")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackgroundBlur" type="ColorRect" parent="."]
+z_index = -100
+material = SubResource("ShaderMaterial_u8tnp")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -57.0
+offset_right = 179.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.054
+anchor_right = 1.0
+anchor_bottom = 0.173
+offset_top = 0.00799942
+offset_right = 1.0
+offset_bottom = -0.104004
+theme_override_fonts/font = ExtResource("2_bpi0q")
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_stj27")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="Button" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.058000002
+anchor_right = 0.091000006
+anchor_bottom = 0.147
+offset_left = -0.2120018
+offset_top = -0.14800262
+offset_right = -0.18900299
+offset_bottom = -0.08200073
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_bpi0q")
+theme_override_font_sizes/font_size = 35
+text = "Quit"
