@@ -45,7 +45,7 @@ public partial class Player3d : CharacterBody3D
 	private Dictionary<string, PackedScene> _secWeapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
 	// --- VARIABLES ---
-	private PackedScene _pauseMenu = GD.Load<PackedScene>("res://Scenes/inv_world.tscn");
+	private PackedScene _pauseMenu = GD.Load<PackedScene>("res://Scenes/pause_menu.tscn");
 	public float HorCamSense = 0.002f;                  // Horizontal camera mouse sensitivity multiplier
 	public float VerCamSense = 0.002f;                  // Vertical camera mouse sensitivity multiplier
 	protected RandomNumberGenerator _rng = new();       // Generator for random events like critical hits and effects
@@ -210,20 +210,16 @@ public partial class Player3d : CharacterBody3D
 			{
 				// Un-capture mouse, show pause menu, update sensitivity slider to current value
 				Input.MouseMode = Input.MouseModeEnum.Visible;
-				Control pauseInst = _pauseMenu.Instantiate<Control>(); // Create monster instance
-       			AddChild(pauseInst);
+				GetTree().Paused = true;
+				Control pauseInst = _pauseMenu.Instantiate<Control>();
+       			GetTree().Root.AddChild(pauseInst);
 				_interface = pauseInst;
 				_senseBar = _interface.GetNode<HSlider>("Sense");
-				_senseBar.Value = HorCamSense * 1000;
-				GetTree().Paused = true;	
-			}
-			else
-			{
-				// Re-capture mouse, hide pause menu
-				Input.MouseMode = Input.MouseModeEnum.Captured;
-				GetTree().Paused = false;
-				_interface = null;
-				
+				_senseBar.Value = HorCamSense * 1000;	
+				if (pauseInst is PauseMenu menu)
+                {
+                    menu._player = this;
+                }	
 			}
 		}
 
@@ -442,6 +438,14 @@ public partial class Player3d : CharacterBody3D
             _backSpeed = 0;
         }
 	}
+
+	public void UnPause()
+    {
+		HorCamSense = Convert.ToSingle(_senseBar.Value / 1000);
+		VerCamSense = Convert.ToSingle(_senseBar.Value / 1000);
+        Input.MouseMode = Input.MouseModeEnum.Captured;
+		_interface = null;
+    }
 
 	// --- PHYSICS LOOP ---
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.

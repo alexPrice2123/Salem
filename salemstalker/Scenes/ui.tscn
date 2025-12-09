@@ -9,7 +9,7 @@
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
-[ext_resource type="Texture2D" uid="uid://bhqxe1yu68n7c" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
+[ext_resource type="Texture2D" uid="uid://c4cernxpmcelt" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
@@ -167,7 +167,9 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_fcexb"]
 line_spacing = 3.08
+font = ExtResource("1_qdvrb")
 font_size = 25
+font_color = Color(0.85882354, 0.8117647, 0.89411765, 1)
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
@@ -828,6 +830,8 @@ offset_bottom = 0.26397705
 layout_mode = 0
 offset_right = 415.0
 offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+theme_override_font_sizes/font_size = 26
 selected = 0
 item_count = 2
 popup/item_0/text = "One-Handed Primary"
@@ -937,6 +941,8 @@ offset_left = 161.0
 offset_top = 4.0
 offset_right = 236.0
 offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+theme_override_font_sizes/font_size = 20
 text = "Upgrade"
 
 [node name="View" type="Button" parent="BlacksmithShop/View"]
