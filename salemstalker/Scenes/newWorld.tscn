@@ -2716,13 +2716,13 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98516005, -0.055199992)
-bones/2/rotation = Quaternion(-0.0069567645, 0, 0, 0.9999758)
-bones/5/rotation = Quaternion(-0.1324701, 0.006335997, 0.021754868, 0.99092805)
-bones/25/rotation = Quaternion(0.9695393, 0.017796788, -0.009303767, 0.24411128)
-bones/26/rotation = Quaternion(0.24180886, 0.0015611496, 0.019384077, 0.970129)
-bones/34/rotation = Quaternion(0.9695393, -0.017796788, 0.009303724, 0.24411128)
-bones/35/rotation = Quaternion(0.24180888, -0.0015611493, -0.019384077, 0.970129)
+bones/0/position = Vector3(0, 0.9856208, -0.055199996)
+bones/2/rotation = Quaternion(0.0019906089, 0, 0, 0.99999803)
+bones/5/rotation = Quaternion(-0.14015386, 0.006201526, 0.021746697, 0.98987156)
+bones/25/rotation = Quaternion(0.9697534, 0.017718498, -0.009294619, 0.2432655)
+bones/26/rotation = Quaternion(0.23993087, 0.0015619043, 0.019233532, 0.9705982)
+bones/34/rotation = Quaternion(0.9697534, -0.017718501, 0.009294575, 0.2432655)
+bones/35/rotation = Quaternion(0.23993087, -0.0015619041, -0.019233529, 0.9705982)
 
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obu7h")
@@ -2749,13 +2749,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98516005, -0.055199992)
-bones/2/rotation = Quaternion(-0.0069567645, 0, 0, 0.9999758)
-bones/5/rotation = Quaternion(-0.1324701, 0.006335997, 0.021754868, 0.99092805)
-bones/25/rotation = Quaternion(0.9695393, 0.017796788, -0.009303767, 0.24411128)
-bones/26/rotation = Quaternion(0.24180886, 0.0015611496, 0.019384077, 0.970129)
-bones/34/rotation = Quaternion(0.9695393, -0.017796788, 0.009303724, 0.24411128)
-bones/35/rotation = Quaternion(0.24180888, -0.0015611493, -0.019384077, 0.970129)
+bones/0/position = Vector3(0, 0.9856208, -0.055199996)
+bones/2/rotation = Quaternion(0.0019906089, 0, 0, 0.99999803)
+bones/5/rotation = Quaternion(-0.14015386, 0.006201526, 0.021746697, 0.98987156)
+bones/25/rotation = Quaternion(0.9697534, 0.017718498, -0.009294619, 0.2432655)
+bones/26/rotation = Quaternion(0.23993087, 0.0015619043, 0.019233532, 0.9705982)
+bones/34/rotation = Quaternion(0.9697534, -0.017718501, 0.009294575, 0.2432655)
+bones/35/rotation = Quaternion(0.23993087, -0.0015619041, -0.019233529, 0.9705982)
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2786,13 +2786,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's husband"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98516005, -0.055199992)
-bones/2/rotation = Quaternion(-0.0069567645, 0, 0, 0.9999758)
-bones/5/rotation = Quaternion(-0.1324701, 0.006335997, 0.021754868, 0.99092805)
-bones/25/rotation = Quaternion(0.9695393, 0.017796788, -0.009303767, 0.24411128)
-bones/26/rotation = Quaternion(0.24180886, 0.0015611496, 0.019384077, 0.970129)
-bones/34/rotation = Quaternion(0.9695393, -0.017796788, 0.009303724, 0.24411128)
-bones/35/rotation = Quaternion(0.24180888, -0.0015611493, -0.019384077, 0.970129)
+bones/0/position = Vector3(0, 0.9856208, -0.055199996)
+bones/2/rotation = Quaternion(0.0019906089, 0, 0, 0.99999803)
+bones/5/rotation = Quaternion(-0.14015386, 0.006201526, 0.021746697, 0.98987156)
+bones/25/rotation = Quaternion(0.9697534, 0.017718498, -0.009294619, 0.2432655)
+bones/26/rotation = Quaternion(0.23993087, 0.0015619043, 0.019233532, 0.9705982)
+bones/34/rotation = Quaternion(0.9697534, -0.017718501, 0.009294575, 0.2432655)
+bones/35/rotation = Quaternion(0.23993087, -0.0015619041, -0.019233529, 0.9705982)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ub1ot")
