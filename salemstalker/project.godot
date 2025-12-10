@@ -14,7 +14,7 @@ config/name="Nightshatter"
 run/main_scene="uid://ugvn3fpfrh3c"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 run/max_fps=60
-config/icon="res://icon.svg"
+config/icon="uid://0ndwudpowawf"
 
 [display]
 
