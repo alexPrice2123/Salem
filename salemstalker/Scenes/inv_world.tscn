@@ -60,7 +60,7 @@
 [ext_resource type="Texture2D" uid="uid://ccf58htao85c0" path="res://Assets/weapontextures/shortsword/pommel_Metallic.png" id="58_mmx5j"]
 [ext_resource type="Texture2D" uid="uid://dtlhjroxfkqou" path="res://Assets/weapontextures/shortsword/pommel_Normal.png" id="59_vk11p"]
 [ext_resource type="Texture2D" uid="uid://duf0m6xtj2nor" path="res://Assets/weapontextures/shortsword/pommel_Roughness.png" id="60_2udlh"]
-[ext_resource type="PackedScene" uid="uid://hdyqx2iml8sx" path="res://Scenes/OffHandWeapons/weaponExtra/flintlockmodel.tscn" id="61_wvttw"]
+[ext_resource type="PackedScene" path="res://Scenes/OffHandWeapons/weaponExtra/flintlockmodel.tscn" id="61_wvttw"]
 [ext_resource type="PackedScene" uid="uid://du71670gpsymh" path="res://Assets/Weapons/longsword.blend" id="62_20ekm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4to0"]
@@ -595,6 +595,7 @@ libraries = {
 
 [node name="StakeGun" parent="." instance=ExtResource("7_33jry")]
 transform = Transform3D(-0.264955, -6.700739e-07, -4.6858244e-08, 0, 0.01848319, -0.26431, 6.717091e-07, -0.26431, -0.01848319, 0, -1, 1.62)
+visible = false
 
 [node name="Cylinder" parent="StakeGun" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_psgo6")
@@ -640,7 +641,8 @@ libraries = {
 }
 
 [node name="flintlock" parent="." instance=ExtResource("61_wvttw")]
-transform = Transform3D(-0.37460327, 0.92195994, -0.09829361, -0.117435984, 0.057979796, 0.991386, 0.9197179, 0.38291973, 0.086551845, 0.788, 1.631, -1.533)
+transform = Transform3D(-0.37460327, 0.9219599, -0.09829361, -0.117435984, 0.057979792, 0.991386, 0.9197179, 0.3829197, 0.086551845, 0.788, 1.631, -1.533)
+visible = false
 
 [node name="HoverAnim" type="AnimationPlayer" parent="flintlock"]
 libraries = {
@@ -649,6 +651,7 @@ libraries = {
 
 [node name="longsword" parent="." instance=ExtResource("62_20ekm")]
 transform = Transform3D(-2.3529935e-06, -0.65, 0, 0.65, -2.3529935e-06, 0, 0, 0, 0.65, 0.0531443, 2.15593, -1.50528)
+visible = false
 
 [node name="HoverAnim" type="AnimationPlayer" parent="longsword"]
 libraries = {

@@ -308,7 +308,7 @@ public partial class Monster3d : CharacterBody3D
 
 			_targetVelocity = (nextPoint - myPos).Normalized() * (Speed * _dashVelocity + _speedOffset);
 
-			Vector3 moveDirection = Velocity.Normalized(); 
+			Vector3 moveDirection = _targetVelocity.Normalized(); 
 			if (moveDirection != Vector3.Zero)
 			{
 				_lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up); 
@@ -376,8 +376,9 @@ public partial class Monster3d : CharacterBody3D
 		// Apply velocity smoothing + movement checks
 		Velocity = Velocity.Lerp(_targetVelocity, 4f * (float)delta);
 
+		if (Fleeing){MoveAndSlide();}
 		// Things that make the monster stop moving no matter what
-		if (_player._inv.Visible == true || (_stunned == true && _attackException == false) || (_dashVelocity <= 1.01f && _dashAnim == true)) { _targetVelocity = Vector3.Zero; }
+		else if (_player._inv.Visible == true || (_stunned == true && _attackException == false) || (_dashVelocity <= 1.01f && _dashAnim == true)) { _targetVelocity = Vector3.Zero; }
 		// If the monster isnt a chaser and isnt attacking then it can move
 		else if (Chaser == false && _attackAnim == false) { MoveAndSlide(); }
 		// If the monster just spawned or is able to move while attacking then it can move
