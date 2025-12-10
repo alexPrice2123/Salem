@@ -94,6 +94,62 @@ scale_curve = SubResource("CurveTexture_b1i4m")
 [sub_resource type="BoxMesh" id="BoxMesh_el5lg"]
 size = Vector3(0.1, 0.1, 1)
 
+[sub_resource type="Animation" id="Animation_1q1gi"]
+resource_name = "Block"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.10000001),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0.15, -0.08), Vector3(0, 0.15, 0), Vector3(0, 0.15, -0.09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.10000001),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(1.0472, -1.39626, -0.0872665), Vector3(1.0472, -1.39626, -0.296706), Vector3(1.0472, -1.39626, -0.0872665)]
+}
+
+[sub_resource type="Animation" id="Animation_f56xr"]
+resource_name = "Parry"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.15, -0.09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.0472, -1.39626, -0.0872665)]
+}
+
 [sub_resource type="Animation" id="Animation_gbebq"]
 length = 0.001
 tracks/0/type = "value"
@@ -134,7 +190,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.23333333, 0.375),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.06, 0, 0.28), Vector3(-0.17, 0, -0.565), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.06, 0, 0.28), Vector3(-0.06, 0, -0.805), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -146,7 +202,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.23333333, 0.375),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-1.2653637, 0.5131268, 0), Vector3(-1.2571932, 0.50981355, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-1.2653637, 0.09424778, 0), Vector3(-1.2566371, 0.08901179, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_yfl0d"]
@@ -162,7 +218,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.23333333, 0.375),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.62, 0.2, 0.15), Vector3(-0.296, 0, -0.53), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(-0.62, 0.2, 0.15), Vector3(-0.116, 0, -0.53), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -203,62 +259,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.9424778), Vector3(0, -2.3038347, 1.5184364), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_f56xr"]
-resource_name = "Parry"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.15, -0.09)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1.0472, -1.39626, -0.0872665)]
-}
-
-[sub_resource type="Animation" id="Animation_1q1gi"]
-resource_name = "Block"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.10000001),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Vector3(0, 0.15, -0.08), Vector3(0, 0.15, 0), Vector3(0, 0.15, -0.09)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.10000001),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Vector3(1.0472, -1.39626, -0.0872665), Vector3(1.0472, -1.39626, -0.296706), Vector3(1.0472, -1.39626, -0.0872665)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hry07"]
@@ -306,6 +306,17 @@ heightmap_enabled = true
 heightmap_scale = 1.0
 heightmap_texture = ExtResource("14_1q1gi")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04rur"]
+albedo_texture = ExtResource("13_04rur")
+metallic = 1.0
+metallic_texture = ExtResource("15_0gxvm")
+roughness_texture = ExtResource("17_klrqj")
+normal_enabled = true
+normal_texture = ExtResource("16_ey40m")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("14_77yel")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ier0x"]
 resource_name = "Hilt"
 cull_mode = 2
@@ -345,17 +356,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_m2q6r")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04rur"]
-albedo_texture = ExtResource("13_04rur")
-metallic = 1.0
-metallic_texture = ExtResource("15_0gxvm")
-roughness_texture = ExtResource("17_klrqj")
-normal_enabled = true
-normal_texture = ExtResource("16_ey40m")
-heightmap_enabled = true
-heightmap_scale = 1.0
-heightmap_texture = ExtResource("14_77yel")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gopbf"]
 size = Vector3(0.21177, 0.65658045, 0.321355)
@@ -408,14 +408,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_yp5ru")
 [node name="Cube_001" parent="dagger" index="2"]
 surface_material_override/0 = SubResource("StandardMaterial3D_f56xr")
 
+[node name="Cube_002" parent="dagger" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_04rur")
+
 [node name="Cube_003" type="MeshInstance3D" parent="dagger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3987164, 0)
 mesh = SubResource("ArrayMesh_gr2sd")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_f56xr")
-
-[node name="Cube_002" parent="dagger" index="4"]
-surface_material_override/0 = SubResource("StandardMaterial3D_04rur")
 
 [node name="Hitbox" type="Area3D" parent="." groups=["Player", "Weapon"]]
 disable_mode = 2
