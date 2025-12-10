@@ -20,7 +20,7 @@ public partial class BorderTool : StaticBody3D
 		{
 			foreach (CollisionShape3D shape in GetChildren())
             {
-				if (shape.GetNode<CsgBox3D>("Mesh") != null)
+				if (shape.GetChildCount() > 0)
                 {
                     shape.GetNode<CsgBox3D>("Mesh").QueueFree();
                 }
