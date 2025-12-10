@@ -2661,13 +2661,13 @@ QuestTitle = "Find and kill rats around the Village"
 QuestGoal = "0/5"
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9937483, -0.055199992)
-bones/2/rotation = Quaternion(-0.06561183, 0, 0, 0.99784523)
-bones/5/rotation = Quaternion(-0.0819203, 0.0072077624, 0.021776017, 0.99637496)
-bones/25/rotation = Quaternion(0.9747464, 0.01581699, -0.009086874, 0.22256827)
-bones/26/rotation = Quaternion(0.19812794, 0.001577106, 0.015882494, 0.9800463)
-bones/34/rotation = Quaternion(0.97474647, -0.015816992, 0.0090868315, 0.22256827)
-bones/35/rotation = Quaternion(0.19812794, -0.0015771063, -0.015882496, 0.9800463)
+bones/0/position = Vector3(0, 0.99355054, -0.055199992)
+bones/2/rotation = Quaternion(-0.06473307, 0, 0, 0.9979027)
+bones/5/rotation = Quaternion(-0.082680695, 0.0071948147, 0.021776114, 0.99631226)
+bones/25/rotation = Quaternion(0.97463834, 0.015859859, -0.009091253, 0.22303799)
+bones/26/rotation = Quaternion(0.1991074, 0.0015767848, 0.015961008, 0.97984654)
+bones/34/rotation = Quaternion(0.97463834, -0.015859859, 0.009091209, 0.22303799)
+bones/35/rotation = Quaternion(0.19908991, -0.0015767907, -0.01595961, 0.97985005)
 
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obu7h")
@@ -2694,13 +2694,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9937483, -0.055199992)
-bones/2/rotation = Quaternion(-0.06561183, 0, 0, 0.99784523)
-bones/5/rotation = Quaternion(-0.0819203, 0.0072077624, 0.021776017, 0.99637496)
-bones/25/rotation = Quaternion(0.9747464, 0.01581699, -0.009086874, 0.22256827)
-bones/26/rotation = Quaternion(0.19812794, 0.001577106, 0.015882494, 0.9800463)
-bones/34/rotation = Quaternion(0.97474647, -0.015816992, 0.0090868315, 0.22256827)
-bones/35/rotation = Quaternion(0.19812794, -0.0015771063, -0.015882496, 0.9800463)
+bones/0/position = Vector3(0, 0.99355054, -0.055199992)
+bones/2/rotation = Quaternion(-0.06473307, 0, 0, 0.9979027)
+bones/5/rotation = Quaternion(-0.082680695, 0.0071948147, 0.021776114, 0.99631226)
+bones/25/rotation = Quaternion(0.97463834, 0.015859859, -0.009091253, 0.22303799)
+bones/26/rotation = Quaternion(0.1991074, 0.0015767848, 0.015961008, 0.97984654)
+bones/34/rotation = Quaternion(0.97463834, -0.015859859, 0.009091209, 0.22303799)
+bones/35/rotation = Quaternion(0.19908991, -0.0015767907, -0.01595961, 0.97985005)
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2731,13 +2731,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's husband"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9937483, -0.055199992)
-bones/2/rotation = Quaternion(-0.06561183, 0, 0, 0.99784523)
-bones/5/rotation = Quaternion(-0.0819203, 0.0072077624, 0.021776017, 0.99637496)
-bones/25/rotation = Quaternion(0.9747464, 0.01581699, -0.009086874, 0.22256827)
-bones/26/rotation = Quaternion(0.19812794, 0.001577106, 0.015882494, 0.9800463)
-bones/34/rotation = Quaternion(0.97474647, -0.015816992, 0.0090868315, 0.22256827)
-bones/35/rotation = Quaternion(0.19812794, -0.0015771063, -0.015882496, 0.9800463)
+bones/0/position = Vector3(0, 0.99355054, -0.055199992)
+bones/2/rotation = Quaternion(-0.06473307, 0, 0, 0.9979027)
+bones/5/rotation = Quaternion(-0.082680695, 0.0071948147, 0.021776114, 0.99631226)
+bones/25/rotation = Quaternion(0.97463834, 0.015859859, -0.009091253, 0.22303799)
+bones/26/rotation = Quaternion(0.1991074, 0.0015767848, 0.015961008, 0.97984654)
+bones/34/rotation = Quaternion(0.97463834, -0.015859859, 0.009091209, 0.22303799)
+bones/35/rotation = Quaternion(0.19908991, -0.0015767907, -0.01595961, 0.97985005)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ub1ot")
