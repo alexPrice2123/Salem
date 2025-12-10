@@ -21,6 +21,7 @@ public partial class enemySpawner : Node3D
 	[Export(PropertyHint.Enum, "Plains,Swamp,Forest,Misc")]
 	public string _biome = "Plains";
 	public float SpawnRange;  
+	private float _wanderRanges;
 	[Export]
 	public float _distFromPlayer = 40f;      
 	[Export]
@@ -44,6 +45,8 @@ public partial class enemySpawner : Node3D
 		_player = this.GetParent().GetParent().GetNode<Player3d>("Player_3d"); // Get the player node (two parents up in the scene tree)
 		_holder = GetNode<Node3D>("MonsterHolder");      // Get the monster holder node
 		_rng.Randomize();
+		_wanderRanges = GetNode<WanderTool>("WanderRange")._wanderRange;
+		GetNode<WanderTool>("WanderRange").QueueFree();
 
 		SpawnRange = GetNode<CsgSphere3D>("Range").Radius;
 		GetNode<CsgSphere3D>("Range").QueueFree();
@@ -111,8 +114,8 @@ public partial class enemySpawner : Node3D
 			{
 				monster.RandomRangedPosition();
 				monster.Biome = _biome;
-				monster.SpawnRange = SpawnRange*1.5f;
-				monster._currentSpawnRange = SpawnRange*1.5f;
+				monster.SpawnRange = SpawnRange*_wanderRanges;
+				monster._currentSpawnRange = SpawnRange*_wanderRanges;
 				monster._startPos = GlobalPosition;
 				if (_canShadow == true)
 				{
@@ -124,7 +127,7 @@ public partial class enemySpawner : Node3D
 				}
 			}                                        // Add monster to holder node
 			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, 0f, _spawnZ);                                    // Set monster spawn position
-			monsterInstance.GlobalPosition = new Vector3(monsterInstance.GlobalPosition.X, FindGroundY(_spawnX, _spawnZ), monsterInstance.GlobalPosition.Z);
+			monsterInstance.GlobalPosition = new Vector3(monsterInstance.GlobalPosition.X, FindGroundY(_spawnX, _spawnZ)+ 1f, monsterInstance.GlobalPosition.Z);
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();
 			
