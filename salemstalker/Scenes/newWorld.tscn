@@ -1,4 +1,4 @@
-[gd_scene load_steps=1126 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1134 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -935,6 +935,7 @@
 [ext_resource type="Script" uid="uid://djprwulc3bex0" path="res://Scripts/BorderTool.cs" id="926_3vgip"]
 [ext_resource type="PackedScene" uid="uid://07sk25v6dh1t" path="res://Assets/3D/charatermodel/long_fence.blend" id="926_ptcpy"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="927_4aw2u"]
+[ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="931_3vgip"]
 [ext_resource type="PackedScene" uid="uid://bqjcb30xsr68w" path="res://Scenes/blacksmith_shop.tscn" id="936_654ae"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
@@ -2223,6 +2224,15 @@ emission_enabled = true
 emission = Color(1, 0, 0, 1)
 emission_energy_multiplier = 16.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4gw3q"]
+size = Vector3(119.050835, 30.129395, 23.125244)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0rtel"]
+size = Vector3(71.92288, 30.129395, 23.125244)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jhj26"]
+size = Vector3(71.92288, 30.129395, 23.125244)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_5j1yv"]
 size = Vector3(102.90863, 27.36914, 23.4626)
 
@@ -2267,6 +2277,41 @@ size = Vector3(201.97118, 32.93994, 25.663895)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bjbr5"]
 size = Vector3(143.54468, 31.83496, 25.663895)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6bny"]
+albedo_texture = ExtResource("927_4aw2u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_opx4s"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tnuyd"]
+_surfaces = [{
+"aabb": AABB(-1.6015984, -1.0100076, -0.8633485, 6.983161, 2.02292, 1.726697),
+"format": 34359742465,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAwABAAQAAAAEAAEAAwAEAAUABgAEAAAABgAHAAQABQAEAAcAAAAIAAYABQAHAAkACgAHAAYACgAJAAcACAAKAAYACwAFAAkACwAJAAoADAADAAUADAAFAAsAAgADAAwACAANAAoAAgAMAA4ADgAMAAsADwALAAoADgALAA8ADwAKAA0AAgAOABAAEAAOAA8AAgAQABEAEAAPABEAEQAPAA0AEQANAAgAAgARAAAAAAARAAgA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("Mi+BvzT03DrwIUi/2OHMv6P8f792qju/0G5/v5Vefb+Tnka/DvfMv8H/f79ABz4/gvHMvwBNujaoZD2/HPLMv/kbtLV8cz0/o/R+vxytfD/FFUq/LQHNv139fz/bHj+/MkRWQByngT9wkVa/K+3Mv5T/fz+33zw/A4Z/v/dtfT+oNEc/WgGBv4uJXrkHnUc/DTR/v5Fafb/6X0g/F1JWQBRAgT9pBF0/CkNWQO5Hgb+4LVs/wzWsQIB4JzkqgjM/F1JWQBVAgb9oBF2/XjWsQFYoDLtFpja/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_863jj"]
+resource_name = "sign_Cube_001"
+_surfaces = [{
+"aabb": AABB(-1.6015984, -1.0100076, -0.8633485, 6.983161, 2.02292, 1.726697),
+"attribute_data": PackedByteArray("AAAAPwAAQD8AAMA+AABAPwAAwD4AAEA/AAAAPwAAQD8AACA/AABAPwAAID8AAEA/AAAAPwAAQD8AACA/AAAAPwAAID8AAEA/AAAAPwAAAD8AAAA/AAAAPwAAID8AAIA+AAAgPwAAAD8AAAA/AACAPgAAAD8AAIA+AAAgPwAAAAAAACA/AACAPgAAAD8AAAAAAAAAPgAAAD8AAMA+AACAPgAAwD4AAAA/AAAAPgAAgD4AACA/AAAAPwAAYD8AAIA+AABgPwAAAD8AACA/AACAPgAAAD8AAIA/AAAgPwAAQD8AACA/AACAPwAAAD8AAEA/AAAAPwAAAAAAACA/AAAAAAAAID8AAAAAAAAAPwAAAAAAAMA+AAAAAAAAwD4AAAAAAABgPwAAgD4AAGA/AAAAPwAAYD8AAAA/AABgPwAAgD4AAAA+AAAAPwAAAD4AAIA+AAAAPgAAgD4AAAA+AAAAPwAAwD4AAIA/AAAAPwAAQD8AAAA/AACAPwAAwD4AAEA/AADAPgAAgD4AAAA/AAAAAAAAAD8AAIA+AADAPgAAAAAAAMA+AAAAPwAAAD8AAIA+AAAAPwAAAD8AAMA+AACAPgAAwD4AAEA/AAAAPwAAAD8AAAA/AABAPwAAwD4AAAA/"),
+"format": 34359742487,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAADAAAABAAFAAMABgAHAAgABgAJAAcACgALAAwACgANAAsADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAHgAhAB8AIgAhAB4AIgAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkA"),
+"material": SubResource("StandardMaterial3D_opx4s"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 60,
+"vertex_data": PackedByteArray("Mi+BvzT03DrwIUi/2OHMv6P8f792qju/0G5/v5Vefb+Tnka/gvHMvwBNujaoZD2/o/R+vxytfD/FFUq/LQHNv139fz/bHj+/Mi+BvzT03DrwIUi/MkRWQByngT9wkVa/o/R+vxytfD/FFUq/XjWsQFYoDLtFpja/XjWsQFYoDLtFpja/F1JWQBRAgT9pBF0/MkRWQByngT9wkVa/wzWsQIB4JzkqgjM/wzWsQIB4JzkqgjM/A4Z/v/dtfT+oNEc/F1JWQBRAgT9pBF0/WgGBv4uJXrkHnUc/0G5/v5Vefb+Tnka/CkNWQO5Hgb+4LVs/F1JWQBVAgb9oBF2/DTR/v5Fafb/6X0g/MkRWQByngT9wkVa/A4Z/v/dtfT+oNEc/o/R+vxytfD/FFUq/F1JWQBRAgT9pBF0/HPLMv/kbtLV8cz0/LQHNv139fz/bHj+/K+3Mv5T/fz+33zw/gvHMvwBNujaoZD2/WgGBv4uJXrkHnUc/K+3Mv5T/fz+33zw/A4Z/v/dtfT+oNEc/HPLMv/kbtLV8cz0/DTR/v5Fafb/6X0g/DvfMv8H/f79ABz4/A4Z/v/dtfT+oNEc/LQHNv139fz/bHj+/o/R+vxytfD/FFUq/K+3Mv5T/fz+33zw/0G5/v5Vefb+Tnka/DvfMv8H/f79ABz4/DTR/v5Fafb/6X0g/2OHMv6P8f792qju/DvfMv8H/f79ABz4/gvHMvwBNujaoZD2/HPLMv/kbtLV8cz0/2OHMv6P8f792qju/CkNWQO5Hgb+4LVs/WgGBv4uJXrkHnUc/wzWsQIB4JzkqgjM/DTR/v5Fafb/6X0g/F1JWQBVAgb9oBF2/wzWsQIB4JzkqgjM/XjWsQFYoDLtFpja/CkNWQO5Hgb+4LVs/0G5/v5Vefb+Tnka/XjWsQFYoDLtFpja/Mi+BvzT03DrwIUi/F1JWQBVAgb9oBF2/zwBrCP///z/PAGsI////P88Aawj///8/zwBrCP///z/PAGsI////P88Aawj///8/S/g6ABJr+/hL+DoA8i4N2Uv4OgA+iS7/S/g6AMMpTdaKqnHV3yjz1oqqcdXfLjHUiqpx1TEs3NSKqnHVbipi1fB/cHbeLMXU8H9wdiaBrfrwf3B2azJX1/B/cHbbca30Zn+WAGT+tL9mf5YAav/zvmZ/lgBr/3S+Zn+WAE39tb9Sf0//qgDbvlJ/T/8qAam/Un9P/xMCqb9Sf0//qQBxvg0A+H+tf/v/DQD4fx5/+/8NAPh/dn/7/w0A+H9Sf/v/+3dGgP///z/7d0aA////P/t3RoD///8/+3dGgP///z/7d0aA////P/t3RoD///8/goKc/f///z+Cgpz9////P4KCnP3///8/goKc/f///z8jgiMC////PyOCIwL///8/I4IjAv///z8jgiMC////PwYA8n+tf/v/BgDyfx5/+/8GAPJ/dn/7/wYA8n9Vf/v/EYBKiVDRMdkRgEqJV5b3+BGASol01mvWEYBKiXl1Vv9sqn4qLtbc1WyqfirY1AzVbKp+KobROtRsqn4qm9dL18UIzv+jfvj6xQjO/3TTzdTFCM7/Eo4Q9cUIzv/lzWPX")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_tnuyd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtthl"]
 albedo_texture = ExtResource("919_h1utm")
@@ -2357,7 +2402,6 @@ texture = ExtResource("2_v8qwt")
 [node name="Sub" type="SubViewport" parent="PaperMap"]
 transparent_bg = true
 handle_input_locally = false
-anisotropic_filtering_level = 0
 canvas_item_default_texture_filter = 0
 size = Vector2i(1080, 605)
 render_target_update_mode = 0
@@ -2468,7 +2512,8 @@ _monsterCount = Array[int]([2, 1])
 radius = 23.298582
 
 [node name="WanderRange" parent="MonsterHolder/Z1Shrine3EnemySpawner" index="4"]
-radius = 34.947872
+radius = 43.10238
+_wanderRange = 1.85
 
 [node name="Z1TempTent2" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -415.13425, 1.687819, -310.409)
@@ -2481,7 +2526,8 @@ _monsterCount = Array[int]([2, 1])
 radius = 6.8066907
 
 [node name="WanderRange" parent="MonsterHolder/Z1TempTent2" index="4"]
-radius = 10.210036
+radius = 36.415794
+_wanderRange = 5.35
 
 [node name="Z1TempTent4" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -570.6078, 0.6889825, 146.39545)
@@ -2494,7 +2540,8 @@ _monsterCount = Array[int]([3, 1])
 radius = 9.212567
 
 [node name="WanderRange" parent="MonsterHolder/Z1TempTent4" index="4"]
-radius = 13.818851
+radius = 42.377808
+_wanderRange = 4.6
 
 [node name="Z1TempTent5" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -717.36383, 0.6889825, 232.07178)
@@ -2506,7 +2553,8 @@ _monsterCount = Array[int]([2])
 radius = 27.90158
 
 [node name="WanderRange" parent="MonsterHolder/Z1TempTent5" index="4"]
-radius = 41.85237
+radius = 72.544106
+_wanderRange = 2.6
 
 [node name="Z1EnemySpawner5" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -645.0487, 1.687819, -40.037697)
@@ -2532,7 +2580,8 @@ _monsterCount = Array[int]([2, 1])
 radius = 12.088426
 
 [node name="WanderRange" parent="MonsterHolder/Z1EnemySpawner10" index="4"]
-radius = 18.132639
+radius = 30.825485
+_wanderRange = 2.55
 
 [node name="Z1EnemySpawner11" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -676.4641, 1.687819, 92.971664)
@@ -2544,7 +2593,8 @@ _monsterCount = Array[int]([3, 1])
 radius = 31.61016
 
 [node name="WanderRange" parent="MonsterHolder/Z1EnemySpawner11" index="4"]
-radius = 47.41524
+radius = 67.961845
+_wanderRange = 2.15
 
 [node name="Z1EnemySpawner12" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -580.42883, 1.687819, 309.22052)
@@ -2556,7 +2606,8 @@ _monsterCount = Array[int]([2, 1])
 radius = 36.26912
 
 [node name="WanderRange" parent="MonsterHolder/Z1EnemySpawner12" index="4"]
-radius = 54.40368
+radius = 77.97861
+_wanderRange = 2.15
 
 [node name="Z1EnemySpawner13" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -675.19836, 1.687819, 361.1797)
@@ -2568,7 +2619,8 @@ _monsterCount = Array[int]([2, 1])
 radius = 34.967117
 
 [node name="WanderRange" parent="MonsterHolder/Z1EnemySpawner13" index="4"]
-radius = 52.450676
+radius = 75.179306
+_wanderRange = 2.15
 
 [node name="Z1Shrine1" parent="MonsterHolder" groups=["Terrain"] instance=ExtResource("6_677id")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -518.7776, -0.5746945, -143.53026)
@@ -2661,13 +2713,13 @@ QuestTitle = "Find and kill rats around the Village"
 QuestGoal = "0/5"
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9922465, -0.05519999)
-bones/2/rotation = Quaternion(-0.03431454, 0, 0, 0.99941117)
-bones/5/rotation = Quaternion(-0.10894237, 0.0067445217, 0.02177173, 0.99378675)
-bones/25/rotation = Quaternion(0.9739176, 0.01614356, -0.009120557, 0.22614324)
-bones/26/rotation = Quaternion(0.20543891, 0.0015746666, 0.01646856, 0.9785301)
-bones/34/rotation = Quaternion(0.9739176, -0.01614356, 0.009120514, 0.22614324)
-bones/35/rotation = Quaternion(0.20543891, -0.0015746661, -0.01646856, 0.9785301)
+bones/0/position = Vector3(0, 0.99458027, -0.055199996)
+bones/2/rotation = Quaternion(-0.056673627, 0, 0, 0.99839276)
+bones/5/rotation = Quaternion(-0.08964978, 0.0070759063, 0.021776434, 0.9957102)
+bones/25/rotation = Quaternion(0.9752123, 0.015631238, -0.009067969, 0.22053216)
+bones/26/rotation = Quaternion(0.19410042, 0.0015784114, 0.015559635, 0.980857)
+bones/34/rotation = Quaternion(0.9752123, -0.01563124, 0.009067925, 0.22053216)
+bones/35/rotation = Quaternion(0.19410042, -0.0015784107, -0.015559635, 0.980857)
 
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obu7h")
@@ -2694,13 +2746,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9922465, -0.05519999)
-bones/2/rotation = Quaternion(-0.03431454, 0, 0, 0.99941117)
-bones/5/rotation = Quaternion(-0.10894237, 0.0067445217, 0.02177173, 0.99378675)
-bones/25/rotation = Quaternion(0.9739176, 0.01614356, -0.009120557, 0.22614324)
-bones/26/rotation = Quaternion(0.20543891, 0.0015746666, 0.01646856, 0.9785301)
-bones/34/rotation = Quaternion(0.9739176, -0.01614356, 0.009120514, 0.22614324)
-bones/35/rotation = Quaternion(0.20543891, -0.0015746661, -0.01646856, 0.9785301)
+bones/0/position = Vector3(0, 0.99458027, -0.055199996)
+bones/2/rotation = Quaternion(-0.056673627, 0, 0, 0.99839276)
+bones/5/rotation = Quaternion(-0.08964978, 0.0070759063, 0.021776434, 0.9957102)
+bones/25/rotation = Quaternion(0.9752123, 0.015631238, -0.009067969, 0.22053216)
+bones/26/rotation = Quaternion(0.19410042, 0.0015784114, 0.015559635, 0.980857)
+bones/34/rotation = Quaternion(0.9752123, -0.01563124, 0.009067925, 0.22053216)
+bones/35/rotation = Quaternion(0.19410042, -0.0015784107, -0.015559635, 0.980857)
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2731,13 +2783,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's husband"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9922465, -0.05519999)
-bones/2/rotation = Quaternion(-0.03431454, 0, 0, 0.99941117)
-bones/5/rotation = Quaternion(-0.10894237, 0.0067445217, 0.02177173, 0.99378675)
-bones/25/rotation = Quaternion(0.9739176, 0.01614356, -0.009120557, 0.22614324)
-bones/26/rotation = Quaternion(0.20543891, 0.0015746666, 0.01646856, 0.9785301)
-bones/34/rotation = Quaternion(0.9739176, -0.01614356, 0.009120514, 0.22614324)
-bones/35/rotation = Quaternion(0.20543891, -0.0015746661, -0.01646856, 0.9785301)
+bones/0/position = Vector3(0, 0.99458027, -0.055199996)
+bones/2/rotation = Quaternion(-0.056673627, 0, 0, 0.99839276)
+bones/5/rotation = Quaternion(-0.08964978, 0.0070759063, 0.021776434, 0.9957102)
+bones/25/rotation = Quaternion(0.9752123, 0.015631238, -0.009067969, 0.22053216)
+bones/26/rotation = Quaternion(0.19410042, 0.0015784114, 0.015559635, 0.980857)
+bones/34/rotation = Quaternion(0.9752123, -0.01563124, 0.009067925, 0.22053216)
+bones/35/rotation = Quaternion(0.19410042, -0.0015784107, -0.015559635, 0.980857)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ub1ot")
@@ -2814,6 +2866,36 @@ debug_color = Color(-100, 0, 0, 0)
 
 [node name="Mesh" type="CSGBox3D" parent="WorldBorder/CollisionShape3D"]
 size = Vector3(250.39255, 30.129395, 23.125244)
+material = SubResource("StandardMaterial3D_ii1jl")
+
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(0.55802023, 0, 0.82982725, 0, 1, 0, -0.82982725, 0, 0.55802023, -263.73776, 8.918701, -123.28158)
+shape = SubResource("BoxShape3D_4gw3q")
+debug_color = Color(-100, 0, 0, 0)
+
+[node name="Mesh" type="CSGBox3D" parent="WorldBorder/CollisionShape3D17"]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, 0, 0, 0)
+size = Vector3(119.050835, 30.129395, 23.125244)
+material = SubResource("StandardMaterial3D_ii1jl")
+
+[node name="CollisionShape3D18" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(0.23290217, 0, 0.9725001, 0, 1, 0, -0.9725001, 0, 0.23290217, -221.12413, 8.918701, -207.50578)
+shape = SubResource("BoxShape3D_0rtel")
+debug_color = Color(-100, 0, 0, 0)
+
+[node name="Mesh" type="CSGBox3D" parent="WorldBorder/CollisionShape3D18"]
+transform = Transform3D(1, 0, -1.4901161e-08, 0, 1, 0, 1.4901161e-08, 0, 1, 0, 0, 0)
+size = Vector3(71.92288, 30.129395, 23.125244)
+material = SubResource("StandardMaterial3D_ii1jl")
+
+[node name="CollisionShape3D19" type="CollisionShape3D" parent="WorldBorder"]
+transform = Transform3D(-0.19993237, 0, 0.97980964, 0, 1, 0, -0.97980964, 0, -0.19993237, -226.32439, 8.918701, -265.03485)
+shape = SubResource("BoxShape3D_jhj26")
+debug_color = Color(-100, 0, 0, 0)
+
+[node name="Mesh" type="CSGBox3D" parent="WorldBorder/CollisionShape3D19"]
+transform = Transform3D(1, 0, -4.4703484e-08, 0, 1, 0, 4.4703484e-08, 0, 1, 0, 0, 0)
+size = Vector3(71.92288, 30.129395, 23.125244)
 material = SubResource("StandardMaterial3D_ii1jl")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="WorldBorder"]
@@ -3087,6 +3169,12 @@ transform = Transform3D(-0.99524796, 0, 0.09737453, 0, 1, 0, -0.09737453, 0, -0.
 [node name="sign" parent="Map/Sign12" index="0"]
 transform = Transform3D(0.9834387, 0, 0.18124011, 0, 1, 0, -0.18124011, 0, 0.9834387, -0.69000244, 0, 0.12922668)
 
+[node name="Cube2" type="MeshInstance3D" parent="Map/Sign12/sign" index="2"]
+transform = Transform3D(0.24286854, 0, 0, 0, 0.24286853, 0, 0, 0, 0.12933622, 0.14156342, 0.68208265, -0.018600464)
+material_override = SubResource("StandardMaterial3D_u6bny")
+mesh = SubResource("ArrayMesh_863jj")
+skeleton = NodePath("")
+
 [node name="RightLabel" parent="Map/Sign12" index="1"]
 transform = Transform3D(0.9834387, 0, 0.18124011, 0, 1, 0, -0.18124011, 0, 0.9834387, -0.17178345, 1.2075984, 0.14700317)
 visible = false
@@ -3095,6 +3183,12 @@ visible = false
 transform = Transform3D(-0.9834386, 0, -0.18124005, 0, 1, 0, 0.18124005, 0, -0.9834386, -0.21613312, 1.2075984, -0.09365082)
 text = "Willow-Mire"
 font_size = 55
+
+[node name="LeftLabel2" type="Label3D" parent="Map/Sign12"]
+transform = Transform3D(-0.98343855, 0, -0.18124004, 0, 1, 0, 0.18124004, 0, -0.98343855, -0.21612549, 0.7140138, -0.09365082)
+text = "(Optional Boss)"
+font = ExtResource("931_3vgip")
+font_size = 52
 
 [node name="Lamp8" parent="Map/Sign12" instance=ExtResource("434_jgbub")]
 transform = Transform3D(-0.9994843, 0, -0.032108665, 0, 1, 0, 0.032108665, 0, -0.9994843, 0.2620697, 3.1802812, 1.6719055)
