@@ -652,7 +652,6 @@ draw_pass_1 = SubResource("BoxMesh_ki2ro")
 
 [node name="shortsword" parent="." instance=ExtResource("2_pkki5")]
 transform = Transform3D(-4.3712134e-08, 0, 1, 0, 1, 0, -1, 0, -4.3712134e-08, 0, -0.333, -0.061)
-visible = false
 
 [node name="Cylinder" parent="shortsword" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_5pnml")
@@ -675,28 +674,29 @@ draw_pass_1 = SubResource("BoxMesh_0eq1u")
 
 [node name="weaponAnimations" parent="." instance=ExtResource("22_4ujmf")]
 transform = Transform3D(2.01, 0, 2.2737368e-12, 0, 2.01, 0, -2.2737368e-12, 0, 2.01, 0.36619553, -2.7351398, -1.0549859)
+visible = false
 
 [node name="Skeleton3D" parent="weaponAnimations/metarig" index="0"]
 bones/0/position = Vector3(-3.5527124e-15, 0.9426751, -0.06494778)
 bones/7/rotation = Quaternion(-0.586, -0.324, -0.335, 0.635)
 bones/8/rotation = Quaternion(-0.28827924, 0.63253677, -0.5684554, 0.44005772)
-bones/9/rotation = Quaternion(0.023057815, 0.068592764, -0.12911308, 0.98898596)
+bones/9/rotation = Quaternion(0.5499285, 0.0012709559, -0.13263234, 0.82461244)
 bones/17/rotation = Quaternion(-0.59, 0.348, 0.33, 0.649)
-bones/18/rotation = Quaternion(0.3158483, -0.25832522, 0.32673997, 0.8524958)
-bones/19/rotation = Quaternion(0.21453986, -0.19116938, 0.13772069, 0.9478713)
-bones/20/rotation = Quaternion(0.023388265, -0.57662433, -0.52478087, 0.6257495)
-bones/21/rotation = Quaternion(-0.09666413, 0.25824094, 0.32191965, 0.90572375)
-bones/22/rotation = Quaternion(-0.047339343, 0.019785866, 0.29954648, 0.9527011)
-bones/23/rotation = Quaternion(-0.07824298, 0.054600574, 0.59484905, 0.79815507)
-bones/25/rotation = Quaternion(-0.011548594, -0.3830901, 0.2105748, 0.8993147)
-bones/26/rotation = Quaternion(-0.30964947, -0.010137793, -0.10400321, 0.9450914)
-bones/27/rotation = Quaternion(-0.05276837, -0.029600576, -0.34093818, 0.9381367)
+bones/18/rotation = Quaternion(-0.15681705, -0.5135947, 0.69488406, 0.47829387)
+bones/19/rotation = Quaternion(0.584226, -0.035404623, 0.034809064, 0.81007093)
+bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
+bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
+bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
+bones/23/rotation = Quaternion(-0.078242995, 0.054600544, 0.59484905, 0.79815507)
+bones/25/rotation = Quaternion(0.367195, 0.110883325, 0.45397994, 0.80422324)
+bones/26/rotation = Quaternion(-0.30964947, -0.010137768, -0.10400323, 0.9450914)
+bones/27/rotation = Quaternion(-0.0527684, -0.02960059, -0.34093818, 0.9381367)
 bones/28/rotation = Quaternion(-5.4202424e-08, 0.6961122, 0.717933, -5.255501e-08)
 bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994)
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(0.575845, 0.23157425, -0.7840763, -0.76686144, -0.17947184, -0.61620855, -0.28341752, 0.9561189, 0.074237496, -0.6135238, 1.8145036, 0.32953662)
+transform = Transform3D(-0.52550554, 0.044583663, 0.849621, 0.051911533, 0.99844575, -0.0202851, -0.84920436, 0.03344543, -0.52700293, -0.18837328, 1.4014013, 0.4197653)
 
 [node name="Cylinder_001" parent="weaponAnimations" index="1"]
 transform = Transform3D(-0.5017525, -0.0032141083, 0.86500525, -0.003631327, 0.99999213, 0.0016093028, -0.8650036, -0.0023336455, -0.5017601, -0.19122489, 1.4032985, -0.4734631)
@@ -715,7 +715,7 @@ libraries = {
 }
 
 [node name="Hitbox" type="Area3D" parent="." groups=["Player", "Weapon"]]
-transform = Transform3D(-0.95907366, 0.27539033, -0.065853655, -0.1299261, -0.22136547, 0.9664971, 0.25158635, 0.93549806, 0.24808635, -0.5913388, 0.73038274, 0.50869536)
+transform = Transform3D(0.9999994, 0, 2.2737368e-13, 0, 0.9999996, 0, -4.5474735e-13, 0, 1.0000001, 0, 1.0096492, 0)
 disable_mode = 2
 collision_layer = 1025
 collision_mask = 1025

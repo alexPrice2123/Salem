@@ -168,7 +168,8 @@ public partial class Player3d : CharacterBody3D
         }
 		if (Input.IsActionJustPressed("quit") && _dead == true)
         {
-            GetTree().Quit(); // Quit the scene 
+            GetTree().ChangeSceneToFile("res://Scenes/titlescreen.tscn");
+			Input.MouseMode = Input.MouseModeEnum.Visible;
         }
 		if (_dead == true){return;}
 		
