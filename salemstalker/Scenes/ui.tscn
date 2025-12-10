@@ -928,6 +928,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShopOption3" type="TextureButton" parent="BlacksmithShop"]
+visible = false
 layout_mode = 0
 offset_top = 250.0
 offset_right = 415.0
@@ -947,6 +948,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShopOption4" type="TextureButton" parent="BlacksmithShop"]
+visible = false
 layout_mode = 0
 offset_top = 350.0
 offset_right = 415.0
