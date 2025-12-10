@@ -550,7 +550,7 @@ material_override = SubResource("StandardMaterial3D_h4to0")
 size = Vector3(4.15332, 2.15918, 0.185547)
 
 [node name="dagger" parent="." instance=ExtResource("2_qv3mo")]
-transform = Transform3D(-8.37676e-06, 0, -0.08, 0, 0.08, 0, 0.08, 0, -8.37676e-06, -1.04955, 0.622263, -1.50713)
+transform = Transform3D(-8.290926e-06, 0, -0.08, 0, 0.08, 0, 0.08, 0, -8.290926e-06, -1.04955, 0.622263, -1.50713)
 
 [node name="HoverAnim" type="AnimationPlayer" parent="dagger"]
 libraries = {
@@ -594,7 +594,7 @@ libraries = {
 }
 
 [node name="StakeGun" parent="." instance=ExtResource("7_33jry")]
-transform = Transform3D(-0.264955, -6.70074e-07, -4.68582e-08, 0, 0.0184832, -0.26431, 6.71709e-07, -0.26431, -0.0184832, 0, -1, 1.62)
+transform = Transform3D(-0.264955, -6.700739e-07, -4.6858244e-08, 0, 0.01848319, -0.26431, 6.717091e-07, -0.26431, -0.01848319, 0, -1, 1.62)
 
 [node name="Cylinder" parent="StakeGun" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_psgo6")
@@ -623,24 +623,24 @@ libraries = {
 &"": SubResource("AnimationLibrary_5yuta")
 }
 
-[node name="ShortSword" parent="." instance=ExtResource("7_2gl02")]
-transform = Transform3D(-2.53399e-06, 0, 0.7, 0, 0.7, 0, -0.7, 0, -2.53399e-06, 0, 0, 0)
+[node name="Shortsword" parent="." instance=ExtResource("7_2gl02")]
+transform = Transform3D(-2.533993e-06, 0, 0.7, 0, 0.7, 0, -0.7, 0, -2.533993e-06, 0, 0, 0)
 
-[node name="Cylinder" parent="ShortSword" index="0"]
+[node name="Cylinder" parent="Shortsword" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_grmxo")
 
-[node name="Sphere_001" parent="ShortSword" index="1"]
+[node name="Sphere_001" parent="Shortsword" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_iovch")
 surface_material_override/1 = SubResource("StandardMaterial3D_4g0tf")
 surface_material_override/2 = SubResource("StandardMaterial3D_jjije")
 
-[node name="HoverAnim" type="AnimationPlayer" parent="ShortSword"]
+[node name="HoverAnim" type="AnimationPlayer" parent="Shortsword"]
 libraries = {
 &"": SubResource("AnimationLibrary_0o872")
 }
 
 [node name="flintlock" parent="." instance=ExtResource("61_wvttw")]
-transform = Transform3D(-0.374603, 0.92196, -0.0982937, -0.117436, 0.0579798, 0.991386, 0.919718, 0.38292, 0.0865519, 0.788, 1.631, -1.533)
+transform = Transform3D(-0.37460327, 0.92195994, -0.09829361, -0.117435984, 0.057979796, 0.991386, 0.9197179, 0.38291973, 0.086551845, 0.788, 1.631, -1.533)
 
 [node name="HoverAnim" type="AnimationPlayer" parent="flintlock"]
 libraries = {
@@ -648,7 +648,7 @@ libraries = {
 }
 
 [node name="longsword" parent="." instance=ExtResource("62_20ekm")]
-transform = Transform3D(-2.84124e-08, -0.65, 0, 0.65, -2.84124e-08, 0, 0, 0, 0.65, 0.0531443, 2.15593, -1.50528)
+transform = Transform3D(-2.3529935e-06, -0.65, 0, 0.65, -2.3529935e-06, 0, 0, 0, 0.65, 0.0531443, 2.15593, -1.50528)
 
 [node name="HoverAnim" type="AnimationPlayer" parent="longsword"]
 libraries = {
@@ -657,4 +657,4 @@ libraries = {
 
 [editable path="rapier"]
 [editable path="StakeGun"]
-[editable path="ShortSword"]
+[editable path="Shortsword"]
