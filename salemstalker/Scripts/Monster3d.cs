@@ -267,7 +267,7 @@ public partial class Monster3d : CharacterBody3D
 				_lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up); 
 			}
 		}
-		else if (!_player._currentBiome.Contains("Village") && playerSpawnDistance <= SpawnRange && Stationery == true && Fleeing == false && !_retreating)
+		else if (playerSpawnDistance <= SpawnRange && Stationery == true && Fleeing == false && !_retreating)
 		{
             _justWandered = true;
 			// Rotate monster to face player
@@ -282,11 +282,10 @@ public partial class Monster3d : CharacterBody3D
 			}
 			else _attacking = false;
 		}
-		else if (playerSpawnDistance <= SpawnRange && Fleeing == true && _canSeePlayer && !_retreating)
+		else if (Fleeing == true && _canSeePlayer && !_retreating)
 		{
 			// how far the rat will try to get away from the player
-			float _fleeDistance = 8f; // tweak to taste
-            _justWandered = true;
+			float _fleeDistance = 8f;
 
 			// Navigation pathing away from player
 			Vector3 myPos = GlobalTransform.Origin;
@@ -307,16 +306,7 @@ public partial class Monster3d : CharacterBody3D
 
 			Vector3 nextPoint = _navAgent.GetNextPathPosition();
 
-			// Apply movement and knockback forces
-			if (_knockbackVelocity.Length() > 0.5f)
-			{
-				_targetVelocity = Vector3.Zero + _knockbackVelocity;
-				Velocity = _targetVelocity;
-			}
-			else
-			{
-				_targetVelocity = (nextPoint - myPos).Normalized() * (Speed * _dashVelocity + _speedOffset);
-			}
+			_targetVelocity = (nextPoint - myPos).Normalized() * (Speed * _dashVelocity + _speedOffset);
 
 			Vector3 moveDirection = Velocity.Normalized(); 
 			if (moveDirection != Vector3.Zero)
@@ -328,7 +318,7 @@ public partial class Monster3d : CharacterBody3D
 		else if (!_attackAnim && (playerSpawnDistance > SpawnRange || !_canSeePlayer || _retreating) && Stationery == false)
 		{
 			// Move randomly around spawn point
-            if (_justWandered)
+            if (_justWandered && !Fleeing)
             {
                 _justWandered = false;
                 _targetVelocity = Vector3.Zero;
