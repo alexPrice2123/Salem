@@ -1,25 +1,45 @@
-[gd_scene load_steps=94 format=3 uid="uid://dufmkp4txcmvx"]
+[gd_scene load_steps=121 format=4 uid="uid://dufmkp4txcmvx"]
 
 [ext_resource type="Texture2D" uid="uid://ebnfthe7xyj" path="res://Assets/2D/burlap.jpg" id="2_2gl02"]
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_qv3mo"]
+[ext_resource type="Texture2D" uid="uid://dqwitpe1cagy0" path="res://Assets/weapontextures/dagger/Handle_Base_color.png" id="3_wy6uy"]
 [ext_resource type="PackedScene" uid="uid://cilhfw77d0fyx" path="res://Scenes/MainHandWeapons/falchion.tscn" id="4_2gl02"]
+[ext_resource type="Texture2D" uid="uid://ru72hmbvjbuc" path="res://Assets/weapontextures/dagger/Handle_Height.png" id="4_g03qv"]
 [ext_resource type="PackedScene" uid="uid://b4y5ian205sds" path="res://Assets/Weapons/rapier.blend" id="5_0o872"]
+[ext_resource type="Texture2D" uid="uid://5vnygw1kyu38" path="res://Assets/weapontextures/dagger/Handle_Metallic.png" id="5_du14p"]
+[ext_resource type="Texture2D" uid="uid://b0edvjrruoq13" path="res://Assets/weapontextures/dagger/Handle_Normal_OpenGL.png" id="6_10beb"]
 [ext_resource type="PackedScene" uid="uid://c1ixg535pupsm" path="res://Assets/Weapons/shortsword.blend" id="7_2gl02"]
+[ext_resource type="Texture2D" uid="uid://c0yqcmyjuwjck" path="res://Assets/weapontextures/dagger/Handle_Roughness.png" id="7_8drnq"]
 [ext_resource type="PackedScene" uid="uid://catkfqrbkq6x4" path="res://Assets/Weapons/stakeGun.blend" id="7_33jry"]
+[ext_resource type="Texture2D" uid="uid://dql3jjmvhu107" path="res://Assets/weapontextures/dagger/Pommel_Base_color.png" id="8_2s127"]
 [ext_resource type="Texture2D" uid="uid://be77ih4xx22nn" path="res://Assets/weapontextures/stakegun/stake_Base_color.png" id="8_t6uip"]
 [ext_resource type="Texture2D" uid="uid://dwomhoj57faey" path="res://Assets/weapontextures/stakegun/stake_Height.png" id="9_8pmcb"]
+[ext_resource type="Texture2D" uid="uid://cwjefxrbvc7ei" path="res://Assets/weapontextures/dagger/Pommel_Height.png" id="9_x3tw4"]
+[ext_resource type="Texture2D" uid="uid://dhwko8vqk2tcq" path="res://Assets/weapontextures/dagger/Pommel_Metallic.png" id="10_7gauh"]
 [ext_resource type="Texture2D" uid="uid://cmtvh227ao0up" path="res://Assets/weapontextures/stakegun/stake_Metallic.png" id="10_wf3a5"]
+[ext_resource type="Texture2D" uid="uid://6l5i8ywt06nx" path="res://Assets/weapontextures/dagger/Pommel_Normal_OpenGL.png" id="11_0n6dt"]
 [ext_resource type="Texture2D" uid="uid://hwb25r7a2uvs" path="res://Assets/weapontextures/stakegun/stake_Normal_OpenGL.png" id="11_nbrht"]
 [ext_resource type="Texture2D" uid="uid://d1o5s5dn7cdi6" path="res://Assets/weapontextures/stakegun/stake_Roughness.png" id="12_jbs7r"]
+[ext_resource type="Texture2D" uid="uid://b23n8nroxytcq" path="res://Assets/weapontextures/dagger/Pommel_Roughness.png" id="12_mmx5j"]
 [ext_resource type="Texture2D" uid="uid://uj33ug0h5dp8" path="res://Assets/weapontextures/stakegun/main body_Base_color.png" id="13_8yyxe"]
+[ext_resource type="Texture2D" uid="uid://crutkydtaks84" path="res://Assets/weapontextures/dagger/Hilt_Base_color.png" id="13_vk11p"]
+[ext_resource type="Texture2D" uid="uid://bfa6qtmyg7iqq" path="res://Assets/weapontextures/dagger/Hilt_Height.png" id="14_2udlh"]
 [ext_resource type="Texture2D" uid="uid://drtasftpk44if" path="res://Assets/weapontextures/stakegun/main body_Height.png" id="14_a4vie"]
+[ext_resource type="Texture2D" uid="uid://cqqyokx5u813v" path="res://Assets/weapontextures/dagger/Hilt_Metallic.png" id="15_0d7j8"]
 [ext_resource type="Texture2D" uid="uid://cdhjhktrwrra" path="res://Assets/weapontextures/stakegun/main body_Metallic.png" id="15_eoax1"]
+[ext_resource type="Texture2D" uid="uid://br7no7sdit2sw" path="res://Assets/weapontextures/dagger/Hilt_Normal_OpenGL.png" id="16_elt3b"]
 [ext_resource type="Texture2D" uid="uid://me1mh6don04" path="res://Assets/weapontextures/stakegun/main body_Normal.png" id="16_vad3p"]
 [ext_resource type="Texture2D" uid="uid://dxq4kg5o1ujqk" path="res://Assets/weapontextures/stakegun/main body_Roughness.png" id="17_da4e4"]
+[ext_resource type="Texture2D" uid="uid://cn5kcwwb2um20" path="res://Assets/weapontextures/dagger/Hilt_Roughness.png" id="17_kgo14"]
+[ext_resource type="Texture2D" uid="uid://kojfbk537cqj" path="res://Assets/weapontextures/dagger/Blade_Base_color.png" id="18_am8sq"]
 [ext_resource type="Texture2D" uid="uid://b20tmfhg234xu" path="res://Assets/weapontextures/stakegun/trigger_Base_color.png" id="18_ohlxu"]
+[ext_resource type="Texture2D" uid="uid://dksx743ns5f54" path="res://Assets/weapontextures/dagger/Blade_Height.png" id="19_3iq0m"]
 [ext_resource type="Texture2D" uid="uid://dcr1ohiqlnjdn" path="res://Assets/weapontextures/stakegun/trigger_Height.png" id="19_qnbmj"]
 [ext_resource type="Texture2D" uid="uid://b446bllox6pdr" path="res://Assets/weapontextures/stakegun/trigger_Metallic.png" id="20_b00lv"]
+[ext_resource type="Texture2D" uid="uid://b6dopuddqkwy1" path="res://Assets/weapontextures/dagger/Blade_Metallic.png" id="20_g6arc"]
 [ext_resource type="Texture2D" uid="uid://djn4n0xq0rq68" path="res://Assets/weapontextures/stakegun/trigger_Normal_OpenGL.png" id="21_bokro"]
+[ext_resource type="Texture2D" uid="uid://bk3yy1qv1pyuy" path="res://Assets/weapontextures/dagger/Blade_Normal_OpenGL.png" id="21_i3i8b"]
+[ext_resource type="Texture2D" uid="uid://biu6magivxm8i" path="res://Assets/weapontextures/dagger/Blade_Roughness.png" id="22_fn6ht"]
 [ext_resource type="Texture2D" uid="uid://bkobw8ml5em2w" path="res://Assets/weapontextures/stakegun/trigger_Roughness.png" id="22_hru3o"]
 [ext_resource type="Texture2D" uid="uid://blgnpidlg8d62" path="res://Assets/weapontextures/stakegun/back thingy_Base_color.png" id="23_hbiy7"]
 [ext_resource type="Texture2D" uid="uid://cokh41q4ffxtg" path="res://Assets/weapontextures/stakegun/back thingy_Height.png" id="24_1twd1"]
@@ -60,7 +80,7 @@
 [ext_resource type="Texture2D" uid="uid://ccf58htao85c0" path="res://Assets/weapontextures/shortsword/pommel_Metallic.png" id="58_mmx5j"]
 [ext_resource type="Texture2D" uid="uid://dtlhjroxfkqou" path="res://Assets/weapontextures/shortsword/pommel_Normal.png" id="59_vk11p"]
 [ext_resource type="Texture2D" uid="uid://duf0m6xtj2nor" path="res://Assets/weapontextures/shortsword/pommel_Roughness.png" id="60_2udlh"]
-[ext_resource type="PackedScene" path="res://Scenes/OffHandWeapons/weaponExtra/flintlockmodel.tscn" id="61_wvttw"]
+[ext_resource type="PackedScene" uid="uid://hdyqx2iml8sx" path="res://Scenes/OffHandWeapons/weaponExtra/flintlockmodel.tscn" id="61_wvttw"]
 [ext_resource type="PackedScene" uid="uid://du71670gpsymh" path="res://Assets/Weapons/longsword.blend" id="62_20ekm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4to0"]
@@ -69,13 +89,99 @@ albedo_texture = ExtResource("2_2gl02")
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.05
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6rayi"]
+albedo_texture = ExtResource("3_wy6uy")
+metallic = 1.0
+metallic_specular = 0.0
+metallic_texture = ExtResource("5_du14p")
+roughness_texture = ExtResource("7_8drnq")
+normal_enabled = true
+normal_texture = ExtResource("6_10beb")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("4_g03qv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfskw"]
+albedo_texture = ExtResource("8_2s127")
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture = ExtResource("10_7gauh")
+roughness_texture = ExtResource("12_mmx5j")
+normal_enabled = true
+normal_texture = ExtResource("11_0n6dt")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("9_x3tw4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2omr"]
+albedo_texture = ExtResource("13_vk11p")
+metallic = 1.0
+metallic_texture = ExtResource("15_0d7j8")
+roughness_texture = ExtResource("17_kgo14")
+normal_enabled = true
+normal_texture = ExtResource("16_elt3b")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("14_2udlh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fn0cb"]
+albedo_texture = ExtResource("18_am8sq")
+metallic = 1.0
+metallic_texture = ExtResource("20_g6arc")
+roughness_texture = ExtResource("22_fn6ht")
+normal_enabled = true
+normal_texture = ExtResource("21_i3i8b")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("19_3iq0m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ier0x"]
+resource_name = "Hilt"
+cull_mode = 2
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m2q6r"]
+_surfaces = [{
+"aabb": AABB(-0.27847266, -0.13259089, -0.89684665, 0.5569453, 0.26518178, 1.7936933),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("CAACAAkABAAJAAIAAQAEAAIACAABAAIAAQAHAAQAAAAIAAkAAQAKAAcAAQAIAAoABwALAAQABAALAAkABwAKAAsACAAAAAUACAAFAAoAAAAJAAMACwADAAkABQAAAAMACgAGAAsACgAFAAYACwAGAAMABQADAAYA"),
+"lods": [0.10472526, PackedByteArray("AAABAAIAAAACAAMAAQAEAAIABQAAAAMAAQAAAAUABgADAAIABAAGAAIABQADAAYAAQAHAAQAAQAFAAcABwAGAAQABwAFAAYA")],
+"name": "Hilt",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("Zx9nH///AABnH2cfAAAAAGcfl+AAAAAAZx+X4P//AACX4JfgAAAAAJfgZx///wAAl+CX4P//AACX4GcfAAAAAAAAAAD/fwAAAAD///9/AAD//wAA/38AAP//////fwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_bspgd"]
+resource_name = "dagger_Cube_002"
+_surfaces = [{
+"aabb": AABB(-0.27847266, -0.13259089, -0.89684665, 0.5569453, 0.26518178, 1.7936933),
+"attribute_data": PackedByteArray("Cy+jcMQuGwFgOwMAyjuicYou+/8jE9HylS7q8hcT4v+ZE4pw/y60fY0Tm30LL6NwjRObff8utH2VLuryIxPR8sQuGwGZE4pwUhMDAQsvo3BSEwMB/QaicZMGAwCZE4pwtjGMOFpCgjinEBk5AwAjObYxjDinEBk54g4yuEEzU7hBM1O44g4yuKcQGTm2MYw4AwAjOacQGTlaQoI4tjGMOA=="),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("GAACABkAGAABAAIABAAFAAYABAAHAAUAGgAVABsAGgAXABUACAAJAAoACAALAAkAHAARAB0AHAATABEAHgANAB8AHgAMAA0ADwAgAA4ADwAhACAAEAAiABIAEAAjACIAFAAkABYAFAAlACQAAAAmAAMAAAAnACYA"),
+"lods": [0.10472526, PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADwAMAA4AEAARABIAEAATABEAFAAVABYAFAAXABUA")],
+"material": SubResource("StandardMaterial3D_ier0x"),
+"name": "Hilt",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 40,
+"vertex_data": PackedByteArray("Zx9nH///kdVnH2cfAAAw1Wcfl+AAAIbVZx+X4P//MtVnH2cfAAD//5fgl+AAAP//Zx+X4AAA//+X4GcfAAD//5fgZx///9r/Zx+X4P//2v+X4Jfg///a/2cfZx///9r/l+CX4P//5P9nH5fg///k/2cfl+AAAOX/l+CX4AAA5f9nH2cfAADk/5fgZx///+P/l+BnHwAA6P9nH2cf///n/5fgZx8AAGDVl+CX4P//ZtWX4JfgAACz1ZfgZx///8rVAAAAAP9/0dYAAP///38X1///AAD/f+zT//////9/n9MAAAAA/3+I////AAD/f7H///////9/5P8AAP///3/k/wAA////f+X///////9/5f///wAA/3+M/wAAAAD/f7T///////9/Mdf//wAA/3/u1gAA////f4HTAAAAAP9/y9Ol2FvVqtGb1R/SX9U92I3VOIDF/ziAxf84gMX/OIDF//9//3//f/9//3//f/9//38bgAe/G4AHvxyA2sAcgNrA4X8xP+F/60D7QOX/6z7m/4Wq7FGLqnZYvqpcUr+q4ljX03rUMdRL1MOp1VaZqX5Wij6A/5k+rP8bgAe/G4AHvxyA2sAcgNrA80B7/xJBqf/Eq1RUl6v+U1zWddaw1kzW")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_m2q6r")
+
 [sub_resource type="Animation" id="Animation_20ekm"]
 resource_name = "Hover"
 length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("dagger:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -87,7 +193,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath("dagger:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -102,26 +208,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("dagger:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.04955, 0.622263, -1.50713)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath("dagger:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -1.5709, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lwai0"]
@@ -527,7 +633,6 @@ _data = {
 }
 
 [node name="InvWorld" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.6631, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26516, 0)
@@ -550,9 +655,28 @@ material_override = SubResource("StandardMaterial3D_h4to0")
 size = Vector3(4.15332, 2.15918, 0.185547)
 
 [node name="dagger" parent="." instance=ExtResource("2_qv3mo")]
-transform = Transform3D(-8.290926e-06, 0, -0.08, 0, 0.08, 0, 0.08, 0, -8.290926e-06, -1.04955, 0.622263, -1.50713)
+transform = Transform3D(0.10899999, 0, 0, 0, 0.10899999, 0, 0, 0, 0.10899999, 0, 0, 0)
+
+[node name="Cube" parent="dagger" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6rayi")
+
+[node name="Cylinder" parent="dagger" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_dfskw")
+
+[node name="Cube_001" parent="dagger" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_i2omr")
+
+[node name="Cube_002" parent="dagger" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fn0cb")
+
+[node name="Cube_003" type="MeshInstance3D" parent="dagger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3987164, 0)
+mesh = SubResource("ArrayMesh_bspgd")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_i2omr")
 
 [node name="HoverAnim" type="AnimationPlayer" parent="dagger"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_lwai0")
 }
@@ -658,6 +782,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_vb2e8")
 }
 
+[editable path="dagger"]
 [editable path="rapier"]
 [editable path="StakeGun"]
 [editable path="Shortsword"]
