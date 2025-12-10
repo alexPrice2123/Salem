@@ -192,37 +192,39 @@ public partial class Player3d : CharacterBody3D
 		// --- Pause menu toggle (Escape) ---
 		else if (Input.IsActionJustPressed("pause"))
 		{
-			if (_inv.Visible == true) // pressing escape while the inventory is open will close it.
-			{
-				_inv.Visible = false;
-				Input.MouseMode = Input.MouseModeEnum.Visible;
-			}
-			if (_questBook.Visible == true)
-			{
-				_questBook.Visible = false;
-				Input.MouseMode = Input.MouseModeEnum.Visible;
-			}                                                 // same for the quest and shop UI
-			if (_smithShop.Visible == true)
-			{
-				_smithShop.Visible = false;
-				Input.MouseMode = Input.MouseModeEnum.Visible;
-			}
-			if (_dialogue.Visible == true) { return; }
-
 			if (Input.MouseMode == Input.MouseModeEnum.Captured)
 			{
 				// Un-capture mouse, show pause menu, update sensitivity slider to current value
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 				GetTree().Paused = true;
 				Control pauseInst = _pauseMenu.Instantiate<Control>();
-       			GetTree().Root.AddChild(pauseInst);
+				GetTree().Root.AddChild(pauseInst);
 				_interface = pauseInst;
 				_senseBar = _interface.GetNode<HSlider>("Sense");
-				_senseBar.Value = HorCamSense * 1000;	
+				_senseBar.Value = HorCamSense * 1000;
 				if (pauseInst is PauseMenu menu)
-                {
-                    menu._player = this;
-                }	
+				{
+					menu._player = this;
+				}
+			}
+			else
+			{
+				if (_inv.Visible == true) // pressing escape while the inventory is open will close it.
+				{
+					_inv.Visible = false;
+					Input.MouseMode = Input.MouseModeEnum.Captured;
+				}
+				if (_questBook.Visible == true)
+				{
+					_questBook.Visible = false;
+					Input.MouseMode = Input.MouseModeEnum.Captured;
+				}                                                 // same for the quest and shop UI
+				if (_smithShop.Visible == true)
+				{
+					_smithShop.Visible = false;
+					Input.MouseMode = Input.MouseModeEnum.Captured;
+				}
+				if (_dialogue.Visible == true) { return; }
 			}
 		}
 
