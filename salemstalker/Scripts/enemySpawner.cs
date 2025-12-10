@@ -34,7 +34,7 @@ public partial class enemySpawner : Node3D
 	{
 		_spawn = GetNode<CsgBox3D>("Spawn");             // Get the spawn point node
 		_countdown = GetNode<Timer>("SpawnTime");        // Get the timer node
-		if (Name != "RatSpawner")
+		if (!Name.ToString().Contains("Rat"))
 		{
 			_countdown.WaitTime = 0.1f;
 		}
@@ -52,11 +52,19 @@ public partial class enemySpawner : Node3D
 	// --- SPAWN HANDLER ---
 	private void _on_spawn_time_timeout()
 	{
-		if (Name == "RatSpawner" && _player._questBox.FindChild("Find and kill rats around the Village") != null)
+		if (Name.ToString().Contains("Rat") && GetParent().GetParent<DemoHandler>()._dillonDone)
+		{
+			foreach (CharacterBody3D rat in _holder.GetChildren())
+			{
+				rat.QueueFree();
+			}
+			_number = 0;
+		}
+		if (Name.ToString().Contains("Rat") && _player._questBox.FindChild("Dillon") != null)
 		{
 			SpawnMonster();
 		}
-		else if (Name != "RatSpawner")
+		else if (!Name.ToString().Contains("Rat"))
 		{
 			SpawnMonster();
 		}
@@ -82,14 +90,6 @@ public partial class enemySpawner : Node3D
 			}
 		}
 		
-		if (Name == "RatSpawner" && _player._questBox.FindChild("Find and kill rats around the Village") == null && _player._ratsKilled > 0)
-		{
-			foreach (CharacterBody3D rat in _holder.GetChildren())
-			{
-				rat.QueueFree();
-			}
-			_number = 0;
-		}
 
 		// --- Prevent spawning if at max count or player too far ---
 		if (_number >= _maxMonsterCount || distance >= SpawnRange+_distFromPlayer)
@@ -123,7 +123,8 @@ public partial class enemySpawner : Node3D
 					}
 				}
 			}                                        // Add monster to holder node
-			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, FindGroundY(_spawnX, _spawnZ), _spawnZ);                                    // Set monster spawn position
+			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, 0f, _spawnZ);                                    // Set monster spawn position
+			monsterInstance.GlobalPosition = new Vector3(monsterInstance.GlobalPosition.X, FindGroundY(_spawnX, _spawnZ), monsterInstance.GlobalPosition.Z);
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();
 			

@@ -232,27 +232,13 @@ public partial class Player3d : CharacterBody3D
 				 && _inv.Visible == false)
 		{
 			// This block handles the first attack, potentially hiding a "Controls" overlay
-			if (GetNode<Sprite2D>("UI/Controls").Visible == true && GetNode<ColorRect>("UI/Loading").Visible == false)
+			if (GetNode<Sprite2D>("UI/Controls").Visible == true)
 			{
 				GetNode<Sprite2D>("UI/Controls").Visible = false;
 			}
 			else
 			{
 				Swing(false); // Perform a normal sword swing
-			}
-		}
-
-		// --- Interaction (Attack Action) for items ---
-		else if (Input.IsActionPressed("attack")
-				 && _attackCooldown == false
-				 && IsInstanceValid(_lastSeen) // Looking at an interactable object
-				 && _inv.Visible == false)
-		{
-			if (_lastSeen.Name == "Anvil")
-			{
-				_lastSeen = null;
-				_smithShop.Visible = true;
-				Input.MouseMode = Input.MouseModeEnum.Visible;
 			}
 		}
 
@@ -365,6 +351,15 @@ public partial class Player3d : CharacterBody3D
 			{
 				villager.Talk();
 			}
+			if (IsInstanceValid(_lastSeen) && _inv.Visible == false)
+			{
+				if (_lastSeen.Name == "Anvil")
+				{
+					_lastSeen = null;
+					_smithShop.Visible = true;
+					Input.MouseMode = Input.MouseModeEnum.Visible;
+				}
+			}
 		}
 
 		// --- Swap equiped secondary weapon ---
@@ -459,11 +454,6 @@ public partial class Player3d : CharacterBody3D
 		// FINAL camera transform = base + shake
 		_cam.Position = _cameraBasePosition + camRef.ShakeOffsetPosition;
 		_cam.Rotation = _cameraBaseRotation + camRef.ShakeOffsetRotation;
-		if (_currentBiome != _lastBiome)
-        {
-            _lastBiome = _currentBiome;
-			GetNode<Ui>("UI")._areaNameTween = 3;
-        }
 
 		_currentBiome = "Forest";
 		_inGoalArea = false;
@@ -474,7 +464,13 @@ public partial class Player3d : CharacterBody3D
 		if (_overlappingAreas.Contains("GoalArea")) { _inGoalArea = true; }
 		if (_overlappingAreas.Contains("Water")){ _knockVelocity = 15; }
 
-		if (_currentBiome.Contains("Brittlebay Village"))
+		if (_currentBiome != _lastBiome)
+        {
+            _lastBiome = _currentBiome;
+			GetNode<Ui>("UI")._areaNameTween = 3;
+        }
+
+		if (_currentBiome.Contains("Village"))
         {
             _health = _maxHealth;
 			_stamina = _maxStamina;
@@ -599,7 +595,6 @@ public partial class Player3d : CharacterBody3D
 		Vector2 inputDir = Input.GetVector("left", "right", "forward", "back"); // Get normalized 2D input
 		// Convert 2D input to 3D direction relative to the player's head/facing
 		Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-		GD.Print(_backSpeed);
 
 		if (direction != Vector3.Zero)
 		{
@@ -655,13 +650,18 @@ public partial class Player3d : CharacterBody3D
 		// --- Camera FOV Scaling (Speed Effect) ---
 		// Smoothly scale FOV based on current movement speed (for a "speed effect")
 		float fovGoal = Mathf.Lerp(_cam.Fov, Velocity.Length() + 80, (float)delta * 10f);
-		_cam.Fov = fovGoal;
+		if (GetNode<Sprite2D>("UI/Controls").Visible == false){_cam.Fov = fovGoal;}
+		
 		
 		// --- Interaction detection (General) ---
 		if (GetMouseCollision() != null)
 		{
 			CharacterBody3D targetNode = GetMouseCollision();
 			if (!targetNode.IsInGroup("Monster")){_lastSeen = targetNode;}
+			if (targetNode is Object obj)
+            {
+                obj._player = this;
+            }
 			if (targetNode.Name == "Anvil")
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
@@ -710,14 +710,6 @@ public partial class Player3d : CharacterBody3D
 		{
 			// Restore the NPC's original dialogue text
 			if (_lastSeen is NpcVillager villager) { villager._questPrompt.Text = _originalDialouge; }
-			// Hide the label for the "Apple" item if it was visible
-			if (IsInstanceValid(_lastSeen))
-			{
-				if (_lastSeen.Name == "Apple")
-				{
-					_lastSeen.GetNode<Label3D>("Title").Visible = false;
-				}
-			}
 			_lastSeen = null;
 			_originalDialouge = null;
 		}

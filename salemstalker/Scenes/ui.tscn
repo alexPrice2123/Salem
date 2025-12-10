@@ -1222,7 +1222,6 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_whq80")
 
 [node name="Controls" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(538, 305)
 scale = Vector2(0.561458, 0.559259)
 texture = ExtResource("14_8fs27")
