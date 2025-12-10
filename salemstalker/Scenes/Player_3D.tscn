@@ -60,18 +60,6 @@ omni_range = 25.0
 
 [node name="FlintGun" parent="Head/Camera3D/Offhand2" instance=ExtResource("3_mawk5")]
 
-[node name="flinklock_animtions" parent="Head/Camera3D/Offhand2/FlintGun" index="2"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-script = null
-
 [node name="Offhand3" type="Node3D" parent="Head/Camera3D"]
 
 [node name="FlintGun" parent="Head/Camera3D/Offhand3" instance=ExtResource("3_mawk5")]
@@ -92,6 +80,10 @@ size = Vector3(0.1, 0.1, 0.1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0305719, -10.8766)
 
 [node name="UI" parent="." instance=ExtResource("3_sb0or")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="Skeleton3D" type="Skeleton3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, 0.441923, -0.298717)
@@ -112,3 +104,4 @@ debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 [connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
 
 [editable path="Head/Camera3D/Offhand2/FlintGun"]
+[editable path="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions"]

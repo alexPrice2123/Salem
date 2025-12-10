@@ -14,6 +14,7 @@ config/name="Nightshatter"
 run/main_scene="uid://ugvn3fpfrh3c"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 run/max_fps=60
+boot_splash/bg_color=Color(0.20088004, 0.1612, 0.31, 1)
 config/icon="uid://0ndwudpowawf"
 
 [display]
