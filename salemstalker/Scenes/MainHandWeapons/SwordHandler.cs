@@ -49,10 +49,15 @@ public partial class SwordHandler : Node3D
 	}
 	public void updateVar(bool walkUpdate = false, bool runUpdate = false, bool blockUpdate = false, int swingUpdate = 0, int parryUpdate = 0)
 	{
+		GD.Print(walking," to ", walkUpdate);
 		walking = walkUpdate;
+		GD.Print(running," to ", runUpdate);
 		running = runUpdate;
+		GD.Print(blocking," to ", blockUpdate);
 		blocking = blockUpdate;
+		GD.Print(swingStat," to ", swingUpdate);
 		swingStat = swingUpdate;
+		GD.Print(parryStat," to ", parryUpdate);
 		parryStat = parryUpdate;
 	}
 	public bool getBoolVar(int which)

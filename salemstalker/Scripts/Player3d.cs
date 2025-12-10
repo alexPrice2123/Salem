@@ -166,7 +166,6 @@ public partial class Player3d : CharacterBody3D
             GetTree().Quit(); // Quit the scene 
         }
 		if (_dead == true){return;}
-		
 		// --- Camera look ---
 		if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
 		{
@@ -192,17 +191,17 @@ public partial class Player3d : CharacterBody3D
 			if (_inv.Visible == true) // pressing escape while the inventory is open will close it.
 			{
 				_inv.Visible = false;
-				Input.MouseMode = Input.MouseModeEnum.Visible;
+				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}
 			if (_questBook.Visible == true)
 			{
 				_questBook.Visible = false;
-				Input.MouseMode = Input.MouseModeEnum.Visible;
+				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}                                                 // same for the quest and shop UI
 			if (_smithShop.Visible == true)
 			{
 				_smithShop.Visible = false;
-				Input.MouseMode = Input.MouseModeEnum.Visible;
+				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}
 			if (_dialogue.Visible == true) { return; }
 
@@ -222,12 +221,13 @@ public partial class Player3d : CharacterBody3D
                 }	
 			}
 		}
-
+		
+		
 		// --- Sword attack (Attack Action) ---
 		else if (Input.IsActionPressed("attack")
-				 && _attackCooldown == false
+				 && !_attackCooldown
 				 && !IsInstanceValid(_lastSeen) // Not looking at an interactable object
-				 && _inv.Visible == false)
+				 && !_inv.Visible)
 		{
 			// This block handles the first attack, potentially hiding a "Controls" overlay
 			if (GetNode<Sprite2D>("UI/Controls").Visible == true && GetNode<ColorRect>("UI/Loading").Visible == false)
@@ -242,7 +242,6 @@ public partial class Player3d : CharacterBody3D
 
 		// --- Interaction (Attack Action) for items ---
 		else if (Input.IsActionPressed("attack")
-				 && _attackCooldown == false
 				 && IsInstanceValid(_lastSeen) // Looking at an interactable object
 				 && _inv.Visible == false)
 		{
@@ -274,7 +273,6 @@ public partial class Player3d : CharacterBody3D
 		// --- Inventory toggle (Inventory Action) ---
 		else if (Input.IsActionJustPressed("inventory"))
 		{
-			GD.Print("INV");
 			if (_inCombat == true || _questBook.Visible == true || _map.Visible == true) { return; } // Cannot open in combat or if quest book is open
 
 			if (_inv.Visible == true)
@@ -383,12 +381,10 @@ public partial class Player3d : CharacterBody3D
 				{
 					if (_eSecWeapon1 is Flintlock flintchild)
 					{
-						GD.Print("wtf?");
 						flintchild.specAction();
 					}
 					else if (_eSecWeapon1 is StakeGun stakeChild)
 					{
-						GD.Print("ShootPlease");
 						stakeChild.specAction();
 					}
 				}
@@ -576,7 +572,6 @@ public partial class Player3d : CharacterBody3D
 		Vector2 inputDir = Input.GetVector("left", "right", "forward", "back"); // Get normalized 2D input
 		// Convert 2D input to 3D direction relative to the player's head/facing
 		Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-		GD.Print(_backSpeed);
 
 		if (direction != Vector3.Zero)
 		{
@@ -749,105 +744,130 @@ public partial class Player3d : CharacterBody3D
 	private async void Swing(bool justEqquipped)
 	{
 		_swordInst.ResetMonsterDebounce(); // Allow the sword to hit new monsters
-		_attackCooldown = true; // Start the attack cooldown
-		float swingTime = (float)_sword.GetMeta("swingSpeed"); // Get swing time from weapon metadata
+		float swingTime = 0; // Get swing time from weapon metadata
 		float comboTime = swingTime * 1000 + 400; // Time window for the next combo hit (in ms)
 		_rng.Randomize();
-		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
+		_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
 		_damage = (float)_sword.GetMeta("damage");
 		float tempHorSense = HorCamSense;
 		float tempVerSense = VerCamSense;
-
-		// Damage penalty if stamina is too low
-		if (_stamina <= 0.02f * _maxStamina)
+		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
+		if (_comboNum == 0 || _comboNum == 1)
 		{
-			_damage *= 0.75f;
-		}
-
-		// Skip stamina deduction and set swing time to zero if just equipping the weapon (for animation only)
-		if (justEqquipped == true)
-		{
-			swingTime = 0f;
-		}
-		else
-		{
-			_stamina -= 0.05f * _maxStamina; // Deduct stamina for the attack
-		}
-
-		// --- Combo and Crit Logic ---
-		if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
-		{
-			_comboNum++; // Advance combo counter
-			// Check for critical hit chance (meta tag)
-			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
-			{
-				_damage *= (float)_sword.GetMeta("cPercent1");
-				_swordInst._crit = true;
-				GD.Print("CRIT");
-			}
+			swingTime = (float)_sword.GetMeta("swingSpeed1"); 
 		}
 		else // Reset combo if time window expired or after the final combo hit
 		{
-			_comboNum = 0;
-			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
-			{
-				_damage *= (float)_sword.GetMeta("cPercent2");
-				_swordInst._crit = true;
-				GD.Print("CRIT");
-			}
+			swingTime = (float)_sword.GetMeta("swingSpeed2"); 
 		}
-
 		// Third hit combo check (uses a separate combo percent)
-		if (Time.GetTicksMsec() - _lastHit > comboTime && _comboNum == 2)
+		if (_comboNum == 2)
 		{
-			_comboNum = 0;
-			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
+			swingTime = (float)_sword.GetMeta("swingSpeed3"); 
+		}
+		if(Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 300  || !_attackCooldown)
+		{
+			_attackCooldown = true; // Start the attack cooldown
+			// Damage penalty if stamina is too low
+			if (_stamina <= 0.02f * _maxStamina)
 			{
-				_damage *= (float)_sword.GetMeta("cPercent3");
-				_swordInst._crit = true;
+				_damage *= 0.75f;
+			}
+
+			// Skip stamina deduction and set swing time to zero if just equipping the weapon (for animation only)
+			if (justEqquipped == true)
+			{
+				swingTime = 0f;
+			}
+			else
+			{
+				_stamina -= 0.05f * _maxStamina; // Deduct stamina for the attack
+			}
+
+			// --- Combo and Crit Logic ---
+			if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
+			{
+				_comboNum++; // Advance combo counter
+				// Check for critical hit chance (meta tag)
+				if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
+				{
+					_damage *= (float)_sword.GetMeta("cPercent1");
+					_swordInst._crit = true;
+				}
+				swingTime = (float)_sword.GetMeta("swingSpeed1"); 
+			}
+			else // Reset combo if time window expired or after the final combo hit
+			{
+				_comboNum = 0;
+				if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
+				{
+					_damage *= (float)_sword.GetMeta("cPercent2");
+					_swordInst._crit = true;
+				}
+				swingTime = (float)_sword.GetMeta("swingSpeed2"); 
+			}
+
+			// Third hit combo check (uses a separate combo percent)
+			if (Time.GetTicksMsec() - _lastHit > comboTime && _comboNum == 2)
+			{
+				_comboNum = 0;
+				if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
+				{
+					_damage *= (float)_sword.GetMeta("cPercent3");
+					_swordInst._crit = true;
+				}
+				swingTime = (float)_sword.GetMeta("swingSpeed3"); 
+			}
+			cooldown.WaitTime = swingTime;
+			// --- Play Animation based on Combo ---
+			if (_comboNum == 0)
+			{
+				//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
+				_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,1,_swordInst.getIntVar(1));
+				HorCamSense /= 2.5f;
+				VerCamSense /= 3f;
+			}
+			else if (_comboNum == 1)
+			{
+				//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
+				_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,2,_swordInst.getIntVar(1));
+				HorCamSense /= 2.5f;
+				VerCamSense /= 3f;
+			}
+			else if (_comboNum == 2)
+			{
+				_damage = (float)_sword.GetMeta("hDamage"); // Use a special high-damage value for the final hit
+				//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
+				_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,3,_swordInst.getIntVar(1));
+				HorCamSense /= 2f;
+				VerCamSense /= 5f;
+			}
+
+			if (justEqquipped == true)
+			{
+				_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,0,_swordInst.getIntVar(1));
+			}
+
+			GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
+			_lastHit = Time.GetTicksMsec(); // Record the time of this hit
+			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));
+			// Wait for the main part of the swing animation to finish
+			cooldown.Start();
+			await ToSignal(cooldown, "timeout");
+			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
+
+			
+			_attackCooldown = false; // End the attack cooldown
+			// Reset the players sensitivity
+			HorCamSense = tempHorSense;
+			VerCamSense = tempVerSense;
+
+			await ToSignal(GetTree().CreateTimer(0.090f), "timeout");
+			if(!_attackCooldown)
+			{
+				_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,0,_swordInst.getIntVar(1));
 			}
 		}
-
-		// --- Play Animation based on Combo ---
-		if (_comboNum == 0)
-		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
-			HorCamSense /= 2.5f;
-			VerCamSense /= 3f;
-		}
-		else if (_comboNum == 1)
-		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
-			HorCamSense /= 2.5f;
-			VerCamSense /= 3f;
-		}
-		else if (_comboNum == 2)
-		{
-			_damage = (float)_sword.GetMeta("hDamage"); // Use a special high-damage value for the final hit
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
-			HorCamSense /= 2f;
-			VerCamSense /= 5f;
-		}
-
-		if (justEqquipped == true)
-		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Stop(); // Don't animate if just equipped
-		}
-
-		GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
-		_lastHit = Time.GetTicksMsec(); // Record the time of this hit
-		play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));
-		// Wait for the main part of the swing animation to finish
-		await ToSignal(GetTree().CreateTimer(swingTime * 0.7), "timeout");
-		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
-
-		// Wait for the remainder of the swing (0 seconds in this case, a slight delay might be intended)
-		await ToSignal(GetTree().CreateTimer(swingTime * 0), "timeout");
-		_attackCooldown = false; // End the attack cooldown
-
-		// Reset the players sensitivity
-		HorCamSense = tempHorSense;
-		VerCamSense = tempVerSense;
 	}
 
 	// Handles the blocking and parrying mechanic.
