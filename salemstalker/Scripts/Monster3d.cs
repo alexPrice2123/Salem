@@ -137,7 +137,7 @@ public partial class Monster3d : CharacterBody3D
 		}
 		_hitFX.Visible = true;
 		_body.Visible = false;
-		_canAttack = false;
+		//_canAttack = false;
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 
 		// Reduce health

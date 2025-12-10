@@ -88,7 +88,6 @@ shape = SubResource("CapsuleShape3D_beqai")
 debug_color = Color(0.541872, 0.406451, 1, 0.42)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-debug_enabled = true
 
 [node name="Hurtbox" type="Area3D" parent="." groups=["Monster"]]
 collision_layer = 1024

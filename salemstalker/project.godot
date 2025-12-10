@@ -13,6 +13,7 @@ config_version=5
 config/name="Nightshatter"
 run/main_scene="uid://ugvn3fpfrh3c"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [display]
@@ -165,4 +166,10 @@ common/physics_ticks_per_second=30
 
 [rendering]
 
+occlusion_culling/bvh_build_quality=0
 textures/vram_compression/import_etc2_astc=true
+camera/depth_of_field/depth_of_field_bokeh_shape=0
+camera/depth_of_field/depth_of_field_bokeh_quality=0
+environment/ssao/quality=0
+environment/ssil/quality=0
+environment/glow/upscale_mode=0
