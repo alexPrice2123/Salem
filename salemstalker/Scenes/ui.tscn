@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=44 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -95,6 +95,19 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_d42i4"]
+line_spacing = 3.08
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8fs27"]
+line_spacing = 3.08
+font_size = 25
+font_color = Color(1, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dx4fu"]
 line_spacing = 3.08
 font_size = 25
 outline_size = 10
@@ -361,10 +374,12 @@ offset_bottom = -0.296082
 [node name="Sub" type="SubViewport" parent="Inv/SubPort"]
 transparent_bg = true
 handle_input_locally = false
+anisotropic_filtering_level = 0
 size = Vector2i(1080, 605)
 render_target_update_mode = 0
 
 [node name="longsword" type="Button" parent="Inv/SubPort/Sub"]
+visible = false
 offset_left = 37.0
 offset_top = 35.0
 offset_right = 606.0
@@ -393,6 +408,7 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="StakeGun" type="Button" parent="Inv/SubPort/Sub"]
+visible = false
 offset_left = 795.0
 offset_top = 97.0
 offset_right = 803.0
@@ -403,6 +419,7 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="FlintGun" type="Button" parent="Inv/SubPort/Sub"]
+visible = false
 offset_left = 690.0
 offset_top = 97.0
 offset_right = 701.0
@@ -538,6 +555,7 @@ offset_bottom = -0.296082
 [node name="SubViewport" type="SubViewport" parent="Quest/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
+anisotropic_filtering_level = 0
 size = Vector2i(1079, 606)
 render_target_update_mode = 0
 
@@ -632,6 +650,38 @@ offset_bottom = -249.46405
 theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "Village"
 label_settings = SubResource("LabelSettings_d42i4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DemoWarning" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.002
+anchor_bottom = 0.995
+offset_left = -3.0
+offset_top = -212.0
+offset_right = -4.304077
+offset_bottom = -211.46405
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Turn Back Now
+30"
+label_settings = SubResource("LabelSettings_8fs27")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Light" type="Label" parent="DemoWarning"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.002
+anchor_bottom = 0.995
+offset_top = -35.0
+offset_right = -1.3040771
+offset_bottom = -34.46405
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "Follow The Light
+"
+label_settings = SubResource("LabelSettings_dx4fu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -878,6 +928,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShopOption3" type="TextureButton" parent="BlacksmithShop"]
+visible = false
 layout_mode = 0
 offset_top = 250.0
 offset_right = 415.0
@@ -897,6 +948,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShopOption4" type="TextureButton" parent="BlacksmithShop"]
+visible = false
 layout_mode = 0
 offset_top = 350.0
 offset_right = 415.0
@@ -928,6 +980,7 @@ offset_bottom = 422.0
 
 [node name="Port" type="SubViewport" parent="BlacksmithShop/View/PortContainer"]
 handle_input_locally = false
+anisotropic_filtering_level = 0
 size = Vector2i(242, 422)
 render_target_update_mode = 0
 
@@ -1177,7 +1230,6 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_whq80")
 
 [node name="Controls" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(538, 305)
 scale = Vector2(0.561458, 0.559259)
 texture = ExtResource("14_8fs27")

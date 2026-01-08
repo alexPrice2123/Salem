@@ -111,6 +111,9 @@ public partial class Player3d : CharacterBody3D
 	public bool _inWater = false;
 	public bool _dead = false;
 	private SubViewportContainer _map;
+	private Vector3 _cameraBaseRotation;
+	private Vector3 _cameraBasePosition;
+	private float _demoCount = 30f;
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -143,6 +146,8 @@ public partial class Player3d : CharacterBody3D
 		_stamina = _maxStamina;
 		_baseHeadPosition = _head.Position;
 		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
+		_cameraBaseRotation = _cam.Rotation;
+    	_cameraBasePosition = _cam.Position;
 
 		// Populate the weapon dictionary
 		_weapon.Add("Shortsword", _shortSword);
@@ -163,25 +168,23 @@ public partial class Player3d : CharacterBody3D
         }
 		if (Input.IsActionJustPressed("quit") && _dead == true)
         {
-            GetTree().Quit(); // Quit the scene 
+            GetTree().ChangeSceneToFile("res://Scenes/titlescreen.tscn");
+			Input.MouseMode = Input.MouseModeEnum.Visible;
         }
 		if (_dead == true){return;}
 		// --- Camera look ---
 		if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
 		{
-			// Rotate the body/head horizontally (Y-axis) and the camera vertically (X-axis)
+			// Horizontal look
 			_head.RotateY(-motion.Relative.X * HorCamSense);
-			_cam.RotateX(-motion.Relative.Y * VerCamSense);
 
-			// Clamp the vertical camera rotation to prevent looking too far up or down
-			Vector3 camRot = _cam.Rotation;
-			camRot.X = Mathf.Clamp(camRot.X, Mathf.DegToRad(-80f), Mathf.DegToRad(80f));
-			
-			if (_cam is Camera camRef)
-            {
-                camRef._initialRotation = camRot;
-            }
-
+			// Vertical look
+			_cameraBaseRotation.X -= motion.Relative.Y * VerCamSense;
+			_cameraBaseRotation.X = Mathf.Clamp(
+				_cameraBaseRotation.X,
+				Mathf.DegToRad(-80),
+				Mathf.DegToRad(80)
+			);
 			_lookingAtGoalPoint = CalculateLookAtAlignment();
 		}
 
@@ -211,14 +214,14 @@ public partial class Player3d : CharacterBody3D
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 				GetTree().Paused = true;
 				Control pauseInst = _pauseMenu.Instantiate<Control>();
-       			GetTree().Root.AddChild(pauseInst);
+				GetTree().Root.AddChild(pauseInst);
 				_interface = pauseInst;
 				_senseBar = _interface.GetNode<HSlider>("Sense");
-				_senseBar.Value = HorCamSense * 1000;	
+				_senseBar.Value = HorCamSense * 1000;
 				if (pauseInst is PauseMenu menu)
-                {
-                    menu._player = this;
-                }	
+				{
+					menu._player = this;
+				}
 			}
 		}
 		
@@ -230,7 +233,7 @@ public partial class Player3d : CharacterBody3D
 				 && !_inv.Visible)
 		{
 			// This block handles the first attack, potentially hiding a "Controls" overlay
-			if (GetNode<Sprite2D>("UI/Controls").Visible == true && GetNode<ColorRect>("UI/Loading").Visible == false)
+			if (GetNode<Sprite2D>("UI/Controls").Visible == true)
 			{
 				GetNode<Sprite2D>("UI/Controls").Visible = false;
 			}
@@ -361,6 +364,15 @@ public partial class Player3d : CharacterBody3D
 			{
 				villager.Talk();
 			}
+			if (IsInstanceValid(_lastSeen) && _inv.Visible == false)
+			{
+				if (_lastSeen.Name == "Anvil")
+				{
+					_lastSeen = null;
+					_smithShop.Visible = true;
+					Input.MouseMode = Input.MouseModeEnum.Visible;
+				}
+			}
 		}
 
 		// --- Swap equiped secondary weapon ---
@@ -448,11 +460,11 @@ public partial class Player3d : CharacterBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		if (_dead == true){return;}
-		if (_currentBiome != _lastBiome)
-        {
-            _lastBiome = _currentBiome;
-			GetNode<Ui>("UI")._areaNameTween = 3;
-        }
+		var camRef = (Camera)_cam;
+
+		// FINAL camera transform = base + shake
+		_cam.Position = _cameraBasePosition + camRef.ShakeOffsetPosition;
+		_cam.Rotation = _cameraBaseRotation + camRef.ShakeOffsetRotation;
 
 		_currentBiome = "Forest";
 		_inGoalArea = false;
@@ -463,10 +475,32 @@ public partial class Player3d : CharacterBody3D
 		if (_overlappingAreas.Contains("GoalArea")) { _inGoalArea = true; }
 		if (_overlappingAreas.Contains("Water")){ _knockVelocity = 15; }
 
-		if (_currentBiome.Contains("Brittlebay Village"))
+		if (_currentBiome != _lastBiome)
+        {
+            _lastBiome = _currentBiome;
+			GetNode<Ui>("UI")._areaNameTween = 3;
+        }
+
+		if (_currentBiome.Contains("Village"))
         {
             _health = _maxHealth;
 			_stamina = _maxStamina;
+        }
+
+		if (!_inGoalArea)
+        {
+            GetNode<Label>("UI/DemoWarning").Visible = true;
+			_demoCount -= (float)delta;
+			if (_demoCount <= 0.75f)
+            {
+                _health = 0f;
+            }
+			GetNode<Label>("UI/DemoWarning").Text = "Turn Back Now \n" + Mathf.Round(_demoCount).ToString();
+        }
+        else
+        {
+            GetNode<Label>("UI/DemoWarning").Visible = false;
+			_demoCount = 30f;
         }
 		Vector3 velocity = Velocity; // Get the current velocity vector
 
@@ -550,12 +584,12 @@ public partial class Player3d : CharacterBody3D
 			}
 		}
 
-		if (_questBox.FindChild("Destroy the Cultist's shrines found around Brittlebay village") != null)
+		if (_questBox.FindChild("Lukas") != null)
 		{
-			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Destroy the Cultist's shrines found around Brittlebay village");
+			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Lukas");
 			// Update the quest objective text
-			if (_shrinesDestroyed >= 5) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
-			else { (currentQuest.GetNode("Number") as Label).Text = _shrinesDestroyed+"/5"; }
+			if (_shrinesDestroyed >= 3) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			else { (currentQuest.GetNode("Number") as Label).Text = _shrinesDestroyed+"/3"; }
 		}
 
 		// [Inventory Camera Transition - Commented Out]
@@ -627,13 +661,18 @@ public partial class Player3d : CharacterBody3D
 		// --- Camera FOV Scaling (Speed Effect) ---
 		// Smoothly scale FOV based on current movement speed (for a "speed effect")
 		float fovGoal = Mathf.Lerp(_cam.Fov, Velocity.Length() + 80, (float)delta * 10f);
-		_cam.Fov = fovGoal;
+		if (GetNode<Sprite2D>("UI/Controls").Visible == false){_cam.Fov = fovGoal;}
+		
 		
 		// --- Interaction detection (General) ---
 		if (GetMouseCollision() != null)
 		{
 			CharacterBody3D targetNode = GetMouseCollision();
 			if (!targetNode.IsInGroup("Monster")){_lastSeen = targetNode;}
+			if (targetNode is Object obj)
+            {
+                obj._player = this;
+            }
 			if (targetNode.Name == "Anvil")
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
@@ -682,14 +721,6 @@ public partial class Player3d : CharacterBody3D
 		{
 			// Restore the NPC's original dialogue text
 			if (_lastSeen is NpcVillager villager) { villager._questPrompt.Text = _originalDialouge; }
-			// Hide the label for the "Apple" item if it was visible
-			if (IsInstanceValid(_lastSeen))
-			{
-				if (_lastSeen.Name == "Apple")
-				{
-					_lastSeen.GetNode<Label3D>("Title").Visible = false;
-				}
-			}
 			_lastSeen = null;
 			_originalDialouge = null;
 		}
@@ -955,18 +986,18 @@ public partial class Player3d : CharacterBody3D
         {
             _ratsKilled += 1;
         }
-		if (_questBox.FindChild("Kill creatures from different biomes to avenge Martha's husband") != null)
+		if (_questBox.FindChild("Martha") != null)
 		{
-			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Kill creatures from different biomes to avenge Martha's husband");
+			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Martha");
 			// Update the quest objective text
 			if (/*_swampMonstersKilled >= 5 && _plainsMonstersKilled >=5 && */_forestMonstersKilled >= 5) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
 			else { (currentQuest.GetNode("Number") as Label).Text = "Forest: "+_forestMonstersKilled + "/5 \n"
 			//+"Swamp: "+_swampMonstersKilled+ "/5 \n"
 			/*+"Plains: "+_plainsMonstersKilled+ "/5 \n"*/; }
 		}
-		else if (_questBox.FindChild("Find and kill rats around the Village") != null)
+		else if (_questBox.FindChild("Dillon") != null)
 		{
-			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Find and kill rats around the Village");
+			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Dillon");
 			// Update the quest objective text
 			if (_ratsKilled >= 5) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
 			else { (currentQuest.GetNode("Number") as Label).Text = _ratsKilled+"/5"; }
@@ -989,12 +1020,12 @@ public partial class Player3d : CharacterBody3D
 	}
 
 	// Creates a new quest entry in the quest box UI using the template node.
-	public void GetQuest(string QuestTitle, string QuestGoal)
+	public void GetQuest(string QuestTitle, string QuestGoal, string VillagerName)
 	{
 		Control questText = (VBoxContainer)_questTemplate.Duplicate(); // Clone the template
 		_questBox.AddChild(questText);
 		questText.Owner = _questBox; // Set owner for proper scene cleanup/handling
-		questText.Name = QuestTitle;
+		questText.Name = VillagerName;
 		questText.GetNode<Label>("Quest").Text = QuestTitle;
 		questText.GetNode<Label>("Number").Text = QuestGoal.Replace(", ", "\n");
 	}
@@ -1058,12 +1089,12 @@ public partial class Player3d : CharacterBody3D
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)
 			{
-				cam.StartShake(takenDamage/100, shakeFade);
+				cam.StartShake(takenDamage/90, shakeFade);
 			}
 		}
 		else if (_cam is Camera cam)
         {
-            cam.StartShake(takenDamage/90, shakeFade);
+            cam.StartShake(takenDamage/70, shakeFade);
         }
 		
 		// Damage multiplier if player is out of stamina
@@ -1084,6 +1115,8 @@ public partial class Player3d : CharacterBody3D
             _speedOffset = -2.5f;
             _speedCount = 1.5f;
         }
+		float shakeFade = 1f;
+		if (takenDamage > _maxHealth/3){shakeFade = 0.5f;}
 		if (_blocking == true && _parry == false)
 		{
 			// Regular block: reduce damage, deduct stamina, play block animation, destroy projectile
@@ -1094,6 +1127,10 @@ public partial class Player3d : CharacterBody3D
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			projectile.QueueFree();
 			_knockVelocity = 0.25f;
+			if (_cam is Camera cam)
+			{
+				cam.StartShake(takenDamage/80, shakeFade);
+			}
 		}
 		else if (_blocking == true && _parry == true)
 		{
@@ -1105,7 +1142,15 @@ public partial class Player3d : CharacterBody3D
 			projectile.QueueFree();
 			_parried = true;
 			_knockVelocity = 0f;
+			if (_cam is Camera cam)
+			{
+				cam.StartShake(takenDamage/90, shakeFade);
+			}
 		}
+		else if (_cam is Camera cam)
+        {
+            cam.StartShake(takenDamage/70, shakeFade);
+        }
 		
 		_health -= takenDamage; // Apply final damage
 	}

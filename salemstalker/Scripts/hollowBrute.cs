@@ -72,8 +72,7 @@ public partial class hollowBrute : Monster3d
 		_hasHit = false;
 		_attackAnim = true;
 		_targetVelocity = Vector3.Zero;
-		await ToSignal(GetTree().CreateTimer(1.7), "timeout");
-		_speedOffset = 2.5f;
+		await ToSignal(GetTree().CreateTimer(1.5), "timeout");
 		_attackBox.GetParent<Area3D>().Monitoring = true;
         await ToSignal(GetTree().CreateTimer(0.2), "timeout");
 		_attackBox.GetParent<Area3D>().Monitoring = false;

@@ -1,46 +1,50 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqjcb30xsr68w"]
+[gd_scene load_steps=11 format=3 uid="uid://bqjcb30xsr68w"]
 
-[ext_resource type="PackedScene" uid="uid://bhgarvxvik5n3" path="res://Assets/3D/buildings/anvil.blend" id="1_mv86a"]
+[ext_resource type="Script" uid="uid://bydg3x2pcusxt" path="res://Scripts/Object.cs" id="1_mv86a"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="2_mv86a"]
-[ext_resource type="Texture2D" uid="uid://dauos5dr6kbao" path="res://Assets/proptextures/anvil/metal_Base_color.png" id="2_qb4a8"]
-[ext_resource type="Texture2D" uid="uid://btdooamvid2km" path="res://Assets/proptextures/anvil/metal_Height.png" id="3_6egxq"]
-[ext_resource type="Texture2D" uid="uid://csbl3kmbcx7xe" path="res://Assets/proptextures/anvil/metal_Metallic.png" id="4_txlve"]
-[ext_resource type="Texture2D" uid="uid://60bwyi82mbxn" path="res://Assets/proptextures/anvil/metal_Normal_OpenGL.png" id="5_vfi3y"]
-[ext_resource type="Texture2D" uid="uid://dlami88pmc67r" path="res://Assets/proptextures/anvil/metal_Roughness.png" id="6_46sbs"]
+[ext_resource type="PackedScene" uid="uid://bhgarvxvik5n3" path="res://Assets/3D/buildings/anvil.blend" id="2_qb4a8"]
+[ext_resource type="Texture2D" uid="uid://dauos5dr6kbao" path="res://Assets/proptextures/anvil/metal_Base_color.png" id="3_txlve"]
+[ext_resource type="Texture2D" uid="uid://btdooamvid2km" path="res://Assets/proptextures/anvil/metal_Height.png" id="4_vfi3y"]
+[ext_resource type="Texture2D" uid="uid://csbl3kmbcx7xe" path="res://Assets/proptextures/anvil/metal_Metallic.png" id="5_46sbs"]
+[ext_resource type="Texture2D" uid="uid://60bwyi82mbxn" path="res://Assets/proptextures/anvil/metal_Normal_OpenGL.png" id="6_t8p37"]
+[ext_resource type="Texture2D" uid="uid://dlami88pmc67r" path="res://Assets/proptextures/anvil/metal_Roughness.png" id="7_8ofmy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hmxdp"]
-size = Vector3(1, 0.763794, 0.379028)
+size = Vector3(1, 1.1288452, 0.379028)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnkfl"]
-albedo_texture = ExtResource("2_qb4a8")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hny51"]
+albedo_texture = ExtResource("3_txlve")
 metallic = 1.0
-metallic_texture = ExtResource("4_txlve")
-roughness_texture = ExtResource("6_46sbs")
+metallic_texture = ExtResource("5_46sbs")
+roughness_texture = ExtResource("7_8ofmy")
 normal_enabled = true
-normal_texture = ExtResource("5_vfi3y")
+normal_texture = ExtResource("6_t8p37")
 heightmap_enabled = true
-heightmap_texture = ExtResource("3_6egxq")
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("4_vfi3y")
 
 [node name="Anvil" type="CharacterBody3D" groups=["Interactable"]]
 collision_layer = 2
+script = ExtResource("1_mv86a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18252562, 0)
 shape = SubResource("BoxShape3D_hmxdp")
 
-[node name="anvil" parent="CollisionShape3D" instance=ExtResource("1_mv86a")]
-transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0.040671706, -0.28224212, -0.18525791)
+[node name="anvil" parent="CollisionShape3D" instance=ExtResource("2_qb4a8")]
+transform = Transform3D(-6.1421246e-09, 0, 0.14051543, 0, 0.14051543, 0, -0.14051543, 0, -6.1421246e-09, 0, -0.53671455, 0)
 
 [node name="Cube" parent="CollisionShape3D/anvil" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_qnkfl")
+material_override = SubResource("StandardMaterial3D_hny51")
 
 [node name="Title" type="Label3D" parent="."]
-transform = Transform3D(-0.999347, 0, 0.036138, 0, 1, 0, -0.036138, 0, -0.999347, 0, 0.671696, 0)
+transform = Transform3D(-0.999347, 0, 0.036138, 0, 1, 0, -0.036138, 0, -0.999347, 0, 0.76215094, 0)
 visible = false
 pixel_size = 0.01
 billboard = 1
 no_depth_test = true
 texture_filter = 0
-text = "Click To Open Shop"
+text = "E To Open Shop"
 font = ExtResource("2_mv86a")
 font_size = 25
 outline_size = 8

@@ -21,6 +21,7 @@ public partial class enemySpawner : Node3D
 	[Export(PropertyHint.Enum, "Plains,Swamp,Forest,Misc")]
 	public string _biome = "Plains";
 	public float SpawnRange;  
+	private float _wanderRanges;
 	[Export]
 	public float _distFromPlayer = 40f;      
 	[Export]
@@ -34,7 +35,7 @@ public partial class enemySpawner : Node3D
 	{
 		_spawn = GetNode<CsgBox3D>("Spawn");             // Get the spawn point node
 		_countdown = GetNode<Timer>("SpawnTime");        // Get the timer node
-		if (Name != "RatSpawner")
+		if (!Name.ToString().Contains("Rat"))
 		{
 			_countdown.WaitTime = 0.1f;
 		}
@@ -44,6 +45,8 @@ public partial class enemySpawner : Node3D
 		_player = this.GetParent().GetParent().GetNode<Player3d>("Player_3d"); // Get the player node (two parents up in the scene tree)
 		_holder = GetNode<Node3D>("MonsterHolder");      // Get the monster holder node
 		_rng.Randomize();
+		_wanderRanges = GetNode<WanderTool>("WanderRange")._wanderRange;
+		GetNode<WanderTool>("WanderRange").QueueFree();
 
 		SpawnRange = GetNode<CsgSphere3D>("Range").Radius;
 		GetNode<CsgSphere3D>("Range").QueueFree();
@@ -52,11 +55,19 @@ public partial class enemySpawner : Node3D
 	// --- SPAWN HANDLER ---
 	private void _on_spawn_time_timeout()
 	{
-		if (Name == "RatSpawner" && _player._questBox.FindChild("Find and kill rats around the Village") != null)
+		if (Name.ToString().Contains("Rat") && GetParent().GetParent<DemoHandler>()._dillonDone)
+		{
+			foreach (CharacterBody3D rat in _holder.GetChildren())
+			{
+				rat.QueueFree();
+			}
+			_number = 0;
+		}
+		if (Name.ToString().Contains("Rat") && _player._questBox.FindChild("Dillon") != null)
 		{
 			SpawnMonster();
 		}
-		else if (Name != "RatSpawner")
+		else if (!Name.ToString().Contains("Rat"))
 		{
 			SpawnMonster();
 		}
@@ -82,14 +93,6 @@ public partial class enemySpawner : Node3D
 			}
 		}
 		
-		if (Name == "RatSpawner" && _player._questBox.FindChild("Find and kill rats around the Village") == null && _player._ratsKilled > 0)
-		{
-			foreach (CharacterBody3D rat in _holder.GetChildren())
-			{
-				rat.QueueFree();
-			}
-			_number = 0;
-		}
 
 		// --- Prevent spawning if at max count or player too far ---
 		if (_number >= _maxMonsterCount || distance >= SpawnRange+_distFromPlayer)
@@ -111,8 +114,8 @@ public partial class enemySpawner : Node3D
 			{
 				monster.RandomRangedPosition();
 				monster.Biome = _biome;
-				monster.SpawnRange = SpawnRange*1.5f;
-				monster._currentSpawnRange = SpawnRange*1.5f;
+				monster.SpawnRange = SpawnRange*_wanderRanges;
+				monster._currentSpawnRange = SpawnRange*_wanderRanges;
 				monster._startPos = GlobalPosition;
 				if (_canShadow == true)
 				{
@@ -123,7 +126,8 @@ public partial class enemySpawner : Node3D
 					}
 				}
 			}                                        // Add monster to holder node
-			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, FindGroundY(_spawnX, _spawnZ), _spawnZ);                                    // Set monster spawn position
+			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, 0f, _spawnZ);                                    // Set monster spawn position
+			monsterInstance.GlobalPosition = new Vector3(monsterInstance.GlobalPosition.X, FindGroundY(_spawnX, _spawnZ)+ 1f, monsterInstance.GlobalPosition.Z);
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();
 			

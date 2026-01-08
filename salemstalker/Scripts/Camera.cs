@@ -1,16 +1,19 @@
 using Godot;
 using System;
 
-public partial class Camera : Camera3D // Or Camera2D for 2D projects
+public partial class Camera : Camera3D
 {
-    public float ShakeStrength = 0.0f; // Initial shake strength
-    public float ShakeFade = 1f; // How quickly the shake fades out
-    public float MaxOffset = 0.5f; // Maximum random offset for position
-  	public float MaxRotation = 0.1f; // Maximum random rotation in radians
+    public float ShakeStrength = 0f;
+    public float ShakeFade = 1f;
+
+    public float MaxOffset = 0.5f;
+    public float MaxRotation = 0.1f;
 
     private RandomNumberGenerator _rng = new RandomNumberGenerator();
-    private Vector3 _initialPosition; // Store the camera's initial position
-    public Vector3 _initialRotation; // Store the camera's initial rotation
+
+    // This is the *additive* shake offset
+    public Vector3 ShakeOffsetPosition = Vector3.Zero;
+    public Vector3 ShakeOffsetRotation = Vector3.Zero;
 
     public override void _Ready()
     {
@@ -19,41 +22,32 @@ public partial class Camera : Camera3D // Or Camera2D for 2D projects
 
     public override void _Process(double delta)
     {
-		_initialPosition = GetParent<Node3D>().GlobalPosition;
         if (ShakeStrength > 0)
         {
-            // Reduce shake strength over time
             ShakeStrength = Mathf.Max(0, ShakeStrength - ShakeFade * (float)delta);
 
-            // Generate random offsets for position and rotation
-            Vector3 offset = new Vector3(
+            ShakeOffsetPosition = new Vector3(
                 _rng.RandfRange(-MaxOffset, MaxOffset),
                 _rng.RandfRange(-MaxOffset, MaxOffset),
                 _rng.RandfRange(-MaxOffset, MaxOffset)
-            );
+            ) * ShakeStrength;
 
-            Vector3 rotationOffset = new Vector3(
+            ShakeOffsetRotation = new Vector3(
                 _rng.RandfRange(-MaxRotation, MaxRotation),
                 _rng.RandfRange(-MaxRotation, MaxRotation),
                 _rng.RandfRange(-MaxRotation, MaxRotation)
-            );
-
-            // Apply the shake
-            GlobalPosition = _initialPosition + offset * ShakeStrength;
-            Rotation = _initialRotation + rotationOffset * ShakeStrength;
+            ) * ShakeStrength;
         }
         else
         {
-            // Reset to initial position/rotation when shake ends
-            GlobalPosition = _initialPosition;
-            Rotation = _initialRotation;
+            ShakeOffsetPosition = Vector3.Zero;
+            ShakeOffsetRotation = Vector3.Zero;
         }
     }
 
-    // Call this method to trigger a shake
     public void StartShake(float strength, float fade)
     {
         ShakeStrength = strength;
-		ShakeFade = fade;
+        ShakeFade = fade;
     }
 }

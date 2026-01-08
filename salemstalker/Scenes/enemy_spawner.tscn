@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw2fjllusx7kw"]
+[gd_scene load_steps=5 format=3 uid="uid://bw2fjllusx7kw"]
 
 [ext_resource type="Script" uid="uid://j62rfr3y6iu1" path="res://Scripts/enemySpawner.cs" id="1_4l55s"]
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_8h7h8"]
+[ext_resource type="Script" uid="uid://bub810tjtqhfj" path="res://Scripts/WanderTool.cs" id="3_cdqhx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdwud"]
+albedo_color = Color(1, 0, 0, 1)
 
 [node name="EnemySpawner" type="Node3D"]
 script = ExtResource("1_4l55s")
@@ -22,5 +26,13 @@ transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, 0, 0)
 radius = 5.0
 radial_segments = 25
 rings = 3
+
+[node name="WanderRange" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, -0.3001957, 0)
+radius = 7.5
+radial_segments = 25
+rings = 3
+material = SubResource("StandardMaterial3D_tdwud")
+script = ExtResource("3_cdqhx")
 
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]

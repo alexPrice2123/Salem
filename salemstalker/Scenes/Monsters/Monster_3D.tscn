@@ -78,6 +78,8 @@ scale_curve = SubResource("CurveTexture_tk3a2")
 [sub_resource type="SphereMesh" id="SphereMesh_cl0a8"]
 
 [node name="Monster_3d" type="CharacterBody3D" groups=["Monster"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_ayuld")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

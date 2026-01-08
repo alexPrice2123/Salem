@@ -80,6 +80,10 @@ size = Vector3(0.1, 0.1, 0.1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0305719, -10.8766)
 
 [node name="UI" parent="." instance=ExtResource("3_sb0or")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="Skeleton3D" type="Skeleton3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, 0.441923, -0.298717)

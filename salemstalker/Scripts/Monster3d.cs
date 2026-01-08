@@ -67,6 +67,7 @@ public partial class Monster3d : CharacterBody3D
 	protected bool _agro = false;
 	public float _currentSpawnRange;         //The disntance the monster can be from spawn before retreeting back to it
 	protected bool _retreating = false;
+    protected bool _justWandered = true;
 
 
 	// --- READY --- //
@@ -136,7 +137,7 @@ public partial class Monster3d : CharacterBody3D
 		}
 		_hitFX.Visible = true;
 		_body.Visible = false;
-		_canAttack = false;
+		//_canAttack = false;
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 
 		// Reduce health
@@ -196,8 +197,9 @@ public partial class Monster3d : CharacterBody3D
 		_dashVelocity = Mathf.Lerp(_dashVelocity, 1f, 15f * (float)delta);
 
 		// CHASE MODE: If player close enough and monster is a chaser
-		if (playerSpawnDistance <= SpawnRange && _canSeePlayer && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false && Fleeing == false && !_retreating)
+		if (!_player._currentBiome.Contains("Village") && playerSpawnDistance <= SpawnRange && _canSeePlayer && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false && Fleeing == false && !_retreating)
 		{
+            _justWandered = true;
 			// Navigation pathing toward player
 			_navAgent.TargetPosition = _player.GlobalPosition;
 			_player._inCombat = true;
@@ -235,8 +237,9 @@ public partial class Monster3d : CharacterBody3D
 		}
 
 		// RANGED ENEMY BEHAVIOR: maintain distance then fire
-		else if (playerSpawnDistance <= SpawnRange && _canSeePlayer && !_attackAnim && !Chaser && Stationery == false && Fleeing == false && !_retreating)
+		else if (!_player._currentBiome.Contains("Village") && playerSpawnDistance <= SpawnRange && _canSeePlayer && !_attackAnim && !Chaser && Stationery == false && Fleeing == false && !_retreating)
 		{
+            _justWandered = true;
 			_player._inCombat = true; _navAgent.TargetPosition = _rangedPosition;
 			Vector3 nextPoint = _navAgent.GetNextPathPosition();
 			// Apply movement and knockback forces
@@ -266,7 +269,7 @@ public partial class Monster3d : CharacterBody3D
 		}
 		else if (playerSpawnDistance <= SpawnRange && Stationery == true && Fleeing == false && !_retreating)
 		{
-
+            _justWandered = true;
 			// Rotate monster to face player
 			Vector3 playerPos = _player.GlobalPosition;
 			_lookDirection.LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
@@ -279,10 +282,10 @@ public partial class Monster3d : CharacterBody3D
 			}
 			else _attacking = false;
 		}
-		else if (playerSpawnDistance <= SpawnRange && Fleeing == true && _canSeePlayer && !_retreating)
+		else if (Fleeing == true && _canSeePlayer && !_retreating)
 		{
 			// how far the rat will try to get away from the player
-			float _fleeDistance = 8f; // tweak to taste
+			float _fleeDistance = 8f;
 
 			// Navigation pathing away from player
 			Vector3 myPos = GlobalTransform.Origin;
@@ -303,18 +306,9 @@ public partial class Monster3d : CharacterBody3D
 
 			Vector3 nextPoint = _navAgent.GetNextPathPosition();
 
-			// Apply movement and knockback forces
-			if (_knockbackVelocity.Length() > 0.5f)
-			{
-				_targetVelocity = Vector3.Zero + _knockbackVelocity;
-				Velocity = _targetVelocity;
-			}
-			else
-			{
-				_targetVelocity = (nextPoint - myPos).Normalized() * (Speed * _dashVelocity + _speedOffset);
-			}
+			_targetVelocity = (nextPoint - myPos).Normalized() * (Speed * _dashVelocity + _speedOffset);
 
-			Vector3 moveDirection = Velocity.Normalized(); 
+			Vector3 moveDirection = _targetVelocity.Normalized(); 
 			if (moveDirection != Vector3.Zero)
 			{
 				_lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up); 
@@ -324,9 +318,19 @@ public partial class Monster3d : CharacterBody3D
 		else if (!_attackAnim && (playerSpawnDistance > SpawnRange || !_canSeePlayer || _retreating) && Stationery == false)
 		{
 			// Move randomly around spawn point
-			_navAgent.TargetPosition = _wanderPos;
-			Vector3 nextPoint = _navAgent.GetNextPathPosition();
-			_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed-1f);
+            if (_justWandered && !Fleeing)
+            {
+                _justWandered = false;
+                _targetVelocity = Vector3.Zero;
+				Velocity = _targetVelocity;
+                ChooseNewWander();
+            }
+            else
+            {
+                _navAgent.TargetPosition = _wanderPos;
+                Vector3 nextPoint = _navAgent.GetNextPathPosition();
+                _targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed-1f);
+            }
 
 			Vector3 moveDirection = Velocity.Normalized(); 
 			if (moveDirection != Vector3.Zero)
@@ -372,8 +376,9 @@ public partial class Monster3d : CharacterBody3D
 		// Apply velocity smoothing + movement checks
 		Velocity = Velocity.Lerp(_targetVelocity, 4f * (float)delta);
 
+		if (Fleeing){MoveAndSlide();}
 		// Things that make the monster stop moving no matter what
-		if (_player._inv.Visible == true || (_stunned == true && _attackException == false) || (_dashVelocity <= 1.01f && _dashAnim == true)) { _targetVelocity = Vector3.Zero; }
+		else if (_player._inv.Visible == true || (_stunned == true && _attackException == false) || (_dashVelocity <= 1.01f && _dashAnim == true)) { _targetVelocity = Vector3.Zero; }
 		// If the monster isnt a chaser and isnt attacking then it can move
 		else if (Chaser == false && _attackAnim == false) { MoveAndSlide(); }
 		// If the monster just spawned or is able to move while attacking then it can move
@@ -466,7 +471,6 @@ public partial class Monster3d : CharacterBody3D
 		float randZ = _startPos.Z + _rng.RandiRange(-WanderRange, WanderRange);
 		float randX = _startPos.X + _rng.RandiRange(-WanderRange, WanderRange);
 		_wanderPos = new Vector3(randX, 0f, randZ);
-		GD.Print(_wanderPos);
 	}
 
 	public void PackSeen()

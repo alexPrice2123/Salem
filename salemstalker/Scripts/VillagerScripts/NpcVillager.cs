@@ -22,7 +22,6 @@ public partial class NpcVillager : CharacterBody3D
 	public Control _dialogue; 
 	public Button _acceptButton;
 	public Button _ignoreButton;
-	protected Vector3 WanderTarget;                          // The target for the AI to wander to whenever it is moving
 	[Export]
 	public string NPCName = "Bob"; 
 	[Export]
@@ -53,6 +52,10 @@ public partial class NpcVillager : CharacterBody3D
 	public string _object = "None";
 	protected bool ObjectActivated = false;
 	protected Ui _interface;
+	protected Node3D _lookDirection;
+	protected Vector3 _startPos;
+	protected Vector3 _wanderPos;
+	protected float _wanderRange;
 
 	public Vector3 MovementTarget                           // The target for the AI to pathfind to
 	{
@@ -72,10 +75,14 @@ public partial class NpcVillager : CharacterBody3D
 		_ignoreButton = _player.GetNode<Button>("UI/Dialogue/IgnoreButton");
 		_ignoreButton.Pressed += QuestIgnored;
 		_interface = _player.GetNode<Ui>("UI");
+		_lookDirection = GetNode<Node3D>("Direction");
+		_startPos = GlobalPosition;
+		_wanderRange = GetNode<CsgSphere3D>("Range").Radius;
+		GetNode<CsgSphere3D>("Range").QueueFree();
 		if (_object == "None")
         {
            _navigationAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
-			WanderTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 2, false); 
+			ChooseNewWander();
         }
 		_questPrompt.Text = InitialDialogue;
 
@@ -85,6 +92,13 @@ public partial class NpcVillager : CharacterBody3D
 		Callable.From(ActorSetup).CallDeferred();
 	}
 	
+	private async void ChooseNewWander()
+	{
+		float randZ = _startPos.Z + _rng.RandfRange(-_wanderRange, _wanderRange);
+		float randX = _startPos.X + _rng.RandfRange(-_wanderRange, _wanderRange);
+		_wanderPos = new Vector3(randX, 0f, randZ);
+	}
+
 	public void QuestAccepted() //changes dialouge from the quest dialouge to accepted dialouge
 	{
 		GD.Print("Accepted");
@@ -92,6 +106,19 @@ public partial class NpcVillager : CharacterBody3D
 	public void QuestIgnored() //changes dialouge from the quest dialouge to ignored dialouge
 	{ 
 		GD.Print("Ignored");
+	}
+
+	private void RotateFunc(double delta)
+	{
+		if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
+		{
+			GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
+		}
+		else
+		{
+			float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
+			GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
+		}
 	}
 	
 	public void EveryFrame(double delta) //Event tick; happens every frame
@@ -108,6 +135,7 @@ public partial class NpcVillager : CharacterBody3D
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
 		// Add a temp variable for velocity
 		Vector3 velocity = new();
+		
 
 		if (_questComplete == true && _questInProgress == false && _hasTalked == true)
 		{
@@ -129,8 +157,8 @@ public partial class NpcVillager : CharacterBody3D
 		if (_navigationAgent.IsNavigationFinished()) // If the AI is close enough to pathfinding target
 		{
 			// Get a new target position
-			WanderTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 2, false);
-			MovementTarget = WanderTarget;
+			ChooseNewWander();
+			MovementTarget = _wanderPos;
 
 			// Make the AI stop moving
 			moveStatus = false;
@@ -148,7 +176,7 @@ public partial class NpcVillager : CharacterBody3D
 			Vector3 playerPos = _player.GlobalPosition;
 			if (GlobalPosition.DistanceTo(playerPos) > 0.01f)
 			{
-				LookAt(new Vector3(playerPos.X, GlobalPosition.Y + 0.001f, playerPos.Z), Vector3.Up);
+				_lookDirection.LookAt(new Vector3(playerPos.X, GlobalPosition.Y + 0.001f, playerPos.Z), Vector3.Up);
 			}
 
 			// Make the AI stop moving
@@ -163,7 +191,7 @@ public partial class NpcVillager : CharacterBody3D
 		if (moveStatus)
 		{
 			// Calculate movement to next point
-			MovementTarget = WanderTarget;
+			MovementTarget = _wanderPos;
 			Vector3 nextPoint = _navigationAgent.GetNextPathPosition();
 			velocity += (nextPoint - GlobalTransform.Origin).Normalized() * Speed;
 
@@ -171,9 +199,10 @@ public partial class NpcVillager : CharacterBody3D
 			_questPrompt.Visible = false;
 
 			// Face wander target
-			if (GlobalPosition.DistanceTo(nextPoint) > 0.01f)
+			Vector3 moveDirection = Velocity.Normalized(); 
+			if (moveDirection != Vector3.Zero)
 			{
-				LookAt(new Vector3(nextPoint.X, GlobalPosition.Y, nextPoint.Z), Vector3.Up);
+				_lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up); 
 			}
 		}
 
@@ -189,6 +218,7 @@ public partial class NpcVillager : CharacterBody3D
         {
             Velocity += new Vector3(0f,-50f,0f) * (float)delta;
         }
+		RotateFunc(delta);
 		MoveAndSlide();
 	}
 
@@ -199,7 +229,7 @@ public partial class NpcVillager : CharacterBody3D
 
 		// Now that the navigation map is no longer empty, set the movement target.
 		MovementTarget = GlobalPosition;
-		WanderTarget = NavigationServer3D.MapGetRandomPoint(_navigationAgent.GetNavigationMap(), 2, false);
+		ChooseNewWander();
 	}
 
 	protected async void WanderIdle()
@@ -227,7 +257,7 @@ public partial class NpcVillager : CharacterBody3D
         }
         else
         {
-			_player.GetQuest(QuestTitle, QuestGoal);
+			_player.GetQuest(QuestTitle, QuestGoal, NPCName);
 			_dialougeIndex = 0;
 			_currentDialouge = "Accepted";
 			_hasTalked = true;
@@ -285,7 +315,7 @@ public partial class NpcVillager : CharacterBody3D
             {
 				_questInProgress = false;
 				_hasTalked = true;
-				_player.RemoveQuest(QuestTitle);
+				_player.RemoveQuest(NPCName);
             }
 			EndDialouge();
 		}
