@@ -21,6 +21,8 @@ public partial class sCultist : Monster3d
         Speed = 4.5f;             // Movement speed
         MaxHealth = 50.0f;         // Maximum monster health
         Range = 55.0f;            // Detection range for chasing
+        AgroFOV = 5.0f;            // Detection range for chasing
+		AgroLength = 5.0f;            // Detection range for chasing
         SpawnDistance = 100;    // Distance from player before despawning
         BaseDamage = 25.0f;
         WanderRange = 50;
