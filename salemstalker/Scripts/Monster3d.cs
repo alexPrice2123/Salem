@@ -10,10 +10,10 @@ public partial class Monster3d : CharacterBody3D
 
 	// --- CONSTANTS ---
 	protected float Speed = 2.5f;               // Movement speed
-	protected float RunSpeed = 2.5f;
 	protected float MaxHealth = 100.0f;         // Maximum monster health
 	protected float Range = 15.0f;              // Detection range for chasing
-	protected float agroRange = 5.0f;          // Detection range for agro
+	protected float AgroFOV = 5.0f;          // Detection range for agro
+	protected float AgroLength = 5.0f;          // Detection range for agro
 	protected double SpawnDistance = 100;       // Distance from player before despawning
 	protected float BaseDamage = 10.0f;         // Base damage of the monster
 	protected int WanderRange = 10;             // The range the monster can wander from its spawn point
@@ -29,6 +29,7 @@ public partial class Monster3d : CharacterBody3D
 	public string Biome = "Plains";             // What Biome this monster spawned in
 	public bool Fleeing = false;
 	public float SpawnRange = 50f;              //The disntance the monster can be from spawn before retreeting back to it
+	public float MaxLookTime = 1f;
 
 	// --- NODE REFERENCES ---
 	protected Player3d _player;                 // Reference to the player
@@ -37,7 +38,8 @@ public partial class Monster3d : CharacterBody3D
 	protected Node3D _body;                     // Monster body mesh node
 	protected CollisionShape3D _attackBox;      // The attack box of the monster
 	protected Node3D _lookDirection;            // The goal look direction that the monster should lerp to
-	protected Area3D _visArea;
+	protected Area3D _walkArea;
+	protected Area3D _runArea;
 	protected Area3D _agroArea;
 
 	// --- VARIABLES ---
@@ -64,10 +66,15 @@ public partial class Monster3d : CharacterBody3D
 	protected float _veloThreshold = -5f;       // The velocity threshold that ranged monsters have to get to, to stop and attack
 	protected bool _dashAnim = false;           // Should the dash anim be playing
 	protected bool _canSeePlayer = false;
-	protected bool _agro = false;
 	public float _currentSpawnRange;         //The disntance the monster can be from spawn before retreeting back to it
 	protected bool _retreating = false;
     protected bool _justWandered = true;
+	protected float _agroChangeCooldown = 0f;
+	protected bool _playerRunning = false;
+	protected string _playerBiome = "None";
+	protected bool _quitePlayerInRange = false;
+	protected bool _looking = false;
+	protected float _lookingTimer = 0f;
 
 
 	// --- READY --- //
@@ -89,17 +96,23 @@ public partial class Monster3d : CharacterBody3D
 		_attackBox = GetNode<CollisionShape3D>("Attackbox/CollisionShape3D");
 		_health = MaxHealth;
 		_lookDirection = GetNode<Node3D>("Direction");
-		_visArea = GetNode<Area3D>("VisibilityRange");
+		_walkArea = GetNode<Area3D>("WalkRange");
+		_runArea = GetNode<Area3D>("RunRange");
 		_agroArea = GetNode<Area3D>("AgroRange");
 
-		if (_visArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape)
+		if (_walkArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape)
 		{
 			shape.Radius = Range;
 		}
-		if (_agroArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape2)
+		if (_runArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape2)
 		{
-			shape2.Radius = agroRange;
+			shape2.Radius = Range*3;
 		}
+		Vector3 baseScale = _agroArea.Scale;
+		baseScale.X = AgroLength;
+		baseScale.Y = AgroFOV;
+		baseScale.Z = AgroFOV;
+		_agroArea.Scale = baseScale;
 	}
 
 
@@ -168,7 +181,6 @@ public partial class Monster3d : CharacterBody3D
 		return false; // No child with the specified name was found.
 	}
 
-
 	// --- CORE MONSTER AI LOOP --- //
 	// Handles state: chase, attack, wander, despawn
 	public void EveryFrame(double delta)
@@ -177,18 +189,15 @@ public partial class Monster3d : CharacterBody3D
 		{
 			return;
 		}
+		if (_playerRunning != _player._running){if (_player._running){PlayerRunCheck();}}
+		_playerRunning = _player._running;
+		if (_playerBiome != _player._currentBiome){if(_player._currentBiome != Biome){_justWandered = false; ChooseNewWander();}}
+		_playerBiome = _player._currentBiome;
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
 		float spawnDistance = (_startPos - GlobalPosition).Length();
 		float playerSpawnDistance = (_startPos - _player.GlobalPosition).Length();
 
-		if (_agro == true)
-		{
-			_speedOffset = RunSpeed;
-		}
-		else
-		{
-			_speedOffset = 0;
-		}
+		_agroChangeCooldown -= 0.1f;
 
 		// Delay initial behavior when first spawned
 		if (_count > 50 && _justSpawned)
@@ -199,6 +208,7 @@ public partial class Monster3d : CharacterBody3D
 		// CHASE MODE: If player close enough and monster is a chaser
 		if (!_player._currentBiome.Contains("Village") && playerSpawnDistance <= SpawnRange && _canSeePlayer && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false && Fleeing == false && !_retreating)
 		{
+			GD.Print("CHASING");
             _justWandered = true;
 			// Navigation pathing toward player
 			_navAgent.TargetPosition = _player.GlobalPosition;
@@ -284,6 +294,7 @@ public partial class Monster3d : CharacterBody3D
 		}
 		else if (Fleeing == true && _canSeePlayer && !_retreating)
 		{
+			GD.Print("FEELING");
 			// how far the rat will try to get away from the player
 			float _fleeDistance = 8f;
 
@@ -315,38 +326,64 @@ public partial class Monster3d : CharacterBody3D
 			}
 		}
 		// WANDERING (Idle state)
-		else if (!_attackAnim && (playerSpawnDistance > SpawnRange || !_canSeePlayer || _retreating) && Stationery == false)
+		else if (!_attackAnim && (playerSpawnDistance > SpawnRange || !_canSeePlayer || _retreating || _playerBiome.Contains("Village")) && Stationery == false)
 		{
-			// Move randomly around spawn point
-            if (_justWandered && !Fleeing)
+			if (!_looking)
             {
-                _justWandered = false;
-                _targetVelocity = Vector3.Zero;
-				Velocity = _targetVelocity;
-                ChooseNewWander();
+				// Move randomly around spawn point
+				if (_justWandered && !Fleeing)
+				{
+					_justWandered = false;
+					_targetVelocity = Vector3.Zero;
+					Velocity = _targetVelocity;
+					ChooseNewWander();
+				}
+				else
+				{
+					_navAgent.TargetPosition = _wanderPos;
+					Vector3 nextPoint = _navAgent.GetNextPathPosition();
+					_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed-1f);
+				}
+
+				Vector3 moveDirection = Velocity.Normalized(); 
+				if (moveDirection != Vector3.Zero)
+				{
+					_lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up); 
+				}
+
+				// If too far from player, despawn
+				if (distance > SpawnDistance) { QueueFree(); }
             }
             else
             {
-                _navAgent.TargetPosition = _wanderPos;
-                Vector3 nextPoint = _navAgent.GetNextPathPosition();
-                _targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed-1f);
+				float turnSpeed = 0.3f;
+				Vector3 currentForward = -_lookDirection.GlobalTransform.Basis.Z;
+				Vector3 lookingForward = currentForward.Rotated(Vector3.Up, turnSpeed * (float)delta);
+
+				// Apply the smooth rotation
+				_lookDirection.LookAt(
+					_lookDirection.GlobalTransform.Origin + lookingForward,
+					Vector3.Up
+				);
+
+				_lookingTimer += (float)delta;
+				if (_lookingTimer >= MaxLookTime)
+                {
+                    _looking = false;
+					ChooseNewWander();
+                }
             }
-
-			Vector3 moveDirection = Velocity.Normalized(); 
-			if (moveDirection != Vector3.Zero)
-			{
-				_lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up); 
-			}
-
-			// If too far from player, despawn
-			if (distance > SpawnDistance) { QueueFree(); }
 		}
 
 		_count += 1;
 		if (_count > 1000 || GlobalPosition.Snapped(0.1f) == _wanderPos.Snapped(0.1f))
 		{
 			_count = _rng.RandfRange(-100, 50);
-			ChooseNewWander();
+			_targetVelocity = Vector3.Zero;
+			Velocity = _targetVelocity;
+			_looking = true;
+			_lookingTimer = 0f;
+			GD.Print("LOOKING");
 		}
 
 		if (spawnDistance > _currentSpawnRange && !_retreating && _canSeePlayer)
@@ -473,75 +510,87 @@ public partial class Monster3d : CharacterBody3D
 		_wanderPos = new Vector3(randX, 0f, randZ);
 	}
 
-	public void PackSeen()
-	{
-		_canSeePlayer = true;
-		foreach (Area3D visArea in _visArea.GetOverlappingAreas())
-		{
-			if (visArea.GetParent() is Monster3d visEnteredMonster) 
-			{
-				if (visEnteredMonster == this){return;}
-				visEnteredMonster.PackSeen();
-			} 
-		}
-	}
 	public void PackAgro()
 	{
-		_agro = true;
 		foreach (Area3D agroArea in _agroArea.GetOverlappingAreas())
 		{
 			if (agroArea.GetParent() is Monster3d agroEnteredMonster) 
 			{
 				if (agroEnteredMonster == this){return;}
-				agroEnteredMonster.PackSeen();
+				agroEnteredMonster.PackAgro();
 			} 
 		}
 	}
 
-	private void _on_visibility_range_area_entered(Area3D area) //When the player gets in range of the monster to see them; not agro
-	{
-		if (area.IsInGroup("Player"))
-		{
-			_canSeePlayer = true;
-		}
-		else if (area.IsInGroup("Monster"))
-		{
-			if (_canSeePlayer == true && area.GetParent() is Monster3d visEnteredMonster) 
+	private void detectPlayer(Area3D area, bool seen)
+    {
+		GD.Print(_agroChangeCooldown);
+		if (_agroChangeCooldown > 0){return;}
+		_agroChangeCooldown = 0.5f;
+        if (seen)
+        {
+            if (area.IsInGroup("Player"))
 			{
-				if (visEnteredMonster == this){return;}
-				visEnteredMonster.PackSeen();
+				_canSeePlayer = true;
 			}
-		}
-	}
-	private void _on_visibility_range_area_exited(Area3D area) //When the player gets into the agro range
+			else if (area.IsInGroup("Monster"))
+			{
+				if (_canSeePlayer == true && area.GetParent() is Monster3d visEnteredMonster) 
+				{
+					if (visEnteredMonster == this){return;}
+					visEnteredMonster.PackAgro();
+				}
+			}
+        }
+        else
+        {
+            if (area.IsInGroup("Player") && area.Name == "Hurtbox")
+			{
+				_canSeePlayer = false;
+			}
+        }
+    }
+	
+	private void _on_walk_range_area_entered(Area3D area) //When the player gets in range of walk noise detection
 	{
-		if (area.IsInGroup("Player") && area.Name == "Hurtbox")
-		{
-			_canSeePlayer = false;
-		}
+		GD.Print("WALK ENTERED");
+		detectPlayer(area, true);
+	}
+
+	private void _on_run_range_area_entered(Area3D area) //When the player gets in range of walk run detection
+	{
+		if (_player._running == true)
+        {
+			GD.Print("RUN ENTERED");
+            detectPlayer(area, true);
+        }
+		if (area.IsInGroup("Player")){_quitePlayerInRange = true;}
+	}
+
+	private void _on_run_range_area_exited(Area3D area) //When the player leaves the run range
+	{
+		GD.Print("RUN EXITED");
+		detectPlayer(area, false);
+		if (area.IsInGroup("Player")){_quitePlayerInRange = false;}
 	}
 
 	private void _on_agro_range_area_entered(Area3D area) //When the player gets in range of the monster to see them; not agro
 	{
-		if (area.IsInGroup("Player"))
-		{
-			_agro = true;
-		}
-		else if (area.IsInGroup("Monster"))
-		{
-			if (_canSeePlayer == true && area.GetParent() is Monster3d agroEnteredMonster) 
-			{
-				if (agroEnteredMonster == this){return;}
-				agroEnteredMonster.PackAgro();
-			}
-		}
+		GD.Print("AGRO ENTERED");
+		detectPlayer(area, true);
 	}
 	private void _on_agro_range_area_exited(Area3D area) //When the player gets into the agro range
 	{
-		if (area.IsInGroup("Player") && area.Name == "Hurtbox")
-		{
-			_agro = false;
-		}
+		GD.Print("AGRO EXITED");
+		detectPlayer(area, false);
 	}
 
+	private void PlayerRunCheck()
+    {
+		if (_quitePlayerInRange)
+		{
+			detectPlayer(_player.GetNode<Area3D>("Hurtbox"), true);
+		}
+        
+    }
 }

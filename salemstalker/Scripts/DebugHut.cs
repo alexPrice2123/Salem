@@ -59,7 +59,7 @@ public partial class DebugHut : Node3D
 			if (monsterInstance is Monster3d monster)
             {
 				monster.RandomRangedPosition();
-				monster.Debug = true;
+				//monster.Debug = true;
             }
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();

@@ -10,10 +10,10 @@ public partial class hollowNormal : Monster3d
 	public override void _Ready()
 	{
 		Speed = 2.5f;             // Movement speed
-		RunSpeed = 2.5f;			//How much gets added to the speed (ex. Speed = 2.5, RunSpeed = 2.5; The monsters speed is 5 because Speed+RunSpeed)
 		MaxHealth = 60.0f;         // Maximum monster health
-		Range = 15.0f;            // Detection range for chasing
-		agroRange = 5.0f;            // Detection range for chasing
+		Range = 5.0f;            // Detection range for chasing
+		AgroFOV = 15.0f;            // Detection range for chasing
+		AgroLength = 5.0f;            // Detection range for chasing
 		SpawnDistance = 100;    // Distance from player before despawning
 		BaseDamage = 15.0f;
 		WanderRange = 50;
