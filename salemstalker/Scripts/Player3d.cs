@@ -631,15 +631,18 @@ public partial class Player3d : CharacterBody3D
 					_stamina -= 2f * (float)delta; // Deduct stamina while running  
 				}
 				play_footstep(0.35f);
+				_swordInst.updateVar(false,true,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 			}
 			else
 			{
 				play_footstep(0.7f);
+				_swordInst.updateVar(true,false,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 			}
 		}
 		else
 		{
 			// Player is stationary (no directional input)
+			_swordInst.updateVar(false,false,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
 			Vector3 tempvelo = velocity;

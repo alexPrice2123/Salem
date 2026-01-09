@@ -2,9 +2,9 @@
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
-[ext_resource type="Shader" uid="uid://cdhocti5ssful" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
+[ext_resource type="Shader" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
 [ext_resource type="PackedScene" uid="uid://dufmkp4txcmvx" path="res://Scenes/inv_world.tscn" id="3_nf4gj"]
-[ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
+[ext_resource type="Shader" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
@@ -374,12 +374,10 @@ offset_bottom = -0.296082
 [node name="Sub" type="SubViewport" parent="Inv/SubPort"]
 transparent_bg = true
 handle_input_locally = false
-anisotropic_filtering_level = 0
 size = Vector2i(1080, 605)
 render_target_update_mode = 0
 
 [node name="longsword" type="Button" parent="Inv/SubPort/Sub"]
-visible = false
 offset_left = 37.0
 offset_top = 35.0
 offset_right = 606.0
@@ -408,7 +406,6 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="StakeGun" type="Button" parent="Inv/SubPort/Sub"]
-visible = false
 offset_left = 795.0
 offset_top = 97.0
 offset_right = 803.0
@@ -419,7 +416,6 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="FlintGun" type="Button" parent="Inv/SubPort/Sub"]
-visible = false
 offset_left = 690.0
 offset_top = 97.0
 offset_right = 701.0
@@ -555,7 +551,6 @@ offset_bottom = -0.296082
 [node name="SubViewport" type="SubViewport" parent="Quest/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-anisotropic_filtering_level = 0
 size = Vector2i(1079, 606)
 render_target_update_mode = 0
 
@@ -980,7 +975,6 @@ offset_bottom = 422.0
 
 [node name="Port" type="SubViewport" parent="BlacksmithShop/View/PortContainer"]
 handle_input_locally = false
-anisotropic_filtering_level = 0
 size = Vector2i(242, 422)
 render_target_update_mode = 0
 
