@@ -14,7 +14,9 @@ public partial class underBrush : Monster3d
 	{
 		Speed = 5f;             // Movement speed
 		MaxHealth = 75.0f;         // Maximum monster health
-		Range = 30.0f;            // Detection range for chasing
+		Range = 6.0f;            // Detection range for chasing
+		AgroFOV = .1f;            // Detection range for chasing
+		AgroLength = .1f;            // Detection range for chasing
 		SpawnDistance = 100;    // Distance from player before despawning
 		BaseDamage = 7.0f;
 		WanderRange = 50;
