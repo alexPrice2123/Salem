@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://dg6f4t7rrqh6n"]
+
+[ext_resource type="PackedScene" uid="uid://brgt3bst1t4cq" path="res://Assets/3D/props/closedleatherbag.blend" id="1_rmxb6"]
+[ext_resource type="Texture2D" uid="uid://dsng10b8lec7n" path="res://Assets/proptextures/leatherbag/bag_Base_color.png" id="2_f3pj2"]
+[ext_resource type="Texture2D" uid="uid://ij3logyes5e7" path="res://Assets/proptextures/leatherbag/bag_Normal.png" id="3_hyxt5"]
+[ext_resource type="Texture2D" uid="uid://cludlhl1sn3qc" path="res://Assets/proptextures/leatherbag/bag_Roughness.png" id="4_drist"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_supm2"]
+albedo_color = Color(0.62987745, 0.5745626, 0.8226795, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmxb6"]
+albedo_texture = ExtResource("2_f3pj2")
+roughness_texture = ExtResource("4_drist")
+normal_enabled = true
+normal_texture = ExtResource("3_hyxt5")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="closedleatherbag" parent="." instance=ExtResource("1_rmxb6")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.0816679, 0, 0.014082909)
+
+[node name="Cube" parent="closedleatherbag" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_supm2")
+surface_material_override/1 = SubResource("StandardMaterial3D_rmxb6")
+
+[editable path="closedleatherbag"]
