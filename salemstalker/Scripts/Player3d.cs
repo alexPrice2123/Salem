@@ -263,6 +263,7 @@ public partial class Player3d : CharacterBody3D
 				 && _inv.Visible == false)
 		{
 			Block(true); // Start blocking/parrying
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 		}
 		// --- Block End (Block Action) ---
 		else if (Input.IsActionJustReleased("block")
@@ -271,6 +272,7 @@ public partial class Player3d : CharacterBody3D
 				 && _inv.Visible == false)
 		{
 			Block(false); // Stop blocking/parrying
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 		}
 
 		// --- Inventory toggle (Inventory Action) ---
@@ -910,7 +912,6 @@ public partial class Player3d : CharacterBody3D
 		_blocking = block;
 		if (block == true)
 		{
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 			await ToSignal(GetTree().CreateTimer(0.05), "timeout"); // Wait for a brief moment
 			_parry = block; // Set parry flag to true (the active parry window)
 			_currentParryWindow = _parryWindow; // Start the parry timer
@@ -918,7 +919,6 @@ public partial class Player3d : CharacterBody3D
 		else
 		{
 			_parry = block; // Set parry flag to false
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
 		}
 	}
 	
