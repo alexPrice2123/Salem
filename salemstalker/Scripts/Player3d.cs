@@ -59,8 +59,11 @@ public partial class Player3d : CharacterBody3D
 	private float _dashVelocity = 0f;                	// Current extra speed from dashing
 	private float _fullDashValue = 10.0f;            	// Max speed boost granted by a full dash
 	private float _knockVelocity = 0f;               	// Current knockback applied to player
-	private bool _cooldownSec;						 	// Tracks whether the player can use their secondary weapon
-	private bool _running = false;                   	// True if the 'run' input is held down
+	private bool _cooldownSec1;						 	// Tracks whether the player can use their first secondary weapon
+	private bool _cooldownSec2;						 	// Tracks whether the player can use their second secondary weapon
+	private bool _cooldownSec3;						 	// Tracks whether the player can use their third secondary weapon
+	private bool _cooldownSec4;						 	// Tracks whether the player can use their fourth secondary weapon
+	public bool _running = false;                   	// True if the 'run' input is held down
 	private bool _inStep = false;					 	// Prevents footstep audio from playing if player is already playing a step.
 	private float _bobTime = 0.0f;                   	// Accumulator for the head-bob sine wave function
 	public string _originalDialouge;                 	// Stores an NPC's default dialogue to restore it after interaction
@@ -388,54 +391,55 @@ public partial class Player3d : CharacterBody3D
 		// --- Use secondary weapon ---
 		else if (Input.IsActionJustPressed("special"))
 		{
-			if (!_cooldownSec)
+			if (equipSec == 1 && !_cooldownSec1)
 			{
 				secondaryCooldown();
-				if (equipSec == 1)
+				if (_eSecWeapon1 is Flintlock flintchild)
 				{
-					if (_eSecWeapon1 is Flintlock flintchild)
-					{
-						flintchild.specAction();
-					}
-					else if (_eSecWeapon1 is StakeGun stakeChild)
-					{
-						stakeChild.specAction();
-					}
+					flintchild.specAction();
 				}
-				else if (equipSec == 2)
+				else if (_eSecWeapon1 is StakeGun stakeChild)
 				{
-					if (_eSecWeapon2 is Flintlock flintchild)
-					{
-						flintchild.specAction();
-					}
-					else if (_eSecWeapon1 is StakeGun stakeChild)
-					{
-						stakeChild.specAction();
-					}
-				}
-				else if (equipSec == 3 && !_twoHand)
-				{
-					if (_eSecWeapon3 is Flintlock flintchild)
-					{
-						flintchild.specAction();
-					}
-					else if (_eSecWeapon1 is StakeGun stakeChild)
-					{
-						stakeChild.specAction();
-					}
-				}
-				else if (equipSec == 4 && !_twoHand)
-				{
-					if (_eSecWeapon4 is Flintlock flintchild)
-					{
-						flintchild.specAction();
-					}
-					else if (_eSecWeapon1 is StakeGun stakeChild)
-					{
-						stakeChild.specAction();
-					}
+					stakeChild.specAction();
 				}
 			}
+			else if (equipSec == 2 && !_cooldownSec2)
+			{
+				secondaryCooldown();
+				if (_eSecWeapon2 is Flintlock flintchild)
+				{
+					flintchild.specAction();
+				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					stakeChild.specAction();
+				}
+			}
+			else if (equipSec == 3 && !_twoHand && !_cooldownSec3)
+			{
+				secondaryCooldown();
+				if (_eSecWeapon3 is Flintlock flintchild)
+				{
+					flintchild.specAction();
+				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					stakeChild.specAction();
+				}
+			}
+			else if (equipSec == 4 && !_twoHand && !_cooldownSec4)
+			{
+				secondaryCooldown();
+				if (_eSecWeapon4 is Flintlock flintchild)
+				{
+					flintchild.specAction();
+				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					stakeChild.specAction();
+				}
+			}
+			
 		}
 
 		if (Input.IsActionPressed("back"))
@@ -1256,24 +1260,30 @@ public partial class Player3d : CharacterBody3D
 
 	private async void secondaryCooldown()
 	{
-		_cooldownSec = true;
 		if (equipSec == 1)
 		{
+			_cooldownSec1 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon1.GetMeta("cooldown")), "timeout");
 		}
 		else if (equipSec == 2)
 		{
+			_cooldownSec2 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon2.GetMeta("cooldown")), "timeout");
 		}
 		else if (equipSec == 3)
 		{
+			_cooldownSec3 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon3.GetMeta("cooldown")), "timeout");
 		}
 		else
 		{
+			_cooldownSec4 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon4.GetMeta("cooldown")), "timeout");
 		}
-		_cooldownSec = false;	
+		_cooldownSec1 = false;
+		_cooldownSec2 = false;
+		_cooldownSec3 = false;
+		_cooldownSec4 = false;	
 	}
 
 	private void _on_hurtbox_area_entered(Area3D zone)
