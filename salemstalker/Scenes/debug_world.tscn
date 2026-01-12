@@ -1,10 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://cvls06clf6bc5"]
+[gd_scene load_steps=16 format=3 uid="uid://cvls06clf6bc5"]
 
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_ostip"]
 [ext_resource type="Shader" uid="uid://bu36lcp8xftmo" path="res://Shaders/starrySky.gdshader" id="1_p5qse"]
 [ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="2_kvufb"]
 [ext_resource type="PackedScene" uid="uid://d4ntgvke0mfh3" path="res://Scenes/DebugHut.tscn" id="3_kvufb"]
-[ext_resource type="PackedScene" uid="uid://dbhqhurkcdks0" path="res://Scenes/Monsters/hollowNormal.tscn" id="5_41pr4"]
+[ext_resource type="PackedScene" uid="uid://c3gi3vrev7n0x" path="res://Scenes/Monsters/underBrush.tscn" id="5_41pr4"]
 [ext_resource type="PackedScene" uid="uid://d1omoohngw1as" path="res://Scenes/goal_area.tscn" id="6_41pr4"]
 [ext_resource type="PackedScene" uid="uid://dgw0pwu2iwx5p" path="res://Scenes/biome_zone.tscn" id="7_4dpch"]
 
@@ -38,35 +38,20 @@ geometry_source_group_name = &"Terrain"
 agent_max_slope = 65.0
 filter_baking_aabb = AABB(0, 0, 0, 750, 150, 750)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_p5qse"]
-size = Vector3(57.60773, 6.7435303, 58.953655)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yt8cr"]
-size = Vector3(12.745652, 6.7435303, 2.2894392)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hdhae"]
-size = Vector3(62.891727, 6.7435303, 37.971867)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0r7w4"]
-size = Vector3(24.924622, 6.7435303, 28.871185)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_mnutw"]
-size = Vector3(12.89769, 6.7435303, 25.334295)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2557q"]
-size = Vector3(26.054802, 6.7435303, 12.92738)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_py774"]
-size = Vector3(28.807411, 6.7435303, 9.138909)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8owio"]
-size = Vector3(62.626266, 6.7435303, 20.406857)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dpch"]
 albedo_color = Color(1, 1, 0, 1)
 emission_enabled = true
 emission = Color(1, 1, 0, 1)
 emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p5qse"]
+radius = 618.95886
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yt8cr"]
+radius = 119.27508
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hdhae"]
+radius = 88.256355
 
 [node name="World" type="Node3D"]
 
@@ -74,7 +59,7 @@ emission_energy_multiplier = 16.0
 environment = SubResource("Environment_aetuq")
 
 [node name="Player_3d" parent="." instance=ExtResource("1_ostip")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -569.226, -0.267151, 3.56368)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.267, 0)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="." groups=["Terrain"]]
 transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -566.982, -1.93395, 6.91586)
@@ -85,69 +70,16 @@ size = Vector3(10000, 1, 10000)
 [node name="HutHolder" type="Node3D" parent="."]
 
 [node name="Hollow" parent="HutHolder" instance=ExtResource("3_kvufb")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -569.1985, -0.196111, -10.293375)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.19848633, -0.196111, -71.29337)
 _monster = ExtResource("5_41pr4")
 
 [node name="MonsterRegion" type="NavigationRegion3D" parent="."]
-transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -922.4417, -6.027062, -462.62012)
+transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -426.4417, -6.027062, -462.62012)
 navigation_mesh = SubResource("NavigationMesh_kxhoa")
 navigation_layers = 3
 
-[node name="Biomes" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.240265, 1.8917885, 59.439064)
-
-[node name="Village" type="Node3D" parent="Biomes"]
-
-[node name="Brittlebay" parent="Biomes/Village" groups=["Brittlebay Village"] instance=ExtResource("7_4dpch")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -537.2914, 0, -95.99284)
-
-[node name="CollisionShape3D" parent="Biomes/Village/Brittlebay" index="0"]
-transform = Transform3D(0.8703127, 0, -0.4924995, 0, 1, 0, 0.4924995, 0, 0.8703127, 7.2453384, 1.1852417, 38.764038)
-shape = SubResource("BoxShape3D_p5qse")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Biomes/Village/Brittlebay"]
-transform = Transform3D(0.71964276, 0, -0.69434434, 0, 1, 0, 0.69434434, 0, 0.71964276, 5.873667, 1.1852417, 28.74279)
-shape = SubResource("BoxShape3D_p5qse")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="CollisionShape3D9" type="CollisionShape3D" parent="Biomes/Village/Brittlebay"]
-transform = Transform3D(0.7098657, 0, -0.7043369, 0, 1, 0, 0.7043369, 0, 0.7098657, 9.816543, 1.1852417, -7.817275)
-shape = SubResource("BoxShape3D_yt8cr")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Biomes/Village/Brittlebay"]
-transform = Transform3D(0.30712408, 0, -0.9516693, 0, 1, 0, 0.9516693, 0, 0.30712408, -2.2812119, 1.1852417, 22.70123)
-shape = SubResource("BoxShape3D_hdhae")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Biomes/Village/Brittlebay"]
-transform = Transform3D(-0.52993405, 0, -0.8480389, 0, 1, 0, 0.8480389, 0, -0.52993405, -24.22826, 1.1852417, 16.870836)
-shape = SubResource("BoxShape3D_0r7w4")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Biomes/Village/Brittlebay"]
-transform = Transform3D(-0.05407881, 0, -0.99853665, 0, 1, 0, 0.99853665, 0, -0.05407881, -30.111977, 1.1852417, 26.5985)
-shape = SubResource("BoxShape3D_mnutw")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="Biomes/Village/Brittlebay"]
-transform = Transform3D(-0.99091774, 0, -0.13447042, 0, 1, 0, 0.13447042, 0, -0.99091774, -29.749573, 1.1852417, 36.642628)
-shape = SubResource("BoxShape3D_2557q")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="Biomes/Village/Brittlebay"]
-transform = Transform3D(-0.93864965, 0, -0.34487224, 0, 1, 0, 0.34487224, 0, -0.93864965, -26.718857, 1.1852417, 43.244007)
-shape = SubResource("BoxShape3D_py774")
-debug_color = Color(0, 1, 0, 1)
-
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="Biomes/Village/Brittlebay"]
-transform = Transform3D(-0.87966514, 0, 0.47559354, 0, 1, 0, -0.47559354, 0, -0.87966514, -6.5346107, 1.1852417, 58.161057)
-shape = SubResource("BoxShape3D_8owio")
-debug_color = Color(0, 1, 0, 1)
-
 [node name="GoalArea" parent="." groups=["GoalArea"] instance=ExtResource("6_41pr4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -457.7357, 0, -63.01809)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.26431, 0, -63.01809)
 
 [node name="Area" parent="GoalArea" index="0" groups=["GoalArea"]]
 
@@ -162,5 +94,84 @@ visible = false
 material_override = SubResource("StandardMaterial3D_4dpch")
 size = Vector3(0.1, 0.1, 0.1)
 
-[editable path="Biomes/Village/Brittlebay"]
+[node name="Biomes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 995.4954, 1.8917885, 122.45715)
+
+[node name="Plains" parent="Biomes" groups=["Plains"] instance=ExtResource("7_4dpch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1705.5452, 0, -290.66635)
+
+[node name="CollisionShape3D" parent="Biomes/Plains" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0918884, 0, 73.21707)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 816.01434, 0, -171.70926)
+shape = SubResource("SphereShape3D_p5qse")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.8873, 0, -247.5498)
+shape = SubResource("SphereShape3D_yt8cr")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.430206, 0, -114.476746)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -681.6692, 0, 367.27722)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -651.94073, 0, 418.04004)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -612.90796, 0, 495.87366)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -561.0814, 0, 555.86694)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -540.97864, 0, 598.88556)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -539.5796, 0, 623.5894)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -586.8068, 0, 666.2596)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -644.171, 0, 672.2615)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -695.93536, 0, 815.07776)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -657.42365, 0, 889.3447)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="Biomes/Plains"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -657.42365, 0, 569.8491)
+shape = SubResource("SphereShape3D_hdhae")
+debug_color = Color(0, 0, 1, 1)
+
 [editable path="GoalArea"]
+[editable path="Biomes/Plains"]
