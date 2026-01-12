@@ -1,0 +1,36 @@
+[gd_scene load_steps=10 format=3 uid="uid://dom4e5rvcpbxp"]
+
+[ext_resource type="PackedScene" uid="uid://pabyjy0swmeq" path="res://Assets/3D/props/bucket.blend" id="1_6osfh"]
+[ext_resource type="Texture2D" uid="uid://jcwl645dr5ql" path="res://Assets/proptextures/bucket/wood_Base_color.png" id="2_dv6gp"]
+[ext_resource type="Texture2D" uid="uid://b06xohorewcw7" path="res://Assets/proptextures/bucket/wood_Height.png" id="3_yleom"]
+[ext_resource type="Texture2D" uid="uid://uikdb5e5kyii" path="res://Assets/proptextures/bucket/wood_Roughness.png" id="4_gt7d0"]
+[ext_resource type="Texture2D" uid="uid://br1p2chr3fxoh" path="res://Assets/proptextures/bucket/rope_Base_color.png" id="5_16kkb"]
+[ext_resource type="Texture2D" uid="uid://cnw8knrwdfjgt" path="res://Assets/proptextures/bucket/rope_Normal_OpenGL.png" id="6_gt7d0"]
+[ext_resource type="Texture2D" uid="uid://b46ja8v0atk2r" path="res://Assets/proptextures/bucket/rope_Roughness.png" id="7_16kkb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eja3o"]
+albedo_texture = ExtResource("2_dv6gp")
+roughness_texture = ExtResource("4_gt7d0")
+normal_enabled = true
+heightmap_enabled = true
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("3_yleom")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjfhf"]
+albedo_texture = ExtResource("5_16kkb")
+roughness_texture = ExtResource("7_16kkb")
+normal_enabled = true
+normal_texture = ExtResource("6_gt7d0")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="bucket" parent="." instance=ExtResource("1_6osfh")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.0002464354, 0, 0.002667427)
+
+[node name="Cylinder" parent="bucket" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_eja3o")
+
+[node name="Roundcube" parent="bucket" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fjfhf")
+
+[editable path="bucket"]
