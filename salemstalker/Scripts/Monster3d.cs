@@ -30,6 +30,7 @@ public partial class Monster3d : CharacterBody3D
 	public bool Fleeing = false;
 	public float SpawnRange = 50f;              //The disntance the monster can be from spawn before retreeting back to it
 	public float MaxLookTime = 1f;
+	public bool DebugShapes = true;
 
 	// --- NODE REFERENCES ---
 	protected Player3d _player;                 // Reference to the player
@@ -103,11 +104,25 @@ public partial class Monster3d : CharacterBody3D
 		if (_walkArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape)
 		{
 			shape.Radius = Range;
+			if (_walkArea.GetNode<MeshInstance3D>("Debug").Mesh is SphereMesh debugShape)
+			{
+				debugShape.Radius = Range;
+			}
 		}
 		if (_runArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape2)
 		{
 			shape2.Radius = Range*3;
+			if (_runArea.GetNode<MeshInstance3D>("Debug").Mesh is SphereMesh debugShape)
+			{
+				debugShape.Radius = Range*3;
+			}
 		}
+		if (DebugShapes)
+        {
+            _walkArea.GetNode<MeshInstance3D>("Debug").Visible = true;
+			_runArea.GetNode<MeshInstance3D>("Debug").Visible = true;
+			_agroArea.GetNode<MeshInstance3D>("Debug").Visible = true;
+        }
 		Vector3 baseScale = _agroArea.Scale;
 		baseScale.X = AgroLength;
 		baseScale.Y = AgroFOV;
