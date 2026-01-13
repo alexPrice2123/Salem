@@ -68,7 +68,7 @@ public partial class Monster3d : CharacterBody3D
 	protected bool _canSeePlayer = false;
 	public float _currentSpawnRange;         //The disntance the monster can be from spawn before retreeting back to it
 	protected bool _retreating = false;
-    protected bool _justWandered = true;
+	protected bool _justWandered = true;
 	protected float _agroChangeCooldown = 0f;
 	protected bool _playerRunning = false;
 	protected string _playerBiome = "None";
