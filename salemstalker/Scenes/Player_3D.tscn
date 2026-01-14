@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=16 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
 [ext_resource type="Texture2D" uid="uid://cmfaxccf8ffss" path="res://Assets/UI/player.png" id="2_cvtri"]
@@ -13,6 +13,45 @@ radius = 0.25
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df3ch"]
 radius = 0.295052
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvtri"]
+transparency = 1
+depth_draw_mode = 2
+albedo_color = Color(0, 0, 0, 0.28235295)
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_y6jx2"]
+material = SubResource("StandardMaterial3D_cvtri")
+flip_faces = true
+radius = 30.0
+height = 40.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6jx2"]
+transparency = 1
+depth_draw_mode = 2
+albedo_color = Color(0, 0, 0, 0.5568628)
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_cvtri"]
+material = SubResource("StandardMaterial3D_y6jx2")
+flip_faces = true
+radius = 40.0
+height = 50.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wan02"]
+transparency = 1
+depth_draw_mode = 2
+albedo_color = Color(0, 0, 0, 0.7764706)
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_wan02"]
+material = SubResource("StandardMaterial3D_wan02")
+flip_faces = true
+radius = 70.0
+height = 60.0
 
 [node name="Player_3d" type="CharacterBody3D"]
 floor_max_angle = 1.134464
@@ -60,6 +99,10 @@ omni_range = 25.0
 
 [node name="FlintGun" parent="Head/Camera3D/Offhand2" instance=ExtResource("3_mawk5")]
 
+[node name="Smoke" parent="Head/Camera3D/Offhand2/FlintGun" index="4"]
+emitting = false
+one_shot = true
+
 [node name="Offhand3" type="Node3D" parent="Head/Camera3D"]
 
 [node name="FlintGun" parent="Head/Camera3D/Offhand3" instance=ExtResource("3_mawk5")]
@@ -97,6 +140,22 @@ shape = SubResource("CapsuleShape3D_df3ch")
 debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+mesh = SubResource("SphereMesh_y6jx2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+mesh = SubResource("SphereMesh_cvtri")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+mesh = SubResource("SphereMesh_wan02")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+mesh = SubResource("SphereMesh_wan02")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
