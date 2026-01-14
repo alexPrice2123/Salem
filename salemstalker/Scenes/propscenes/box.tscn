@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk40ispip3yew"]
+
+[ext_resource type="PackedScene" uid="uid://fn5gkpabvk58" path="res://Assets/3D/props/box.blend" id="1_ec3sp"]
+[ext_resource type="Texture2D" uid="uid://pgglx7r2br55" path="res://Assets/proptextures/box/wood_Base_color.png" id="2_086lo"]
+[ext_resource type="Texture2D" uid="uid://y4cy4kmtbw4i" path="res://Assets/proptextures/box/wood_Height.png" id="3_5f0xx"]
+[ext_resource type="Texture2D" uid="uid://ci1edwi2oij37" path="res://Assets/proptextures/box/wood_Normal_OpenGL.png" id="4_m0fxb"]
+[ext_resource type="Texture2D" uid="uid://dlyt2361gtwxm" path="res://Assets/proptextures/box/wood_Roughness.png" id="5_jf6r5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pv5bb"]
+albedo_texture = ExtResource("2_086lo")
+roughness_texture = ExtResource("5_jf6r5")
+normal_enabled = true
+normal_texture = ExtResource("4_m0fxb")
+heightmap_enabled = true
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("3_5f0xx")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="box" parent="." instance=ExtResource("1_ec3sp")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.35072792, 0, -0.8046658)
+
+[node name="Cube" parent="box" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_pv5bb")
+
+[editable path="box"]

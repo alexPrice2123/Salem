@@ -150,7 +150,7 @@ public partial class Player3d : CharacterBody3D
 		_baseHeadPosition = _head.Position;
 		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
 		_cameraBaseRotation = _cam.Rotation;
-    	_cameraBasePosition = _cam.Position;
+		_cameraBasePosition = _cam.Position;
 
 		// Populate the weapon dictionary
 		_weapon.Add("Shortsword", _shortSword);
@@ -166,14 +166,14 @@ public partial class Player3d : CharacterBody3D
 	public override void _Input(InputEvent @event)
 	{
 		if (Input.IsActionJustPressed("retry") && _dead == true)
-        {
+		{
 			GetNode<Ui>("UI")._loadingGoal = -1f;
-        }
+		}
 		if (Input.IsActionJustPressed("quit") && _dead == true)
-        {
-            GetTree().ChangeSceneToFile("res://Scenes/titlescreen.tscn");
+		{
+			GetTree().ChangeSceneToFile("res://Scenes/titlescreen.tscn");
 			Input.MouseMode = Input.MouseModeEnum.Visible;
-        }
+		}
 		if (_dead == true){return;}
 		// --- Camera look ---
 		if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
@@ -443,23 +443,23 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		if (Input.IsActionPressed("back"))
-        {
-            _backSpeed = Speed*(-0.30f);
+		{
+			_backSpeed = Speed*(-0.30f);
 			_running = false;
-        }
-        else
-        {
-            _backSpeed = 0;
-        }
+		}
+		else
+		{
+			_backSpeed = 0;
+		}
 	}
 
 	public void UnPause()
-    {
+	{
 		HorCamSense = Convert.ToSingle(_senseBar.Value / 1000);
 		VerCamSense = Convert.ToSingle(_senseBar.Value / 1000);
-        Input.MouseMode = Input.MouseModeEnum.Captured;
+		Input.MouseMode = Input.MouseModeEnum.Captured;
 		_interface = null;
-    }
+	}
 
 	// --- PHYSICS LOOP ---
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.
@@ -482,32 +482,32 @@ public partial class Player3d : CharacterBody3D
 		if (_overlappingAreas.Contains("Water")){ _knockVelocity = 15; }
 
 		if (_currentBiome != _lastBiome)
-        {
-            _lastBiome = _currentBiome;
+		{
+			_lastBiome = _currentBiome;
 			GetNode<Ui>("UI")._areaNameTween = 3;
-        }
+		}
 
 		if (_currentBiome.Contains("Village"))
-        {
-            _health = _maxHealth;
+		{
+			_health = _maxHealth;
 			_stamina = _maxStamina;
-        }
+		}
 
 		if (!_inGoalArea)
-        {
-            GetNode<Label>("UI/DemoWarning").Visible = true;
+		{
+			GetNode<Label>("UI/DemoWarning").Visible = true;
 			_demoCount -= (float)delta;
 			if (_demoCount <= 0.75f)
-            {
-                _health = 0f;
-            }
+			{
+				_health = 0f;
+			}
 			GetNode<Label>("UI/DemoWarning").Text = "Turn Back Now \n" + Mathf.Round(_demoCount).ToString();
-        }
-        else
-        {
-            GetNode<Label>("UI/DemoWarning").Visible = false;
+		}
+		else
+		{
+			GetNode<Label>("UI/DemoWarning").Visible = false;
 			_demoCount = 30f;
-        }
+		}
 		Vector3 velocity = Velocity; // Get the current velocity vector
 
 		ShaderMaterial shaderMaterial = GetNode<ColorRect>("UI/Dither").Material as ShaderMaterial;
@@ -515,9 +515,9 @@ public partial class Player3d : CharacterBody3D
 
 		_hallucinationFactor = Mathf.Lerp(_hallucinationFactor, 0f, (float)delta / 10);
 		if (_hallucinationFactor <= 0.4)
-        {
+		{
 			_hallucinationFactor = 0;
-        }
+		}
 
 		if (_currentStaminaTimer > 0f)
 		{
@@ -655,9 +655,9 @@ public partial class Player3d : CharacterBody3D
 			tempvelo = tempvelo.Lerp(_cam.GlobalTransform.Basis.Z * -1 * (_dashVelocity - _knockVelocity), (float)delta * 10f);
 			velocity = new Vector3(tempvelo.X, velocity.Y, tempvelo.Z);
 			if (IsOnFloor())
-            {
-                velocity = new Vector3(velocity.X, 0f, velocity.Z); // Keep Y velocity (gravity/jump) separate
-            }
+			{
+				velocity = new Vector3(velocity.X, 0f, velocity.Z); // Keep Y velocity (gravity/jump) separate
+			}
 		}
 
 		// --- Dash & Knockback Decay and Head Offset ---
@@ -679,9 +679,9 @@ public partial class Player3d : CharacterBody3D
 			CharacterBody3D targetNode = GetMouseCollision();
 			if (!targetNode.IsInGroup("Monster")){_lastSeen = targetNode;}
 			if (targetNode is Object obj)
-            {
-                obj._player = this;
-            }
+			{
+				obj._player = this;
+			}
 			if (targetNode.Name == "Anvil")
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
@@ -689,9 +689,9 @@ public partial class Player3d : CharacterBody3D
 			if (targetNode is NpcVillager node)
 			{
 				if (node._object == "Boat")
-                {
-                    node._questPrompt.Visible = true;
-                }
+				{
+					node._questPrompt.Visible = true;
+				}
 			}
 		}
 
@@ -702,8 +702,8 @@ public partial class Player3d : CharacterBody3D
 			if (targetNode is NpcVillager villager)
 			{
 				if (villager._object == "None")
-                {
-                    // Handle different quest states by modifying the NPC's displayed dialogue
+				{
+					// Handle different quest states by modifying the NPC's displayed dialogue
 					if (villager._questComplete == false && villager._questInProgress == false) // Initial quest state
 					{
 						_lastSeen = villager;
@@ -722,7 +722,7 @@ public partial class Player3d : CharacterBody3D
 						_originalDialouge = villager.WaitingDialogue;
 						villager._questPrompt.Text = villager.WaitingDialogue + "\n" + "E to Talk";
 					}
-                }
+				}
 			}
 		}
 		// --- Interaction End ---
@@ -736,10 +736,10 @@ public partial class Player3d : CharacterBody3D
 
 		_speedCount -= (float)delta;
 		if (_speedCount <= 0)
-        {
+		{
 			_speedOffset = 0f;
 			_speedCount = 0f;
-        }
+		}
 
 		// --- Head bob + sword bob ---
 		if (_dashVelocity <= 1.0) // Only apply bob when not dashing
@@ -762,9 +762,9 @@ public partial class Player3d : CharacterBody3D
 		}
  
 		if (GetMouseCollision()  == null)
-        {
-            _lastSeen = null;
-        }
+		{
+			_lastSeen = null;
+		}
 
 		// --- Gravity ---
 		if (!IsOnFloor()) { velocity += new Vector3(0f,-3.8f,0f) * (float)delta; } // Apply gravity if not on the floor
@@ -990,9 +990,9 @@ public partial class Player3d : CharacterBody3D
 		else if (MonsterBiome == "Plains"){_plainsMonstersKilled += 1;}
 		else if (MonsterBiome == "Forest"){_forestMonstersKilled += 1;}
 		if (MonsterType == "villageRat")
-        {
-            _ratsKilled += 1;
-        }
+		{
+			_ratsKilled += 1;
+		}
 		if (_questBox.FindChild("Martha") != null)
 		{
 			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Martha");
@@ -1060,13 +1060,13 @@ public partial class Player3d : CharacterBody3D
 			_hallucinationFactor = 1f;
 		}
 		if (effect == "StaminaDrain" && _blocking == false)
-        {
+		{
 			_stamina -= _stamina*0.15f;
-        }
+		}
 		if (effect == "BarkSpikes")
-        {
-            _knockVelocity = 75f;
-        }
+		{
+			_knockVelocity = 75f;
+		}
 		float shakeFade = 1f;
 		if (takenDamage > _maxHealth/3){shakeFade = 0.5f;}
 		if (_blocking == true && _parry == false)
@@ -1100,9 +1100,9 @@ public partial class Player3d : CharacterBody3D
 			}
 		}
 		else if (_cam is Camera cam)
-        {
-            cam.StartShake(takenDamage/70, shakeFade);
-        }
+		{
+			cam.StartShake(takenDamage/70, shakeFade);
+		}
 		
 		// Damage multiplier if player is out of stamina
 		if (_stamina <= 0.02f * _maxStamina)
@@ -1118,10 +1118,10 @@ public partial class Player3d : CharacterBody3D
 	{
 		_knockVelocity = 0.5f;
 		if (effect == "Slowed"  && _blocking == false)
-        {
-            _speedOffset = -2.5f;
-            _speedCount = 1.5f;
-        }
+		{
+			_speedOffset = -2.5f;
+			_speedCount = 1.5f;
+		}
 		float shakeFade = 1f;
 		if (takenDamage > _maxHealth/3){shakeFade = 0.5f;}
 		if (_blocking == true && _parry == false)
@@ -1155,9 +1155,9 @@ public partial class Player3d : CharacterBody3D
 			}
 		}
 		else if (_cam is Camera cam)
-        {
-            cam.StartShake(takenDamage/70, shakeFade);
-        }
+		{
+			cam.StartShake(takenDamage/70, shakeFade);
+		}
 		
 		_health -= takenDamage; // Apply final damage
 	}
@@ -1221,7 +1221,7 @@ public partial class Player3d : CharacterBody3D
 		{
 			_eSecWeapon4 = weaponInstance;
 		}
-    }
+	}
 	public async void play_sfx(AudioStreamOggVorbis soundeffect)
 	{
 		AudioStreamPlayer player = new();
@@ -1287,7 +1287,7 @@ public partial class Player3d : CharacterBody3D
 	}
 
 	private void _on_hurtbox_area_entered(Area3D zone)
-    {
+	{
 		// Add all groups of the entered area to our tracking list
 		foreach (string group in zone.GetGroups())
 		{
@@ -1297,7 +1297,7 @@ public partial class Player3d : CharacterBody3D
 			}
 			FindClosestGoal(zone);
 		}
-    }
+	}
 	private void _on_hurtbox_area_exited(Area3D zone)
 	{
 		// Remove groups of the exited area from our tracking list
@@ -1324,7 +1324,7 @@ public partial class Player3d : CharacterBody3D
 	}
 	
 	private void FindClosestGoal(Area3D zone)
-    {
+	{
 		if (zone.GetGroups().Contains("GoalArea"))
 		{
 			foreach (CollisionShape3D collision in zone.GetChildren())
@@ -1336,31 +1336,31 @@ public partial class Player3d : CharacterBody3D
 				}
 			}
 		}
-    }
+	}
 
 	public float CalculateLookAtAlignment()
-    {
-        if (_goalPoint == null)
-        {
-            return 1.0f; // Return maximum unalignment if no target
-        }
+	{
+		if (_goalPoint == null)
+		{
+			return 1.0f; // Return maximum unalignment if no target
+		}
 
-        // 1. Get the player's forward direction (assuming the player node is this script's owner)
-        // Adjust if your camera is separate or has a different forward axis
-        Vector3 playerForward = _cam.GlobalTransform.Basis.Z.Normalized(); 
+		// 1. Get the player's forward direction (assuming the player node is this script's owner)
+		// Adjust if your camera is separate or has a different forward axis
+		Vector3 playerForward = _cam.GlobalTransform.Basis.Z.Normalized(); 
 
-        // 2. Get the vector from the player to the target point
-        Vector3 playerToTarget = (_goalPoint.GlobalTransform.Origin - GlobalTransform.Origin).Normalized();
+		// 2. Get the vector from the player to the target point
+		Vector3 playerToTarget = (_goalPoint.GlobalTransform.Origin - GlobalTransform.Origin).Normalized();
 
-        // 3. Calculate the dot product
-        float dotProduct = playerForward.Dot(playerToTarget);
+		// 3. Calculate the dot product
+		float dotProduct = playerForward.Dot(playerToTarget);
 
-        // 4. Convert to the desired 0-1 range (0 = aligned, 1 = unaligned)
-        // The dot product ranges from 1 (aligned) to -1 (opposite).
-        // We want 1 to become 0, and -1 to become 1.
-        // A simple way is: (1 - dotProduct) / 2
-        float alignment = (1.0f - dotProduct) / 2.0f;
+		// 4. Convert to the desired 0-1 range (0 = aligned, 1 = unaligned)
+		// The dot product ranges from 1 (aligned) to -1 (opposite).
+		// We want 1 to become 0, and -1 to become 1.
+		// A simple way is: (1 - dotProduct) / 2
+		float alignment = (1.0f - dotProduct) / 2.0f;
 
-        return alignment;
-    }
+		return alignment;
+	}
 }
