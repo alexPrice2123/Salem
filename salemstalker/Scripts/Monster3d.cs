@@ -30,7 +30,7 @@ public partial class Monster3d : CharacterBody3D
 	public bool Fleeing = false;
 	public float SpawnRange = 50f;              //The disntance the monster can be from spawn before retreeting back to it
 	public float MaxLookTime = 1f;
-	public bool DebugShapes = true;
+	public bool DebugShapes = false;
 
 	// --- NODE REFERENCES ---
 	protected Player3d _player;                 // Reference to the player
@@ -74,6 +74,7 @@ public partial class Monster3d : CharacterBody3D
 	protected bool _playerRunning = false;
 	protected string _playerBiome = "None";
 	protected bool _quitePlayerInRange = false;
+	protected bool _playerInVisionRange = false;
 	protected bool _looking = false;
 	protected float _lookingTimer = 0f;
 
@@ -219,6 +220,11 @@ public partial class Monster3d : CharacterBody3D
 			_justSpawned = false;
 
 		_dashVelocity = Mathf.Lerp(_dashVelocity, 1f, 15f * (float)delta);
+
+		if (_playerInVisionRange && CheckVision() && !_canSeePlayer)
+        {
+            detectPlayer(_player.GetNode<Area3D>("Hurtbox"), true, true);
+        }
 
 		// CHASE MODE: If player close enough and monster is a chaser
 		if (!_player._currentBiome.Contains("Village") && playerSpawnDistance <= SpawnRange && _canSeePlayer && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false && Fleeing == false && !_retreating)
@@ -537,11 +543,15 @@ public partial class Monster3d : CharacterBody3D
 		}
 	}
 
-	private void detectPlayer(Area3D area, bool seen)
+	private void detectPlayer(Area3D area, bool seen, bool agro)
     {
 		GD.Print(_agroChangeCooldown);
 		if (_agroChangeCooldown > 0){return;}
 		_agroChangeCooldown = 0.5f;
+		if (agro)
+        {
+            if (!CheckVision()){return;}
+        }
         if (seen)
         {
             if (area.IsInGroup("Player"))
@@ -569,7 +579,7 @@ public partial class Monster3d : CharacterBody3D
 	private void _on_walk_range_area_entered(Area3D area) //When the player gets in range of walk noise detection
 	{
 		GD.Print("WALK ENTERED");
-		detectPlayer(area, true);
+		detectPlayer(area, true, false);
 	}
 
 	private void _on_run_range_area_entered(Area3D area) //When the player gets in range of walk run detection
@@ -577,7 +587,7 @@ public partial class Monster3d : CharacterBody3D
 		if (_player._running == true)
         {
 			GD.Print("RUN ENTERED");
-            detectPlayer(area, true);
+            detectPlayer(area, true, false);
         }
 		if (area.IsInGroup("Player")){_quitePlayerInRange = true;}
 	}
@@ -585,27 +595,59 @@ public partial class Monster3d : CharacterBody3D
 	private void _on_run_range_area_exited(Area3D area) //When the player leaves the run range
 	{
 		GD.Print("RUN EXITED");
-		detectPlayer(area, false);
+		detectPlayer(area, false, false);
 		if (area.IsInGroup("Player")){_quitePlayerInRange = false;}
 	}
 
 	private void _on_agro_range_area_entered(Area3D area) //When the player gets in range of the monster to see them; not agro
 	{
 		GD.Print("AGRO ENTERED");
-		detectPlayer(area, true);
+		_playerInVisionRange = true;
+		detectPlayer(area, true, true);
 	}
 	private void _on_agro_range_area_exited(Area3D area) //When the player gets into the agro range
 	{
 		GD.Print("AGRO EXITED");
-		detectPlayer(area, false);
+		_playerInVisionRange = false;
+		detectPlayer(area, false, true);
 	}
 
 	private void PlayerRunCheck()
     {
 		if (_quitePlayerInRange)
 		{
-			detectPlayer(_player.GetNode<Area3D>("Hurtbox"), true);
+			detectPlayer(_player.GetNode<Area3D>("Hurtbox"), true, false);
 		}
         
     }
+
+	private bool CheckVision()
+	{
+		// 1. Get the physics space state
+		PhysicsDirectSpaceState3D spaceState = GetWorld3D().DirectSpaceState;
+
+		// 2. Define the query parameters
+		var query = new PhysicsRayQueryParameters3D()
+		{
+			From = GlobalPosition,
+			To = _player.GlobalPosition,
+			CollideWithAreas = true, // Set to false if you only want to collide with bodies
+			CollideWithBodies = true,
+		};
+
+		// 3. Perform the raycast
+		var result = spaceState.IntersectRay(query);
+
+		// 4. Check the result
+		if (result.Count > 0)
+		{
+			// An object was hit between point A and point B
+			return false; // Path is NOT clear
+		}
+		else
+		{
+			// Nothing was hit along the path
+			return true; // Path IS clear
+		}
+	}
 }

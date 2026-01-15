@@ -1,9 +1,16 @@
-[gd_scene load_steps=21 format=3 uid="uid://2x3s0qfc32yb"]
+[gd_scene load_steps=31 format=3 uid="uid://2x3s0qfc32yb"]
 
 [ext_resource type="Script" uid="uid://c0ajuqqr08phc" path="res://Scripts/vineUnderground.cs" id="1_qnigb"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="2_qnigb"]
 [ext_resource type="Texture2D" uid="uid://bjurhsgte1wdp" path="res://Assets/2D/plains_grass.png" id="3_t0cnc"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="4_8if4t"]
+[ext_resource type="PackedScene" uid="uid://d4j6g40iyik0q" path="res://Assets/3D/charatermodel/vine_hands.blend" id="4_cidwa"]
+[ext_resource type="Texture2D" uid="uid://bwa2fkxsnncqd" path="res://Assets/monstertextures/vinetangler/vine_tangler_Base_color.png" id="5_xhi75"]
+[ext_resource type="Texture2D" uid="uid://bk24wiq86ccs8" path="res://Assets/monstertextures/vinetangler/vine_tangler_Height.png" id="6_ddgl5"]
+[ext_resource type="Texture2D" uid="uid://dcasbv81vsnhb" path="res://Assets/monstertextures/vinetangler/vine_tangler_Normal.png" id="7_hbxjx"]
+[ext_resource type="Texture2D" uid="uid://bx04nn7hcshcv" path="res://Assets/monstertextures/vinetangler/seed_Base_color.png" id="8_jgvkq"]
+[ext_resource type="Texture2D" uid="uid://cwkd2ypoekgv6" path="res://Assets/monstertextures/vinetangler/seed_Height.png" id="9_g2n00"]
+[ext_resource type="Texture2D" uid="uid://bfcss1xbtpesx" path="res://Assets/monstertextures/vinetangler/seed_Normal_OpenGL.png" id="10_joypt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13aiu"]
 albedo_texture = ExtResource("2_qnigb")
@@ -44,11 +51,30 @@ collision_use_scale = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_cidwa"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cidwa"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2guo"]
 albedo_texture = ExtResource("3_t0cnc")
 
 [sub_resource type="SphereMesh" id="SphereMesh_qnigb"]
 material = SubResource("StandardMaterial3D_l2guo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_diaea"]
+cull_mode = 2
+albedo_texture = ExtResource("5_xhi75")
+normal_enabled = true
+normal_texture = ExtResource("7_hbxjx")
+heightmap_enabled = true
+heightmap_texture = ExtResource("6_ddgl5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5fk11"]
+albedo_texture = ExtResource("8_jgvkq")
+normal_enabled = true
+normal_texture = ExtResource("10_joypt")
+heightmap_enabled = true
+heightmap_texture = ExtResource("9_g2n00")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0cnc"]
 size = Vector3(0.652344, 0.495117, 3.84668)
@@ -144,14 +170,39 @@ process_material = SubResource("ParticleProcessMaterial_t0cnc")
 draw_pass_1 = SubResource("BoxMesh_cidwa")
 
 [node name="Vine" type="MeshInstance3D" parent="VinePoint"]
-transform = Transform3D(6.88388e-16, -1.96701e-07, -0.126, -0.126, -1.96701e-07, -4.47642e-16, -5.50763e-09, 4.5, -5.50763e-09, 0, -1.12669, 0)
+transform = Transform3D(6.883886e-16, -1.9670125e-07, -0.126, -0.126, -1.9670125e-07, -4.476422e-16, -5.507635e-09, 4.5, -5.507635e-09, 0, -1.12669, 0)
+material_override = SubResource("StandardMaterial3D_cidwa")
 mesh = SubResource("SphereMesh_qnigb")
+
+[node name="vine_hands" parent="VinePoint/Vine" instance=ExtResource("4_cidwa")]
+transform = Transform3D(5.801877e-17, -0.010619542, -1.9764543e-09, -1.2997444e-11, -1.2997444e-11, 0.00126605, -0.010619542, -3.772819e-17, -1.9764543e-09, 0, -0.021057155, 3.2872766e-08)
+
+[node name="Cube" parent="VinePoint/Vine/vine_hands" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_diaea")
+surface_material_override/1 = SubResource("StandardMaterial3D_5fk11")
+
+[node name="Cube_001" parent="VinePoint/Vine/vine_hands" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_diaea")
+surface_material_override/1 = SubResource("StandardMaterial3D_5fk11")
 
 [node name="HitFX" type="MeshInstance3D" parent="VinePoint"]
 transform = Transform3D(6.88388e-16, -1.96701e-07, -0.126, -0.126, -1.96701e-07, -4.47642e-16, -5.50763e-09, 4.5, -5.50763e-09, 0, 0, 0)
 visible = false
 material_override = ExtResource("4_8if4t")
 mesh = SubResource("SphereMesh_qnigb")
+
+[node name="vine_hands2" parent="VinePoint/HitFX" instance=ExtResource("4_cidwa")]
+transform = Transform3D(5.8018706e-17, -0.010619541, -1.9764514e-09, -1.2997433e-11, -1.2997433e-11, 0.0012660499, -0.010619541, -3.7728174e-17, -1.9764514e-09, 8.941984, -0.021057144, 3.2872755e-08)
+
+[node name="Cube" parent="VinePoint/HitFX/vine_hands2" index="0"]
+material_override = ExtResource("4_8if4t")
+surface_material_override/0 = SubResource("StandardMaterial3D_diaea")
+surface_material_override/1 = SubResource("StandardMaterial3D_5fk11")
+
+[node name="Cube_001" parent="VinePoint/HitFX/vine_hands2" index="1"]
+material_override = ExtResource("4_8if4t")
+surface_material_override/0 = SubResource("StandardMaterial3D_diaea")
+surface_material_override/1 = SubResource("StandardMaterial3D_5fk11")
 
 [node name="Area3D" type="Area3D" parent="VinePoint"]
 
@@ -191,3 +242,6 @@ libraries = {
 }
 
 [connection signal="area_entered" from="VinePoint/Area3D" to="." method="_on_area_3d_area_entered"]
+
+[editable path="VinePoint/Vine/vine_hands"]
+[editable path="VinePoint/HitFX/vine_hands2"]
