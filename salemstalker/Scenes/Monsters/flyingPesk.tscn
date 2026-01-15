@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=3 uid="uid://crxygapcq66ft"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_rrcq7"]
-[ext_resource type="Script" uid="uid://c4bkik5xcpbc3" path="res://Scripts/flyingPesk.cs" id="2_rrcq7"]
+[ext_resource type="Script" uid="uid://c4bkik5xcpbc3" path="res://Scripts/MonsterScripts/flyingPesk.cs" id="2_rrcq7"]
 [ext_resource type="PackedScene" uid="uid://h326kngq1jwa" path="res://Assets/3D/charatermodel/pesk.blend" id="4_pgtvs"]
 [ext_resource type="Texture2D" uid="uid://dgk24wrmrjdc5" path="res://Assets/monstertextures/pest/body_Base_color.png" id="5_chkap"]
 [ext_resource type="Texture2D" uid="uid://chrlyioibw7yi" path="res://Assets/monstertextures/pest/wings1_Base_color.png" id="6_2smgy"]

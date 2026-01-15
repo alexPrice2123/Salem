@@ -9,11 +9,12 @@ public partial class Monster3d : CharacterBody3D
 
 
 	// --- CONSTANTS ---
-	protected float Speed = 2.5f;               // Movement speed
+	protected float RunSpeed = 3f;              // Movement speed when they are chasing the player
+	protected float WalkSpeed = 2f;             // Movement speed when they are wandering
 	protected float MaxHealth = 100.0f;         // Maximum monster health
-	protected float Range = 15.0f;              // Detection range for chasing
-	protected float AgroFOV = 5.0f;          // Detection range for agro
-	protected float AgroLength = 5.0f;          // Detection range for agro
+	protected float WalkRange = 15.0f;              // Walk hearing detection (sprint hearing is 3x this)
+	protected float AgroFOV = 5.0f;          	// The vision FOV of the monster
+	protected float AgroLength = 5.0f;          // The detection length of the monsters vision
 	protected double SpawnDistance = 100;       // Distance from player before despawning
 	protected float BaseDamage = 10.0f;         // Base damage of the monster
 	protected int WanderRange = 10;             // The range the monster can wander from its spawn point
@@ -27,10 +28,10 @@ public partial class Monster3d : CharacterBody3D
 	public bool Shadow = false;                 // Decides if the monster can become a phantom
 	public bool Stationery = false;             // If the monster shouldnt move at all
 	public string Biome = "Plains";             // What Biome this monster spawned in
-	public bool Fleeing = false;
-	public float SpawnRange = 50f;              //The disntance the monster can be from spawn before retreeting back to it
-	public float MaxLookTime = 1f;
-	public bool DebugShapes = false;
+	public bool Fleeing = false;				// If the monster is fleeing
+	public float SpawnRange = 50f;              // The disntance the monster can be from spawn before retreeting back to it
+	public float MaxLookTime = 1f;				// How long the monster looks around when wandering (in seconds)
+	public bool DebugShapes = true;				// If debug hitboxes should be enabled
 
 	// --- NODE REFERENCES ---
 	protected Player3d _player;                 // Reference to the player
@@ -104,26 +105,26 @@ public partial class Monster3d : CharacterBody3D
 
 		if (_walkArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape)
 		{
-			shape.Radius = Range;
+			shape.Radius = WalkRange;
 			if (_walkArea.GetNode<MeshInstance3D>("Debug").Mesh is SphereMesh debugShape)
 			{
-				debugShape.Radius = Range;
+				debugShape.Radius = WalkRange;
 			}
 		}
 		if (_runArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape2)
 		{
-			shape2.Radius = Range*3;
+			shape2.Radius = WalkRange*3;
 			if (_runArea.GetNode<MeshInstance3D>("Debug").Mesh is SphereMesh debugShape)
 			{
-				debugShape.Radius = Range*3;
+				debugShape.Radius = WalkRange*3;
 			}
 		}
 		if (DebugShapes)
-        {
-            _walkArea.GetNode<MeshInstance3D>("Debug").Visible = true;
+		{
+			_walkArea.GetNode<MeshInstance3D>("Debug").Visible = true;
 			_runArea.GetNode<MeshInstance3D>("Debug").Visible = true;
 			_agroArea.GetNode<MeshInstance3D>("Debug").Visible = true;
-        }
+		}
 		Vector3 baseScale = _agroArea.Scale;
 		baseScale.X = AgroLength;
 		baseScale.Y = AgroFOV;
@@ -222,15 +223,15 @@ public partial class Monster3d : CharacterBody3D
 		_dashVelocity = Mathf.Lerp(_dashVelocity, 1f, 15f * (float)delta);
 
 		if (_playerInVisionRange && CheckVision() && !_canSeePlayer)
-        {
-            detectPlayer(_player.GetNode<Area3D>("Hurtbox"), true, true);
-        }
+		{
+			detectPlayer(_player.GetNode<Area3D>("Hurtbox"), true, true);
+		}
 
 		// CHASE MODE: If player close enough and monster is a chaser
 		if (!_player._currentBiome.Contains("Village") && playerSpawnDistance <= SpawnRange && _canSeePlayer && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false && Fleeing == false && !_retreating)
 		{
 			GD.Print("CHASING");
-            _justWandered = true;
+			_justWandered = true;
 			// Navigation pathing toward player
 			_navAgent.TargetPosition = _player.GlobalPosition;
 			_player._inCombat = true;
@@ -243,7 +244,7 @@ public partial class Monster3d : CharacterBody3D
 			}
 			else
 			{
-				_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed * _dashVelocity + _speedOffset);
+				_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (RunSpeed * _dashVelocity + _speedOffset);
 			}
 
 			// Rotate monster to face player
@@ -270,7 +271,7 @@ public partial class Monster3d : CharacterBody3D
 		// RANGED ENEMY BEHAVIOR: maintain distance then fire
 		else if (!_player._currentBiome.Contains("Village") && playerSpawnDistance <= SpawnRange && _canSeePlayer && !_attackAnim && !Chaser && Stationery == false && Fleeing == false && !_retreating)
 		{
-            _justWandered = true;
+			_justWandered = true;
 			_player._inCombat = true; _navAgent.TargetPosition = _rangedPosition;
 			Vector3 nextPoint = _navAgent.GetNextPathPosition();
 			// Apply movement and knockback forces
@@ -281,7 +282,7 @@ public partial class Monster3d : CharacterBody3D
 			}
 			else
 			{
-				_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed * _dashVelocity + _speedOffset);
+				_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (RunSpeed * _dashVelocity + _speedOffset);
 			}
 			// Attack when the monster gets near the finish position or if its been stading still
 			if (GlobalPosition.Snapped(0.1f) == _rangedPosition.Snapped(0.1f) || Velocity.Length() <= _veloThreshold)
@@ -300,7 +301,7 @@ public partial class Monster3d : CharacterBody3D
 		}
 		else if (playerSpawnDistance <= SpawnRange && Stationery == true && Fleeing == false && !_retreating)
 		{
-            _justWandered = true;
+			_justWandered = true;
 			// Rotate monster to face player
 			Vector3 playerPos = _player.GlobalPosition;
 			_lookDirection.LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
@@ -338,7 +339,7 @@ public partial class Monster3d : CharacterBody3D
 
 			Vector3 nextPoint = _navAgent.GetNextPathPosition();
 
-			_targetVelocity = (nextPoint - myPos).Normalized() * (Speed * _dashVelocity + _speedOffset);
+			_targetVelocity = (nextPoint - myPos).Normalized() * (RunSpeed * _dashVelocity + _speedOffset);
 
 			Vector3 moveDirection = _targetVelocity.Normalized(); 
 			if (moveDirection != Vector3.Zero)
@@ -350,7 +351,7 @@ public partial class Monster3d : CharacterBody3D
 		else if (!_attackAnim && (playerSpawnDistance > SpawnRange || !_canSeePlayer || _retreating || _playerBiome.Contains("Village")) && Stationery == false)
 		{
 			if (!_looking)
-            {
+			{
 				// Move randomly around spawn point
 				if (_justWandered && !Fleeing)
 				{
@@ -363,7 +364,7 @@ public partial class Monster3d : CharacterBody3D
 				{
 					_navAgent.TargetPosition = _wanderPos;
 					Vector3 nextPoint = _navAgent.GetNextPathPosition();
-					_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed-1f);
+					_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (WalkSpeed);
 				}
 
 				Vector3 moveDirection = Velocity.Normalized(); 
@@ -374,9 +375,9 @@ public partial class Monster3d : CharacterBody3D
 
 				// If too far from player, despawn
 				if (distance > SpawnDistance) { QueueFree(); }
-            }
-            else
-            {
+			}
+			else
+			{
 				float turnSpeed = 0.3f;
 				Vector3 currentForward = -_lookDirection.GlobalTransform.Basis.Z;
 				Vector3 lookingForward = currentForward.Rotated(Vector3.Up, turnSpeed * (float)delta);
@@ -389,11 +390,11 @@ public partial class Monster3d : CharacterBody3D
 
 				_lookingTimer += (float)delta;
 				if (_lookingTimer >= MaxLookTime)
-                {
-                    _looking = false;
+				{
+					_looking = false;
 					ChooseNewWander();
-                }
-            }
+				}
+			}
 		}
 
 		_count += 1;
@@ -464,6 +465,7 @@ public partial class Monster3d : CharacterBody3D
 		else if (Monster is underBrush ub) ub.Attack();
 		else if (Monster is vineTangler vt) vt.Attack();
 		else if (Monster is weepingSpine ws) ws.Attack();
+		else if (Monster is lumberJack lj) lj.Attack();
 	}
 
 
@@ -544,17 +546,17 @@ public partial class Monster3d : CharacterBody3D
 	}
 
 	private void detectPlayer(Area3D area, bool seen, bool agro)
-    {
+	{
 		GD.Print(_agroChangeCooldown);
 		if (_agroChangeCooldown > 0){return;}
 		_agroChangeCooldown = 0.5f;
 		if (agro)
-        {
-            if (!CheckVision()){return;}
-        }
-        if (seen)
-        {
-            if (area.IsInGroup("Player"))
+		{
+			if (!CheckVision()){return;}
+		}
+		if (seen)
+		{
+			if (area.IsInGroup("Player"))
 			{
 				_canSeePlayer = true;
 			}
@@ -566,15 +568,15 @@ public partial class Monster3d : CharacterBody3D
 					visEnteredMonster.PackAgro();
 				}
 			}
-        }
-        else
-        {
-            if (area.IsInGroup("Player") && area.Name == "Hurtbox")
+		}
+		else
+		{
+			if (area.IsInGroup("Player") && area.Name == "Hurtbox")
 			{
 				_canSeePlayer = false;
 			}
-        }
-    }
+		}
+	}
 	
 	private void _on_walk_range_area_entered(Area3D area) //When the player gets in range of walk noise detection
 	{
@@ -585,10 +587,10 @@ public partial class Monster3d : CharacterBody3D
 	private void _on_run_range_area_entered(Area3D area) //When the player gets in range of walk run detection
 	{
 		if (_player._running == true)
-        {
+		{
 			GD.Print("RUN ENTERED");
-            detectPlayer(area, true, false);
-        }
+			detectPlayer(area, true, false);
+		}
 		if (area.IsInGroup("Player")){_quitePlayerInRange = true;}
 	}
 
@@ -613,13 +615,13 @@ public partial class Monster3d : CharacterBody3D
 	}
 
 	private void PlayerRunCheck()
-    {
+	{
 		if (_quitePlayerInRange)
 		{
 			detectPlayer(_player.GetNode<Area3D>("Hurtbox"), true, false);
 		}
-        
-    }
+		
+	}
 
 	private bool CheckVision()
 	{

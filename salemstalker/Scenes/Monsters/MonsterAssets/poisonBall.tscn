@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://b4841q4km5a4v"]
 
-[ext_resource type="Script" uid="uid://do03uv46usits" path="res://Scripts/poisonBall.cs" id="1_uusnt"]
+[ext_resource type="Script" uid="uid://do03uv46usits" path="res://Scripts/MonsterScripts/MonsterAssetScripts/poisonBall.cs" id="1_uusnt"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="2_ggalp"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uusnt"]

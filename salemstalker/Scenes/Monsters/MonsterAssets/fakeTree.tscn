@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://syqvg0yul3mk"]
 
-[ext_resource type="Script" uid="uid://c0gtclfpd0kby" path="res://Scripts/fakeTree.cs" id="1_subrv"]
+[ext_resource type="Script" uid="uid://c0gtclfpd0kby" path="res://Scripts/MonsterScripts/MonsterAssetScripts/fakeTree.cs" id="1_subrv"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="2_p2s7p"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="3_i5fsq"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="4_in1tx"]

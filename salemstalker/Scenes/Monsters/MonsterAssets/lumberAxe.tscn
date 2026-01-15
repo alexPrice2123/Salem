@@ -1,11 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://35dhawcm08kd"]
+[gd_scene load_steps=19 format=3 uid="uid://flxa188cwl07"]
 
-[ext_resource type="Script" uid="uid://dgo2vsehawmyg" path="res://Scripts/MonsterScripts/MonsterAssetScripts/spikeyBark.cs" id="1_k5553"]
-[ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="2_k5553"]
-[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_sldph"]
+[ext_resource type="Script" uid="uid://dgo2vsehawmyg" path="res://Scripts/MonsterScripts/MonsterAssetScripts/spikeyBark.cs" id="1_peepu"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_ol560"]
+[ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_fgin0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2uev4"]
-albedo_texture = ExtResource("2_sldph")
+albedo_texture = ExtResource("2_ol560")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ui1ly"]
 
@@ -14,7 +14,7 @@ seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ui1ly"]
 render_priority = 0
-shader = ExtResource("2_k5553")
+shader = ExtResource("3_fgin0")
 shader_parameter/Color = Color(0.38431373, 0.25882354, 0.24705882, 1)
 shader_parameter/glow_color = Color(0, 0, 0, 1)
 shader_parameter/dist = 2.0
@@ -79,15 +79,14 @@ scale_curve = SubResource("CurveTexture_ag22c")
 
 [sub_resource type="BoxMesh" id="BoxMesh_sldph"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_cp2bc"]
-radius = 0.140609
+[sub_resource type="BoxShape3D" id="BoxShape3D_peepu"]
+size = Vector3(0.10253906, 0.11959839, 0.5782471)
 
-[node name="Bark" type="RigidBody3D"]
-gravity_scale = 0.0
-script = ExtResource("1_k5553")
+[node name="Axe" type="RigidBody3D"]
+script = ExtResource("1_peepu")
 
 [node name="Orb" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1.1066851e-08, 0, -0.09214627, 0, 0.02830427, 0, 0.25318006, 0, -4.027841e-09, 0, 0, 0)
+transform = Transform3D(-2.5051113e-08, 0, -0.09214626, 0, 0.113961786, 0, 0.5731027, 0, -4.0278407e-09, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_2uev4")
 mesh = SubResource("BoxMesh_ui1ly")
 
@@ -110,9 +109,14 @@ speed_scale = 64.0
 process_material = SubResource("ParticleProcessMaterial_6l8s8")
 draw_pass_1 = SubResource("BoxMesh_sldph")
 
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0034179688, 0.00016784668, -0.0005493164)
+shape = SubResource("BoxShape3D_peepu")
+
 [node name="Attackbox" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attackbox"]
-shape = SubResource("SphereShape3D_cp2bc")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0034179688, 0.00016784668, -0.0005493164)
+shape = SubResource("BoxShape3D_peepu")
 
 [connection signal="area_entered" from="Attackbox" to="." method="_on_attackbox_area_entered"]

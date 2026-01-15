@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://2x3s0qfc32yb"]
 
-[ext_resource type="Script" uid="uid://c0ajuqqr08phc" path="res://Scripts/vineUnderground.cs" id="1_qnigb"]
+[ext_resource type="Script" uid="uid://c0ajuqqr08phc" path="res://Scripts/MonsterScripts/MonsterAssetScripts/vineUnderground.cs" id="1_qnigb"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="2_qnigb"]
 [ext_resource type="Texture2D" uid="uid://bjurhsgte1wdp" path="res://Assets/2D/plains_grass.png" id="3_t0cnc"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="4_8if4t"]
