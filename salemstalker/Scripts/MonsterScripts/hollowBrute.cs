@@ -1,23 +1,28 @@
 using Godot;
 using System;
 
-public partial class villageRat : Monster3d
+public partial class hollowBrute : Monster3d
 {
 	// Called when the node enters the scene tree for the first time.
 
 	private float _distance;
 	public override void _Ready()
 	{
-		Speed = 5f;             // Movement speed
-		MaxHealth = 10.0f;         // Maximum monster health
-		Range = 10f;            // Detection range for chasing
-		SpawnDistance = 100;    // Distance from player before despawning
-		BaseDamage = 0f;
-		WanderRange = 25;
-		AttackSpeed = 1.5f;
-		AttackRange = 2f;
-		Monster = this;
-		Fleeing = true;
+		Chaser = true;              // If this monster chasing the player or finds a point within a range of the player
+		MoveWhileAttack = true;     // Can this monster move while attacking
+		Flying = false;              // Should gravity be applied to this monster
+		Stationery = false;          // If the monster shouldnt move at all
+		BaseDamage = 10.0f;         // Base damage of the monster
+		AttackSpeed = 0.5f;         // The time between its attacks
+		AttackRange = 1f;           // The distance the monster gets from the player before stopping and attacking
+		MaxHealth = 100.0f;         // Maximum monster health
+		WanderRange = 10;           // The range the monster can wander from its spawn point
+		AgroFOV = 5.0f;          	// The vision FOV of the monster
+		AgroLength = 5.0f;          // The detection length of the monsters vision
+		WalkRange = 15.0f;          // Walk hearing detection (sprint hearing is 3x this)
+		WalkSpeed = 2f;             // Movement speed when they are wandering
+		RunSpeed = 5f;              // Movement speed when they are chasing the player
+		
 		Initialization();
 	}
 
@@ -25,16 +30,18 @@ public partial class villageRat : Monster3d
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
+		_distance = (_player.GlobalPosition - GlobalPosition).Length();
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("villageRat", Biome);
+			_player.MonsterKilled("hollowBrute", Biome);
 			if (Debug == true)
             {
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
             }
 			QueueFree(); // Destroy monster when health hits zero
 		}
-		RotateFunc(delta);
+		if (_attackAnim == false) { RotateFunc(delta); }
+		else { _targetVelocity = Vector3.Zero; }
 	}
 
 	private void RotateFunc(double delta)
@@ -69,14 +76,16 @@ public partial class villageRat : Monster3d
 	{
 		_hasHit = false;
 		_attackAnim = true;
-		await ToSignal(GetTree().CreateTimer(1.6), "timeout");
-		_speedOffset = 2.5f;
+		_targetVelocity = Vector3.Zero;
+		await ToSignal(GetTree().CreateTimer(1.5), "timeout");
 		_attackBox.GetParent<Area3D>().Monitoring = true;
         await ToSignal(GetTree().CreateTimer(0.2), "timeout");
 		_attackBox.GetParent<Area3D>().Monitoring = false;
 		_canAttack = false;
+		_attackException = false;
 		await ToSignal(GetTree().CreateTimer(0.7), "timeout");
 		_attackAnim = false;
+		_targetVelocity = Vector3.Zero;
         await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
         _canAttack = true;
 	}

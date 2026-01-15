@@ -1,16 +1,13 @@
 using Godot;
 using System;
 
-public partial class flyingPesk : Monster3d
+public partial class hollowShadow : Monster3d
 {
 	// Called when the node enters the scene tree for the first time.
 
 	private float _distance;
-	private float _attackingRange = 1.2f;
-	private float _attackingDistance = 10f;
-	private bool _fleeing = false;
-	private int _cooldown = 5;
-	private int _currentCooldown = 0;
+	private float _transparencyGoal = 0f;
+	private float _fadeFactor = 1f;
 	public override void _Ready()
 	{
 		Chaser = true;              // If this monster chasing the player or finds a point within a range of the player
@@ -24,8 +21,9 @@ public partial class flyingPesk : Monster3d
 		WanderRange = 10;           // The range the monster can wander from its spawn point
 		AgroFOV = 5.0f;          	// The vision FOV of the monster
 		AgroLength = 5.0f;          // The detection length of the monsters vision
+		WalkRange = 15.0f;          // Walk hearing detection (sprint hearing is 3x this)
 		WalkSpeed = 2f;             // Movement speed when they are wandering
-		RunSpeed = 3f;              // Movement speed when they are chasing the player
+		RunSpeed = 5f;              // Movement speed when they are chasing the player
 		
 		Initialization();
 	}
@@ -34,43 +32,23 @@ public partial class flyingPesk : Monster3d
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
-		_distance = (_player.GlobalPosition - GlobalPosition).Length();
-		if (_distance <= _attackingDistance && _fleeing == false)
-		{
-			if (_currentCooldown <= 0)
-			{
-				_attacking = true;
-				_rangedPosition = _player.GlobalPosition;
-			}
-            else
-            {
-                _fleeing = true;
-                RandomRangedPosition();
-            }
-		}
-		GD.Print(_distance);
-		if (_distance <= _attackingRange && _attacking == true && _fleeing == false)
-		{
-			if (_currentCooldown <= 0)
-			{
-				Attack();
-			}
-        }
-		if (_health <= 0)
-		{
-			_player.MonsterKilled("flyingPesk", Biome);
-			if (Debug == true)
-            {
-				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
-            }
-			QueueFree(); // Destroy monster when health hits zero
-		}
-		if (_attacking == true)
+		if (_player._hallucinationFactor <= 0.1)
         {
-            Vector3 playerPos = _player.GlobalPosition;
-            _lookDirection.LookAt(new Vector3(playerPos.X, GlobalPosition.Y, playerPos.Z), Vector3.Up);
+            _fadeFactor = 3f;
+			_transparencyGoal = 1f;
+			GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
         }
+
 		RotateFunc(delta);
+		GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube").Transparency = Mathf.Lerp(GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube").Transparency, _transparencyGoal, _fadeFactor * (float)delta);
+		GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_002").Transparency = Mathf.Lerp(GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_002").Transparency, _transparencyGoal, _fadeFactor * (float)delta);
+		GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_003").Transparency = Mathf.Lerp(GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_003").Transparency, _transparencyGoal, _fadeFactor * (float)delta);
+
+		GD.Print(GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_003").Transparency);
+		if (GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_003").Transparency > 0.99f)
+        {
+			QueueFree();
+        }
 	}
 
 	private void RotateFunc(double delta)
@@ -86,35 +64,13 @@ public partial class flyingPesk : Monster3d
         }
     }
 
-	public void _on_hurtbox_area_entered(Area3D body)
-	{
-		Damaged(body);
-	}
-
-	public void Fly()
-	{
-		if (_attacking == false)
-		{
-			RandomRangedPosition();
-			_currentCooldown -= 1;
-		}
-		_fleeing = false;
-	}
-
 	public async void Attack()
 	{
-		GD.Print("PESK ATTACK");
-		_currentCooldown = _cooldown;
+		_hasHit = false;
 		_attackAnim = true;
-		_attacking = false;
-		_targetVelocity = Vector3.Zero;
-		Velocity = _targetVelocity;
-
-		_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "Hallucinate");
-
-		// await ToSignal(GetTree().CreateTimer(1f), "timeout");
-		_fleeing = true;
-		_attackAnim = false;
-		RandomRangedPosition();
+		await ToSignal(GetTree().CreateTimer(.4), "timeout");
+		_fadeFactor = 10f;
+		_transparencyGoal = 1f;
+		GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
 	}
 }

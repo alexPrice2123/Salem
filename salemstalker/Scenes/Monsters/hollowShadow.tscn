@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://cghrenmgixecy"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_82121"]
-[ext_resource type="Script" uid="uid://dlcn1b6vhcxv7" path="res://Scripts/hollowShadow.cs" id="2_82121"]
+[ext_resource type="Script" uid="uid://dlcn1b6vhcxv7" path="res://Scripts/MonsterScripts/hollowShadow.cs" id="2_82121"]
 [ext_resource type="PackedScene" uid="uid://ciweaa6jnd27q" path="res://Assets/3D/charatermodel/half_hollow.blend" id="3_82121"]
 [ext_resource type="Texture2D" uid="uid://b0lxcyef7wojh" path="res://Assets/monstertextures/hollow/pants_Base_color.png" id="4_8tplm"]
 [ext_resource type="Texture2D" uid="uid://b7yc8yncimj7o" path="res://Assets/monstertextures/hollow/shoes_Base_color.png" id="5_ubo6t"]

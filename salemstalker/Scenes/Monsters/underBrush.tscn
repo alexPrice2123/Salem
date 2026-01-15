@@ -1,7 +1,7 @@
 [gd_scene load_steps=37 format=3 uid="uid://c3gi3vrev7n0x"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_jmbp6"]
-[ext_resource type="Script" uid="uid://chd7madwhmvqt" path="res://Scripts/underBrush.cs" id="2_xundk"]
+[ext_resource type="Script" uid="uid://chd7madwhmvqt" path="res://Scripts/MonsterScripts/underBrush.cs" id="2_xundk"]
 [ext_resource type="PackedScene" uid="uid://4xvpy66h4j7s" path="res://Assets/3D/charatermodel/underbrush.blend" id="3_cuvqp"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="4_mop83"]
 [ext_resource type="Texture2D" uid="uid://c5fu5c6gcnf5r" path="res://Assets/2D/swamp_grass.png" id="4_xundk"]

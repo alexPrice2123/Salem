@@ -25,8 +25,9 @@ public partial class vineTangler : Monster3d
 		WanderRange = 10;           // The range the monster can wander from its spawn point
 		AgroFOV = 5.0f;          	// The vision FOV of the monster
 		AgroLength = 5.0f;          // The detection length of the monsters vision
+		WalkRange = 15.0f;          // Walk hearing detection (sprint hearing is 3x this)
 		WalkSpeed = 2f;             // Movement speed when they are wandering
-		RunSpeed = 3f;              // Movement speed when they are chasing the player
+		RunSpeed = 5f;              // Movement speed when they are chasing the player
 
 		_spawn = GetNode<Node3D>("Spawn");
 		_holder = _player.GetParent();	

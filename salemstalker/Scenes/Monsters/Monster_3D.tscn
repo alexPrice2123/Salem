@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=4 uid="uid://u7yct1quu07a"]
 
-[ext_resource type="Script" uid="uid://ckmn7j07x5ubl" path="res://Scripts/Monster3d.cs" id="1_ayuld"]
+[ext_resource type="Script" uid="uid://ckmn7j07x5ubl" path="res://Scripts/MonsterScripts/Monster3d.cs" id="1_ayuld"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="2_agcab"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_beqai"]

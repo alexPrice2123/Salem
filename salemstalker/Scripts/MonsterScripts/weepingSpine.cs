@@ -13,7 +13,7 @@ public partial class weepingSpine : Monster3d
 	public bool _hushSpawned = false;
 	public override void _Ready()
 	{
-       Chaser = true;              // If this monster chasing the player or finds a point within a range of the player
+       	Chaser = true;              // If this monster chasing the player or finds a point within a range of the player
 		MoveWhileAttack = true;     // Can this monster move while attacking
 		Flying = false;              // Should gravity be applied to this monster
 		Stationery = false;          // If the monster shouldnt move at all
@@ -24,8 +24,9 @@ public partial class weepingSpine : Monster3d
 		WanderRange = 10;           // The range the monster can wander from its spawn point
 		AgroFOV = 5.0f;          	// The vision FOV of the monster
 		AgroLength = 5.0f;          // The detection length of the monsters vision
+		WalkRange = 15.0f;          // Walk hearing detection (sprint hearing is 3x this)
 		WalkSpeed = 2f;             // Movement speed when they are wandering
-		RunSpeed = 3f;              // Movement speed when they are chasing the player
+		RunSpeed = 5f;              // Movement speed when they are chasing the player
 		
 		Initialization();
 		_spawn = GetNode<Node3D>("Spawn");

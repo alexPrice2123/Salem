@@ -1,13 +1,11 @@
 using Godot;
 using System;
 
-public partial class hollowShadow : Monster3d
+public partial class villageRat : Monster3d
 {
 	// Called when the node enters the scene tree for the first time.
 
 	private float _distance;
-	private float _transparencyGoal = 0f;
-	private float _fadeFactor = 1f;
 	public override void _Ready()
 	{
 		Chaser = true;              // If this monster chasing the player or finds a point within a range of the player
@@ -21,8 +19,10 @@ public partial class hollowShadow : Monster3d
 		WanderRange = 10;           // The range the monster can wander from its spawn point
 		AgroFOV = 5.0f;          	// The vision FOV of the monster
 		AgroLength = 5.0f;          // The detection length of the monsters vision
+		WalkRange = 15.0f;          // Walk hearing detection (sprint hearing is 3x this)
 		WalkSpeed = 2f;             // Movement speed when they are wandering
-		RunSpeed = 3f;              // Movement speed when they are chasing the player
+		RunSpeed = 5f;              // Movement speed when they are chasing the player
+
 		Initialization();
 	}
 
@@ -30,23 +30,16 @@ public partial class hollowShadow : Monster3d
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
-		if (_player._hallucinationFactor <= 0.1)
-        {
-            _fadeFactor = 3f;
-			_transparencyGoal = 1f;
-			GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
-        }
-
+		if (_health <= 0)
+		{
+			_player.MonsterKilled("villageRat", Biome);
+			if (Debug == true)
+            {
+				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
+            }
+			QueueFree(); // Destroy monster when health hits zero
+		}
 		RotateFunc(delta);
-		GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube").Transparency = Mathf.Lerp(GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube").Transparency, _transparencyGoal, _fadeFactor * (float)delta);
-		GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_002").Transparency = Mathf.Lerp(GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_002").Transparency, _transparencyGoal, _fadeFactor * (float)delta);
-		GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_003").Transparency = Mathf.Lerp(GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_003").Transparency, _transparencyGoal, _fadeFactor * (float)delta);
-
-		GD.Print(GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_003").Transparency);
-		if (GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/Cube_003").Transparency > 0.99f)
-        {
-			QueueFree();
-        }
 	}
 
 	private void RotateFunc(double delta)
@@ -62,13 +55,34 @@ public partial class hollowShadow : Monster3d
         }
     }
 
+	public void _on_hurtbox_area_entered(Area3D body)
+	{
+		Damaged(body);
+	}
+
+	public void _on_attackbox_area_entered(Node3D body)
+	{
+		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
+		{
+			_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "None");
+			_attackBox.Disabled = true;
+			_hasHit = true;
+		}
+	}
+
 	public async void Attack()
 	{
 		_hasHit = false;
 		_attackAnim = true;
-		await ToSignal(GetTree().CreateTimer(.4), "timeout");
-		_fadeFactor = 10f;
-		_transparencyGoal = 1f;
-		GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
+		await ToSignal(GetTree().CreateTimer(1.6), "timeout");
+		_speedOffset = 2.5f;
+		_attackBox.GetParent<Area3D>().Monitoring = true;
+        await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+		_attackBox.GetParent<Area3D>().Monitoring = false;
+		_canAttack = false;
+		await ToSignal(GetTree().CreateTimer(0.7), "timeout");
+		_attackAnim = false;
+        await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
+        _canAttack = true;
 	}
 }

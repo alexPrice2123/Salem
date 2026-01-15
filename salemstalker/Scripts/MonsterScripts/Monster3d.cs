@@ -12,7 +12,7 @@ public partial class Monster3d : CharacterBody3D
 	protected float RunSpeed = 3f;              // Movement speed when they are chasing the player
 	protected float WalkSpeed = 2f;             // Movement speed when they are wandering
 	protected float MaxHealth = 100.0f;         // Maximum monster health
-	protected float Range = 15.0f;              // Walk hearing detection (sprint hearing is 3x this)
+	protected float WalkRange = 15.0f;              // Walk hearing detection (sprint hearing is 3x this)
 	protected float AgroFOV = 5.0f;          	// The vision FOV of the monster
 	protected float AgroLength = 5.0f;          // The detection length of the monsters vision
 	protected double SpawnDistance = 100;       // Distance from player before despawning
@@ -105,18 +105,18 @@ public partial class Monster3d : CharacterBody3D
 
 		if (_walkArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape)
 		{
-			shape.Radius = Range;
+			shape.Radius = WalkRange;
 			if (_walkArea.GetNode<MeshInstance3D>("Debug").Mesh is SphereMesh debugShape)
 			{
-				debugShape.Radius = Range;
+				debugShape.Radius = WalkRange;
 			}
 		}
 		if (_runArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape2)
 		{
-			shape2.Radius = Range*3;
+			shape2.Radius = WalkRange*3;
 			if (_runArea.GetNode<MeshInstance3D>("Debug").Mesh is SphereMesh debugShape)
 			{
-				debugShape.Radius = Range*3;
+				debugShape.Radius = WalkRange*3;
 			}
 		}
 		if (DebugShapes)
