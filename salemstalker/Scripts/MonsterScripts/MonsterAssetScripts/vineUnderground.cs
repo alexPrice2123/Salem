@@ -74,7 +74,7 @@ public partial class vineUnderground : CharacterBody3D
 		}
 		if ((GetNode<Node3D>("VinePoint/Vine").Scale.Y <= 0f && _hit == false) || _health <= 0f)
 		{
-			_monster._hasVine = false;
+			_monster.VineDied();
 			QueueFree();
 		}
 		GetNode<Node3D>("VinePoint/HitFX").Scale = GetNode<Node3D>("VinePoint/Vine").Scale;

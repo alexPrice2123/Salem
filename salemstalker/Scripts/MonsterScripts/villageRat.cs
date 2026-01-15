@@ -1,31 +1,29 @@
 using Godot;
 using System;
 
-public partial class vineTangler : Monster3d
+public partial class villageRat : Monster3d
 {
 	// Called when the node enters the scene tree for the first time.
 
 	private float _distance;
-	private Node3D _spawn;
-	private PackedScene _undergroundVine = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/vineUnderground.tscn");
-	public bool _hasVine = false;
-	private Node _holder;
 	public override void _Ready()
 	{
-		Speed = 4.6f;             // Movement speed
-		MaxHealth = 60.0f;         // Maximum monster health
-		Range = 30.0f;            // Detection range for chasing
-		SpawnDistance = 100;    // Distance from player before despawning
-		BaseDamage = 15.0f;
-		WanderRange = 50;
-		AttackSpeed = 1.5f;
-		AttackRange = 10f;
-		Monster = this;
-		Stationery = true;
-		Initialization();
+		Chaser = true;              // If this monster chasing the player or finds a point within a range of the player
+		MoveWhileAttack = true;     // Can this monster move while attacking
+		Flying = false;              // Should gravity be applied to this monster
+		Stationery = false;          // If the monster shouldnt move at all
+		BaseDamage = 10.0f;         // Base damage of the monster
+		AttackSpeed = 0.5f;         // The time between its attacks
+		AttackRange = 1f;           // The distance the monster gets from the player before stopping and attacking
+		MaxHealth = 100.0f;         // Maximum monster health
+		WanderRange = 10;           // The range the monster can wander from its spawn point
+		AgroFOV = 5.0f;          	// The vision FOV of the monster
+		AgroLength = 5.0f;          // The detection length of the monsters vision
+		WalkRange = 15.0f;          // Walk hearing detection (sprint hearing is 3x this)
+		WalkSpeed = 2f;             // Movement speed when they are wandering
+		RunSpeed = 5f;              // Movement speed when they are chasing the player
 
-		_spawn = GetNode<Node3D>("Spawn");
-		_holder = _player.GetParent();	
+		Initialization();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,7 +32,7 @@ public partial class vineTangler : Monster3d
 		EveryFrame(delta);
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("vineTangler", Biome);
+			_player.MonsterKilled("villageRat", Biome);
 			if (Debug == true)
             {
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
@@ -74,23 +72,14 @@ public partial class vineTangler : Monster3d
 
 	public async void Attack()
 	{
-		if (_hasVine == true)
-        {
-			return;
-        } 
 		_hasHit = false;
-		_canAttack = false;
 		_attackAnim = true;
-		_hasVine = true;
-		await ToSignal(GetTree().CreateTimer(1.5), "timeout");
-		CharacterBody3D projectileInstance = _undergroundVine.Instantiate<CharacterBody3D>(); // Create monster instance
-        projectileInstance.GlobalPosition = _spawn.GlobalPosition;
-		_holder.AddChild(projectileInstance);                                             // Add monster to holder node
-		if (projectileInstance is vineUnderground vu)
-        {
-			vu._player = _player;
-			vu._monster = this;
-        }
+		await ToSignal(GetTree().CreateTimer(1.6), "timeout");
+		_speedOffset = 2.5f;
+		_attackBox.GetParent<Area3D>().Monitoring = true;
+        await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+		_attackBox.GetParent<Area3D>().Monitoring = false;
+		_canAttack = false;
 		await ToSignal(GetTree().CreateTimer(0.7), "timeout");
 		_attackAnim = false;
         await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");

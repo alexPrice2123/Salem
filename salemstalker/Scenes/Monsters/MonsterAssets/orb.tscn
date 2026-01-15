@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://cwiy7a16ospna"]
 
-[ext_resource type="Script" uid="uid://dbx0mkf5x3iac" path="res://Scripts/Orb.cs" id="1_6l8s8"]
+[ext_resource type="Script" uid="uid://dbx0mkf5x3iac" path="res://Scripts/MonsterScripts/MonsterAssetScripts/Orb.cs" id="1_6l8s8"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="1_ogqpy"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]

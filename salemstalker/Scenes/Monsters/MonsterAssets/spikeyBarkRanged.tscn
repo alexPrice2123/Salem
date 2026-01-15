@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://35dhawcm08kd"]
 
-[ext_resource type="Script" uid="uid://dgo2vsehawmyg" path="res://Scripts/spikeyBark.cs" id="1_k5553"]
+[ext_resource type="Script" uid="uid://dgo2vsehawmyg" path="res://Scripts/MonsterScripts/MonsterAssetScripts/spikeyBark.cs" id="1_k5553"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="2_k5553"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_sldph"]
 
