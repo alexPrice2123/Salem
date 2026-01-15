@@ -9,11 +9,12 @@ public partial class Monster3d : CharacterBody3D
 
 
 	// --- CONSTANTS ---
-	protected float Speed = 2.5f;               // Movement speed
+	protected float RunSpeed = 3f;              // Movement speed when they are chasing the player
+	protected float WalkSpeed = 2f;             // Movement speed when they are wandering
 	protected float MaxHealth = 100.0f;         // Maximum monster health
-	protected float Range = 15.0f;              // Detection range for chasing
-	protected float AgroFOV = 5.0f;          // Detection range for agro
-	protected float AgroLength = 5.0f;          // Detection range for agro
+	protected float Range = 15.0f;              // Walk hearing detection (sprint hearing is 3x this)
+	protected float AgroFOV = 5.0f;          	// The vision FOV of the monster
+	protected float AgroLength = 5.0f;          // The detection length of the monsters vision
 	protected double SpawnDistance = 100;       // Distance from player before despawning
 	protected float BaseDamage = 10.0f;         // Base damage of the monster
 	protected int WanderRange = 10;             // The range the monster can wander from its spawn point
@@ -27,10 +28,10 @@ public partial class Monster3d : CharacterBody3D
 	public bool Shadow = false;                 // Decides if the monster can become a phantom
 	public bool Stationery = false;             // If the monster shouldnt move at all
 	public string Biome = "Plains";             // What Biome this monster spawned in
-	public bool Fleeing = false;
-	public float SpawnRange = 50f;              //The disntance the monster can be from spawn before retreeting back to it
-	public float MaxLookTime = 1f;
-	public bool DebugShapes = false;
+	public bool Fleeing = false;				// If the monster is fleeing
+	public float SpawnRange = 50f;              // The disntance the monster can be from spawn before retreeting back to it
+	public float MaxLookTime = 1f;				// How long the monster looks around when wandering (in seconds)
+	public bool DebugShapes = true;				// If debug hitboxes should be enabled
 
 	// --- NODE REFERENCES ---
 	protected Player3d _player;                 // Reference to the player
@@ -243,7 +244,7 @@ public partial class Monster3d : CharacterBody3D
 			}
 			else
 			{
-				_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed * _dashVelocity + _speedOffset);
+				_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (RunSpeed * _dashVelocity + _speedOffset);
 			}
 
 			// Rotate monster to face player
@@ -281,7 +282,7 @@ public partial class Monster3d : CharacterBody3D
 			}
 			else
 			{
-				_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed * _dashVelocity + _speedOffset);
+				_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (RunSpeed * _dashVelocity + _speedOffset);
 			}
 			// Attack when the monster gets near the finish position or if its been stading still
 			if (GlobalPosition.Snapped(0.1f) == _rangedPosition.Snapped(0.1f) || Velocity.Length() <= _veloThreshold)
@@ -338,7 +339,7 @@ public partial class Monster3d : CharacterBody3D
 
 			Vector3 nextPoint = _navAgent.GetNextPathPosition();
 
-			_targetVelocity = (nextPoint - myPos).Normalized() * (Speed * _dashVelocity + _speedOffset);
+			_targetVelocity = (nextPoint - myPos).Normalized() * (RunSpeed * _dashVelocity + _speedOffset);
 
 			Vector3 moveDirection = _targetVelocity.Normalized(); 
 			if (moveDirection != Vector3.Zero)
@@ -363,7 +364,7 @@ public partial class Monster3d : CharacterBody3D
 				{
 					_navAgent.TargetPosition = _wanderPos;
 					Vector3 nextPoint = _navAgent.GetNextPathPosition();
-					_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (Speed-1f);
+					_targetVelocity = (nextPoint - GlobalTransform.Origin).Normalized() * (WalkSpeed);
 				}
 
 				Vector3 moveDirection = Velocity.Normalized(); 
