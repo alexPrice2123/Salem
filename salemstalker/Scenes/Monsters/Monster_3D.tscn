@@ -211,6 +211,7 @@ shape = SubResource("ConcavePolygonShape3D_agcab")
 
 [node name="Debug" type="MeshInstance3D" parent="AgroRange"]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_mqwsg")
 mesh = SubResource("ArrayMesh_v4fda")
 skeleton = NodePath("../..")
