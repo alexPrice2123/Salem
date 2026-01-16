@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://bliqfpjmneg1"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_rilpv"]
-[ext_resource type="Script" uid="uid://cl4r1wi26m6bm" path="res://Scripts/weepingSpine.cs" id="2_63wuc"]
+[ext_resource type="Script" uid="uid://cl4r1wi26m6bm" path="res://Scripts/MonsterScripts/weepingSpine.cs" id="2_63wuc"]
 [ext_resource type="PackedScene" uid="uid://cmv8qf27awf3u" path="res://Assets/3D/charatermodel/hollow.blend" id="3_dlbej"]
 [ext_resource type="Texture2D" uid="uid://bjurhsgte1wdp" path="res://Assets/2D/plains_grass.png" id="4_lyxad"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="5_63wuc"]

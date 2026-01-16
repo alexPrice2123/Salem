@@ -1,7 +1,7 @@
 [gd_scene load_steps=63 format=3 uid="uid://ds8375k7kpihg"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_20aj2"]
-[ext_resource type="Script" uid="uid://bm70c84xyxpwf" path="res://Scripts/sCultist.cs" id="2_im0l4"]
+[ext_resource type="Script" uid="uid://bm70c84xyxpwf" path="res://Scripts/MonsterScripts/sCultist.cs" id="2_im0l4"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_cno0p"]
 [ext_resource type="PackedScene" uid="uid://c4ionl12wydjs" path="res://Assets/3D/charatermodel/cultist.blend" id="4_cno0p"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="5_im0l4"]
