@@ -14,15 +14,16 @@ public partial class hollowNormal : Monster3d
 		MoveWhileAttack = true;     // Can this monster move while attacking
 		Flying = false;              // Should gravity be applied to this monster
 		Stationery = false;          // If the monster shouldnt move at all
-		BaseDamage = 10.0f;         // Base damage of the monster
-		AttackSpeed = 0.5f;         // The time between its attacks
-		AttackRange = 10f;           // The distance the monster gets from the player before stopping and attacking
-		MaxHealth = 100.0f;         // Maximum monster health
-		WanderRange = 10;           // The range the monster can wander from its spawn point
-		AgroFOV = 5.0f;          	// The vision FOV of the monster
-		AgroLength = 5.0f;          // The detection length of the monsters vision
-		WalkSpeed = 2f;             // Movement speed when they are wandering
-		RunSpeed = 3f;              // Movement speed when they are chasing the player
+		BaseDamage = 15.0f;         // Base damage of the monster
+		AttackSpeed = 1.2f;         // The time between its attacks
+		AttackRange = 1.5f;           // The distance the monster gets from the player before stopping and attacking
+		MaxHealth = 65.0f;         // Maximum monster health
+		WanderRange = 35;           // The range the monster can wander from its spawn point
+		AgroFOV = 7f;          	// The vision FOV of the monster
+		AgroLength = 6.5f;          // The detection length of the monsters vision
+		WalkRange = 4.5f;	         	// The noise range monsters hear the player walking
+		WalkSpeed = 1.5f;             // Movement speed when they are wandering
+		RunSpeed = 4.5f;              // Movement speed when they are chasing the player
 
 		// -- Other -- //
 		Monster = this;
