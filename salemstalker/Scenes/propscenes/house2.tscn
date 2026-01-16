@@ -1,0 +1,68 @@
+[gd_scene load_steps=19 format=3 uid="uid://de8ekq385uc33"]
+
+[ext_resource type="PackedScene" uid="uid://cvn1rku0g4gst" path="res://Assets/3D/buildings/villagehouse2.blend" id="1_he1d7"]
+[ext_resource type="Texture2D" uid="uid://dsd6rfun0i1j4" path="res://Assets/proptextures/house2/roof_Base_color.png" id="2_m2wwx"]
+[ext_resource type="Texture2D" uid="uid://brk1ved23l2h6" path="res://Assets/proptextures/house2/main structure_Base_color.png" id="2_m0334"]
+[ext_resource type="Texture2D" uid="uid://b23k43b45p7o8" path="res://Assets/proptextures/house2/door_Base_color.png" id="2_o1lvu"]
+[ext_resource type="Texture2D" uid="uid://bruo5gfptcjnp" path="res://Assets/proptextures/house2/main structure_Roughness.png" id="3_00yym"]
+[ext_resource type="Texture2D" uid="uid://bs51sgr5rik2p" path="res://Assets/proptextures/house2/windows_Base_color.png" id="4_bd1dl"]
+[ext_resource type="Texture2D" uid="uid://cwu434fobyamm" path="res://Assets/proptextures/house2/windows_Metallic.png" id="5_i12qa"]
+[ext_resource type="Texture2D" uid="uid://ckau36niiitek" path="res://Assets/proptextures/house2/windows_Roughness.png" id="6_byuuq"]
+[ext_resource type="Texture2D" uid="uid://cok7ryeo2w1u4" path="res://Assets/proptextures/house2/roof_Height.png" id="8_oomlw"]
+[ext_resource type="Texture2D" uid="uid://mvj3qbsu4eac" path="res://Assets/proptextures/house2/roof_Normal_OpenGL.png" id="9_uncvd"]
+[ext_resource type="Texture2D" uid="uid://dwxodmtx15wt5" path="res://Assets/proptextures/house2/roof_Roughness.png" id="10_5cw7x"]
+[ext_resource type="Texture2D" uid="uid://coreokv2v1hfc" path="res://Assets/proptextures/house2/door_Roughness.png" id="12_afi7f"]
+[ext_resource type="Texture2D" uid="uid://clpm68udrofdy" path="res://Assets/proptextures/house2/door_Metallic.png" id="13_vn6yb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5yse"]
+albedo_texture = ExtResource("2_m0334")
+roughness_texture = ExtResource("3_00yym")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7p87"]
+albedo_texture = ExtResource("4_bd1dl")
+metallic = 1.0
+metallic_texture = ExtResource("5_i12qa")
+roughness_texture = ExtResource("6_byuuq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0334"]
+albedo_texture = ExtResource("2_m2wwx")
+roughness_texture = ExtResource("10_5cw7x")
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("9_uncvd")
+heightmap_enabled = true
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("8_oomlw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2wwx"]
+albedo_texture = ExtResource("2_o1lvu")
+roughness_texture = ExtResource("12_afi7f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1lvu"]
+albedo_texture = ExtResource("2_o1lvu")
+metallic = 1.0
+metallic_texture = ExtResource("13_vn6yb")
+roughness_texture = ExtResource("12_afi7f")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="villagehouse2" parent="." instance=ExtResource("1_he1d7")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0.0031864047, 0, -0.0017181635)
+
+[node name="Cube" parent="villagehouse2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_j5yse")
+surface_material_override/1 = SubResource("StandardMaterial3D_w7p87")
+
+[node name="Cylinder" parent="villagehouse2" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_m0334")
+
+[node name="Cylinder_001" parent="villagehouse2" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_m0334")
+
+[node name="Cube_001" parent="villagehouse2" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_m2wwx")
+
+[node name="Cylinder_002" parent="villagehouse2" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_o1lvu")
+
+[editable path="villagehouse2"]
