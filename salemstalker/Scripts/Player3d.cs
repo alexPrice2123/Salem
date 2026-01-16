@@ -637,18 +637,21 @@ public partial class Player3d : CharacterBody3D
 					_stamina -= 2f * (float)delta; // Deduct stamina while running  
 				}
 				play_footstep(0.35f);
-				_swordInst.updateVar(false,true,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
+				_swordInst.running = true;
+				_swordInst.walking = false;
 			}
 			else
 			{
 				play_footstep(0.7f);
-				_swordInst.updateVar(true,false,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
+				_swordInst.running = false;
+				_swordInst.walking = true;
 			}
 		}
 		else
 		{
 			// Player is stationary (no directional input)
-			_swordInst.updateVar(false,false,_swordInst.getBoolVar(2),_swordInst.getIntVar(0),_swordInst.getIntVar(1));
+			_swordInst.running = false;
+				_swordInst.walking = false;
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
 			Vector3 tempvelo = velocity;
@@ -863,14 +866,14 @@ public partial class Player3d : CharacterBody3D
 			if (_comboNum == 0)
 			{
 				//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
-				_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,1,_swordInst.getIntVar(1));
+				_swordInst.swingStat = 1;
 				HorCamSense /= 2.5f;
 				VerCamSense /= 3f;
 			}
 			else if (_comboNum == 1)
 			{
 				//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
-				_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,2,_swordInst.getIntVar(1));
+				_swordInst.swingStat = 2;
 				HorCamSense /= 2.5f;
 				VerCamSense /= 3f;
 			}
@@ -878,7 +881,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				_damage = (float)_sword.GetMeta("hDamage"); // Use a special high-damage value for the final hit
 				//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
-				_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,3,_swordInst.getIntVar(1));
+				_swordInst.swingStat = 3;
 				HorCamSense /= 2f;
 				VerCamSense /= 5f;
 			}
@@ -1264,26 +1267,26 @@ public partial class Player3d : CharacterBody3D
 		{
 			_cooldownSec1 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon1.GetMeta("cooldown")), "timeout");
+			_cooldownSec1 = false;
 		}
 		else if (equipSec == 2)
 		{
 			_cooldownSec2 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon2.GetMeta("cooldown")), "timeout");
+			_cooldownSec2 = false;
 		}
 		else if (equipSec == 3)
 		{
 			_cooldownSec3 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon3.GetMeta("cooldown")), "timeout");
+			_cooldownSec3 = false;
 		}
 		else
 		{
 			_cooldownSec4 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon4.GetMeta("cooldown")), "timeout");
+			_cooldownSec4 = false;
 		}
-		_cooldownSec1 = false;
-		_cooldownSec2 = false;
-		_cooldownSec3 = false;
-		_cooldownSec4 = false;	
 	}
 
 	private void _on_hurtbox_area_entered(Area3D zone)

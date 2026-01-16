@@ -8,11 +8,11 @@ public partial class SwordHandler : Node3D
 	protected float _firstDelay = 0.05f;
 	protected float _secondDelay = 0.2f;
 	public bool _crit = false;
-	protected bool walking = false;
-	protected bool running = false;
-	protected bool blocking = false;
-	protected int swingStat = 0;
-	protected int parryStat = 0;
+	public bool walking = false;
+	public bool running = false;
+	public bool blocking = false;
+	public int swingStat = 0;
+	public int parryStat = 0;
 	protected async void _on_hitbox_body_entered(Node3D body)
 	{
 		if (body.IsInGroup("Monster"))
