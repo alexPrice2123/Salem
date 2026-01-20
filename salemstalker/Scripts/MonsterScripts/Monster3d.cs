@@ -465,6 +465,7 @@ public partial class Monster3d : CharacterBody3D
 		else if (Monster is underBrush ub) ub.Attack();
 		else if (Monster is vineTangler vt) vt.Attack();
 		else if (Monster is weepingSpine ws) ws.Attack();
+		else if (Monster is lumberJack lj) lj.Attack();
 	}
 
 

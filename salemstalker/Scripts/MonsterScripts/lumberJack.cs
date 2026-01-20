@@ -1,19 +1,20 @@
 using Godot;
 using System;
 
-public partial class weepingSpine : Monster3d
+public partial class lumberJack : Monster3d
 {
 	// Called when the node enters the scene tree for the first time.
-	private PackedScene _poisonBall = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/poisonBall.tscn"); // Scene reference to the dark orb
+
+	private PackedScene _axe = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/lumberAxe.tscn"); // Scene reference to the dark orb
 	private float _distance;
 	private Node3D _spawn;
 	private float _projectileSpeed = 25f;
 	private float _meleeRange = 2f;
 	private float _meleeDamage = 10f;
-	public bool _hushSpawned = false;
+	private int _attackAnimSwitch = 1;
 	public override void _Ready()
 	{
-       	// -- Variables -- //
+		// -- Variables -- //
 		Chaser = true;              // If this monster chasing the player or finds a point within a range of the player
 		MoveWhileAttack = true;     // Can this monster move while attacking
 		Flying = false;              // Should gravity be applied to this monster
@@ -30,54 +31,39 @@ public partial class weepingSpine : Monster3d
 
 		// -- Other -- //
 		Monster = this;
-		Initialization();
 		_spawn = GetNode<Node3D>("Spawn");
-		if (_hushSpawned == true)
-        {
-            _damageOffset += BaseDamage*-0.25f;
-        }
+		Initialization();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
-		if (this.GetParent().GetParent().GetParent().GetParent().GetNode<Node3D>("HushedTrees") is theHushedBark thb1 && _hushSpawned == true)
-		{
-			if (thb1._dead == true)
-            {
-                _health = 0;
-            }
-		}
+		_distance = (GlobalPosition - _player.GlobalPosition).Length();
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("weepingSpine", Biome);
+			_player.MonsterKilled("hollowNormal", Biome);
 			if (Debug == true)
 			{
-				if (GetParent().GetParent() is DebugHut dh) { dh._shouldSpawn = true; }
+				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
 			}
-			if (this.GetParent().GetParent().GetParent().GetParent().GetNode<Node3D>("HushedTrees") is theHushedBark thb && _hushSpawned == true)
-            {
-                thb._weepingCount -= 1;
-            }
 			QueueFree(); // Destroy monster when health hits zero
 		}
-		_distance = (_player.GlobalPosition - GlobalPosition).Length();
 		RotateFunc(delta);
 	}
 
 	private void RotateFunc(double delta)
-    {
-        if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
-        {
-            GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
-        }
-        else
-        {
-            float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
-            GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
-        }
-    }
+	{
+		if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
+		{
+			GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
+		}
+		else
+		{
+			float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
+			GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
+		}
+	}
 
 	public void _on_hurtbox_area_entered(Area3D body)
 	{
@@ -88,7 +74,7 @@ public partial class weepingSpine : Monster3d
 	{
 		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
 		{
-			_player.Damaged(_meleeDamage + _damageOffset, this as Monster3d, "None");
+			_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "None");
 			_attackBox.Disabled = true;
 			_hasHit = true;
 		}
@@ -96,13 +82,14 @@ public partial class weepingSpine : Monster3d
 
 	public async void Attack()
 	{
+		GD.Print("LUMBER SKIB");
 		if (_distance > _meleeRange)
-		{
+		{	
 			_hasHit = false;
 			_attackAnim = true;
 			_canAttack = false;
 			await ToSignal(GetTree().CreateTimer(1.6), "timeout");
-			RigidBody3D projectileInstance = _poisonBall.Instantiate<RigidBody3D>(); // Create monster instance
+			RigidBody3D projectileInstance = _axe.Instantiate<RigidBody3D>(); // Create monster instance
 			_player.GetParent().AddChild(projectileInstance);                                             // Add monster to holder node
 			projectileInstance.GlobalPosition = _spawn.GlobalPosition;
 			if (projectileInstance is poisonBall ball)
