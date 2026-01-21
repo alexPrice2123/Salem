@@ -21,10 +21,10 @@ public partial class Player3d : CharacterBody3D
 	private Slider _senseBar;                        // Slider control within the pause menu for adjusting sensitivity
 	public Control _inv;                             // Reference to the Inventory UI
 	public Node3D _sword;                           // The currently equipped sword's mesh/root node
-	private Node3D _eSecWeapon1;					 // The secondary weapon slot 1's root node
-	private Node3D _eSecWeapon2;					 // The secondary weapon slot 2's root node
-	private Node3D _eSecWeapon3;					 // The secondary weapon slot 3's root node
-	private Node3D _eSecWeapon4;					 // The secondary weapon slot 4's root node
+	public Node3D _eSecWeapon1;					 // The secondary weapon slot 1's root node
+	public Node3D _eSecWeapon2;					 // The secondary weapon slot 2's root node
+	public Node3D _eSecWeapon3;					 // The secondary weapon slot 3's root node
+	public Node3D _eSecWeapon4;					 // The secondary weapon slot 4's root node
 	private Control _combatNotif;                    // UI element for combat notifications/status
 	private RayCast3D _ray;                          // Raycast used to detect interactable objects (NPCs, items)
 	private Control _questBook;                      // The main container for the Quest Log UI
@@ -59,10 +59,10 @@ public partial class Player3d : CharacterBody3D
 	private float _dashVelocity = 0f;                	// Current extra speed from dashing
 	private float _fullDashValue = 10.0f;            	// Max speed boost granted by a full dash
 	private float _knockVelocity = 0f;               	// Current knockback applied to player
-	private bool _cooldownSec1;						 	// Tracks whether the player can use their first secondary weapon
-	private bool _cooldownSec2;						 	// Tracks whether the player can use their second secondary weapon
-	private bool _cooldownSec3;						 	// Tracks whether the player can use their third secondary weapon
-	private bool _cooldownSec4;						 	// Tracks whether the player can use their fourth secondary weapon
+	public bool _cooldownSec1;						 	// Tracks whether the player can use their first secondary weapon
+	public bool _cooldownSec2;						 	// Tracks whether the player can use their second secondary weapon
+	public bool _cooldownSec3;						 	// Tracks whether the player can use their third secondary weapon
+	public bool _cooldownSec4;						 	// Tracks whether the player can use their fourth secondary weapon
 	public bool _running = false;                   	// True if the 'run' input is held down
 	private bool _inStep = false;					 	// Prevents footstep audio from playing if player is already playing a step.
 	private float _bobTime = 0.0f;                   	// Accumulator for the head-bob sine wave function
