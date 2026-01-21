@@ -1,21 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://flxa188cwl07"]
+[gd_scene load_steps=20 format=3 uid="uid://flxa188cwl07"]
 
-[ext_resource type="Script" uid="uid://dgo2vsehawmyg" path="res://Scripts/MonsterScripts/MonsterAssetScripts/spikeyBark.cs" id="1_peepu"]
+[ext_resource type="Script" uid="uid://c11n0ieyeyhn1" path="res://Scripts/MonsterScripts/MonsterAssetScripts/lumberAxe.cs" id="1_peepu"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_ol560"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_fgin0"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2uev4"]
-albedo_texture = ExtResource("2_ol560")
-
-[sub_resource type="BoxMesh" id="BoxMesh_ui1ly"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]
 seamless = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui1ly"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_peepu"]
 render_priority = 0
 shader = ExtResource("3_fgin0")
-shader_parameter/Color = Color(0.38431373, 0.25882354, 0.24705882, 1)
+shader_parameter/Color = Color(7.70092e-06, 0.8197081, 0.6571383, 1)
 shader_parameter/glow_color = Color(0, 0, 0, 1)
 shader_parameter/dist = 2.0
 shader_parameter/speed = 3.0
@@ -24,45 +19,58 @@ shader_parameter/glow_amount = 0.0
 shader_parameter/posMult = 2.0
 shader_parameter/noise = SubResource("NoiseTexture2D_xdlj8")
 
-[sub_resource type="Curve" id="Curve_r3x0a"]
+[sub_resource type="Curve" id="Curve_ol560"]
 _limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_im0l4"]
-curve = SubResource("Curve_r3x0a")
+curve = SubResource("Curve_ol560")
 
-[sub_resource type="Curve" id="Curve_gn4ky"]
+[sub_resource type="Curve" id="Curve_fgin0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_c1cqh"]
-curve = SubResource("Curve_gn4ky")
+curve = SubResource("Curve_fgin0")
 
-[sub_resource type="Curve" id="Curve_s3w5g"]
+[sub_resource type="Curve" id="Curve_ixmfg"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_ag22c"]
-curve = SubResource("Curve_s3w5g")
+curve = SubResource("Curve_ixmfg")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ui1ly"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_peepu"]
 lifetime_randomness = 1.0
 emission_shape = 1
-emission_sphere_radius = 0.31
+emission_sphere_radius = 1.0
 angle_min = 1.07288e-05
 angle_max = 360.0
 direction = Vector3(0, 0, 0)
 spread = 0.0
 orbit_velocity_curve = SubResource("CurveTexture_im0l4")
 radial_velocity_curve = SubResource("CurveTexture_c1cqh")
+gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 0.2
 scale_curve = SubResource("CurveTexture_ag22c")
 
-[sub_resource type="BoxMesh" id="BoxMesh_k5553"]
+[sub_resource type="BoxMesh" id="BoxMesh_kgf07"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6l8s8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kcjyh"]
+render_priority = 0
+shader = ExtResource("3_fgin0")
+shader_parameter/Color = Color(0.6355537, 1.4559553e-06, 4.813075e-07, 1)
+shader_parameter/glow_color = Color(0, 0, 0, 1)
+shader_parameter/dist = 2.0
+shader_parameter/speed = 3.0
+shader_parameter/glow_intensity = 0.0
+shader_parameter/glow_amount = 0.0
+shader_parameter/posMult = 2.0
+shader_parameter/noise = SubResource("NoiseTexture2D_xdlj8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lvuib"]
 lifetime_randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 0.31
@@ -77,46 +85,53 @@ scale_min = 0.1
 scale_max = 0.2
 scale_curve = SubResource("CurveTexture_ag22c")
 
-[sub_resource type="BoxMesh" id="BoxMesh_sldph"]
+[sub_resource type="BoxMesh" id="BoxMesh_2kbsx"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_peepu"]
-size = Vector3(0.10253906, 0.11959839, 0.5782471)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgijm"]
+albedo_texture = ExtResource("2_ol560")
 
-[node name="Axe" type="RigidBody3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_p3qan"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cp2bc"]
+radius = 0.3201519
+
+[node name="lumberAxe" type="RigidBody3D"]
+gravity_scale = 0.15
 script = ExtResource("1_peepu")
 
-[node name="Orb" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.5051113e-08, 0, -0.09214626, 0, 0.113961786, 0, 0.5731027, 0, -4.0278407e-09, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_2uev4")
-mesh = SubResource("BoxMesh_ui1ly")
-
 [node name="Magic" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.218391, 0.0843511, 0.356691, 0.0122694, 0.413292, -0.105249, -0.366323, 0.0641303, 0.209123, -0.00792608, -0.000746069, 0.00536308)
-material_override = SubResource("ShaderMaterial_ui1ly")
-amount = 10
+transform = Transform3D(0.21839097, 0.08435115, 0.35669088, 0.0122694, 0.413292, -0.10524864, -0.36632302, 0.06413022, 0.20912345, -0.00792608, -0.000746069, 0.00536308)
+material_override = SubResource("ShaderMaterial_peepu")
+amount = 15
 lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_ui1ly")
-draw_pass_1 = SubResource("BoxMesh_k5553")
+process_material = SubResource("ParticleProcessMaterial_peepu")
+draw_pass_1 = SubResource("BoxMesh_kgf07")
 
 [node name="Boom" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.509754, 0.196887, 0.832565, 0.0286384, 0.96468, -0.245665, -0.855048, 0.149689, 0.488123, 0.00547312, -0.0699652, 0.617419)
-material_override = SubResource("ShaderMaterial_ui1ly")
+material_override = SubResource("ShaderMaterial_kcjyh")
 emitting = false
 amount = 100
 lifetime = 15.0
 one_shot = true
 speed_scale = 64.0
-process_material = SubResource("ParticleProcessMaterial_6l8s8")
-draw_pass_1 = SubResource("BoxMesh_sldph")
+process_material = SubResource("ParticleProcessMaterial_lvuib")
+draw_pass_1 = SubResource("BoxMesh_2kbsx")
 
-[node name="Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0034179688, 0.00016784668, -0.0005493164)
-shape = SubResource("BoxShape3D_peepu")
+[node name="Orb" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.054646004, 0, 0, 0, 0.05769668, 0, 0, 0, 0.52416843, 0, 0.013829844, -0.07153674)
+material_override = SubResource("StandardMaterial3D_sgijm")
+mesh = SubResource("BoxMesh_p3qan")
+
+[node name="Orb2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.06623267, 0, 0, 0, 0.3302033, 0, 0, 0, 0.18585245, 0, -0.03905128, -0.3355833)
+mesh = SubResource("BoxMesh_p3qan")
 
 [node name="Attackbox" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attackbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0034179688, 0.00016784668, -0.0005493164)
-shape = SubResource("BoxShape3D_peepu")
+shape = SubResource("SphereShape3D_cp2bc")
 
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="area_entered" from="Attackbox" to="." method="_on_attackbox_area_entered"]
+[connection signal="body_entered" from="Attackbox" to="." method="_on_attackbox_body_entered"]

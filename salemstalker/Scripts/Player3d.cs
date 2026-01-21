@@ -1027,6 +1027,10 @@ public partial class Player3d : CharacterBody3D
 		{
 			_knockVelocity = 75f;
 		}
+		if (effect == "Push")
+		{
+			_knockVelocity = 30f;
+		}
 		float shakeFade = 1f;
 		if (takenDamage > _maxHealth/3){shakeFade = 0.5f;}
 		if (_blocking == true && _parry == false)
@@ -1036,7 +1040,7 @@ public partial class Player3d : CharacterBody3D
 			_stamina -= 0.15f * _maxStamina;
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
-			_knockVelocity = 1f;
+			if (effect != "Push"){_knockVelocity = 1f;}
 			if (_cam is Camera cam)
 			{
 				cam.StartShake(takenDamage/80, shakeFade);
@@ -1089,8 +1093,7 @@ public partial class Player3d : CharacterBody3D
 			_stamina -= 0.15f * _maxStamina;
 			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
-			projectile.QueueFree();
-			_knockVelocity = 0.25f;
+			if (effect != "Push"){_knockVelocity = 0.25f;}
 			if (_cam is Camera cam)
 			{
 				cam.StartShake(takenDamage/80, shakeFade);

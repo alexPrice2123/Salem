@@ -12,7 +12,7 @@ radius = 0.6484375
 height = 1.38319
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ci7oq"]
-size = Vector3(1.04077, 1.31622, 1.20215)
+size = Vector3(1.04077, 1.31622, 3)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_beqai"]
 
@@ -169,11 +169,11 @@ debug_color = Color(0.541872, 0.406451, 1, 0.42)
 collision_layer = 1024
 collision_mask = 1024
 input_ray_pickable = false
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attackbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100855, -0.539078)
 shape = SubResource("BoxShape3D_ci7oq")
-disabled = true
 debug_color = Color(0.987143, 0, 0.316185, 0.42)
 
 [node name="WalkRange" type="Area3D" parent="." groups=["Monster"]]
@@ -203,7 +203,7 @@ material_override = SubResource("StandardMaterial3D_5gjnd")
 mesh = SubResource("SphereMesh_mqwsg")
 
 [node name="AgroRange" type="Area3D" parent="." groups=["Monster"]]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.9816828, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.9816828, 0.36692697)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AgroRange"]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1, 0, 0)
