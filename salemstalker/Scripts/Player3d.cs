@@ -1170,11 +1170,11 @@ public partial class Player3d : CharacterBody3D
 	{
 		_twoHand = twoHanded;
 		PackedScene weaponScene = _weapon[wepaonName]; // Get the scene resource from the dictionary
-		Node3D holder = GetNode<Node3D>("Head/Camera3D/Sword");
+		Node3D holder = GetNode<Marker3D>("Head/Camera3D/Sword");
 		holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
 		Node3D swordInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
 		holder.AddChild(swordInstance);                                             // Add new weapon to holder node
-		swordInstance.Position = holder.Position;
+		swordInstance.Position = Vector3.Zero;
 		_sword = swordInstance; // Update the main sword reference
 		_swordInst = _sword as SwordHandler; // Update the sword script reference
 		Swing(true); // Call swing with 'justEquipped' to reset animation/position
