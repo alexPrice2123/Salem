@@ -31,7 +31,7 @@ public partial class Monster3d : CharacterBody3D
 	public bool Fleeing = false;				// If the monster is fleeing
 	public float SpawnRange = 50f;              // The disntance the monster can be from spawn before retreeting back to it
 	public float MaxLookTime = 1f;				// How long the monster looks around when wandering (in seconds)
-	public bool DebugShapes = true;				// If debug hitboxes should be enabled
+	public bool DebugShapes = false;				// If debug hitboxes should be enabled
 
 	// --- NODE REFERENCES ---
 	protected Player3d _player;                 // Reference to the player
@@ -230,7 +230,6 @@ public partial class Monster3d : CharacterBody3D
 		// CHASE MODE: If player close enough and monster is a chaser
 		if (!_player._currentBiome.Contains("Village") && playerSpawnDistance <= SpawnRange && _canSeePlayer && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false && Fleeing == false && !_retreating)
 		{
-			GD.Print("CHASING");
 			_justWandered = true;
 			// Navigation pathing toward player
 			_navAgent.TargetPosition = _player.GlobalPosition;
@@ -316,7 +315,6 @@ public partial class Monster3d : CharacterBody3D
 		}
 		else if (Fleeing == true && _canSeePlayer && !_retreating)
 		{
-			GD.Print("FEELING");
 			// how far the rat will try to get away from the player
 			float _fleeDistance = 8f;
 
@@ -405,7 +403,6 @@ public partial class Monster3d : CharacterBody3D
 			Velocity = _targetVelocity;
 			_looking = true;
 			_lookingTimer = 0f;
-			GD.Print("LOOKING");
 		}
 
 		if (spawnDistance > _currentSpawnRange && !_retreating && _canSeePlayer)
@@ -547,12 +544,11 @@ public partial class Monster3d : CharacterBody3D
 
 	private void detectPlayer(Area3D area, bool seen, bool agro)
 	{
-		GD.Print(_agroChangeCooldown);
 		if (_agroChangeCooldown > 0){return;}
 		_agroChangeCooldown = 0.5f;
 		if (agro)
 		{
-			if (!CheckVision()){return;}
+			//if (!CheckVision()){return;}
 		}
 		if (seen)
 		{
@@ -580,7 +576,6 @@ public partial class Monster3d : CharacterBody3D
 	
 	private void _on_walk_range_area_entered(Area3D area) //When the player gets in range of walk noise detection
 	{
-		GD.Print("WALK ENTERED");
 		detectPlayer(area, true, false);
 	}
 
@@ -588,7 +583,6 @@ public partial class Monster3d : CharacterBody3D
 	{
 		if (_player._running == true)
 		{
-			GD.Print("RUN ENTERED");
 			detectPlayer(area, true, false);
 		}
 		if (area.IsInGroup("Player")){_quitePlayerInRange = true;}
@@ -596,20 +590,17 @@ public partial class Monster3d : CharacterBody3D
 
 	private void _on_run_range_area_exited(Area3D area) //When the player leaves the run range
 	{
-		GD.Print("RUN EXITED");
 		detectPlayer(area, false, false);
 		if (area.IsInGroup("Player")){_quitePlayerInRange = false;}
 	}
 
 	private void _on_agro_range_area_entered(Area3D area) //When the player gets in range of the monster to see them; not agro
 	{
-		GD.Print("AGRO ENTERED");
 		_playerInVisionRange = true;
 		detectPlayer(area, true, true);
 	}
 	private void _on_agro_range_area_exited(Area3D area) //When the player gets into the agro range
 	{
-		GD.Print("AGRO EXITED");
 		_playerInVisionRange = false;
 		detectPlayer(area, false, true);
 	}

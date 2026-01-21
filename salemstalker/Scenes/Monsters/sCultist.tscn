@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://ds8375k7kpihg"]
+[gd_scene load_steps=66 format=3 uid="uid://ds8375k7kpihg"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_20aj2"]
 [ext_resource type="Script" uid="uid://bm70c84xyxpwf" path="res://Scripts/MonsterScripts/sCultist.cs" id="2_im0l4"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cmhhvena7di46" path="res://Assets/monstertextures/scultist/body_Normal.png" id="9_7yv52"]
 [ext_resource type="Texture2D" uid="uid://2w5umyaonw03" path="res://Assets/monstertextures/scultist/mask.001_Roughness.png" id="9_y435e"]
 [ext_resource type="Texture2D" uid="uid://5ukdygu6a7x0" path="res://Assets/monstertextures/scultist/arms_Roughness.png" id="10_3035c"]
+[ext_resource type="Shader" uid="uid://bf0mb4hsypo15" path="res://Shaders/dissolve.gdshader" id="10_qltqj"]
 [ext_resource type="Texture2D" uid="uid://4g4hodmyllyu" path="res://Assets/monstertextures/scultist/pants_Base_color.png" id="11_wpt5g"]
 [ext_resource type="Texture2D" uid="uid://dhfyu4g84ndap" path="res://Assets/monstertextures/scultist/shoes_Base_color.png" id="12_7yv52"]
 [ext_resource type="Texture2D" uid="uid://iwmae50olf2u" path="res://Assets/monstertextures/scultist/skin_Base_color.png" id="13_7yv52"]
@@ -22,10 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://bxj17benu1f7r" path="res://Assets/monstertextures/scultist/arms_Metallic.png" id="15_wt35d"]
 [ext_resource type="Texture2D" uid="uid://b1egjv4k5m5d7" path="res://Assets/monstertextures/scultist/arms_Normal.png" id="16_jyelg"]
 [ext_resource type="Texture2D" uid="uid://b3yxcppkvkcc3" path="res://Assets/monstertextures/scultist/face_Base_color.png" id="21_bpwxc"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_im0l4"]
-radius = 0.223127
-height = 1.86237
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kviwv"]
 radius = 0.28401
@@ -70,8 +67,8 @@ advance_expression = "_canAttack == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xtwe5"]
 xfade_time = 0.2
-switch_mode = 2
 advance_mode = 2
+advance_expression = "_attackAnim == false && _meleeAnim == false"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_im0l4"]
 xfade_time = 0.2
@@ -88,11 +85,16 @@ xfade_time = 0.2
 advance_mode = 2
 advance_expression = "_dashVelocity > 0.99 && _dashAnim == false"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qltqj"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_meleeAnim == true"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kviwv"]
 states/End/position = Vector2(882.5, 85.9062)
 states/Start/position = Vector2(253.5, 85.75)
 states/attack/node = SubResource("AnimationNodeAnimation_00oym")
-states/attack/position = Vector2(685.375, 182)
+states/attack/position = Vector2(666.375, 217)
 states/charge/node = SubResource("AnimationNodeAnimation_im0l4")
 states/charge/position = Vector2(468.5, 228.125)
 states/dash/node = SubResource("AnimationNodeAnimation_cno0p")
@@ -101,10 +103,26 @@ states/idle/node = SubResource("AnimationNodeAnimation_ci7oq")
 states/idle/position = Vector2(467, 86.0625)
 states/walking/node = SubResource("AnimationNodeAnimation_ht62m")
 states/walking/position = Vector2(687.062, 85.8281)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "idle", "charge", SubResource("AnimationNodeStateMachineTransition_kviwv"), "charge", "attack", SubResource("AnimationNodeStateMachineTransition_ja8if"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_xtwe5"), "walking", "charge", SubResource("AnimationNodeStateMachineTransition_im0l4"), "idle", "dash", SubResource("AnimationNodeStateMachineTransition_yr5wf"), "dash", "idle", SubResource("AnimationNodeStateMachineTransition_ok713")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "idle", "charge", SubResource("AnimationNodeStateMachineTransition_kviwv"), "charge", "attack", SubResource("AnimationNodeStateMachineTransition_ja8if"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_xtwe5"), "walking", "charge", SubResource("AnimationNodeStateMachineTransition_im0l4"), "idle", "dash", SubResource("AnimationNodeStateMachineTransition_yr5wf"), "dash", "idle", SubResource("AnimationNodeStateMachineTransition_ok713"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_qltqj")]
 graph_offset = Vector2(160, 20)
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qltqj"]
+render_priority = 0
+shader = ExtResource("10_qltqj")
+shader_parameter/baseColor = Color(1.92523e-06, 0, 0.6274635, 1)
+shader_parameter/dissolveSlider = 0.6670000791824999
+shader_parameter/dissolveNoiseScale = 16.85
+shader_parameter/edgeNoiseScale = -2.2352000073055933e-07
+shader_parameter/edgesThickness = 0.066000003135
+shader_parameter/edgeColor = Color(0, 0, 1, 1)
+shader_parameter/edgeEmissionSlider = 2.999999932944
+shader_parameter/enable_dissolve_animation = true
+shader_parameter/animation_speed = 2.9000000432134803
+shader_parameter/animation_intensity = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_kviwv"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qltqj"]
 seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_im0l4"]
@@ -117,9 +135,7 @@ shader_parameter/speed = 1.0
 shader_parameter/glow_intensity = -0.1
 shader_parameter/glow_amount = 10.0
 shader_parameter/posMult = 0.01
-shader_parameter/noise = SubResource("NoiseTexture2D_xdlj8")
-
-[sub_resource type="SphereMesh" id="SphereMesh_kviwv"]
+shader_parameter/noise = SubResource("NoiseTexture2D_qltqj")
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cno0p"]
 seamless = true
@@ -177,6 +193,21 @@ scale_curve = SubResource("CurveTexture_yr5wf")
 
 [sub_resource type="SphereMesh" id="SphereMesh_v2reo"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qltqj"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, -1)
+spread = 25.0
+initial_velocity_min = 3.5
+initial_velocity_max = 3.5
+orbit_velocity_curve = SubResource("CurveTexture_im0l4")
+radial_velocity_curve = SubResource("CurveTexture_kviwv")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_yr5wf")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cno0p"]
 albedo_texture = ExtResource("5_sgr3b")
 metallic = 1.0
@@ -188,17 +219,19 @@ heightmap_enabled = true
 heightmap_scale = 0.0
 heightmap_texture = ExtResource("6_2q777")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cno0p"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2q777"]
 render_priority = 0
-shader = ExtResource("3_cno0p")
-shader_parameter/Color = Color(0.313726, 0.188235, 0.921569, 1)
-shader_parameter/glow_color = Color(0.258824, 0.0235294, 0.25098, 1)
-shader_parameter/dist = 2.0
-shader_parameter/speed = 1.0
-shader_parameter/glow_intensity = -0.1
-shader_parameter/glow_amount = 10.0
-shader_parameter/posMult = -0.06
-shader_parameter/noise = SubResource("NoiseTexture2D_xdlj8")
+shader = ExtResource("10_qltqj")
+shader_parameter/baseColor = Color(1.92523e-06, 0, 0.6274635, 1)
+shader_parameter/dissolveSlider = 0.6670000791824999
+shader_parameter/dissolveNoiseScale = 16.85
+shader_parameter/edgeNoiseScale = -2.2352000073055933e-07
+shader_parameter/edgesThickness = 0.066000003135
+shader_parameter/edgeColor = Color(0, 0, 1, 1)
+shader_parameter/edgeEmissionSlider = 2.999999932944
+shader_parameter/enable_dissolve_animation = true
+shader_parameter/animation_speed = 2.9000000432134803
+shader_parameter/animation_intensity = 0.2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cno0p"]
 lifetime_randomness = 1.0
@@ -252,12 +285,8 @@ albedo_texture = ExtResource("13_7yv52")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt35d"]
 albedo_texture = ExtResource("21_bpwxc")
 
-[node name="vCultist" instance=ExtResource("1_20aj2")]
+[node name="sCultist" instance=ExtResource("1_20aj2")]
 script = ExtResource("2_im0l4")
-
-[node name="CollisionShape3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9237808, 0)
-shape = SubResource("CapsuleShape3D_im0l4")
 
 [node name="Hurtbox" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -268,6 +297,9 @@ shape = SubResource("CapsuleShape3D_kviwv")
 [node name="Attackbox" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
+[node name="CollisionShape3D" parent="Attackbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10085499, -1.4380031)
+
 [node name="AnimationTree" type="AnimationTree" parent="." index="4"]
 root_node = NodePath("../Body")
 tree_root = SubResource("AnimationNodeStateMachine_kviwv")
@@ -276,13 +308,19 @@ anim_player = NodePath("../Body/AnimationPlayer")
 
 [node name="Orb" type="MeshInstance3D" parent="." index="5"]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, -0.000732893, 1.4437797, -0.37608)
-material_override = SubResource("ShaderMaterial_im0l4")
+material_override = SubResource("ShaderMaterial_qltqj")
 mesh = SubResource("SphereMesh_kviwv")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Orb" index="0"]
 light_color = Color(0.313726, 0.188235, 0.921569, 1)
 light_energy = 5.0
 omni_range = 2.0
+
+[node name="InnerOb" type="MeshInstance3D" parent="Orb" index="1"]
+transform = Transform3D(-0.95, 0, 0, 0, -0.95, 0, 0, 0, -0.95, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_im0l4")
+mesh = SubResource("SphereMesh_kviwv")
+skeleton = NodePath("../..")
 
 [node name="Magic" type="GPUParticles3D" parent="." index="6"]
 transform = Transform3D(1, 3.72529e-07, -3.27826e-07, -2.98023e-08, 0.99998, -0.00645068, -1.19209e-07, 0.00645069, 0.99998, -0.0039802874, 1.449276, -0.35207933)
@@ -293,58 +331,70 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_ok713")
 draw_pass_1 = SubResource("SphereMesh_v2reo")
 
-[node name="Spawn" type="Node3D" parent="." index="7"]
+[node name="Push" type="GPUParticles3D" parent="." index="7"]
+transform = Transform3D(1, 3.72529e-07, -3.27826e-07, -2.98023e-08, 0.99998, -0.00645068, -1.19209e-07, 0.00645069, 0.99998, -0.0039802874, 1.449276, -0.35207933)
+material_override = SubResource("ShaderMaterial_yr5wf")
+emitting = false
+amount = 250
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_qltqj")
+draw_pass_1 = SubResource("SphereMesh_v2reo")
+
+[node name="Spawn" type="Node3D" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00286001, 1.464739, -0.386737)
 
-[node name="Body" parent="." index="8" instance=ExtResource("4_cno0p")]
+[node name="Body" parent="." index="9" instance=ExtResource("4_cno0p")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
-bones/0/position = Vector3(-3.5527124e-15, 0.9426751, -0.06494778)
-bones/1/rotation = Quaternion(-0.042766016, 2.203394e-14, -1.0196213e-08, 0.9990851)
-bones/2/rotation = Quaternion(-0.099120885, -1.1862224e-07, -1.1816131e-08, 0.9950754)
-bones/5/rotation = Quaternion(-0.1203441, 1.1834292e-07, -1.4346135e-08, 0.9927323)
-bones/9/position = Vector3(0.023210026, 0.17969476, -0.02584774)
-bones/9/rotation = Quaternion(-0.15286553, 0.43373156, -0.64476424, 0.6105639)
-bones/10/rotation = Quaternion(0.7356291, -0.012900578, -0.11314986, 0.66774297)
-bones/11/rotation = Quaternion(0.018946541, -0.44151202, 0.031785104, 0.89649206)
-bones/15/rotation = Quaternion(0.30378985, -0.32865468, -0.2625314, 0.8548538)
-bones/16/rotation = Quaternion(-0.20784114, 0.06874571, 0.12904154, 0.9671734)
-bones/17/rotation = Quaternion(0.025080632, 0.012580051, 0.11781119, 0.99263954)
-bones/20/position = Vector3(-0.0122631965, 0.1803243, -0.009080381)
-bones/20/rotation = Quaternion(-0.17153025, -0.65304315, 0.5125414, 0.5304841)
-bones/21/rotation = Quaternion(0.6415044, -0.026759027, 0.3076269, 0.7022263)
-bones/22/rotation = Quaternion(0.080469534, -0.024249483, -0.21176818, 0.9736996)
-bones/23/rotation = Quaternion(-0.16179535, 0.6076273, 0.04690974, 0.77615136)
-bones/26/rotation = Quaternion(0.52248627, 0.5959713, 0.0051336777, 0.60975415)
-bones/27/rotation = Quaternion(-0.30554172, -0.04084373, -0.1484545, 0.93964744)
-bones/30/rotation = Quaternion(-5.4202424e-08, 0.6961122, 0.717933, -5.255501e-08)
-bones/34/rotation = Quaternion(0.9811296, 0.04019005, -0.11773644, 0.148013)
-bones/35/rotation = Quaternion(0.034960363, 0.004314118, 0.004474955, 0.99936944)
-bones/36/rotation = Quaternion(-0.47318336, -0.061734937, -0.012696902, 0.87870646)
-bones/37/rotation = Quaternion(0.010684408, 0.96141255, -0.2704207, 0.049441233)
-bones/39/rotation = Quaternion(0.9818705, -0.04049319, 0.077263504, 0.16828905)
-bones/40/rotation = Quaternion(0.07506445, -0.0042884527, -0.016312297, 0.9970361)
-bones/41/rotation = Quaternion(-0.49000233, 0.05531892, 0.0073416866, 0.8699331)
-bones/42/rotation = Quaternion(-0.06138559, 0.959714, -0.26865867, -0.054803994)
-bones/43/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
-bones/44/position = Vector3(0.18100119, 0.08240293, -0.015668165)
+bones/0/position = Vector3(1.04694586e-10, 0.92946804, -0.06494776)
+bones/1/rotation = Quaternion(-0.04455683, 1.8300897e-11, -1.0196197e-08, 0.99900687)
+bones/2/rotation = Quaternion(0.15559436, -1.17972384e-07, 1.8526494e-08, 0.98782104)
+bones/5/rotation = Quaternion(-0.24195822, 1.1554195e-07, -2.970166e-08, 0.97028667)
+bones/9/position = Vector3(0.026949033, 0.17712419, -0.020101443)
+bones/9/rotation = Quaternion(0.47394097, 0.3582761, -0.6522217, 0.47077084)
+bones/10/rotation = Quaternion(0.332644, -0.19899058, 0.18134505, 0.90380573)
+bones/11/rotation = Quaternion(0.18143786, -0.3075133, 0.32779068, 0.8746823)
+bones/15/rotation = Quaternion(0.5056567, -0.21242741, -0.26728192, 0.79230434)
+bones/16/rotation = Quaternion(-0.06681771, -0.4569382, -0.021170089, 0.8867326)
+bones/17/rotation = Quaternion(0.09046907, 0.109018736, 0.048468564, 0.988727)
+bones/20/position = Vector3(-0.008524909, 0.18289599, -0.014826422)
+bones/20/rotation = Quaternion(0.42506534, -0.3143707, 0.6855158, 0.5005583)
+bones/21/rotation = Quaternion(0.38015792, 0.22358032, -0.058699694, 0.8955703)
+bones/22/rotation = Quaternion(0.18691601, -0.14810541, -0.477568, 0.8456098)
+bones/23/rotation = Quaternion(-0.10430366, 0.19750272, 0.11297341, 0.9681687)
+bones/26/rotation = Quaternion(0.67321736, 0.20363174, 0.2529382, 0.66433036)
+bones/27/rotation = Quaternion(-0.22458363, 0.37414882, -0.0239213, 0.8994458)
+bones/30/rotation = Quaternion(-5.4202427e-08, 0.6961122, 0.717933, -5.2555006e-08)
+bones/31/rotation = Quaternion(-5.420243e-08, 0.6961122, 0.717933, -5.2555006e-08)
+bones/34/rotation = Quaternion(0.9540137, 0.076916575, -0.20161575, 0.20806946)
+bones/35/rotation = Quaternion(0.13156962, 0.004278669, 0.016841045, 0.9911546)
+bones/36/rotation = Quaternion(-0.50723124, 0.031502306, 0.04012847, 0.8602987)
+bones/37/rotation = Quaternion(0.010684424, 0.96141255, -0.2704207, 0.04944125)
+bones/39/rotation = Quaternion(0.9597024, -0.07727948, 0.1589777, 0.21846129)
+bones/40/rotation = Quaternion(0.15888542, -0.0042439257, -0.03452748, 0.986684)
+bones/41/rotation = Quaternion(-0.5256613, -0.017830279, -0.004754508, 0.8504938)
+bones/42/rotation = Quaternion(-0.061385613, 0.959714, -0.26865867, -0.054803994)
+bones/43/rotation = Quaternion(-0.6320816, 0.72477007, -0.18002334, -0.20681582)
+bones/44/position = Vector3(0.22917502, 0.08240293, -0.015668165)
 bones/45/rotation = Quaternion(0.9998905, -0.00040637943, 0.0102964165, -0.010628726)
-bones/46/position = Vector3(-0.15921922, 0.08240293, -0.015668165)
+bones/46/position = Vector3(-0.2031061, 0.08240293, -0.015668165)
 bones/47/rotation = Quaternion(0.9998905, 0.00040637943, -0.0102964165, -0.010628726)
 
 [node name="Plane" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.9072736e-14, -4.9639166e-14, -1.2404366e-14, 0.999287, -0.037751947, -3.6333905e-14, 0.037751988, 0.9992871, -1.395166e-14, 1.76004, 0.005148199)
+transform = Transform3D(1, 9.2348446e-10, 6.92756e-10, -6.796495e-10, 0.9560113, -0.2933296, -9.332494e-10, 0.2933297, 0.95601124, 1.0962193e-09, 1.6948013, 0.22119431)
 
 [node name="Plane" parent="Body/metarig/Skeleton3D/Plane" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_cno0p")
 
 [node name="arur_l" parent="Body/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.0432216, -0.07675347, -0.18498924, 0.17848241, 0.8014225, 0.6740104, 0.09086332, -0.693004, 0.7999453, 0.28919876, 1.4706644, 0.27583236)
+transform = Transform3D(0.81438327, -0.62420845, -0.27489504, 0.6645603, 0.8225446, 0.10101293, 0.15350145, -0.24941537, 1.0211033, 0.22481771, 1.398691, 0.56420445)
 
 [node name="arur_l" parent="Body/metarig/Skeleton3D/arur_l" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022436, 0.0297889, 6.98492e-10)
-material_override = SubResource("ShaderMaterial_cno0p")
+material_override = SubResource("ShaderMaterial_2q777")
 
 [node name="Magic" type="GPUParticles3D" parent="Body/metarig/Skeleton3D/arur_l/arur_l" index="0"]
 material_override = SubResource("ShaderMaterial_yr5wf")
@@ -359,10 +409,10 @@ light_energy = 2.5
 omni_range = 0.5
 
 [node name="arua_r" parent="Body/metarig/Skeleton3D" index="2"]
-transform = Transform3D(1.0204109, -8.940697e-08, 0.29527143, -1.0430813e-07, 1.0622728, -1.0430813e-07, -0.29527155, -8.940697e-08, 1.0204108, -0.25053406, 1.3108095, 0.18331973)
+transform = Transform3D(0.9103097, 0.46795785, 0.28421015, -0.53131557, 0.8881456, 0.2394248, -0.13215016, -0.34732676, 0.99514997, -0.20205557, 1.4195755, 0.5509455)
 
 [node name="arua_r" parent="Body/metarig/Skeleton3D/arua_r" index="0"]
-material_override = SubResource("ShaderMaterial_cno0p")
+material_override = SubResource("ShaderMaterial_2q777")
 
 [node name="Magic" type="GPUParticles3D" parent="Body/metarig/Skeleton3D/arua_r/arua_r" index="0"]
 material_override = SubResource("ShaderMaterial_yr5wf")
@@ -389,7 +439,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_43ula")
 [node name="Cube_003" parent="Body/metarig/Skeleton3D" index="5"]
 surface_material_override/0 = SubResource("StandardMaterial3D_wt35d")
 
-[node name="HitFX" parent="." index="9" instance=ExtResource("4_cno0p")]
+[node name="HitFX" parent="." index="10" instance=ExtResource("4_cno0p")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 visible = false
 
@@ -415,7 +465,7 @@ material_override = ExtResource("5_im0l4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00223202, 0, 0.000280976)
 material_override = ExtResource("5_im0l4")
 
-[node name="Direction" type="Node3D" parent="." index="10"]
+[node name="Direction" type="Node3D" parent="." index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [editable path="Body"]
