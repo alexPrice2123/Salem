@@ -129,11 +129,13 @@ load_path = "res://.godot/imported/vine_tangler_Height.png-33d5868d33b7690db6236
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_diaea"]
 cull_mode = 2
+albedo_color = Color(0.9019608, 0.9607843, 0.8117647, 0.85882354)
 albedo_texture = ExtResource("5_ubeos")
-roughness = 0.0
+metallic_specular = 0.0
+roughness = 0.7
 roughness_texture = ExtResource("8_5fk11")
 normal_enabled = true
-normal_scale = 0.93
+normal_scale = 1.1
 normal_texture = ExtResource("6_diaea")
 heightmap_enabled = true
 heightmap_scale = 0.0
@@ -148,6 +150,7 @@ heightmap_scale = 0.0
 heightmap_texture = ExtResource("9_diaea")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1uhbg"]
+albedo_color = Color(0.9019608, 0.9607843, 0.8117647, 0.85882354)
 albedo_texture = ExtResource("14_wqesy")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqesy"]
@@ -162,6 +165,7 @@ normal_texture = ExtResource("11_aovyu")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t10s5"]
 cull_mode = 2
+albedo_color = Color(0.9019608, 0.9607843, 0.8117647, 0.85882354)
 albedo_texture = ExtResource("14_wqesy")
 
 [node name="vineTangler" instance=ExtResource("1_1e8yf")]
