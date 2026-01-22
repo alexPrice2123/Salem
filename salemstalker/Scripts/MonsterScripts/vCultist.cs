@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class hollowNormal : Monster3d
+public partial class vCultist : Monster3d
 {
 	// Called when the node enters the scene tree for the first time.
 
@@ -36,7 +36,7 @@ public partial class hollowNormal : Monster3d
 		EveryFrame(delta);
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("hollowNormal", Biome);
+			_player.MonsterKilled("vCultist", Biome);
 			if (Debug == true)
 			{
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
@@ -87,6 +87,7 @@ public partial class hollowNormal : Monster3d
 		_hasHit = false;
 		_attackAnim = true;
 		await ToSignal(GetTree().CreateTimer(0.48), "timeout");
+		_speedOffset = 2.5f;
 		_attackBox.GetParent<Area3D>().Monitoring = true;
 		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
 		_attackBox.GetParent<Area3D>().Monitoring = false;

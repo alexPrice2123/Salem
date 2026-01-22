@@ -3,14 +3,13 @@
 [ext_resource type="Script" uid="uid://c0ajuqqr08phc" path="res://Scripts/MonsterScripts/MonsterAssetScripts/vineUnderground.cs" id="1_qnigb"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="2_qnigb"]
 [ext_resource type="Texture2D" uid="uid://bjurhsgte1wdp" path="res://Assets/2D/plains_grass.png" id="3_t0cnc"]
-[ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="4_8if4t"]
 [ext_resource type="PackedScene" uid="uid://d4j6g40iyik0q" path="res://Assets/3D/charatermodel/vine_hands.blend" id="4_cidwa"]
-[ext_resource type="Texture2D" uid="uid://bwa2fkxsnncqd" path="res://Assets/monstertextures/vinetangler/vine_tangler_Base_color.png" id="5_xhi75"]
-[ext_resource type="Texture2D" uid="uid://bk24wiq86ccs8" path="res://Assets/monstertextures/vinetangler/vine_tangler_Height.png" id="6_ddgl5"]
-[ext_resource type="Texture2D" uid="uid://dcasbv81vsnhb" path="res://Assets/monstertextures/vinetangler/vine_tangler_Normal.png" id="7_hbxjx"]
-[ext_resource type="Texture2D" uid="uid://bx04nn7hcshcv" path="res://Assets/monstertextures/vinetangler/seed_Base_color.png" id="8_jgvkq"]
-[ext_resource type="Texture2D" uid="uid://cwkd2ypoekgv6" path="res://Assets/monstertextures/vinetangler/seed_Height.png" id="9_g2n00"]
-[ext_resource type="Texture2D" uid="uid://bfcss1xbtpesx" path="res://Assets/monstertextures/vinetangler/seed_Normal_OpenGL.png" id="10_joypt"]
+[ext_resource type="Texture2D" uid="uid://bwa2fkxsnncqd" path="res://Assets/monstertextures/vinetangler/vine_tangler_Base_color.png" id="5_pecx6"]
+[ext_resource type="Texture2D" uid="uid://bnsoje63vr11o" path="res://Assets/monstertextures/vinetangler/vine_tangler_Normal_OpenGL.png" id="6_xhi75"]
+[ext_resource type="Texture2D" uid="uid://c8q4swel875xt" path="res://Assets/monstertextures/vinetangler/vine_tangler_Roughness.png" id="7_ddgl5"]
+[ext_resource type="Texture2D" uid="uid://cmy6ud3a33m35" path="res://Assets/monstertextures/vinetangler/claws_Base_color.png" id="8_hbxjx"]
+[ext_resource type="Texture2D" uid="uid://dunclcvh6g33l" path="res://Assets/monstertextures/vinetangler/claws_Height.png" id="9_jgvkq"]
+[ext_resource type="Texture2D" uid="uid://c54hwwtlud6nh" path="res://Assets/monstertextures/vinetangler/claws_Normal_OpenGL.png" id="10_g2n00"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13aiu"]
 albedo_texture = ExtResource("2_qnigb")
@@ -61,20 +60,30 @@ albedo_texture = ExtResource("3_t0cnc")
 [sub_resource type="SphereMesh" id="SphereMesh_qnigb"]
 material = SubResource("StandardMaterial3D_l2guo")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wqesy"]
+load_path = "res://.godot/imported/vine_tangler_Height.png-33d5868d33b7690db62362c0ff46bf52.s3tc.ctex"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_diaea"]
 cull_mode = 2
-albedo_texture = ExtResource("5_xhi75")
+albedo_color = Color(0.9019608, 0.9607843, 0.8117647, 0.85882354)
+albedo_texture = ExtResource("5_pecx6")
+metallic_specular = 0.0
+roughness = 0.7
+roughness_texture = ExtResource("7_ddgl5")
 normal_enabled = true
-normal_texture = ExtResource("7_hbxjx")
+normal_scale = 1.1
+normal_texture = ExtResource("6_xhi75")
 heightmap_enabled = true
-heightmap_texture = ExtResource("6_ddgl5")
+heightmap_scale = 0.0
+heightmap_texture = SubResource("CompressedTexture2D_wqesy")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5fk11"]
-albedo_texture = ExtResource("8_jgvkq")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oglr3"]
+albedo_texture = ExtResource("8_hbxjx")
 normal_enabled = true
-normal_texture = ExtResource("10_joypt")
+normal_texture = ExtResource("10_g2n00")
 heightmap_enabled = true
-heightmap_texture = ExtResource("9_g2n00")
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("9_jgvkq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jgvkq"]
 transparency = 1
@@ -179,15 +188,19 @@ material_override = SubResource("StandardMaterial3D_cidwa")
 mesh = SubResource("SphereMesh_qnigb")
 
 [node name="vine_hands" parent="VinePoint/Vine" instance=ExtResource("4_cidwa")]
-transform = Transform3D(5.801877e-17, -0.010619542, -1.9764543e-09, -1.2997444e-11, -1.2997444e-11, 0.00126605, -0.010619542, -3.772819e-17, -1.9764543e-09, 0, -0.021057155, 3.2872766e-08)
+transform = Transform3D(-1.3113417e-08, -0.3, -1.3113416e-09, 0, -1.3113417e-08, 0.03, -0.3, 1.3113417e-08, 5.7320566e-17, 0, -0.021057155, 3.2872766e-08)
 
-[node name="Cube" parent="VinePoint/Vine/vine_hands" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_diaea")
-surface_material_override/1 = SubResource("StandardMaterial3D_5fk11")
+[node name="Cube_001" parent="VinePoint/Vine/vine_hands/Armature/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_diaea")
 
-[node name="Cube_001" parent="VinePoint/Vine/vine_hands" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_diaea")
-surface_material_override/1 = SubResource("StandardMaterial3D_5fk11")
+[node name="Cube_002" parent="VinePoint/Vine/vine_hands/Armature/Skeleton3D" index="1"]
+material_override = SubResource("StandardMaterial3D_oglr3")
+
+[node name="Cube" parent="VinePoint/Vine/vine_hands/Armature_001/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_diaea")
+
+[node name="Cube_003" parent="VinePoint/Vine/vine_hands/Armature_001/Skeleton3D" index="1"]
+material_overlay = SubResource("StandardMaterial3D_oglr3")
 
 [node name="HitFX" type="MeshInstance3D" parent="VinePoint"]
 transform = Transform3D(6.88388e-16, -1.96701e-07, -0.126, -0.126, -1.96701e-07, -4.47642e-16, -5.50763e-09, 4.5, -5.50763e-09, 0, 0, 0)
@@ -196,17 +209,7 @@ material_override = SubResource("StandardMaterial3D_jgvkq")
 mesh = SubResource("SphereMesh_qnigb")
 
 [node name="vine_hands2" parent="VinePoint/HitFX" instance=ExtResource("4_cidwa")]
-transform = Transform3D(5.8018706e-17, -0.010619541, -1.9764514e-09, -1.2997433e-11, -1.2997433e-11, 0.0012660499, -0.010619541, -3.7728174e-17, -1.9764514e-09, 8.941984, -0.021057144, 3.2872755e-08)
-
-[node name="Cube" parent="VinePoint/HitFX/vine_hands2" index="0"]
-material_override = ExtResource("4_8if4t")
-surface_material_override/0 = SubResource("StandardMaterial3D_diaea")
-surface_material_override/1 = SubResource("StandardMaterial3D_5fk11")
-
-[node name="Cube_001" parent="VinePoint/HitFX/vine_hands2" index="1"]
-material_override = ExtResource("4_8if4t")
-surface_material_override/0 = SubResource("StandardMaterial3D_diaea")
-surface_material_override/1 = SubResource("StandardMaterial3D_5fk11")
+transform = Transform3D(-1.3113417e-08, -0.3, -1.1802075e-09, 0, -1.3113417e-08, 0.027, -0.3, 1.3113417e-08, 5.158851e-17, 8.941984, -0.021057144, 3.2872755e-08)
 
 [node name="Area3D" type="Area3D" parent="VinePoint"]
 
