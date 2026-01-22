@@ -1,4 +1,4 @@
-[gd_scene load_steps=1138 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1139 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bdg05x8m3uscr" path="res://Assets/2D/shallowocean.png" id="8_2rvlj"]
 [ext_resource type="Texture2D" uid="uid://xcspp642up40" path="res://Assets/2D/midocean.png" id="9_1uftk"]
 [ext_resource type="PackedScene" uid="uid://bu17vktj11nsu" path="res://Scenes/Monsters/lumberJack.tscn" id="9_byw2m"]
+[ext_resource type="PackedScene" uid="uid://04d0sdmqfuo6" path="res://Scenes/Monsters/vCultist.tscn" id="10_5j1yv"]
 [ext_resource type="Texture2D" uid="uid://d0u1esu3iuflj" path="res://Assets/2D/deepocean.png" id="10_43n44"]
 [ext_resource type="PackedScene" uid="uid://c3gi3vrev7n0x" path="res://Scenes/Monsters/underBrush.tscn" id="10_ptcpy"]
 [ext_resource type="PackedScene" uid="uid://crxygapcq66ft" path="res://Scenes/Monsters/flyingPesk.tscn" id="10_qcek0"]
@@ -2500,10 +2501,10 @@ radius = 38.980755
 
 [node name="Z1Shrine2EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -539.85846, 1.687819, -40.037697)
-_maxMonsterCount = 1
+_maxMonsterCount = 2
 _biome = "Forest"
-_monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("7_5m6g4"), ExtResource("38_osg54"), ExtResource("9_byw2m")])
-_monsterCount = Array[int]([1, 0, 0, 0])
+_monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("7_5m6g4"), ExtResource("38_osg54"), ExtResource("9_byw2m"), ExtResource("10_5j1yv")])
+_monsterCount = Array[int]([0, 1, 0, 0, 1])
 
 [node name="Range" parent="MonsterHolder/Z1Shrine2EnemySpawner" index="3"]
 radius = 12.092302
@@ -2725,13 +2726,13 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.996029, -0.05519999)
-bones/2/rotation = Quaternion(-0.07636575, 0, 0, 0.99707997)
-bones/5/rotation = Quaternion(-0.07260673, 0.0073659564, 0.021773774, 0.9970958)
-bones/25/rotation = Quaternion(0.97614264, 0.015255599, -0.009030714, 0.2164054)
-bones/26/rotation = Quaternion(0.18508857, 0.001581228, 0.014837222, 0.98260856)
-bones/34/rotation = Quaternion(0.97614264, -0.015255601, 0.009030669, 0.2164054)
-bones/35/rotation = Quaternion(0.18508857, -0.0015812287, -0.014837222, 0.98260856)
+bones/0/position = Vector3(0, 0.9958992, -0.05519999)
+bones/2/rotation = Quaternion(-0.07608157, 0, 0, 0.99710166)
+bones/5/rotation = Quaternion(-0.07285306, 0.0073617822, 0.021773864, 0.9970779)
+bones/25/rotation = Quaternion(0.97609293, 0.015275818, -0.009032685, 0.21662784)
+bones/26/rotation = Quaternion(0.18580832, 0.0015810087, 0.014894919, 0.9824718)
+bones/34/rotation = Quaternion(0.97609293, -0.01527582, 0.009032641, 0.21662784)
+bones/35/rotation = Quaternion(0.18580832, -0.0015810084, -0.014894919, 0.9824718)
 
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obu7h")
@@ -2758,13 +2759,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.996029, -0.05519999)
-bones/2/rotation = Quaternion(-0.07636575, 0, 0, 0.99707997)
-bones/5/rotation = Quaternion(-0.07260673, 0.0073659564, 0.021773774, 0.9970958)
-bones/25/rotation = Quaternion(0.97614264, 0.015255599, -0.009030714, 0.2164054)
-bones/26/rotation = Quaternion(0.18508857, 0.001581228, 0.014837222, 0.98260856)
-bones/34/rotation = Quaternion(0.97614264, -0.015255601, 0.009030669, 0.2164054)
-bones/35/rotation = Quaternion(0.18508857, -0.0015812287, -0.014837222, 0.98260856)
+bones/0/position = Vector3(0, 0.9958992, -0.05519999)
+bones/2/rotation = Quaternion(-0.07608157, 0, 0, 0.99710166)
+bones/5/rotation = Quaternion(-0.07285306, 0.0073617822, 0.021773864, 0.9970779)
+bones/25/rotation = Quaternion(0.97609293, 0.015275818, -0.009032685, 0.21662784)
+bones/26/rotation = Quaternion(0.18580832, 0.0015810087, 0.014894919, 0.9824718)
+bones/34/rotation = Quaternion(0.97609293, -0.01527582, 0.009032641, 0.21662784)
+bones/35/rotation = Quaternion(0.18580832, -0.0015810084, -0.014894919, 0.9824718)
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2795,13 +2796,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's family"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.996029, -0.05519999)
-bones/2/rotation = Quaternion(-0.07636575, 0, 0, 0.99707997)
-bones/5/rotation = Quaternion(-0.07260673, 0.0073659564, 0.021773774, 0.9970958)
-bones/25/rotation = Quaternion(0.97614264, 0.015255599, -0.009030714, 0.2164054)
-bones/26/rotation = Quaternion(0.18508857, 0.001581228, 0.014837222, 0.98260856)
-bones/34/rotation = Quaternion(0.97614264, -0.015255601, 0.009030669, 0.2164054)
-bones/35/rotation = Quaternion(0.18508857, -0.0015812287, -0.014837222, 0.98260856)
+bones/0/position = Vector3(0, 0.9958992, -0.05519999)
+bones/2/rotation = Quaternion(-0.07608157, 0, 0, 0.99710166)
+bones/5/rotation = Quaternion(-0.07285306, 0.0073617822, 0.021773864, 0.9970779)
+bones/25/rotation = Quaternion(0.97609293, 0.015275818, -0.009032685, 0.21662784)
+bones/26/rotation = Quaternion(0.18580832, 0.0015810087, 0.014894919, 0.9824718)
+bones/34/rotation = Quaternion(0.97609293, -0.01527582, 0.009032641, 0.21662784)
+bones/35/rotation = Quaternion(0.18580832, -0.0015810084, -0.014894919, 0.9824718)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ub1ot")

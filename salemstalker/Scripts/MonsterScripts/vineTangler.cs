@@ -15,10 +15,10 @@ public partial class vineTangler : Monster3d
 	public override void _Ready()
 	{
 		// -- Variables -- //
-		Chaser = true;              // If this monster chasing the player or finds a point within a range of the player
-		MoveWhileAttack = true;     // Can this monster move while attacking
+		Chaser = false;              // If this monster chasing the player or finds a point within a range of the player
+		MoveWhileAttack = false;     // Can this monster move while attacking
 		Flying = false;              // Should gravity be applied to this monster
-		Stationery = false;          // If the monster shouldnt move at all
+		Stationery = true;          // If the monster shouldnt move at all
 		BaseDamage = 10.0f;         // Base damage of the monster
 		AttackSpeed = 0.5f;         // The time between its attacks
 		AttackRange = 10f;           // The distance the monster gets from the player before stopping and attacking
@@ -31,6 +31,7 @@ public partial class vineTangler : Monster3d
 
 		// -- Other -- //
 		Monster = this;
+		Initialization();
 		_spawn = GetNode<Node3D>("Spawn");
 		_holder = _player.GetParent();	
 	}
