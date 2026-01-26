@@ -32,12 +32,12 @@ public partial class Ui : Control
 	public string _loadingObjective = "None";
 	private TextureProgressBar _secProgressBar1;
 	private TextureProgressBar _secProgressBar2;
-	private TextureProgressBar _secProgressBar3;
-	private TextureProgressBar _secProgressBar4;
+	//private TextureProgressBar _secProgressBar3;
+	//private TextureProgressBar _secProgressBar4;
 	public float _progress1 = 100;
 	public float _progress2 = 100;
-	public float _progress3 = 100;
-	public float _progress4 = 100;
+	//public float _progress3 = 100;
+	//public float _progress4 = 100;
 	public override void _Ready()
 	{
 		if (GetParent() is Player3d player)
@@ -53,8 +53,8 @@ public partial class Ui : Control
 		_shopOption4 = GetNode<TextureButton>("BlacksmithShop/ShopOption4");
 		_secProgressBar1 = GetNode<TextureProgressBar>("SecCooldown1");
 		_secProgressBar2 = GetNode<TextureProgressBar>("SecCooldown2");
-		_secProgressBar3 = GetNode<TextureProgressBar>("SecCooldown3");
-		_secProgressBar4 = GetNode<TextureProgressBar>("SecCooldown4");
+		//_secProgressBar3 = GetNode<TextureProgressBar>("SecCooldown3");
+		//_secProgressBar4 = GetNode<TextureProgressBar>("SecCooldown4");
 		_loadingUI.Visible = true;
 		_loadingMaterial = _loadingUI.Material as ShaderMaterial;
 		_areaName = GetNode<Label>("Area");
@@ -106,24 +106,24 @@ public partial class Ui : Control
 				_secProgressBar2.Value = _progress2;
 			}
 		} else { _progress2 = 100; _secProgressBar2.Visible = false; }
-		if (_player._cooldownSec3)
+		/*if (_player._cooldownSec3)
 		{
 			_secProgressBar3.Visible = true;
 			if (_progress3 > 0)
 			{
 				_progress3 -= 100 / (float)_player._eSecWeapon3.GetMeta("cooldown") * (float)delta;
 				_secProgressBar3.Value = _progress3;
-			}
+			} 
 		} else { _progress3 = 100; _secProgressBar3.Visible = false; }
-		if (_player._cooldownSec4)
+		//if (_player._cooldownSec4)
 		{
 			_secProgressBar4.Visible = true;
 			if(_progress4 > 0)
             {
 				_progress4 -= 100 / (float)_player._eSecWeapon4.GetMeta("cooldown") * (float)delta;
 				_secProgressBar4.Value = _progress4;
-            }
-		} else { _progress4 = 100; _secProgressBar4.Visible = false; }
+            } 
+		} else { _progress4 = 100; _secProgressBar4.Visible = false; }*/
 		
 		// Switch the titles of the buttons based on what shopOption you have selected
 		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
