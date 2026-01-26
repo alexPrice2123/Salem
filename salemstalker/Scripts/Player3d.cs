@@ -23,8 +23,8 @@ public partial class Player3d : CharacterBody3D
 	public Node3D _sword;                           // The currently equipped sword's mesh/root node
 	public Node3D _eSecWeapon1;					 // The secondary weapon slot 1's root node
 	public Node3D _eSecWeapon2;					 // The secondary weapon slot 2's root node
-	public Node3D _eSecWeapon3;					 // The secondary weapon slot 3's root node
-	public Node3D _eSecWeapon4;					 // The secondary weapon slot 4's root node
+	//public Node3D _eSecWeapon3;					 // The secondary weapon slot 3's root node
+	//public Node3D _eSecWeapon4;					 // The secondary weapon slot 4's root node
 	private Control _combatNotif;                    // UI element for combat notifications/status
 	private RayCast3D _ray;                          // Raycast used to detect interactable objects (NPCs, items)
 	private Control _questBook;                      // The main container for the Quest Log UI
@@ -61,8 +61,8 @@ public partial class Player3d : CharacterBody3D
 	private float _knockVelocity = 0f;               	// Current knockback applied to player
 	public bool _cooldownSec1;						 	// Tracks whether the player can use their first secondary weapon
 	public bool _cooldownSec2;						 	// Tracks whether the player can use their second secondary weapon
-	public bool _cooldownSec3;						 	// Tracks whether the player can use their third secondary weapon
-	public bool _cooldownSec4;						 	// Tracks whether the player can use their fourth secondary weapon
+	//public bool _cooldownSec3;						 	// Tracks whether the player can use their third secondary weapon
+	//public bool _cooldownSec4;						 	// Tracks whether the player can use their fourth secondary weapon
 	public bool _running = false;                   	// True if the 'run' input is held down
 	private bool _inStep = false;					 	// Prevents footstep audio from playing if player is already playing a step.
 	private float _bobTime = 0.0f;                   	// Accumulator for the head-bob sine wave function
@@ -130,8 +130,8 @@ public partial class Player3d : CharacterBody3D
 		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
 		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
 		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
-		_eSecWeapon3 = GetNode<Node3D>("Head/Camera3D/Offhand3").GetChild<Node3D>(0);
-		_eSecWeapon4 = GetNode<Node3D>("Head/Camera3D/Offhand4").GetChild<Node3D>(0);
+		//_eSecWeapon3 = GetNode<Node3D>("Head/Camera3D/Offhand3").GetChild<Node3D>(0);
+		//_eSecWeapon4 = GetNode<Node3D>("Head/Camera3D/Offhand4").GetChild<Node3D>(0);
 		_combatNotif = GetNode<Control>("UI/Combat");
 		_inv = GetNode<Control>("UI/Inv");
 		_ray = GetNode<RayCast3D>("Head/Camera3D/Ray");
@@ -383,10 +383,10 @@ public partial class Player3d : CharacterBody3D
 		// --- Swap equiped secondary weapon ---
 		else if (Input.IsActionJustPressed("specialSwap1")) { equipSec = 1; }
 		else if (Input.IsActionJustPressed("specialSwap2")) { equipSec = 2; }
-		else if (Input.IsActionJustPressed("specialSwap3")) { if (!_twoHand) { equipSec = 3; } 
-															else { play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/errorTemp.ogg")); }}
-		else if (Input.IsActionJustPressed("specialSwap4")) { if (!_twoHand) { equipSec = 4; }
-															else { play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/errorTemp.ogg")); } }
+		//else if (Input.IsActionJustPressed("specialSwap3")) { if (!_twoHand) { equipSec = 3; } 
+															//else { play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/errorTemp.ogg")); }}
+		//else if (Input.IsActionJustPressed("specialSwap4")) { if (!_twoHand) { equipSec = 4; }
+															//else { play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/errorTemp.ogg")); } }
 
 		// --- Use secondary weapon ---
 		else if (Input.IsActionJustPressed("special"))
@@ -415,7 +415,7 @@ public partial class Player3d : CharacterBody3D
 					stakeChild.specAction();
 				}
 			}
-			else if (equipSec == 3 && !_twoHand && !_cooldownSec3)
+			/*  else if (equipSec == 3 && !_twoHand && !_cooldownSec3)
 			{
 				secondaryCooldown();
 				if (_eSecWeapon3 is Flintlock flintchild)
@@ -438,7 +438,7 @@ public partial class Player3d : CharacterBody3D
 				{
 					stakeChild.specAction();
 				}
-			}
+			} */
 			
 		}
 
@@ -1219,14 +1219,14 @@ public partial class Player3d : CharacterBody3D
 		{
 			_eSecWeapon2 = weaponInstance;
 		}
-		else if (slot == 2)
+		/* else if (slot == 2)
 		{
 			_eSecWeapon3 = weaponInstance;
 		}
 		else
 		{
 			_eSecWeapon4 = weaponInstance;
-		}
+		} */
 	}
 	public async void play_sfx(AudioStreamOggVorbis soundeffect)
 	{
@@ -1278,7 +1278,7 @@ public partial class Player3d : CharacterBody3D
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon2.GetMeta("cooldown")), "timeout");
 			_cooldownSec2 = false;
 		}
-		else if (equipSec == 3)
+		/*  else if (equipSec == 3)
 		{
 			_cooldownSec3 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon3.GetMeta("cooldown")), "timeout");
@@ -1289,7 +1289,7 @@ public partial class Player3d : CharacterBody3D
 			_cooldownSec4 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon4.GetMeta("cooldown")), "timeout");
 			_cooldownSec4 = false;
-		}
+		}   */
 	}
 
 	private void _on_hurtbox_area_entered(Area3D zone)
