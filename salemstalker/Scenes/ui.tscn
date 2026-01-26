@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=48 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
+[ext_resource type="Texture2D" uid="uid://de6jli1i60dq3" path="res://Assets/UI/reloadinguibase.png" id="5_whq80"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
 [ext_resource type="Texture2D" uid="uid://bhqxe1yu68n7c" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
@@ -14,7 +15,6 @@
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
-[ext_resource type="Texture2D" uid="uid://blp4em76fp5xw" path="res://Assets/UI/circle.png" id="17_smy1h"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
 
@@ -81,6 +81,15 @@ shader_parameter/rect_size = Vector2(0.455, 0.44)
 shader_parameter/bness = 0.1
 shader_parameter/fall_off_scale = 3.0
 shader_parameter/b_offset = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kuui0"]
+load_path = "res://.godot/imported/reloadinguibase.png-246f64f3ca2b1f8e4136782f1b588385.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_smy1h"]
+load_path = "res://.godot/imported/reloadinguibase.png-246f64f3ca2b1f8e4136782f1b588385.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lkjmk"]
+load_path = "res://.godot/imported/reloadinguibase.png-246f64f3ca2b1f8e4136782f1b588385.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxero"]
 line_spacing = 3.08
@@ -359,48 +368,44 @@ mouse_filter = 2
 clip_children = 2
 layout_mode = 0
 offset_left = 69.0
-offset_top = 530.0
-offset_right = 581.0
-offset_bottom = 1042.0
-scale = Vector2(0.15, 0.15)
+offset_top = 525.0
+offset_right = 146.0
+offset_bottom = 602.0
 fill_mode = 4
-texture_progress = ExtResource("17_smy1h")
+texture_progress = ExtResource("5_whq80")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
 [node name="SecCooldown2" type="TextureProgressBar" parent="."]
 clip_children = 2
 layout_mode = 0
 offset_left = 145.0
-offset_top = 530.0
-offset_right = 657.0
-offset_bottom = 1042.0
-scale = Vector2(0.15, 0.15)
+offset_top = 525.0
+offset_right = 222.0
+offset_bottom = 602.0
 fill_mode = 4
-texture_progress = ExtResource("17_smy1h")
+texture_progress = SubResource("CompressedTexture2D_kuui0")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
 [node name="SecCooldown3" type="TextureProgressBar" parent="."]
 clip_children = 2
 layout_mode = 0
 offset_left = 222.0
-offset_top = 530.0
-offset_right = 734.0
-offset_bottom = 1042.0
-scale = Vector2(0.15, 0.15)
+offset_top = 525.0
+offset_right = 299.0
+offset_bottom = 602.0
 fill_mode = 4
-texture_progress = ExtResource("17_smy1h")
+texture_progress = SubResource("CompressedTexture2D_smy1h")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
 [node name="SecCooldown4" type="TextureProgressBar" parent="."]
 clip_children = 2
 layout_mode = 0
 offset_left = 299.0
-offset_top = 530.0
-offset_right = 811.0
-offset_bottom = 1042.0
-scale = Vector2(0.15, 0.15)
+offset_top = 525.0
+offset_right = 376.0
+offset_bottom = 602.0
 fill_mode = 4
-texture_progress = ExtResource("17_smy1h")
+texture_progress = SubResource("CompressedTexture2D_lkjmk")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
 [node name="Inv" type="Control" parent="."]
@@ -1274,6 +1279,7 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_whq80")
 
 [node name="Controls" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(538, 305)
 scale = Vector2(0.561458, 0.559259)
 texture = ExtResource("14_8fs27")
