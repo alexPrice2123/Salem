@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class vCultist : Monster3d
@@ -7,6 +8,11 @@ public partial class vCultist : Monster3d
 
 	private float _distance;
 	private int _attackAnimSwitch = 1;
+	private bool _smashAnim = false;
+	private float _charge = 0f;
+	private ShaderMaterial _auraShader;
+	private MeshInstance3D _leftAura;
+	private MeshInstance3D _rightAura;
 	public override void _Ready()
 	{
 		// -- Variables -- //
@@ -28,12 +34,31 @@ public partial class vCultist : Monster3d
 		// -- Other -- //
 		Monster = this;
 		Initialization();
+		_leftAura = GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/forearm_L/arur_l");
+		_rightAura = GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/forearm_R/arua_r");
+		_auraShader = _leftAura.MaterialOverride as ShaderMaterial;
+
 	}
+
+	private void ToggleAura(bool toggle)
+    {
+		_leftAura.Visible = toggle;
+		_rightAura.Visible = toggle;
+    }
+	private void ToggleParticles(bool toggle)
+    {
+        _leftAura.GetNode<GpuParticles3D>("Magic").Emitting = toggle; 
+		_rightAura.GetNode<GpuParticles3D>("Magic").Emitting = toggle;
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
+		_auraShader.SetShaderParameter("fade_softness", Mathf.Lerp((float)_auraShader.GetShaderParameter("fade_softness"), _charge, (float)delta));
+		if (_charge >= 1){ToggleAura(true); ToggleParticles(true);}
+		if (_charge <= 0){ToggleAura(false); ToggleParticles(false);}else{ToggleAura(true);}
+		if (_stunned){_charge = 0;}
 		if (_health <= 0)
 		{
 			_player.MonsterKilled("vCultist", Biome);
@@ -68,7 +93,8 @@ public partial class vCultist : Monster3d
 	{
 		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
 		{
-			_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "None");
+			_player.Damaged((BaseDamage + _damageOffset)*(1+(_charge/1.5f)), this as Monster3d, "None");
+
 			_attackBox.Disabled = true;
 			_hasHit = true;
 		}
@@ -84,17 +110,37 @@ public partial class vCultist : Monster3d
 		{
 			_attackAnimSwitch = 1;
 		}
-		_hasHit = false;
-		_attackAnim = true;
-		await ToSignal(GetTree().CreateTimer(0.48), "timeout");
-		_speedOffset = 2.5f;
-		_attackBox.GetParent<Area3D>().Monitoring = true;
-		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
-		_attackBox.GetParent<Area3D>().Monitoring = false;
-		_canAttack = false;
-		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
-		_attackAnim = false;
-		await ToSignal(GetTree().CreateTimer(AttackSpeed-0.1f), "timeout");
-		_canAttack = true;
+		if (_charge < 1)
+        {
+            _charge += 0.34f;
+			_hasHit = false;
+			_attackAnim = true;
+			await ToSignal(GetTree().CreateTimer(0.48), "timeout");
+			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
+			await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
+			_canAttack = false;
+			await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+			_attackAnim = false;
+			await ToSignal(GetTree().CreateTimer(AttackSpeed-0.1f), "timeout");
+			_canAttack = true;
+        }
+        else
+        {
+			_hasHit = false;
+			_smashAnim = true;
+			await ToSignal(GetTree().CreateTimer(0.48), "timeout");
+			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
+			_charge = 0f;
+			_leftAura.GetNode<GpuParticles3D>("Magic").Emitting = false; 
+			_rightAura.GetNode<GpuParticles3D>("Magic").Emitting = false;
+			await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
+			_canAttack = false;
+			await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+			_smashAnim = false;
+			await ToSignal(GetTree().CreateTimer(AttackSpeed-0.1f), "timeout");
+			_canAttack = true;
+        }
 	}
 }

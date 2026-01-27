@@ -96,7 +96,7 @@ public partial class sCultist : Monster3d
 		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
 		{
 			_player.Damaged(_meleeDamage, this as Monster3d, "Push");
-			_attackBox.GetParent<Area3D>().Monitoring = false;
+			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
 			_hasHit = true;
 		}
 	}
@@ -151,9 +151,9 @@ public partial class sCultist : Monster3d
 			_canAttack = false;
 			await ToSignal(GetTree().CreateTimer(0.85f), "timeout");
 			GetNode<GpuParticles3D>("Push").Emitting = true;
-			_attackBox.GetParent<Area3D>().Monitoring = true;
+			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
 			await ToSignal(GetTree().CreateTimer(0.2), "timeout");
-			_attackBox.GetParent<Area3D>().Monitoring = false;
+			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
 			_meleeAnim = false;
 			await ToSignal(GetTree().CreateTimer(0.7), "timeout");
 			_canAttack = true;

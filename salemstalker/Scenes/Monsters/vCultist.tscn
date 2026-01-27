@@ -1,41 +1,26 @@
-[gd_scene load_steps=56 format=3 uid="uid://04d0sdmqfuo6"]
+[gd_scene load_steps=50 format=3 uid="uid://04d0sdmqfuo6"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_tknub"]
-[ext_resource type="Script" uid="uid://toyyjatqk37n" path="res://Scripts/MonsterScripts/VCultist.cs" id="2_tknub"]
-[ext_resource type="Shader" uid="uid://bf0mb4hsypo15" path="res://Shaders/dissolve.gdshader" id="3_rv3pj"]
+[ext_resource type="Script" uid="uid://toyyjatqk37n" path="res://Scripts/MonsterScripts/vCultist.cs" id="2_tknub"]
+[ext_resource type="PackedScene" uid="uid://bhargwjr3spf" path="res://Assets/3D/charatermodel/violent_cultist.blend" id="4_cno0p"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="4_yna7o"]
-[ext_resource type="PackedScene" uid="uid://c4ionl12wydjs" path="res://Assets/3D/charatermodel/cultist.blend" id="5_7l0s8"]
-[ext_resource type="Texture2D" uid="uid://dqdpsjku855c5" path="res://Assets/monstertextures/scultist/mask.001_Base_color.png" id="6_l42jp"]
-[ext_resource type="Texture2D" uid="uid://b705pgrttan4p" path="res://Assets/monstertextures/scultist/mask.001_Height.png" id="7_moqwi"]
-[ext_resource type="Texture2D" uid="uid://sqfsvwjlmnk2" path="res://Assets/monstertextures/scultist/mask.001_Metallic.png" id="8_wp7hf"]
-[ext_resource type="Texture2D" uid="uid://dt1146df33u24" path="res://Assets/monstertextures/scultist/mask.001_Normal.png" id="9_6fxh7"]
-[ext_resource type="Texture2D" uid="uid://2w5umyaonw03" path="res://Assets/monstertextures/scultist/mask.001_Roughness.png" id="10_dpmrl"]
-[ext_resource type="Texture2D" uid="uid://jrq8k8o400vg" path="res://Assets/monstertextures/scultist/body_Base_color.png" id="11_akf3m"]
-[ext_resource type="Texture2D" uid="uid://dg4ku7nv75jlg" path="res://Assets/monstertextures/scultist/body_Height.png" id="12_7jkeu"]
-[ext_resource type="Texture2D" uid="uid://bfuc6scoc73er" path="res://Assets/monstertextures/scultist/body_Metallic.png" id="13_ly8vl"]
-[ext_resource type="Texture2D" uid="uid://cmhhvena7di46" path="res://Assets/monstertextures/scultist/body_Normal.png" id="14_0g7i0"]
-[ext_resource type="Texture2D" uid="uid://5ukdygu6a7x0" path="res://Assets/monstertextures/scultist/arms_Roughness.png" id="15_8c0lv"]
-[ext_resource type="Texture2D" uid="uid://4g4hodmyllyu" path="res://Assets/monstertextures/scultist/pants_Base_color.png" id="16_ls1v1"]
-[ext_resource type="Texture2D" uid="uid://dhfyu4g84ndap" path="res://Assets/monstertextures/scultist/shoes_Base_color.png" id="17_u22bx"]
-[ext_resource type="Texture2D" uid="uid://iwmae50olf2u" path="res://Assets/monstertextures/scultist/skin_Base_color.png" id="18_y40wb"]
-[ext_resource type="Texture2D" uid="uid://juvqw12tfya0" path="res://Assets/monstertextures/scultist/arms_Base_color.png" id="19_d7ugj"]
-[ext_resource type="Texture2D" uid="uid://bxj17benu1f7r" path="res://Assets/monstertextures/scultist/arms_Metallic.png" id="20_55bgo"]
-[ext_resource type="Texture2D" uid="uid://b1egjv4k5m5d7" path="res://Assets/monstertextures/scultist/arms_Normal.png" id="21_nei8m"]
-[ext_resource type="Texture2D" uid="uid://b3yxcppkvkcc3" path="res://Assets/monstertextures/scultist/face_Base_color.png" id="22_vgd47"]
-[ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="23_noqu3"]
+[ext_resource type="Shader" uid="uid://dad6yy25eud5k" path="res://Shaders/magicFist.gdshader" id="5_im0l4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kviwv"]
 radius = 0.28401
 height = 1.68807
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_00oym"]
-animation = &"attack"
+animation = &"metarigAction_002"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ci7oq"]
-animation = &"idle"
+animation = &"metarigAction"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_im0l4"]
+animation = &"metarigAction_003"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ht62m"]
-animation = &"walk"
+animation = &"metarigAction_001"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ng0vc"]
 advance_mode = 2
@@ -70,17 +55,29 @@ xfade_time = 0.2
 advance_mode = 2
 advance_expression = "_attackAnim == true"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kviwv"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_smashAnim == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yr5wf"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_smashAnim == false"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kviwv"]
 states/End/position = Vector2(882.5, 85.9062)
 states/Start/position = Vector2(253.5, 85.75)
 states/attack/node = SubResource("AnimationNodeAnimation_00oym")
-states/attack/position = Vector2(465.1875, 224.5)
+states/attack/position = Vector2(574.59375, -88.5)
 states/idle/node = SubResource("AnimationNodeAnimation_ci7oq")
 states/idle/position = Vector2(467, 86.0625)
+states/metarigAction_003/node = SubResource("AnimationNodeAnimation_im0l4")
+states/metarigAction_003/position = Vector2(466.25, 235)
 states/walking/node = SubResource("AnimationNodeAnimation_ht62m")
 states/walking/position = Vector2(687.062, 85.8281)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_xtwe5"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_qltqj"), "attack", "walking", SubResource("AnimationNodeStateMachineTransition_tknub"), "walking", "attack", SubResource("AnimationNodeStateMachineTransition_sgr3b")]
-graph_offset = Vector2(132, -14)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_xtwe5"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_qltqj"), "attack", "walking", SubResource("AnimationNodeStateMachineTransition_tknub"), "walking", "attack", SubResource("AnimationNodeStateMachineTransition_sgr3b"), "idle", "metarigAction_003", SubResource("AnimationNodeStateMachineTransition_kviwv"), "metarigAction_003", "idle", SubResource("AnimationNodeStateMachineTransition_yr5wf")]
+graph_offset = Vector2(113.86195, -150.25912)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cno0p"]
 seamless = true
@@ -136,82 +133,131 @@ scale_curve = SubResource("CurveTexture_yr5wf")
 
 [sub_resource type="SphereMesh" id="SphereMesh_v2reo"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cno0p"]
-albedo_texture = ExtResource("6_l42jp")
-metallic = 1.0
-metallic_texture = ExtResource("8_wp7hf")
-roughness_texture = ExtResource("10_dpmrl")
-normal_enabled = true
-normal_texture = ExtResource("9_6fxh7")
-heightmap_enabled = true
-heightmap_scale = 0.0
-heightmap_texture = ExtResource("7_moqwi")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7ux86"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2q777"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_opu3e"]
+width = 1024
+noise = SubResource("FastNoiseLite_7ux86")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_im0l4"]
 render_priority = 0
-shader = ExtResource("3_rv3pj")
-shader_parameter/baseColor = Color(1.92523e-06, 0, 0.6274635, 1)
-shader_parameter/dissolveSlider = 0.6670000791824999
-shader_parameter/dissolveNoiseScale = 16.85
-shader_parameter/edgeNoiseScale = -2.2352000073055933e-07
-shader_parameter/edgesThickness = 0.066000003135
-shader_parameter/edgeColor = Color(0, 0, 1, 1)
-shader_parameter/edgeEmissionSlider = 2.999999932944
-shader_parameter/enable_dissolve_animation = true
-shader_parameter/animation_speed = 2.9000000432134803
-shader_parameter/animation_intensity = 0.2
+shader = ExtResource("5_im0l4")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/color_edge = Color(0.99607843, 0, 0.2901961, 1)
+shader_parameter/emission_strength = 10.000000475
+shader_parameter/rise_progress = 1.0
+shader_parameter/edge_width = 0.30000001192093
+shader_parameter/noise_scale = 1.00400004443012
+shader_parameter/noise_strength = 0.5
+shader_parameter/time_speed = 1.0000000475
+shader_parameter/fade_softness = 0.00999999977648
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_opu3e")
+shader_parameter/distortion_scale = 0.010000000475
+shader_parameter/top_fade_start = 1.0
+shader_parameter/top_fade_power = 2.0
+shader_parameter/invert_top_fade = false
+shader_parameter/wave_transparency = 1.0
+shader_parameter/wave_frequency = 20.0
+shader_parameter/wave_speed = 5.0
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cno0p"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kviwv"]
+render_priority = 0
+shader = ExtResource("5_im0l4")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/color_edge = Color(0.99607843, 0, 0.2901961, 1)
+shader_parameter/emission_strength = 10.000000475
+shader_parameter/rise_progress = 1.0
+shader_parameter/edge_width = 0.30000001192093
+shader_parameter/noise_scale = 0.31500001170262004
+shader_parameter/noise_strength = 0.5
+shader_parameter/time_speed = 1.0000000475
+shader_parameter/fade_softness = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_opu3e")
+shader_parameter/distortion_scale = 0.5
+shader_parameter/top_fade_start = 1.0
+shader_parameter/top_fade_power = 2.0
+shader_parameter/invert_top_fade = false
+shader_parameter/wave_transparency = 1.0
+shader_parameter/wave_frequency = 20.0
+shader_parameter/wave_speed = 5.0
+
+[sub_resource type="Curve" id="Curve_yr5wf"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ja8if"]
+curve = SubResource("Curve_yr5wf")
+
+[sub_resource type="Curve" id="Curve_ok713"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v2reo"]
+curve = SubResource("Curve_ok713")
+
+[sub_resource type="Curve" id="Curve_8c6in"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fbr85"]
+curve = SubResource("Curve_8c6in")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_im0l4"]
 lifetime_randomness = 1.0
+particle_flag_rotate_y = true
 emission_shape = 1
 emission_sphere_radius = 0.2
 angle_min = 1.07288e-05
 angle_max = 360.0
 direction = Vector3(0, 0, 0)
 spread = 0.0
-orbit_velocity_curve = SubResource("CurveTexture_im0l4")
+orbit_velocity_curve = SubResource("CurveTexture_ja8if")
 radial_velocity_min = 0.0999776
 radial_velocity_max = 0.499978
-radial_velocity_curve = SubResource("CurveTexture_kviwv")
+radial_velocity_curve = SubResource("CurveTexture_v2reo")
 gravity = Vector3(0, 0, 0)
 scale_min = 0.05
 scale_max = 0.08
-scale_curve = SubResource("CurveTexture_yr5wf")
+scale_curve = SubResource("CurveTexture_fbr85")
+
+[sub_resource type="SphereMesh" id="SphereMesh_hh7ue"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_im0l4"]
-cull_mode = 2
-albedo_texture = ExtResource("11_akf3m")
-metallic = 1.0
-metallic_texture = ExtResource("13_ly8vl")
-roughness_texture = ExtResource("15_8c0lv")
-normal_enabled = true
-normal_texture = ExtResource("14_0g7i0")
-heightmap_enabled = true
-heightmap_scale = 0.0
-heightmap_texture = ExtResource("12_7jkeu")
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpr8s"]
-albedo_texture = ExtResource("16_ls1v1")
+[sub_resource type="Curve" id="Curve_kviwv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3035c"]
-albedo_texture = ExtResource("17_u22bx")
+[sub_resource type="CurveTexture" id="CurveTexture_xtwe5"]
+curve = SubResource("Curve_kviwv")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpt5g"]
-albedo_texture = ExtResource("18_y40wb")
+[sub_resource type="Curve" id="Curve_v2reo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0uyk"]
-albedo_texture = ExtResource("19_d7ugj")
-metallic = 1.0
-metallic_texture = ExtResource("20_55bgo")
-roughness_texture = ExtResource("15_8c0lv")
-normal_enabled = true
-normal_texture = ExtResource("21_nei8m")
+[sub_resource type="CurveTexture" id="CurveTexture_ok713"]
+curve = SubResource("Curve_v2reo")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43ula"]
-albedo_texture = ExtResource("18_y40wb")
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8c6in"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 0.999978
+radial_velocity_curve = SubResource("CurveTexture_xtwe5")
+gravity = Vector3(0, -2, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_ok713")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wt35d"]
-albedo_texture = ExtResource("22_vgd47")
+[sub_resource type="BoxMesh" id="BoxMesh_fbr85"]
 
 [node name="vCultist" instance=ExtResource("1_tknub")]
 script = ExtResource("2_tknub")
@@ -245,130 +291,113 @@ explosiveness = 0.5
 process_material = SubResource("ParticleProcessMaterial_qltqj")
 draw_pass_1 = SubResource("SphereMesh_v2reo")
 
-[node name="Spawn" type="Node3D" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00286001, 1.464739, -0.386737)
-
-[node name="Body" parent="." index="7" instance=ExtResource("5_7l0s8")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+[node name="Body" parent="." index="6" instance=ExtResource("4_cno0p")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
-bones/0/position = Vector3(6.3934014e-10, 0.9278806, -0.06494777)
-bones/1/rotation = Quaternion(-0.05367772, 4.655822e-11, -1.171066e-08, 0.9985584)
-bones/2/rotation = Quaternion(-0.099120885, -1.1862224e-07, -1.1816131e-08, 0.9950754)
-bones/5/rotation = Quaternion(-0.08764569, 1.1784332e-07, -1.692366e-08, 0.9961518)
-bones/9/position = Vector3(0.023210026, 0.17969476, -0.02584774)
-bones/9/rotation = Quaternion(-0.1594284, 0.46449098, -0.6310588, 0.60049605)
-bones/10/rotation = Quaternion(0.6857644, -0.004184966, -0.09119732, 0.7220753)
-bones/11/rotation = Quaternion(0.018946541, -0.44151202, 0.031785104, 0.89649206)
-bones/15/rotation = Quaternion(0.30378985, -0.32865468, -0.2625314, 0.8548538)
-bones/16/rotation = Quaternion(-0.20784114, 0.06874571, 0.12904154, 0.9671734)
-bones/17/rotation = Quaternion(0.025080632, 0.012580051, 0.11781119, 0.99263954)
-bones/20/position = Vector3(-0.0122631965, 0.1803243, -0.009080381)
-bones/20/rotation = Quaternion(-0.17153025, -0.65304315, 0.5125414, 0.5304841)
-bones/21/rotation = Quaternion(0.6460661, -0.06793234, 0.3421607, 0.67890346)
-bones/22/rotation = Quaternion(0.080469534, -0.024249483, -0.21176818, 0.9736996)
-bones/23/rotation = Quaternion(-0.16179535, 0.6076273, 0.04690974, 0.77615136)
-bones/26/rotation = Quaternion(0.52248627, 0.5959713, 0.0051336777, 0.60975415)
-bones/27/rotation = Quaternion(-0.30554172, -0.04084373, -0.1484545, 0.93964744)
-bones/30/rotation = Quaternion(-5.4202424e-08, 0.6961122, 0.717933, -5.255501e-08)
-bones/34/rotation = Quaternion(0.96208113, 0.06318894, -0.11810963, 0.23760714)
-bones/35/rotation = Quaternion(0.19439456, 0.004233083, 0.024882693, 0.9805986)
-bones/36/rotation = Quaternion(-0.47318336, -0.061734937, -0.012696902, 0.87870646)
-bones/37/rotation = Quaternion(0.010684408, 0.96141255, -0.2704207, 0.049441233)
-bones/39/rotation = Quaternion(0.96547264, -0.06253384, 0.07896659, 0.24024265)
-bones/40/rotation = Quaternion(0.20276996, -0.004207544, -0.044064045, 0.97822547)
-bones/41/rotation = Quaternion(-0.49000233, 0.05531892, 0.0073416866, 0.8699331)
-bones/42/rotation = Quaternion(-0.06138559, 0.959714, -0.26865867, -0.054803994)
-bones/43/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
-bones/44/position = Vector3(0.18100119, 0.08240293, -0.015668165)
-bones/45/rotation = Quaternion(0.9998905, -0.00040637943, 0.0102964165, -0.010628726)
-bones/46/position = Vector3(-0.15921922, 0.08240293, -0.015668165)
-bones/47/rotation = Quaternion(0.9998905, 0.00040637943, -0.0102964165, -0.010628726)
+bones/0/position = Vector3(-4.6640314e-10, 0.93447715, -0.06494778)
+bones/1/rotation = Quaternion(-0.047063828, -8.072393e-11, -1.3107396e-08, 0.9988919)
+bones/2/rotation = Quaternion(-0.096674405, -1.1865093e-07, -1.1524487e-08, 0.99531615)
+bones/5/rotation = Quaternion(-0.10923784, 1.1925894e-07, -7.682376e-09, 0.9940157)
+bones/8/position = Vector3(0.023210024, 0.17969476, -0.02584778)
+bones/8/rotation = Quaternion(-0.12645048, 0.31922215, -0.77642614, 0.52845997)
+bones/9/rotation = Quaternion(0.7450915, 0.08453102, -0.27847832, 0.6001193)
+bones/10/rotation = Quaternion(-0.09389491, -0.720957, 0.2401601, 0.6432169)
+bones/11/rotation = Quaternion(-0.19348803, 0.07913579, -0.43575704, 0.87545174)
+bones/12/rotation = Quaternion(-0.20432515, 0.13944665, -0.21137685, 0.9455822)
+bones/13/rotation = Quaternion(-0.18264514, -0.07394301, -0.60298413, 0.77303517)
+bones/14/rotation = Quaternion(0.3731013, -0.51686823, -0.29727343, 0.7108243)
+bones/15/rotation = Quaternion(-0.048609704, -0.2966773, 0.2879619, 0.90922916)
+bones/16/rotation = Quaternion(0.03816178, 0.0020380046, 0.62767273, 0.77753866)
+bones/18/position = Vector3(-0.0122632, 0.18032433, -0.009080217)
+bones/18/rotation = Quaternion(-0.20690879, -0.43963692, 0.6172721, 0.6187758)
+bones/19/rotation = Quaternion(0.55054975, -0.49946386, 0.38172773, 0.5492858)
+bones/20/rotation = Quaternion(-0.14855564, -0.4974942, -0.17766096, 0.8359829)
+bones/21/rotation = Quaternion(0.03847221, 0.6210428, 0.323136, 0.713028)
+bones/22/rotation = Quaternion(0.0742864, 0.013154618, 0.3689768, 0.92637175)
+bones/23/rotation = Quaternion(-0.007225708, -0.16027337, 0.6652329, 0.7291952)
+bones/24/rotation = Quaternion(0.3984867, 0.4463256, 0.32155222, 0.73389786)
+bones/25/rotation = Quaternion(-0.27466476, 0.102504626, -0.31444755, 0.90287036)
+bones/26/rotation = Quaternion(0.03202485, 0.18694073, -0.56958956, 0.79974705)
+bones/27/rotation = Quaternion(-5.4202427e-08, 0.6961122, 0.717933, -5.2555006e-08)
+bones/28/rotation = Quaternion(-5.420243e-08, 0.6961122, 0.717933, -5.2555006e-08)
+bones/31/rotation = Quaternion(0.9695366, 0.055303734, -0.11764756, 0.20760418)
+bones/32/rotation = Quaternion(0.14103493, 0.0042729448, 0.018052597, 0.98983085)
+bones/33/rotation = Quaternion(-0.51458126, -0.040276367, -0.04365417, 0.85538197)
+bones/37/position = Vector3(0.028286008, 0.10465086, -0.10253187)
+bones/39/position = Vector3(0.021993395, 0.057846352, -0.1226069)
+bones/40/rotation = Quaternion(0.97246736, -0.05401027, 0.07812099, 0.21280849)
+bones/41/rotation = Quaternion(0.15411052, -0.004247334, -0.03348984, 0.9874768)
+bones/42/rotation = Quaternion(-0.52444834, 0.036451817, 0.032506507, 0.8500403)
+bones/43/rotation = Quaternion(-0.06138561, 0.959714, -0.26865867, -0.054803994)
+bones/44/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
+bones/45/position = Vector3(-0.040561408, 0.11910311, 0.15490495)
+bones/46/position = Vector3(-0.0319886, 0.10910243, -0.115483165)
+bones/47/position = Vector3(-0.021605173, 0.03152572, 0.104082815)
+bones/48/position = Vector3(-0.01268342, 0.050877362, -0.11880994)
+bones/49/position = Vector3(0.18100119, 0.08240293, -0.015668165)
+bones/50/position = Vector3(-0.0013251639, -0.15288368, 0.49792472)
+bones/50/rotation = Quaternion(0.9998905, -0.00040637943, 0.0102964165, -0.010628726)
+bones/51/position = Vector3(-0.15921922, 0.08240293, -0.015668165)
+bones/52/position = Vector3(0.0013251931, -0.15288368, 0.4979247)
+bones/52/rotation = Quaternion(0.9998905, 0.00040637943, -0.0102964165, -0.010628726)
 
-[node name="Plane" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, 1.0906601e-08, 4.4983972e-10, -1.0833541e-08, 0.9966671, -0.08157769, -1.3381024e-09, 0.08157767, 0.99666697, 2.2864652e-09, 1.745086, -0.0006560357)
+[node name="spine_006" parent="Body/metarig/Skeleton3D" index="0"]
+transform = Transform3D(1, -7.0386985e-09, 1.374616e-10, 7.039672e-09, 0.9995557, -0.029798836, 7.2262196e-11, 0.029798843, 0.9995556, 1.1000457e-09, 1.6803588, -0.0010037892)
 
-[node name="Plane" parent="Body/metarig/Skeleton3D/Plane" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_cno0p")
+[node name="forearm_L" parent="Body/metarig/Skeleton3D" index="1"]
+transform = Transform3D(-0.8581885, -0.5043146, 0.095808566, -0.38159114, 0.7515734, 0.5380757, -0.34336644, 0.42521065, -0.8374331, 0.2394163, 1.3687897, 0.18410742)
 
-[node name="arur_l" parent="Body/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.0500267, -0.12103689, -0.10591329, 0.15770924, 0.9120775, 0.5212163, 0.031549856, -0.53093195, 0.91953194, 0.30515364, 1.4187055, 0.2761991)
+[node name="arur_l" parent="Body/metarig/Skeleton3D/forearm_L" index="0"]
+material_override = SubResource("ShaderMaterial_im0l4")
 
-[node name="arur_l" parent="Body/metarig/Skeleton3D/arur_l" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022436, 0.0297889, 6.98492e-10)
-material_override = SubResource("ShaderMaterial_2q777")
-
-[node name="Magic" type="GPUParticles3D" parent="Body/metarig/Skeleton3D/arur_l/arur_l" index="0"]
-material_override = SubResource("ShaderMaterial_yr5wf")
+[node name="Magic" type="GPUParticles3D" parent="Body/metarig/Skeleton3D/forearm_L/arur_l" index="0"]
+material_override = SubResource("ShaderMaterial_kviwv")
+emitting = false
 amount = 50
 lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_cno0p")
-draw_pass_1 = SubResource("SphereMesh_v2reo")
+process_material = SubResource("ParticleProcessMaterial_im0l4")
+draw_pass_1 = SubResource("SphereMesh_hh7ue")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Body/metarig/Skeleton3D/arur_l/arur_l/Magic" index="0"]
-light_color = Color(0.313726, 0.188235, 0.921569, 1)
-light_energy = 2.5
-omni_range = 0.5
+[node name="forearm_R" parent="Body/metarig/Skeleton3D" index="2"]
+transform = Transform3D(-0.3316669, 0.7425085, 0.5819605, 0.6787002, -0.2406681, 0.69386214, 0.655258, 0.6251077, -0.4241189, -0.29507822, 1.3421178, 0.07787552)
 
-[node name="arua_r" parent="Body/metarig/Skeleton3D" index="2"]
-transform = Transform3D(0.9787479, 9.256601e-05, 0.4128873, -0.008689314, 1.0620424, 0.020359501, -0.41279605, -0.022136196, 0.9785362, -0.22733948, 1.3001877, 0.16955158)
+[node name="arua_r" parent="Body/metarig/Skeleton3D/forearm_R" index="0"]
+material_override = SubResource("ShaderMaterial_im0l4")
 
-[node name="arua_r" parent="Body/metarig/Skeleton3D/arua_r" index="0"]
-material_override = SubResource("ShaderMaterial_2q777")
-
-[node name="Magic" type="GPUParticles3D" parent="Body/metarig/Skeleton3D/arua_r/arua_r" index="0"]
-material_override = SubResource("ShaderMaterial_yr5wf")
+[node name="Magic" type="GPUParticles3D" parent="Body/metarig/Skeleton3D/forearm_R/arua_r" index="0"]
+transform = Transform3D(0.44500598, 0.2976725, 0.84460694, -0.2901392, 0.9401914, -0.17849168, -0.8472243, -0.16562402, 0.50475746, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_kviwv")
+emitting = false
 amount = 50
 lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_cno0p")
-draw_pass_1 = SubResource("SphereMesh_v2reo")
+process_material = SubResource("ParticleProcessMaterial_im0l4")
+draw_pass_1 = SubResource("SphereMesh_hh7ue")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Body/metarig/Skeleton3D/arua_r/arua_r/Magic" index="0"]
-light_color = Color(0.313726, 0.188235, 0.921569, 1)
-light_energy = 2.5
-omni_range = 0.5
-
-[node name="Cube" parent="Body/metarig/Skeleton3D" index="3"]
-surface_material_override/0 = SubResource("StandardMaterial3D_im0l4")
-surface_material_override/1 = SubResource("StandardMaterial3D_gpr8s")
-surface_material_override/2 = SubResource("StandardMaterial3D_3035c")
-surface_material_override/3 = SubResource("StandardMaterial3D_wpt5g")
-
-[node name="Cube_002" parent="Body/metarig/Skeleton3D" index="4"]
-surface_material_override/0 = SubResource("StandardMaterial3D_w0uyk")
-surface_material_override/1 = SubResource("StandardMaterial3D_43ula")
-
-[node name="Cube_003" parent="Body/metarig/Skeleton3D" index="5"]
-surface_material_override/0 = SubResource("StandardMaterial3D_wt35d")
-
-[node name="HitFX" parent="." index="8" instance=ExtResource("5_7l0s8")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+[node name="HitFX" parent="." index="7" instance=ExtResource("4_cno0p")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
-[node name="Plane" parent="HitFX/metarig/Skeleton3D/Plane" index="0"]
-transform = Transform3D(1, -1.27055e-21, 7.10543e-15, 0, 1, 0, 0, 0, 1, -0.00223202, 0, 0.000280977)
-material_override = ExtResource("23_noqu3")
+[node name="arur_l" parent="HitFX/metarig/Skeleton3D/forearm_L" index="0"]
+visible = false
 
-[node name="arur_l" parent="HitFX/metarig/Skeleton3D/arur_l" index="0"]
-transparency = 1.0
+[node name="arua_r" parent="HitFX/metarig/Skeleton3D/forearm_R" index="0"]
+visible = false
 
-[node name="arua_r" parent="HitFX/metarig/Skeleton3D/arua_r" index="0"]
-transparency = 1.0
-
-[node name="Cube" parent="HitFX/metarig/Skeleton3D" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00223202, 0, 0.000280976)
-material_override = ExtResource("23_noqu3")
-
-[node name="Cube_002" parent="HitFX/metarig/Skeleton3D" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00223202, 0, 0.000280976)
-material_override = ExtResource("23_noqu3")
-
-[node name="Cube_003" parent="HitFX/metarig/Skeleton3D" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00223202, 0, 0.000280976)
-material_override = ExtResource("23_noqu3")
+[node name="Spawn" type="Node3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00286001, 1.464739, -0.386737)
 
 [node name="Direction" type="Node3D" parent="." index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Stunned" type="GPUParticles3D" parent="." index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00175359, 1.98738, -0.052372336)
+material_override = SubResource("StandardMaterial3D_im0l4")
+emitting = false
+amount = 50
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_8c6in")
+draw_pass_1 = SubResource("BoxMesh_fbr85")
 
 [editable path="Body"]
 [editable path="HitFX"]
