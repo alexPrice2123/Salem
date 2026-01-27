@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bhqxe1yu68n7c" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
-[ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
+[ext_resource type="Texture2D" uid="uid://xfomx0x66nyg" path="res://Assets/UI/newstamorb.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
@@ -371,6 +371,7 @@ offset_left = 69.0
 offset_top = 525.0
 offset_right = 146.0
 offset_bottom = 602.0
+value = 100.0
 fill_mode = 4
 texture_progress = ExtResource("5_whq80")
 tint_progress = Color(1, 1, 1, 0.84313726)
@@ -1269,13 +1270,11 @@ offset_bottom = 0.295959
 [node name="Stamina" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(938, 500)
-scale = Vector2(0.2, 0.2)
 texture = ExtResource("13_whq80")
 
 [node name="Fill" type="Sprite2D" parent="Stamina"]
 z_as_relative = false
 material = SubResource("ShaderMaterial_whq80")
-scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_whq80")
 
 [node name="Controls" type="Sprite2D" parent="."]
