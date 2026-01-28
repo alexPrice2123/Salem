@@ -367,9 +367,9 @@ mouse_filter = 2
 [node name="SecCooldown1" type="TextureProgressBar" parent="."]
 clip_children = 2
 layout_mode = 0
-offset_left = 69.0
+offset_left = 95.0
 offset_top = 525.0
-offset_right = 146.0
+offset_right = 172.0
 offset_bottom = 602.0
 value = 100.0
 fill_mode = 4
@@ -379,15 +379,16 @@ tint_progress = Color(1, 1, 1, 0.84313726)
 [node name="SecCooldown2" type="TextureProgressBar" parent="."]
 clip_children = 2
 layout_mode = 0
-offset_left = 145.0
+offset_left = 171.0
 offset_top = 525.0
-offset_right = 222.0
+offset_right = 248.0
 offset_bottom = 602.0
 fill_mode = 4
 texture_progress = SubResource("CompressedTexture2D_kuui0")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
 [node name="SecCooldown3" type="TextureProgressBar" parent="."]
+visible = false
 clip_children = 2
 layout_mode = 0
 offset_left = 222.0
@@ -399,6 +400,7 @@ texture_progress = SubResource("CompressedTexture2D_smy1h")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
 [node name="SecCooldown4" type="TextureProgressBar" parent="."]
+visible = false
 clip_children = 2
 layout_mode = 0
 offset_left = 299.0
@@ -761,10 +763,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 222.0
-offset_top = -206.0
-offset_right = 523.0
-offset_bottom = -91.0
+offset_left = -161.0
+offset_top = -54.000008
+offset_right = 140.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
