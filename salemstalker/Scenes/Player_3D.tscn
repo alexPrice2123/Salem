@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=24 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
 [ext_resource type="Texture2D" uid="uid://cmfaxccf8ffss" path="res://Assets/UI/player.png" id="2_cvtri"]
@@ -10,6 +10,29 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1nug"]
+albedo_color = Color(0.24497223, 0.24569717, 0.27148438, 1)
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfumr"]
+albedo_color = Color(0.23608267, 0.24609375, 0.20475769, 1)
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq7x1"]
+albedo_color = Color(0.62890625, 0.56562316, 0.48027802, 1)
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3rw2"]
+albedo_color = Color(0.627451, 0.5647059, 0.47843137, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x3jne"]
+albedo_color = Color(0.23529412, 0.24705882, 0.20392157, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5bpc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df3ch"]
 radius = 0.295052
@@ -91,6 +114,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.422
 
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 
+[node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
+bones/18/rotation = Quaternion(-0.15686068, -0.5135017, 0.6948392, 0.47844464)
+bones/19/rotation = Quaternion(0.5840443, -0.035402063, 0.034886293, 0.81019866)
+
+[node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
+transform = Transform3D(-0.5252145, 0.044537246, 0.8498035, 0.052113913, 0.9984384, -0.020118669, -0.8493721, 0.03372019, -0.5267152, -0.18853202, 1.4013427, 0.41982502)
+
+[node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")
+
+[node name="Cube_002" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qfumr")
+surface_material_override/1 = SubResource("StandardMaterial3D_mq7x1")
+
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141743, 0, 0)
 target_position = Vector3(0, 0, -5)
@@ -99,8 +136,8 @@ collide_with_areas = true
 
 [node name="Lantern" type="OmniLight3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265332, -0.769787, -0.313106)
-light_color = Color(0.956863, 0.882353, 0.541176, 1)
-light_energy = 4.0
+light_color = Color(0.625, 0.397501, 0.17700195, 1)
+light_energy = 2.76
 light_volumetric_fog_energy = 10.0
 omni_range = 25.0
 
@@ -112,9 +149,16 @@ omni_range = 25.0
 
 [node name="FlintGun" parent="Head/Camera3D/Offhand2" instance=ExtResource("3_mawk5")]
 
+[node name="Cube_002" parent="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions/metarig/Skeleton3D" index="1"]
+surface_material_override/1 = SubResource("StandardMaterial3D_j3rw2")
+
 [node name="Offhand3" type="Node3D" parent="Head/Camera3D"]
 
 [node name="FlintGun" parent="Head/Camera3D/Offhand3" instance=ExtResource("3_mawk5")]
+
+[node name="Cube_002" parent="Head/Camera3D/Offhand3/FlintGun/flinklock_animtions/metarig/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_x3jne")
+surface_material_override/1 = SubResource("StandardMaterial3D_k5bpc")
 
 [node name="Offhand4" type="Node3D" parent="Head/Camera3D"]
 
@@ -169,6 +213,9 @@ mesh = SubResource("SphereMesh_wan02")
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
 
+[editable path="Head/Camera3D/Sword/Shortsword"]
+[editable path="Head/Camera3D/Sword/Shortsword/shortsword"]
+[editable path="Head/Camera3D/Sword/Shortsword/weaponAnimations"]
 [editable path="Head/Camera3D/Offhand1/StakeGun"]
 [editable path="Head/Camera3D/Offhand1/StakeGun/stake gun"]
 [editable path="Head/Camera3D/Offhand2/FlintGun"]
