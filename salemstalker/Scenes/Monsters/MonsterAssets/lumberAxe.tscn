@@ -1,8 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://flxa188cwl07"]
+[gd_scene load_steps=24 format=3 uid="uid://flxa188cwl07"]
 
 [ext_resource type="Script" uid="uid://c11n0ieyeyhn1" path="res://Scripts/MonsterScripts/MonsterAssetScripts/lumberAxe.cs" id="1_peepu"]
-[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_ol560"]
+[ext_resource type="PackedScene" uid="uid://bqh25jinvwn4l" path="res://Assets/3D/charatermodel/axe.blend" id="3_1l2nn"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_fgin0"]
+[ext_resource type="Texture2D" uid="uid://dstdklbjwbhg1" path="res://Assets/monstertextures/lumberjack/axe _Base_color.png" id="3_ixmfg"]
+[ext_resource type="Texture2D" uid="uid://5u30y6tp6pnr" path="res://Assets/monstertextures/lumberjack/axehand_Metallic.png" id="4_1l2nn"]
+[ext_resource type="Texture2D" uid="uid://bqb3yr5gj5plc" path="res://Assets/monstertextures/lumberjack/axe _Roughness.png" id="5_kgf07"]
+[ext_resource type="Texture2D" uid="uid://bkq5jcsbsvmjb" path="res://Assets/monstertextures/lumberjack/bone_Base_color.png" id="6_kcjyh"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]
 seamless = true
@@ -87,13 +91,17 @@ scale_curve = SubResource("CurveTexture_ag22c")
 
 [sub_resource type="BoxMesh" id="BoxMesh_2kbsx"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgijm"]
-albedo_texture = ExtResource("2_ol560")
-
-[sub_resource type="BoxMesh" id="BoxMesh_p3qan"]
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_cp2bc"]
 radius = 0.3201519
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kbsx"]
+albedo_texture = ExtResource("3_ixmfg")
+metallic = 1.0
+metallic_texture = ExtResource("4_1l2nn")
+roughness_texture = ExtResource("5_kgf07")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgijm"]
+albedo_texture = ExtResource("6_kcjyh")
 
 [node name="lumberAxe" type="RigidBody3D"]
 gravity_scale = 0.15
@@ -118,20 +126,20 @@ speed_scale = 64.0
 process_material = SubResource("ParticleProcessMaterial_lvuib")
 draw_pass_1 = SubResource("BoxMesh_2kbsx")
 
-[node name="Orb" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.054646004, 0, 0, 0, 0.05769668, 0, 0, 0, 0.52416843, 0, 0.013829844, -0.07153674)
-material_override = SubResource("StandardMaterial3D_sgijm")
-mesh = SubResource("BoxMesh_p3qan")
-
-[node name="Orb2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.06623267, 0, 0, 0, 0.3302033, 0, 0, 0, 0.18585245, 0, -0.03905128, -0.3355833)
-mesh = SubResource("BoxMesh_p3qan")
-
 [node name="Attackbox" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attackbox"]
 shape = SubResource("SphereShape3D_cp2bc")
 
+[node name="axe" parent="." instance=ExtResource("3_1l2nn")]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0.0055479854, 0, -0.24462523)
+
+[node name="axe" parent="axe" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_2kbsx")
+surface_material_override/1 = SubResource("StandardMaterial3D_sgijm")
+
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="area_entered" from="Attackbox" to="." method="_on_attackbox_area_entered"]
 [connection signal="body_entered" from="Attackbox" to="." method="_on_attackbox_body_entered"]
+
+[editable path="axe"]
