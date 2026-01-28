@@ -30,6 +30,14 @@ public partial class Ui : Control
 	public float _loadingGoal = 3f;
 	public bool _loadingDone = false;
 	public string _loadingObjective = "None";
+	private TextureProgressBar _secProgressBar1;
+	private TextureProgressBar _secProgressBar2;
+	//private TextureProgressBar _secProgressBar3;
+	//private TextureProgressBar _secProgressBar4;
+	public float _progress1 = 100;
+	public float _progress2 = 100;
+	//public float _progress3 = 100;
+	//public float _progress4 = 100;
 	public override void _Ready()
 	{
 		if (GetParent() is Player3d player)
@@ -43,6 +51,10 @@ public partial class Ui : Control
 		_shopOption2 = GetNode<TextureButton>("BlacksmithShop/ShopOption2");
 		_shopOption3 = GetNode<TextureButton>("BlacksmithShop/ShopOption3");
 		_shopOption4 = GetNode<TextureButton>("BlacksmithShop/ShopOption4");
+		_secProgressBar1 = GetNode<TextureProgressBar>("SecCooldown1");
+		_secProgressBar2 = GetNode<TextureProgressBar>("SecCooldown2");
+		//_secProgressBar3 = GetNode<TextureProgressBar>("SecCooldown3");
+		//_secProgressBar4 = GetNode<TextureProgressBar>("SecCooldown4");
 		_loadingUI.Visible = true;
 		_loadingMaterial = _loadingUI.Material as ShaderMaterial;
 		_areaName = GetNode<Label>("Area");
@@ -76,6 +88,43 @@ public partial class Ui : Control
 
 		_areaNameTween = Mathf.Lerp(_areaNameTween, 0f, (float)delta);
 
+		if (_player._cooldownSec1)
+		{
+			_secProgressBar1.Visible = true;
+			if (_progress1 > 0)
+			{
+				_progress1 -= 100 / (float)_player._eSecWeapon1.GetMeta("cooldown") * (float)delta;
+				_secProgressBar1.Value = _progress1;
+			}
+		} else { _progress1 = 100; _secProgressBar1.Visible = false; }
+		if (_player._cooldownSec2)
+		{
+			_secProgressBar2.Visible = true;
+			if (_progress2 > 0)
+			{
+				_progress2 -= 100 / (float)_player._eSecWeapon2.GetMeta("cooldown") * (float)delta;
+				_secProgressBar2.Value = _progress2;
+			}
+		} else { _progress2 = 100; _secProgressBar2.Visible = false; }
+		/*if (_player._cooldownSec3)
+		{
+			_secProgressBar3.Visible = true;
+			if (_progress3 > 0)
+			{
+				_progress3 -= 100 / (float)_player._eSecWeapon3.GetMeta("cooldown") * (float)delta;
+				_secProgressBar3.Value = _progress3;
+			} 
+		} else { _progress3 = 100; _secProgressBar3.Visible = false; }
+		//if (_player._cooldownSec4)
+		{
+			_secProgressBar4.Visible = true;
+			if(_progress4 > 0)
+            {
+				_progress4 -= 100 / (float)_player._eSecWeapon4.GetMeta("cooldown") * (float)delta;
+				_secProgressBar4.Value = _progress4;
+            } 
+		} else { _progress4 = 100; _secProgressBar4.Visible = false; }*/
+		
 		// Switch the titles of the buttons based on what shopOption you have selected
 		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
 		{

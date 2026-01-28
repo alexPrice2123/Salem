@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=48 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -7,12 +7,13 @@
 [ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
+[ext_resource type="Texture2D" uid="uid://de6jli1i60dq3" path="res://Assets/UI/reloadinguibase.png" id="5_whq80"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
-[ext_resource type="Texture2D" uid="uid://c4cernxpmcelt" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
+[ext_resource type="Texture2D" uid="uid://bhqxe1yu68n7c" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
-[ext_resource type="Texture2D" uid="uid://bcgj7i7ds0m2q" path="res://Assets/2D/StaminaBottle.png" id="13_whq80"]
+[ext_resource type="Texture2D" uid="uid://xfomx0x66nyg" path="res://Assets/UI/newstamorb.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
@@ -80,6 +81,15 @@ shader_parameter/rect_size = Vector2(0.455, 0.44)
 shader_parameter/bness = 0.1
 shader_parameter/fall_off_scale = 3.0
 shader_parameter/b_offset = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kuui0"]
+load_path = "res://.godot/imported/reloadinguibase.png-246f64f3ca2b1f8e4136782f1b588385.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_smy1h"]
+load_path = "res://.godot/imported/reloadinguibase.png-246f64f3ca2b1f8e4136782f1b588385.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lkjmk"]
+load_path = "res://.godot/imported/reloadinguibase.png-246f64f3ca2b1f8e4136782f1b588385.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxero"]
 line_spacing = 3.08
@@ -354,6 +364,53 @@ scale = Vector2(1, 1.01247)
 pivot_offset = Vector2(539, 303)
 mouse_filter = 2
 
+[node name="SecCooldown1" type="TextureProgressBar" parent="."]
+clip_children = 2
+layout_mode = 0
+offset_left = 95.0
+offset_top = 525.0
+offset_right = 172.0
+offset_bottom = 602.0
+value = 100.0
+fill_mode = 4
+texture_progress = ExtResource("5_whq80")
+tint_progress = Color(1, 1, 1, 0.84313726)
+
+[node name="SecCooldown2" type="TextureProgressBar" parent="."]
+clip_children = 2
+layout_mode = 0
+offset_left = 171.0
+offset_top = 525.0
+offset_right = 248.0
+offset_bottom = 602.0
+fill_mode = 4
+texture_progress = SubResource("CompressedTexture2D_kuui0")
+tint_progress = Color(1, 1, 1, 0.84313726)
+
+[node name="SecCooldown3" type="TextureProgressBar" parent="."]
+visible = false
+clip_children = 2
+layout_mode = 0
+offset_left = 222.0
+offset_top = 525.0
+offset_right = 299.0
+offset_bottom = 602.0
+fill_mode = 4
+texture_progress = SubResource("CompressedTexture2D_smy1h")
+tint_progress = Color(1, 1, 1, 0.84313726)
+
+[node name="SecCooldown4" type="TextureProgressBar" parent="."]
+visible = false
+clip_children = 2
+layout_mode = 0
+offset_left = 299.0
+offset_top = 525.0
+offset_right = 376.0
+offset_bottom = 602.0
+fill_mode = 4
+texture_progress = SubResource("CompressedTexture2D_lkjmk")
+tint_progress = Color(1, 1, 1, 0.84313726)
+
 [node name="Inv" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -374,12 +431,10 @@ offset_bottom = -0.296082
 [node name="Sub" type="SubViewport" parent="Inv/SubPort"]
 transparent_bg = true
 handle_input_locally = false
-anisotropic_filtering_level = 0
 size = Vector2i(1080, 605)
 render_target_update_mode = 0
 
 [node name="longsword" type="Button" parent="Inv/SubPort/Sub"]
-visible = false
 offset_left = 37.0
 offset_top = 35.0
 offset_right = 606.0
@@ -408,7 +463,6 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="StakeGun" type="Button" parent="Inv/SubPort/Sub"]
-visible = false
 offset_left = 795.0
 offset_top = 97.0
 offset_right = 803.0
@@ -419,7 +473,6 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="FlintGun" type="Button" parent="Inv/SubPort/Sub"]
-visible = false
 offset_left = 690.0
 offset_top = 97.0
 offset_right = 701.0
@@ -440,6 +493,7 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="InvWorld" parent="Inv/SubPort/Sub" instance=ExtResource("3_nf4gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="SlotSelector" type="Control" parent="Inv/SubPort/Sub"]
 visible = false
@@ -503,27 +557,27 @@ offset_right = -0.0499992
 offset_bottom = 0.0499992
 text = "Select weapon slot"
 
-[node name="ResourceInv2" type="Control" parent="."]
+[node name="ResourceInv" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchor_left = 0.116
 anchor_top = 0.112
 anchor_right = 0.885
 anchor_bottom = 0.891
-offset_left = 107.472
-offset_top = 76.056
-offset_right = 107.721
-offset_bottom = 75.9819
+offset_left = 227.836
+offset_top = 49.128
+offset_right = -229.9154
+offset_bottom = -50.945923
 
-[node name="GridContainer" type="GridContainer" parent="ResourceInv2"]
+[node name="GridContainer" type="GridContainer" parent="ResourceInv"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-columns = 7
+offset_right = 372.0
+offset_bottom = 372.0
+columns = 4
 
-[node name="InvSlot1" type="Button" parent="ResourceInv2/GridContainer"]
+[node name="InvSlot1" type="NinePatchRect" parent="ResourceInv/GridContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(115, 115)
+custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 
 [node name="Quest" type="Control" parent="."]
@@ -555,7 +609,6 @@ offset_bottom = -0.296082
 [node name="SubViewport" type="SubViewport" parent="Quest/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-anisotropic_filtering_level = 0
 size = Vector2i(1079, 606)
 render_target_update_mode = 0
 
@@ -710,10 +763,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = -55.0
-offset_right = 171.0
-offset_bottom = 60.0
+offset_left = -161.0
+offset_top = -54.000008
+offset_right = 140.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
@@ -980,7 +1033,6 @@ offset_bottom = 422.0
 
 [node name="Port" type="SubViewport" parent="BlacksmithShop/View/PortContainer"]
 handle_input_locally = false
-anisotropic_filtering_level = 0
 size = Vector2i(242, 422)
 render_target_update_mode = 0
 
@@ -1220,16 +1272,15 @@ offset_bottom = 0.295959
 [node name="Stamina" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(938, 500)
-scale = Vector2(0.2, 0.2)
 texture = ExtResource("13_whq80")
 
 [node name="Fill" type="Sprite2D" parent="Stamina"]
 z_as_relative = false
 material = SubResource("ShaderMaterial_whq80")
-scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_whq80")
 
 [node name="Controls" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(538, 305)
 scale = Vector2(0.561458, 0.559259)
 texture = ExtResource("14_8fs27")

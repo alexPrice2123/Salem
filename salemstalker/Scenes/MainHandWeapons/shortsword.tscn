@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://3v4hdgpge0v6"]
+[gd_scene load_steps=99 format=3 uid="uid://3v4hdgpge0v6"]
 
 [ext_resource type="Script" uid="uid://b1ax0drvppbgl" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_ckg03"]
 [ext_resource type="PackedScene" uid="uid://c1ixg535pupsm" path="res://Assets/Weapons/shortsword.blend" id="2_pkki5"]
@@ -133,6 +133,9 @@ scale_curve = SubResource("CurveTexture_wvwlr")
 
 [sub_resource type="BoxMesh" id="BoxMesh_0eq1u"]
 size = Vector3(0.1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
+size = Vector3(0.21177, 1.52848, 0.321355)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kwmjs"]
 animation = &"attack1"
@@ -421,7 +424,7 @@ advance_expression = "!blocking"
 states/End/position = Vector2(1256, 113)
 states/Start/position = Vector2(177.5, 100.8125)
 states/attack1/node = SubResource("AnimationNodeAnimation_kwmjs")
-states/attack1/position = Vector2(627.1387, 282.48898)
+states/attack1/position = Vector2(626.7988, 282.71375)
 states/attack2/node = SubResource("AnimationNodeAnimation_mw22n")
 states/attack2/position = Vector2(799.61414, 283.43854)
 states/attack3/node = SubResource("AnimationNodeAnimation_wvwlr")
@@ -443,187 +446,7 @@ states/run/position = Vector2(460.36914, 167.21875)
 states/walk/node = SubResource("AnimationNodeAnimation_0gn6g")
 states/walk/position = Vector2(459.5371, 49.71875)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_kwmjs"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_pxq68"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_u8y7o"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_2opq7"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_34yv5"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_qpqbi"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_3jmbr"), "walk", "block", SubResource("AnimationNodeStateMachineTransition_vooft"), "run", "block", SubResource("AnimationNodeStateMachineTransition_18nq6"), "idle", "block", SubResource("AnimationNodeStateMachineTransition_duntr"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_pn25q"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_klhe2"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_s5sfm"), "run", "attack1", SubResource("AnimationNodeStateMachineTransition_bu7t2"), "walk", "attack1", SubResource("AnimationNodeStateMachineTransition_316gc"), "attack3", "idle", SubResource("AnimationNodeStateMachineTransition_tnnbh"), "attack3", "attack1", SubResource("AnimationNodeStateMachineTransition_vr5u1"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_fvvcl"), "attack1", "idle", SubResource("AnimationNodeStateMachineTransition_2y8h8"), "attack1", "block", SubResource("AnimationNodeStateMachineTransition_843n8"), "attack2", "block", SubResource("AnimationNodeStateMachineTransition_worpy"), "attack3", "block", SubResource("AnimationNodeStateMachineTransition_uxcex"), "attack2", "run", SubResource("AnimationNodeStateMachineTransition_5cavf"), "attack3", "run", SubResource("AnimationNodeStateMachineTransition_jql6y"), "attack3", "walk", SubResource("AnimationNodeStateMachineTransition_jp18e"), "attack1", "run", SubResource("AnimationNodeStateMachineTransition_y1hnr"), "attack1", "walk", SubResource("AnimationNodeStateMachineTransition_un0st"), "attack2", "walk", SubResource("AnimationNodeStateMachineTransition_4ujmf"), "block_idle", "parry2", SubResource("AnimationNodeStateMachineTransition_5pnml"), "block_idle", "parry1", SubResource("AnimationNodeStateMachineTransition_tlhnf"), "parry1", "block_idle", SubResource("AnimationNodeStateMachineTransition_oettj"), "parry2", "block_idle", SubResource("AnimationNodeStateMachineTransition_mkca1"), "block", "block_idle", SubResource("AnimationNodeStateMachineTransition_jwdyb"), "block_idle", "block Reverse", SubResource("AnimationNodeStateMachineTransition_mjkup"), "block", "block Reverse", SubResource("AnimationNodeStateMachineTransition_1vcao"), "block Reverse", "block", SubResource("AnimationNodeStateMachineTransition_6yuuk"), "block Reverse", "attack1", SubResource("AnimationNodeStateMachineTransition_ru5bm"), "block Reverse", "run", SubResource("AnimationNodeStateMachineTransition_dvy65"), "block Reverse", "walk", SubResource("AnimationNodeStateMachineTransition_hl6in"), "block Reverse", "idle", SubResource("AnimationNodeStateMachineTransition_fw3lk"), "parry1", "block Reverse", SubResource("AnimationNodeStateMachineTransition_n8x3y"), "parry2", "block Reverse", SubResource("AnimationNodeStateMachineTransition_jd62e")]
-graph_offset = Vector2(210.35736, 48)
-
-[sub_resource type="Animation" id="Animation_mw22n"]
-resource_name = "Block"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Vector3(0, 0.15, -0.08), Vector3(0, 0.15, 0), Vector3(0, 0.15, -0.09)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Vector3(1.0472, -1.39626, -0.0872665), Vector3(1.0472, -1.39626, -0.296706), Vector3(1.0472, -1.39626, -0.0872665)]
-}
-
-[sub_resource type="Animation" id="Animation_wvwlr"]
-resource_name = "Parry"
-length = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.15, -0.09)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1.0472, -1.39626, -0.0872665)]
-}
-
-[sub_resource type="Animation" id="Animation_kwmjs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -3.14159, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_x5r1y"]
-resource_name = "Swing1"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.36666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.23, 0.19, -0.05), Vector3(0.509, -0.069, -0.759), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.36666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.383972, 0, 0.628319), Vector3(-0.268781, -2.54818, 1.69471), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_jta0k"]
-resource_name = "Swing2"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.36666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.15, 0.14, 0.06), Vector3(-0.29, -0.12, -0.41), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.36666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.366519, 0.418879, -0.349066), Vector3(-0.71384, 1.95477, -1.5708), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_floln"]
-resource_name = "Swing3"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.43333334, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.22, 0.15), Vector3(0.14, 0, 0.38), Vector3(-0.28, -0.06, -0.62), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.43333334, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.41887903, 0.12217305, 0), Vector3(-1.43117, 0.13962634, 0), Vector3(-1.410226, 0.059341196, 0.09424778), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pxq68"]
-_data = {
-&"Block": SubResource("Animation_mw22n"),
-&"Parry": SubResource("Animation_wvwlr"),
-&"RESET": SubResource("Animation_kwmjs"),
-&"Swing1": SubResource("Animation_x5r1y"),
-&"Swing2": SubResource("Animation_jta0k"),
-&"Swing3": SubResource("Animation_floln")
-}
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
-size = Vector3(0.21177, 1.52848, 0.321355)
+graph_offset = Vector2(-75.64264, -18)
 
 [node name="Shortsword" type="Node3D"]
 transform = Transform3D(-0.41, 0, -1.0394244e-06, 0, 0.41, 0, 1.0394244e-06, 0, -0.41, 0, 0, 0)
@@ -652,6 +475,7 @@ draw_pass_1 = SubResource("BoxMesh_ki2ro")
 
 [node name="shortsword" parent="." instance=ExtResource("2_pkki5")]
 transform = Transform3D(-4.3712134e-08, 0, 1, 0, 1, 0, -1, 0, -4.3712134e-08, 0, -0.333, -0.061)
+visible = false
 
 [node name="Cylinder" parent="shortsword" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_5pnml")
@@ -674,7 +498,6 @@ draw_pass_1 = SubResource("BoxMesh_0eq1u")
 
 [node name="weaponAnimations" parent="." instance=ExtResource("22_4ujmf")]
 transform = Transform3D(2.01, 0, 2.2737368e-12, 0, 2.01, 0, -2.2737368e-12, 0, 2.01, 0.36619553, -2.7351398, -1.0549859)
-visible = false
 
 [node name="Skeleton3D" parent="weaponAnimations/metarig" index="0"]
 bones/0/position = Vector3(-3.5527124e-15, 0.9426751, -0.06494778)
@@ -682,8 +505,8 @@ bones/7/rotation = Quaternion(-0.586, -0.324, -0.335, 0.635)
 bones/8/rotation = Quaternion(-0.28827924, 0.63253677, -0.5684554, 0.44005772)
 bones/9/rotation = Quaternion(0.5499285, 0.0012709559, -0.13263234, 0.82461244)
 bones/17/rotation = Quaternion(-0.59, 0.348, 0.33, 0.649)
-bones/18/rotation = Quaternion(-0.15681705, -0.5135947, 0.69488406, 0.47829387)
-bones/19/rotation = Quaternion(0.584226, -0.035404623, 0.034809064, 0.81007093)
+bones/18/rotation = Quaternion(-0.15693393, -0.5133456, 0.6947638, 0.47869766)
+bones/19/rotation = Quaternion(0.5844913, -0.035408378, 0.034696124, 0.8098842)
 bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
 bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
 bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
@@ -696,7 +519,18 @@ bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.52550554, 0.044583663, 0.849621, 0.051911533, 0.99844575, -0.0202851, -0.84920436, 0.03344543, -0.52700293, -0.18837328, 1.4014013, 0.4197653)
+transform = Transform3D(-0.5248212, 0.044756003, 0.850035, 0.050975673, 0.9984771, -0.021099031, -0.8496843, 0.032258123, -0.52630323, -0.18873909, 1.4018612, 0.41981)
+
+[node name="Hitbox" type="Area3D" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder" index="0" groups=["Player", "Weapon"]]
+transform = Transform3D(-0.26141012, 0.025851231, -0.42251053, 0.0221753, 0.49673802, 0.016672766, 0.42271897, -0.010071728, -0.26215586, 0.019383274, 0.4390214, -0.0037168786)
+disable_mode = 2
+collision_layer = 1025
+collision_mask = 1025
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox"]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_ki2ro")
+debug_color = Color(0.972146, 0, 0.443071, 0.42)
 
 [node name="Cylinder_001" parent="weaponAnimations" index="1"]
 transform = Transform3D(-0.5017525, -0.0032141083, 0.86500525, -0.003631327, 0.99999213, 0.0016093028, -0.8650036, -0.0023336455, -0.5017601, -0.19122489, 1.4032985, -0.4734631)
@@ -709,23 +543,12 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../weaponAnimations/AnimationPlayer")
 parameters/conditions/blocking = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_pxq68")
-}
+[node name="Cooldown" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.6
+one_shot = true
 
-[node name="Hitbox" type="Area3D" parent="." groups=["Player", "Weapon"]]
-transform = Transform3D(0.9999994, 0, 2.2737368e-13, 0, 0.9999996, 0, -4.5474735e-13, 0, 1.0000001, 0, 1.0096492, 0)
-disable_mode = 2
-collision_layer = 1025
-collision_mask = 1025
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_ki2ro")
-debug_color = Color(0.972146, 0, 0.443071, 0.42)
-
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox" to="." method="_on_hitbox_body_entered"]
 
 [editable path="shortsword"]
 [editable path="weaponAnimations"]
