@@ -18,5 +18,5 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
 salemstalker/.vscode/settings.json
+.gitignore
 *.import
-

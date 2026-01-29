@@ -125,7 +125,6 @@ roughness_texture = ExtResource("5_646pf")
 normal_enabled = true
 normal_texture = ExtResource("4_h043l")
 heightmap_enabled = true
-heightmap_scale = 0.0
 heightmap_texture = ExtResource("2_df3kx")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj6s"]
@@ -136,7 +135,6 @@ roughness_texture = ExtResource("10_2s52u")
 normal_enabled = true
 normal_texture = ExtResource("9_j6ll2")
 heightmap_enabled = true
-heightmap_scale = 0.0
 heightmap_texture = ExtResource("7_8jd6f")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mcxb0"]
@@ -147,7 +145,6 @@ roughness_texture = ExtResource("15_qnb1l")
 normal_enabled = true
 normal_texture = ExtResource("14_15qth")
 heightmap_enabled = true
-heightmap_scale = 0.0
 heightmap_texture = ExtResource("12_6ovvx")
 
 [node name="flintlockmodel" type="Node3D"]
