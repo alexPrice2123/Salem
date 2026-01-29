@@ -1,14 +1,14 @@
 using Godot;
-using Godot.Collections;
 using System;
+using Godot.Collections;
 
 public partial class vCultist : Monster3d
 {
 	// Called when the node enters the scene tree for the first time.
 
 	private float _distance;
-	private int _attackAnimSwitch = 1;
 	private bool _smashAnim = false;
+	private bool _attack2Anim = false;
 	private float _charge = 0f;
 	private ShaderMaterial _auraShader;
 	private MeshInstance3D _leftAura;
@@ -21,7 +21,8 @@ public partial class vCultist : Monster3d
 		Flying = false;              // Should gravity be applied to this monster
 		Stationery = false;          // If the monster shouldnt move at all
 		BaseDamage = 15.0f;         // Base damage of the monster
-		AttackSpeed = 1.2f;         // The time between its attacks
+		//BaseDamage = new Godot.Collections.Array<float>{15f, 25, 40};
+		AttackSpeed = 0.5f;         // The time between its attacks
 		AttackRange = 1.5f;           // The distance the monster gets from the player before stopping and attacking
 		MaxHealth = 65.0f;         // Maximum monster health
 		WanderRange = 35;           // The range the monster can wander from its spawn point
@@ -34,8 +35,8 @@ public partial class vCultist : Monster3d
 		// -- Other -- //
 		Monster = this;
 		Initialization();
-		_leftAura = GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/forearm_L/arur_l");
-		_rightAura = GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/forearm_R/arua_r");
+		_leftAura = GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/forearm_L/Cube_004");
+		_rightAura = GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/forearm_R/Cube_001");
 		_auraShader = _leftAura.MaterialOverride as ShaderMaterial;
 
 	}
@@ -93,45 +94,45 @@ public partial class vCultist : Monster3d
 	{
 		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
 		{
-			_player.Damaged((BaseDamage + _damageOffset)*(1+(_charge/1.5f)), this as Monster3d, "None");
-
-			_attackBox.Disabled = true;
+			if (_charge < 1){_charge += 0.34f;
+			_player.Damaged((BaseDamage + _damageOffset)*(1+(_charge/1.5f)), this, "None");}
+			else{_player.Damaged((BaseDamage + _damageOffset)*(1+(_charge/1.5f)), this, "Push");}
+			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
 			_hasHit = true;
 		}
 	}
 
 	public async void Attack()
 	{
-		if (_attackAnimSwitch == 1)
-		{
-			_attackAnimSwitch = 2;
-		}
-		else
-		{
-			_attackAnimSwitch = 1;
-		}
-		if (_charge < 1)
+		if (_charge < 0.66)
         {
-            _charge += 0.34f;
-			_hasHit = false;
+            BasicAttack();
 			_attackAnim = true;
-			await ToSignal(GetTree().CreateTimer(0.48), "timeout");
-			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
-			await ToSignal(GetTree().CreateTimer(0.2), "timeout");
-			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-			_canAttack = false;
-			await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+			await ToSignal(GetTree().CreateTimer(0.65f), "timeout");
 			_attackAnim = false;
-			await ToSignal(GetTree().CreateTimer(AttackSpeed-0.1f), "timeout");
+			BasicAttack();
+			_attack2Anim = true;
+			await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+			_attack2Anim = false;
+			await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
+			_canAttack = true;
+        }
+		else if (_charge < 1)
+        {
+            UpperCut();
+			_attackAnim = true;
+			await ToSignal(GetTree().CreateTimer(0.65f), "timeout");
+			_attackAnim = false;
+			await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
 			_canAttack = true;
         }
         else
         {
-			_hasHit = false;
+			/*_hasHit = false;
 			_smashAnim = true;
 			await ToSignal(GetTree().CreateTimer(0.48), "timeout");
 			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
-			_charge = 0f;
+			
 			_leftAura.GetNode<GpuParticles3D>("Magic").Emitting = false; 
 			_rightAura.GetNode<GpuParticles3D>("Magic").Emitting = false;
 			await ToSignal(GetTree().CreateTimer(0.2), "timeout");
@@ -140,7 +141,36 @@ public partial class vCultist : Monster3d
 			await ToSignal(GetTree().CreateTimer(0.5), "timeout");
 			_smashAnim = false;
 			await ToSignal(GetTree().CreateTimer(AttackSpeed-0.1f), "timeout");
-			_canAttack = true;
+			*/_canAttack = true;
+			_charge = 0f;
         }
 	}
+
+    private async void BasicAttack()
+    {
+		_hasHit = false;
+		await ToSignal(GetTree().CreateTimer(0.55), "timeout");
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
+		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
+		_canAttack = false;
+    }
+	private async void UpperCut()
+    {
+		_hasHit = false;
+		await ToSignal(GetTree().CreateTimer(0.55), "timeout");
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
+		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
+		_canAttack = false;
+    }
+	private async void Smash()
+    {
+		_hasHit = false;
+		await ToSignal(GetTree().CreateTimer(0.55), "timeout");
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
+		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
+		_canAttack = false;
+    }
 }

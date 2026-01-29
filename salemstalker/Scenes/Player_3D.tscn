@@ -89,7 +89,7 @@ flip_faces = true
 radius = 80.0
 height = 70.0
 
-[node name="Player_3d" type="CharacterBody3D"]
+[node name="Player_3d" type="CharacterBody3D" groups=["Player", "PlayerHurtbox"]]
 floor_max_angle = 1.134464
 script = ExtResource("1_df3ch")
 
@@ -114,12 +114,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.422
 
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 
+[node name="shortsword" parent="Head/Camera3D/Sword/Shortsword" index="1"]
+visible = true
+
+[node name="weaponAnimations" parent="Head/Camera3D/Sword/Shortsword" index="3"]
+visible = false
+
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15686068, -0.5135017, 0.6948392, 0.47844464)
-bones/19/rotation = Quaternion(0.5840443, -0.035402063, 0.034886293, 0.81019866)
+bones/18/rotation = Quaternion(-0.15656093, -0.5141407, 0.69514716, 0.4774083)
+bones/19/rotation = Quaternion(0.58606553, -0.035430536, 0.03402597, 0.8087733)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5252145, 0.044537246, 0.8498035, 0.052113913, 0.9984384, -0.020118669, -0.8493721, 0.03372019, -0.5267152, -0.18853202, 1.4013427, 0.41982502)
+transform = Transform3D(-0.5273123, 0.04515122, 0.8484709, 0.049201123, 0.9985343, -0.022559252, -0.8482454, 0.029850047, -0.5287607, -0.18738115, 1.4023796, 0.41929317)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")
@@ -144,6 +150,9 @@ omni_range = 25.0
 [node name="Offhand1" type="Node3D" parent="Head/Camera3D"]
 
 [node name="StakeGun" parent="Head/Camera3D/Offhand1" instance=ExtResource("3_cvtri")]
+
+[node name="stake gun" parent="Head/Camera3D/Offhand1/StakeGun" index="0"]
+transform = Transform3D(-0.264955, 0, -6.71709e-07, 0, 0.26495498, 0, 6.717091e-07, 0, -0.26495498, 0, -0.542065, 0)
 
 [node name="Offhand2" type="Node3D" parent="Head/Camera3D"]
 
@@ -184,7 +193,7 @@ offset_bottom = 0.0
 [node name="Skeleton3D" type="Skeleton3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, 0.441923, -0.298717)
 
-[node name="Hurtbox" type="Area3D" parent="." groups=["Player"]]
+[node name="Hurtbox" type="Area3D" parent="." groups=["Player", "PlayerHurtbox"]]
 collision_layer = 1025
 collision_mask = 1025
 
