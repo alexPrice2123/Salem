@@ -31,6 +31,8 @@ public partial class Monster3d : CharacterBody3D
 	public bool Fleeing = false;				// If the monster is fleeing
 	public float SpawnRange = 50f;              // The disntance the monster can be from spawn before retreeting back to it
 	public float MaxLookTime = 1f;				// How long the monster looks around when wandering (in seconds)
+	public Node3D MultBodyRef = null;
+	public Node3D MultHitRef = null;
 	public bool DebugShapes = false;				// If debug hitboxes should be enabled
 
 	// --- NODE REFERENCES ---
@@ -94,8 +96,10 @@ public partial class Monster3d : CharacterBody3D
 		float randX = _startPos.X + _rng.RandiRange(-WanderRange, WanderRange);
 		_wanderPos = new Vector3(randX, 0f, randZ);
 		// Assign visual and functional nodes
-		_hitFX = GetNode<Node3D>("HitFX");
-		_body = GetNode<Node3D>("Body");
+		if (MultBodyRef != null){_hitFX = MultHitRef;
+		_body = MultBodyRef;}
+		else{_hitFX = GetNode<Node3D>("HitFX");
+		_body = GetNode<Node3D>("Body");}
 		_currentRot = GlobalRotation;
 		_attackBox = GetNode<CollisionShape3D>("Attackbox/CollisionShape3D");
 		_health = MaxHealth;
@@ -465,6 +469,7 @@ public partial class Monster3d : CharacterBody3D
 		else if (Monster is weepingSpine ws) ws.Attack();
 		else if (Monster is lumberJack lj) lj.Attack();
 		else if (Monster is vCultist vc) vc.Attack();
+		else if (Monster is revenanT rt) rt.Attack();
 	}
 
 
@@ -568,7 +573,7 @@ public partial class Monster3d : CharacterBody3D
 		}
 		else
 		{
-			if (area.IsInGroup("Player") && area.Name == "Hurtbox" && !_playerInWalkRange && !_quitePlayerInRange)
+			if (area.IsInGroup("PlayerHurtbox") && !_playerInWalkRange && !_quitePlayerInRange)
 			{
 				_canSeePlayer = false;
 			}
@@ -577,7 +582,7 @@ public partial class Monster3d : CharacterBody3D
 	
 	private void _on_walk_range_area_entered(Area3D area) //When the player gets in range of walk noise detection
 	{
-		if (area.IsInGroup("Player")){_playerInWalkRange = true;}
+		if (area.IsInGroup("PlayerHurtbox")){_playerInWalkRange = true;}
 		detectPlayer(area, true, false);
 	}
 
@@ -587,23 +592,23 @@ public partial class Monster3d : CharacterBody3D
 		{
 			detectPlayer(area, true, false);
 		}
-		if (area.IsInGroup("Player")){_quitePlayerInRange = true;}
+		if (area.IsInGroup("PlayerHurtbox")){_quitePlayerInRange = true;}
 	}
 
 	private void _on_run_range_area_exited(Area3D area) //When the player leaves the run range
 	{
 		detectPlayer(area, false, false);
-		if (area.IsInGroup("Player")){_quitePlayerInRange = false; _playerInWalkRange = false;}
+		if (area.IsInGroup("PlayerHurtbox")){_quitePlayerInRange = false; _playerInWalkRange = false;}
 	}
 
 	private void _on_agro_range_area_entered(Area3D area) //When the player gets in range of the monster to see them; not agro
 	{
-		if (area.IsInGroup("Player")){_playerInVisionRange = true;}
+		if (area.IsInGroup("PlayerHurtbox")){_playerInVisionRange = true;}
 		detectPlayer(area, true, true);
 	}
 	private void _on_agro_range_area_exited(Area3D area) //When the player gets into the agro range
 	{
-		if (area.IsInGroup("Player")){_playerInVisionRange = false;}
+		if (area.IsInGroup("PlayerHurtbox")){_playerInVisionRange = false;}
 		detectPlayer(area, false, true);
 	}
 
