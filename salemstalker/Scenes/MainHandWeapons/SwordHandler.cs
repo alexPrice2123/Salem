@@ -8,11 +8,11 @@ public partial class SwordHandler : Node3D
 	protected float _firstDelay = 0.05f;
 	protected float _secondDelay = 0.2f;
 	public bool _crit = false;
-	public bool walking = false;
-	public bool running = false;
-	public bool blocking = false;
-	public int swingStat = 0;
-	public int parryStat = 0;
+	protected bool walking = false;
+	protected bool running = false;
+	protected bool blocking = false;
+	protected int swingStat = 0;
+	protected int parryStat = 0;
 	protected async void _on_hitbox_body_entered(Node3D body)
 	{
 		if (body.IsInGroup("Monster"))
@@ -49,15 +49,10 @@ public partial class SwordHandler : Node3D
 	}
 	public void updateVar(bool walkUpdate = false, bool runUpdate = false, bool blockUpdate = false, int swingUpdate = 0, int parryUpdate = 0)
 	{
-		GD.Print(walking," to ", walkUpdate);
 		walking = walkUpdate;
-		GD.Print(running," to ", runUpdate);
 		running = runUpdate;
-		GD.Print(blocking," to ", blockUpdate);
 		blocking = blockUpdate;
-		GD.Print(swingStat," to ", swingUpdate);
 		swingStat = swingUpdate;
-		GD.Print(parryStat," to ", parryUpdate);
 		parryStat = parryUpdate;
 	}
 	public bool getBoolVar(int which)

@@ -26,7 +26,6 @@ public partial class Flintlock : Node3D
         AddSibling(temPrj);
         temPrj.Position = _barrel.Position;
         temPrj.Rotation = _barrel.Rotation;
-        temPrj.Reparent(temPrj.GetParent().GetParent().GetParent().GetParent().GetParent());
         muzzleFlash();
         await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
         shooting = false;
