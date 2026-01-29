@@ -230,32 +230,27 @@ public partial class Player3d : CharacterBody3D
 		
 		
 		// --- Sword attack (Attack Action) ---
-		else if (Input.IsActionPressed("attack")
-				 && !_attackCooldown
-				 && !IsInstanceValid(_lastSeen) // Not looking at an interactable object
-				 && !_inv.Visible)
+		else if (Input.IsActionPressed("attack"))
 		{
-			// This block handles the first attack, potentially hiding a "Controls" overlay
-			if (GetNode<Sprite2D>("UI/Controls").Visible == true)
+			if(!GetNode<Sprite2D>("UI/Controls").Visible)
+			{
+				if(!IsInstanceValid(_lastSeen) && !_inv.Visible)
+				{
+					Swing(false); // Perform a normal sword swing
+				}
+				if (IsInstanceValid(_lastSeen) && !_inv.Visible)
+				{
+					if (_lastSeen.Name == "Anvil")
+					{
+						_lastSeen = null;
+						_smithShop.Visible = true;
+						Input.MouseMode = Input.MouseModeEnum.Visible;
+					}
+				}
+			}
+			else // This block handles the first attack, potentially hiding a "Controls" overlay
 			{
 				GetNode<Sprite2D>("UI/Controls").Visible = false;
-			}
-			else
-			{
-				Swing(false); // Perform a normal sword swing
-			}
-		}
-
-		// --- Interaction (Attack Action) for items ---
-		else if (Input.IsActionPressed("attack")
-				 && IsInstanceValid(_lastSeen) // Looking at an interactable object
-				 && _inv.Visible == false)
-		{
-			if (_lastSeen.Name == "Anvil")
-			{
-				_lastSeen = null;
-				_smithShop.Visible = true;
-				Input.MouseMode = Input.MouseModeEnum.Visible;
 			}
 		}
 
@@ -266,16 +261,15 @@ public partial class Player3d : CharacterBody3D
 				 && _inv.Visible == false)
 		{
 			Block(true); // Start blocking/parrying
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),true,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
+			_swordInst.blocking = true;
 		}
 		// --- Block End (Block Action) ---
 		else if (Input.IsActionJustReleased("block")
-				 && _attackCooldown == false
 				 && !IsInstanceValid(_lastSeen)
 				 && _inv.Visible == false)
 		{
 			Block(false); // Stop blocking/parrying
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,_swordInst.getIntVar(0),_swordInst.getIntVar(1));
+			_swordInst.blocking = false;
 		}
 
 		// --- Inventory toggle (Inventory Action) ---
@@ -784,8 +778,9 @@ public partial class Player3d : CharacterBody3D
 	// --- CUSTOM FUNCTIONS ---
 
 	// Handles the sword attack sequence, damage calculation, and combo logic.
-	private async void Swing(bool justEqquipped)
+	private async void Swing(bool justEqquipped) //in the great words of milo^2's gemini: "Reddit r efficient for instant action"
 	{
+		/*
 		_swordInst.ResetMonsterDebounce(); // Allow the sword to hit new monsters
 		float swingTime = 0; // Get swing time from weapon metadata
 		float comboTime = swingTime * 1000 + 400; // Time window for the next combo hit (in ms)
@@ -808,6 +803,7 @@ public partial class Player3d : CharacterBody3D
 		{
 			swingTime = (float)_sword.GetMeta("swingSpeed3"); 
 		}
+		GD.Print("testfuckbut2 ", swingTime, " - ", Time.GetTicksMsec() - _lastHit);
 		if(Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 300  || !_attackCooldown)
 		{
 			_attackCooldown = true; // Start the attack cooldown
@@ -828,6 +824,7 @@ public partial class Player3d : CharacterBody3D
 			}
 
 			// --- Combo and Crit Logic ---
+			GD.Print("testfuckbut ", _comboNum, " - ", Time.GetTicksMsec() - _lastHit, " - ",comboTime);
 			if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
 			{
 				_comboNum++; // Advance combo counter
@@ -842,24 +839,30 @@ public partial class Player3d : CharacterBody3D
 			else // Reset combo if time window expired or after the final combo hit
 			{
 				_comboNum = 0;
+				GD.Print("testfuck");
 				if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
 				{
 					_damage *= (float)_sword.GetMeta("cPercent2");
 					_swordInst._crit = true;
 				}
+				GD.Print("testfuck2");
 				swingTime = (float)_sword.GetMeta("swingSpeed2"); 
+				GD.Print("testfuck22");
 			}
 
 			// Third hit combo check (uses a separate combo percent)
 			if (Time.GetTicksMsec() - _lastHit > comboTime && _comboNum == 2)
 			{
 				_comboNum = 0;
+				GD.Print("testfuck3");
 				if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
 				{
 					_damage *= (float)_sword.GetMeta("cPercent3");
 					_swordInst._crit = true;
 				}
+				GD.Print("testfuck4");
 				swingTime = (float)_sword.GetMeta("swingSpeed3"); 
+				GD.Print("testfuck44");
 			}
 			cooldown.WaitTime = swingTime;
 			// --- Play Animation based on Combo ---
@@ -905,12 +908,9 @@ public partial class Player3d : CharacterBody3D
 			HorCamSense = tempHorSense;
 			VerCamSense = tempVerSense;
 
-			await ToSignal(GetTree().CreateTimer(0.090f), "timeout");
-			if(!_attackCooldown)
-			{
-				_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,0,_swordInst.getIntVar(1));
-			}
+			
 		}
+		*/
 	}
 
 	// Handles the blocking and parrying mechanic.
@@ -1082,7 +1082,7 @@ public partial class Player3d : CharacterBody3D
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
 			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
+			_swordInst.parryStat = _rng.RandiRange(1,2);
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			if (effect != "Push"){_knockVelocity = 1f;}
 			if (_cam is Camera cam)
@@ -1278,18 +1278,6 @@ public partial class Player3d : CharacterBody3D
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon2.GetMeta("cooldown")), "timeout");
 			_cooldownSec2 = false;
 		}
-		/*  else if (equipSec == 3)
-		{
-			_cooldownSec3 = true;
-			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon3.GetMeta("cooldown")), "timeout");
-			_cooldownSec3 = false;
-		}
-		else
-		{
-			_cooldownSec4 = true;
-			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon4.GetMeta("cooldown")), "timeout");
-			_cooldownSec4 = false;
-		}   */
 	}
 
 	private void _on_hurtbox_area_entered(Area3D zone)
