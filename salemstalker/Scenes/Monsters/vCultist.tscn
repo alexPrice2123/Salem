@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_tknub"]
 [ext_resource type="Script" uid="uid://toyyjatqk37n" path="res://Scripts/MonsterScripts/vCultist.cs" id="2_tknub"]
-[ext_resource type="PackedScene" uid="uid://bhargwjr3spf" path="res://Assets/3D/charatermodel/violent_cultist.blend" id="4_cno0p"]
+[ext_resource type="PackedScene" uid="uid://bp3q6ebqs8mlf" path="res://Assets/3D/charatermodel/violent_cultist.blend" id="4_cno0p"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="4_yna7o"]
 [ext_resource type="Shader" uid="uid://dad6yy25eud5k" path="res://Shaders/magicFist.gdshader" id="5_im0l4"]
 
