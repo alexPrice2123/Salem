@@ -33,7 +33,7 @@ public partial class Monster3d : CharacterBody3D
 	public float MaxLookTime = 1f;				// How long the monster looks around when wandering (in seconds)
 	public Node3D MultBodyRef = null;
 	public Node3D MultHitRef = null;
-	public bool DebugShapes = false;				// If debug hitboxes should be enabled
+	public bool DebugShapes = true;				// If debug hitboxes should be enabled
 
 	// --- NODE REFERENCES ---
 	protected Player3d _player;                 // Reference to the player
@@ -420,6 +420,7 @@ public partial class Monster3d : CharacterBody3D
 		{
 			_currentSpawnRange = SpawnRange;
 			_retreating = false;
+			ChooseNewWander();
 		}
 		if (distance <= AttackRange)
 		{
