@@ -5,7 +5,6 @@ public partial class boaT /*Replace with script name*/ : NpcVillager
 {
 	[Export]
 	public string _teleportPoint = "None";
-	/*
 	public override void _Ready()
 	{
 		Villager = this;
@@ -32,5 +31,5 @@ public partial class boaT /*Replace with script name*/ : NpcVillager
 			GD.Print(_teleportPoint);
 			_player.GlobalPosition = GetParent().GetNode<Node3D>("TeleportPoints/"+_teleportPoint).GlobalPosition;
         }
-	}*/
+	}
 }

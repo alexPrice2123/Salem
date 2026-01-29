@@ -87,9 +87,9 @@ public partial class hollowNormal : Monster3d
 		_hasHit = false;
 		_attackAnim = true;
 		await ToSignal(GetTree().CreateTimer(0.48), "timeout");
-		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
+		_attackBox.GetParent<Area3D>().Monitoring = true;
 		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
-		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
+		_attackBox.GetParent<Area3D>().Monitoring = false;
 		_canAttack = false;
 		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
 		_attackAnim = false;
