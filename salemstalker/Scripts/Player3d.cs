@@ -236,7 +236,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				if(!IsInstanceValid(_lastSeen) && !_inv.Visible)
 				{
-					Swing(false); // Perform a normal sword swing
+					Swing(); // Perform a normal sword swing
 				}
 				if (IsInstanceValid(_lastSeen) && !_inv.Visible)
 				{
@@ -778,8 +778,67 @@ public partial class Player3d : CharacterBody3D
 	// --- CUSTOM FUNCTIONS ---
 
 	// Handles the sword attack sequence, damage calculation, and combo logic.
-	private async void Swing(bool justEqquipped) //in the great words of milo^2's gemini: "Reddit r efficient for instant action"
+	private async void Swing() //in the great words of milo^2's gemini: "Reddit r efficient for instant action"
 	{
+		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
+		GD.Print("Time left: ",cooldown.TimeLeft," | Time maximum: ",(float)_swordInst.GetMeta("swingSpeed") * 0.5);
+		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5)
+		{
+			_rng.Randomize();
+			float tempHorSense = HorCamSense;
+			float tempVerSense = VerCamSense;
+			float swingTime = (float)_swordInst.GetMeta("swingSpeed");
+			if (Time.GetTicksMsec() - _lastHit > swingTime)
+			{
+				if(_comboNum>2 || Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 300)
+				{
+					_comboNum = 1;
+				}
+				else
+				{
+					_comboNum++;
+				}
+			}
+			else
+			{
+				_comboNum = 1;
+			}
+			if (cooldown.TimeLeft > 0)
+			{
+				GD.Print(cooldown.TimeLeft, " left till next");
+				await ToSignal(cooldown,"timeout");
+			}
+			
+			_swordInst.ResetMonsterDebounce();
+			if(_comboNum == 1){_damage *= (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
+			if(_comboNum == 2){_damage *= (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
+			if(_comboNum == 3){_damage *= (float)_sword.GetMeta("hDamage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
+			// Damage penalty if stamina is too low
+			if (_stamina <= 0.02f * _maxStamina)
+			{
+				_damage *= 0.75f;
+			}
+			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
+			{
+				if(_comboNum == 1){_damage *= (float)_sword.GetMeta("cPercent1");}
+				if(_comboNum == 2){_damage *= (float)_sword.GetMeta("cPercent2");}
+				if(_comboNum == 3){_damage *= (float)_sword.GetMeta("cPercent3");}
+				_swordInst._crit = true;
+			}
+			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
+			_swordInst.swingStat = _comboNum;
+			HorCamSense = tempHorSense;
+			VerCamSense = tempVerSense;
+			cooldown.Start();
+			await ToSignal(cooldown, "timeout");
+			_lastHit = Time.GetTicksMsec();
+			_swordInst.swingStat = 0;
+			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
+		}
+		else	
+		{
+			GD.Print("Too early!");
+		}
 		/*
 		_swordInst.ResetMonsterDebounce(); // Allow the sword to hit new monsters
 		float swingTime = 0; // Get swing time from weapon metadata
@@ -1180,7 +1239,6 @@ public partial class Player3d : CharacterBody3D
 		swordInstance.Position = Vector3.Zero;
 		_sword = swordInstance; // Update the main sword reference
 		_swordInst = _sword as SwordHandler; // Update the sword script reference
-		Swing(true); // Call swing with 'justEquipped' to reset animation/position
 	}
 
 	// Switches the player's secondary weapon slots.

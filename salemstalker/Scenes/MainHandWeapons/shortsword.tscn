@@ -58,6 +58,42 @@ scale_curve = SubResource("CurveTexture_kwmjs")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ki2ro"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1osjb"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="Curve" id="Curve_cg2tk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mw22n"]
+curve = SubResource("Curve_cg2tk")
+
+[sub_resource type="Curve" id="Curve_02r2q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wvwlr"]
+curve = SubResource("Curve_02r2q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hraxq"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 2.99998
+radial_velocity_max = 5.99998
+radial_velocity_curve = SubResource("CurveTexture_mw22n")
+gravity = Vector3(0, -2, 0)
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_wvwlr")
+
+[sub_resource type="BoxMesh" id="BoxMesh_0eq1u"]
+size = Vector3(0.1, 0.1, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pnml"]
 albedo_texture = ExtResource("3_iloqm")
 metallic_texture = ExtResource("5_w4qeb")
@@ -98,53 +134,32 @@ normal_texture = ExtResource("20_18nq6")
 heightmap_enabled = true
 heightmap_texture = ExtResource("18_3jmbr")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1osjb"]
-albedo_color = Color(1, 1, 0, 1)
-emission_enabled = true
-emission = Color(1, 1, 0, 1)
-
-[sub_resource type="Curve" id="Curve_cg2tk"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_mw22n"]
-curve = SubResource("Curve_cg2tk")
-
-[sub_resource type="Curve" id="Curve_02r2q"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_wvwlr"]
-curve = SubResource("Curve_02r2q")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hraxq"]
-lifetime_randomness = 1.0
-angle_min = 1.07288e-05
-angle_max = 360.0
-direction = Vector3(0, 0, 0)
-spread = 0.0
-radial_velocity_min = 2.99998
-radial_velocity_max = 5.99998
-radial_velocity_curve = SubResource("CurveTexture_mw22n")
-gravity = Vector3(0, -2, 0)
-scale_min = 0.05
-scale_max = 0.1
-scale_curve = SubResource("CurveTexture_wvwlr")
-
-[sub_resource type="BoxMesh" id="BoxMesh_0eq1u"]
-size = Vector3(0.1, 0.1, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
 size = Vector3(0.21177, 1.52848, 0.321355)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kwmjs"]
 animation = &"attack1"
+use_custom_timeline = true
+timeline_length = 0.6
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mw22n"]
 animation = &"attack2"
+use_custom_timeline = true
+timeline_length = 0.6
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wvwlr"]
 animation = &"attack3"
+use_custom_timeline = true
+timeline_length = 0.6
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pxq68"]
 animation = &"block"
@@ -249,6 +264,7 @@ advance_mode = 2
 advance_expression = "swingStat == 2"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_klhe2"]
+xfade_time = 0.2
 switch_mode = 2
 advance_mode = 2
 advance_expression = "swingStat == 3"
@@ -274,7 +290,7 @@ advance_expression = "swingStat == 0 && !running && !walking"
 xfade_time = 0.3
 switch_mode = 2
 advance_mode = 2
-advance_expression = "swingStat == 3"
+advance_expression = "swingStat == 1"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fvvcl"]
 switch_mode = 2
@@ -424,11 +440,11 @@ advance_expression = "!blocking"
 states/End/position = Vector2(1256, 113)
 states/Start/position = Vector2(177.5, 100.8125)
 states/attack1/node = SubResource("AnimationNodeAnimation_kwmjs")
-states/attack1/position = Vector2(626.7988, 282.71375)
+states/attack1/position = Vector2(627.1289, 283.32614)
 states/attack2/node = SubResource("AnimationNodeAnimation_mw22n")
 states/attack2/position = Vector2(799.61414, 283.43854)
 states/attack3/node = SubResource("AnimationNodeAnimation_wvwlr")
-states/attack3/position = Vector2(799.1145, 185.5)
+states/attack3/position = Vector2(799.36414, 185.5)
 states/block/node = SubResource("AnimationNodeAnimation_jta0k")
 states/block/position = Vector2(626.959, -40.625)
 "states/block Reverse/node" = SubResource("AnimationNodeAnimation_pxq68")
@@ -446,7 +462,7 @@ states/run/position = Vector2(460.36914, 167.21875)
 states/walk/node = SubResource("AnimationNodeAnimation_0gn6g")
 states/walk/position = Vector2(459.5371, 49.71875)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_kwmjs"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_pxq68"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_u8y7o"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_2opq7"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_34yv5"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_qpqbi"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_3jmbr"), "walk", "block", SubResource("AnimationNodeStateMachineTransition_vooft"), "run", "block", SubResource("AnimationNodeStateMachineTransition_18nq6"), "idle", "block", SubResource("AnimationNodeStateMachineTransition_duntr"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_pn25q"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_klhe2"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_s5sfm"), "run", "attack1", SubResource("AnimationNodeStateMachineTransition_bu7t2"), "walk", "attack1", SubResource("AnimationNodeStateMachineTransition_316gc"), "attack3", "idle", SubResource("AnimationNodeStateMachineTransition_tnnbh"), "attack3", "attack1", SubResource("AnimationNodeStateMachineTransition_vr5u1"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_fvvcl"), "attack1", "idle", SubResource("AnimationNodeStateMachineTransition_2y8h8"), "attack1", "block", SubResource("AnimationNodeStateMachineTransition_843n8"), "attack2", "block", SubResource("AnimationNodeStateMachineTransition_worpy"), "attack3", "block", SubResource("AnimationNodeStateMachineTransition_uxcex"), "attack2", "run", SubResource("AnimationNodeStateMachineTransition_5cavf"), "attack3", "run", SubResource("AnimationNodeStateMachineTransition_jql6y"), "attack3", "walk", SubResource("AnimationNodeStateMachineTransition_jp18e"), "attack1", "run", SubResource("AnimationNodeStateMachineTransition_y1hnr"), "attack1", "walk", SubResource("AnimationNodeStateMachineTransition_un0st"), "attack2", "walk", SubResource("AnimationNodeStateMachineTransition_4ujmf"), "block_idle", "parry2", SubResource("AnimationNodeStateMachineTransition_5pnml"), "block_idle", "parry1", SubResource("AnimationNodeStateMachineTransition_tlhnf"), "parry1", "block_idle", SubResource("AnimationNodeStateMachineTransition_oettj"), "parry2", "block_idle", SubResource("AnimationNodeStateMachineTransition_mkca1"), "block", "block_idle", SubResource("AnimationNodeStateMachineTransition_jwdyb"), "block_idle", "block Reverse", SubResource("AnimationNodeStateMachineTransition_mjkup"), "block", "block Reverse", SubResource("AnimationNodeStateMachineTransition_1vcao"), "block Reverse", "block", SubResource("AnimationNodeStateMachineTransition_6yuuk"), "block Reverse", "attack1", SubResource("AnimationNodeStateMachineTransition_ru5bm"), "block Reverse", "run", SubResource("AnimationNodeStateMachineTransition_dvy65"), "block Reverse", "walk", SubResource("AnimationNodeStateMachineTransition_hl6in"), "block Reverse", "idle", SubResource("AnimationNodeStateMachineTransition_fw3lk"), "parry1", "block Reverse", SubResource("AnimationNodeStateMachineTransition_n8x3y"), "parry2", "block Reverse", SubResource("AnimationNodeStateMachineTransition_jd62e")]
-graph_offset = Vector2(-75.64264, -18)
+graph_offset = Vector2(36.35736, 58)
 
 [node name="Shortsword" type="Node3D"]
 transform = Transform3D(-0.41, 0, -1.0394244e-06, 0, 0.41, 0, 1.0394244e-06, 0, -0.41, 0, 0, 0)
@@ -460,9 +476,6 @@ metadata/cPercent2 = 1.2
 metadata/cPercent3 = 1.25
 metadata/bChance = 0.2
 metadata/level = 0
-metadata/swingSpeed1 = 0.583
-metadata/swingSpeed2 = 0.625
-metadata/swingSpeed3 = 0.625
 
 [node name="Blood" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 6.82121e-13, 0, 1, 0, -6.82121e-13, 0, 1, 0.008126558, 1.3035117, -0.059959345)
@@ -472,18 +485,6 @@ amount = 100
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_8th4x")
 draw_pass_1 = SubResource("BoxMesh_ki2ro")
-
-[node name="shortsword" parent="." instance=ExtResource("2_pkki5")]
-transform = Transform3D(-4.3712134e-08, 0, 1, 0, 1, 0, -1, 0, -4.3712134e-08, 0, -0.333, -0.061)
-visible = false
-
-[node name="Cylinder" parent="shortsword" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_5pnml")
-
-[node name="Sphere_001" parent="shortsword" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_tlhnf")
-surface_material_override/1 = SubResource("StandardMaterial3D_oettj")
-surface_material_override/2 = SubResource("StandardMaterial3D_mkca1")
 
 [node name="Parry" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 6.82121e-13, 0, 1, 0, -6.82121e-13, 0, 1, 0.069377646, 0.8495839, -0.1730843)
@@ -503,15 +504,15 @@ transform = Transform3D(2.01, 0, 2.2737368e-12, 0, 2.01, 0, -2.2737368e-12, 0, 2
 bones/0/position = Vector3(-3.5527124e-15, 0.9426751, -0.06494778)
 bones/7/rotation = Quaternion(-0.586, -0.324, -0.335, 0.635)
 bones/8/rotation = Quaternion(-0.28827924, 0.63253677, -0.5684554, 0.44005772)
-bones/9/rotation = Quaternion(0.5499285, 0.0012709559, -0.13263234, 0.82461244)
+bones/9/rotation = Quaternion(0.023057815, 0.068592764, -0.12911308, 0.98898596)
 bones/17/rotation = Quaternion(-0.59, 0.348, 0.33, 0.649)
-bones/18/rotation = Quaternion(-0.15693393, -0.5133456, 0.6947638, 0.47869766)
-bones/19/rotation = Quaternion(0.5844913, -0.035408378, 0.034696124, 0.8098842)
-bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
+bones/18/rotation = Quaternion(-0.32880828, -0.32931826, 0.8698606, 0.16363761)
+bones/19/rotation = Quaternion(0.14655632, -0.03110624, 0.039895397, 0.98790795)
+bones/20/rotation = Quaternion(-0.15204035, -0.20685674, -0.37812608, 0.88944626)
 bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
 bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
 bones/23/rotation = Quaternion(-0.078242995, 0.054600544, 0.59484905, 0.79815507)
-bones/25/rotation = Quaternion(0.367195, 0.110883325, 0.45397994, 0.80422324)
+bones/25/rotation = Quaternion(0.13627075, 0.09074122, 0.31506467, 0.9348425)
 bones/26/rotation = Quaternion(-0.30964947, -0.010137768, -0.10400323, 0.9450914)
 bones/27/rotation = Quaternion(-0.0527684, -0.02960059, -0.34093818, 0.9381367)
 bones/28/rotation = Quaternion(-5.4202424e-08, 0.6961122, 0.717933, -5.255501e-08)
@@ -519,9 +520,24 @@ bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5248212, 0.044756003, 0.850035, 0.050975673, 0.9984771, -0.021099031, -0.8496843, 0.032258123, -0.52630323, -0.18873909, 1.4018612, 0.41981)
+transform = Transform3D(-0.6222737, 0.053227596, 0.780988, 0.7545132, 0.30655771, 0.5802861, -0.20853029, 0.9503629, -0.23092373, 0.19068843, 1.2142384, 0.32366222)
 
-[node name="Hitbox" type="Area3D" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder" index="0" groups=["Player", "Weapon"]]
+[node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+layers = 0
+
+[node name="shortsword" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder" index="0" instance=ExtResource("2_pkki5")]
+transform = Transform3D(0.478, 1.4316737e-08, 6.263575e-08, -1.43167425e-08, 0.478, 3.5791846e-08, -6.263575e-08, -3.579185e-08, 0.478, 0.00066670775, -0.14706719, -0.003644213)
+
+[node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/shortsword" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5pnml")
+
+[node name="Sphere_001" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/shortsword" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_tlhnf")
+surface_material_override/1 = SubResource("StandardMaterial3D_oettj")
+surface_material_override/2 = SubResource("StandardMaterial3D_mkca1")
+
+[node name="Hitbox" type="Area3D" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder" index="1" groups=["Player", "Weapon"]]
 transform = Transform3D(-0.26141012, 0.025851231, -0.42251053, 0.0221753, 0.49673802, 0.016672766, 0.42271897, -0.010071728, -0.26215586, 0.019383274, 0.4390214, -0.0037168786)
 disable_mode = 2
 collision_layer = 1025
@@ -550,5 +566,5 @@ one_shot = true
 
 [connection signal="body_entered" from="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox" to="." method="_on_hitbox_body_entered"]
 
-[editable path="shortsword"]
 [editable path="weaponAnimations"]
+[editable path="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/shortsword"]
