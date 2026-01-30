@@ -82,7 +82,7 @@ public partial class underBrush : Monster3d
 				_countDown = 5f;
 				if (_currentAttackOffset >= 1.311f) { _currentAttackOffset = 1.311f; }   
             }
-			_attackBox.Disabled = true;
+			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
 			_hasHit = true;
 		}
 	}
@@ -101,9 +101,9 @@ public partial class underBrush : Monster3d
 		_attackAnim = true;
 		await ToSignal(GetTree().CreateTimer(.34), "timeout");
 		_speedOffset = 2.5f;
-		_attackBox.GetParent<Area3D>().Monitoring = true;
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
         await ToSignal(GetTree().CreateTimer(0.25), "timeout");
-		_attackBox.GetParent<Area3D>().Monitoring = false;
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
 		_canAttack = false;
 		//await ToSignal(GetTree().CreateTimer(0.2), "timeout");
 		_attackAnim = false;

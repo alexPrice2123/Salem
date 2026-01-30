@@ -69,7 +69,7 @@ public partial class hollowNormal : Monster3d
 		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
 		{
 			_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "None");
-			_attackBox.Disabled = true;
+			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
 			_hasHit = true;
 		}
 	}
@@ -87,9 +87,9 @@ public partial class hollowNormal : Monster3d
 		_hasHit = false;
 		_attackAnim = true;
 		await ToSignal(GetTree().CreateTimer(0.48), "timeout");
-		_attackBox.GetParent<Area3D>().Monitoring = true;
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
 		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
-		_attackBox.GetParent<Area3D>().Monitoring = false;
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
 		_canAttack = false;
 		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
 		_attackAnim = false;

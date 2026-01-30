@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=24 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
 [ext_resource type="Texture2D" uid="uid://cmfaxccf8ffss" path="res://Assets/UI/player.png" id="2_cvtri"]
@@ -11,10 +11,85 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1nug"]
+albedo_color = Color(0.24497223, 0.24569717, 0.27148438, 1)
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfumr"]
+albedo_color = Color(0.23608267, 0.24609375, 0.20475769, 1)
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mq7x1"]
+albedo_color = Color(0.62890625, 0.56562316, 0.48027802, 1)
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3rw2"]
+albedo_color = Color(0.627451, 0.5647059, 0.47843137, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x3jne"]
+albedo_color = Color(0.23529412, 0.24705882, 0.20392157, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5bpc"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df3ch"]
 radius = 0.295052
 
-[node name="Player_3d" type="CharacterBody3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvtri"]
+transparency = 1
+depth_draw_mode = 2
+albedo_color = Color(0, 0, 0, 0.28235295)
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_y6jx2"]
+material = SubResource("StandardMaterial3D_cvtri")
+flip_faces = true
+radius = 30.0
+height = 40.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6jx2"]
+transparency = 1
+depth_draw_mode = 2
+albedo_color = Color(0, 0, 0, 0.5568628)
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_cvtri"]
+material = SubResource("StandardMaterial3D_y6jx2")
+flip_faces = true
+radius = 40.0
+height = 50.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s75qo"]
+transparency = 1
+depth_draw_mode = 2
+albedo_color = Color(0, 0, 0, 0.6901961)
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_qfumr"]
+material = SubResource("StandardMaterial3D_s75qo")
+flip_faces = true
+radius = 70.0
+height = 60.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wan02"]
+transparency = 1
+depth_draw_mode = 2
+albedo_color = Color(0, 0, 0, 0.94509804)
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_wan02"]
+material = SubResource("StandardMaterial3D_wan02")
+flip_faces = true
+radius = 80.0
+height = 70.0
+
+[node name="Player_3d" type="CharacterBody3D" groups=["Player", "PlayerHurtbox"]]
 floor_max_angle = 1.134464
 script = ExtResource("1_df3ch")
 
@@ -34,10 +109,24 @@ texture = ExtResource("2_cvtri")
 cull_mask = 1048573
 script = ExtResource("2_mawk5")
 
-[node name="Sword" type="Node3D" parent="Head/Camera3D"]
+[node name="Sword" type="Marker3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.42244637)
 
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
+
+[node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
+bones/18/rotation = Quaternion(-0.15462524, -0.5182317, 0.69710046, 0.47072077)
+bones/19/rotation = Quaternion(0.60925287, -0.035743263, 0.024013791, 0.79180604)
+
+[node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
+transform = Transform3D(-0.5422295, 0.052201614, 0.83860725, 0.009803176, 0.9983934, -0.055809587, -0.84017277, -0.022040501, -0.5418699, -0.17917034, 1.4175689, 0.4137173)
+
+[node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")
+
+[node name="Cube_002" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qfumr")
+surface_material_override/1 = SubResource("StandardMaterial3D_mq7x1")
 
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141743, 0, 0)
@@ -47,8 +136,8 @@ collide_with_areas = true
 
 [node name="Lantern" type="OmniLight3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265332, -0.769787, -0.313106)
-light_color = Color(0.956863, 0.882353, 0.541176, 1)
-light_energy = 4.0
+light_color = Color(0.625, 0.397501, 0.17700195, 1)
+light_energy = 2.76
 light_volumetric_fog_energy = 10.0
 omni_range = 25.0
 
@@ -56,13 +145,23 @@ omni_range = 25.0
 
 [node name="StakeGun" parent="Head/Camera3D/Offhand1" instance=ExtResource("3_cvtri")]
 
+[node name="stake gun" parent="Head/Camera3D/Offhand1/StakeGun" index="0"]
+transform = Transform3D(-0.264955, 0, -6.71709e-07, 0, 0.26495498, 0, 6.717091e-07, 0, -0.26495498, 0, -0.542065, 0)
+
 [node name="Offhand2" type="Node3D" parent="Head/Camera3D"]
 
 [node name="FlintGun" parent="Head/Camera3D/Offhand2" instance=ExtResource("3_mawk5")]
 
+[node name="Cube_002" parent="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions/metarig/Skeleton3D" index="1"]
+surface_material_override/1 = SubResource("StandardMaterial3D_j3rw2")
+
 [node name="Offhand3" type="Node3D" parent="Head/Camera3D"]
 
 [node name="FlintGun" parent="Head/Camera3D/Offhand3" instance=ExtResource("3_mawk5")]
+
+[node name="Cube_002" parent="Head/Camera3D/Offhand3/FlintGun/flinklock_animtions/metarig/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_x3jne")
+surface_material_override/1 = SubResource("StandardMaterial3D_k5bpc")
 
 [node name="Offhand4" type="Node3D" parent="Head/Camera3D"]
 
@@ -88,7 +187,7 @@ offset_bottom = 0.0
 [node name="Skeleton3D" type="Skeleton3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, 0.441923, -0.298717)
 
-[node name="Hurtbox" type="Area3D" parent="." groups=["Player"]]
+[node name="Hurtbox" type="Area3D" parent="." groups=["Player", "PlayerHurtbox"]]
 collision_layer = 1025
 collision_mask = 1025
 
@@ -96,12 +195,33 @@ collision_mask = 1025
 shape = SubResource("CapsuleShape3D_df3ch")
 debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0031393766, -2.4216013, -0.004449427)
+mesh = SubResource("SphereMesh_y6jx2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+mesh = SubResource("SphereMesh_cvtri")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+mesh = SubResource("SphereMesh_qfumr")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+mesh = SubResource("SphereMesh_wan02")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
 
+[editable path="Head/Camera3D/Sword/Shortsword"]
+[editable path="Head/Camera3D/Sword/Shortsword/shortsword"]
+[editable path="Head/Camera3D/Sword/Shortsword/weaponAnimations"]
+[editable path="Head/Camera3D/Offhand1/StakeGun"]
+[editable path="Head/Camera3D/Offhand1/StakeGun/stake gun"]
 [editable path="Head/Camera3D/Offhand2/FlintGun"]
 [editable path="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions"]
+[editable path="Head/Camera3D/Offhand3/FlintGun"]
+[editable path="Head/Camera3D/Offhand3/FlintGun/flinklock_animtions"]
