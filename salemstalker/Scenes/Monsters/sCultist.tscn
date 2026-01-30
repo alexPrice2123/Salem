@@ -1,27 +1,17 @@
-[gd_scene load_steps=68 format=3 uid="uid://ds8375k7kpihg"]
+[gd_scene load_steps=58 format=3 uid="uid://ds8375k7kpihg"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_20aj2"]
 [ext_resource type="Script" uid="uid://bm70c84xyxpwf" path="res://Scripts/MonsterScripts/sCultist.cs" id="2_im0l4"]
 [ext_resource type="PackedScene" uid="uid://c4ionl12wydjs" path="res://Assets/3D/charatermodel/cultist.blend" id="4_cno0p"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="5_im0l4"]
-[ext_resource type="Texture2D" uid="uid://dqdpsjku855c5" path="res://Assets/monstertextures/scultist/mask.001_Base_color.png" id="5_sgr3b"]
-[ext_resource type="Texture2D" uid="uid://jrq8k8o400vg" path="res://Assets/monstertextures/scultist/body_Base_color.png" id="6_1ov8d"]
-[ext_resource type="Texture2D" uid="uid://b705pgrttan4p" path="res://Assets/monstertextures/scultist/mask.001_Height.png" id="6_2q777"]
-[ext_resource type="Texture2D" uid="uid://sqfsvwjlmnk2" path="res://Assets/monstertextures/scultist/mask.001_Metallic.png" id="7_qltqj"]
-[ext_resource type="Texture2D" uid="uid://dg4ku7nv75jlg" path="res://Assets/monstertextures/scultist/body_Height.png" id="7_xchfu"]
-[ext_resource type="Texture2D" uid="uid://dt1146df33u24" path="res://Assets/monstertextures/scultist/mask.001_Normal.png" id="8_o2ibq"]
-[ext_resource type="Texture2D" uid="uid://bfuc6scoc73er" path="res://Assets/monstertextures/scultist/body_Metallic.png" id="8_wpt5g"]
-[ext_resource type="Texture2D" uid="uid://cmhhvena7di46" path="res://Assets/monstertextures/scultist/body_Normal.png" id="9_7yv52"]
-[ext_resource type="Texture2D" uid="uid://2w5umyaonw03" path="res://Assets/monstertextures/scultist/mask.001_Roughness.png" id="9_y435e"]
-[ext_resource type="Texture2D" uid="uid://5ukdygu6a7x0" path="res://Assets/monstertextures/scultist/arms_Roughness.png" id="10_3035c"]
+[ext_resource type="Texture2D" uid="uid://cgwe3slhiydqt" path="res://Assets/monstertextures/scultist/mask_Base_color.png" id="5_xchfu"]
+[ext_resource type="Texture2D" uid="uid://dv4usqmdf6sf8" path="res://Assets/monstertextures/scultist/body_Base_color.png" id="6_1ov8d"]
 [ext_resource type="Shader" uid="uid://dad6yy25eud5k" path="res://Shaders/magicFist.gdshader" id="11_o2ibq"]
-[ext_resource type="Texture2D" uid="uid://4g4hodmyllyu" path="res://Assets/monstertextures/scultist/pants_Base_color.png" id="11_wpt5g"]
-[ext_resource type="Texture2D" uid="uid://dhfyu4g84ndap" path="res://Assets/monstertextures/scultist/shoes_Base_color.png" id="12_7yv52"]
-[ext_resource type="Texture2D" uid="uid://iwmae50olf2u" path="res://Assets/monstertextures/scultist/skin_Base_color.png" id="13_7yv52"]
-[ext_resource type="Texture2D" uid="uid://juvqw12tfya0" path="res://Assets/monstertextures/scultist/arms_Base_color.png" id="14_w0uyk"]
-[ext_resource type="Texture2D" uid="uid://bxj17benu1f7r" path="res://Assets/monstertextures/scultist/arms_Metallic.png" id="15_wt35d"]
-[ext_resource type="Texture2D" uid="uid://b1egjv4k5m5d7" path="res://Assets/monstertextures/scultist/arms_Normal.png" id="16_jyelg"]
-[ext_resource type="Texture2D" uid="uid://b3yxcppkvkcc3" path="res://Assets/monstertextures/scultist/face_Base_color.png" id="21_bpwxc"]
+[ext_resource type="Texture2D" uid="uid://g5icxuqwmycb" path="res://Assets/monstertextures/scultist/pants_Base_color.png" id="11_wpt5g"]
+[ext_resource type="Texture2D" uid="uid://ejx1wg3fq2df" path="res://Assets/monstertextures/scultist/shoes_Base_color.png" id="12_7yv52"]
+[ext_resource type="Texture2D" uid="uid://cp28flayycm2w" path="res://Assets/monstertextures/scultist/skin_Base_color.png" id="13_7yv52"]
+[ext_resource type="Texture2D" uid="uid://dnu6v7u6xw0v3" path="res://Assets/monstertextures/scultist/arms_Base_color.png" id="14_w0uyk"]
+[ext_resource type="Texture2D" uid="uid://cre8ke4dshk3v" path="res://Assets/monstertextures/scultist/face_Base_color.png" id="21_bpwxc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kviwv"]
 radius = 0.28401
@@ -201,16 +191,8 @@ scale_min = 0.1
 scale_max = 0.1
 scale_curve = SubResource("CurveTexture_yr5wf")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cno0p"]
-albedo_texture = ExtResource("5_sgr3b")
-metallic = 1.0
-metallic_texture = ExtResource("7_qltqj")
-roughness_texture = ExtResource("9_y435e")
-normal_enabled = true
-normal_texture = ExtResource("8_o2ibq")
-heightmap_enabled = true
-heightmap_scale = 0.0
-heightmap_texture = ExtResource("6_2q777")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ov8d"]
+albedo_texture = ExtResource("5_xchfu")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y435e"]
 render_priority = 0
@@ -276,13 +258,9 @@ scale_curve = SubResource("CurveTexture_kq52u")
 cull_mode = 2
 albedo_texture = ExtResource("6_1ov8d")
 metallic = 1.0
-metallic_texture = ExtResource("8_wpt5g")
-roughness_texture = ExtResource("10_3035c")
 normal_enabled = true
-normal_texture = ExtResource("9_7yv52")
 heightmap_enabled = true
 heightmap_scale = 0.0
-heightmap_texture = ExtResource("7_xchfu")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpr8s"]
 albedo_texture = ExtResource("11_wpt5g")
@@ -296,10 +274,7 @@ albedo_texture = ExtResource("13_7yv52")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0uyk"]
 albedo_texture = ExtResource("14_w0uyk")
 metallic = 1.0
-metallic_texture = ExtResource("15_wt35d")
-roughness_texture = ExtResource("10_3035c")
 normal_enabled = true
-normal_texture = ExtResource("16_jyelg")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43ula"]
 albedo_texture = ExtResource("13_7yv52")
@@ -366,31 +341,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00286001, 1.464739, -0.386
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
-bones/0/position = Vector3(5.1476212e-11, 0.92856395, -0.06494777)
-bones/1/rotation = Quaternion(-0.052783262, -2.2336185e-11, -1.31069555e-08, 0.99860597)
+bones/0/position = Vector3(3.3469047e-11, 0.94211274, -0.06494778)
+bones/1/rotation = Quaternion(-0.04334117, 5.892699e-12, -1.019621e-08, 0.9990604)
 bones/2/rotation = Quaternion(-0.099120885, -1.1862224e-07, -1.1816131e-08, 0.9950754)
-bones/5/rotation = Quaternion(-0.08919492, 1.1882953e-07, -1.0047684e-08, 0.99601424)
+bones/5/rotation = Quaternion(-0.11957929, 1.183284e-07, -1.4436756e-08, 0.99282473)
 bones/9/position = Vector3(0.023210026, 0.17969476, -0.02584774)
-bones/9/rotation = Quaternion(-0.15784971, 0.4570584, -0.6344692, 0.6030174)
-bones/10/rotation = Quaternion(0.7027438, -0.0012961655, -0.13102196, 0.699273)
+bones/9/rotation = Quaternion(-0.15308514, 0.43475518, -0.6443252, 0.6102442)
+bones/10/rotation = Quaternion(0.7346513, -0.012850035, -0.11241702, 0.6689431)
 bones/11/rotation = Quaternion(0.018946541, -0.44151202, 0.031785104, 0.89649206)
 bones/15/rotation = Quaternion(0.30378985, -0.32865468, -0.2625314, 0.8548538)
 bones/16/rotation = Quaternion(-0.20784114, 0.06874571, 0.12904154, 0.9671734)
 bones/17/rotation = Quaternion(0.025080632, 0.012580051, 0.11781119, 0.99263954)
 bones/20/position = Vector3(-0.0122631965, 0.1803243, -0.009080381)
 bones/20/rotation = Quaternion(-0.17153025, -0.65304315, 0.5125414, 0.5304841)
-bones/21/rotation = Quaternion(0.6292389, -0.062072754, 0.34036845, 0.695956)
+bones/21/rotation = Quaternion(0.64057964, -0.027434696, 0.30860132, 0.70261675)
 bones/22/rotation = Quaternion(0.080469534, -0.024249483, -0.21176818, 0.9736996)
 bones/23/rotation = Quaternion(-0.16179535, 0.6076273, 0.04690974, 0.77615136)
 bones/26/rotation = Quaternion(0.52248627, 0.5959713, 0.0051336777, 0.60975415)
 bones/27/rotation = Quaternion(-0.30554172, -0.04084373, -0.1484545, 0.93964744)
 bones/30/rotation = Quaternion(-5.4202424e-08, 0.6961122, 0.717933, -5.255501e-08)
-bones/34/rotation = Quaternion(0.9629541, 0.0623117, -0.118042074, 0.23431323)
-bones/35/rotation = Quaternion(0.18843943, 0.004238185, 0.02412043, 0.98177946)
+bones/34/rotation = Quaternion(0.9806873, 0.040874317, -0.1177031, 0.15075743)
+bones/35/rotation = Quaternion(0.039844662, 0.0043133213, 0.0051001385, 0.9991836)
 bones/36/rotation = Quaternion(-0.47318336, -0.061734937, -0.012696902, 0.87870646)
 bones/37/rotation = Quaternion(0.010684408, 0.96141255, -0.2704207, 0.049441233)
-bones/39/rotation = Quaternion(0.966301, -0.061572216, 0.07885981, 0.2371759)
-bones/40/rotation = Quaternion(0.19724019, -0.0042126365, -0.04286237, 0.9794087)
+bones/39/rotation = Quaternion(0.9816274, -0.04088647, 0.07727979, 0.16959915)
+bones/40/rotation = Quaternion(0.077392004, -0.0042876448, -0.016818097, 0.9968497)
 bones/41/rotation = Quaternion(-0.49000233, 0.05531892, 0.0073416866, 0.8699331)
 bones/42/rotation = Quaternion(-0.06138559, 0.959714, -0.26865867, -0.054803994)
 bones/43/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
@@ -400,13 +375,13 @@ bones/46/position = Vector3(-0.15921922, 0.08240293, -0.015668165)
 bones/47/rotation = Quaternion(0.9998905, 0.00040637943, -0.0102964165, -0.010628726)
 
 [node name="Plane" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, -1.4204922e-10, 8.871942e-10, 2.1280999e-10, 0.9967738, -0.08026278, -8.730057e-10, 0.080262855, 0.9967736, 1.91464e-09, 1.7457674, 0.000130611)
+transform = Transform3D(1, 9.51379e-11, 7.406365e-10, -6.6803965e-11, 0.99927235, -0.03814108, -7.4380335e-10, 0.038141083, 0.9992723, 1.2225689e-09, 1.7595007, 0.0045810933)
 
 [node name="Plane" parent="Body/metarig/Skeleton3D/Plane" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_cno0p")
+surface_material_override/0 = SubResource("StandardMaterial3D_1ov8d")
 
 [node name="arur_l" parent="Body/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.0435597, -0.064974576, -0.18757692, 0.15637395, 0.8873982, 0.56257963, 0.12228669, -0.5802816, 0.88133, 0.2885838, 1.4295279, 0.2748542)
+transform = Transform3D(1.0434996, -0.07806556, -0.18286024, 0.177755, 0.8039992, 0.6711278, 0.08908009, -0.689866, 0.80285305, 0.28963113, 1.4693614, 0.27556092)
 
 [node name="arur_l" parent="Body/metarig/Skeleton3D/arur_l" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022436, 0.0297889, 6.98492e-10)
@@ -425,7 +400,7 @@ light_energy = 2.5
 omni_range = 0.5
 
 [node name="arua_r" parent="Body/metarig/Skeleton3D" index="2"]
-transform = Transform3D(0.9894868, 0.0023767948, 0.38643676, 0.006460279, 1.0620025, -0.02307424, -0.3863902, 0.023843214, 0.9892207, -0.23260385, 1.2922966, 0.1711585)
+transform = Transform3D(1.0199318, -0.0003257841, 0.2969211, 0.000753358, 1.0622715, -0.0014231056, -0.29692045, 0.001576826, 1.019931, -0.25020057, 1.3099787, 0.18289214)
 
 [node name="arua_r" parent="Body/metarig/Skeleton3D/arua_r" index="0"]
 material_override = SubResource("ShaderMaterial_y435e")
