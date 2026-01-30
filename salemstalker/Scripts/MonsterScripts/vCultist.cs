@@ -13,6 +13,7 @@ public partial class vCultist : Monster3d
 	private ShaderMaterial _auraShader;
 	private MeshInstance3D _leftAura;
 	private MeshInstance3D _rightAura;
+	private Area3D _pushBox;
 	public override void _Ready()
 	{
 		// -- Variables -- //
@@ -38,7 +39,7 @@ public partial class vCultist : Monster3d
 		_leftAura = GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/forearm_L/Cube_004");
 		_rightAura = GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/forearm_R/Cube_001");
 		_auraShader = _leftAura.MaterialOverride as ShaderMaterial;
-
+		_pushBox = GetNode<Area3D>("PushBox");
 	}
 
 	private void ToggleAura(bool toggle)
@@ -95,13 +96,22 @@ public partial class vCultist : Monster3d
 		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
 		{
 			GD.Print(_charge);
-			if (_charge < 1){_charge += 0.34f;
-			_player.Damaged((BaseDamage + _damageOffset)*(1+(_charge/1.5f)), this, "None");}
-			else{_charge = 0f; _player.Damaged((BaseDamage + _damageOffset)*(1+(_charge/1.5f)), this, "Push");}
+			if (_charge < 1){_charge += 0.34f;}
+			_player.Damaged((BaseDamage + _damageOffset)*(1+(_charge/1.5f)), this, "None");
 			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
 			_hasHit = true;
 		}
 	}
+	public void _on_push_box_area_entered(Node3D body)
+    {
+        if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
+		{
+			GD.Print(_charge);
+			_player.Damaged(0f, this, "Push");
+			_pushBox.SetDeferred("monitoring", false);
+			_hasHit = true;
+		}
+    }
 
 	public async void Attack()
 	{
@@ -130,10 +140,15 @@ public partial class vCultist : Monster3d
         }
         else
         {
+			MoveWhileAttack = false;
+			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
 			Smash();
 			_smashAnim = true;
+			_attackAnim = true;
 			await ToSignal(GetTree().CreateTimer(1.4f), "timeout");
 			_smashAnim = false;
+			_attackAnim = false;
+			MoveWhileAttack = true;
 			await ToSignal(GetTree().CreateTimer(AttackSpeed*2), "timeout");
 			_canAttack = true;
         }
@@ -160,7 +175,11 @@ public partial class vCultist : Monster3d
 		_hasHit = false;
 		await ToSignal(GetTree().CreateTimer(1.06), "timeout");
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
+		_pushBox.SetDeferred("monitoring", true);
+		GetNode<GpuParticles3D>("Push").Emitting = true;
+		_charge = 0f;
 		await ToSignal(GetTree().CreateTimer(0.3), "timeout");
+		_pushBox.SetDeferred("monitoring", false);
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
     }
 }

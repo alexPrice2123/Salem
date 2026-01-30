@@ -2505,7 +2505,7 @@ transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 
 _maxMonsterCount = 6
 _biome = "Forest"
 _monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("7_5m6g4"), ExtResource("38_osg54"), ExtResource("9_byw2m"), ExtResource("10_5j1yv"), ExtResource("11_ii1jl")])
-_monsterCount = Array[int]([0, 0, 0, 0, 1, 0])
+_monsterCount = Array[int]([1, 0, 0, 0, 0, 0])
 
 [node name="Range" parent="MonsterHolder/Z1Shrine2EnemySpawner" index="3"]
 radius = 12.092302
@@ -2727,13 +2727,13 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99112, -0.05519999)
-bones/2/rotation = Quaternion(-0.05326002, 0, 0, 0.9985807)
-bones/5/rotation = Quaternion(-0.092576414, 0.0070258435, 0.021776248, 0.9954427)
-bones/25/rotation = Quaternion(0.9732732, 0.016394267, -0.009146998, 0.228882)
-bones/26/rotation = Quaternion(0.2109722, 0.0015727588, 0.016912125, 0.9773445)
-bones/34/rotation = Quaternion(0.9732732, -0.01639427, 0.009146955, 0.228882)
-bones/35/rotation = Quaternion(0.21097225, -0.0015727585, -0.016912127, 0.9773446)
+bones/0/position = Vector3(0, 0.98871356, -0.055199984)
+bones/2/rotation = Quaternion(-0.040895466, 0, 0, 0.9991635)
+bones/5/rotation = Quaternion(-0.10332695, 0.00684131, 0.021773942, 0.99438554)
+bones/25/rotation = Quaternion(0.97194886, 0.016901098, -0.009201915, 0.23440367)
+bones/26/rotation = Quaternion(0.22211204, 0.0015687579, 0.017805122, 0.97485733)
+bones/34/rotation = Quaternion(0.97194886, -0.016901098, 0.00920187, 0.23440367)
+bones/35/rotation = Quaternion(0.22211201, -0.0015687571, -0.017805122, 0.97485733)
 
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obu7h")
@@ -2760,13 +2760,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99112, -0.05519999)
-bones/2/rotation = Quaternion(-0.05326002, 0, 0, 0.9985807)
-bones/5/rotation = Quaternion(-0.092576414, 0.0070258435, 0.021776248, 0.9954427)
-bones/25/rotation = Quaternion(0.9732732, 0.016394267, -0.009146998, 0.228882)
-bones/26/rotation = Quaternion(0.2109722, 0.0015727588, 0.016912125, 0.9773445)
-bones/34/rotation = Quaternion(0.9732732, -0.01639427, 0.009146955, 0.228882)
-bones/35/rotation = Quaternion(0.21097225, -0.0015727585, -0.016912127, 0.9773446)
+bones/0/position = Vector3(0, 0.98871356, -0.055199984)
+bones/2/rotation = Quaternion(-0.040895466, 0, 0, 0.9991635)
+bones/5/rotation = Quaternion(-0.10332695, 0.00684131, 0.021773942, 0.99438554)
+bones/25/rotation = Quaternion(0.97194886, 0.016901098, -0.009201915, 0.23440367)
+bones/26/rotation = Quaternion(0.22211204, 0.0015687579, 0.017805122, 0.97485733)
+bones/34/rotation = Quaternion(0.97194886, -0.016901098, 0.00920187, 0.23440367)
+bones/35/rotation = Quaternion(0.22211201, -0.0015687571, -0.017805122, 0.97485733)
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2797,13 +2797,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's family"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99112, -0.05519999)
-bones/2/rotation = Quaternion(-0.05326002, 0, 0, 0.9985807)
-bones/5/rotation = Quaternion(-0.092576414, 0.0070258435, 0.021776248, 0.9954427)
-bones/25/rotation = Quaternion(0.9732732, 0.016394267, -0.009146998, 0.228882)
-bones/26/rotation = Quaternion(0.2109722, 0.0015727588, 0.016912125, 0.9773445)
-bones/34/rotation = Quaternion(0.9732732, -0.01639427, 0.009146955, 0.228882)
-bones/35/rotation = Quaternion(0.21097225, -0.0015727585, -0.016912127, 0.9773446)
+bones/0/position = Vector3(0, 0.98871356, -0.055199984)
+bones/2/rotation = Quaternion(-0.040895466, 0, 0, 0.9991635)
+bones/5/rotation = Quaternion(-0.10332695, 0.00684131, 0.021773942, 0.99438554)
+bones/25/rotation = Quaternion(0.97194886, 0.016901098, -0.009201915, 0.23440367)
+bones/26/rotation = Quaternion(0.22211204, 0.0015687579, 0.017805122, 0.97485733)
+bones/34/rotation = Quaternion(0.97194886, -0.016901098, 0.00920187, 0.23440367)
+bones/35/rotation = Quaternion(0.22211201, -0.0015687571, -0.017805122, 0.97485733)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ub1ot")

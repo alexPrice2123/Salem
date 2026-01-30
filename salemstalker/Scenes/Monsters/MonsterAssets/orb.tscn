@@ -1,23 +1,36 @@
-[gd_scene load_steps=20 format=3 uid="uid://cwiy7a16ospna"]
+[gd_scene load_steps=18 format=3 uid="uid://cwiy7a16ospna"]
 
 [ext_resource type="Script" uid="uid://dbx0mkf5x3iac" path="res://Scripts/MonsterScripts/MonsterAssetScripts/Orb.cs" id="1_6l8s8"]
-[ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="1_ogqpy"]
-[ext_resource type="Shader" uid="uid://bf0mb4hsypo15" path="res://Shaders/dissolve.gdshader" id="3_ibfeq"]
+[ext_resource type="Shader" uid="uid://dad6yy25eud5k" path="res://Shaders/magicFist.gdshader" id="3_ibfeq"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_im0l4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kviwv"]
+width = 1024
+noise = SubResource("FastNoiseLite_im0l4")
 seamless = true
+invert = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4tb7o"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2ibq"]
 render_priority = 0
-shader = ExtResource("1_ogqpy")
-shader_parameter/Color = Color(0.313726, 0.188235, 0.921569, 1)
-shader_parameter/glow_color = Color(0.258824, 0.0235294, 0.25098, 1)
-shader_parameter/dist = 2.0
-shader_parameter/speed = 1.0
-shader_parameter/glow_intensity = -0.1
-shader_parameter/glow_amount = 10.0
-shader_parameter/posMult = 1.58
-shader_parameter/noise = SubResource("NoiseTexture2D_xdlj8")
+shader = ExtResource("3_ibfeq")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/color_edge = Color(1.92523e-06, 0, 0.6274635, 1)
+shader_parameter/emission_strength = 10.000000475
+shader_parameter/rise_progress = 0.6050000287375
+shader_parameter/edge_width = 0.30000001192093
+shader_parameter/noise_scale = 0.78400003398012
+shader_parameter/noise_strength = 0.5
+shader_parameter/time_speed = 1.0000000475
+shader_parameter/fade_softness = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_kviwv")
+shader_parameter/distortion_scale = 0.1690000080275
+shader_parameter/top_fade_start = 1.0
+shader_parameter/top_fade_power = 2.0
+shader_parameter/invert_top_fade = false
+shader_parameter/wave_transparency = 0.0
+shader_parameter/wave_frequency = 1.0
+shader_parameter/wave_speed = 0.0
 
 [sub_resource type="Curve" id="Curve_r3x0a"]
 _limits = [-2.0, 2.0, 0.0, 1.0]
@@ -76,36 +89,28 @@ scale_curve = SubResource("CurveTexture_ag22c")
 [sub_resource type="SphereShape3D" id="SphereShape3D_cp2bc"]
 radius = 0.316207
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hmh3g"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibfeq"]
 render_priority = 0
 shader = ExtResource("3_ibfeq")
-shader_parameter/baseColor = Color(1.92523e-06, 0, 0.6274635, 1)
-shader_parameter/dissolveSlider = 0.6670000791824999
-shader_parameter/dissolveNoiseScale = 16.85
-shader_parameter/edgeNoiseScale = -2.2352000073055933e-07
-shader_parameter/edgesThickness = 0.066000003135
-shader_parameter/edgeColor = Color(0, 0, 1, 1)
-shader_parameter/edgeEmissionSlider = 2.999999932944
-shader_parameter/enable_dissolve_animation = true
-shader_parameter/animation_speed = 2.9000000432134803
-shader_parameter/animation_intensity = 0.2
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/color_edge = Color(1.92523e-06, 0, 0.6274635, 1)
+shader_parameter/emission_strength = 10.000000475
+shader_parameter/rise_progress = 0.5950000282625
+shader_parameter/edge_width = 0.30000001192093
+shader_parameter/noise_scale = 0.78400003398012
+shader_parameter/noise_strength = 0.5
+shader_parameter/time_speed = 1.0000000475
+shader_parameter/fade_softness = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_kviwv")
+shader_parameter/distortion_scale = 0.150000007125
+shader_parameter/top_fade_start = 1.0
+shader_parameter/top_fade_power = 2.0
+shader_parameter/invert_top_fade = false
+shader_parameter/wave_transparency = 0.0
+shader_parameter/wave_frequency = 1.0
+shader_parameter/wave_speed = 0.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_veal7"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4pry5"]
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1210"]
-render_priority = 0
-shader = ExtResource("1_ogqpy")
-shader_parameter/Color = Color(0.313726, 0.188235, 0.921569, 1)
-shader_parameter/glow_color = Color(0.258824, 0.0235294, 0.25098, 1)
-shader_parameter/dist = 2.0
-shader_parameter/speed = 1.0
-shader_parameter/glow_intensity = -0.1
-shader_parameter/glow_amount = 10.0
-shader_parameter/posMult = 0.01
-shader_parameter/noise = SubResource("NoiseTexture2D_4pry5")
 
 [node name="Orb" type="RigidBody3D"]
 gravity_scale = 0.0
@@ -113,7 +118,7 @@ script = ExtResource("1_6l8s8")
 
 [node name="Magic" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.509754, 0.196887, 0.832565, 0.0286384, 0.96468, -0.245665, -0.855048, 0.149689, 0.488123, 0.00547312, -0.0699652, 0.0110329)
-material_override = SubResource("ShaderMaterial_4tb7o")
+material_override = SubResource("ShaderMaterial_o2ibq")
 amount = 100
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_25wf1")
@@ -121,7 +126,7 @@ draw_pass_1 = SubResource("SphereMesh_olnk0")
 
 [node name="Boom" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.509754, 0.196887, 0.832565, 0.0286384, 0.96468, -0.245665, -0.855048, 0.149689, 0.488123, 0.00547312, -0.0699652, 0.617419)
-material_override = SubResource("ShaderMaterial_4tb7o")
+material_override = SubResource("ShaderMaterial_o2ibq")
 emitting = false
 amount = 100
 lifetime = 15.0
@@ -137,18 +142,12 @@ shape = SubResource("SphereShape3D_cp2bc")
 
 [node name="Orb" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_hmh3g")
+material_override = SubResource("ShaderMaterial_ibfeq")
 mesh = SubResource("SphereMesh_veal7")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Orb"]
 light_color = Color(0.313726, 0.188235, 0.921569, 1)
 light_energy = 5.0
 omni_range = 2.0
-
-[node name="InnerOb" type="MeshInstance3D" parent="Orb"]
-transform = Transform3D(-0.95, 0, 0, 0, -0.95, 0, 0, 0, -0.95, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_v1210")
-mesh = SubResource("SphereMesh_veal7")
-skeleton = NodePath("../..")
 
 [connection signal="area_entered" from="Attackbox" to="." method="_on_attackbox_area_entered"]
