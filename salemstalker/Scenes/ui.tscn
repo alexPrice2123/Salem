@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=47 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -7,13 +7,12 @@
 [ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
-[ext_resource type="Texture2D" uid="uid://de6jli1i60dq3" path="res://Assets/UI/reloadinguibase.png" id="5_whq80"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
-[ext_resource type="Texture2D" uid="uid://bhqxe1yu68n7c" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
+[ext_resource type="Texture2D" uid="uid://c4cernxpmcelt" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
-[ext_resource type="Texture2D" uid="uid://xfomx0x66nyg" path="res://Assets/UI/newstamorb.png" id="13_whq80"]
+[ext_resource type="Texture2D" uid="uid://bgqfw72wmjw40" path="res://Assets/UI/newstamorb.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
@@ -83,13 +82,10 @@ shader_parameter/fall_off_scale = 3.0
 shader_parameter/b_offset = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kuui0"]
-load_path = "res://.godot/imported/reloadinguibase.png-246f64f3ca2b1f8e4136782f1b588385.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_smy1h"]
-load_path = "res://.godot/imported/reloadinguibase.png-246f64f3ca2b1f8e4136782f1b588385.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lkjmk"]
-load_path = "res://.godot/imported/reloadinguibase.png-246f64f3ca2b1f8e4136782f1b588385.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxero"]
 line_spacing = 3.08
@@ -373,7 +369,6 @@ offset_right = 172.0
 offset_bottom = 602.0
 value = 100.0
 fill_mode = 4
-texture_progress = ExtResource("5_whq80")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
 [node name="SecCooldown2" type="TextureProgressBar" parent="."]
@@ -493,7 +488,6 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="InvWorld" parent="Inv/SubPort/Sub" instance=ExtResource("3_nf4gj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="SlotSelector" type="Control" parent="Inv/SubPort/Sub"]
 visible = false
