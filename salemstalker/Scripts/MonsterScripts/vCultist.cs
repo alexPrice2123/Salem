@@ -94,9 +94,10 @@ public partial class vCultist : Monster3d
 	{
 		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
 		{
+			GD.Print(_charge);
 			if (_charge < 1){_charge += 0.34f;
 			_player.Damaged((BaseDamage + _damageOffset)*(1+(_charge/1.5f)), this, "None");}
-			else{_player.Damaged((BaseDamage + _damageOffset)*(1+(_charge/1.5f)), this, "Push");}
+			else{_charge = 0f; _player.Damaged((BaseDamage + _damageOffset)*(1+(_charge/1.5f)), this, "Push");}
 			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
 			_hasHit = true;
 		}
@@ -104,6 +105,7 @@ public partial class vCultist : Monster3d
 
 	public async void Attack()
 	{
+		_canAttack = false;
 		if (_charge < 0.66)
         {
             BasicAttack();
@@ -119,30 +121,21 @@ public partial class vCultist : Monster3d
         }
 		else if (_charge < 1)
         {
-            UpperCut();
+            SuperPunch();
 			_attackAnim = true;
-			await ToSignal(GetTree().CreateTimer(0.65f), "timeout");
+			await ToSignal(GetTree().CreateTimer(1.25f), "timeout");
 			_attackAnim = false;
-			await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
+			await ToSignal(GetTree().CreateTimer(AttackSpeed+0.1f), "timeout");
 			_canAttack = true;
         }
         else
         {
-			/*_hasHit = false;
+			Smash();
 			_smashAnim = true;
-			await ToSignal(GetTree().CreateTimer(0.48), "timeout");
-			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
-			
-			_leftAura.GetNode<GpuParticles3D>("Magic").Emitting = false; 
-			_rightAura.GetNode<GpuParticles3D>("Magic").Emitting = false;
-			await ToSignal(GetTree().CreateTimer(0.2), "timeout");
-			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-			_canAttack = false;
-			await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+			await ToSignal(GetTree().CreateTimer(1.4f), "timeout");
 			_smashAnim = false;
-			await ToSignal(GetTree().CreateTimer(AttackSpeed-0.1f), "timeout");
-			*/_canAttack = true;
-			_charge = 0f;
+			await ToSignal(GetTree().CreateTimer(AttackSpeed*2), "timeout");
+			_canAttack = true;
         }
 	}
 
@@ -153,24 +146,21 @@ public partial class vCultist : Monster3d
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
 		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-		_canAttack = false;
     }
-	private async void UpperCut()
+	private async void SuperPunch()
     {
 		_hasHit = false;
-		await ToSignal(GetTree().CreateTimer(0.55), "timeout");
+		await ToSignal(GetTree().CreateTimer(1.14), "timeout");
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
 		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-		_canAttack = false;
     }
 	private async void Smash()
     {
 		_hasHit = false;
-		await ToSignal(GetTree().CreateTimer(0.55), "timeout");
+		await ToSignal(GetTree().CreateTimer(1.06), "timeout");
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
-		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+		await ToSignal(GetTree().CreateTimer(0.3), "timeout");
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-		_canAttack = false;
     }
 }
