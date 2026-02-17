@@ -3,11 +3,9 @@ using Microsoft.VisualBasic;
 using System;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
-using System.Reflection.Metadata;
 
 public partial class Ui : Control
 {
-	public static Ui Instance { get; private set; }
 	public Player3d _player;
 	private string _hovering = "falchionHover";
 	private string _prevSelection;
@@ -32,19 +30,8 @@ public partial class Ui : Control
 	public float _loadingGoal = 3f;
 	public bool _loadingDone = false;
 	public string _loadingObjective = "None";
-	private TextureProgressBar _secProgressBar1;
-	private TextureProgressBar _secProgressBar2;
-	//private TextureProgressBar _secProgressBar3;
-	//private TextureProgressBar _secProgressBar4;
-	public float _progress1 = 100;
-	public float _progress2 = 100;
-	//public float _progress3 = 100;
-	//public float _progress4 = 100;
-	public GridContainer _resourceInv;
-	private Texture2D _invIcon;
 	public override void _Ready()
 	{
-		Instance = this;
 		if (GetParent() is Player3d player)
 		{
 			_player = player;
@@ -56,12 +43,6 @@ public partial class Ui : Control
 		_shopOption2 = GetNode<TextureButton>("BlacksmithShop/ShopOption2");
 		_shopOption3 = GetNode<TextureButton>("BlacksmithShop/ShopOption3");
 		_shopOption4 = GetNode<TextureButton>("BlacksmithShop/ShopOption4");
-		_secProgressBar1 = GetNode<TextureProgressBar>("SecCooldown1");
-		_secProgressBar2 = GetNode<TextureProgressBar>("SecCooldown2");
-		//_secProgressBar3 = GetNode<TextureProgressBar>("SecCooldown3");
-		//_secProgressBar4 = GetNode<TextureProgressBar>("SecCooldown4");
-		_resourceInv = GetNode<GridContainer>("ResourceInv");
-		_invIcon = (Texture2D)GD.Load("res://icon.svg");
 		_loadingUI.Visible = true;
 		_loadingMaterial = _loadingUI.Material as ShaderMaterial;
 		_areaName = GetNode<Label>("Area");
@@ -80,14 +61,6 @@ public partial class Ui : Control
 		_upgradeNames.Add("cPercent3", "Heavy Critical Damage");
 		_specialAttacks.Add("Shortsword", "Pommel Strike");
 		//_specialAttacks.Add("Flail", "");
-
-		for(int i = 1; i < 25; i++)
-        {
-			_resourceInv.AddChild(_resourceInv.GetNode("InvSlot0").Duplicate());
-			_resourceInv.GetChild(i).Name = "InvSlot" + i;
-			GD.Print(_resourceInv.GetChild(i).Name);
-        }
-
 		PlayShopAnim("falchion");
 		PlayShopAnim("shortsword");
 		Load();
@@ -364,7 +337,7 @@ public partial class Ui : Control
 		}
 	}
 
-	/*private async void _on_slot_4_button_up()
+	private async void _on_slot_4_button_up()
 	{
 		_slotSelect.Visible = false;
 		GD.Print("sendslot4", _secItemSend);
@@ -380,7 +353,7 @@ public partial class Ui : Control
 		_player.SwitchSecondaryWeapon(_secItemSend,2);
 		await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 		_secItemSend = null;
-	}*/
+	}
 
 	private async void _on_slot_2_button_up()
 	{
