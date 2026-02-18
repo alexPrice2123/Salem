@@ -781,7 +781,6 @@ public partial class Player3d : CharacterBody3D
 	private async void Swing() //in the great words of milo^2's gemini: "Reddit r efficient for instant action"
 	{
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
-		GD.Print("Time left: ",cooldown.TimeLeft," | Time maximum: ",(float)_swordInst.GetMeta("swingSpeed") * 0.5);
 		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5)
 		{
 			_rng.Randomize();
@@ -805,10 +804,9 @@ public partial class Player3d : CharacterBody3D
 			}
 			if (cooldown.TimeLeft > 0)
 			{
-				GD.Print(cooldown.TimeLeft, " left till next");
 				await ToSignal(cooldown,"timeout");
 			}
-			
+			int tempcool = _comboNum;
 			_swordInst.ResetMonsterDebounce();
 			if(_comboNum == 1){_damage *= (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
 			if(_comboNum == 2){_damage *= (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
@@ -832,144 +830,15 @@ public partial class Player3d : CharacterBody3D
 			cooldown.Start();
 			await ToSignal(cooldown, "timeout");
 			_lastHit = Time.GetTicksMsec();
-			_swordInst.swingStat = 0;
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
+			await ToSignal(GetTree().CreateTimer((float)_swordInst.GetMeta("swingSpeed") * 0.5), "timeout");
+			if(_comboNum == tempcool){_swordInst.swingStat = 0;}
 		}
 		else	
 		{
-			GD.Print("Too early!");
+			GD.Print(cooldown.TimeLeft - (float)_swordInst.GetMeta("swingSpeed") * 0.5, " Too early!");
 		}
-		/*
-		_swordInst.ResetMonsterDebounce(); // Allow the sword to hit new monsters
-		float swingTime = 0; // Get swing time from weapon metadata
-		float comboTime = swingTime * 1000 + 400; // Time window for the next combo hit (in ms)
-		_rng.Randomize();
-		_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
-		_damage = (float)_sword.GetMeta("damage");
-		float tempHorSense = HorCamSense;
-		float tempVerSense = VerCamSense;
-		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
-		if (_comboNum == 0 || _comboNum == 1)
-		{
-			swingTime = (float)_sword.GetMeta("swingSpeed1"); 
-		}
-		else // Reset combo if time window expired or after the final combo hit
-		{
-			swingTime = (float)_sword.GetMeta("swingSpeed2"); 
-		}
-		// Third hit combo check (uses a separate combo percent)
-		if (_comboNum == 2)
-		{
-			swingTime = (float)_sword.GetMeta("swingSpeed3"); 
-		}
-		GD.Print("testfuckbut2 ", swingTime, " - ", Time.GetTicksMsec() - _lastHit);
-		if(Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 300  || !_attackCooldown)
-		{
-			_attackCooldown = true; // Start the attack cooldown
-			// Damage penalty if stamina is too low
-			if (_stamina <= 0.02f * _maxStamina)
-			{
-				_damage *= 0.75f;
-			}
-
-			// Skip stamina deduction and set swing time to zero if just equipping the weapon (for animation only)
-			if (justEqquipped == true)
-			{
-				swingTime = 0f;
-			}
-			else
-			{
-				_stamina -= 0.05f * _maxStamina; // Deduct stamina for the attack
-			}
-
-			// --- Combo and Crit Logic ---
-			GD.Print("testfuckbut ", _comboNum, " - ", Time.GetTicksMsec() - _lastHit, " - ",comboTime);
-			if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
-			{
-				_comboNum++; // Advance combo counter
-				// Check for critical hit chance (meta tag)
-				if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
-				{
-					_damage *= (float)_sword.GetMeta("cPercent1");
-					_swordInst._crit = true;
-				}
-				swingTime = (float)_sword.GetMeta("swingSpeed1"); 
-			}
-			else // Reset combo if time window expired or after the final combo hit
-			{
-				_comboNum = 0;
-				GD.Print("testfuck");
-				if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
-				{
-					_damage *= (float)_sword.GetMeta("cPercent2");
-					_swordInst._crit = true;
-				}
-				GD.Print("testfuck2");
-				swingTime = (float)_sword.GetMeta("swingSpeed2"); 
-				GD.Print("testfuck22");
-			}
-
-			// Third hit combo check (uses a separate combo percent)
-			if (Time.GetTicksMsec() - _lastHit > comboTime && _comboNum == 2)
-			{
-				_comboNum = 0;
-				GD.Print("testfuck3");
-				if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
-				{
-					_damage *= (float)_sword.GetMeta("cPercent3");
-					_swordInst._crit = true;
-				}
-				GD.Print("testfuck4");
-				swingTime = (float)_sword.GetMeta("swingSpeed3"); 
-				GD.Print("testfuck44");
-			}
-			cooldown.WaitTime = swingTime;
-			// --- Play Animation based on Combo ---
-			if (_comboNum == 0)
-			{
-				//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
-				_swordInst.swingStat = 1;
-				HorCamSense /= 2.5f;
-				VerCamSense /= 3f;
-			}
-			else if (_comboNum == 1)
-			{
-				//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
-				_swordInst.swingStat = 2;
-				HorCamSense /= 2.5f;
-				VerCamSense /= 3f;
-			}
-			else if (_comboNum == 2)
-			{
-				_damage = (float)_sword.GetMeta("hDamage"); // Use a special high-damage value for the final hit
-				//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
-				_swordInst.swingStat = 3;
-				HorCamSense /= 2f;
-				VerCamSense /= 5f;
-			}
-
-			if (justEqquipped == true)
-			{
-				_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),false,0,_swordInst.getIntVar(1));
-			}
-
-			GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
-			_lastHit = Time.GetTicksMsec(); // Record the time of this hit
-			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));
-			// Wait for the main part of the swing animation to finish
-			cooldown.Start();
-			await ToSignal(cooldown, "timeout");
-			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
-
-			
-			_attackCooldown = false; // End the attack cooldown
-			// Reset the players sensitivity
-			HorCamSense = tempHorSense;
-			VerCamSense = tempVerSense;
-
-			
-		}
-		*/
+		
 	}
 
 	// Handles the blocking and parrying mechanic.
