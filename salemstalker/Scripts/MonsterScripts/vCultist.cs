@@ -126,7 +126,7 @@ public partial class vCultist : Monster3d
 			_attack2Anim = true;
 			await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
 			_attack2Anim = false;
-			await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
+			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
 			_canAttack = true;
         }
 		else if (_charge < 1)
