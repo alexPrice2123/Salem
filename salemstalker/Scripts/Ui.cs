@@ -40,8 +40,10 @@ public partial class Ui : Control
 	public float _progress2 = 100;
 	//public float _progress3 = 100;
 	//public float _progress4 = 100;
-	public GridContainer _resourceInv;
+	public Control _resourceInv;
+	public GridContainer _gridContainer;
 	private Texture2D _invIcon;
+	private Control _inv;
 	public override void _Ready()
 	{
 		Instance = this;
@@ -60,7 +62,9 @@ public partial class Ui : Control
 		_secProgressBar2 = GetNode<TextureProgressBar>("SecCooldown2");
 		//_secProgressBar3 = GetNode<TextureProgressBar>("SecCooldown3");
 		//_secProgressBar4 = GetNode<TextureProgressBar>("SecCooldown4");
-		_resourceInv = GetNode<GridContainer>("ResourceInv");
+		_resourceInv = GetNode<Control>("ResourceInv");
+		_gridContainer = GetNode<GridContainer>("ResourceInv/GridContainer");
+		_inv = GetNode<Control>("Inv");
 		_invIcon = (Texture2D)GD.Load("res://icon.svg");
 		_loadingUI.Visible = true;
 		_loadingMaterial = _loadingUI.Material as ShaderMaterial;
@@ -81,11 +85,11 @@ public partial class Ui : Control
 		_specialAttacks.Add("Shortsword", "Pommel Strike");
 		//_specialAttacks.Add("Flail", "");
 
-		for(int i = 1; i < 25; i++)
+		for(int i = 1; i < 30; i++)
         {
-			_resourceInv.AddChild(_resourceInv.GetNode("InvSlot0").Duplicate());
-			_resourceInv.GetChild(i).Name = "InvSlot" + i;
-			GD.Print(_resourceInv.GetChild(i).Name);
+			_gridContainer.AddChild(_gridContainer.GetNode("InvSlot1").Duplicate());
+			_gridContainer.GetChild(i).Name = "InvSlot" + i;
+			//GD.Print(_gridContainer.GetChild(i).Name);
         }
 
 		PlayShopAnim("falchion");
@@ -431,4 +435,10 @@ public partial class Ui : Control
 		_results.GetNode<Label>("StatName").Text += upgradeName + ".......................................\n";
 		_player._weapon[_shopSelection].SetMeta(statName, Math.Round((float)_player._weapon[_shopSelection].GetMeta(statName) + _upgrades[specificStatName], 3));
 	}
+
+	private void _on_resource_inv_button_up()
+    {
+		_resourceInv.Visible = true;
+		_inv.Visible = false;
+    }
 }

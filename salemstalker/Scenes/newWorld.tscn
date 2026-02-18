@@ -1,4 +1,4 @@
-[gd_scene load_steps=1140 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1141 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -941,6 +941,7 @@
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="931_3vgip"]
 [ext_resource type="PackedScene" uid="uid://bqjcb30xsr68w" path="res://Scenes/blacksmith_shop.tscn" id="936_654ae"]
 [ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="938_ub1ot"]
+[ext_resource type="PackedScene" uid="uid://4vr5la4k53qs" path="res://Scenes/log.tscn" id="942_xpmv6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
 
@@ -2702,12 +2703,14 @@ QuestGoal = "0/1"
 
 [node name="Elizabeth" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.254059, 1.9490459, 35.37815)
-visible = false
 script = ExtResource("423_e2eg3")
 NPCName = "Elizabeth"
 InitialDialogue = "It's been getting colder and colder..."
+QuestDialogue = Array[String](["My husband, along with other Lumberjacks from our town have gone missing over the past few days and we've been out of firewood.", "Could you gather some firewood so we can stay warm at night? You may run into those guys in the forest too. "])
+AcceptedDialogue = Array[String](["Yes! This should be enough to keep us warm for a while. Thank you.", "It's a shame you couldn't find those lumberjacks. I do hope they come back safely. "])
 IgnoredDialogue = "Oh, that's alright. Maybe the lumberjacks will come back soon. "
 WaitingDialogue = "Still waiting on that firewood once you gather enough."
+DoneDialogue = Array[String](["Yes! This should be enough to keep us warm for a while. Thank you.", "It's a shame you couldn't find those lumberjacks. I do home they come back safely."])
 QuestTitle = "Gather firewood from the forest for Elizabeth "
 QuestGoal = "0/15"
 
@@ -2727,13 +2730,13 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99646676, -0.055199992)
-bones/2/rotation = Quaternion(-0.07659273, 0, 0, 0.9970625)
-bones/5/rotation = Quaternion(-0.072286, 0.0073713916, 0.02177367, 0.997119)
-bones/25/rotation = Quaternion(0.9762516, 0.0152111985, -0.009026373, 0.21591702)
-bones/26/rotation = Quaternion(0.1845103, 0.0015814044, 0.014790868, 0.982718)
-bones/34/rotation = Quaternion(0.9762516, -0.0152112, 0.00902633, 0.21591702)
-bones/35/rotation = Quaternion(0.18451034, -0.0015814049, -0.01479087, 0.982718)
+bones/0/position = Vector3(0, 0.98524755, -0.055199992)
+bones/2/rotation = Quaternion(-0.020116024, 0, 0, 0.9997977)
+bones/5/rotation = Quaternion(-0.12116447, 0.00653291, 0.021764504, 0.9923724)
+bones/25/rotation = Quaternion(0.9701626, 0.017568229, -0.009277212, 0.24164027)
+bones/26/rotation = Quaternion(0.2367565, 0.0015631667, 0.018979065, 0.97138244)
+bones/34/rotation = Quaternion(0.9701626, -0.017568229, 0.00927717, 0.24164027)
+bones/35/rotation = Quaternion(0.2367565, -0.0015631667, -0.018979065, 0.97138244)
 
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obu7h")
@@ -2760,13 +2763,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99646676, -0.055199992)
-bones/2/rotation = Quaternion(-0.07659273, 0, 0, 0.9970625)
-bones/5/rotation = Quaternion(-0.072286, 0.0073713916, 0.02177367, 0.997119)
-bones/25/rotation = Quaternion(0.9762516, 0.0152111985, -0.009026373, 0.21591702)
-bones/26/rotation = Quaternion(0.1845103, 0.0015814044, 0.014790868, 0.982718)
-bones/34/rotation = Quaternion(0.9762516, -0.0152112, 0.00902633, 0.21591702)
-bones/35/rotation = Quaternion(0.18451034, -0.0015814049, -0.01479087, 0.982718)
+bones/0/position = Vector3(0, 0.98524755, -0.055199992)
+bones/2/rotation = Quaternion(-0.020116024, 0, 0, 0.9997977)
+bones/5/rotation = Quaternion(-0.12116447, 0.00653291, 0.021764504, 0.9923724)
+bones/25/rotation = Quaternion(0.9701626, 0.017568229, -0.009277212, 0.24164027)
+bones/26/rotation = Quaternion(0.2367565, 0.0015631667, 0.018979065, 0.97138244)
+bones/34/rotation = Quaternion(0.9701626, -0.017568229, 0.00927717, 0.24164027)
+bones/35/rotation = Quaternion(0.2367565, -0.0015631667, -0.018979065, 0.97138244)
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2797,13 +2800,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's family"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99646676, -0.055199992)
-bones/2/rotation = Quaternion(-0.07659273, 0, 0, 0.9970625)
-bones/5/rotation = Quaternion(-0.072286, 0.0073713916, 0.02177367, 0.997119)
-bones/25/rotation = Quaternion(0.9762516, 0.0152111985, -0.009026373, 0.21591702)
-bones/26/rotation = Quaternion(0.1845103, 0.0015814044, 0.014790868, 0.982718)
-bones/34/rotation = Quaternion(0.9762516, -0.0152112, 0.00902633, 0.21591702)
-bones/35/rotation = Quaternion(0.18451034, -0.0015814049, -0.01479087, 0.982718)
+bones/0/position = Vector3(0, 0.98524755, -0.055199992)
+bones/2/rotation = Quaternion(-0.020116024, 0, 0, 0.9997977)
+bones/5/rotation = Quaternion(-0.12116447, 0.00653291, 0.021764504, 0.9923724)
+bones/25/rotation = Quaternion(0.9701626, 0.017568229, -0.009277212, 0.24164027)
+bones/26/rotation = Quaternion(0.2367565, 0.0015631667, 0.018979065, 0.97138244)
+bones/34/rotation = Quaternion(0.9701626, -0.017568229, 0.00927717, 0.24164027)
+bones/35/rotation = Quaternion(0.2367565, -0.0015631667, -0.018979065, 0.97138244)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ub1ot")
@@ -3724,6 +3727,9 @@ InitialDialogue = "E to Interact"
 transform = Transform3D(0.82108945, 0, 0.57079947, 0, 1, 0, -0.57079947, 0, 0.82108945, -14.543283, 1.8387071, 80.178024)
 
 [node name="Enviorment" parent="." instance=ExtResource("938_ub1ot")]
+
+[node name="Log" parent="." instance=ExtResource("942_xpmv6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.034515, 1.9856365, 78.5169)
 
 [editable path="MonsterHolder/RatSpawner"]
 [editable path="MonsterHolder/RatSpawner2"]

@@ -112,4 +112,6 @@ public partial class CultistHut : Node3D
 			GetNode<MeshInstance3D>("Model/Sphere_002").Visible = false;
         }
 	}
+
+	
 }
