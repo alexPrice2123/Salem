@@ -8,6 +8,7 @@ public partial class revenanT : Monster3d
 	private float _distance;
 	private int _attackAnimSwitch = 1;
 	private int _randomBody; 
+	private int _randomAnim; 
 	public async override void _Ready()
 	{
 		// -- Variables -- //
@@ -30,6 +31,10 @@ public partial class revenanT : Monster3d
 		Monster = this;
 		//Body Randomization
 		_randomBody = _rng.RandiRange(1,3);
+		_randomAnim = _rng.RandiRange(1,2);
+		//GD.Print(GetNode<AnimationTree>("AnimationTree" + _randomBody).TreeRoot.Get("parameters/idle")+"MALAMAR");
+		GetNode<AnimationTree>("AnimationTree"+_randomBody).Set("parameters/idle/animation", "idle2");
+		
 		for (int i = 1; i < 4; i++)
         {
             if (i != _randomBody)
