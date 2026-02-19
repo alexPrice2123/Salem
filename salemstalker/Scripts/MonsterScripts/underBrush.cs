@@ -82,7 +82,7 @@ public partial class underBrush : Monster3d
 				_countDown = 5f;
 				if (_currentAttackOffset >= 1.311f) { _currentAttackOffset = 1.311f; }   
             }
-			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
+			_attackBox.Disabled = true;
 			_hasHit = true;
 		}
 	}
