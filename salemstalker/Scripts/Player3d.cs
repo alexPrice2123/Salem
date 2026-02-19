@@ -261,7 +261,7 @@ public partial class Player3d : CharacterBody3D
 				 && _inv.Visible == false)
 		{
 			Block(true); // Start blocking/parrying
-			_swordInst.blocking = true;
+			
 		}
 		// --- Block End (Block Action) ---
 		else if (Input.IsActionJustReleased("block")
@@ -269,7 +269,6 @@ public partial class Player3d : CharacterBody3D
 				 && _inv.Visible == false)
 		{
 			Block(false); // Stop blocking/parrying
-			_swordInst.blocking = false;
 		}
 
 		// --- Inventory toggle (Inventory Action) ---
@@ -778,7 +777,7 @@ public partial class Player3d : CharacterBody3D
 	// --- CUSTOM FUNCTIONS ---
 
 	// Handles the sword attack sequence, damage calculation, and combo logic.
-	private async void Swing() //in the great words of milo^2's gemini: "Reddit r efficient for instant action"
+	private async void Swing() // To be truthful idk what im doing rn im just breaking stuff and hoping it works
 	{
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
 		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5)
