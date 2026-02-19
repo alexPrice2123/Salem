@@ -1,13 +1,14 @@
 using Godot;
 using System;
 
-public partial class hollowNormal : Monster3d
+public partial class revenanT : Monster3d
 {
 	// Called when the node enters the scene tree for the first time.
 
 	private float _distance;
 	private int _attackAnimSwitch = 1;
-	public override void _Ready()
+	private int _randomBody; 
+	public async override void _Ready()
 	{
 		// -- Variables -- //
 		Chaser = true;              // If this monster chasing the player or finds a point within a range of the player
@@ -17,26 +18,42 @@ public partial class hollowNormal : Monster3d
 		BaseDamage = 15.0f;         // Base damage of the monster
 		AttackSpeed = 1.2f;         // The time between its attacks
 		AttackRange = 1.5f;           // The distance the monster gets from the player before stopping and attacking
-		MaxHealth = 65.0f;         // Maximum monster health
-		WanderRange = 35;           // The range the monster can wander from its spawn point
-		AgroFOV = 7f;          	// The vision FOV of the monster
-		AgroLength = 6.5f;          // The detection length of the monsters vision
-		WalkRange = 4.5f;	         	// The noise range monsters hear the player walking
+		MaxHealth = 45.0f;         // Maximum monster health
+		WanderRange = 25;           // The range the monster can wander from its spawn point
+		AgroFOV = 0.5f;          	// The vision FOV of the monster
+		AgroLength = 5f;          // The detection length of the monsters vision
+		WalkRange = 6f;	         	// The noise range monsters hear the player walking
 		WalkSpeed = 1.5f;             // Movement speed when they are wandering
-		RunSpeed = 4.5f;              // Movement speed when they are chasing the player
+		RunSpeed = 3.5f;              // Movement speed when they are chasing the player
 
 		// -- Other -- //
 		Monster = this;
+		//Body Randomization
+		_randomBody = _rng.RandiRange(1,3);
+		for (int i = 1; i < 4; i++)
+        {
+            if (i != _randomBody)
+			{
+				GetNode<Node3D>("Body"+i).QueueFree();
+				GetNode<Node3D>("HitFX"+i).QueueFree();
+				GetNode<AnimationTree>("AnimationTree"+i).QueueFree();
+			}
+            else
+            {
+                MultBodyRef = GetNode<Node3D>("Body"+i);
+				MultHitRef = GetNode<Node3D>("HitFX"+i);
+            }
+        }
 		Initialization();
 	}
-
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (_player == null){return;}
 		EveryFrame(delta);
 		if (_health <= 0)
 		{
-			_player.MonsterKilled("hollowNormal", Biome);
+			_player.MonsterKilled("revenanT", Biome);
 			if (Debug == true)
 			{
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }

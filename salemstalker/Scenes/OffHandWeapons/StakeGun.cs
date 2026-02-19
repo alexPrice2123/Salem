@@ -20,7 +20,6 @@ public partial class StakeGun : Node3D
         AddSibling(temPrj);
         temPrj.Position = _barrel.Position;  
         temPrj.Rotation = _barrel.Rotation;
-        temPrj.Reparent(temPrj.GetParent().GetParent().GetParent().GetParent().GetParent());
         shooting = false;
     }
 }
