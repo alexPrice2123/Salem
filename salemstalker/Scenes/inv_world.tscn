@@ -80,7 +80,7 @@
 [ext_resource type="Texture2D" uid="uid://ccf58htao85c0" path="res://Assets/weapontextures/shortsword/pommel_Metallic.png" id="58_mmx5j"]
 [ext_resource type="Texture2D" uid="uid://dtlhjroxfkqou" path="res://Assets/weapontextures/shortsword/pommel_Normal.png" id="59_vk11p"]
 [ext_resource type="Texture2D" uid="uid://duf0m6xtj2nor" path="res://Assets/weapontextures/shortsword/pommel_Roughness.png" id="60_2udlh"]
-[ext_resource type="PackedScene" path="res://Scenes/OffHandWeapons/weaponExtra/flintlockmodel.tscn" id="61_wvttw"]
+[ext_resource type="PackedScene" uid="uid://hdyqx2iml8sx" path="res://Scenes/OffHandWeapons/weaponExtra/flintlockmodel.tscn" id="61_wvttw"]
 [ext_resource type="PackedScene" uid="uid://du71670gpsymh" path="res://Assets/Weapons/longsword.blend" id="62_20ekm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4to0"]

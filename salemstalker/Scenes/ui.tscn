@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=52 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -7,7 +7,11 @@
 [ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
+[ext_resource type="Script" uid="uid://b351y65ve7t5e" path="res://Scripts/itemList.cs" id="6_kuui0"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
+[ext_resource type="PackedScene" uid="uid://bjqhyqqld6job" path="res://Scenes/resource_World.tscn" id="6_whq80"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="7_smy1h"]
+[ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://Assets/2D/WoodPlank.png" id="8_lkjmk"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
 [ext_resource type="Texture2D" uid="uid://c4cernxpmcelt" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
@@ -86,6 +90,12 @@ shader_parameter/b_offset = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_smy1h"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lkjmk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kjfio"]
+font = ExtResource("10_nt8jn")
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxero"]
 line_spacing = 3.08
@@ -438,6 +448,16 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
+[node name="ResourceInv" type="Button" parent="Inv/SubPort/Sub"]
+offset_left = 895.0
+offset_top = 346.0
+offset_right = 975.0
+offset_bottom = 426.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Resource Inv"
+autowrap_mode = 2
+
 [node name="dagger" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 249.0
 offset_top = 321.0
@@ -554,25 +574,78 @@ text = "Select weapon slot"
 [node name="ResourceInv" type="Control" parent="."]
 visible = false
 layout_mode = 1
-anchor_left = 0.116
-anchor_top = 0.112
-anchor_right = 0.885
-anchor_bottom = 0.891
-offset_left = 227.836
-offset_top = 49.128
-offset_right = -229.9154
-offset_bottom = -50.945923
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_kuui0")
+_itemImages = Dictionary[String, Texture2D]({
+"log": ExtResource("7_smy1h"),
+"plank": ExtResource("8_lkjmk")
+})
 
 [node name="GridContainer" type="GridContainer" parent="ResourceInv"]
-layout_mode = 0
-offset_right = 372.0
-offset_bottom = 372.0
-columns = 4
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 269.75
+offset_top = 75.0
+offset_right = -249.25
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 6
 
-[node name="InvSlot1" type="NinePatchRect" parent="ResourceInv/GridContainer"]
+[node name="InvSlot1" type="Panel" parent="ResourceInv/GridContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="ResourceInv/GridContainer/InvSlot1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Count" type="Label" parent="ResourceInv/GridContainer/InvSlot1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_kjfio")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="SubPort" type="SubViewportContainer" parent="ResourceInv"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.5
+offset_top = -283.0
+offset_right = 300.5
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sub" type="SubViewport" parent="ResourceInv/SubPort"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(585, 571)
+render_target_update_mode = 0
+
+[node name="RW" parent="ResourceInv/SubPort/Sub" instance=ExtResource("6_whq80")]
 
 [node name="Quest" type="Control" parent="."]
 visible = false
@@ -1282,6 +1355,7 @@ texture = ExtResource("14_8fs27")
 [connection signal="button_up" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_mouse_exited"]
+[connection signal="button_up" from="Inv/SubPort/Sub/ResourceInv" to="." method="_on_resource_inv_button_up"]
 [connection signal="button_up" from="Inv/SubPort/Sub/dagger" to="." method="_on_dagger_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/dagger" to="." method="_on_dagger_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/dagger" to="." method="_on_dagger_mouse_exited"]
