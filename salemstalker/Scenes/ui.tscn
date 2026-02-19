@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="PackedScene" uid="uid://bjqhyqqld6job" path="res://Scenes/resource_World.tscn" id="6_whq80"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="7_smy1h"]
-[ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://Assets/2D/WoodPlank.png" id="8_lkjmk"]
+[ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://WoodPlank.png" id="8_lkjmk"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
 [ext_resource type="Texture2D" uid="uid://c4cernxpmcelt" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]

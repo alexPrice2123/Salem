@@ -1,29 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://4vr5la4k53qs"]
+[gd_scene load_steps=8 format=3 uid="uid://4vr5la4k53qs"]
 
 [ext_resource type="Script" uid="uid://bydg3x2pcusxt" path="res://Scripts/Object.cs" id="1_0q0fr"]
-[ext_resource type="PackedScene" uid="uid://bel25we4smnqq" path="res://Assets/3D/buildings/anvil.blend" id="2_2026k"]
-[ext_resource type="Texture2D" uid="uid://pgglx7r2br55" path="res://Assets/proptextures/box/wood_Base_color.png" id="3_qwnox"]
+[ext_resource type="PackedScene" uid="uid://c28idrkoxhqb2" path="res://Assets/3D/props/logs2.blend" id="5_c0ku6"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="6_0q0fr"]
+[ext_resource type="PackedScene" uid="uid://bncb5fgglg774" path="res://Assets/3D/props/logs3.blend" id="6_awvig"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="8_rk4cu"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hmxdp"]
-size = Vector3(1, 1.1288452, 0.379028)
+[sub_resource type="BoxShape3D" id="BoxShape3D_sdyom"]
+size = Vector3(0.6522217, 0.59765625, 0.61727893)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdyom"]
-albedo_texture = ExtResource("3_qwnox")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2026k"]
+albedo_texture = ExtResource("6_0q0fr")
 
 [node name="Log" type="CharacterBody3D" groups=["Interactable"]]
 collision_layer = 2
 script = ExtResource("1_0q0fr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18252562, 0)
-shape = SubResource("BoxShape3D_hmxdp")
-
-[node name="anvil" parent="CollisionShape3D" instance=ExtResource("2_2026k")]
-transform = Transform3D(-6.1421246e-09, 0, 0.14051543, 0, 0.14051543, 0, -0.14051543, 0, -6.1421246e-09, 0, -0.53671455, 0)
-
-[node name="Cube" parent="CollisionShape3D/anvil" index="0"]
-material_override = SubResource("StandardMaterial3D_sdyom")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021911621, 0.28405762, 0.045974784)
+shape = SubResource("BoxShape3D_sdyom")
 
 [node name="Title" type="Label3D" parent="."]
 transform = Transform3D(-0.999347, 0, 0.036138, 0, 1, 0, -0.036138, 0, -0.999347, 0, 0.76215094, 0)
@@ -39,4 +34,24 @@ outline_size = 8
 autowrap_mode = 3
 width = 320.0
 
-[editable path="CollisionShape3D/anvil"]
+[node name="Log1" parent="." instance=ExtResource("5_c0ku6")]
+
+[node name="Cylinder" parent="Log1" index="0"]
+material_override = SubResource("StandardMaterial3D_2026k")
+
+[node name="Cylinder_001" parent="Log1" index="1"]
+material_override = SubResource("StandardMaterial3D_2026k")
+
+[node name="Log2" parent="." instance=ExtResource("6_awvig")]
+
+[node name="Cylinder" parent="Log2" index="0"]
+material_override = SubResource("StandardMaterial3D_2026k")
+
+[node name="Cylinder_001" parent="Log2" index="1"]
+material_override = SubResource("StandardMaterial3D_2026k")
+
+[node name="Cylinder_002" parent="Log2" index="2"]
+material_override = SubResource("StandardMaterial3D_2026k")
+
+[editable path="Log1"]
+[editable path="Log2"]

@@ -364,7 +364,7 @@ public partial class Player3d : CharacterBody3D
 					_smithShop.Visible = true;
 					Input.MouseMode = Input.MouseModeEnum.Visible;
 				}
-				else if (_lastSeen.Name == "Log")
+				else if (((string)_lastSeen.Name).Contains("Log"))
 				{
 					_lastSeen.QueueFree();
 					_lastSeen = null;
@@ -686,7 +686,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
 			}
-			if (targetNode.Name == "Log")
+			if (((string)_lastSeen.Name).Contains("Log"))
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
 			}
@@ -997,6 +997,7 @@ public partial class Player3d : CharacterBody3D
 	{
 		if (_questBox.FindChild(QuestName) != null)
 		{
+			if (QuestName == "Elizabeth"){_itemInv.SubtractResource("log", _itemInv.GetItemCount("log"));}
 			_questBox.FindChild(QuestName).QueueFree(); // Delete the UI node
 		}
 	}
