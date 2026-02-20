@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="PackedScene" uid="uid://bjqhyqqld6job" path="res://Scenes/resource_World.tscn" id="6_whq80"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="7_smy1h"]
-[ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://WoodPlank.png" id="8_lkjmk"]
+[ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="8_lkjmk"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
 [ext_resource type="Texture2D" uid="uid://c4cernxpmcelt" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
@@ -646,6 +646,14 @@ size = Vector2i(585, 571)
 render_target_update_mode = 0
 
 [node name="RW" parent="ResourceInv/SubPort/Sub" instance=ExtResource("6_whq80")]
+
+[node name="Button" type="Button" parent="ResourceInv"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 48.0
+offset_right = 233.0
+offset_bottom = 164.0
+text = "Back"
 
 [node name="Quest" type="Control" parent="."]
 visible = false
@@ -1375,6 +1383,7 @@ texture = ExtResource("14_8fs27")
 [connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot3" to="." method="_on_slot_3_button_up"]
 [connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot2" to="." method="_on_slot_2_button_up"]
 [connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot4" to="." method="_on_slot_4_button_up"]
+[connection signal="button_up" from="ResourceInv/Button" to="." method="_on_back_button_up"]
 [connection signal="button_up" from="Container/QuestTemplate/Quest/QuestButton" to="." method="_on_quest_button_button_up"]
 [connection signal="button_up" from="Dialogue/AcceptButton" to="." method="_on_accept_button_button_up"]
 [connection signal="button_up" from="Dialogue/Continue" to="." method="_on_continue_button_up"]

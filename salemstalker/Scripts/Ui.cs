@@ -287,6 +287,8 @@ public partial class Ui : Control
 			_desc.Visible = false;
 		}
 	}
+
+	private void _on_back_button_up() { GetNode<Control>("ResourceInv").Visible = false; GetNode<Control>("Inv").Visible = true; }
    
 	// --- Falchion ---
 	private void _on_falchion_mouse_entered(){ PlayInvAnim("Falchion", true); }
