@@ -22,7 +22,6 @@ config/icon="uid://bpelivjm8lqn6"
 
 window/size/viewport_width=1079
 window/size/viewport_height=606
-window/size/mode=3
 window/stretch/mode="viewport"
 
 [dotnet]
