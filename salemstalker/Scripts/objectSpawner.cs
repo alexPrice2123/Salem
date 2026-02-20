@@ -46,29 +46,8 @@ public partial class objectSpawner : Node3D
 			AddChild(objInst);     
 		
 			objInst.GlobalPosition = GlobalPosition + new Vector3(_spawnX, 0f, _spawnZ);                                    // Set monster spawn position
-			objInst.GlobalPosition = new Vector3(objInst.GlobalPosition.X, FindGroundY(_spawnX, _spawnZ)+ 1f, objInst.GlobalPosition.Z);
-			GD.Print(FindGroundY(_spawnX, _spawnZ));
+			objInst.GlobalPosition = new Vector3(objInst.GlobalPosition.X, 10f, objInst.GlobalPosition.Z);
 			objInst.Name = _objectName;
-	}
-
-	private float FindGroundY(float x, float z)
-	{
-		if (m_terraBrushNode == null)
-        {
-            return 0.0f; // Return a default height if the terrain node isn't available
-        }
-
-        // The TerraBrush plugin provides a method to get the height at a world position.
-        // Based on similar terrain plugins' C# APIs, you would typically call a method on the terrain data.
-        // The TerraBrush specific method for this is 'GetHeight' which takes X and Z world coordinates.
-        // It uses its internal heightmap data to return the height at that location.
-
-        // Note: The specific function may vary slightly based on the exact version, 
-        // but typically it involves the main TerraBrush node or its underlying data storage.
-        // The most common implementation is a direct method call on the terrain object:
-        //float height = m_terraBrushNode.GetHeight(x, z); 
-
-        return 0;
 	}
 
 	// --- PROCESS LOOP ---

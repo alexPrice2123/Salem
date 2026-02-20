@@ -127,7 +127,7 @@ public partial class enemySpawner : Node3D
 				}
 			}                                        // Add monster to holder node
 			monsterInstance.GlobalPosition = GlobalPosition + new Vector3(_spawnX, 0f, _spawnZ);                                    // Set monster spawn position
-			monsterInstance.GlobalPosition = new Vector3(monsterInstance.GlobalPosition.X, FindGroundY(_spawnX, _spawnZ)+ 1f, monsterInstance.GlobalPosition.Z);
+			monsterInstance.GlobalPosition = new Vector3(monsterInstance.GlobalPosition.X, 10f, monsterInstance.GlobalPosition.Z);
 			_number += 1; // Increase monster count
 			double fps = Engine.GetFramesPerSecond();
 			
@@ -138,26 +138,6 @@ public partial class enemySpawner : Node3D
 			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 			SpawnMonster();
 			//GD.Print("Tried to spawn" + _monsterList[monsterIndex] + " but was at max");
-		}
-	}
-
-	private float FindGroundY(float targetX, float targetZ)
-	{
-		var query = new PhysicsRayQueryParameters3D();
-		query.From = new Vector3(targetX, 100.0f, targetZ); 
-		query.To = new Vector3(targetX, -100.0f, targetZ); 
-
-		var spaceState = GetWorld3D().DirectSpaceState;
-		var result = spaceState.IntersectRay(query);
-
-		if (result.Count > 0)
-		{
-			Vector3 collisionPoint = (Vector3)result["position"];
-			return collisionPoint.Y;
-		}
-		else
-		{
-			return 0f;
 		}
 	}
 

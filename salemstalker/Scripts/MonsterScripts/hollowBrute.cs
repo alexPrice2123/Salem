@@ -10,7 +10,7 @@ public partial class hollowBrute : Monster3d
 	{
 		// -- Variables -- //
 		Chaser = true;              // If this monster chasing the player or finds a point within a range of the player
-		MoveWhileAttack = true;     // Can this monster move while attacking
+		MoveWhileAttack = false;     // Can this monster move while attacking
 		Flying = false;              // Should gravity be applied to this monster
 		Stationery = false;          // If the monster shouldnt move at all
 		BaseDamage = 35.0f;         // Base damage of the monster

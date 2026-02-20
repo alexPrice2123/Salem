@@ -33,7 +33,7 @@ public partial class Monster3d : CharacterBody3D
 	public float MaxLookTime = 1f;				// How long the monster looks around when wandering (in seconds)
 	public Node3D MultBodyRef = null;
 	public Node3D MultHitRef = null;
-	public bool DebugShapes = true;				// If debug hitboxes should be enabled
+	public bool DebugShapes = false;				// If debug hitboxes should be enabled
 
 	// --- NODE REFERENCES ---
 	protected Player3d _player;                 // Reference to the player
@@ -227,10 +227,10 @@ public partial class Monster3d : CharacterBody3D
 
 		_dashVelocity = Mathf.Lerp(_dashVelocity, 1f, 15f * (float)delta);
 
-		if (_playerInVisionRange && CheckVision() && !_canSeePlayer)
+		/*if (_playerInVisionRange && CheckVision() && !_canSeePlayer)
 		{
 			detectPlayer(_player.GetNode<Area3D>("Hurtbox"), true, true);
-		}
+		}*/
 
 		// CHASE MODE: If player close enough and monster is a chaser
 		if (!_player._currentBiome.Contains("Village") && playerSpawnDistance <= SpawnRange && _canSeePlayer && (Chaser && !_attackAnim || MoveWhileAttack && Chaser) && Stationery == false && Fleeing == false && !_retreating)

@@ -364,7 +364,7 @@ public partial class Player3d : CharacterBody3D
 					_smithShop.Visible = true;
 					Input.MouseMode = Input.MouseModeEnum.Visible;
 				}
-				else if (((string)_lastSeen.Name).Contains("Log"))
+				else if (((string)_lastSeen.Name).Contains("LogItem"))
 				{
 					_lastSeen.QueueFree();
 					_lastSeen = null;
@@ -676,6 +676,7 @@ public partial class Player3d : CharacterBody3D
 		// --- Interaction detection (General) ---
 		if (GetMouseCollision() != null)
 		{
+			//if (!IsInstanceValid(_lastSeen)){return;}
 			CharacterBody3D targetNode = GetMouseCollision();
 			if (!targetNode.IsInGroup("Monster")){_lastSeen = targetNode;}
 			if (targetNode is Object obj)
@@ -686,7 +687,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
 			}
-			if (((string)_lastSeen.Name).Contains("Log"))
+			if (((string)targetNode.Name).Contains("LogItem"))
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
 			}
