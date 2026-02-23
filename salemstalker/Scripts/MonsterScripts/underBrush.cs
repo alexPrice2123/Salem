@@ -19,7 +19,7 @@ public partial class underBrush : Monster3d
 		Stationery = false;          // If the monster shouldnt move at all
 		BaseDamage = 10.0f;         // Base damage of the monster
 		AttackSpeed = 0.5f;         // The time between its attacks
-		AttackRange = 10f;           // The distance the monster gets from the player before stopping and attacking
+		AttackRange = 10.5f;           // The distance the monster gets from the player before stopping and attacking
 		MaxHealth = 100.0f;         // Maximum monster health
 		WanderRange = 10;           // The range the monster can wander from its spawn point
 		AgroFOV = 5.0f;          	// The vision FOV of the monster

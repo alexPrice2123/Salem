@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjqhyqqld6job"]
+
+[ext_resource type="Texture2D" uid="uid://ebnfthe7xyj" path="res://Assets/2D/burlap.jpg" id="1_sb7uy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4to0"]
+albedo_color = Color(0.423651, 0.423651, 0.423651, 1)
+albedo_texture = ExtResource("1_sb7uy")
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.05
+
+[node name="RW" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -28.134705, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26516, 0)
+projection = 1
+size = 2.39
+far = 10.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164883, -0.0730438, -0.23657)
+light_color = Color(1, 1, 0.901961, 1)
+light_energy = 1.646
+shadow_enabled = true
+shadow_opacity = 0.5
+omni_range = 3.285
+omni_attenuation = 0.5
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26516, -1.688)
+material_override = SubResource("StandardMaterial3D_h4to0")
+size = Vector3(4.15332, 2.15918, 0.185547)

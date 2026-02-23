@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvqgpuxj5qgxl"]
+
+[ext_resource type="Script" uid="uid://bfot3ckhh3cke" path="res://Scripts/objectSpawner.cs" id="1_6g3vy"]
+[ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_8m3h0"]
+
+[node name="ObjectSpawner" type="Node3D"]
+script = ExtResource("1_6g3vy")
+
+[node name="Spawn" type="CSGBox3D" parent="."]
+transform = Transform3D(2.66751, 0, 0, 0, 2.66751, 0, 0, 0, 2.66751, 0, 0, 0)
+visible = false
+size = Vector3(0.1, 0.1, 0.1)
+material = ExtResource("2_8m3h0")
+
+[node name="Range" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, 0, 0)
+radius = 5.0
+radial_segments = 25
+rings = 3

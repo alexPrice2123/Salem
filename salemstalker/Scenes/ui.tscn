@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=52 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -7,12 +7,16 @@
 [ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="4_2246s"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
+[ext_resource type="Script" uid="uid://b351y65ve7t5e" path="res://Scripts/itemList.cs" id="6_kuui0"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
+[ext_resource type="PackedScene" uid="uid://bjqhyqqld6job" path="res://Scenes/resource_World.tscn" id="6_whq80"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="7_smy1h"]
+[ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="8_lkjmk"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
 [ext_resource type="Texture2D" uid="uid://c4cernxpmcelt" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
-[ext_resource type="Texture2D" uid="uid://xfomx0x66nyg" path="res://Assets/UI/newstamorb.png" id="13_whq80"]
+[ext_resource type="Texture2D" uid="uid://bgqfw72wmjw40" path="res://Assets/UI/newstamorb.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
@@ -80,6 +84,18 @@ shader_parameter/rect_size = Vector2(0.455, 0.44)
 shader_parameter/bness = 0.1
 shader_parameter/fall_off_scale = 3.0
 shader_parameter/b_offset = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kuui0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_smy1h"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lkjmk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kjfio"]
+font = ExtResource("10_nt8jn")
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jxero"]
 line_spacing = 3.08
@@ -354,7 +370,6 @@ scale = Vector2(1, 1.01247)
 pivot_offset = Vector2(539, 303)
 mouse_filter = 2
 
-<<<<<<< HEAD
 [node name="SecCooldown1" type="TextureProgressBar" parent="."]
 clip_children = 2
 layout_mode = 0
@@ -364,7 +379,6 @@ offset_right = 172.0
 offset_bottom = 602.0
 value = 100.0
 fill_mode = 4
-texture_progress = ExtResource("5_whq80")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
 [node name="SecCooldown2" type="TextureProgressBar" parent="."]
@@ -402,8 +416,6 @@ fill_mode = 4
 texture_progress = SubResource("CompressedTexture2D_lkjmk")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
-=======
->>>>>>> parent of 7652705 (Merge branch 'AnimSys')
 [node name="Inv" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -424,12 +436,10 @@ offset_bottom = -0.296082
 [node name="Sub" type="SubViewport" parent="Inv/SubPort"]
 transparent_bg = true
 handle_input_locally = false
-anisotropic_filtering_level = 0
 size = Vector2i(1080, 605)
 render_target_update_mode = 0
 
 [node name="longsword" type="Button" parent="Inv/SubPort/Sub"]
-visible = false
 offset_left = 37.0
 offset_top = 35.0
 offset_right = 606.0
@@ -437,6 +447,16 @@ offset_bottom = 119.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
+
+[node name="ResourceInv" type="Button" parent="Inv/SubPort/Sub"]
+offset_left = 895.0
+offset_top = 346.0
+offset_right = 975.0
+offset_bottom = 426.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Resource Inv"
+autowrap_mode = 2
 
 [node name="dagger" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 249.0
@@ -458,7 +478,6 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="StakeGun" type="Button" parent="Inv/SubPort/Sub"]
-visible = false
 offset_left = 795.0
 offset_top = 97.0
 offset_right = 803.0
@@ -469,7 +488,6 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="FlintGun" type="Button" parent="Inv/SubPort/Sub"]
-visible = false
 offset_left = 690.0
 offset_top = 97.0
 offset_right = 701.0
@@ -553,28 +571,89 @@ offset_right = -0.0499992
 offset_bottom = 0.0499992
 text = "Select weapon slot"
 
-[node name="ResourceInv2" type="Control" parent="."]
+[node name="ResourceInv" type="Control" parent="."]
 visible = false
 layout_mode = 1
-anchor_left = 0.116
-anchor_top = 0.112
-anchor_right = 0.885
-anchor_bottom = 0.891
-offset_left = 107.472
-offset_top = 76.056
-offset_right = 107.721
-offset_bottom = 75.9819
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_kuui0")
+_itemImages = Dictionary[String, Texture2D]({
+"log": ExtResource("7_smy1h"),
+"plank": ExtResource("8_lkjmk")
+})
 
-[node name="GridContainer" type="GridContainer" parent="ResourceInv2"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-columns = 7
+[node name="GridContainer" type="GridContainer" parent="ResourceInv"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 269.75
+offset_top = 75.0
+offset_right = -249.25
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 6
 
-[node name="InvSlot1" type="Button" parent="ResourceInv2/GridContainer"]
+[node name="InvSlot1" type="Panel" parent="ResourceInv/GridContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(115, 115)
+custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="ResourceInv/GridContainer/InvSlot1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Count" type="Label" parent="ResourceInv/GridContainer/InvSlot1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_kjfio")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="SubPort" type="SubViewportContainer" parent="ResourceInv"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.5
+offset_top = -283.0
+offset_right = 300.5
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sub" type="SubViewport" parent="ResourceInv/SubPort"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(585, 571)
+render_target_update_mode = 0
+
+[node name="RW" parent="ResourceInv/SubPort/Sub" instance=ExtResource("6_whq80")]
+
+[node name="Button" type="Button" parent="ResourceInv"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 48.0
+offset_right = 233.0
+offset_bottom = 164.0
+text = "Back"
 
 [node name="Quest" type="Control" parent="."]
 visible = false
@@ -605,7 +684,6 @@ offset_bottom = -0.296082
 [node name="SubViewport" type="SubViewport" parent="Quest/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-anisotropic_filtering_level = 0
 size = Vector2i(1079, 606)
 render_target_update_mode = 0
 
@@ -760,17 +838,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-<<<<<<< HEAD
 offset_left = -161.0
 offset_top = -54.000008
 offset_right = 140.0
 offset_bottom = 61.0
-=======
-offset_left = -130.0
-offset_top = -55.0
-offset_right = 171.0
-offset_bottom = 60.0
->>>>>>> parent of 7652705 (Merge branch 'AnimSys')
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
@@ -1037,7 +1108,6 @@ offset_bottom = 422.0
 
 [node name="Port" type="SubViewport" parent="BlacksmithShop/View/PortContainer"]
 handle_input_locally = false
-anisotropic_filtering_level = 0
 size = Vector2i(242, 422)
 render_target_update_mode = 0
 
@@ -1285,6 +1355,7 @@ material = SubResource("ShaderMaterial_whq80")
 texture = ExtResource("13_whq80")
 
 [node name="Controls" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(538, 305)
 scale = Vector2(0.561458, 0.559259)
 texture = ExtResource("14_8fs27")
@@ -1292,6 +1363,7 @@ texture = ExtResource("14_8fs27")
 [connection signal="button_up" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_mouse_exited"]
+[connection signal="button_up" from="Inv/SubPort/Sub/ResourceInv" to="." method="_on_resource_inv_button_up"]
 [connection signal="button_up" from="Inv/SubPort/Sub/dagger" to="." method="_on_dagger_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/dagger" to="." method="_on_dagger_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/dagger" to="." method="_on_dagger_mouse_exited"]
@@ -1311,6 +1383,7 @@ texture = ExtResource("14_8fs27")
 [connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot3" to="." method="_on_slot_3_button_up"]
 [connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot2" to="." method="_on_slot_2_button_up"]
 [connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot4" to="." method="_on_slot_4_button_up"]
+[connection signal="button_up" from="ResourceInv/Button" to="." method="_on_back_button_up"]
 [connection signal="button_up" from="Container/QuestTemplate/Quest/QuestButton" to="." method="_on_quest_button_button_up"]
 [connection signal="button_up" from="Dialogue/AcceptButton" to="." method="_on_accept_button_button_up"]
 [connection signal="button_up" from="Dialogue/Continue" to="." method="_on_continue_button_up"]
