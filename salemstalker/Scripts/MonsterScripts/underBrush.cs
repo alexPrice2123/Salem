@@ -57,12 +57,12 @@ public partial class underBrush : Monster3d
     {
         if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
         {
-            GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
+            GlobalRotation = new Vector3(0, _lookDirection.GlobalRotation.Y, 0);
         }
         else
         {
             float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
-            GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
+            GlobalRotation = new Vector3(0, newRotation, 0);
         }
     }
 

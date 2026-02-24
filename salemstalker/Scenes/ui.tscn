@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=53 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -18,6 +18,7 @@
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bgqfw72wmjw40" path="res://Assets/UI/newstamorb.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
+[ext_resource type="FontFile" uid="uid://bnwohxyraq70b" path="res://Assets/Fonts/Dico.ttf" id="14_d42i4"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
 
@@ -152,14 +153,20 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nt8jn"]
 line_spacing = -6.0
+font = ExtResource("14_d42i4")
 font_size = 32
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
+stacked_outline_count = 2
+stacked_outline_0/size = 3
+stacked_outline_1/size = 3
+stacked_outline_1/color = Color(0.19434929, 0.19434926, 0.19434926, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g0wmg"]
+font = ExtResource("14_d42i4")
 font_size = 45
-outline_size = 12
-outline_color = Color(0, 0, 0, 1)
+stacked_outline_count = 2
+stacked_outline_0/size = 7
+stacked_outline_1/size = 5
+stacked_outline_1/color = Color(0.19434929, 0.19434926, 0.19434926, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wc4t8"]
 font = ExtResource("10_nt8jn")
@@ -925,7 +932,6 @@ offset_right = -0.0400391
 offset_bottom = -1.52588e-05
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("10_nt8jn")
 text = "dialogue
 d
 d"
