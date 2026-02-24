@@ -115,6 +115,7 @@ public partial class Player3d : CharacterBody3D
 	private Vector3 _cameraBaseRotation;
 	private Vector3 _cameraBasePosition;
 	private float _demoCount = 30f;
+	private Godot.Collections.Array<string> _pickUpableItems { get; set; } = ["Taz", "Bridger", "Gnocchi"];
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -358,6 +359,7 @@ public partial class Player3d : CharacterBody3D
 			}
 			if (IsInstanceValid(_lastSeen) && _inv.Visible == false)
 			{
+				string itemName = _lastSeen.Name;
 				if (_lastSeen.Name == "Anvil")
 				{
 					_lastSeen = null;
@@ -369,6 +371,12 @@ public partial class Player3d : CharacterBody3D
 					_lastSeen.QueueFree();
 					_lastSeen = null;
 					_itemInv.AddResource("log", 1);
+				}
+				else if (_pickUpableItems.Contains(itemName))
+				{
+					_lastSeen.QueueFree();
+					_lastSeen = null;
+					_itemInv.AddResource(itemName.ToLower(), 1);
 				}
 			}
 		}
@@ -601,6 +609,15 @@ public partial class Player3d : CharacterBody3D
 			else { (currentQuest.GetNode("Number") as Label).Text = logCount+"/15"; }
 		}
 
+		if (_questBox.FindChild("Mary") != null)
+		{
+			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Mary");
+			// Update the quest objective text
+			int catCount = _itemInv.GetItemCount("taz") + _itemInv.GetItemCount("bridger") + _itemInv.GetItemCount("gnocchi");
+			if (catCount >= 3) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			else { (currentQuest.GetNode("Number") as Label).Text = catCount+"/3"; }
+		}
+
 		// [Inventory Camera Transition - Commented Out]
 
 		// --- Update sensitivity from pause menu ---
@@ -683,11 +700,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				obj._player = this;
 			}
-			if (targetNode.Name == "Anvil")
-			{
-				targetNode.GetNode<Label3D>("Title").Visible = true;
-			}
-			if (((string)targetNode.Name).Contains("LogItem"))
+			if (targetNode.GetNodeOrNull<Label3D>("Title") != null)
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
 			}
@@ -999,6 +1012,7 @@ public partial class Player3d : CharacterBody3D
 		if (_questBox.FindChild(QuestName) != null)
 		{
 			if (QuestName == "Elizabeth"){_itemInv.SubtractResource("log", _itemInv.GetItemCount("log"));}
+			if (QuestName == "Mary"){_itemInv.SubtractResource("taz",1); _itemInv.SubtractResource("bridger",1); _itemInv.SubtractResource("gnocchi",1);}
 			_questBox.FindChild(QuestName).QueueFree(); // Delete the UI node
 		}
 	}

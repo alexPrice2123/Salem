@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=56 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -12,13 +12,16 @@
 [ext_resource type="PackedScene" uid="uid://bjqhyqqld6job" path="res://Scenes/resource_World.tscn" id="6_whq80"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="7_smy1h"]
 [ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="8_lkjmk"]
+[ext_resource type="Texture2D" uid="uid://p41p2ec6o3vp" path="res://Assets/2D/Placeholder/cat1.jpeg" id="9_fe2sg"]
+[ext_resource type="Texture2D" uid="uid://wso5sa0t8sgl" path="res://Assets/2D/Placeholder/cat2.png" id="10_jd57c"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
+[ext_resource type="Texture2D" uid="uid://bfghb222o1dor" path="res://Assets/2D/Placeholder/cat3.jpeg" id="11_85lyl"]
 [ext_resource type="Texture2D" uid="uid://c4cernxpmcelt" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bgqfw72wmjw40" path="res://Assets/UI/newstamorb.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
-[ext_resource type="FontFile" uid="uid://bnwohxyraq70b" path="res://Assets/Fonts/Dico.ttf" id="14_d42i4"]
+[ext_resource type="FontFile" uid="uid://b0f5m31hcrgqt" path="res://Assets/Fonts/Pixel.ttf" id="14_d42i4"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
 
@@ -156,8 +159,8 @@ line_spacing = -6.0
 font = ExtResource("14_d42i4")
 font_size = 32
 stacked_outline_count = 2
-stacked_outline_0/size = 3
-stacked_outline_1/size = 3
+stacked_outline_0/size = 5
+stacked_outline_1/size = 5
 stacked_outline_1/color = Color(0.19434929, 0.19434926, 0.19434926, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g0wmg"]
@@ -588,8 +591,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_kuui0")
 _itemImages = Dictionary[String, Texture2D]({
+"bridger": ExtResource("10_jd57c"),
+"gnocchi": ExtResource("11_85lyl"),
 "log": ExtResource("7_smy1h"),
-"plank": ExtResource("8_lkjmk")
+"plank": ExtResource("8_lkjmk"),
+"taz": ExtResource("9_fe2sg")
 })
 
 [node name="GridContainer" type="GridContainer" parent="ResourceInv"]
@@ -655,12 +661,16 @@ render_target_update_mode = 0
 [node name="RW" parent="ResourceInv/SubPort/Sub" instance=ExtResource("6_whq80")]
 
 [node name="Button" type="Button" parent="ResourceInv"]
+z_index = -1
 layout_mode = 0
-offset_left = 76.0
-offset_top = 48.0
-offset_right = 233.0
-offset_bottom = 164.0
+offset_left = 181.0
+offset_top = 86.0
+offset_right = 268.0
+offset_bottom = 126.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
 text = "Back"
+alignment = 0
 
 [node name="Quest" type="Control" parent="."]
 visible = false
