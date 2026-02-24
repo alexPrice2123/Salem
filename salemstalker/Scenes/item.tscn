@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://4vr5la4k53qs"]
+[gd_scene load_steps=9 format=3 uid="uid://4vr5la4k53qs"]
 
 [ext_resource type="Script" uid="uid://bydg3x2pcusxt" path="res://Scripts/Object.cs" id="1_0q0fr"]
 [ext_resource type="PackedScene" uid="uid://c28idrkoxhqb2" path="res://Assets/3D/props/logs2.blend" id="5_c0ku6"]
@@ -12,7 +12,9 @@ size = Vector3(0.6522217, 0.59765625, 0.61727893)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2026k"]
 albedo_texture = ExtResource("6_0q0fr")
 
-[node name="LogItem" type="CharacterBody3D" groups=["Interactable"]]
+[sub_resource type="SphereMesh" id="SphereMesh_tnst4"]
+
+[node name="Item" type="CharacterBody3D" groups=["Interactable"]]
 collision_layer = 2
 script = ExtResource("1_0q0fr")
 _applyGravity = true
@@ -36,6 +38,7 @@ autowrap_mode = 3
 width = 320.0
 
 [node name="Log1" parent="." instance=ExtResource("5_c0ku6")]
+visible = false
 
 [node name="Cylinder" parent="Log1" index="0"]
 material_override = SubResource("StandardMaterial3D_2026k")
@@ -44,6 +47,7 @@ material_override = SubResource("StandardMaterial3D_2026k")
 material_override = SubResource("StandardMaterial3D_2026k")
 
 [node name="Log2" parent="." instance=ExtResource("6_awvig")]
+visible = false
 
 [node name="Cylinder" parent="Log2" index="0"]
 material_override = SubResource("StandardMaterial3D_2026k")
@@ -53,6 +57,21 @@ material_override = SubResource("StandardMaterial3D_2026k")
 
 [node name="Cylinder_002" parent="Log2" index="2"]
 material_override = SubResource("StandardMaterial3D_2026k")
+
+[node name="Taz" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5062505, 0, 0, 0, 0.5062505, 0, 0, 0, 0.5062505, 0, 0.26309875, 0)
+visible = false
+mesh = SubResource("SphereMesh_tnst4")
+
+[node name="Bridger" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5062505, 0, 0, 0, 0.5062505, 0, 0, 0, 0.5062505, 0, 0.26309875, 0)
+visible = false
+mesh = SubResource("SphereMesh_tnst4")
+
+[node name="Gnocchi" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5062505, 0, 0, 0, 0.5062505, 0, 0, 0, 0.5062505, 0, 0.26309875, 0)
+visible = false
+mesh = SubResource("SphereMesh_tnst4")
 
 [editable path="Log1"]
 [editable path="Log2"]

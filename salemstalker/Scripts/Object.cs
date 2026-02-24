@@ -8,10 +8,13 @@ public partial class Object : CharacterBody3D
 	[Export]
 	bool _applyGravity = false;
 
-	public override void _Ready()
+	public async override void _Ready()
     {
+		await ToSignal(GetTree().CreateTimer(.1), "timeout");
+		GD.Print(Name);
 		_rng.Randomize();
-        if (((string)Name).Contains("Log")){GetNode<Node3D>($"Log{_rng.RandiRange(1,2)}").Visible = false;}
+        if (((string)Name).Contains("Log")){GetNode<Node3D>($"Log{_rng.RandiRange(1,2)}").Visible = true;}
+		else {GetNodeOrNull<MeshInstance3D>((string)Name).Visible = true;}
     }
 	public override void _PhysicsProcess(double delta)
 	{

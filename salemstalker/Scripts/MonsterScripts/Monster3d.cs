@@ -345,7 +345,7 @@ public partial class Monster3d : CharacterBody3D
 			_targetVelocity = (nextPoint - myPos).Normalized() * (RunSpeed * _dashVelocity + _speedOffset);
 
 			Vector3 moveDirection = _targetVelocity.Normalized(); 
-			if (moveDirection != Vector3.Zero)
+			if (Velocity.Length() > 0.1f)
 			{
 				_lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up); 
 			}
