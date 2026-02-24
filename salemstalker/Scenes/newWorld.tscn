@@ -1,4 +1,4 @@
-[gd_scene load_steps=1145 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1150 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -942,7 +942,12 @@
 [ext_resource type="PackedScene" uid="uid://bqjcb30xsr68w" path="res://Scenes/blacksmith_shop.tscn" id="936_654ae"]
 [ext_resource type="PackedScene" uid="uid://dvqgpuxj5qgxl" path="res://Scenes/object_spawner.tscn" id="941_xpmv6"]
 [ext_resource type="PackedScene" uid="uid://4vr5la4k53qs" path="res://Scenes/log.tscn" id="942_xpmv6"]
-[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="943_iuhso"]
+[ext_resource type="PackedScene" uid="uid://8hslc42t2bnx" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse1.blend" id="943_iuhso"]
+[ext_resource type="PackedScene" uid="uid://cwchm31wfavkr" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse2.blend" id="944_yxesf"]
+[ext_resource type="PackedScene" uid="uid://cnvdjwu0candg" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse3.blend" id="945_agl2t"]
+[ext_resource type="PackedScene" uid="uid://b8oqcyyq6ca08" path="res://Assets/3D/props/barrel.blend" id="946_shr4g"]
+[ext_resource type="PackedScene" uid="uid://0h23u5e24kc1" path="res://Assets/3D/props/bucket.blend" id="947_lmwmg"]
+[ext_resource type="PackedScene" uid="uid://bk38ktgxlgxso" path="res://Assets/3D/props/cart.blend" id="948_3b0yr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
 
@@ -2682,7 +2687,7 @@ navigation_mesh = SubResource("NavigationMesh_wrhnx")
 navigation_layers = 3
 
 [node name="Player_3d" parent="." instance=ExtResource("36_r0smi")]
-transform = Transform3D(0.9041945, 0, 0.42712098, 0, 1, 0, -0.42712098, 0, 0.9041945, -52.79369, 3.1257527, 60.746353)
+transform = Transform3D(0.9041945, 0, 0.42712098, 0, 1, 0, -0.42712098, 0, 0.9041945, -174.46596, 3.1257527, 684.07117)
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("1_fb5os")
@@ -2697,7 +2702,7 @@ WaterDefinition = SubResource("Resource_b7wla")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_6rohr")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = true
+metadata/_edit_lock_ = false
 
 [node name="Mary" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.560577, 1.9490459, 16.670944)
@@ -2729,13 +2734,13 @@ QuestTitle = "Gather firewood from the forest for Elizabeth "
 QuestGoal = "0/15"
 
 [node name="Skeleton3D" parent="Elizabeth/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9937124, -0.055199992)
-bones/2/rotation = Quaternion(-0.065452434, 0, 0, 0.9978558)
-bones/5/rotation = Quaternion(-0.082058236, 0.007205414, 0.021776035, 0.9963636)
-bones/25/rotation = Quaternion(0.9747269, 0.015824769, -0.0090876715, 0.22265355)
-bones/26/rotation = Quaternion(0.1982986, 0.0015770502, 0.015896175, 0.9800115)
-bones/34/rotation = Quaternion(0.9747269, -0.015824769, 0.009087626, 0.22265352)
-bones/35/rotation = Quaternion(0.19829863, -0.0015770502, -0.015896179, 0.9800115)
+bones/0/position = Vector3(0, 0.9851451, -0.055199992)
+bones/2/rotation = Quaternion(-0.0073344866, 0, 0, 0.9999731)
+bones/5/rotation = Quaternion(-0.13214926, 0.0063416003, 0.02175518, 0.99097085)
+bones/25/rotation = Quaternion(0.9695528, 0.017791862, -0.009303191, 0.24405809)
+bones/26/rotation = Quaternion(0.24177276, 0.0015611645, 0.019381179, 0.97013813)
+bones/34/rotation = Quaternion(0.9695528, -0.017791864, 0.009303147, 0.24405809)
+bones/35/rotation = Quaternion(0.24177276, -0.001561164, -0.019381179, 0.97013813)
 
 [node name="Cube" parent="Elizabeth/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_xpmv6")
@@ -2764,13 +2769,13 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9937124, -0.055199992)
-bones/2/rotation = Quaternion(-0.065452434, 0, 0, 0.9978558)
-bones/5/rotation = Quaternion(-0.082058236, 0.007205414, 0.021776035, 0.9963636)
-bones/25/rotation = Quaternion(0.9747269, 0.015824769, -0.0090876715, 0.22265355)
-bones/26/rotation = Quaternion(0.1982986, 0.0015770502, 0.015896175, 0.9800115)
-bones/34/rotation = Quaternion(0.9747269, -0.015824769, 0.009087626, 0.22265352)
-bones/35/rotation = Quaternion(0.19829863, -0.0015770502, -0.015896179, 0.9800115)
+bones/0/position = Vector3(0, 0.9851451, -0.055199992)
+bones/2/rotation = Quaternion(-0.0073344866, 0, 0, 0.9999731)
+bones/5/rotation = Quaternion(-0.13214926, 0.0063416003, 0.02175518, 0.99097085)
+bones/25/rotation = Quaternion(0.9695528, 0.017791862, -0.009303191, 0.24405809)
+bones/26/rotation = Quaternion(0.24177276, 0.0015611645, 0.019381179, 0.97013813)
+bones/34/rotation = Quaternion(0.9695528, -0.017791864, 0.009303147, 0.24405809)
+bones/35/rotation = Quaternion(0.24177276, -0.001561164, -0.019381179, 0.97013813)
 
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obu7h")
@@ -2797,13 +2802,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9937124, -0.055199992)
-bones/2/rotation = Quaternion(-0.065452434, 0, 0, 0.9978558)
-bones/5/rotation = Quaternion(-0.082058236, 0.007205414, 0.021776035, 0.9963636)
-bones/25/rotation = Quaternion(0.9747269, 0.015824769, -0.0090876715, 0.22265355)
-bones/26/rotation = Quaternion(0.1982986, 0.0015770502, 0.015896175, 0.9800115)
-bones/34/rotation = Quaternion(0.9747269, -0.015824769, 0.009087626, 0.22265352)
-bones/35/rotation = Quaternion(0.19829863, -0.0015770502, -0.015896179, 0.9800115)
+bones/0/position = Vector3(0, 0.9851451, -0.055199992)
+bones/2/rotation = Quaternion(-0.0073344866, 0, 0, 0.9999731)
+bones/5/rotation = Quaternion(-0.13214926, 0.0063416003, 0.02175518, 0.99097085)
+bones/25/rotation = Quaternion(0.9695528, 0.017791862, -0.009303191, 0.24405809)
+bones/26/rotation = Quaternion(0.24177276, 0.0015611645, 0.019381179, 0.97013813)
+bones/34/rotation = Quaternion(0.9695528, -0.017791864, 0.009303147, 0.24405809)
+bones/35/rotation = Quaternion(0.24177276, -0.001561164, -0.019381179, 0.97013813)
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2834,13 +2839,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's family"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9937124, -0.055199992)
-bones/2/rotation = Quaternion(-0.065452434, 0, 0, 0.9978558)
-bones/5/rotation = Quaternion(-0.082058236, 0.007205414, 0.021776035, 0.9963636)
-bones/25/rotation = Quaternion(0.9747269, 0.015824769, -0.0090876715, 0.22265355)
-bones/26/rotation = Quaternion(0.1982986, 0.0015770502, 0.015896175, 0.9800115)
-bones/34/rotation = Quaternion(0.9747269, -0.015824769, 0.009087626, 0.22265352)
-bones/35/rotation = Quaternion(0.19829863, -0.0015770502, -0.015896179, 0.9800115)
+bones/0/position = Vector3(0, 0.9851451, -0.055199992)
+bones/2/rotation = Quaternion(-0.0073344866, 0, 0, 0.9999731)
+bones/5/rotation = Quaternion(-0.13214926, 0.0063416003, 0.02175518, 0.99097085)
+bones/25/rotation = Quaternion(0.9695528, 0.017791862, -0.009303191, 0.24405809)
+bones/26/rotation = Quaternion(0.24177276, 0.0015611645, 0.019381179, 0.97013813)
+bones/34/rotation = Quaternion(0.9695528, -0.017791864, 0.009303147, 0.24405809)
+bones/35/rotation = Quaternion(0.24177276, -0.001561164, -0.019381179, 0.97013813)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ub1ot")
@@ -3605,12 +3610,12 @@ shape = SubResource("SphereShape3D_v8qwt")
 debug_color = Color(0, 0, 1, 1)
 
 [node name="CollisionShape3D13" type="CollisionShape3D" parent="Biomes/Plains"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -695.93536, 0, 815.07776)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -593.28375, 0, 815.07776)
 shape = SubResource("SphereShape3D_v8qwt")
 debug_color = Color(0, 0, 1, 1)
 
 [node name="CollisionShape3D14" type="CollisionShape3D" parent="Biomes/Plains"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -657.42365, 0, 889.3447)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -575.833, 0, 889.3447)
 shape = SubResource("SphereShape3D_v8qwt")
 debug_color = Color(0, 0, 1, 1)
 
@@ -3769,7 +3774,109 @@ _objectName = "LogItem"
 [node name="Range" parent="ObjectSpawner" index="1"]
 radius = 25.0
 
-[node name="Enviorment" parent="." instance=ExtResource("943_iuhso")]
+[node name="Overgrown Dimwood Village" type="Node3D" parent="."]
+
+[node name="overgrownhouse1" parent="Overgrown Dimwood Village" instance=ExtResource("943_iuhso")]
+transform = Transform3D(-0.8590582, 0, 0.51187783, 0, 1, 0, -0.51187783, 0, -0.8590582, -155.52211, 0.0030146427, 702.07196)
+
+[node name="overgrownhouse4" parent="Overgrown Dimwood Village" instance=ExtResource("943_iuhso")]
+transform = Transform3D(0.96600705, 0, -0.2585154, 0, 1, 0, 0.2585154, 0, 0.96600705, -174.62445, 0.0030146427, 735.6516)
+
+[node name="overgrownhouse5" parent="Overgrown Dimwood Village" instance=ExtResource("943_iuhso")]
+transform = Transform3D(-0.25362268, 0, -0.96730316, 0, 1, 0, 0.96730316, 0, -0.25362268, -171.30226, 0.0030146427, 708.26434)
+
+[node name="overgrownhouse2" parent="Overgrown Dimwood Village" instance=ExtResource("944_yxesf")]
+transform = Transform3D(1.4730425, 0, 0, 0, 1.4730425, 0, 0, 0, 1.4730425, -146.44595, -0.05453673, 719.7698)
+
+[node name="overgrownhouse3" parent="Overgrown Dimwood Village" instance=ExtResource("945_agl2t")]
+transform = Transform3D(2.7673998, 0, 0.74519926, 0, 2.8659768, 0, -0.74519926, 0, 2.7673998, -150.21791, -0.6092424, 709.70447)
+
+[node name="overgrownhouse6" parent="Overgrown Dimwood Village" instance=ExtResource("945_agl2t")]
+transform = Transform3D(2.746716, 0, -0.818153, 0, 2.8659768, 0, 0.818153, 0, 2.746716, -149.61952, -0.6092424, 734.06024)
+
+[node name="long_fence" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.99935883, 0, 0.03580651, 0, 1, 0, -0.03580651, 0, -0.99935883, -180.7923, 0.2721597, 709.9852)
+
+[node name="long_fence2" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.9440949, 0, 0.3296742, 0, 1, 0, -0.3296742, 0, -0.9440949, -177.44044, 0.2721597, 700.6592)
+
+[node name="pole" parent="Overgrown Dimwood Village/long_fence2" index="1"]
+visible = false
+
+[node name="long_fence3" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(0.64221257, 0, 0.7665267, 0, 1, 0, -0.7665267, 0, 0.64221257, -150.82565, 0.2721597, 696.84576)
+
+[node name="long_fence4" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(0.9670593, 0, 0.25455135, 0, 1, 0, -0.25455135, 0, 0.9670593, -143.54863, 0.2721597, 715.0518)
+
+[node name="long_fence5" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(0.99894273, 0, -0.04597318, 0, 1, 0, 0.04597318, 0, 0.99894273, -144.02528, 0.21395361, 724.9821)
+
+[node name="pole" parent="Overgrown Dimwood Village/long_fence5" index="1"]
+visible = false
+
+[node name="long_fence6" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(0.9920622, 0, -0.12574877, 0, 1, 0, 0.12574877, 0, 0.9920622, -145.31273, 0.21395361, 734.7887)
+
+[node name="pole" parent="Overgrown Dimwood Village/long_fence6" index="1"]
+visible = false
+
+[node name="long_fence7" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.4098912, 0, -0.9121345, 0, 1, 0, 0.9121345, 0, -0.4098912, -173.2246, 0.21395361, 744.0022)
+
+[node name="long_fence8" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.08677313, 0, -0.9962281, 0, 1, 0, 0.9962281, 0, -0.08677313, -183.10399, 0.21395361, 743.0751)
+
+[node name="pole" parent="Overgrown Dimwood Village/long_fence8" index="1"]
+visible = false
+
+[node name="barrel" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -174.80302, 0.5951948, 718.14795)
+
+[node name="barrel2" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -175.97458, 0.5951948, 718.14795)
+
+[node name="barrel3" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -175.36647, 1.836379, 718.14795)
+
+[node name="barrel6" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -156.25552, 0.5951948, 702.6729)
+
+[node name="barrel7" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -157.30746, 0.5951948, 702.1572)
+
+[node name="barrel8" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -156.76144, 1.836379, 702.4249)
+
+[node name="barrel9" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -153.22305, 0.5951948, 739.66254)
+
+[node name="barrel10" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -154.275, 0.5951948, 739.14685)
+
+[node name="barrel11" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -153.72897, 1.836379, 739.41455)
+
+[node name="barrel4" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -175.97458, 0.5951948, 736.37933)
+
+[node name="barrel12" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -150.95099, 0.5951948, 725.6703)
+
+[node name="barrel5" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -176.56116, 0.5951948, 737.63104)
+
+[node name="bucket" parent="Overgrown Dimwood Village" instance=ExtResource("947_lmwmg")]
+transform = Transform3D(-0.10480757, 0, -0.22696999, 0, 0.25, 0, 0.22696999, 0, -0.10480757, -151.14278, 0, 724.6645)
+
+[node name="bucket2" parent="Overgrown Dimwood Village" instance=ExtResource("947_lmwmg")]
+transform = Transform3D(0.07880046, 0, -0.23725617, 0, 0.25, 0, 0.23725617, 0, 0.07880046, -158.34305, 0, 701.518)
+
+[node name="cart" parent="Overgrown Dimwood Village" instance=ExtResource("948_3b0yr")]
+transform = Transform3D(1.6104425, 0.32501265, -1.8843676, 0, 2.4636235, 0.42492178, 1.912191, -0.27372485, 1.5870097, -164.75766, 0.12151468, 741.77576)
+
+[node name="cart2" parent="Overgrown Dimwood Village" instance=ExtResource("948_3b0yr")]
+transform = Transform3D(0.57266116, 0.4136237, -2.398119, 0, 2.4636235, 0.4249218, 2.4335282, -0.09733449, 0.5643286, -151.34726, 0.1648922, 705.80084)
 
 [editable path="MonsterHolder/RatSpawner"]
 [editable path="MonsterHolder/RatSpawner2"]
@@ -3838,3 +3945,10 @@ radius = 25.0
 [editable path="Biomes/Village/Brittlebay"]
 [editable path="GoalArea"]
 [editable path="ObjectSpawner"]
+[editable path="Overgrown Dimwood Village/long_fence2"]
+[editable path="Overgrown Dimwood Village/long_fence3"]
+[editable path="Overgrown Dimwood Village/long_fence4"]
+[editable path="Overgrown Dimwood Village/long_fence5"]
+[editable path="Overgrown Dimwood Village/long_fence6"]
+[editable path="Overgrown Dimwood Village/long_fence7"]
+[editable path="Overgrown Dimwood Village/long_fence8"]
