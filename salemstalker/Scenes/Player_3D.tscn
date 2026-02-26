@@ -97,7 +97,7 @@ script = ExtResource("1_df3ch")
 shape = SubResource("CapsuleShape3D_6lgym")
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673132, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36, 0)
 
 [node name="Sprite3D" type="Sprite3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 326.74033, 0)
@@ -115,14 +115,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.422
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
-bones/9/rotation = Quaternion(0.5499285, 0.0012709559, -0.13263234, 0.82461244)
-bones/18/rotation = Quaternion(-0.15547274, -0.51644766, 0.6962524, 0.47364843)
-bones/19/rotation = Quaternion(0.6043414, -0.035679165, 0.0261569, 0.7954964)
+bones/18/rotation = Quaternion(-0.15653883, -0.5141876, 0.6951697, 0.47733214)
+bones/19/rotation = Quaternion(0.5861955, -0.03543236, 0.033970576, 0.8086813)
 bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
+bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
+bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
+bones/23/rotation = Quaternion(-0.078242995, 0.054600544, 0.59484905, 0.79815507)
 bones/25/rotation = Quaternion(0.367195, 0.110883325, 0.45397994, 0.80422324)
+bones/26/rotation = Quaternion(-0.30964947, -0.010137768, -0.10400323, 0.9450914)
+bones/27/rotation = Quaternion(-0.0527684, -0.02960059, -0.34093818, 0.9381367)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5364137, 0.051233947, 0.8423984, 0.01672025, 0.9986049, -0.050087385, -0.843789, -0.012782134, -0.536522, -0.18232882, 1.4152168, 0.41530234)
+transform = Transform3D(-0.5274641, 0.045188516, 0.84837466, 0.049023136, 0.9985395, -0.022707809, -0.84816134, 0.029612612, -0.5289088, -0.18729809, 1.4024409, 0.4192567)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")

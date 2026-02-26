@@ -23,8 +23,6 @@ public partial class Player3d : CharacterBody3D
 	public Node3D _sword;                           // The currently equipped sword's mesh/root node
 	public Node3D _eSecWeapon1;					 // The secondary weapon slot 1's root node
 	public Node3D _eSecWeapon2;					 // The secondary weapon slot 2's root node
-	//public Node3D _eSecWeapon3;					 // The secondary weapon slot 3's root node
-	//public Node3D _eSecWeapon4;					 // The secondary weapon slot 4's root node
 	private Control _combatNotif;                    // UI element for combat notifications/status
 	private RayCast3D _ray;                          // Raycast used to detect interactable objects (NPCs, items)
 	private Control _questBook;                      // The main container for the Quest Log UI
@@ -36,10 +34,10 @@ public partial class Player3d : CharacterBody3D
 	public itemList _itemInv;						//Reference to resource inv
 
 	// --- WEAPON REFERENCES ---
-	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
 	private PackedScene _falchion = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/falchion.tscn"); // Pre-load falchion scene resource
 	private PackedScene _dagger = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/dagger.tscn"); // Pre-load falchion scene resource
 	private PackedScene _longsword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/longsword.tscn"); // Pre-load falchion scene resource
+	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
 	private PackedScene _flintGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Flintlock.tscn"); // Pre-load Flintlock scene resource
 	private PackedScene _stakeGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/stake_gun.tscn"); // Pre-load Stake Gun scene resource
 	public Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
@@ -62,8 +60,6 @@ public partial class Player3d : CharacterBody3D
 	private float _knockVelocity = 0f;               	// Current knockback applied to player
 	public bool _cooldownSec1;						 	// Tracks whether the player can use their first secondary weapon
 	public bool _cooldownSec2;						 	// Tracks whether the player can use their second secondary weapon
-	//public bool _cooldownSec3;						 	// Tracks whether the player can use their third secondary weapon
-	//public bool _cooldownSec4;						 	// Tracks whether the player can use their fourth secondary weapon
 	public bool _running = false;                   	// True if the 'run' input is held down
 	private bool _inStep = false;					 	// Prevents footstep audio from playing if player is already playing a step.
 	private float _bobTime = 0.0f;                   	// Accumulator for the head-bob sine wave function
@@ -88,7 +84,6 @@ public partial class Player3d : CharacterBody3D
 	public bool _parry = false; 						// Flag: true during the small parry window at the start of a block
 	public bool _parried = false; 						// Flag: true if a parry was successful (set by the enemy/damage function)
 	private float _parryWindow = 0.15f; 				// Duration of the parry window (in seconds)
-	private float _currentParryWindow; 					// Remaining time in the parry window
 	public NpcVillager _villager; 						// Reference to the currently interacting villager NPC
 	public bool _hasApple = false; 						// Quest item flag
 	private float _staminaTimer = 2f;
@@ -264,7 +259,6 @@ public partial class Player3d : CharacterBody3D
 				 && _inv.Visible == false)
 		{
 			Block(true); // Start blocking/parrying
-			
 		}
 		// --- Block End (Block Action) ---
 		else if (Input.IsActionJustReleased("block")
@@ -424,31 +418,6 @@ public partial class Player3d : CharacterBody3D
 					stakeChild.specAction();
 				}
 			}
-			/*  else if (equipSec == 3 && !_twoHand && !_cooldownSec3)
-			{
-				secondaryCooldown();
-				if (_eSecWeapon3 is Flintlock flintchild)
-				{
-					flintchild.specAction();
-				}
-				else if (_eSecWeapon1 is StakeGun stakeChild)
-				{
-					stakeChild.specAction();
-				}
-			}
-			else if (equipSec == 4 && !_twoHand && !_cooldownSec4)
-			{
-				secondaryCooldown();
-				if (_eSecWeapon4 is Flintlock flintchild)
-				{
-					flintchild.specAction();
-				}
-				else if (_eSecWeapon1 is StakeGun stakeChild)
-				{
-					stakeChild.specAction();
-				}
-			} */
-			
 		}
 
 		if (Input.IsActionPressed("back"))
@@ -551,25 +520,6 @@ public partial class Player3d : CharacterBody3D
 		{
 			_dead = true;
 			GetNode<ColorRect>("UI/Dead").Visible = true;
-		}
-
-		// --- Parry Window Countdown ---
-		if (_currentParryWindow > 0)
-		{
-			_currentParryWindow -= (float)delta;
-		}
-		else
-		{
-			// Parry window closed
-			_parry = false;
-			_currentParryWindow = 0;
-		}
-
-		// --- Successful Parry Execution ---
-		if (_parried == true)
-		{
-			_parried = false;
-			Parry(); // Trigger the visual/sound effect for a successful parry
 		}
 
 		// --- Combat Cooldown Handling ---
@@ -881,13 +831,17 @@ public partial class Player3d : CharacterBody3D
 		_blocking = block;
 		if (block == true)
 		{
-			await ToSignal(GetTree().CreateTimer(0.05), "timeout"); // Wait for a brief moment
-			_parry = block; // Set parry flag to true (the active parry window)
-			_currentParryWindow = _parryWindow; // Start the parry timer
+			_swordInst.blocking = true;
+			await ToSignal(GetTree().CreateTimer(0.05), "timeout"); // Wait for a brief m
+			// .0oment
+			_parry = true; // Set parry flag to true (the active parry window)
+			await ToSignal(GetTree().CreateTimer(_parryWindow), "timeout"); // wait until the parry window closes
+			_parry = false;
 		}
 		else
 		{
-			_parry = block; // Set parry flag to false
+			_swordInst.blocking = false;
+			_parry = false; // Set parry flag to false
 		}
 	}
 	
@@ -1061,14 +1015,15 @@ public partial class Player3d : CharacterBody3D
 			_stamina += 0.20f * _maxStamina;
 			takenDamage = 0f;
 			monster.Stunned();
-			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.parryStat = _rng.RandiRange(1,2);
 			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
-			_parried = true;
+			Parry();
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)
 			{
 				cam.StartShake(takenDamage/90, shakeFade);
 			}
+			_swordInst.parryStat = 0;
 		}
 		else if (_cam is Camera cam)
 		{
@@ -1100,14 +1055,14 @@ public partial class Player3d : CharacterBody3D
 			// Regular block: reduce damage, deduct stamina, play block animation, destroy projectile
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
-			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
+			_swordInst.parryStat = _rng.RandiRange(1,2);
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			if (effect != "Push"){_knockVelocity = 0.25f;}
 			if (_cam is Camera cam)
 			{
 				cam.StartShake(takenDamage/80, shakeFade);
 			}
+			_swordInst.parryStat = 0;
 		}
 		else if (_blocking == true && _parry == true)
 		{
@@ -1117,7 +1072,7 @@ public partial class Player3d : CharacterBody3D
 			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
 			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
 			projectile.QueueFree();
-			_parried = true;
+			Parry();
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)
 			{
