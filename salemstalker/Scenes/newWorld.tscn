@@ -1,4 +1,4 @@
-[gd_scene load_steps=1139 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1150 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://d0u1esu3iuflj" path="res://Assets/2D/deepocean.png" id="10_43n44"]
 [ext_resource type="PackedScene" uid="uid://c3gi3vrev7n0x" path="res://Scenes/Monsters/underBrush.tscn" id="10_ptcpy"]
 [ext_resource type="PackedScene" uid="uid://crxygapcq66ft" path="res://Scenes/Monsters/flyingPesk.tscn" id="10_qcek0"]
+[ext_resource type="PackedScene" uid="uid://ygedjap5uefs" path="res://Scenes/Monsters/revenanT.tscn" id="11_ii1jl"]
 [ext_resource type="Texture2D" uid="uid://c2oao6p84hbwj" path="res://Assets/2D/swamp_dirt.png" id="11_o70cm"]
 [ext_resource type="Texture2D" uid="uid://c5fu5c6gcnf5r" path="res://Assets/2D/swamp_grass.png" id="12_37xqj"]
 [ext_resource type="Texture2D" uid="uid://bjurhsgte1wdp" path="res://Assets/2D/plains_grass.png" id="13_n5auh"]
@@ -932,14 +933,21 @@
 [ext_resource type="Texture2D" uid="uid://biknle7w1b6ou" path="res://Assets/othermodeltxt/villager/Body.jpg" id="915_4aw2u"]
 [ext_resource type="Texture2D" uid="uid://bab2pb0j3q745" path="res://Assets/othermodeltxt/villager/Pants.jpg" id="916_obu7h"]
 [ext_resource type="Texture2D" uid="uid://bf7b14xp8kqy8" path="res://Assets/othermodeltxt/villager/Arms.jpg" id="917_qcek0"]
-[ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://Assets/2D/WoodPlank.png" id="919_h1utm"]
+[ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="919_h1utm"]
 [ext_resource type="PackedScene" uid="uid://cw86i51qs7jry" path="res://Scenes/boat.tscn" id="922_qtthl"]
 [ext_resource type="Script" uid="uid://djprwulc3bex0" path="res://Scripts/BorderTool.cs" id="926_3vgip"]
 [ext_resource type="PackedScene" uid="uid://07sk25v6dh1t" path="res://Assets/3D/charatermodel/long_fence.blend" id="926_ptcpy"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="927_4aw2u"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="931_3vgip"]
 [ext_resource type="PackedScene" uid="uid://bqjcb30xsr68w" path="res://Scenes/blacksmith_shop.tscn" id="936_654ae"]
-[ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="938_ub1ot"]
+[ext_resource type="PackedScene" uid="uid://dvqgpuxj5qgxl" path="res://Scenes/object_spawner.tscn" id="941_xpmv6"]
+[ext_resource type="PackedScene" uid="uid://4vr5la4k53qs" path="res://Scenes/item.tscn" id="942_xpmv6"]
+[ext_resource type="PackedScene" uid="uid://brhmfjngvs0qp" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse1.blend" id="943_iuhso"]
+[ext_resource type="PackedScene" uid="uid://dseu63tn4kg3q" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse2.blend" id="944_yxesf"]
+[ext_resource type="PackedScene" uid="uid://cnvdjwu0candg" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse3.blend" id="945_agl2t"]
+[ext_resource type="PackedScene" uid="uid://b8oqcyyq6ca08" path="res://Assets/3D/props/barrel.blend" id="946_shr4g"]
+[ext_resource type="PackedScene" uid="uid://0h23u5e24kc1" path="res://Assets/3D/props/bucket.blend" id="947_lmwmg"]
+[ext_resource type="PackedScene" uid="uid://bk38ktgxlgxso" path="res://Assets/3D/props/cart.blend" id="948_3b0yr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
 
@@ -2193,6 +2201,18 @@ WaterTexture = ExtResource("387_tspmx")
 script = ExtResource("35_rabu8")
 Zones = [SubResource("Resource_nnpdm"), SubResource("Resource_sd5fx"), SubResource("Resource_jrrcy"), SubResource("Resource_fa8ee"), SubResource("Resource_anrnj"), SubResource("Resource_nl4gh"), SubResource("Resource_7xwpq"), SubResource("Resource_s0h5c"), SubResource("Resource_cx2gm"), SubResource("Resource_xv778"), SubResource("Resource_shbtp"), SubResource("Resource_6an2s"), SubResource("Resource_d4ulm"), SubResource("Resource_bj83l"), SubResource("Resource_fasa8"), SubResource("Resource_a3apw"), SubResource("Resource_wisbv"), SubResource("Resource_643b0"), SubResource("Resource_dq1xa"), SubResource("Resource_6d7hv"), SubResource("Resource_v86w0"), SubResource("Resource_g0chq"), SubResource("Resource_7i4pd"), SubResource("Resource_7dafi"), SubResource("Resource_uk4ah"), SubResource("Resource_suw56"), SubResource("Resource_f83po"), SubResource("Resource_f1g14"), SubResource("Resource_oawgc"), SubResource("Resource_8yamd"), SubResource("Resource_mwpet"), SubResource("Resource_bkyuq"), SubResource("Resource_5bdvf"), SubResource("Resource_xn7kl"), SubResource("Resource_v4u2a"), SubResource("Resource_ggxlf"), SubResource("Resource_8080r"), SubResource("Resource_v1vhd"), SubResource("Resource_yjgbj"), SubResource("Resource_vwdx7"), SubResource("Resource_4wskq"), SubResource("Resource_1xx48"), SubResource("Resource_vctx6"), SubResource("Resource_av47l"), SubResource("Resource_5an6s"), SubResource("Resource_rnxk2"), SubResource("Resource_0q5mx"), SubResource("Resource_io0bp"), SubResource("Resource_0ttad"), SubResource("Resource_67jo4"), SubResource("Resource_doppe"), SubResource("Resource_gh1vi"), SubResource("Resource_s1hlr"), SubResource("Resource_r8rpl"), SubResource("Resource_w8u3n"), SubResource("Resource_yrmv1"), SubResource("Resource_kolvd"), SubResource("Resource_h4o0s"), SubResource("Resource_yg4ii"), SubResource("Resource_ybtom"), SubResource("Resource_ovmsd"), SubResource("Resource_ph82a"), SubResource("Resource_kesn2"), SubResource("Resource_4ehfs"), SubResource("Resource_4pw2d"), SubResource("Resource_idue8"), SubResource("Resource_h6erx"), SubResource("Resource_ln07d"), SubResource("Resource_dl1ju"), SubResource("Resource_to78q"), SubResource("Resource_68d03"), SubResource("Resource_iv20s"), SubResource("Resource_pqaej"), SubResource("Resource_e0q3j"), SubResource("Resource_ouux6"), SubResource("Resource_mebdv"), SubResource("Resource_nsm8h"), SubResource("Resource_gyek8"), SubResource("Resource_s6jwa"), SubResource("Resource_40pjx"), SubResource("Resource_1ykm7"), SubResource("Resource_jr812"), SubResource("Resource_sbkpg"), SubResource("Resource_rop4m"), SubResource("Resource_lv45h"), SubResource("Resource_7m2jm"), SubResource("Resource_1ltla"), SubResource("Resource_tehjn"), SubResource("Resource_qx545"), SubResource("Resource_yhmh7"), SubResource("Resource_42nok"), SubResource("Resource_bxmsx"), SubResource("Resource_r62ax"), SubResource("Resource_yu6qg"), SubResource("Resource_bkb5c"), SubResource("Resource_0d05w"), SubResource("Resource_xv1la"), SubResource("Resource_8lvpu"), SubResource("Resource_c1d64"), SubResource("Resource_bp6m1"), SubResource("Resource_y6tt4"), SubResource("Resource_pfdvi"), SubResource("Resource_y2vpo"), SubResource("Resource_fuflx"), SubResource("Resource_ohooj"), SubResource("Resource_31l1t"), SubResource("Resource_vhxcp"), SubResource("Resource_r4nu6"), SubResource("Resource_wb4aw")]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpmv6"]
+albedo_color = Color(0.42802262, 0.6091879, 1, 1)
+albedo_texture = ExtResource("915_4aw2u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iuhso"]
+albedo_color = Color(0.42802262, 0.6091879, 1, 1)
+albedo_texture = ExtResource("916_obu7h")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2rbx"]
+albedo_color = Color(0.42802262, 0.6091879, 1, 1)
+albedo_texture = ExtResource("917_qcek0")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obu7h"]
 albedo_color = Color(1.8049032e-07, 0.19593534, 0.18694827, 1)
 albedo_texture = ExtResource("915_4aw2u")
@@ -2501,10 +2521,10 @@ radius = 38.980755
 
 [node name="Z1Shrine2EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -539.85846, 1.687819, -40.037697)
-_maxMonsterCount = 2
+_maxMonsterCount = 10
 _biome = "Forest"
-_monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("7_5m6g4"), ExtResource("38_osg54"), ExtResource("9_byw2m"), ExtResource("10_5j1yv")])
-_monsterCount = Array[int]([0, 0, 0, 0, 1])
+_monsterList = Array[PackedScene]([ExtResource("6_81ace"), ExtResource("7_5m6g4"), ExtResource("38_osg54"), ExtResource("9_byw2m"), ExtResource("10_5j1yv"), ExtResource("11_ii1jl"), ExtResource("10_ptcpy")])
+_monsterCount = Array[int]([0, 0, 0, 0, 0, 0, 10])
 
 [node name="Range" parent="MonsterHolder/Z1Shrine2EnemySpawner" index="3"]
 radius = 12.092302
@@ -2650,7 +2670,7 @@ _spawnTime = 7.0
 _maxMonsterCount = 0
 SpawnDistance = 40.0
 _monsterList = Array[PackedScene]([ExtResource("38_osg54"), ExtResource("10_ptcpy")])
-_monsterCount = Array[int]([2, 1])
+_monsterCount = Array[int]([0, 20])
 
 [node name="Z1Shrine3" parent="MonsterHolder" groups=["Terrain"] instance=ExtResource("6_677id")]
 transform = Transform3D(0.9992508, -2.5667963e-05, 0.038701728, 0, 0.9999999, 0.0006632252, -0.03870174, -0.00066272833, 0.9992507, -442.28094, -0.5746945, -234.93701)
@@ -2667,7 +2687,7 @@ navigation_mesh = SubResource("NavigationMesh_wrhnx")
 navigation_layers = 3
 
 [node name="Player_3d" parent="." instance=ExtResource("36_r0smi")]
-transform = Transform3D(0.9041945, 0, 0.42712098, 0, 1, 0, -0.42712098, 0, 0.9041945, -61.024483, 2.947726, 50.08702)
+transform = Transform3D(0.9041945, 0, 0.42712098, 0, 1, 0, -0.42712098, 0, 0.9041945, -9.95616, 3.1257527, 44.440674)
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("1_fb5os")
@@ -2685,33 +2705,64 @@ metadata/_custom_type_script = "uid://i5jcj7ukvoen"
 metadata/_edit_lock_ = false
 
 [node name="Mary" parent="." instance=ExtResource("421_81rqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.560577, 1.9490459, 16.670944)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46323, 1.9490459, 40.31227)
 script = ExtResource("422_pvlar")
 NPCName = "Mary"
-InitialDialogue = "Taz! Oh Taz where are you?"
-QuestDialogue = Array[String](["Mister! Won't you help an old woman out? I've lost my young and dearest kitty.", "I fear he's lost somewhere in the woods. Would you please find him and bring him back home? "])
-AcceptedDialogue = Array[String](["Oh thank you! Please make sure he comes back safely."])
-IgnoredDialogue = "Oh dear. Maybe he'll come back on his own some day..."
-WaitingDialogue = "Have you found Taz yet?"
-DoneDialogue = Array[String](["Oh thank you mister! Don't ever leave me again Taz. "])
-PostDoneDialogue = "Oh Taz. Don't you ever leave me again!"
-QuestTitle = "Find Mary's cat Taz somewhere in the forest"
-QuestGoal = "0/1"
+InitialDialogue = "Oh my sweet little babies! Please come back to me!"
+QuestDialogue = Array[String](["Lord Inquisitor sir! Won't you help an old woman out? I've lost my young and dearest kitties, Taz, Bridger, and Gnocchi.", "I last saw them approach some strange individuals in purple robes outside of the village.", "Would you please find them and bring them back home?"])
+AcceptedDialogue = Array[String](["Oh thank you! Please make sure they comes back safely."])
+IgnoredDialogue = "Oh dear. Maybe they'll come back on their own some day..."
+WaitingDialogue = "Have you found my babies yet?"
+DoneDialogue = Array[String](["Oh thank you Lord Inquisitor! Don't ever leave me again my cuties. Mama Mary will protect you here."])
+PostDoneDialogue = "Ahhh! No biting Bridger. "
+QuestTitle = "Find Mary's lost cats, Taz, Bridger, and Gnocchi, somewhere in the woods."
+QuestGoal = "0/3"
+
+[node name="Skeleton3D" parent="Mary/villagerblank/metarig_001" index="0"]
+bones/0/position = Vector3(0, 0.99076444, -0.055199992)
+bones/2/rotation = Quaternion(-0.021481097, 0, 0, 0.99976933)
+bones/5/rotation = Quaternion(-0.119990334, 0.0065532946, 0.02176534, 0.9925149)
+bones/25/rotation = Quaternion(0.97310376, 0.016459733, -0.009153975, 0.22959644)
+bones/26/rotation = Quaternion(0.21238244, 0.0015722646, 0.017025175, 0.977037)
+bones/34/rotation = Quaternion(0.97310376, -0.016459735, 0.009153931, 0.22959644)
+bones/35/rotation = Quaternion(0.21238244, -0.0015722644, -0.01702517, 0.977037)
 
 [node name="Elizabeth" parent="." instance=ExtResource("421_81rqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.254059, 1.9490459, 35.37815)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3819237, 1.9490459, 35.37815)
 script = ExtResource("423_e2eg3")
 NPCName = "Elizabeth"
 InitialDialogue = "It's been getting colder and colder..."
+QuestDialogue = Array[String](["My husband, along with other Lumberjacks from our town have gone missing over the past few days and we've been out of firewood.", "Could you gather some firewood so we can stay warm at night? You may run into those guys in the forest too. "])
+AcceptedDialogue = Array[String](["Yes! This should be enough to keep us warm for a while. Thank you.", "Let me know if gather any information of their whereabouts."])
 IgnoredDialogue = "Oh, that's alright. Maybe the lumberjacks will come back soon. "
 WaitingDialogue = "Still waiting on that firewood once you gather enough."
+DoneDialogue = Array[String](["Yes! This should be enough to keep us warm for a while. Thank you.", "It's a shame you couldn't find those lumberjacks. I do home they come back safely."])
+PostDoneDialogue = "Now we'll stay warm through the night."
 QuestTitle = "Gather firewood from the forest for Elizabeth "
 QuestGoal = "0/15"
 
+[node name="Skeleton3D" parent="Elizabeth/villagerblank/metarig_001" index="0"]
+bones/0/position = Vector3(0, 0.99076444, -0.055199992)
+bones/2/rotation = Quaternion(-0.021481097, 0, 0, 0.99976933)
+bones/5/rotation = Quaternion(-0.119990334, 0.0065532946, 0.02176534, 0.9925149)
+bones/25/rotation = Quaternion(0.97310376, 0.016459733, -0.009153975, 0.22959644)
+bones/26/rotation = Quaternion(0.21238244, 0.0015722646, 0.017025175, 0.977037)
+bones/34/rotation = Quaternion(0.97310376, -0.016459735, 0.009153931, 0.22959644)
+bones/35/rotation = Quaternion(0.21238244, -0.0015722644, -0.01702517, 0.977037)
+
+[node name="Cube" parent="Elizabeth/villagerblank/metarig_001/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_xpmv6")
+surface_material_override/1 = SubResource("StandardMaterial3D_iuhso")
+
+[node name="Cube_002" parent="Elizabeth/villagerblank/metarig_001/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q2rbx")
+
+[node name="Range" parent="Elizabeth" index="6"]
+radius = 11.462789
+
 [node name="Dillon" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5462093, 1.9490459, 37.886063)
+visible = false
 script = ExtResource("424_nr7af")
 NPCName = "Dillon"
 InitialDialogue = "Gosh darn it! Those damn rats keep eating our food!"
@@ -2726,13 +2777,13 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9856844, -0.055199996)
-bones/2/rotation = Quaternion(0.0027107603, 0, 0, 0.9999964)
-bones/5/rotation = Quaternion(-0.1407717, 0.006190689, 0.021745976, 0.9897839)
-bones/25/rotation = Quaternion(0.96986234, 0.017678587, -0.0092899855, 0.24283393)
-bones/26/rotation = Quaternion(0.23916411, 0.0015622111, 0.019172067, 0.97078866)
-bones/34/rotation = Quaternion(0.96986234, -0.017678589, 0.009289941, 0.24283393)
-bones/35/rotation = Quaternion(0.23916408, -0.0015622106, -0.019172067, 0.97078866)
+bones/0/position = Vector3(0, 0.99076444, -0.055199992)
+bones/2/rotation = Quaternion(-0.021481097, 0, 0, 0.99976933)
+bones/5/rotation = Quaternion(-0.119990334, 0.0065532946, 0.02176534, 0.9925149)
+bones/25/rotation = Quaternion(0.97310376, 0.016459733, -0.009153975, 0.22959644)
+bones/26/rotation = Quaternion(0.21238244, 0.0015722646, 0.017025175, 0.977037)
+bones/34/rotation = Quaternion(0.97310376, -0.016459735, 0.009153931, 0.22959644)
+bones/35/rotation = Quaternion(0.21238244, -0.0015722644, -0.01702517, 0.977037)
 
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obu7h")
@@ -2759,13 +2810,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9856844, -0.055199996)
-bones/2/rotation = Quaternion(0.0027107603, 0, 0, 0.9999964)
-bones/5/rotation = Quaternion(-0.1407717, 0.006190689, 0.021745976, 0.9897839)
-bones/25/rotation = Quaternion(0.96986234, 0.017678587, -0.0092899855, 0.24283393)
-bones/26/rotation = Quaternion(0.23916411, 0.0015622111, 0.019172067, 0.97078866)
-bones/34/rotation = Quaternion(0.96986234, -0.017678589, 0.009289941, 0.24283393)
-bones/35/rotation = Quaternion(0.23916408, -0.0015622106, -0.019172067, 0.97078866)
+bones/0/position = Vector3(0, 0.99076444, -0.055199992)
+bones/2/rotation = Quaternion(-0.021481097, 0, 0, 0.99976933)
+bones/5/rotation = Quaternion(-0.119990334, 0.0065532946, 0.02176534, 0.9925149)
+bones/25/rotation = Quaternion(0.97310376, 0.016459733, -0.009153975, 0.22959644)
+bones/26/rotation = Quaternion(0.21238244, 0.0015722646, 0.017025175, 0.977037)
+bones/34/rotation = Quaternion(0.97310376, -0.016459735, 0.009153931, 0.22959644)
+bones/35/rotation = Quaternion(0.21238244, -0.0015722644, -0.01702517, 0.977037)
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2796,13 +2847,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's family"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9856844, -0.055199996)
-bones/2/rotation = Quaternion(0.0027107603, 0, 0, 0.9999964)
-bones/5/rotation = Quaternion(-0.1407717, 0.006190689, 0.021745976, 0.9897839)
-bones/25/rotation = Quaternion(0.96986234, 0.017678587, -0.0092899855, 0.24283393)
-bones/26/rotation = Quaternion(0.23916411, 0.0015622111, 0.019172067, 0.97078866)
-bones/34/rotation = Quaternion(0.96986234, -0.017678589, 0.009289941, 0.24283393)
-bones/35/rotation = Quaternion(0.23916408, -0.0015622106, -0.019172067, 0.97078866)
+bones/0/position = Vector3(0, 0.99076444, -0.055199992)
+bones/2/rotation = Quaternion(-0.021481097, 0, 0, 0.99976933)
+bones/5/rotation = Quaternion(-0.119990334, 0.0065532946, 0.02176534, 0.9925149)
+bones/25/rotation = Quaternion(0.97310376, 0.016459733, -0.009153975, 0.22959644)
+bones/26/rotation = Quaternion(0.21238244, 0.0015722646, 0.017025175, 0.977037)
+bones/34/rotation = Quaternion(0.97310376, -0.016459735, 0.009153931, 0.22959644)
+bones/35/rotation = Quaternion(0.21238244, -0.0015722644, -0.01702517, 0.977037)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ub1ot")
@@ -3567,12 +3618,12 @@ shape = SubResource("SphereShape3D_v8qwt")
 debug_color = Color(0, 0, 1, 1)
 
 [node name="CollisionShape3D13" type="CollisionShape3D" parent="Biomes/Plains"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -695.93536, 0, 815.07776)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -593.28375, 0, 815.07776)
 shape = SubResource("SphereShape3D_v8qwt")
 debug_color = Color(0, 0, 1, 1)
 
 [node name="CollisionShape3D14" type="CollisionShape3D" parent="Biomes/Plains"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -657.42365, 0, 889.3447)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -575.833, 0, 889.3447)
 shape = SubResource("SphereShape3D_v8qwt")
 debug_color = Color(0, 0, 1, 1)
 
@@ -3722,7 +3773,127 @@ InitialDialogue = "E to Interact"
 [node name="Anvil" parent="." instance=ExtResource("936_654ae")]
 transform = Transform3D(0.82108945, 0, 0.57079947, 0, 1, 0, -0.57079947, 0, 0.82108945, -14.543283, 1.8387071, 80.178024)
 
-[node name="Enviorment" parent="." instance=ExtResource("938_ub1ot")]
+[node name="ObjectSpawner" parent="." instance=ExtResource("941_xpmv6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.590775, 2, 70.39445)
+_itemCount = 25
+_object = ExtResource("942_xpmv6")
+_objectName = "LogItem"
+
+[node name="Range" parent="ObjectSpawner" index="1"]
+radius = 25.0
+
+[node name="Overgrown Dimwood Village" type="Node3D" parent="."]
+
+[node name="overgrownhouse1" parent="Overgrown Dimwood Village" instance=ExtResource("943_iuhso")]
+transform = Transform3D(-0.8590582, 0, 0.51187783, 0, 1, 0, -0.51187783, 0, -0.8590582, -155.52211, 0.0030146427, 702.07196)
+
+[node name="overgrownhouse4" parent="Overgrown Dimwood Village" instance=ExtResource("943_iuhso")]
+transform = Transform3D(0.96600705, 0, -0.2585154, 0, 1, 0, 0.2585154, 0, 0.96600705, -174.62445, 0.0030146427, 735.6516)
+
+[node name="overgrownhouse5" parent="Overgrown Dimwood Village" instance=ExtResource("943_iuhso")]
+transform = Transform3D(-0.25362268, 0, -0.96730316, 0, 1, 0, 0.96730316, 0, -0.25362268, -171.30226, 0.0030146427, 708.26434)
+
+[node name="overgrownhouse2" parent="Overgrown Dimwood Village" instance=ExtResource("944_yxesf")]
+transform = Transform3D(1.4730425, 0, 0, 0, 1.4730425, 0, 0, 0, 1.4730425, -146.44595, -0.05453673, 719.7698)
+
+[node name="overgrownhouse3" parent="Overgrown Dimwood Village" instance=ExtResource("945_agl2t")]
+transform = Transform3D(2.7673998, 0, 0.74519926, 0, 2.8659768, 0, -0.74519926, 0, 2.7673998, -150.21791, -0.6092424, 709.70447)
+
+[node name="overgrownhouse6" parent="Overgrown Dimwood Village" instance=ExtResource("945_agl2t")]
+transform = Transform3D(2.746716, 0, -0.818153, 0, 2.8659768, 0, 0.818153, 0, 2.746716, -149.61952, -0.6092424, 734.06024)
+
+[node name="long_fence" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.99935883, 0, 0.03580651, 0, 1, 0, -0.03580651, 0, -0.99935883, -180.7923, 0.2721597, 709.9852)
+
+[node name="long_fence2" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.9440949, 0, 0.3296742, 0, 1, 0, -0.3296742, 0, -0.9440949, -177.44044, 0.2721597, 700.6592)
+
+[node name="pole" parent="Overgrown Dimwood Village/long_fence2" index="1"]
+visible = false
+
+[node name="long_fence3" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(0.64221257, 0, 0.7665267, 0, 1, 0, -0.7665267, 0, 0.64221257, -150.82565, 0.2721597, 696.84576)
+
+[node name="long_fence4" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(0.9670593, 0, 0.25455135, 0, 1, 0, -0.25455135, 0, 0.9670593, -143.54863, 0.2721597, 715.0518)
+
+[node name="long_fence5" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(0.99894273, 0, -0.04597318, 0, 1, 0, 0.04597318, 0, 0.99894273, -144.02528, 0.21395361, 724.9821)
+
+[node name="pole" parent="Overgrown Dimwood Village/long_fence5" index="1"]
+visible = false
+
+[node name="long_fence6" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(0.9920622, 0, -0.12574877, 0, 1, 0, 0.12574877, 0, 0.9920622, -145.31273, 0.21395361, 734.7887)
+
+[node name="pole" parent="Overgrown Dimwood Village/long_fence6" index="1"]
+visible = false
+
+[node name="long_fence7" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.4098912, 0, -0.9121345, 0, 1, 0, 0.9121345, 0, -0.4098912, -173.2246, 0.21395361, 744.0022)
+
+[node name="long_fence8" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
+transform = Transform3D(-0.08677313, 0, -0.9962281, 0, 1, 0, 0.9962281, 0, -0.08677313, -183.10399, 0.21395361, 743.0751)
+
+[node name="pole" parent="Overgrown Dimwood Village/long_fence8" index="1"]
+visible = false
+
+[node name="barrel" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -174.80302, 0.5951948, 718.14795)
+
+[node name="barrel2" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -175.97458, 0.5951948, 718.14795)
+
+[node name="barrel3" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -175.36647, 1.836379, 718.14795)
+
+[node name="barrel6" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -156.25552, 0.5951948, 702.6729)
+
+[node name="barrel7" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -157.30746, 0.5951948, 702.1572)
+
+[node name="barrel8" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -156.76144, 1.836379, 702.4249)
+
+[node name="barrel9" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -153.22305, 0.5951948, 739.66254)
+
+[node name="barrel10" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -154.275, 0.5951948, 739.14685)
+
+[node name="barrel11" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.44895235, 0, -0.22009496, 0, 0.5, 0, 0.22009496, 0, 0.44895235, -153.72897, 1.836379, 739.41455)
+
+[node name="barrel4" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -175.97458, 0.5951948, 736.37933)
+
+[node name="barrel12" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -150.95099, 0.5951948, 725.6703)
+
+[node name="barrel5" parent="Overgrown Dimwood Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -176.56116, 0.5951948, 737.63104)
+
+[node name="bucket" parent="Overgrown Dimwood Village" instance=ExtResource("947_lmwmg")]
+transform = Transform3D(-0.10480757, 0, -0.22696999, 0, 0.25, 0, 0.22696999, 0, -0.10480757, -151.14278, 0, 724.6645)
+
+[node name="bucket2" parent="Overgrown Dimwood Village" instance=ExtResource("947_lmwmg")]
+transform = Transform3D(0.07880046, 0, -0.23725617, 0, 0.25, 0, 0.23725617, 0, 0.07880046, -158.34305, 0, 701.518)
+
+[node name="cart" parent="Overgrown Dimwood Village" instance=ExtResource("948_3b0yr")]
+transform = Transform3D(1.6104425, 0.32501265, -1.8843676, 0, 2.4636235, 0.42492178, 1.912191, -0.27372485, 1.5870097, -164.75766, 0.12151468, 741.77576)
+
+[node name="cart2" parent="Overgrown Dimwood Village" instance=ExtResource("948_3b0yr")]
+transform = Transform3D(0.57266116, 0.4136237, -2.398119, 0, 2.4636235, 0.4249218, 2.4335282, -0.09733449, 0.5643286, -151.34726, 0.1648922, 705.80084)
+
+[node name="Taz" parent="." instance=ExtResource("942_xpmv6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.666569, 1.0721328, 43.002872)
+
+[node name="Bridger" parent="." instance=ExtResource("942_xpmv6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.183912, 1.0721328, 43.002872)
+
+[node name="Gnocchi" parent="." instance=ExtResource("942_xpmv6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.86915, 1.0721328, 43.002872)
 
 [editable path="MonsterHolder/RatSpawner"]
 [editable path="MonsterHolder/RatSpawner2"]
@@ -3738,6 +3909,10 @@ transform = Transform3D(0.82108945, 0, 0.57079947, 0, 1, 0, -0.57079947, 0, 0.82
 [editable path="MonsterHolder/Z1EnemySpawner11"]
 [editable path="MonsterHolder/Z1EnemySpawner12"]
 [editable path="MonsterHolder/Z1EnemySpawner13"]
+[editable path="Mary"]
+[editable path="Mary/villagerblank"]
+[editable path="Elizabeth"]
+[editable path="Elizabeth/villagerblank"]
 [editable path="Dillon"]
 [editable path="Dillon/villagerblank"]
 [editable path="Lukas"]
@@ -3788,3 +3963,11 @@ transform = Transform3D(0.82108945, 0, 0.57079947, 0, 1, 0, -0.57079947, 0, 0.82
 [editable path="Biomes/Plains"]
 [editable path="Biomes/Village/Brittlebay"]
 [editable path="GoalArea"]
+[editable path="ObjectSpawner"]
+[editable path="Overgrown Dimwood Village/long_fence2"]
+[editable path="Overgrown Dimwood Village/long_fence3"]
+[editable path="Overgrown Dimwood Village/long_fence4"]
+[editable path="Overgrown Dimwood Village/long_fence5"]
+[editable path="Overgrown Dimwood Village/long_fence6"]
+[editable path="Overgrown Dimwood Village/long_fence7"]
+[editable path="Overgrown Dimwood Village/long_fence8"]

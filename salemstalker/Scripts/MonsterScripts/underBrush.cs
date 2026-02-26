@@ -19,7 +19,7 @@ public partial class underBrush : Monster3d
 		Stationery = false;          // If the monster shouldnt move at all
 		BaseDamage = 10.0f;         // Base damage of the monster
 		AttackSpeed = 0.5f;         // The time between its attacks
-		AttackRange = 10f;           // The distance the monster gets from the player before stopping and attacking
+		AttackRange = 10.5f;           // The distance the monster gets from the player before stopping and attacking
 		MaxHealth = 100.0f;         // Maximum monster health
 		WanderRange = 10;           // The range the monster can wander from its spawn point
 		AgroFOV = 5.0f;          	// The vision FOV of the monster
@@ -57,12 +57,12 @@ public partial class underBrush : Monster3d
     {
         if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
         {
-            GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
+            GlobalRotation = new Vector3(0, _lookDirection.GlobalRotation.Y, 0);
         }
         else
         {
             float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
-            GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
+            GlobalRotation = new Vector3(0, newRotation, 0);
         }
     }
 

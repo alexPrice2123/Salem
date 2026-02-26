@@ -29,10 +29,11 @@ public partial class Player3d : CharacterBody3D
 	private RayCast3D _ray;                          // Raycast used to detect interactable objects (NPCs, items)
 	private Control _questBook;                      // The main container for the Quest Log UI
 	public Control _questBox;                        // Container where active quest entries are listed
-	private VBoxContainer _questTemplate;            // A hidden template used to instantiate new quest UI entries
+	private VBoxContainer _questTemplate;            // A hidden template used to instantiate new quest UI entries    
 	private OmniLight3D _lantern; 					 // A light attached to the player (likely for dynamic lighting/mood based on health)
 	private Control _dialogue;                       // Main container for all dialogue UI
 	private Control _smithShop;                      // Main container for all blacksmith shop UI
+	public itemList _itemInv;						//Reference to resource inv
 
 	// --- WEAPON REFERENCES ---
 	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
@@ -117,6 +118,7 @@ public partial class Player3d : CharacterBody3D
 	private Vector3 _cameraBaseRotation;
 	private Vector3 _cameraBasePosition;
 	private float _demoCount = 30f;
+	private Godot.Collections.Array<string> _pickUpableItems { get; set; } = ["Taz", "Bridger", "Gnocchi"];
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -130,6 +132,7 @@ public partial class Player3d : CharacterBody3D
 		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
 		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
 		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
+		_itemInv = GetNode<itemList>("UI/ResourceInv");
 		//_eSecWeapon3 = GetNode<Node3D>("Head/Camera3D/Offhand3").GetChild<Node3D>(0);
 		//_eSecWeapon4 = GetNode<Node3D>("Head/Camera3D/Offhand4").GetChild<Node3D>(0);
 		_combatNotif = GetNode<Control>("UI/Combat");
@@ -364,11 +367,24 @@ public partial class Player3d : CharacterBody3D
 			}
 			if (IsInstanceValid(_lastSeen) && _inv.Visible == false)
 			{
+				string itemName = _lastSeen.Name;
 				if (_lastSeen.Name == "Anvil")
 				{
 					_lastSeen = null;
 					_smithShop.Visible = true;
 					Input.MouseMode = Input.MouseModeEnum.Visible;
+				}
+				else if (((string)_lastSeen.Name).Contains("LogItem"))
+				{
+					_lastSeen.QueueFree();
+					_lastSeen = null;
+					_itemInv.AddResource("log", 1);
+				}
+				else if (_pickUpableItems.Contains(itemName))
+				{
+					_lastSeen.QueueFree();
+					_lastSeen = null;
+					_itemInv.AddResource(itemName.ToLower(), 1);
 				}
 			}
 		}
@@ -591,6 +607,24 @@ public partial class Player3d : CharacterBody3D
 			else { (currentQuest.GetNode("Number") as Label).Text = _shrinesDestroyed+"/3"; }
 		}
 
+		if (_questBox.FindChild("Elizabeth") != null)
+		{
+			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Elizabeth");
+			// Update the quest objective text
+			int logCount = _itemInv.GetItemCount("log");
+			if (logCount >= 15) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			else { (currentQuest.GetNode("Number") as Label).Text = logCount+"/15"; }
+		}
+
+		if (_questBox.FindChild("Mary") != null)
+		{
+			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Mary");
+			// Update the quest objective text
+			int catCount = _itemInv.GetItemCount("taz") + _itemInv.GetItemCount("bridger") + _itemInv.GetItemCount("gnocchi");
+			if (catCount >= 3) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			else { (currentQuest.GetNode("Number") as Label).Text = catCount+"/3"; }
+		}
+
 		// [Inventory Camera Transition - Commented Out]
 
 		// --- Update sensitivity from pause menu ---
@@ -672,13 +706,14 @@ public partial class Player3d : CharacterBody3D
 		// --- Interaction detection (General) ---
 		if (GetMouseCollision() != null)
 		{
+			//if (!IsInstanceValid(_lastSeen)){return;}
 			CharacterBody3D targetNode = GetMouseCollision();
 			if (!targetNode.IsInGroup("Monster")){_lastSeen = targetNode;}
 			if (targetNode is Object obj)
 			{
 				obj._player = this;
 			}
-			if (targetNode.Name == "Anvil")
+			if (targetNode.GetNodeOrNull<Label3D>("Title") != null)
 			{
 				targetNode.GetNode<Label3D>("Title").Visible = true;
 			}
@@ -946,6 +981,8 @@ public partial class Player3d : CharacterBody3D
 	{
 		if (_questBox.FindChild(QuestName) != null)
 		{
+			if (QuestName == "Elizabeth"){_itemInv.SubtractResource("log", _itemInv.GetItemCount("log"));}
+			if (QuestName == "Mary"){_itemInv.SubtractResource("taz",1); _itemInv.SubtractResource("bridger",1); _itemInv.SubtractResource("gnocchi",1);}
 			_questBox.FindChild(QuestName).QueueFree(); // Delete the UI node
 		}
 	}

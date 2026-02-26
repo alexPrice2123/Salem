@@ -3,9 +3,11 @@ using Microsoft.VisualBasic;
 using System;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 public partial class Ui : Control
 {
+	public static Ui Instance { get; private set; }
 	public Player3d _player;
 	private string _hovering = "falchionHover";
 	private string _prevSelection;
@@ -38,8 +40,13 @@ public partial class Ui : Control
 	public float _progress2 = 100;
 	//public float _progress3 = 100;
 	//public float _progress4 = 100;
+	public Control _resourceInv;
+	public GridContainer _gridContainer;
+	private Texture2D _invIcon;
+	private Control _inv;
 	public override void _Ready()
 	{
+		Instance = this;
 		if (GetParent() is Player3d player)
 		{
 			_player = player;
@@ -55,6 +62,10 @@ public partial class Ui : Control
 		_secProgressBar2 = GetNode<TextureProgressBar>("SecCooldown2");
 		//_secProgressBar3 = GetNode<TextureProgressBar>("SecCooldown3");
 		//_secProgressBar4 = GetNode<TextureProgressBar>("SecCooldown4");
+		_resourceInv = GetNode<Control>("ResourceInv");
+		_gridContainer = GetNode<GridContainer>("ResourceInv/GridContainer");
+		_inv = GetNode<Control>("Inv");
+		_invIcon = (Texture2D)GD.Load("res://icon.svg");
 		_loadingUI.Visible = true;
 		_loadingMaterial = _loadingUI.Material as ShaderMaterial;
 		_areaName = GetNode<Label>("Area");
@@ -73,6 +84,14 @@ public partial class Ui : Control
 		_upgradeNames.Add("cPercent3", "Heavy Critical Damage");
 		_specialAttacks.Add("Shortsword", "Pommel Strike");
 		//_specialAttacks.Add("Flail", "");
+
+		for(int i = 1; i < 30; i++)
+        {
+			_gridContainer.AddChild(_gridContainer.GetNode("InvSlot1").Duplicate());
+			_gridContainer.GetChild(i).Name = "InvSlot" + i;
+			//GD.Print(_gridContainer.GetChild(i).Name);
+        }
+
 		PlayShopAnim("falchion");
 		PlayShopAnim("shortsword");
 		Load();
@@ -88,43 +107,6 @@ public partial class Ui : Control
 
 		_areaNameTween = Mathf.Lerp(_areaNameTween, 0f, (float)delta);
 
-		if (_player._cooldownSec1)
-		{
-			_secProgressBar1.Visible = true;
-			if (_progress1 > 0)
-			{
-				_progress1 -= 100 / (float)_player._eSecWeapon1.GetMeta("cooldown") * (float)delta;
-				_secProgressBar1.Value = _progress1;
-			}
-		} else { _progress1 = 100; _secProgressBar1.Visible = false; }
-		if (_player._cooldownSec2)
-		{
-			_secProgressBar2.Visible = true;
-			if (_progress2 > 0)
-			{
-				_progress2 -= 100 / (float)_player._eSecWeapon2.GetMeta("cooldown") * (float)delta;
-				_secProgressBar2.Value = _progress2;
-			}
-		} else { _progress2 = 100; _secProgressBar2.Visible = false; }
-		/*if (_player._cooldownSec3)
-		{
-			_secProgressBar3.Visible = true;
-			if (_progress3 > 0)
-			{
-				_progress3 -= 100 / (float)_player._eSecWeapon3.GetMeta("cooldown") * (float)delta;
-				_secProgressBar3.Value = _progress3;
-			} 
-		} else { _progress3 = 100; _secProgressBar3.Visible = false; }
-		//if (_player._cooldownSec4)
-		{
-			_secProgressBar4.Visible = true;
-			if(_progress4 > 0)
-            {
-				_progress4 -= 100 / (float)_player._eSecWeapon4.GetMeta("cooldown") * (float)delta;
-				_secProgressBar4.Value = _progress4;
-            } 
-		} else { _progress4 = 100; _secProgressBar4.Visible = false; }*/
-		
 		// Switch the titles of the buttons based on what shopOption you have selected
 		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
 		{
@@ -305,6 +287,8 @@ public partial class Ui : Control
 			_desc.Visible = false;
 		}
 	}
+
+	private void _on_back_button_up() { GetNode<Control>("ResourceInv").Visible = false; GetNode<Control>("Inv").Visible = true; }
    
 	// --- Falchion ---
 	private void _on_falchion_mouse_entered(){ PlayInvAnim("Falchion", true); }
@@ -386,7 +370,7 @@ public partial class Ui : Control
 		}
 	}
 
-	private async void _on_slot_4_button_up()
+	/*private async void _on_slot_4_button_up()
 	{
 		_slotSelect.Visible = false;
 		GD.Print("sendslot4", _secItemSend);
@@ -402,7 +386,7 @@ public partial class Ui : Control
 		_player.SwitchSecondaryWeapon(_secItemSend,2);
 		await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 		_secItemSend = null;
-	}
+	}*/
 
 	private async void _on_slot_2_button_up()
 	{
@@ -453,4 +437,10 @@ public partial class Ui : Control
 		_results.GetNode<Label>("StatName").Text += upgradeName + ".......................................\n";
 		_player._weapon[_shopSelection].SetMeta(statName, Math.Round((float)_player._weapon[_shopSelection].GetMeta(statName) + _upgrades[specificStatName], 3));
 	}
+
+	private void _on_resource_inv_button_up()
+    {
+		_resourceInv.Visible = true;
+		_inv.Visible = false;
+    }
 }
