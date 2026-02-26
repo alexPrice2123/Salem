@@ -20,3 +20,4 @@ mono_crash.*.json
 salemstalker/.vscode/settings.json
 .gitignore
 *.import
+salemstalker/Assets/2D/Grass.png.import
