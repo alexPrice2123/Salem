@@ -13,7 +13,7 @@ public partial class hollowBrute : Monster3d
 		MoveWhileAttack = false;     // Can this monster move while attacking
 		Flying = false;              // Should gravity be applied to this monster
 		Stationery = false;          // If the monster shouldnt move at all
-		BaseDamage = 35.0f;         // Base damage of the monster
+		BaseDamage = 30.0f;         // Base damage of the monster
 		AttackSpeed = 2.5f;         // The time between its attacks
 		AttackRange = 1.5f;           // The distance the monster gets from the player before stopping and attacking
 		MaxHealth = 100.0f;         // Maximum monster health

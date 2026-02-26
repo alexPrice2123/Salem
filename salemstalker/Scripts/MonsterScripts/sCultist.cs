@@ -28,7 +28,7 @@ public partial class sCultist : Monster3d
 		MoveWhileAttack = true;     // Can this monster move while attacking
 		Flying = false;              // Should gravity be applied to this monster
 		Stationery = false;          // If the monster shouldnt move at all
-		BaseDamage = 25.0f;         // Base damage of the monster
+		BaseDamage = 20.0f;         // Base damage of the monster
 		AttackSpeed = 3f;         // The time between its attacks
 		AttackRange = 10f;           // The distance the monster gets from the player before stopping and attacking
 		MaxHealth = 50.0f;         // Maximum monster health
@@ -67,9 +67,9 @@ public partial class sCultist : Monster3d
 		}
 		RotateFunc(delta);
 		if (_meleeCooldown > 0f)
-        {
-            _meleeCooldown -= (float)delta;
-        }
+		{
+			_meleeCooldown -= (float)delta;
+		}
 		_orb.Scale = _orb.Scale.Lerp(_orbGoal, _orbTweenTime * (float)delta);
 	}
 
@@ -135,18 +135,18 @@ public partial class sCultist : Monster3d
 				ball.Shoot(_projectileSpeed);
 			}
 			for (int i = 0; i < AttackSpeed*10; i++)
-            {
-            	await ToSignal(GetTree().CreateTimer(AttackSpeed/(AttackSpeed*10)), "timeout");
+			{
+				await ToSignal(GetTree().CreateTimer(AttackSpeed/(AttackSpeed*10)), "timeout");
 				if (AttackSpeed/(AttackSpeed*10)*i >= 0.995f){_attackAnim = false;}
 				if (_shouldPush){break;}
-            }
+			}
 			_canAttack = true;
 			_attackAnim = false;
 		}
-        else
-        {
+		else
+		{
 			_meleeCooldown = 7f;
-            _hasHit = false;
+			_hasHit = false;
 			_meleeAnim = true;
 			_canAttack = false;
 			await ToSignal(GetTree().CreateTimer(0.85f), "timeout");
@@ -157,6 +157,6 @@ public partial class sCultist : Monster3d
 			_meleeAnim = false;
 			await ToSignal(GetTree().CreateTimer(0.7), "timeout");
 			_canAttack = true;
-        }
+		}
 	}
 }
