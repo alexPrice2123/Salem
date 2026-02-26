@@ -21,7 +21,7 @@ public partial class vCultist : Monster3d
 		MoveWhileAttack = true;     // Can this monster move while attacking
 		Flying = false;              // Should gravity be applied to this monster
 		Stationery = false;          // If the monster shouldnt move at all
-		BaseDamage = 15.0f;         // Base damage of the monster
+		BaseDamage = 12.0f;         // Base damage of the monster
 		//BaseDamage = new Godot.Collections.Array<float>{15f, 25, 40};
 		AttackSpeed = 0.5f;         // The time between its attacks
 		AttackRange = 1.5f;           // The distance the monster gets from the player before stopping and attacking
@@ -43,15 +43,15 @@ public partial class vCultist : Monster3d
 	}
 
 	private void ToggleAura(bool toggle)
-    {
+	{
 		_leftAura.Visible = toggle;
 		_rightAura.Visible = toggle;
-    }
+	}
 	private void ToggleParticles(bool toggle)
-    {
-        _leftAura.GetNode<GpuParticles3D>("Magic").Emitting = toggle; 
+	{
+		_leftAura.GetNode<GpuParticles3D>("Magic").Emitting = toggle; 
 		_rightAura.GetNode<GpuParticles3D>("Magic").Emitting = toggle;
-    }
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -103,22 +103,22 @@ public partial class vCultist : Monster3d
 		}
 	}
 	public void _on_push_box_area_entered(Node3D body)
-    {
-        if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
+	{
+		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
 		{
 			GD.Print(_charge);
 			_player.Damaged(0f, this, "Push");
 			_pushBox.SetDeferred("monitoring", false);
 			_hasHit = true;
 		}
-    }
+	}
 
 	public async void Attack()
 	{
 		_canAttack = false;
 		if (_charge < 0.66)
-        {
-            BasicAttack();
+		{
+			BasicAttack();
 			_attackAnim = true;
 			await ToSignal(GetTree().CreateTimer(0.65f), "timeout");
 			_attackAnim = false;
@@ -128,18 +128,18 @@ public partial class vCultist : Monster3d
 			_attack2Anim = false;
 			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
 			_canAttack = true;
-        }
+		}
 		else if (_charge < 1)
-        {
-            SuperPunch();
+		{
+			SuperPunch();
 			_attackAnim = true;
 			await ToSignal(GetTree().CreateTimer(1.25f), "timeout");
 			_attackAnim = false;
 			await ToSignal(GetTree().CreateTimer(AttackSpeed+0.1f), "timeout");
 			_canAttack = true;
-        }
-        else
-        {
+		}
+		else
+		{
 			MoveWhileAttack = false;
 			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
 			Smash();
@@ -151,27 +151,27 @@ public partial class vCultist : Monster3d
 			MoveWhileAttack = true;
 			await ToSignal(GetTree().CreateTimer(AttackSpeed*2), "timeout");
 			_canAttack = true;
-        }
+		}
 	}
 
-    private async void BasicAttack()
-    {
+	private async void BasicAttack()
+	{
 		_hasHit = false;
 		await ToSignal(GetTree().CreateTimer(0.55), "timeout");
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
 		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-    }
+	}
 	private async void SuperPunch()
-    {
+	{
 		_hasHit = false;
 		await ToSignal(GetTree().CreateTimer(1.14), "timeout");
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
 		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-    }
+	}
 	private async void Smash()
-    {
+	{
 		_hasHit = false;
 		await ToSignal(GetTree().CreateTimer(1.06), "timeout");
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
@@ -181,5 +181,5 @@ public partial class vCultist : Monster3d
 		await ToSignal(GetTree().CreateTimer(0.3), "timeout");
 		_pushBox.SetDeferred("monitoring", false);
 		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-    }
+	}
 }
