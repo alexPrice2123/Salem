@@ -1,4 +1,4 @@
-[gd_scene load_steps=1150 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1151 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
@@ -936,6 +936,7 @@
 [ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="919_h1utm"]
 [ext_resource type="PackedScene" uid="uid://cw86i51qs7jry" path="res://Scenes/boat.tscn" id="922_qtthl"]
 [ext_resource type="Script" uid="uid://djprwulc3bex0" path="res://Scripts/BorderTool.cs" id="926_3vgip"]
+[ext_resource type="Script" uid="uid://c8ixt3vjg78bx" path="res://Scripts/VillagerScripts/RichardVillager.cs" id="926_lmwmg"]
 [ext_resource type="PackedScene" uid="uid://07sk25v6dh1t" path="res://Assets/3D/charatermodel/long_fence.blend" id="926_ptcpy"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="927_4aw2u"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="931_3vgip"]
@@ -2686,9 +2687,6 @@ transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -484.4417, 
 navigation_mesh = SubResource("NavigationMesh_wrhnx")
 navigation_layers = 3
 
-[node name="Player_3d" parent="." instance=ExtResource("36_r0smi")]
-transform = Transform3D(0.9041945, 0, 0.42712098, 0, 1, 0, -0.42712098, 0, 0.9041945, -9.95616, 3.1257527, 44.440674)
-
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
 script = ExtResource("1_fb5os")
 DataPath = "res://Scenes/World"
@@ -2711,7 +2709,6 @@ NPCName = "Mary"
 InitialDialogue = "Oh my sweet little babies! Please come back to me!"
 QuestDialogue = Array[String](["Lord Inquisitor sir! Won't you help an old woman out? I've lost my young and dearest kitties, Taz, Bridger, and Gnocchi.", "I last saw them approach some strange individuals in purple robes outside of the village.", "Would you please find them and bring them back home?"])
 AcceptedDialogue = Array[String](["Oh thank you! Please make sure they comes back safely."])
-IgnoredDialogue = "Oh dear. Maybe they'll come back on their own some day..."
 WaitingDialogue = "Have you found my babies yet?"
 DoneDialogue = Array[String](["Oh thank you Lord Inquisitor! Don't ever leave me again my cuties. Mama Mary will protect you here."])
 PostDoneDialogue = "Ahhh! No biting Bridger. "
@@ -2719,13 +2716,13 @@ QuestTitle = "Find Mary's lost cats, Taz, Bridger, and Gnocchi, somewhere in the
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Mary/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99076444, -0.055199992)
-bones/2/rotation = Quaternion(-0.021481097, 0, 0, 0.99976933)
-bones/5/rotation = Quaternion(-0.119990334, 0.0065532946, 0.02176534, 0.9925149)
-bones/25/rotation = Quaternion(0.97310376, 0.016459733, -0.009153975, 0.22959644)
-bones/26/rotation = Quaternion(0.21238244, 0.0015722646, 0.017025175, 0.977037)
-bones/34/rotation = Quaternion(0.97310376, -0.016459735, 0.009153931, 0.22959644)
-bones/35/rotation = Quaternion(0.21238244, -0.0015722644, -0.01702517, 0.977037)
+bones/0/position = Vector3(0, 0.9879377, -0.055199996)
+bones/2/rotation = Quaternion(-0.0016908947, 0, 0, 0.9999986)
+bones/5/rotation = Quaternion(-0.13699456, 0.0062568784, 0.021750214, 0.99031323)
+bones/25/rotation = Quaternion(0.9715553, 0.017049674, -0.00921839, 0.23601845)
+bones/26/rotation = Quaternion(0.22535613, 0.0015675507, 0.018065179, 0.9741077)
+bones/34/rotation = Quaternion(0.9715553, -0.017049674, 0.009218347, 0.23601845)
+bones/35/rotation = Quaternion(0.22535613, -0.0015675505, -0.018065179, 0.9741077)
 
 [node name="Elizabeth" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3819237, 1.9490459, 35.37815)
@@ -2734,7 +2731,6 @@ NPCName = "Elizabeth"
 InitialDialogue = "It's been getting colder and colder..."
 QuestDialogue = Array[String](["My husband, along with other Lumberjacks from our town have gone missing over the past few days and we've been out of firewood.", "Could you gather some firewood so we can stay warm at night? You may run into those guys in the forest too. "])
 AcceptedDialogue = Array[String](["Yes! This should be enough to keep us warm for a while. Thank you.", "Let me know if gather any information of their whereabouts."])
-IgnoredDialogue = "Oh, that's alright. Maybe the lumberjacks will come back soon. "
 WaitingDialogue = "Still waiting on that firewood once you gather enough."
 DoneDialogue = Array[String](["Yes! This should be enough to keep us warm for a while. Thank you.", "It's a shame you couldn't find those lumberjacks. I do home they come back safely."])
 PostDoneDialogue = "Now we'll stay warm through the night."
@@ -2742,13 +2738,13 @@ QuestTitle = "Gather firewood from the forest for Elizabeth "
 QuestGoal = "0/15"
 
 [node name="Skeleton3D" parent="Elizabeth/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99076444, -0.055199992)
-bones/2/rotation = Quaternion(-0.021481097, 0, 0, 0.99976933)
-bones/5/rotation = Quaternion(-0.119990334, 0.0065532946, 0.02176534, 0.9925149)
-bones/25/rotation = Quaternion(0.97310376, 0.016459733, -0.009153975, 0.22959644)
-bones/26/rotation = Quaternion(0.21238244, 0.0015722646, 0.017025175, 0.977037)
-bones/34/rotation = Quaternion(0.97310376, -0.016459735, 0.009153931, 0.22959644)
-bones/35/rotation = Quaternion(0.21238244, -0.0015722644, -0.01702517, 0.977037)
+bones/0/position = Vector3(0, 0.9879377, -0.055199996)
+bones/2/rotation = Quaternion(-0.0016908947, 0, 0, 0.9999986)
+bones/5/rotation = Quaternion(-0.13699456, 0.0062568784, 0.021750214, 0.99031323)
+bones/25/rotation = Quaternion(0.9715553, 0.017049674, -0.00921839, 0.23601845)
+bones/26/rotation = Quaternion(0.22535613, 0.0015675507, 0.018065179, 0.9741077)
+bones/34/rotation = Quaternion(0.9715553, -0.017049674, 0.009218347, 0.23601845)
+bones/35/rotation = Quaternion(0.22535613, -0.0015675505, -0.018065179, 0.9741077)
 
 [node name="Cube" parent="Elizabeth/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_xpmv6")
@@ -2768,7 +2764,6 @@ NPCName = "Dillon"
 InitialDialogue = "Gosh darn it! Those damn rats keep eating our food!"
 QuestDialogue = Array[String](["Hey! If you're looking for clues my \"Royal Inquisitor\", you need to take a look at those rats.", "They keep eating all of our food in our village and seem to have some sort of purple glow to them. Won't you help us by killing those rodents?"])
 AcceptedDialogue = Array[String](["Thanks Inquisitor sir. Make sure those rodents never try eating our food again."])
-IgnoredDialogue = "Hmph. Guess I gotta try getting rid of them myself..."
 WaitingDialogue = "I still see rats scurrying about. "
 DoneDialogue = Array[String](["Hmph! Not too shabby. We'll finally be able to eat food in peace. Thank you sir.", "I believe those rats came from outside the village from some sort of campsite. That's all I know."])
 PostDoneDialogue = "We can finally eat food again. Thank you. "
@@ -2777,13 +2772,13 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99076444, -0.055199992)
-bones/2/rotation = Quaternion(-0.021481097, 0, 0, 0.99976933)
-bones/5/rotation = Quaternion(-0.119990334, 0.0065532946, 0.02176534, 0.9925149)
-bones/25/rotation = Quaternion(0.97310376, 0.016459733, -0.009153975, 0.22959644)
-bones/26/rotation = Quaternion(0.21238244, 0.0015722646, 0.017025175, 0.977037)
-bones/34/rotation = Quaternion(0.97310376, -0.016459735, 0.009153931, 0.22959644)
-bones/35/rotation = Quaternion(0.21238244, -0.0015722644, -0.01702517, 0.977037)
+bones/0/position = Vector3(0, 0.9879377, -0.055199996)
+bones/2/rotation = Quaternion(-0.0016908947, 0, 0, 0.9999986)
+bones/5/rotation = Quaternion(-0.13699456, 0.0062568784, 0.021750214, 0.99031323)
+bones/25/rotation = Quaternion(0.9715553, 0.017049674, -0.00921839, 0.23601845)
+bones/26/rotation = Quaternion(0.22535613, 0.0015675507, 0.018065179, 0.9741077)
+bones/34/rotation = Quaternion(0.9715553, -0.017049674, 0.009218347, 0.23601845)
+bones/35/rotation = Quaternion(0.22535613, -0.0015675505, -0.018065179, 0.9741077)
 
 [node name="Cube" parent="Dillon/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_obu7h")
@@ -2802,7 +2797,6 @@ NPCName = "Lukas"
 InitialDialogue = "Please, is there anyone to help? I've made such an important discovery!"
 QuestDialogue = Array[String](["Oh, Master Inquisitor. I didn't expect you to come. Knowing you, you make have already seen them, but I'll mention them again.", "There's been strange wooden shrines appearing around our village by those hooded individuals.", "I believe those damn Cultists set them up, and it seems to be enhancing their powers by summoning more creatures of Kyron, the God of Darkness.", "You seem like a capable fighter. Could you do the village a favor and destroy those Shrines?"])
 AcceptedDialogue = Array[String](["Oh we are truly grateful Master Inquisitor. The Kingdom and her holiness shall forever be in our debt.", "Come back to me once those Shrines have been vanquished."])
-IgnoredDialogue = "I understand. You must have a lot happening currently."
 WaitingDialogue = "Keep looking around Brittlebay village and you should find those Shrines."
 DoneDialogue = Array[String](["You did it! Our village is now safe once again. I'll look into those Shrines more in the meantime.", "You may get some more information from the town Wizard if you haven't already spoken to him."])
 PostDoneDialogue = "I heard of Shrine sightings in the next village over..."
@@ -2810,13 +2804,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99076444, -0.055199992)
-bones/2/rotation = Quaternion(-0.021481097, 0, 0, 0.99976933)
-bones/5/rotation = Quaternion(-0.119990334, 0.0065532946, 0.02176534, 0.9925149)
-bones/25/rotation = Quaternion(0.97310376, 0.016459733, -0.009153975, 0.22959644)
-bones/26/rotation = Quaternion(0.21238244, 0.0015722646, 0.017025175, 0.977037)
-bones/34/rotation = Quaternion(0.97310376, -0.016459735, 0.009153931, 0.22959644)
-bones/35/rotation = Quaternion(0.21238244, -0.0015722644, -0.01702517, 0.977037)
+bones/0/position = Vector3(0, 0.9879377, -0.055199996)
+bones/2/rotation = Quaternion(-0.0016908947, 0, 0, 0.9999986)
+bones/5/rotation = Quaternion(-0.13699456, 0.0062568784, 0.021750214, 0.99031323)
+bones/25/rotation = Quaternion(0.9715553, 0.017049674, -0.00921839, 0.23601845)
+bones/26/rotation = Quaternion(0.22535613, 0.0015675507, 0.018065179, 0.9741077)
+bones/34/rotation = Quaternion(0.9715553, -0.017049674, 0.009218347, 0.23601845)
+bones/35/rotation = Quaternion(0.22535613, -0.0015675505, -0.018065179, 0.9741077)
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2827,7 +2821,6 @@ visible = false
 script = ExtResource("426_xyhap")
 NPCName = "Samual"
 InitialDialogue = "Somebody please! Help my son!"
-IgnoredDialogue = "No. But my son..."
 WaitingDialogue = "Please deliver the medicine to me soon. "
 QuestTitle = "Gather resources to craft the medicine "
 QuestGoal = "Bleeding Heart: 0/3, Dead Ooze: 0/3, Seed: 0/3"
@@ -2839,7 +2832,6 @@ NPCName = "Martha"
 InitialDialogue = "Those Cultists took my family! Something must be done! "
 QuestDialogue = Array[String](["Lord Inquisitor! Those Cultists took my husband and daughter and changed them into these creatures of darkness right in front of my eyes!", "Please, won't you get the vengeance that they deserve?"])
 AcceptedDialogue = Array[String](["Oh thank you Lord Inquisitor! May her lady's grace forever be upon us. Return to me once those monsters are brought to justice."])
-IgnoredDialogue = "Maybe someone else can help me."
 WaitingDialogue = "My family won't be brought to justice until those monsters are dead!"
 DoneDialogue = Array[String](["Thank you, oh thank you so much Lord Inquisitor. My husband and daughter may now rest in peace. If you find any more of those Cultists, make sure they get what they deserve."])
 PostDoneDialogue = "My family can now rest in peace. Thank you."
@@ -2847,13 +2839,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's family"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.99076444, -0.055199992)
-bones/2/rotation = Quaternion(-0.021481097, 0, 0, 0.99976933)
-bones/5/rotation = Quaternion(-0.119990334, 0.0065532946, 0.02176534, 0.9925149)
-bones/25/rotation = Quaternion(0.97310376, 0.016459733, -0.009153975, 0.22959644)
-bones/26/rotation = Quaternion(0.21238244, 0.0015722646, 0.017025175, 0.977037)
-bones/34/rotation = Quaternion(0.97310376, -0.016459735, 0.009153931, 0.22959644)
-bones/35/rotation = Quaternion(0.21238244, -0.0015722644, -0.01702517, 0.977037)
+bones/0/position = Vector3(0, 0.9879377, -0.055199996)
+bones/2/rotation = Quaternion(-0.0016908947, 0, 0, 0.9999986)
+bones/5/rotation = Quaternion(-0.13699456, 0.0062568784, 0.021750214, 0.99031323)
+bones/25/rotation = Quaternion(0.9715553, 0.017049674, -0.00921839, 0.23601845)
+bones/26/rotation = Quaternion(0.22535613, 0.0015675507, 0.018065179, 0.9741077)
+bones/34/rotation = Quaternion(0.9715553, -0.017049674, 0.009218347, 0.23601845)
+bones/35/rotation = Quaternion(0.22535613, -0.0015675505, -0.018065179, 0.9741077)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ub1ot")
@@ -2871,7 +2863,6 @@ visible = false
 script = ExtResource("428_of432")
 NPCName = "Finn"
 InitialDialogue = "Hey mister. I've got some valuable information you might want to hear. "
-IgnoredDialogue = "Welp. It could help you further down the road. "
 WaitingDialogue = "I still wonder what that tool could be."
 QuestTitle = "Find the hidden weapon on the swamp island"
 QuestGoal = "0/1"
@@ -2882,7 +2873,6 @@ visible = false
 script = ExtResource("429_wkm1a")
 NPCName = "Matthew"
 InitialDialogue = "Oh, young man. Please come and speak with me for a moment. "
-IgnoredDialogue = "Please reconsider. We truly need your help. "
 WaitingDialogue = "That beast still plauges the island. "
 QuestTitle = "Defeat The Hollowed Bark on the swamp island"
 QuestGoal = "0/1"
@@ -3689,7 +3679,6 @@ debug_color = Color(0, 1, 0, 1)
 
 [node name="GoalArea" parent="." instance=ExtResource("449_jsh0i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.735676, 0, 26.98191)
-visible = false
 
 [node name="Area" parent="GoalArea" index="0" groups=["GoalArea"]]
 
@@ -3736,7 +3725,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.32597, 0, 386.28848)
 shape = SubResource("SphereShape3D_4psjf")
 debug_color = Color(0, 1, 0, 1)
 
-[node name="Volume6" type="CollisionShape3D" parent="GoalArea/Area" index="9"]
+[node name="Volume7" type="CollisionShape3D" parent="GoalArea/Area" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -195.32597, 0, 559.4507)
+shape = SubResource("SphereShape3D_4psjf")
+debug_color = Color(0, 1, 0, 1)
+
+[node name="Volume13" type="CollisionShape3D" parent="GoalArea/Area" index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -174.89632, 0, 702.3929)
+shape = SubResource("SphereShape3D_4psjf")
+debug_color = Color(0, 1, 0, 1)
+
+[node name="Volume6" type="CollisionShape3D" parent="GoalArea/Area" index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -265.6813, 0, -210.5557)
 shape = SubResource("SphereShape3D_4psjf")
 debug_color = Color(0, 1, 0, 1)
@@ -3895,6 +3894,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.183912, 1.0721328, 43.002
 [node name="Gnocchi" parent="." instance=ExtResource("942_xpmv6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.86915, 1.0721328, 43.002872)
 
+[node name="Player_3d" parent="." instance=ExtResource("36_r0smi")]
+transform = Transform3D(0.64658993, 0, -0.7628377, 0, 1, 0, 0.7628377, 0, 0.64658993, -233.52576, 3.150973, 770.24554)
+
+[node name="Richard" parent="." instance=ExtResource("421_81rqo")]
+transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, -232.43732, 2.0682552, 769.41364)
+script = ExtResource("926_lmwmg")
+NPCName = "Inquisitor Richard"
+QuestDialogue = Array[String](["Welp, looks like we made it. Took quite a while to reach Saltus Island.", "The King will be pleased once we finish our mission, so let's get is done quickly now shall we?", "You've been a little quiet since we got here. Wait, don't tell me you forgot our mission?"])
+AcceptedDialogue = Array[String](["Fine, I guess I'll have to remind you now don't I?", "We're Inquisitors from the Kingdom of Whilstrum.", "The King has tasked us to investigate the disturbances happening in Saltus, one of the Kingdom's many provinces.", "I've been told that there's been a series of kidnappings, deaths, and even religious defiance to our God, Xoraya.", "From the information we've been given, a new Cultist group has emerged on the island.", "They may have something to do with what's been going on.", "Don't forget why we're here next time. And remember that you're only really here for your fighting capabilities.", "Leave the hard work to those above you.", "Make yourself useful and go investigate the village down the path. They may know something we don't. "])
+IgnoredDialogue = Array[String](["Well, that's good at least. Don't forget the reason you were invited to come. Those fighting capabilities are the only thing you're good for.", "Now go make yourself useful and investigate the village down the path. They may know something we don't."])
+WaitingDialogue = "Don't disappoint our King. Head over to that village down the road. "
+
+[node name="Skeleton3D" parent="Richard/villagerblank/metarig_001" index="0"]
+bones/0/position = Vector3(0, 0.9879377, -0.055199996)
+bones/2/rotation = Quaternion(-0.0016908947, 0, 0, 0.9999986)
+bones/5/rotation = Quaternion(-0.13699456, 0.0062568784, 0.021750214, 0.99031323)
+bones/25/rotation = Quaternion(0.9715553, 0.017049674, -0.00921839, 0.23601845)
+bones/26/rotation = Quaternion(0.22535613, 0.0015675507, 0.018065179, 0.9741077)
+bones/34/rotation = Quaternion(0.9715553, -0.017049674, 0.009218347, 0.23601845)
+bones/35/rotation = Quaternion(0.22535613, -0.0015675505, -0.018065179, 0.9741077)
+
+[node name="Range" parent="Richard" index="6"]
+radius = 0.001
+
 [editable path="MonsterHolder/RatSpawner"]
 [editable path="MonsterHolder/RatSpawner2"]
 [editable path="MonsterHolder/RatSpawner3"]
@@ -3971,3 +3994,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.86915, 1.0721328, 43.00287
 [editable path="Overgrown Dimwood Village/long_fence6"]
 [editable path="Overgrown Dimwood Village/long_fence7"]
 [editable path="Overgrown Dimwood Village/long_fence8"]
+[editable path="Richard"]
+[editable path="Richard/villagerblank"]

@@ -115,11 +115,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.422
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15689681, -0.5134246, 0.69480205, 0.4785695)
-bones/19/rotation = Quaternion(0.5865778, -0.035437696, 0.033807628, 0.8084107)
+bones/18/rotation = Quaternion(-0.15376396, -0.52003324, 0.69795084, 0.4677465)
+bones/19/rotation = Quaternion(0.61153275, -0.035772614, 0.023014745, 0.79007494)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5253164, 0.04555715, 0.8496864, 0.047001317, 0.99859476, -0.024482924, -0.84960747, 0.02707532, -0.5267194, -0.1884507, 1.4034963, 0.41945764)
+transform = Transform3D(-0.54771507, 0.052141942, 0.8350384, 0.008179992, 0.99834216, -0.05697371, -0.8366246, -0.024374478, -0.5472335, -0.17620412, 1.4177264, 0.41262177)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")

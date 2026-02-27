@@ -177,3 +177,4 @@ environment/ssao/quality=0
 environment/ssil/quality=0
 environment/glow/upscale_mode=0
 global_illumination/sdfgi/frames_to_converge=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

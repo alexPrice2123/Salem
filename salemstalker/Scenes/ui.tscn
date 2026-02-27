@@ -21,7 +21,7 @@
 [ext_resource type="Shader" uid="uid://5l0cib6eitex" path="res://Shaders/stamina.gdshader" id="13_3r70p"]
 [ext_resource type="Texture2D" uid="uid://bgqfw72wmjw40" path="res://Assets/UI/newstamorb.png" id="13_whq80"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
-[ext_resource type="FontFile" uid="uid://b0f5m31hcrgqt" path="res://Assets/Fonts/Pixel.ttf" id="14_d42i4"]
+[ext_resource type="FontFile" uid="uid://sx3tldq5iag2" path="res://Assets/Fonts/DumNorm.ttf" id="17_fe2sg"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
 
@@ -56,7 +56,8 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pmm21"]
 line_spacing = 3.08
-font_size = 35
+font = ExtResource("17_fe2sg")
+font_size = 17
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -109,6 +110,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qdvrb"]
 line_spacing = 3.08
+font = ExtResource("17_fe2sg")
 font_size = 25
 font_color = Color(1, 0, 0, 1)
 outline_size = 10
@@ -116,12 +118,14 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_d42i4"]
 line_spacing = 3.08
+font = ExtResource("17_fe2sg")
 font_size = 25
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8fs27"]
 line_spacing = 3.08
+font = ExtResource("17_fe2sg")
 font_size = 25
 font_color = Color(1, 0, 0, 1)
 outline_size = 10
@@ -129,6 +133,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dx4fu"]
 line_spacing = 3.08
+font = ExtResource("17_fe2sg")
 font_size = 25
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
@@ -155,17 +160,16 @@ outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nt8jn"]
-line_spacing = -6.0
-font = ExtResource("14_d42i4")
-font_size = 32
+line_spacing = -3.0
+font = ExtResource("10_nt8jn")
 stacked_outline_count = 2
 stacked_outline_0/size = 5
 stacked_outline_1/size = 5
 stacked_outline_1/color = Color(0.19434929, 0.19434926, 0.19434926, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g0wmg"]
-font = ExtResource("14_d42i4")
-font_size = 45
+font = ExtResource("10_nt8jn")
+font_size = 25
 stacked_outline_count = 2
 stacked_outline_0/size = 7
 stacked_outline_1/size = 5
@@ -772,10 +776,11 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.002
 anchor_bottom = 0.995
-offset_left = -505.0
-offset_top = 278.0
-offset_right = -506.30408
-offset_bottom = 278.536
+offset_left = -1047.0
+offset_top = -17.0
+offset_right = -1048.3041
+offset_bottom = -16.46399
+scale = Vector2(2, 2)
 theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "FPS"
 label_settings = SubResource("LabelSettings_pmm21")
@@ -934,14 +939,15 @@ offset_bottom = 0.149963
 [node name="DialogueBox" type="Label" parent="Dialogue"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.316
+anchor_top = 0.22700001
 anchor_right = 0.849
-anchor_bottom = 0.75
-offset_top = -0.352001
-offset_right = -0.0400391
-offset_bottom = -1.52588e-05
+anchor_bottom = 0.75000006
+offset_top = -0.04399109
+offset_right = -407.53998
+offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 text = "dialogue
 d
 d"
@@ -951,14 +957,16 @@ autowrap_mode = 2
 [node name="NameText" type="Label" parent="Dialogue/DialogueBox"]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = -1.044
 anchor_right = 0.333
-anchor_bottom = 0.343
-offset_top = -54.0
-offset_right = 0.216736
-offset_bottom = -26.725
+anchor_bottom = -0.095000006
+offset_top = -0.019992828
+offset_right = 0.21673584
+offset_bottom = -0.015000343
 theme_override_fonts/font = ExtResource("10_nt8jn")
 text = "Name"
 label_settings = SubResource("LabelSettings_g0wmg")
+vertical_alignment = 2
 
 [node name="AcceptButton" type="Button" parent="Dialogue"]
 layout_mode = 1
@@ -971,7 +979,7 @@ offset_right = 0.439987
 offset_bottom = -0.0640106
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("10_nt8jn")
+theme_override_fonts/font = ExtResource("17_fe2sg")
 theme_override_font_sizes/font_size = 22
 text = "Accept"
 
@@ -982,14 +990,15 @@ anchors_preset = -1
 anchor_top = 0.802
 anchor_right = 0.161
 anchor_bottom = 1.012
-offset_top = 0.0559998
-offset_right = 172.44
-offset_bottom = -0.0639954
+offset_left = -62.999996
+offset_top = -555.944
+offset_right = 882.44
+offset_bottom = 107.936035
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 22
-text = "Click To Continue"
+flat = true
 
 [node name="IgnoreButton" type="Button" parent="Dialogue"]
 layout_mode = 1
@@ -1004,7 +1013,7 @@ offset_right = -0.399994
 offset_bottom = -0.0640106
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = ExtResource("10_nt8jn")
+theme_override_fonts/font = ExtResource("17_fe2sg")
 theme_override_font_sizes/font_size = 22
 text = "Ignore"
 
