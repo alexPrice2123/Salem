@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=4 uid="uid://bx56nwvot6ch4"]
+[gd_scene load_steps=73 format=4 uid="uid://bx56nwvot6ch4"]
 
 [ext_resource type="Texture2D" uid="uid://c3m188jvtfp6e" path="res://Assets/3D/props/prop_textures/inquisitor_boat/inquisitorboat_DefaultMaterial_BaseColor.png" id="1_bry56"]
 [ext_resource type="Script" uid="uid://cu5lcqiogq20c" path="res://Scripts/Cutscene1.cs" id="1_jdm0i"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://cy5askrgsuf6x" path="res://Scenes/Cutscene1/Splatmap_0_0_2.res" id="22_6egv1"]
 [ext_resource type="Shader" uid="uid://c3x6kyifnimul" path="res://Shaders/fogOBJ.gdshader" id="26_72hg8"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="27_6egv1"]
+[ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="30_eopnx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eopnx"]
 shader = ExtResource("2_4dgfs")
@@ -404,6 +405,14 @@ shader_parameter/dithering = true
 shader_parameter/scale_resolution = true
 shader_parameter/target_resolution_scale = 2
 
+[sub_resource type="LabelSettings" id="LabelSettings_e5c71"]
+font = ExtResource("30_eopnx")
+font_size = 25
+stacked_outline_count = 2
+stacked_outline_0/size = 7
+stacked_outline_1/size = 5
+stacked_outline_1/color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+
 [node name="Cutscene1" type="Node3D"]
 script = ExtResource("1_jdm0i")
 
@@ -498,3 +507,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="NameText" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("30_eopnx")
+text = "[Space] To Skip"
+label_settings = SubResource("LabelSettings_e5c71")
+horizontal_alignment = 1
+vertical_alignment = 2
