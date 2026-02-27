@@ -45,8 +45,6 @@ public partial class revenanT : Monster3d
 			}
 			else
 			{
-				MultBodyRef = GetNode<Node3D>("Body"+i);
-				MultHitRef = GetNode<Node3D>("HitFX"+i);
 			}
 		}
 		Initialization();

@@ -40,6 +40,7 @@ public partial class Player3d : CharacterBody3D
 	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
 	private PackedScene _flintGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Flintlock.tscn"); // Pre-load Flintlock scene resource
 	private PackedScene _stakeGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/stake_gun.tscn"); // Pre-load Stake Gun scene resource
+	private PackedScene _tomahawk = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Tomahawk.tscn"); // Pre-load Stake Gun scene resource
 	public Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 	private Dictionary<string, PackedScene> _secWeapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
@@ -86,6 +87,7 @@ public partial class Player3d : CharacterBody3D
 	private float _parryWindow = 0.15f; 				// Duration of the parry window (in seconds)
 	public NpcVillager _villager; 						// Reference to the currently interacting villager NPC
 	public bool _hasApple = false; 						// Quest item flag
+	public bool crouching = false;
 	private float _staminaTimer = 2f;
 	private float _currentStaminaTimer = 0f;
 	private int equipSec = 2;
@@ -157,6 +159,7 @@ public partial class Player3d : CharacterBody3D
 		_weapon.Add("dagger", _dagger);
 		_secWeapon.Add("FlintGun", _flintGun);
 		_secWeapon.Add("StakeGun", _stakeGun);
+		_secWeapon.Add("Tomahawk",_tomahawk);
 		StartCut();
 	}
 
@@ -406,6 +409,10 @@ public partial class Player3d : CharacterBody3D
 				{
 					stakeChild.specAction();
 				}
+				else if (_eSecWeapon1 is Tomahawk hawkChild)
+				{
+					hawkChild.specAction();
+				}
 			}
 			else if (equipSec == 2 && !_cooldownSec2)
 			{
@@ -417,6 +424,10 @@ public partial class Player3d : CharacterBody3D
 				else if (_eSecWeapon1 is StakeGun stakeChild)
 				{
 					stakeChild.specAction();
+				}
+				else if (_eSecWeapon1 is Tomahawk hawkChild)
+				{
+					hawkChild.specAction();
 				}
 			}
 		}

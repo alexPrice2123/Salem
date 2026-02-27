@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxlqtjlaaksgx"]
+
+[ext_resource type="Script" uid="uid://bv3mplk21rafv" path="res://Scenes/OffHandWeapons/Tomahawk.cs" id="1_37tf3"]
+
+[node name="Tomahawk" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_37tf3")
+metadata/cooldown = 2.0
+
+[node name="BarrelPos" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.141, -0.119, -0.4208814)

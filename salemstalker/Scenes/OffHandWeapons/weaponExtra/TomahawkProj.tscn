@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy6tc5irtonoy"]
+
+[ext_resource type="Script" uid="uid://bhroniwokj1t6" path="res://Scenes/OffHandWeapons/weaponExtra/TomahawkProj.cs" id="1_gvs1s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gvs1s"]
+size = Vector3(0.08, 0.27, 0.79)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0scey"]
+size = Vector3(0.20941162, 0.42663574, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5laef"]
+height = 1.3752441
+
+[node name="Tomahawk" type="RigidBody3D" groups=["PlayerProj"]]
+collision_layer = 256
+collision_mask = 256
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 0.6
+angular_velocity = Vector3(3.1415927, 0, 0)
+script = ExtResource("1_gvs1s")
+metadata/damagePerBoss = 0.15
+metadata/DamagePer = 0.35
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_gvs1s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0020446777, -5.522618e-10, -0.0023238212)
+shape = SubResource("BoxShape3D_0scey")
+
+[node name="HitArea3D" type="Area3D" parent="." groups=["PlayerProj"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.010864258, -6.661338e-16)
+shape = SubResource("CapsuleShape3D_5laef")
+
+[connection signal="body_entered" from="HitArea3D" to="." method="_on_hit_area_3d_body_entered"]

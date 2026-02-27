@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cmfaxccf8ffss" path="res://Assets/UI/player.png" id="2_cvtri"]
 [ext_resource type="Script" uid="uid://jtdlrcwrnc4t" path="res://Scripts/Camera.cs" id="2_mawk5"]
 [ext_resource type="PackedScene" uid="uid://3v4hdgpge0v6" path="res://Scenes/MainHandWeapons/shortsword.tscn" id="2_sb0or"]
-[ext_resource type="PackedScene" uid="uid://do3u2x5avpy72" path="res://Scenes/OffHandWeapons/stake_gun.tscn" id="3_cvtri"]
 [ext_resource type="PackedScene" uid="uid://c3ix37nxvhxo5" path="res://Scenes/OffHandWeapons/Flintlock.tscn" id="3_mawk5"]
 [ext_resource type="PackedScene" uid="uid://dwpo6a7lu68jh" path="res://Scenes/ui.tscn" id="3_sb0or"]
+[ext_resource type="PackedScene" uid="uid://dxlqtjlaaksgx" path="res://Scenes/OffHandWeapons/tomahawk.tscn" id="5_cvtri"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
@@ -97,7 +97,6 @@ script = ExtResource("1_df3ch")
 shape = SubResource("CapsuleShape3D_6lgym")
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36, 0)
 
 [node name="Sprite3D" type="Sprite3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 326.74033, 0)
@@ -115,8 +114,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.422
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15653883, -0.5141876, 0.6951697, 0.47733214)
-bones/19/rotation = Quaternion(0.5861955, -0.03543236, 0.033970576, 0.8086813)
+bones/18/rotation = Quaternion(-0.1568414, -0.5135427, 0.694859, 0.4783781)
+bones/19/rotation = Quaternion(0.5914389, -0.03550524, 0.03172924, 0.80494267)
 bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
 bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
 bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
@@ -126,7 +125,7 @@ bones/26/rotation = Quaternion(-0.30964947, -0.010137768, -0.10400323, 0.9450914
 bones/27/rotation = Quaternion(-0.0527684, -0.02960059, -0.34093818, 0.9381367)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5274641, 0.045188516, 0.84837466, 0.049023136, 0.9985395, -0.022707809, -0.84816134, 0.029612612, -0.5289088, -0.18729809, 1.4024409, 0.4192567)
+transform = Transform3D(-0.52629405, 0.04743465, 0.8489785, 0.037598893, 0.99876446, -0.032495663, -0.8494704, 0.014818579, -0.527427, -0.18787606, 1.4073764, 0.4186217)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")
@@ -160,7 +159,7 @@ omni_range = 25.0
 
 [node name="Offhand1" type="Node3D" parent="Head/Camera3D"]
 
-[node name="StakeGun" parent="Head/Camera3D/Offhand1" instance=ExtResource("3_cvtri")]
+[node name="Tomahawk" parent="Head/Camera3D/Offhand1" instance=ExtResource("5_cvtri")]
 
 [node name="Offhand2" type="Node3D" parent="Head/Camera3D"]
 
@@ -233,8 +232,7 @@ mesh = SubResource("SphereMesh_wan02")
 [editable path="Head/Camera3D/Sword/Shortsword"]
 [editable path="Head/Camera3D/Sword/Shortsword/weaponAnimations"]
 [editable path="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/shortsword"]
-[editable path="Head/Camera3D/Offhand1/StakeGun"]
-[editable path="Head/Camera3D/Offhand1/StakeGun/stake gun"]
+[editable path="Head/Camera3D/Offhand1/Tomahawk"]
 [editable path="Head/Camera3D/Offhand2/FlintGun"]
 [editable path="Head/Camera3D/Offhand2/FlintGun/flinklock_animtions"]
 [editable path="Head/Camera3D/Offhand3/FlintGun"]
