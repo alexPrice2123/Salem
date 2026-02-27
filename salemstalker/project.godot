@@ -18,6 +18,10 @@ boot_splash/bg_color=Color(0.20088004, 0.1612, 0.31, 1)
 boot_splash/image="uid://bpelivjm8lqn6"
 config/icon="uid://bpelivjm8lqn6"
 
+[autoload]
+
+Item="*res://Scripts/Item.cs"
+
 [display]
 
 window/size/viewport_width=1079

@@ -1,37 +1,29 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 
 public partial class Item : CharacterBody3D
 {
-	private string _name = "";
-	private int _maxDrop = 0;
-	private float _dropChance = 0;
-	private Texture2D _image = (Texture2D)GD.Load("res://Assets/2D/eyeicon.png"); // the file directory for the item's image
-	public bool _stored = false; // track weather its in an inventory or on the ground
-	private Node3D _holder;
-	public Item (string name, int max, float chance)
-	{
-		_name = name;
-		_maxDrop = max;
-		_dropChance = chance;
-		//_image = (Texture2D)GD.Load("res://Assets/2D/" + name + ".png");
-	}
-	public Item (string name, float chance)
-	{
-		_name = name;
-		_maxDrop = 1;
-		_dropChance = chance;
-		//_image = (Texture2D)GD.Load("res://Assets/2D/" + name + ".png");
-	}
+	public static Item Instance { get; private set; }
+	private RandomNumberGenerator _rng = new(); 
+	private Vector3 _dropDirection = new Vector3();
+	//private Node3D _holder;
 
 	public override void _Ready()
 	{
-		_holder = GetNode<Node3D>("ItemHolder");
+		Instance = this;
+		//PackedScene world = ResourceLoader.Load<PackedScene>("res://Scenes/newWorld.tscn");
+		//Node3D _world = (Node3D)world.Instantiate();
+		_rng.Randomize();
+		//_holder = GetParent().GetNode<Node3D>("World").GetNode<Node3D>("MonstItemHolder");
 	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector3 velocity = Velocity;
 		if (!IsOnFloor()) { velocity.Y -= 6f * (float)delta; }
+		else { Velocity = new Vector3(0, 0, 0); }
 		Velocity = velocity;
 		MoveAndSlide();
 	}
@@ -39,24 +31,39 @@ public partial class Item : CharacterBody3D
 	{
 		if (body is Player3d player)
 		{
-			GD.Print("collided with " + player.Name);
-			GD.Print(Name);
-			for (int i = 1; i < 25; i++)
-        	{
-				if ((bool)Ui.Instance._resourceInv.GetNode("InvSlot" + i + "/InvTexture" + i).GetMeta("occupied"))
-				{
-					
-				}
-        	}
-			QueueFree();
+			GD.Print("picked up at " + player.GlobalPosition);
+
+			//_holder.GetNode<CharacterBody3D>().QueueFree();
 		}
 	}
 
-	public void Drop()
+	private async void PickUpPause(Area3D detbox)
 	{
-		GetNode<Sprite3D>("ItemPic").Texture = _image;
-		PackedScene item = ResourceLoader.Load<PackedScene>("res://Scenes/item.tscn");
-		CharacterBody3D _item = item.Instantiate<CharacterBody3D>();
-		
+		detbox.Visible = false;
+		await ToSignal(GetTree().CreateTimer(1), "timeout");
+		detbox.Visible = true;
+	}
+
+	public void Drop(string name, float chance, int amount, Vector3 location)
+	{
+		location.Y += 1;
+		for (int i = 0; i < amount; i++)
+		{
+			if (_rng.Randf() < chance)
+			{
+				PackedScene item = ResourceLoader.Load<PackedScene>("res://Scenes/monst_item.tscn");
+				CharacterBody3D _item = item.Instantiate<CharacterBody3D>();
+				_item.GetNode<Sprite3D>("ItemPic").Texture = (Texture2D)GD.Load("res://Assets/UI/resources/" + name + ".png");
+				_item.Name = name;
+				GetParent().GetNode<Node3D>("World").AddChild(_item);
+				_item.GlobalPosition = location;
+				PickUpPause(_item.GetNode<Area3D>("Hitbox"));
+				int _randHoriz = _rng.RandiRange(-10, 10);
+				_dropDirection = new Vector3(_randHoriz, _rng.RandiRange(3, 6), _randHoriz);
+				Velocity = _dropDirection;
+				GD.Print("dropped at " + _item.GlobalPosition);
+				_item.GetNode<Area3D>("Hitbox").Visible = false;
+			}
+		}
 	}
 }

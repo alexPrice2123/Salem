@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjquo74amlxjn"]
+
+[ext_resource type="Script" uid="uid://cgxrtvdfcw8" path="res://Scripts/Item.cs" id="1_iecni"]
+[ext_resource type="Texture2D" uid="uid://ckypyf8nhveux" path="res://Assets/UI/resources/bleedheart.png" id="2_iecni"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eoiit"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ei1hg"]
+radius = 1.0
+
+[node name="MonstItem" type="CharacterBody3D"]
+script = ExtResource("1_iecni")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_eoiit")
+
+[node name="Hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_ei1hg")
+
+[node name="ItemPic" type="Sprite3D" parent="."]
+transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0, 0, 0)
+billboard = 1
+texture = ExtResource("2_iecni")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
