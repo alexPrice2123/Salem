@@ -182,6 +182,7 @@ public partial class NpcVillager : CharacterBody3D
 			moveStatus = false;
 			idleStatus = false;
 			velocity = Vector3.Zero;
+			RotateFunc(delta);
 
 			// Make the quest prompt appear 
 			if (_dialogue.Visible == false){ _questPrompt.Visible = true; }
@@ -198,7 +199,8 @@ public partial class NpcVillager : CharacterBody3D
 			Vector3 moveDirection = Velocity.Normalized(); 
 			if (moveDirection.Length() > 0.1f)
 			{
-				_lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up); 
+				_lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up);
+				RotateFunc(delta);
 			}
 		}
 
@@ -214,7 +216,7 @@ public partial class NpcVillager : CharacterBody3D
         {
             Velocity += new Vector3(0f,-50f,0f) * (float)delta;
         }
-		RotateFunc(delta);
+		
 		MoveAndSlide();
 	}
 
@@ -238,11 +240,20 @@ public partial class NpcVillager : CharacterBody3D
 
 	public void EndDialouge()
     {
-        _player._villager = null;
+		if (Villager is RichardVillager)
+        {
+            _questPrompt.Text = WaitingDialogue;
+			_player._originalDialouge = WaitingDialogue;
+			_hasTalked = true;
+			_questInProgress = true;
+			_dialogue.GetNode<Button>("AcceptButton").Text = "Accept";
+			_dialogue.GetNode<Button>("IgnoreButton").Text = "Ignore";   
+        }
+		_player._villager = null;
 		_dialogue.Visible = false;
 		_dialougeIndex = 0;
 		_currentDialouge = "Initial";
-		Input.MouseMode = Input.MouseModeEnum.Captured;
+		Input.MouseMode = Input.MouseModeEnum.Captured;  
     }
 
 	public void Accepted()
@@ -271,13 +282,15 @@ public partial class NpcVillager : CharacterBody3D
 	{
 		if (_object != "None")
         {
-
+			
             EndDialouge();
         }
         else
         {
-           	_currentDialouge = "Ignored";
-			_currentDialouge = IgnoredDialogue[0];
+           	_dialougeIndex = 0;
+			_currentDialouge = "Ignored";
+			_dialogueBox.Text = IgnoredDialogue[_dialougeIndex];
+			
 			_dialogue.GetNode<Button>("Continue").Visible = true;
 			_dialogue.GetNode<Button>("AcceptButton").Visible = false;
 			_dialogue.GetNode<Button>("IgnoreButton").Visible = false; 
@@ -364,6 +377,11 @@ public partial class NpcVillager : CharacterBody3D
 
     private void CheckDialougeIndex()
     {
+		if (Villager is RichardVillager)
+        {
+			_dialogue.GetNode<Button>("AcceptButton").Text = "I Forget...";
+			_dialogue.GetNode<Button>("IgnoreButton").Text = "I Remember";   
+        }
 		if (_currentDialouge == "Quest")
 		{
 			if (_dialougeIndex < QuestDialogue.Count - 1)
