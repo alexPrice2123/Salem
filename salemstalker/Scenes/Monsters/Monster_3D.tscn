@@ -36,9 +36,6 @@ emission_energy_multiplier = 5.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_mqwsg"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_agcab"]
-data = PackedVector3Array(-1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1, 1, -1, 1, 0, 1, 1, 0, 1, -1, 1, -1, -1, 1, -1, 1, 0, -1, -1, 1, -1, -1, -1, -1, 1, 0, 1, -1, -1, 1, -1, 1, 1, 1, 0, -1, -1, -1, 1, 1, 0, -1, 1, 0, -1, -1, -1, 1, -1, -1, 1, 1, 0)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqwsg"]
 transparency = 1
 albedo_color = Color(0, 0, 1, 0.019607844)
@@ -83,6 +80,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_o3vts")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_agcab"]
+data = PackedVector3Array(-1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1, 1, -1, 1, 0, 1, 1, 0, 1, -1, 1, -1, -1, 1, -1, 1, 0, -1, -1, 1, -1, -1, -1, -1, 1, 0, 1, -1, -1, 1, -1, 1, 1, 1, 0, -1, -1, -1, 1, 1, 0, -1, 1, 0, -1, -1, -1, 1, -1, -1, 1, 1, 0)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qc5vi"]
 seamless = true
@@ -205,16 +205,17 @@ mesh = SubResource("SphereMesh_mqwsg")
 [node name="AgroRange" type="Area3D" parent="." groups=["Monster"]]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.9816828, 0.36692697)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AgroRange"]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_agcab")
-
 [node name="Debug" type="MeshInstance3D" parent="AgroRange"]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1, 0, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_mqwsg")
 mesh = SubResource("ArrayMesh_v4fda")
 skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AgroRange"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_agcab")
+debug_color = Color(0, 1, 0, 1)
 
 [node name="Shrined" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 3.057068e-08, 1.19014366e-07, -2.98023e-08, 0.9999799, -0.00645069, -1.19209005e-07, 0.00645069, 0.9999799, 8.10809e-07, 0.99359155, 0.014039922)
