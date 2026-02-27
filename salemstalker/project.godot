@@ -164,6 +164,7 @@ baking/use_crash_prevention_checks=false
 [physics]
 
 common/physics_ticks_per_second=30
+3d/physics_engine="Jolt Physics"
 3d/default_gravity_vector=Vector3(0, -2, 0)
 
 [rendering]
