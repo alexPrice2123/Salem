@@ -106,9 +106,9 @@ public partial class lumberJack : Monster3d
 		if (_distance > _meleeRange || !_hasAxe)
 		{
 			if (_hasAxe)
-            {
+			{
 				GD.Print("Throwing Axe");
-                _hasAxe = false;
+				_hasAxe = false;
 				_playerHit = false;
 				_hasHit = false;
 				_attackAnim = true;
@@ -131,24 +131,24 @@ public partial class lumberJack : Monster3d
 				_attackAnim = false;
 				_canAttack = true;
 			}
-            else if (_currentAxe != null)
-            {
+			else if (_currentAxe != null)
+			{
 				GD.Print("Retreving Axe");
 				_hasHit = false;
 				_canAttack = false;
 				_grabAnim = true;
 				if (!_playerHit)
-                {
+				{
 					await ToSignal(GetTree().CreateTimer(0.6), "timeout");
 					_currentAxe._returning = true;
 					_currentAxe.ReturnToUser(_projectileSpeed);
-                }
+				}
 				await ToSignal(GetTree().CreateTimer(AttackSpeed), "timeout");
 				_canAttack = true;
-            }
-            else
-            {
-                _hasAxe = true;
+			}
+			else
+			{
+				_hasAxe = true;
 				_stunned = true;
 				_hasHit = false;
 				_canAttack = false;
@@ -169,12 +169,12 @@ public partial class lumberJack : Monster3d
 				_stunned = false;
 				await ToSignal(GetTree().CreateTimer(1f), "timeout");
 				_canAttack = true;
-            }
+			}
 		}
-        else
-        {
+		else
+		{
 			AttackRange = 1.5f;
-            _hasHit = false;
+			_hasHit = false;
 			_meleeAnim = true;
 			await ToSignal(GetTree().CreateTimer(0.74f), "timeout");
 			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
@@ -185,6 +185,6 @@ public partial class lumberJack : Monster3d
 			_meleeAnim = false;
 			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
 			_canAttack = true;
-        }
+		}
 	}
 }

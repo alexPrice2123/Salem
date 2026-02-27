@@ -157,6 +157,7 @@ public partial class Player3d : CharacterBody3D
 		_weapon.Add("dagger", _dagger);
 		_secWeapon.Add("FlintGun", _flintGun);
 		_secWeapon.Add("StakeGun", _stakeGun);
+		StartCut();
 	}
 
 	// --- INPUT HANDLER ---
@@ -1254,25 +1255,23 @@ public partial class Player3d : CharacterBody3D
 	{
 		if (_goalPoint == null)
 		{
-			return 1.0f; // Return maximum unalignment if no target
+			return 1.0f; 
 		}
-
-		// 1. Get the player's forward direction (assuming the player node is this script's owner)
-		// Adjust if your camera is separate or has a different forward axis
 		Vector3 playerForward = _cam.GlobalTransform.Basis.Z.Normalized(); 
-
-		// 2. Get the vector from the player to the target point
 		Vector3 playerToTarget = (_goalPoint.GlobalTransform.Origin - GlobalTransform.Origin).Normalized();
 
-		// 3. Calculate the dot product
 		float dotProduct = playerForward.Dot(playerToTarget);
-
-		// 4. Convert to the desired 0-1 range (0 = aligned, 1 = unaligned)
-		// The dot product ranges from 1 (aligned) to -1 (opposite).
-		// We want 1 to become 0, and -1 to become 1.
-		// A simple way is: (1 - dotProduct) / 2
 		float alignment = (1.0f - dotProduct) / 2.0f;
 
 		return alignment;
 	}
+
+	private async void StartCut()
+    {
+        await ToSignal(GetTree().CreateTimer(2f), "timeout");
+		if (IsInstanceValid(_lastSeen) && _lastSeen is NpcVillager villager)
+		{
+			villager.Talk();
+		}
+    }
 }

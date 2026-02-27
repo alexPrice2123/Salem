@@ -31,7 +31,7 @@ public partial class titleScreen : Node3D
             _loadingMaterial.SetShaderParameter("progress", (float)_loadingMaterial.GetShaderParameter("progress")-0.05f);
 			if ((float)_loadingMaterial.GetShaderParameter("progress") <= -1f)
             {
-                GetTree().ChangeSceneToFile("res://Scenes/newWorld.tscn");
+                GetTree().ChangeSceneToFile("res://Scenes/cutscene_1.tscn");
             }
         }
         if (_playButton.IsHovered() && _playButton.Scale < _baseButtonScale * new Vector2(1.1f, 1.1f)){ScaleButton(_playButton, true);}

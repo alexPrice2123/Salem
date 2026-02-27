@@ -16,7 +16,7 @@ public partial class revenanT : Monster3d
 		MoveWhileAttack = true;     // Can this monster move while attacking
 		Flying = false;              // Should gravity be applied to this monster
 		Stationery = false;          // If the monster shouldnt move at all
-		BaseDamage = 15.0f;         // Base damage of the monster
+		BaseDamage = 5.0f;         // Base damage of the monster
 		AttackSpeed = 1.2f;         // The time between its attacks
 		AttackRange = 1.5f;           // The distance the monster gets from the player before stopping and attacking
 		MaxHealth = 45.0f;         // Maximum monster health
@@ -36,19 +36,19 @@ public partial class revenanT : Monster3d
 		GetNode<AnimationTree>("AnimationTree"+_randomBody).Set("parameters/idle/animation", "idle2");
 		
 		for (int i = 1; i < 4; i++)
-        {
-            if (i != _randomBody)
+		{
+			if (i != _randomBody)
 			{
 				GetNode<Node3D>("Body"+i).QueueFree();
 				GetNode<Node3D>("HitFX"+i).QueueFree();
 				GetNode<AnimationTree>("AnimationTree"+i).QueueFree();
 			}
-            else
-            {
-                MultBodyRef = GetNode<Node3D>("Body"+i);
+			else
+			{
+				MultBodyRef = GetNode<Node3D>("Body"+i);
 				MultHitRef = GetNode<Node3D>("HitFX"+i);
-            }
-        }
+			}
+		}
 		Initialization();
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

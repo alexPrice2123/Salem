@@ -6,7 +6,7 @@ public partial class NpcVillager : CharacterBody3D
 {
 	// - Constants -
 	public const float Speed = 1f;                       // The AI's speed
-	public const float Range = 3.0f;                       // The max range between player and AI
+	public const float Range = 2f;                       // The max range between player and AI
 
 	// - Variables -
 	protected int _questRequirement;                         
@@ -31,7 +31,7 @@ public partial class NpcVillager : CharacterBody3D
 	[Export]
 	public Godot.Collections.Array<string> AcceptedDialogue { get; set; } = new Godot.Collections.Array<string>{ "Accept" };
 	[Export]
-	public string IgnoredDialogue = "Ignored";
+	public Godot.Collections.Array<string> IgnoredDialogue { get; set; } = new Godot.Collections.Array<string>{ "Ignored" };
 	[Export]
 	public string WaitingDialogue = "Waiting";
 	[Export]
@@ -86,8 +86,6 @@ public partial class NpcVillager : CharacterBody3D
         }
 		_questPrompt.Text = InitialDialogue;
 
-		// Hide the quest prompt
-		_questPrompt.Hide();
 		// Make sure to not await during _Ready.
 		Callable.From(ActorSetup).CallDeferred();
 	}
@@ -133,6 +131,7 @@ public partial class NpcVillager : CharacterBody3D
 		}
 		// Get the distance between the player and AI
 		float distance = (_player.GlobalPosition - GlobalPosition).Length();
+		if (distance > Range ){_questPrompt.Visible = false;}
 		// Add a temp variable for velocity
 		Vector3 velocity = new();
 		
@@ -195,12 +194,9 @@ public partial class NpcVillager : CharacterBody3D
 			Vector3 nextPoint = _navigationAgent.GetNextPathPosition();
 			velocity += (nextPoint - GlobalTransform.Origin).Normalized() * Speed;
 
-			// Make sure the quest prompt is hidden whenever player is not near
-			_questPrompt.Visible = false;
-
 			// Face wander target
 			Vector3 moveDirection = Velocity.Normalized(); 
-			if (moveDirection != Vector3.Zero)
+			if (moveDirection.Length() > 0.1f)
 			{
 				_lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up); 
 			}
@@ -275,12 +271,13 @@ public partial class NpcVillager : CharacterBody3D
 	{
 		if (_object != "None")
         {
+
             EndDialouge();
         }
         else
         {
            	_currentDialouge = "Ignored";
-			_dialogueBox.Text = IgnoredDialogue;
+			_currentDialouge = IgnoredDialogue[0];
 			_dialogue.GetNode<Button>("Continue").Visible = true;
 			_dialogue.GetNode<Button>("AcceptButton").Visible = false;
 			_dialogue.GetNode<Button>("IgnoreButton").Visible = false; 
@@ -291,7 +288,8 @@ public partial class NpcVillager : CharacterBody3D
 	{
 		if ((_currentDialouge == "Quest" && _dialougeIndex < QuestDialogue.Count-1)
 		|| (_currentDialouge == "Accepted" && _dialougeIndex < AcceptedDialogue.Count-1)
-		|| (_currentDialouge == "Done" && _dialougeIndex < DoneDialogue.Count-1))
+		|| (_currentDialouge == "Done" && _dialougeIndex < DoneDialogue.Count-1)
+		|| (_currentDialouge == "Ignored" && _dialougeIndex < IgnoredDialogue.Count-1))
 		{
 			if (_currentDialouge == "Quest")
 			{
@@ -307,6 +305,11 @@ public partial class NpcVillager : CharacterBody3D
             {
 				_dialougeIndex += 1;
 				_dialogueBox.Text = DoneDialogue[_dialougeIndex];
+            }
+			else if (_currentDialouge == "Ignored")
+            {
+				_dialougeIndex += 1;
+				_dialogueBox.Text = IgnoredDialogue[_dialougeIndex];
             }
 		}
 		else
@@ -357,12 +360,12 @@ public partial class NpcVillager : CharacterBody3D
 
 		CheckDialougeIndex();
 	}
+		
 
     private void CheckDialougeIndex()
     {
 		if (_currentDialouge == "Quest")
 		{
-			GD.Print(_dialougeIndex);
 			if (_dialougeIndex < QuestDialogue.Count - 1)
 			{
 				_dialogue.GetNode<Button>("Continue").Visible = true;
@@ -376,9 +379,8 @@ public partial class NpcVillager : CharacterBody3D
 				_dialogue.GetNode<Button>("IgnoreButton").Visible = true;
 			}
 		}
-		else if (_currentDialouge == "Accepted" || _currentDialouge == "Done")
+		else if (_currentDialouge == "Accepted" || _currentDialouge == "Done" || _currentDialouge == "Ignore")
 		{
-			GD.Print(_dialougeIndex);
 			_dialogue.GetNode<Button>("Continue").Visible = true;
 			_dialogue.GetNode<Button>("AcceptButton").Visible = false;
 			_dialogue.GetNode<Button>("IgnoreButton").Visible = false;
