@@ -619,7 +619,6 @@ public partial class Monster3d : CharacterBody3D
 		{
 			detectPlayer(_player.GetNode<Area3D>("Hurtbox"), true, false);
 		}
-		
 	}
 
 	private bool CheckVision()
