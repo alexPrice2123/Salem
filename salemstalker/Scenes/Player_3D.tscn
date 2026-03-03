@@ -115,11 +115,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.422
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15376396, -0.52003324, 0.69795084, 0.4677465)
-bones/19/rotation = Quaternion(0.61153275, -0.035772614, 0.023014745, 0.79007494)
+bones/18/rotation = Quaternion(-0.15376264, -0.5200361, 0.6979521, 0.46774194)
+bones/19/rotation = Quaternion(0.60664326, -0.03570933, 0.02515399, 0.7937733)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.54771507, 0.052141942, 0.8350384, 0.008179992, 0.99834216, -0.05697371, -0.8366246, -0.024374478, -0.5472335, -0.17620412, 1.4177264, 0.41262177)
+transform = Transform3D(-0.54702383, 0.05050595, 0.83559203, 0.018035233, 0.99865776, -0.048555613, -0.8369223, -0.011490941, -0.54720026, -0.1765987, 1.4136568, 0.41360262)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")
@@ -184,7 +184,7 @@ offset_bottom = 0.0
 [node name="Skeleton3D" type="Skeleton3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, 0.441923, -0.298717)
 
-[node name="Hurtbox" type="Area3D" parent="." groups=["Player"]]
+[node name="Hurtbox" type="Area3D" parent="." groups=["PlayerHurtbox"]]
 collision_layer = 1025
 collision_mask = 1025
 
@@ -194,18 +194,22 @@ debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0031393766, -2.4216013, -0.004449427)
+visible = false
 mesh = SubResource("SphereMesh_y6jx2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+visible = false
 mesh = SubResource("SphereMesh_cvtri")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+visible = false
 mesh = SubResource("SphereMesh_qfumr")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+visible = false
 mesh = SubResource("SphereMesh_wan02")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

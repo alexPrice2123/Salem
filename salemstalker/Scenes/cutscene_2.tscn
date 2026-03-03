@@ -1414,6 +1414,7 @@ far = 1000.0
 
 [node name="metarig" type="Node3D" parent="."]
 transform = Transform3D(0.9397013, 0, -0.22654273, 0, 0.96662307, 0, 0.22654273, 0, 0.9397013, 0.90373284, 0, 0)
+visible = false
 
 [node name="Skeleton3D" type="Skeleton3D" parent="metarig"]
 bones/0/name = "spine"
@@ -1802,6 +1803,7 @@ skin = SubResource("Skin_wdj6m")
 
 [node name="metarig_001" type="Node3D" parent="."]
 transform = Transform3D(0.9397013, 0, -0.22654273, 0, 0.96662307, 0, 0.22654273, 0, 0.9397013, -0.6397584, 0, -7.4038496)
+visible = false
 
 [node name="Skeleton3D" type="Skeleton3D" parent="metarig_001"]
 bones/0/name = "spine"
@@ -2190,6 +2192,7 @@ skin = SubResource("Skin_g1oci")
 
 [node name="metarig_002" type="Node3D" parent="."]
 transform = Transform3D(0.9397013, 0, -0.22654273, 0, 0.96662307, 0, 0.22654273, 0, 0.9397013, -6.753922, 0, 0)
+visible = false
 
 [node name="Skeleton3D" type="Skeleton3D" parent="metarig_002"]
 bones/0/name = "spine"

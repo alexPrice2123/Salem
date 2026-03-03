@@ -35,12 +35,31 @@ public partial class Cutscene2 : Node3D
 			GetNode<Node3D>("metarig_002").Visible = true;
 			await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
 			plr.GetNode<Ui>("UI")._fadeProg = 1;
-			await ToSignal(GetTree().CreateTimer(2), "timeout");
-			plr.GetNode<Ui>("UI")._fadeProg = 0;
-			GetNode<Camera3D>("Camera").Current = false;
+			await ToSignal(GetTree().CreateTimer(1), "timeout");
+
+			for (int i = 1; i <= 3; i++)
+            {
+				Vector3 spawnPos = GetNode<Node3D>($"H{i}").GlobalPosition;
+              	PackedScene monsterSelection = GD.Load<PackedScene>("res://Scenes/Monsters/hollowNormal.tscn");
+				CharacterBody3D monsterInstance = monsterSelection.Instantiate<CharacterBody3D>(); // Create monster instance
+				GetParent().GetNode<Node3D>("MonsterHolder/Hold2/Hold").AddChild(monsterInstance);     
+				if (monsterInstance is Monster3d monster)
+				{
+					monster.RandomRangedPosition();
+					monster.Biome = "Forest";
+					monster.SpawnRange = 10000f;
+					monster._currentSpawnRange = 10000f;
+					monster._startPos = GlobalPosition;
+					if (i > 1){monster.Disabled = true;}
+				}
+				monsterInstance.GlobalPosition = spawnPos;
+            }
 			GetNode<Node3D>("metarig").Visible = false;
 			GetNode<Node3D>("metarig_001").Visible = false;
 			GetNode<Node3D>("metarig_002").Visible = false;
+			await ToSignal(GetTree().CreateTimer(1), "timeout");
+			plr.GetNode<Ui>("UI")._fadeProg = 0;
+			GetNode<Camera3D>("Camera").Current = false;
         }
     }
 }
