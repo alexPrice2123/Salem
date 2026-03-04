@@ -36,6 +36,7 @@ public partial class Monster3d : CharacterBody3D
 	public Node3D MultHitRef = null;
 	public bool DebugShapes = false;
 	public bool Disabled = false;               // When true, monster stays idle and ignores everything
+	public bool Cutscene = false;
 
 	// --- NODE REFERENCES ---
 	protected Player3d _player;
@@ -98,6 +99,13 @@ public partial class Monster3d : CharacterBody3D
 	// --- READY --- //
 	public void Initialization()
 	{
+		if (Cutscene)
+        {
+			BaseDamage = 4.0f;         // Base damage of the monster
+			WalkSpeed = 0.5f;             // Movement speed when they are wandering
+			RunSpeed = 1.75f;              // Movement speed when they are chasing the player
+			WalkRange = 100f;
+        }
 		_player = GetParent().GetParent().GetParent().GetParent().GetNode<Player3d>("Player_3d");
 		_rng.Randomize();
 		_navAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
