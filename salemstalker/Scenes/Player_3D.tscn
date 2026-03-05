@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=26 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
 [ext_resource type="Texture2D" uid="uid://cmfaxccf8ffss" path="res://Assets/UI/player.png" id="2_cvtri"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://do3u2x5avpy72" path="res://Scenes/OffHandWeapons/stake_gun.tscn" id="3_cvtri"]
 [ext_resource type="PackedScene" uid="uid://c3ix37nxvhxo5" path="res://Scenes/OffHandWeapons/Flintlock.tscn" id="3_mawk5"]
 [ext_resource type="PackedScene" uid="uid://dwpo6a7lu68jh" path="res://Scenes/ui.tscn" id="3_sb0or"]
+[ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="8_y6jx2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
@@ -89,6 +90,18 @@ flip_faces = true
 radius = 80.0
 height = 70.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wan02"]
+shader = ExtResource("8_y6jx2")
+shader_parameter/wiggleMult = 0.1
+shader_parameter/wiggleTime = 1.0
+shader_parameter/wiggleY = 2.0
+shader_parameter/BlendAmount = 1.49012e-07
+shader_parameter/change_color_depth = true
+shader_parameter/target_color_depth = 4
+shader_parameter/dithering = true
+shader_parameter/scale_resolution = true
+shader_parameter/target_resolution_scale = 2
+
 [node name="Player_3d" type="CharacterBody3D"]
 floor_max_angle = 1.134464
 script = ExtResource("1_df3ch")
@@ -115,11 +128,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.422
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15376264, -0.5200361, 0.6979521, 0.46774194)
-bones/19/rotation = Quaternion(0.60664326, -0.03570933, 0.02515399, 0.7937733)
+bones/18/rotation = Quaternion(-0.1536717, -0.5202256, 0.6980412, 0.46742803)
+bones/19/rotation = Quaternion(0.61059135, -0.03576053, 0.023427574, 0.79079115)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.54702383, 0.05050595, 0.83559203, 0.018035233, 0.99865776, -0.048555613, -0.8369223, -0.011490941, -0.54720026, -0.1765987, 1.4136568, 0.41360262)
+transform = Transform3D(-0.5481292, 0.051738553, 0.83479196, 0.010397725, 0.9984294, -0.055053506, -0.8363288, -0.02149637, -0.547806, -0.1759847, 1.4167569, 0.4127469)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")
@@ -211,6 +224,33 @@ mesh = SubResource("SphereMesh_qfumr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
 visible = false
 mesh = SubResource("SphereMesh_wan02")
+
+[node name="Fade" type="ColorRect" parent="."]
+z_index = 4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(539, 303)
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Dither" type="ColorRect" parent="."]
+z_index = -101
+material = SubResource("ShaderMaterial_wan02")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -161.0
+offset_top = -54.000008
+offset_right = 140.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.994303, 1.00415)
+mouse_filter = 2
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]

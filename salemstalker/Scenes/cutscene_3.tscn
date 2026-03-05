@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfhk0ja1rxejm"]
+
+[ext_resource type="PackedScene" uid="uid://cwmhdd7rsjhic" path="res://Assets/cutscenes/first_fight_p2.blend" id="1_567lm"]
+
+[node name="Cutscene3" type="Node3D"]
+
+[node name="first_fight_p2" parent="." instance=ExtResource("1_567lm")]
+
+[node name="Camera" parent="first_fight_p2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.6858739e-07, 0, 1.6858739e-07, 1, -0.59325224, 1.3692167, 5.694931)
+
+[node name="Skeleton3D" parent="first_fight_p2/metarig" index="0"]
+bones/9/rotation = Quaternion(0.0384113, -0.004300304, 0.018825239, 0.99907553)
+bones/10/rotation = Quaternion(0.05102116, -0.21205248, 0.09589678, 0.9712026)
+bones/18/rotation = Quaternion(-0.19795787, -0.64815056, 0.5282891, 0.51149225)
+bones/19/rotation = Quaternion(0.0337382, 0.005106189, -0.015554442, 0.99929667)
+bones/48/rotation = Quaternion(0.04749851, 1.2269198e-05, 0.00017820777, 0.9988713)
+bones/50/rotation = Quaternion(0.99989045, -0.00040637446, 0.010296477, -0.010628727)
+bones/52/rotation = Quaternion(0.99989045, 0.0004063849, -0.010296394, -0.010628727)
+
+[node name="forearm_L" parent="first_fight_p2/metarig/Skeleton3D" index="1"]
+transform = Transform3D(0.13155854, 0.07734287, 0.98828655, -0.49833268, -0.85666466, 0.13337913, 0.8569462, -0.51004267, -0.07415908, -0.014776238, 1.3072847, -0.30685443)
+
+[node name="forearm_R" parent="first_fight_p2/metarig/Skeleton3D" index="2"]
+transform = Transform3D(-0.1349473, 0.09121534, 0.9866456, 0.4794606, -0.86540294, 0.14558408, 0.86712563, 0.49270377, 0.07304947, -0.018206785, 1.3260442, 0.29646063)
+
+[editable path="first_fight_p2"]

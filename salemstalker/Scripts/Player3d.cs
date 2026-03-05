@@ -116,6 +116,7 @@ public partial class Player3d : CharacterBody3D
 	private Vector3 _cameraBasePosition;
 	private float _demoCount = 30f;
 	private Godot.Collections.Array<string> _pickUpableItems { get; set; } = ["Taz", "Bridger", "Gnocchi"];
+	private bool _inCutscene = false; 
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -469,6 +470,7 @@ public partial class Player3d : CharacterBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		if (_dead == true){return;}
+		if (_inCutscene){return;}
 		var camRef = (Camera)_cam;
 
 		// FINAL camera transform = base + shake
@@ -513,7 +515,7 @@ public partial class Player3d : CharacterBody3D
 		}
 		Vector3 velocity = Velocity; // Get the current velocity vector
 
-		ShaderMaterial shaderMaterial = GetNode<ColorRect>("UI/Dither").Material as ShaderMaterial;
+		ShaderMaterial shaderMaterial = GetNode<ColorRect>("Dither").Material as ShaderMaterial;
 		shaderMaterial.SetShaderParameter("BlendAmount", Mathf.Lerp((float)shaderMaterial.GetShaderParameter("BlendAmount"), _hallucinationFactor, (float)delta));
 
 		_hallucinationFactor = Mathf.Lerp(_hallucinationFactor, 0f, (float)delta / 10);
@@ -1351,5 +1353,11 @@ public partial class Player3d : CharacterBody3D
 		{
 			villager.Talk();
 		}
+    }
+
+	public void CutsceneToggle(bool toggle)
+    {
+        GetNode<Ui>("UI").Visible = !toggle;
+		_inCutscene = toggle;
     }
 }

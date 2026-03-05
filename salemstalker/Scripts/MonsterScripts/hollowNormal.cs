@@ -38,9 +38,27 @@ public partial class hollowNormal : Monster3d
 			{
 				if (GetParent().GetParent() is DebugHut dh) { dh._shouldSpawn = true; }
 			}
+			int i = 0;
+			if(Cutscene)
+            {
+                foreach (Monster3d monst in GetParent().GetChildren())
+                {
+                    if (monst != this)
+                    {
+                        monst.ForceSeePlayer();
+						i++;
+                    }
+                }
+				if (i == 0)
+				{
+					
+				}
+            }
+
 			QueueFree();
 		}
-		RotateFunc(delta);
+		if (Velocity.LengthSquared() > 0.01f)
+			RotateFunc(delta);
 	}
 
 	private void RotateFunc(double delta)
