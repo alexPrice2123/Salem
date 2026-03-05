@@ -3,7 +3,7 @@ using System;
 
 public partial class StakeBullet : RigidBody3D
 {
-    private float _speed = 100.0f;
+    private float _speed = 10.0f;
     private int _pierceCount = 0;
     private int _count = 0;
     public override void _Ready()

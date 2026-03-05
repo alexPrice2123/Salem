@@ -355,6 +355,17 @@ public partial class Player3d : CharacterBody3D
 			}
 		}
 
+		// --- Crouch toggle (C Key) ---
+		else if (Input.IsActionJustPressed("crouchToggle"))
+		{
+			_head.Position = new Vector3 (_head.Position.X,0f,_head.Position.Z) ; 
+		}
+
+		// --- Crouch hold (C Key) ---
+		else if (Input.IsActionPressed("crouch"))
+		{
+			crouching = true;
+		}
 		// --- Interact (E Key) ---
 		else if (Input.IsActionJustPressed("interact"))
 		{
@@ -411,7 +422,11 @@ public partial class Player3d : CharacterBody3D
 				}
 				else if (_eSecWeapon1 is Tomahawk hawkChild)
 				{
-					hawkChild.specAction();
+					fountain(hawkChild);
+				}
+				else if (_eSecWeapon1 is ThrowingKnife knifeChild)
+				{
+					knifeChild.specAction();
 				}
 			}
 			else if (equipSec == 2 && !_cooldownSec2)
@@ -429,9 +444,13 @@ public partial class Player3d : CharacterBody3D
 				{
 					hawkChild.specAction();
 				}
+				else if (_eSecWeapon1 is ThrowingKnife knifeChild)
+				{
+					knifeChild.specAction();
+				}
 			}
 		}
-
+		
 		if (Input.IsActionPressed("back"))
 		{
 			_backSpeed = Speed*(-0.30f);
@@ -441,6 +460,11 @@ public partial class Player3d : CharacterBody3D
 		{
 			_backSpeed = 0;
 		}
+	}
+
+	public async void fountain(Tomahawk hawk)
+	{
+		while (true){await ToSignal(GetTree().CreateTimer(0.2), "timeout"); hawk.specAction();}
 	}
 
 	public void UnPause()
@@ -658,7 +682,7 @@ public partial class Player3d : CharacterBody3D
 		// Apply a subtle head 'squash' effect during the dash decay
 		_headOffset = _headOffset.Lerp(new Vector3(0f, -_dashVelocity / 5f, 0f), (float)delta * 6f);
 		_head.Position = _baseHeadPosition + _headOffset;
-
+		if(crouching){_head.Position = new Vector3 (_head.Position.X,0f,_head.Position.Z) ;}
 		// --- Camera FOV Scaling (Speed Effect) ---
 		// Smoothly scale FOV based on current movement speed (for a "speed effect")
 		float fovGoal = Mathf.Lerp(_cam.Fov, Velocity.Length() + 80, (float)delta * 10f);
