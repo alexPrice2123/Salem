@@ -44,6 +44,7 @@ public partial class Ui : Control
 	public GridContainer _gridContainer;
 	private Texture2D _invIcon;
 	private Control _inv;
+	public float _fadeProg = 0; //fade progress for fading to black
 	public override void _Ready()
 	{
 		Instance = this;
@@ -99,6 +100,8 @@ public partial class Ui : Control
 
 	public override void _Process(double delta)
 	{
+		GetNode<ColorRect>("Fade").Color = GetNode<ColorRect>("Fade").Color.Lerp(new Color(0,0,0,_fadeProg), (float)delta*2);
+
 		Color newTransparency = _areaName.Modulate;
 		newTransparency.A = Mathf.Lerp(_areaName.Modulate.A, _areaNameTween, (float)delta);
 		_areaName.Modulate = newTransparency;

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://caqnpxg4unpwp"]
+
+[ext_resource type="Script" uid="uid://cybk0h2rf1s47" path="res://Scripts/tutorialArea.cs" id="1_h8ig4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5n5pd"]
+size = Vector3(1.1083984, 0.64160156, 1)
+
+[node name="TutorialArea" type="Node3D"]
+script = ExtResource("1_h8ig4")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_5n5pd")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

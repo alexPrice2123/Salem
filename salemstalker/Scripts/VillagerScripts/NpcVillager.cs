@@ -248,6 +248,7 @@ public partial class NpcVillager : CharacterBody3D
 			_questInProgress = true;
 			_dialogue.GetNode<Button>("AcceptButton").Text = "Accept";
 			_dialogue.GetNode<Button>("IgnoreButton").Text = "Ignore";   
+			GetNode<tutorialArea>("TutorialArea").Tutorial(_player, "Use [WASD] To Move", 5);
         }
 		_player._villager = null;
 		_dialogue.Visible = false;
