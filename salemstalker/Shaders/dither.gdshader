@@ -2,6 +2,9 @@ shader_type canvas_item;
 
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
+// ==== Dizziness ====
+uniform float dizziness : hint_range(0.0, 1.0, 0.01) = 0.0;
+
 // ==== Wiggle ====
 uniform float wiggleMult : hint_range(0.0, 100.00, 0.0001) = 0.005;
 uniform float wiggleTime : hint_range(0.0, 50.0, 0.1) = 3.0;
@@ -28,12 +31,11 @@ int dithering_pattern(ivec2 fragcoord) {
 	return pattern[y * 4 + x];
 }
 
-// ==== MAIN ====
 void fragment() {
+
 	vec2 iResolution = 1.0 / SCREEN_PIXEL_SIZE;
 	vec2 uv = FRAGCOORD.xy / iResolution.xy;
 
-	// --- Base color (normal sample, no wiggle yet) ---
 	ivec2 tex_uv = ivec2(FRAGCOORD.xy);
 	vec3 color;
 
@@ -56,17 +58,43 @@ void fragment() {
 		processed_color = vec3(c) / 255.0;
 	}
 
-	// --- Apply wiggle distortion *after* processing ---
-	float xOffset = sin((wiggleTime + 0.5) * TIME + uv.y * (wiggleY + 1.0))
-	              * sin((wiggleTime + 0.9) * TIME + uv.y * wiggleY)
-	              * sin((wiggleTime + 0.2 + 0.33) * TIME + uv.y * (wiggleY - 1.0))
-	              * wiggleMult;
+	// --- Wiggle distortion (disabled by dizziness) ---
+	float wiggleFade = 1.0 - dizziness;
+
+	float xOffset =
+		sin((wiggleTime + 0.5) * TIME + uv.y * (wiggleY + 1.0)) *
+		sin((wiggleTime + 0.9) * TIME + uv.y * wiggleY) *
+		sin((wiggleTime + 0.2 + 0.33) * TIME + uv.y * (wiggleY - 1.0)) *
+		wiggleMult * wiggleFade;
 
 	vec2 wiggledUV = uv + vec2(xOffset, 0.0);
-	vec3 final_color = texture(screen_texture, wiggledUV).rgb;
 
-	// Blend wiggled version with processed version for smoother look
+	vec3 final_color = texture(screen_texture, wiggledUV).rgb;
 	final_color = mix(processed_color, final_color, BlendAmount);
+
+	// =================
+	// DOUBLE VISION
+	// =================
+
+	vec2 doubleOffset = vec2(0.025, 0.0) * dizziness;
+
+	vec3 eye1 = texture(screen_texture, wiggledUV - doubleOffset).rgb;
+	vec3 eye2 = texture(screen_texture, wiggledUV + doubleOffset).rgb;
+
+	vec3 doubleVision = mix(eye1, eye2, 0.5);
+
+	final_color = mix(final_color, doubleVision, dizziness);
+
+	// =================
+	// VIGNETTE
+	// =================
+
+	vec2 center = uv - vec2(0.5);
+	float dist = length(center);
+
+	float vignette = smoothstep(0.65, 0.15, dist);
+
+	final_color *= mix(1.0, vignette, dizziness);
 
 	COLOR = vec4(final_color, 1.0);
 }
