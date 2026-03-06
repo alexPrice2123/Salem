@@ -10,6 +10,7 @@ public partial class Player3d : CharacterBody3D
 	// --- CONSTANTS ---
 	public const float Speed = 3.5f;                 // Base player movement speed (units/second)
 	public const float RunSpeed = 4.5f;              // Additional speed when running
+	public const float crouchSpeed = -2f; 			 // Removed speed when crouching
 	public const float JumpVelocity = 6.5f;          // Vertical velocity applied for jumping (not used in _PhysicsProcess shown)
 	public const float BobFreq = 2f;                 // Frequency (speed) of the camera head-bob effect
 	public const float BobAmp = 0.06f;               // Amplitude (intensity) of the camera head-bob effect
@@ -358,13 +359,18 @@ public partial class Player3d : CharacterBody3D
 		// --- Crouch toggle (C Key) ---
 		else if (Input.IsActionJustPressed("crouchToggle"))
 		{
-			_head.Position = new Vector3 (_head.Position.X,0f,_head.Position.Z) ; 
+			crouching = !crouching;
 		}
 
-		// --- Crouch hold (C Key) ---
+		// --- Crouch hold (Ctrl Key) ---
 		else if (Input.IsActionPressed("crouch"))
 		{
 			crouching = true;
+		}
+		// --- Crouch hold (Ctrl Key) ---
+		else if (Input.IsActionJustReleased("crouch"))
+		{
+			crouching = false;
 		}
 		// --- Interact (E Key) ---
 		else if (Input.IsActionJustPressed("interact"))
@@ -636,8 +642,8 @@ public partial class Player3d : CharacterBody3D
 				_stamina = 0f;
 			}
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
-			velocity.X = direction.X * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.X) * -_knockVelocity) + _dashVelocity);
-			velocity.Z = direction.Z * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.Z) * -_knockVelocity) + _dashVelocity);
+			velocity.X = direction.X * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (crouchSpeed * Convert.ToInt32(crouching)) + (Mathf.Abs(direction.X) * -_knockVelocity) + _dashVelocity);
+			velocity.Z = direction.Z * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (crouchSpeed * Convert.ToInt32(crouching)) + (Mathf.Abs(direction.Z) * -_knockVelocity) + _dashVelocity);
 
 			if (_running == true)
 			{
@@ -868,8 +874,7 @@ public partial class Player3d : CharacterBody3D
 		if (block == true)
 		{
 			_swordInst.blocking = true;
-			await ToSignal(GetTree().CreateTimer(0.05), "timeout"); // Wait for a brief m
-			// .0oment
+			await ToSignal(GetTree().CreateTimer(0.05), "timeout"); // Wait for a brief moment
 			_parry = true; // Set parry flag to true (the active parry window)
 			await ToSignal(GetTree().CreateTimer(_parryWindow), "timeout"); // wait until the parry window closes
 			_parry = false;
