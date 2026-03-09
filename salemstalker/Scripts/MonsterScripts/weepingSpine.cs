@@ -60,6 +60,8 @@ public partial class weepingSpine : Monster3d
             {
                 thb._weepingCount -= 1;
             }
+			_itemDropper.Drop("seed", 0.5f, 3, GlobalPosition);
+			//_itemDropper.Drop("sprout", 0.15f, 2, GlobalPosition);
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		_distance = (_player.GlobalPosition - GlobalPosition).Length();

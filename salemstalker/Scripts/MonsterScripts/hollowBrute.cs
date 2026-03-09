@@ -41,6 +41,8 @@ public partial class hollowBrute : Monster3d
 			{
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
 			}
+			_itemDropper.Drop("deadooze", 0.5f, 5, GlobalPosition);
+			//_itemDropper.Drop("woundedooze", 0.25f, 3, GlobalPosition);
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		if (_attackAnim == false) { RotateFunc(delta); }

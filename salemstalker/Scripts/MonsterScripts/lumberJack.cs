@@ -65,6 +65,8 @@ public partial class lumberJack : Monster3d
 			{
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
 			}
+			_itemDropper.Drop("rottenflesh", 0.5f, 5, GlobalPosition);
+			_itemDropper.Drop("scorchedflesh", 0.25f, 3, GlobalPosition);
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		RotateFunc(delta);
