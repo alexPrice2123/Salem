@@ -10,8 +10,8 @@ public partial class Monster3d : CharacterBody3D
 	// --- CONSTANTS ---
 	protected float RunSpeed = 3f;
 	protected float WalkSpeed = 2f;
-	protected float MaxHealth = 100.0f;
-	protected float WalkRange = 15.0f;
+	public float MaxHealth = 100.0f;
+	protected float WalkRange;
 	protected float AgroFOV = 5.0f;
 	protected float AgroLength = 5.0f;
 	protected double SpawnDistance = 100;
@@ -48,6 +48,7 @@ public partial class Monster3d : CharacterBody3D
 	protected Area3D _walkArea;
 	protected Area3D _runArea;
 	protected Area3D _agroArea;
+	//protected ItemDropper _itemDropper;
 
 	// --- VARIABLES ---
 	public float _health;
@@ -97,23 +98,21 @@ public partial class Monster3d : CharacterBody3D
 
 
 	// --- READY --- //
-	public void Initialization()
+	public async void Initialization()
 	{
-		if (Cutscene)
-        {
-			BaseDamage = 4.0f;         // Base damage of the monster
-			WalkSpeed = 0.5f;             // Movement speed when they are wandering
-			RunSpeed = 1.75f;              // Movement speed when they are chasing the player
-			WalkRange = 100f;
-        }
+		GD.Print(Disabled);
+		
+
 		_player = GetParent().GetParent().GetParent().GetParent().GetNode<Player3d>("Player_3d");
 		_rng.Randomize();
 		_navAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
 
-		GD.Print(_startPos);
-		float randZ = _startPos.Z + _rng.RandiRange(-WanderRange, WanderRange);
-		float randX = _startPos.X + _rng.RandiRange(-WanderRange, WanderRange);
-		_wanderPos = new Vector3(randX, 0f, randZ);
+		if (!Disabled)
+		{
+			float randZ = _startPos.Z + _rng.RandiRange(-WanderRange, WanderRange);
+			float randX = _startPos.X + _rng.RandiRange(-WanderRange, WanderRange);
+			_wanderPos = new Vector3(randX, 0f, randZ);
+		}
 
 		if (MultBodyRef != null) { _hitFX = MultHitRef; _body = MultBodyRef; }
 		else { _hitFX = GetNode<Node3D>("HitFX"); _body = GetNode<Node3D>("Body"); }
@@ -125,35 +124,10 @@ public partial class Monster3d : CharacterBody3D
 		_walkArea = GetNode<Area3D>("WalkRange");
 		_runArea = GetNode<Area3D>("RunRange");
 		_agroArea = GetNode<Area3D>("AgroRange");
-
-		// Cache squared ranges to avoid sqrt in EveryFrame
-		AttackRangeSqr = AttackRange * AttackRange;
-		SpawnRangeSqr = SpawnRange * SpawnRange;
-
-		if (_walkArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape)
-		{
-			shape.Radius = WalkRange;
-			if (_walkArea.GetNode<MeshInstance3D>("Debug").Mesh is SphereMesh debugShape)
-				debugShape.Radius = WalkRange;
-		}
-		if (_runArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape is SphereShape3D shape2)
-		{
-			shape2.Radius = WalkRange * 3;
-			if (_runArea.GetNode<MeshInstance3D>("Debug").Mesh is SphereMesh debugShape)
-				debugShape.Radius = WalkRange * 3;
-		}
-		if (DebugShapes)
-		{
-			_walkArea.GetNode<MeshInstance3D>("Debug").Visible = true;
-			_runArea.GetNode<MeshInstance3D>("Debug").Visible = true;
-			_agroArea.GetNode<MeshInstance3D>("Debug").Visible = true;
-		}
-
-		Vector3 baseScale = _agroArea.Scale;
-		baseScale.X = AgroLength;
-		baseScale.Y = AgroFOV;
-		baseScale.Z = AgroFOV;
-		_agroArea.Scale = baseScale;
+		//_itemDropper = _player.GetParent().GetNode<ItemDropper>("MonstItemDropper");
+		
+		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+		SetUpRanges();
 	}
 
 
@@ -207,7 +181,7 @@ public partial class Monster3d : CharacterBody3D
 	public void EveryFrame(double delta)
 	{
 		// Early-out: disabled, debugging, or player dead — go fully idle
-		if (Disabled || Debug || _player._dead)
+		if (/*Disabled ||*/ Debug || _player._dead)
 		{
 			if (Disabled)
 			{
@@ -365,7 +339,7 @@ public partial class Monster3d : CharacterBody3D
 				}
 
 				Vector3 moveDir = Velocity.Normalized();
-				if (moveDir != Vector3.Zero)
+				if (Velocity.LengthSquared() > 0.01f)
 					_lookDirection.LookAt(myPos + moveDir, Vector3.Up);
 
 				if (_distanceSqr > SpawnDistance * SpawnDistance) { QueueFree(); return; }
@@ -516,6 +490,7 @@ public partial class Monster3d : CharacterBody3D
 
 	private void ChooseNewWander()
 	{
+		if (Disabled){_wanderPos = new Vector3(GlobalPosition.X, 0f, GlobalPosition.Z); return;}
 		float randZ = _startPos.Z + _rng.RandiRange(-WanderRange, WanderRange);
 		float randX = _startPos.X + _rng.RandiRange(-WanderRange, WanderRange);
 		_wanderPos = new Vector3(randX, 0f, randZ);
@@ -554,10 +529,86 @@ public partial class Monster3d : CharacterBody3D
 		}
 	}
 
+	private void SetUpRanges()
+    {
+        if (Cutscene)
+        {
+			BaseDamage = 4.0f;         // Base damage of the monster
+			WalkSpeed = 0.5f;             // Movement speed when they are wandering
+			RunSpeed = 1.75f;              // Movement speed when they are chasing the player
+        }
+		if (Disabled)
+		{
+			WalkRange  = 0.5f;
+			AgroLength = 1f;
+		}
+        else
+        {
+            WalkRange = 20f;
+        }
+		if (_walkArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape.Duplicate() is SphereShape3D shape)
+		{
+			shape.Radius = WalkRange;
+			_walkArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape = shape;
+			if (_walkArea.GetNode<MeshInstance3D>("Debug").Mesh.Duplicate() is SphereMesh debugShape)
+			{
+				debugShape.Radius = WalkRange ;
+				_walkArea.GetNode<MeshInstance3D>("Debug").Mesh = debugShape;
+			}
+		}
+		if (_runArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape.Duplicate() is SphereShape3D shape2)
+		{
+			shape2.Radius = WalkRange * 3;
+			_walkArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape = shape2;
+			if (_walkArea.GetNode<MeshInstance3D>("Debug").Mesh.Duplicate() is SphereMesh debugShape)
+			{
+				debugShape.Radius = WalkRange * 3;
+				_walkArea.GetNode<MeshInstance3D>("Debug").Mesh = debugShape;
+			}
+		}
+		if (DebugShapes)
+		{
+			_walkArea.GetNode<MeshInstance3D>("Debug").Visible = true;
+			_runArea.GetNode<MeshInstance3D>("Debug").Visible = true;
+			_agroArea.GetNode<MeshInstance3D>("Debug").Visible = true;
+		}
+
+		Vector3 baseScale = _agroArea.Scale;
+		baseScale.X = AgroLength;
+		baseScale.Y = AgroFOV;
+		baseScale.Z = AgroFOV;
+		_agroArea.Scale = baseScale;
+
+
+		// Cache squared ranges to avoid sqrt in EveryFrame
+		AttackRangeSqr = AttackRange * AttackRange;
+		SpawnRangeSqr = SpawnRange * SpawnRange;
+
+		Vector3 diff        = _player.GlobalPosition - GlobalPosition;
+		if (diff.Length() <= WalkRange)
+        {
+            ForceSeePlayer();
+        }
+    }
+
+	public void ForceSeePlayer()
+    {
+        Area3D area = _player.GetNode<Area3D>("Hurtbox");
+		if (area.IsInGroup("PlayerHurtbox"))
+		{
+			_playerInWalkRange = true;
+			_agroChangeCooldown = 0;
+			detectPlayer(area, true, false);
+		}
+    }
+
 	private void _on_walk_range_area_entered(Area3D area)
 	{
-		if (area.IsInGroup("PlayerHurtbox")) _playerInWalkRange = true;
-		detectPlayer(area, true, false);
+		if (area.IsInGroup("PlayerHurtbox"))
+        {
+            _playerInWalkRange = true;
+			detectPlayer(area, true, false);
+        }
 	}
 
 	private void _on_run_range_area_entered(Area3D area)

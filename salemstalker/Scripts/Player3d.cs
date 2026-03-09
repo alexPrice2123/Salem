@@ -116,6 +116,7 @@ public partial class Player3d : CharacterBody3D
 	private Vector3 _cameraBasePosition;
 	private float _demoCount = 30f;
 	private Godot.Collections.Array<string> _pickUpableItems { get; set; } = ["Taz", "Bridger", "Gnocchi"];
+	private bool _inCutscene = false; 
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -469,6 +470,7 @@ public partial class Player3d : CharacterBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		if (_dead == true){return;}
+		if (_inCutscene){return;}
 		var camRef = (Camera)_cam;
 
 		// FINAL camera transform = base + shake
@@ -513,7 +515,7 @@ public partial class Player3d : CharacterBody3D
 		}
 		Vector3 velocity = Velocity; // Get the current velocity vector
 
-		ShaderMaterial shaderMaterial = GetNode<ColorRect>("UI/Dither").Material as ShaderMaterial;
+		ShaderMaterial shaderMaterial = GetNode<ColorRect>("Dither").Material as ShaderMaterial;
 		shaderMaterial.SetShaderParameter("BlendAmount", Mathf.Lerp((float)shaderMaterial.GetShaderParameter("BlendAmount"), _hallucinationFactor, (float)delta));
 
 		_hallucinationFactor = Mathf.Lerp(_hallucinationFactor, 0f, (float)delta / 10);
@@ -534,11 +536,8 @@ public partial class Player3d : CharacterBody3D
 		_lantern.OmniRange = (_health / _maxHealth * _maxRange) + _minRange;
 
 		// --- Stamina UI Update ---
-		// Smoothly interpolate the stamina UI goal for a fluid bar movement
-		_staminaGoal = Mathf.Lerp(_staminaGoal, _stamina / _maxStamina, (float)delta * 3f);
-		// Update the ShaderMaterial parameter 'fill' to reflect the current stamina
-		ShaderMaterial staminaShader = GetNode<Sprite2D>("UI/Stamina/Fill").Material as ShaderMaterial;
-		staminaShader.SetShaderParameter("fill", _staminaGoal);
+		GetNode<TextureProgressBar>("UI/Stamina").Value = Mathf.Lerp(GetNode<TextureProgressBar>("UI/Stamina").Value, (_stamina/_maxStamina)*100f, (float)delta*2f);
+		GetNode<TextureProgressBar>("UI/Health").Value = Mathf.Lerp(GetNode<TextureProgressBar>("UI/Health").Value, (_health/_maxHealth)*100f, (float)delta*2f);
 
 		// --- Death Condition ---
 		if (_health <= 0)
@@ -1351,5 +1350,11 @@ public partial class Player3d : CharacterBody3D
 		{
 			villager.Talk();
 		}
+    }
+
+	public void CutsceneToggle(bool toggle)
+    {
+        GetNode<Ui>("UI").Visible = !toggle;
+		_inCutscene = toggle;
     }
 }

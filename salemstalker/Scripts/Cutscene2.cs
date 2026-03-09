@@ -14,11 +14,13 @@ public partial class Cutscene2 : Node3D
 	}
 
 	private async void _on_area_3d_area_entered(Area3D area)
-    {
+    {  
         if (area.GetParent() is Player3d plr)
         {
 			plr.GetNode<Ui>("UI")._fadeProg = 1;
-			await ToSignal(GetTree().CreateTimer(2), "timeout"); 
+			plr.CutsceneToggle(true);
+			GetNode<Area3D>("Area3D").Monitoring = false;
+			await ToSignal(GetTree().CreateTimer(2), "timeout");
 			plr.GetNode<Ui>("UI")._fadeProg = 0;
 			GetNode<Camera3D>("Camera").Current = true;
 			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
@@ -49,8 +51,9 @@ public partial class Cutscene2 : Node3D
 					monster.SpawnRange = 1000f;
 					monster._currentSpawnRange = 1000f;
 					monster._startPos = GlobalPosition;
-					if (i > 1){monster.Disabled = true;}
+					if (i < 3){monster.Disabled = true;}
 					monster.Cutscene = true;
+					monster.MaxHealth += i*10;
 				}
 				GetParent().GetNode<Node3D>("MonsterHolder/Hold2/Hold").AddChild(monsterInstance);    
 				monsterInstance.GlobalPosition = spawnPos;
@@ -59,6 +62,7 @@ public partial class Cutscene2 : Node3D
 			GetNode<Node3D>("metarig_001").Visible = false;
 			GetNode<Node3D>("metarig_002").Visible = false;
 			await ToSignal(GetTree().CreateTimer(1), "timeout");
+			plr.CutsceneToggle(false);
 			plr.GetNode<Ui>("UI")._fadeProg = 0;
 			GetNode<Camera3D>("Camera").Current = false;
 
