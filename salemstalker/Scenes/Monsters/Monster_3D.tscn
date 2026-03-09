@@ -8,8 +8,8 @@ radius = 0.3569336
 height = 1.9176133
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ci7oq"]
-radius = 0.6484375
-height = 1.38319
+radius = 0.39697266
+height = 3.2246094
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ci7oq"]
 size = Vector3(1.04077, 1.31622, 3)
@@ -156,6 +156,7 @@ debug_color = Color(0.541872, 0.406451, 1, 0.42)
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="Hurtbox" type="Area3D" parent="." groups=["Monster"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 1024
 collision_mask = 1024
 input_ray_pickable = false

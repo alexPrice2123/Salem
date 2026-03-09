@@ -100,7 +100,7 @@ public partial class Ui : Control
 
 	public override void _Process(double delta)
 	{
-		GetNode<ColorRect>("Fade").Color = GetNode<ColorRect>("Fade").Color.Lerp(new Color(0,0,0,_fadeProg), (float)delta*2);
+		GetParent().GetNode<ColorRect>("Fade").Color = GetParent().GetNode<ColorRect>("Fade").Color.Lerp(new Color(0,0,0,_fadeProg), (float)delta*2);
 
 		Color newTransparency = _areaName.Modulate;
 		newTransparency.A = Mathf.Lerp(_areaName.Modulate.A, _areaNameTween, (float)delta);
