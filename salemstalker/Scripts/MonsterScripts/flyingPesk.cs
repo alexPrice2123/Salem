@@ -66,6 +66,8 @@ public partial class flyingPesk : Monster3d
             {
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
             }
+			_itemDropper.Drop("chippedfang", 0.5f, 5, GlobalPosition);
+			_itemDropper.Drop("fang", 0.25f, 3, GlobalPosition);
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		if (_attacking == true)

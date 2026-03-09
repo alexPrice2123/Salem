@@ -185,13 +185,13 @@ public partial class Ui : Control
 		if (_shopTypeSelection.Selected == 0) { PlayShopAnim(""); }
 		if (_shopTypeSelection.Selected == 1) { PlayShopAnim(""); }
 		if (_shopTypeSelection.Selected == 2) { PlayShopAnim(""); }
-	}
+	}*/
 	private void _on_shop_option4_button_up()
 	{
-		if (_shopTypeSelection.Selected == 0) { PlayShopAnim(""); }
-		if (_shopTypeSelection.Selected == 1) { PlayShopAnim(""); }
-		if (_shopTypeSelection.Selected == 2) { PlayShopAnim(""); }
-	}*/
+		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("dagger"); _shopSelection = "Dagger"; _player.SwitchPrimaryWeapon(_shopSelection); }
+		//if (_shopTypeSelection.Selected == 1) { PlayShopAnim(""); }
+		//if (_shopTypeSelection.Selected == 2) { PlayShopAnim(""); }
+	}
 	private void _on_upgrade_button_up()
 	{
 		//ColorRect _desc = GetNode<ColorRect>("BlacksmithShop/View/WeaponDesc"); <--- For later
@@ -290,8 +290,6 @@ public partial class Ui : Control
 			_desc.Visible = false;
 		}
 	}
-
-	private void _on_back_button_up() { GetNode<Control>("ResourceInv").Visible = false; GetNode<Control>("Inv").Visible = true; }
    
 	// --- Falchion ---
 	private void _on_falchion_mouse_entered(){ PlayInvAnim("Falchion", true); }
@@ -446,4 +444,9 @@ public partial class Ui : Control
 		_resourceInv.Visible = true;
 		_inv.Visible = false;
     }
+	private void _on_back_button_up()
+	{
+		_resourceInv.Visible = false;
+		_inv.Visible = true;
+	}
 }

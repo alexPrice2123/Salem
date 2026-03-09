@@ -63,6 +63,8 @@ public partial class sCultist : Monster3d
 			{
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
 			}
+			_itemDropper.Drop("bleedheart", 0.5f, 3, GlobalPosition);
+			_itemDropper.Drop("heart", 0.15f, 2, GlobalPosition);
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		RotateFunc(delta);

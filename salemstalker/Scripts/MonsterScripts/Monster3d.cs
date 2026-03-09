@@ -48,7 +48,7 @@ public partial class Monster3d : CharacterBody3D
 	protected Area3D _walkArea;
 	protected Area3D _runArea;
 	protected Area3D _agroArea;
-	//protected ItemDropper _itemDropper;
+	protected ItemDropper _itemDropper;
 
 	// --- VARIABLES ---
 	public float _health;
@@ -124,7 +124,7 @@ public partial class Monster3d : CharacterBody3D
 		_walkArea = GetNode<Area3D>("WalkRange");
 		_runArea = GetNode<Area3D>("RunRange");
 		_agroArea = GetNode<Area3D>("AgroRange");
-		//_itemDropper = _player.GetParent().GetNode<ItemDropper>("MonstItemDropper");
+		_itemDropper = _player.GetParent().GetNode<ItemDropper>("MonstItemDropper");
 		
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		SetUpRanges();

@@ -54,7 +54,8 @@ public partial class hollowNormal : Monster3d
 					_player.GetParent().GetNode<Cutscene3>("Cutscene3").StartCut(_player);
 				}
             }
-
+			_itemDropper.Drop("deadooze", 0.5f, 3, GlobalPosition);
+			//_itemDropper.Drop("woundedooze", 0.25f, 2, GlobalPosition);
 			QueueFree();
 		}
 		if (Velocity.LengthSquared() > 0.01f)

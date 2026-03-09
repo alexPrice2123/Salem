@@ -43,6 +43,8 @@ public partial class underBrush : Monster3d
 			{
 				if (GetParent().GetParent() is DebugHut dh) { dh._shouldSpawn = true; }
 			}
+			_itemDropper.Drop("seed", 0.5f, 5, GlobalPosition);
+			//_itemDropper.Drop("sprout", 0.25f, 3, GlobalPosition);
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		_countDown -= (float)delta;

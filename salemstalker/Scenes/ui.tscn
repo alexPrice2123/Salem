@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=63 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -11,14 +11,22 @@
 [ext_resource type="PackedScene" uid="uid://bjqhyqqld6job" path="res://Scenes/resource_World.tscn" id="6_whq80"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="7_smy1h"]
 [ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="8_lkjmk"]
-[ext_resource type="Texture2D" uid="uid://p41p2ec6o3vp" path="res://Assets/2D/Placeholder/cat1.jpeg" id="9_fe2sg"]
+[ext_resource type="Texture2D" uid="uid://cujaqjsl8etqi" path="res://Assets/2D/Placeholder/cat1.jpeg" id="9_fe2sg"]
 [ext_resource type="Texture2D" uid="uid://wso5sa0t8sgl" path="res://Assets/2D/Placeholder/cat2.png" id="10_jd57c"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
 [ext_resource type="Texture2D" uid="uid://bfghb222o1dor" path="res://Assets/2D/Placeholder/cat3.jpeg" id="11_85lyl"]
 [ext_resource type="Texture2D" uid="uid://c4cernxpmcelt" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
+[ext_resource type="Texture2D" uid="uid://ckypyf8nhveux" path="res://Assets/UI/resources/bleedheart.png" id="13_kjfio"]
+[ext_resource type="Texture2D" uid="uid://cqu65nmwafl6m" path="res://Assets/UI/resources/heart.png" id="14_0o3wc"]
 [ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
-[ext_resource type="FontFile" uid="uid://sx3tldq5iag2" path="res://Assets/Fonts/DumNorm.ttf" id="17_fe2sg"]
+[ext_resource type="Texture2D" uid="uid://2kjwf2irjlgu" path="res://Assets/UI/resources/chippedfang.png" id="15_ebfgw"]
+[ext_resource type="Texture2D" uid="uid://dbcr6g2lqi5f5" path="res://Assets/UI/resources/fang.png" id="16_mirbq"]
+[ext_resource type="FontFile" uid="uid://c2u1385tn7ero" path="res://Assets/Fonts/DumNorm.ttf" id="17_fe2sg"]
+[ext_resource type="Texture2D" uid="uid://cumokc43ikhlr" path="res://Assets/UI/resources/rottenflesh.png" id="17_ipwe8"]
+[ext_resource type="Texture2D" uid="uid://hwcjtkbockhg" path="res://Assets/UI/resources/scorchedflesh.png" id="18_al6qt"]
+[ext_resource type="Texture2D" uid="uid://dlsorxoxss6mc" path="res://Assets/UI/resources/seed.png" id="19_mdsrb"]
+[ext_resource type="Texture2D" uid="uid://cgn6ppmfn5m1x" path="res://Assets/UI/resources/deadooze.png" id="20_bsvcc"]
 [ext_resource type="Texture2D" uid="uid://kyojqtb6o382" path="res://Assets/UI/voidhbar.png" id="20_jd57c"]
 [ext_resource type="Texture2D" uid="uid://jk0fjvybrnp2" path="res://Assets/UI/healbar.png" id="21_jd57c"]
 [ext_resource type="Texture2D" uid="uid://cilwykdcbmrj3" path="res://Assets/UI/voidbar.png" id="22_85lyl"]
@@ -576,10 +584,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_kuui0")
 _itemImages = Dictionary[String, Texture2D]({
+"bleedheart": ExtResource("13_kjfio"),
 "bridger": ExtResource("10_jd57c"),
+"chippedfang": ExtResource("15_ebfgw"),
+"deadooze": ExtResource("20_bsvcc"),
+"fang": ExtResource("16_mirbq"),
 "gnocchi": ExtResource("11_85lyl"),
+"heart": ExtResource("14_0o3wc"),
 "log": ExtResource("7_smy1h"),
 "plank": ExtResource("8_lkjmk"),
+"rottenflesh": ExtResource("17_ipwe8"),
+"scorchedflesh": ExtResource("18_al6qt"),
+"seed": ExtResource("19_mdsrb"),
 "taz": ExtResource("9_fe2sg")
 })
 
@@ -645,7 +661,7 @@ render_target_update_mode = 0
 
 [node name="RW" parent="ResourceInv/SubPort/Sub" instance=ExtResource("6_whq80")]
 
-[node name="Button" type="Button" parent="ResourceInv"]
+[node name="Back" type="Button" parent="ResourceInv"]
 z_index = -1
 layout_mode = 0
 offset_left = 181.0
@@ -1399,7 +1415,7 @@ texture_progress = ExtResource("23_mplvk")
 [connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot3" to="." method="_on_slot_3_button_up"]
 [connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot2" to="." method="_on_slot_2_button_up"]
 [connection signal="button_up" from="Inv/SubPort/Sub/SlotSelector/Slot4" to="." method="_on_slot_4_button_up"]
-[connection signal="button_up" from="ResourceInv/Button" to="." method="_on_back_button_up"]
+[connection signal="button_up" from="ResourceInv/Back" to="." method="_on_back_button_up"]
 [connection signal="button_up" from="Container/QuestTemplate/Quest/QuestButton" to="." method="_on_quest_button_button_up"]
 [connection signal="button_up" from="Dialogue/AcceptButton" to="." method="_on_accept_button_button_up"]
 [connection signal="button_up" from="Dialogue/Continue" to="." method="_on_continue_button_up"]

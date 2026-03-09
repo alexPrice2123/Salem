@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public partial class itemList : Control
 {
+    //public static itemList Instance { get; private set; }
 	public Dictionary<string, float> _items = new Dictionary<string, float>();
 	[Export]
 	public Godot.Collections.Dictionary<string, Texture2D> _itemImages { get; set; } = [];
@@ -11,6 +12,7 @@ public partial class itemList : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {
+        //Instance = this;
 		for(int i = 1; i < 30; i++)
         {
           _keysArray.Add("");
