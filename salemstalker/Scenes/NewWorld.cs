@@ -4,17 +4,14 @@ using System.Collections.Generic;
 
 public partial class NewWorld : Node3D
 {
-    private Godot.Collections.Dictionary<string,Variant> data ;
+    private Godot.Collections.Dictionary<string,Variant> data = new Godot.Collections.Dictionary<string,Variant>();
     string savePath = "user://saveData.json";
     // Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {
         if (!FileAccess.FileExists(savePath)){data.Add("place","testing");SaveToFile(data);}
-        GD.Print( " this is a testing yeah1");
         data = LoadFromFile();
-        GD.Print( " this is a testing yeah5");
-        GD.Print(data["place"], " this is a testing yeah");
-        GD.Print( " this is a testing yeah6");
+        GD.Print(data.ToString());
     }
 
     public void SaveToFile(Godot.Collections.Dictionary<string,Variant> toSave)
