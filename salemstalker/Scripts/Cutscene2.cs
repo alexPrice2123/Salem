@@ -22,22 +22,18 @@ public partial class Cutscene2 : Node3D
 			GetNode<Area3D>("Area3D").Monitoring = false;
 			await ToSignal(GetTree().CreateTimer(2), "timeout");
 			plr.GetNode<Ui>("UI")._fadeProg = 0;
-			GetNode<Camera3D>("Camera").Current = true;
-			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
-			GetNode<AnimationPlayer>("CamAnim").Play("CameraAction");
-			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-			GetNode<AnimationPlayer>("Hollow1").Play("metarigAction_001");
-			GetNode<AnimationPlayer>("Hollow2").Play("metarigAction_003");
-			GetNode<AnimationPlayer>("Hollow3").Play("metarigAction_005");
-			await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-			GetNode<Node3D>("metarig").Visible = true;
-			await ToSignal(GetTree().CreateTimer(2.2f), "timeout");
-			GetNode<Node3D>("metarig_001").Visible = true;
-			await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
-			GetNode<Node3D>("metarig_002").Visible = true;
-			await ToSignal(GetTree().CreateTimer(0.7f), "timeout");
+			GetNode<Camera3D>("Fight/Camera").Current = true;
+			GetNode<AnimationPlayer>("Fight/CamAnim").Play("CameraAction");
+			GetNode<AnimationPlayer>("Fight/Middle").Play("metarigAction");
+			GetNode<AnimationPlayer>("Fight/Right1").Play("metarig_001Action");
+			GetNode<AnimationPlayer>("Fight/Right2").Play("metarig_001Action_001");
+			GetNode<AnimationPlayer>("Fight/Left").Play("metarig_002Action_001");
+			await ToSignal(GetTree().CreateTimer(1f), "timeout");
+			GetNode<Node3D>("Fight/metarig_001").Visible = true;
+			GetNode<Node3D>("Fight/metarig_002").Visible = true;
+			await ToSignal(GetTree().CreateTimer(2f), "timeout");
 			plr.GetNode<Ui>("UI")._fadeProg = 1;
-			await ToSignal(GetTree().CreateTimer(1), "timeout");
+			await ToSignal(GetTree().CreateTimer(2), "timeout");
 
 			for (int i = 1; i <= 3; i++)
             {
@@ -58,13 +54,12 @@ public partial class Cutscene2 : Node3D
 				GetParent().GetNode<Node3D>("MonsterHolder/Hold2/Hold").AddChild(monsterInstance);    
 				monsterInstance.GlobalPosition = spawnPos;
             }
-			GetNode<Node3D>("metarig").Visible = false;
-			GetNode<Node3D>("metarig_001").Visible = false;
-			GetNode<Node3D>("metarig_002").Visible = false;
-			await ToSignal(GetTree().CreateTimer(1), "timeout");
+			GetNode<Node3D>("Fight/metarig_001").Visible = false;
+			GetNode<Node3D>("Fight/metarig_002").Visible = false;
+			GetNode<Node3D>("Fight/metarig").Visible = false;
 			plr.CutsceneToggle(false);
 			plr.GetNode<Ui>("UI")._fadeProg = 0;
-			GetNode<Camera3D>("Camera").Current = false;
+			GetNode<Camera3D>("Fight/Camera").Current = false;
 
 			
         }
