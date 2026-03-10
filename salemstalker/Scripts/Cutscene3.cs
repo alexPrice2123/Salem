@@ -37,12 +37,27 @@ public partial class Cutscene3 : Node3D
 		await ToSignal(GetTree().CreateTimer(4.5f), "timeout");
 		plr.GetNode<Ui>("UI")._fadeProg = 1; 
 		await ToSignal(GetTree().CreateTimer(2), "timeout");
-		GetNode<Camera3D>("Drag/Camera").Current = false;
+		GetNode<Camera3D>("Drag/Camera").Current = false; 
+		GetNode<Camera3D>("Cursed/Camera").Current = true;
+		plr.GetNode<Ui>("UI")._fadeProg = 0;
+		GetNode<AnimationPlayer>("Cursed/CamAnim").Play("CameraAction");
+		GetNode<AnimationPlayer>("Cursed/CultAnim").Play("chargeup");
+		await ToSignal(GetTree().CreateTimer(5.3), "timeout");
+		plr.GetNode<Ui>("UI")._fadeProg = 1; 
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		GetNode<Camera3D>("Cursed/Camera").Current = false; 
 		GetNode<Camera3D>("Waking/metarig_001/Skeleton3D/spine_006/Camera").Current = true;
 		plr.GetNode<Ui>("UI")._fadeProg = 0;
 		GetNode<AnimationPlayer>("Waking/Wake").Play("metarig_001Action");
 		await ToSignal(GetTree().CreateTimer(2), "timeout");
 		Vision(mat, false);
+		await ToSignal(GetTree().CreateTimer(4), "timeout");
+		plr.GetNode<Ui>("UI")._fadeProg = 1; 
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		plr.GlobalTransform = plr.GetParent().GetNode<Node3D>("PlayerSpawnAfterCut").GlobalTransform;
+		GetNode<Camera3D>("Waking/metarig_001/Skeleton3D/spine_006/Camera").Current = false;
+		plr.GetNode<Ui>("UI")._fadeProg = 0;
+		plr.CutsceneToggle(false);
     }
 	private async void Vision(ShaderMaterial mat, bool toggle)
 	{
