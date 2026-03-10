@@ -9,7 +9,7 @@ public partial class NewWorld : Node3D
     // Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {
-        if (!FileAccess.FileExists(savePath)){data.Add("place","testing");SaveToFile(data);}
+        if (!FileAccess.FileExists(savePath)){data.Add("place","testing");SaveToFile(data);GD.Print("Save Data created!");}
         data = LoadFromFile();
         GD.Print(data.ToString());
     }
