@@ -1305,7 +1305,7 @@ public partial class Player3d : CharacterBody3D
 		return alignment;
 	}
 
-	private async void StartCut()
+	public async void StartCut()
     {
         await ToSignal(GetTree().CreateTimer(2f), "timeout");
 		if (IsInstanceValid(_lastSeen) && _lastSeen is NpcVillager villager)
@@ -1318,5 +1318,24 @@ public partial class Player3d : CharacterBody3D
     {
         GetNode<Ui>("UI").Visible = !toggle;
 		_inCutscene = toggle;
+		Visible = !toggle;
     }
+
+	public void CamLookAtPos(Vector3 targetPos)
+	{
+		Vector3 dir = (targetPos - _head.GlobalTransform.Origin).Normalized();
+
+		// Yaw
+		float yaw = Mathf.Atan2(-dir.X, -dir.Z);
+
+		// Pitch
+		float pitch = 0;
+		pitch = Mathf.Clamp(pitch, Mathf.DegToRad(-80), Mathf.DegToRad(80));
+
+		_head.Rotation = new Vector3(_head.Rotation.X, yaw, _head.Rotation.Z);
+		_cameraBaseRotation.X = -pitch;
+
+		_lookingAtGoalPoint = CalculateLookAtAlignment();
+	}
+	
 }

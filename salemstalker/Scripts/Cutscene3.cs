@@ -18,6 +18,10 @@ public partial class Cutscene3 : Node3D
     {
 		plr.GetNode<Ui>("UI")._fadeProg = 1;
         plr.CutsceneToggle(true);
+		GetNode<Node3D>("Waking").Visible = true;
+		GetNode<Node3D>("Cursed").Visible = true;
+		GetNode<Node3D>("Drag").Visible = true;
+		plr.GetNode<Label>("UI/TutTextComb").Visible = false;
 		await ToSignal(GetTree().CreateTimer(2), "timeout");
 		plr.GetNode<Ui>("UI")._fadeProg = 0;
 		GetNode<Node3D>("metarig").Visible = true;
@@ -53,11 +57,17 @@ public partial class Cutscene3 : Node3D
 		Vision(mat, false);
 		await ToSignal(GetTree().CreateTimer(4), "timeout");
 		plr.GetNode<Ui>("UI")._fadeProg = 1; 
-		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		plr.StartCut();
+		await ToSignal(GetTree().CreateTimer(1.5), "timeout");
+		
+		GetNode<Node3D>("Waking").Visible = false;
+		GetNode<Node3D>("Cursed").Visible = false;
+		GetNode<Node3D>("Drag").Visible = false;
 		plr.GlobalTransform = plr.GetParent().GetNode<Node3D>("PlayerSpawnAfterCut").GlobalTransform;
 		GetNode<Camera3D>("Waking/metarig_001/Skeleton3D/spine_006/Camera").Current = false;
 		plr.GetNode<Ui>("UI")._fadeProg = 0;
 		plr.CutsceneToggle(false);
+		plr.CamLookAtPos(plr.GetParent().GetNode<Node3D>("Matthew/LookAt").GlobalPosition);
     }
 	private async void Vision(ShaderMaterial mat, bool toggle)
 	{

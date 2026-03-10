@@ -326,6 +326,7 @@ public partial class NpcVillager : CharacterBody3D
 				_dialogueBox.Text = IgnoredDialogue[_dialougeIndex];
             }
 		}
+		
 		else
 		{
 			if (_currentDialouge == "Done")
@@ -333,6 +334,13 @@ public partial class NpcVillager : CharacterBody3D
 				_questInProgress = false;
 				_hasTalked = true;
 				_player.RemoveQuest(NPCName);
+            }
+			else if (_currentDialouge == "Quest" && AcceptedDialogue.Count < 1)
+            {
+                _hasTalked = true;
+				_questInProgress = true;
+				_questPrompt.Text = WaitingDialogue;
+				_player._originalDialouge = WaitingDialogue;
             }
 			EndDialouge();
 		}
@@ -358,7 +366,7 @@ public partial class NpcVillager : CharacterBody3D
 		{
 			_dialogueBox.Text = WaitingDialogue;
 		}
-
+		
 		if (_questPrompt.Visible == true && _questInProgress == false && _questComplete == false && _currentDialouge != "Quest")
 		{
 			_dialougeIndex = 0;
@@ -391,7 +399,7 @@ public partial class NpcVillager : CharacterBody3D
 				_dialogue.GetNode<Button>("AcceptButton").Visible = false;
 				_dialogue.GetNode<Button>("IgnoreButton").Visible = false;
 			}
-			else
+			else if (AcceptedDialogue.Count >= 1)
 			{
 				_dialogue.GetNode<Button>("Continue").Visible = false;
 				_dialogue.GetNode<Button>("AcceptButton").Visible = true;
