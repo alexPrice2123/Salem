@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=64 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -28,9 +28,9 @@
 [ext_resource type="Texture2D" uid="uid://dlsorxoxss6mc" path="res://Assets/UI/resources/seed.png" id="19_mdsrb"]
 [ext_resource type="Texture2D" uid="uid://cgn6ppmfn5m1x" path="res://Assets/UI/resources/deadooze.png" id="20_bsvcc"]
 [ext_resource type="Texture2D" uid="uid://kyojqtb6o382" path="res://Assets/UI/voidhbar.png" id="20_jd57c"]
-[ext_resource type="Texture2D" uid="uid://jk0fjvybrnp2" path="res://Assets/UI/healbar.png" id="21_jd57c"]
+[ext_resource type="Texture2D" uid="uid://c82kcangufgao" path="res://Assets/UI/healbar.png" id="21_jd57c"]
 [ext_resource type="Texture2D" uid="uid://cilwykdcbmrj3" path="res://Assets/UI/voidbar.png" id="22_85lyl"]
-[ext_resource type="Texture2D" uid="uid://dmxnqqrse52i0" path="res://Assets/UI/stambar.png" id="23_mplvk"]
+[ext_resource type="Texture2D" uid="uid://bvd0ptu4spxoi" path="res://Assets/UI/stambar.png" id="23_mplvk"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
 
@@ -122,6 +122,13 @@ line_spacing = 3.08
 font = ExtResource("17_fe2sg")
 font_size = 25
 font_color = Color(1, 0, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0o3wc"]
+line_spacing = 3.08
+font = ExtResource("17_fe2sg")
+font_size = 25
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -766,6 +773,24 @@ theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "In Combat"
 label_settings = SubResource("LabelSettings_qdvrb")
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TutTextComb" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.002
+anchor_bottom = 0.995
+offset_left = 687.0
+offset_top = 234.0
+offset_right = -22.304077
+offset_bottom = -224.47607
+theme_override_fonts/font = ExtResource("1_qdvrb")
+text = "[LMB] to Attack
+[RMB] to Parry
+[SPACE] to dash in a direction"
+label_settings = SubResource("LabelSettings_0o3wc")
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="FPS" type="Label" parent="."]

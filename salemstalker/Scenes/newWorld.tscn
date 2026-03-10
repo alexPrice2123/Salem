@@ -2718,13 +2718,13 @@ QuestTitle = "Find Mary's lost cats, Taz, Bridger, and Gnocchi, somewhere in the
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Mary/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9897051, -0.055199992)
-bones/2/rotation = Quaternion(-0.013094986, 0, 0, 0.9999143)
-bones/5/rotation = Quaternion(-0.12720048, 0.006427919, 0.021759713, 0.99161756)
-bones/25/rotation = Quaternion(0.9725182, 0.016684594, -0.009178225, 0.23204736)
-bones/26/rotation = Quaternion(0.21731068, 0.0015705077, 0.017420238, 0.9759458)
-bones/34/rotation = Quaternion(0.9725182, -0.016684595, 0.009178179, 0.23204736)
-bones/35/rotation = Quaternion(0.21731068, -0.0015705081, -0.017420236, 0.9759458)
+bones/0/position = Vector3(0, 0.9856459, -0.055199992)
+bones/2/rotation = Quaternion(-0.023080822, 0, 0, 0.9997336)
+bones/5/rotation = Quaternion(-0.118611075, 0.0065772273, 0.021766286, 0.9926805)
+bones/25/rotation = Quaternion(0.9703754, 0.017489664, -0.009268171, 0.24078992)
+bones/26/rotation = Quaternion(0.23503253, 0.0015638444, 0.018840866, 0.9718037)
+bones/34/rotation = Quaternion(0.9703754, -0.017489664, 0.009268128, 0.24078992)
+bones/35/rotation = Quaternion(0.23503253, -0.0015638437, -0.018840866, 0.9718037)
 
 [node name="Elizabeth" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3819237, 1.9490459, 35.37815)
@@ -2740,13 +2740,13 @@ QuestTitle = "Gather firewood from the forest for Elizabeth "
 QuestGoal = "0/15"
 
 [node name="Skeleton3D" parent="Elizabeth/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9897051, -0.055199992)
-bones/2/rotation = Quaternion(-0.013094986, 0, 0, 0.9999143)
-bones/5/rotation = Quaternion(-0.12720048, 0.006427919, 0.021759713, 0.99161756)
-bones/25/rotation = Quaternion(0.9725182, 0.016684594, -0.009178225, 0.23204736)
-bones/26/rotation = Quaternion(0.21731068, 0.0015705077, 0.017420238, 0.9759458)
-bones/34/rotation = Quaternion(0.9725182, -0.016684595, 0.009178179, 0.23204736)
-bones/35/rotation = Quaternion(0.21731068, -0.0015705081, -0.017420236, 0.9759458)
+bones/0/position = Vector3(0, 0.9856459, -0.055199992)
+bones/2/rotation = Quaternion(-0.023080822, 0, 0, 0.9997336)
+bones/5/rotation = Quaternion(-0.118611075, 0.0065772273, 0.021766286, 0.9926805)
+bones/25/rotation = Quaternion(0.9703754, 0.017489664, -0.009268171, 0.24078992)
+bones/26/rotation = Quaternion(0.23503253, 0.0015638444, 0.018840866, 0.9718037)
+bones/34/rotation = Quaternion(0.9703754, -0.017489664, 0.009268128, 0.24078992)
+bones/35/rotation = Quaternion(0.23503253, -0.0015638437, -0.018840866, 0.9718037)
 
 [node name="Range" parent="Elizabeth" index="6"]
 radius = 11.462789
@@ -2767,13 +2767,13 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9897051, -0.055199992)
-bones/2/rotation = Quaternion(-0.013094986, 0, 0, 0.9999143)
-bones/5/rotation = Quaternion(-0.12720048, 0.006427919, 0.021759713, 0.99161756)
-bones/25/rotation = Quaternion(0.9725182, 0.016684594, -0.009178225, 0.23204736)
-bones/26/rotation = Quaternion(0.21731068, 0.0015705077, 0.017420238, 0.9759458)
-bones/34/rotation = Quaternion(0.9725182, -0.016684595, 0.009178179, 0.23204736)
-bones/35/rotation = Quaternion(0.21731068, -0.0015705081, -0.017420236, 0.9759458)
+bones/0/position = Vector3(0, 0.9856459, -0.055199992)
+bones/2/rotation = Quaternion(-0.023080822, 0, 0, 0.9997336)
+bones/5/rotation = Quaternion(-0.118611075, 0.0065772273, 0.021766286, 0.9926805)
+bones/25/rotation = Quaternion(0.9703754, 0.017489664, -0.009268171, 0.24078992)
+bones/26/rotation = Quaternion(0.23503253, 0.0015638444, 0.018840866, 0.9718037)
+bones/34/rotation = Quaternion(0.9703754, -0.017489664, 0.009268128, 0.24078992)
+bones/35/rotation = Quaternion(0.23503253, -0.0015638437, -0.018840866, 0.9718037)
 
 [node name="Range" parent="Dillon" index="6"]
 radius = 12.0
@@ -2792,13 +2792,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9897051, -0.055199992)
-bones/2/rotation = Quaternion(-0.013094986, 0, 0, 0.9999143)
-bones/5/rotation = Quaternion(-0.12720048, 0.006427919, 0.021759713, 0.99161756)
-bones/25/rotation = Quaternion(0.9725182, 0.016684594, -0.009178225, 0.23204736)
-bones/26/rotation = Quaternion(0.21731068, 0.0015705077, 0.017420238, 0.9759458)
-bones/34/rotation = Quaternion(0.9725182, -0.016684595, 0.009178179, 0.23204736)
-bones/35/rotation = Quaternion(0.21731068, -0.0015705081, -0.017420236, 0.9759458)
+bones/0/position = Vector3(0, 0.9856459, -0.055199992)
+bones/2/rotation = Quaternion(-0.023080822, 0, 0, 0.9997336)
+bones/5/rotation = Quaternion(-0.118611075, 0.0065772273, 0.021766286, 0.9926805)
+bones/25/rotation = Quaternion(0.9703754, 0.017489664, -0.009268171, 0.24078992)
+bones/26/rotation = Quaternion(0.23503253, 0.0015638444, 0.018840866, 0.9718037)
+bones/34/rotation = Quaternion(0.9703754, -0.017489664, 0.009268128, 0.24078992)
+bones/35/rotation = Quaternion(0.23503253, -0.0015638437, -0.018840866, 0.9718037)
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2827,13 +2827,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's family"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9897051, -0.055199992)
-bones/2/rotation = Quaternion(-0.013094986, 0, 0, 0.9999143)
-bones/5/rotation = Quaternion(-0.12720048, 0.006427919, 0.021759713, 0.99161756)
-bones/25/rotation = Quaternion(0.9725182, 0.016684594, -0.009178225, 0.23204736)
-bones/26/rotation = Quaternion(0.21731068, 0.0015705077, 0.017420238, 0.9759458)
-bones/34/rotation = Quaternion(0.9725182, -0.016684595, 0.009178179, 0.23204736)
-bones/35/rotation = Quaternion(0.21731068, -0.0015705081, -0.017420236, 0.9759458)
+bones/0/position = Vector3(0, 0.9856459, -0.055199992)
+bones/2/rotation = Quaternion(-0.023080822, 0, 0, 0.9997336)
+bones/5/rotation = Quaternion(-0.118611075, 0.0065772273, 0.021766286, 0.9926805)
+bones/25/rotation = Quaternion(0.9703754, 0.017489664, -0.009268171, 0.24078992)
+bones/26/rotation = Quaternion(0.23503253, 0.0015638444, 0.018840866, 0.9718037)
+bones/34/rotation = Quaternion(0.9703754, -0.017489664, 0.009268128, 0.24078992)
+bones/35/rotation = Quaternion(0.23503253, -0.0015638437, -0.018840866, 0.9718037)
 
 [node name="Range" parent="Martha" index="6"]
 radius = 15.0
@@ -2846,16 +2846,6 @@ NPCName = "Finn"
 InitialDialogue = "Hey mister. I've got some valuable information you might want to hear. "
 WaitingDialogue = "I still wonder what that tool could be."
 QuestTitle = "Find the hidden weapon on the swamp island"
-QuestGoal = "0/1"
-
-[node name="Matthew" parent="." instance=ExtResource("421_81rqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.463165, 1.9490459, 44.75682)
-visible = false
-script = ExtResource("429_wkm1a")
-NPCName = "Matthew"
-InitialDialogue = "Oh, young man. Please come and speak with me for a moment. "
-WaitingDialogue = "That beast still plauges the island. "
-QuestTitle = "Defeat The Hollowed Bark on the swamp island"
 QuestGoal = "0/1"
 
 [node name="HushedTrees" parent="." groups=["Terrain"] instance=ExtResource("430_2rj2p")]
@@ -3909,19 +3899,20 @@ transform = Transform3D(0.07858065, 0, -0.9969076, 0, 1, 0, 0.9969076, 0, 0.0785
 transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, -232.43732, 2.0682552, 769.41364)
 script = ExtResource("926_lmwmg")
 NPCName = "Inquisitor Richard"
+InitialDialogue = ""
 QuestDialogue = Array[String](["Welp, looks like we made it. Took quite a while to reach Saltus Island.", "The King will be pleased once we finish our mission, so let's get is done quickly now shall we?", "You've been a little quiet since we got here. Wait, don't tell me you forgot our mission?"])
 AcceptedDialogue = Array[String](["Fine, I guess I'll have to remind you now don't I?", "We're Inquisitors from the Kingdom of Whilstrum.", "The King has tasked us to investigate the disturbances happening in Saltus, one of the Kingdom's many provinces.", "I've been told that there's been a series of kidnappings, deaths, and even religious defiance to our God, Xoraya.", "From the information we've been given, a new Cultist group has emerged on the island.", "They may have something to do with what's been going on.", "Don't forget why we're here next time. And remember that you're only really here for your fighting capabilities.", "Leave the hard work to those above you.", "Make yourself useful and go investigate the village down the path. They may know something we don't. "])
 IgnoredDialogue = Array[String](["Well, that's good at least. Don't forget the reason you were invited to come. Those fighting capabilities are the only thing you're good for.", "Now go make yourself useful and investigate the village down the path. They may know something we don't."])
 WaitingDialogue = "Don't disappoint our King. Head over to that village down the road. "
 
 [node name="Skeleton3D" parent="Richard/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9897051, -0.055199992)
-bones/2/rotation = Quaternion(-0.013094986, 0, 0, 0.9999143)
-bones/5/rotation = Quaternion(-0.12720048, 0.006427919, 0.021759713, 0.99161756)
-bones/25/rotation = Quaternion(0.9725182, 0.016684594, -0.009178225, 0.23204736)
-bones/26/rotation = Quaternion(0.21731068, 0.0015705077, 0.017420238, 0.9759458)
-bones/34/rotation = Quaternion(0.9725182, -0.016684595, 0.009178179, 0.23204736)
-bones/35/rotation = Quaternion(0.21731068, -0.0015705081, -0.017420236, 0.9759458)
+bones/0/position = Vector3(0, 0.9856459, -0.055199992)
+bones/2/rotation = Quaternion(-0.023080822, 0, 0, 0.9997336)
+bones/5/rotation = Quaternion(-0.118611075, 0.0065772273, 0.021766286, 0.9926805)
+bones/25/rotation = Quaternion(0.9703754, 0.017489664, -0.009268171, 0.24078992)
+bones/26/rotation = Quaternion(0.23503253, 0.0015638444, 0.018840866, 0.9718037)
+bones/34/rotation = Quaternion(0.9703754, -0.017489664, 0.009268128, 0.24078992)
+bones/35/rotation = Quaternion(0.23503253, -0.0015638437, -0.018840866, 0.9718037)
 
 [node name="CollisionShape3D" parent="Richard" index="2"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.89464927, 0)
@@ -3967,18 +3958,7 @@ transform = Transform3D(0.24973771, 0, 0.9683136, 0, 1, 0, -0.9683136, 0, 0.2497
 [node name="Cursed" parent="Cutscene3" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110.45422, -4.219802, -70.79816)
 
-[node name="Skeleton3D" parent="Cutscene3/villager_wave/metarig" index="3"]
-bones/8/rotation = Quaternion(-0.1981546, 0.6554788, -0.5178553, 0.5127458)
-bones/9/rotation = Quaternion(0.03841128, -0.004300258, 0.018825259, 0.9990754)
-bones/18/rotation = Quaternion(-0.19795802, -0.6481506, 0.5282889, 0.5114922)
-bones/19/rotation = Quaternion(0.03373824, 0.005106116, -0.015554419, 0.9992966)
-bones/20/rotation = Quaternion(0.080469534, -0.024249475, -0.21176817, 0.9736996)
-bones/24/rotation = Quaternion(0.35936347, 0.09913033, 0.32073864, 0.8707226)
-bones/27/rotation = Quaternion(-5.420243e-08, 0.6961122, 0.717933, -5.255501e-08)
-bones/39/rotation = Quaternion(-0.06138559, 0.959714, -0.2686586, -0.05480399)
-bones/40/rotation = Quaternion(-0.6320816, 0.72477007, -0.18002336, -0.20681581)
-
-[node name="Waking" parent="Cutscene3" index="7"]
+[node name="Waking" parent="Cutscene3" index="6"]
 transform = Transform3D(-0.5023712, 0, 0.86465204, 0, 1, 0, -0.86465204, 0, -0.5023712, -465.22403, 1.2267355, -481.94385)
 
 [node name="Skeleton3D" parent="Cutscene3/Waking/metarig_001" index="0"]
@@ -4018,7 +3998,32 @@ script = ExtResource("954_b64uh")
 [node name="Enviorment" parent="." instance=ExtResource("948_shr4g")]
 
 [node name="PlayerSpawnAfterCut" type="Node3D" parent="."]
-transform = Transform3D(0.972622, 0, -0.23239303, 0, 1, 0, 0.23239303, 0, 0.972622, -35.62625, 2.6708937, 58.922974)
+transform = Transform3D(0.972622, 0, -0.23239303, 0, 1, 0, 0.23239303, 0, 0.972622, -33.586258, 2.2260454, 59.268795)
+
+[node name="Matthew" parent="." instance=ExtResource("421_81rqo")]
+transform = Transform3D(0, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 0, -32.437317, 2.0682554, 60.267693)
+script = ExtResource("429_wkm1a")
+NPCName = "Matthew"
+InitialDialogue = ""
+QuestDialogue = Array[String](["Young man, are you alright? You don't look too well...", "From the looks of it, you seem to be an Inquisitor.. from the Kingdom of Whilstrum!?", "Please excuse my rudeness Master Inquisitor, I only meant to see if you weren't in any harm. You seem to be alright.", "It's such a relief that the Kingdom sent over Inquisitors. The island of Saltus is in dire need of your help.", "Please, assist some of my village's townsfolk in their needs, then you'll understand more of what's going on here.", "Oh and one more thing Master Inquisitor. Welcome to Brittlebay village. May her holy light shine upon us all."])
+AcceptedDialogue = []
+IgnoredDialogue = []
+WaitingDialogue = "Please help out the townsfolk. We need your help."
+
+[node name="Skeleton3D" parent="Matthew/villagerblank/metarig_001" index="0"]
+bones/0/position = Vector3(0, 0.9856459, -0.055199992)
+bones/2/rotation = Quaternion(-0.023080822, 0, 0, 0.9997336)
+bones/5/rotation = Quaternion(-0.118611075, 0.0065772273, 0.021766286, 0.9926805)
+bones/25/rotation = Quaternion(0.9703754, 0.017489664, -0.009268171, 0.24078992)
+bones/26/rotation = Quaternion(0.23503253, 0.0015638444, 0.018840866, 0.9718037)
+bones/34/rotation = Quaternion(0.9703754, -0.017489664, 0.009268128, 0.24078992)
+bones/35/rotation = Quaternion(0.23503253, -0.0015638437, -0.018840866, 0.9718037)
+
+[node name="CollisionShape3D" parent="Matthew" index="2"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.89464927, 0)
+
+[node name="Range" parent="Matthew" index="6"]
+radius = 0.001
 
 [editable path="MonsterHolder/RatSpawner"]
 [editable path="MonsterHolder/RatSpawner2"]
@@ -4103,4 +4108,5 @@ transform = Transform3D(0.972622, 0, -0.23239303, 0, 1, 0, 0.23239303, 0, 0.9726
 [editable path="TutorialArea2"]
 [editable path="TutorialArea3"]
 [editable path="Cutscene3"]
-[editable path="Cutscene3/villager_wave"]
+[editable path="Matthew"]
+[editable path="Matthew/villagerblank"]
