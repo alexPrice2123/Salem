@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwec3btmn40l6"]
+
+[ext_resource type="Script" uid="uid://dva4suiceipnp" path="res://Scenes/OffHandWeapons/ThrowingKnife.cs" id="1_53q20"]
+
+[node name="Tomahawk" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_53q20")
+metadata/cooldown = 0.1
+
+[node name="BarrelPos" type="Marker3D" parent="."]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.48157597, -0.119, -0.64517736)

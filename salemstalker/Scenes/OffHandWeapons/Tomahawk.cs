@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public partial class StakeGun : Node3D
+public partial class Tomahawk : Node3D
 {
-    private PackedScene _gunBullet = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/weaponExtra/stake_bullet.tscn");
+    private PackedScene _gunBullet = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/weaponExtra/TomahawkProj.tscn");
     private Marker3D _barrel;
     private Marker3D _direct;
     private bool shooting = false;
