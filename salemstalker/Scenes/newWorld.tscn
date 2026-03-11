@@ -1,7 +1,7 @@
-[gd_scene load_steps=1149 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=1185 format=4 uid="uid://bap0k6fax0p86"]
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
-[ext_resource type="Script" uid="uid://bp2gqxihfqjlx" path="res://Scenes/NewWorld.cs" id="1_shr4g"]
+[ext_resource type="Script" uid="uid://xmqory1wsj43" path="res://Scripts/DemoHandler.cs" id="1_qtthl"]
 [ext_resource type="Texture2D" uid="uid://cknlmd0xqnxbe" path="res://Assets/UI/mapagainagain.png" id="2_v8qwt"]
 [ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/hollowBrute.tscn" id="5_4psjf"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="5_nc3gf"]
@@ -585,7 +585,6 @@
 [ext_resource type="Texture2D" uid="uid://3d4ai6fk8isy" path="res://Scenes/World/Foliage_2_5_0.res" id="431_qvbks"]
 [ext_resource type="PackedScene" uid="uid://syqvg0yul3mk" path="res://Scenes/Monsters/MonsterAssets/fakeTree.tscn" id="431_wrhnx"]
 [ext_resource type="Texture2D" uid="uid://cgf7ie52otuoe" path="res://Scenes/World/Foliage_2_5_1.res" id="432_7r2xp"]
-[ext_resource type="PackedScene" uid="uid://fodrwm4bj1gf" path="res://Assets/3D/buildings/house1.blend" id="432_p2h30"]
 [ext_resource type="Texture2D" uid="uid://c0kre81qgakrd" path="res://Scenes/World/Heightmap_-2_4.res" id="432_soowo"]
 [ext_resource type="Texture2D" uid="uid://txi4yfb0hdx0" path="res://Scenes/World/Object_-2_4_0.res" id="433_lgc0t"]
 [ext_resource type="Texture2D" uid="uid://bkea7he1ihcqb" path="res://Scenes/World/Heightmap_2_5.res" id="433_om0sc"]
@@ -922,7 +921,9 @@
 [ext_resource type="Texture2D" uid="uid://cvvftnn4xxf3p" path="res://Scenes/World/Splatmap_-3_-4_1.res" id="852_c4moq"]
 [ext_resource type="Texture2D" uid="uid://dptsbkdl6ggym" path="res://Scenes/World/Splatmap_-3_-4_2.res" id="853_wi8r7"]
 [ext_resource type="Texture2D" uid="uid://c1v1wcwnfmerq" path="res://Scenes/World/Water_-3_-4.res" id="854_7cg25"]
-[ext_resource type="Texture2D" uid="uid://8h44ym5u6rrs" path="res://WoodPlank.png" id="919_h1utm"]
+[ext_resource type="Texture2D" uid="uid://dg6dks7xurav4" path="res://Assets/othermodeltxt/villager/body_Base_color.png" id="913_0rtel"]
+[ext_resource type="Texture2D" uid="uid://brlpvn88qtoh3" path="res://Assets/othermodeltxt/villager/arms_Base_color.png" id="914_jhj26"]
+[ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="919_h1utm"]
 [ext_resource type="PackedScene" uid="uid://cw86i51qs7jry" path="res://Scenes/boat.tscn" id="922_qtthl"]
 [ext_resource type="Script" uid="uid://djprwulc3bex0" path="res://Scripts/BorderTool.cs" id="926_3vgip"]
 [ext_resource type="Script" uid="uid://c8ixt3vjg78bx" path="res://Scripts/VillagerScripts/RichardVillager.cs" id="926_lmwmg"]
@@ -935,19 +936,28 @@
 [ext_resource type="Texture2D" uid="uid://dd4462v8an6xq" path="res://Assets/buildingtextures/house1/roof_Base_color.png" id="935_shr4g"]
 [ext_resource type="PackedScene" uid="uid://bqjcb30xsr68w" path="res://Scenes/blacksmith_shop.tscn" id="936_654ae"]
 [ext_resource type="Texture2D" uid="uid://c4475fbpv85bw" path="res://Assets/buildingtextures/house1/vines_Base_color.png" id="936_agl2t"]
+[ext_resource type="Texture2D" uid="uid://c7v0nrjabutxn" path="res://Assets/buildingtextures/house2/house_Base_color.png" id="937_lpj1t"]
+[ext_resource type="Texture2D" uid="uid://b0bnn0w1r6s4q" path="res://Assets/buildingtextures/house1/door_Base_color.png" id="938_4gw3q"]
+[ext_resource type="Texture2D" uid="uid://bnim2ilnm4ua6" path="res://Assets/buildingtextures/house3/house_Base_color.png" id="938_lmwmg"]
+[ext_resource type="Texture2D" uid="uid://bxtnow7pxjybe" path="res://Assets/buildingtextures/house3/roof_Base_color.png" id="939_3b0yr"]
+[ext_resource type="Texture2D" uid="uid://bf1ra0bfm7fm8" path="res://Assets/buildingtextures/house3/barroof_Base_color.png" id="940_rdipx"]
+[ext_resource type="Texture2D" uid="uid://xk5fgip4at7m" path="res://Assets/buildingtextures/house3/railing_Base_color.png" id="941_jlydw"]
 [ext_resource type="PackedScene" uid="uid://dvqgpuxj5qgxl" path="res://Scenes/object_spawner.tscn" id="941_xpmv6"]
+[ext_resource type="Texture2D" uid="uid://ckwo75hkv8o0c" path="res://Assets/buildingtextures/house3/door_1_Base_color.png" id="942_bjbr5"]
 [ext_resource type="PackedScene" uid="uid://4vr5la4k53qs" path="res://Scenes/item.tscn" id="942_xpmv6"]
+[ext_resource type="Texture2D" uid="uid://c3b48qcr5qf1" path="res://Assets/buildingtextures/house3/doorknob_Base_color.png" id="943_b64uh"]
 [ext_resource type="PackedScene" uid="uid://8hslc42t2bnx" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse1.blend" id="943_iuhso"]
-[ext_resource type="PackedScene" uid="uid://cumpyhrqfvkp1" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse2.blend" id="944_yxesf"]
-[ext_resource type="PackedScene" uid="uid://cc0vxv12ydqgr" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse3.blend" id="945_agl2t"]
+[ext_resource type="PackedScene" uid="uid://cwchm31wfavkr" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse2.blend" id="944_yxesf"]
+[ext_resource type="PackedScene" uid="uid://cnvdjwu0candg" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse3.blend" id="945_agl2t"]
 [ext_resource type="PackedScene" uid="uid://b8oqcyyq6ca08" path="res://Assets/3D/props/barrel.blend" id="946_shr4g"]
-[ext_resource type="PackedScene" uid="uid://pabyjy0swmeq" path="res://Assets/3D/props/bucket.blend" id="947_lmwmg"]
-[ext_resource type="PackedScene" uid="uid://causgt6xo2tj2" path="res://Assets/3D/props/cart.blend" id="948_3b0yr"]
+[ext_resource type="PackedScene" uid="uid://0h23u5e24kc1" path="res://Assets/3D/props/bucket.blend" id="947_lmwmg"]
+[ext_resource type="PackedScene" uid="uid://bk38ktgxlgxso" path="res://Assets/3D/props/cart.blend" id="948_3b0yr"]
 [ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="948_shr4g"]
 [ext_resource type="PackedScene" uid="uid://dghyarcbk4mvk" path="res://Scenes/cutscene_2.tscn" id="951_jlydw"]
 [ext_resource type="PackedScene" uid="uid://caqnpxg4unpwp" path="res://Scenes/tutorial_area.tscn" id="951_rdipx"]
-[ext_resource type="PackedScene" path="res://Scenes/cutscene_3.tscn" id="953_bjbr5"]
+[ext_resource type="PackedScene" uid="uid://cfhk0ja1rxejm" path="res://Scenes/cutscene_3.tscn" id="953_bjbr5"]
 [ext_resource type="Script" uid="uid://cuwu4fu7nu2uv" path="res://Scripts/ItemDropper.cs" id="954_b64uh"]
+[ext_resource type="PackedScene" uid="uid://cacxdfd610dnh" path="res://Assets/3D/plants/bush.blend" id="958_jhj26"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
 
@@ -2204,6 +2214,46 @@ WaterTexture = ExtResource("387_tspmx")
 script = ExtResource("35_rabu8")
 Zones = [SubResource("Resource_nnpdm"), SubResource("Resource_sd5fx"), SubResource("Resource_jrrcy"), SubResource("Resource_fa8ee"), SubResource("Resource_anrnj"), SubResource("Resource_nl4gh"), SubResource("Resource_7xwpq"), SubResource("Resource_s0h5c"), SubResource("Resource_cx2gm"), SubResource("Resource_xv778"), SubResource("Resource_shbtp"), SubResource("Resource_6an2s"), SubResource("Resource_d4ulm"), SubResource("Resource_bj83l"), SubResource("Resource_fasa8"), SubResource("Resource_a3apw"), SubResource("Resource_wisbv"), SubResource("Resource_643b0"), SubResource("Resource_dq1xa"), SubResource("Resource_6d7hv"), SubResource("Resource_v86w0"), SubResource("Resource_g0chq"), SubResource("Resource_7i4pd"), SubResource("Resource_7dafi"), SubResource("Resource_uk4ah"), SubResource("Resource_suw56"), SubResource("Resource_f83po"), SubResource("Resource_f1g14"), SubResource("Resource_oawgc"), SubResource("Resource_8yamd"), SubResource("Resource_mwpet"), SubResource("Resource_bkyuq"), SubResource("Resource_5bdvf"), SubResource("Resource_xn7kl"), SubResource("Resource_v4u2a"), SubResource("Resource_ggxlf"), SubResource("Resource_8080r"), SubResource("Resource_v1vhd"), SubResource("Resource_yjgbj"), SubResource("Resource_vwdx7"), SubResource("Resource_4wskq"), SubResource("Resource_1xx48"), SubResource("Resource_vctx6"), SubResource("Resource_av47l"), SubResource("Resource_5an6s"), SubResource("Resource_rnxk2"), SubResource("Resource_0q5mx"), SubResource("Resource_io0bp"), SubResource("Resource_0ttad"), SubResource("Resource_67jo4"), SubResource("Resource_doppe"), SubResource("Resource_gh1vi"), SubResource("Resource_s1hlr"), SubResource("Resource_r8rpl"), SubResource("Resource_w8u3n"), SubResource("Resource_yrmv1"), SubResource("Resource_kolvd"), SubResource("Resource_h4o0s"), SubResource("Resource_yg4ii"), SubResource("Resource_ybtom"), SubResource("Resource_ovmsd"), SubResource("Resource_ph82a"), SubResource("Resource_kesn2"), SubResource("Resource_4ehfs"), SubResource("Resource_4pw2d"), SubResource("Resource_idue8"), SubResource("Resource_h6erx"), SubResource("Resource_ln07d"), SubResource("Resource_dl1ju"), SubResource("Resource_to78q"), SubResource("Resource_68d03"), SubResource("Resource_iv20s"), SubResource("Resource_pqaej"), SubResource("Resource_e0q3j"), SubResource("Resource_ouux6"), SubResource("Resource_mebdv"), SubResource("Resource_nsm8h"), SubResource("Resource_gyek8"), SubResource("Resource_s6jwa"), SubResource("Resource_40pjx"), SubResource("Resource_1ykm7"), SubResource("Resource_jr812"), SubResource("Resource_sbkpg"), SubResource("Resource_rop4m"), SubResource("Resource_lv45h"), SubResource("Resource_7m2jm"), SubResource("Resource_1ltla"), SubResource("Resource_tehjn"), SubResource("Resource_qx545"), SubResource("Resource_yhmh7"), SubResource("Resource_42nok"), SubResource("Resource_bxmsx"), SubResource("Resource_r62ax"), SubResource("Resource_yu6qg"), SubResource("Resource_bkb5c"), SubResource("Resource_0d05w"), SubResource("Resource_xv1la"), SubResource("Resource_8lvpu"), SubResource("Resource_c1d64"), SubResource("Resource_bp6m1"), SubResource("Resource_y6tt4"), SubResource("Resource_pfdvi"), SubResource("Resource_y2vpo"), SubResource("Resource_fuflx"), SubResource("Resource_ohooj"), SubResource("Resource_31l1t"), SubResource("Resource_vhxcp"), SubResource("Resource_r4nu6"), SubResource("Resource_wb4aw")]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hy64a"]
+albedo_color = Color(0.6029108, 0.64448154, 1, 1)
+albedo_texture = ExtResource("913_0rtel")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jchk6"]
+albedo_color = Color(0.6029108, 0.64448154, 1, 1)
+albedo_texture = ExtResource("914_jhj26")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtvt8"]
+albedo_color = Color(0.22352941, 0.3372549, 1, 1)
+albedo_texture = ExtResource("913_0rtel")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkecq"]
+albedo_color = Color(0.22352941, 0.3372549, 1, 1)
+albedo_texture = ExtResource("914_jhj26")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83jqk"]
+albedo_color = Color(0.5191619, 0.5191619, 0.5191619, 1)
+albedo_texture = ExtResource("913_0rtel")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rna7i"]
+albedo_color = Color(0.5191619, 0.5191619, 0.5191619, 1)
+albedo_texture = ExtResource("914_jhj26")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tqcmk"]
+albedo_color = Color(0, 0.40630522, 0.122595884, 1)
+albedo_texture = ExtResource("913_0rtel")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2kqp"]
+albedo_color = Color(0, 0.40784314, 0.12156863, 1)
+albedo_texture = ExtResource("914_jhj26")
+texture_filter = 0
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_bkflp"]
 size = Vector3(250.39255, 30.129395, 23.125244)
 
@@ -2267,6 +2317,77 @@ size = Vector3(201.97118, 32.93994, 25.663895)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bjbr5"]
 size = Vector3(143.54468, 31.83496, 25.663895)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmwmg"]
+albedo_color = Color(0.5625, 0.42252302, 0.35046387, 1)
+albedo_texture = ExtResource("932_yxesf")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shr4g"]
+albedo_color = Color(0.73333335, 0.8039216, 0.8156863, 1)
+albedo_texture = ExtResource("933_agl2t")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdipx"]
+albedo_color = Color(0.76953125, 0.5696335, 0.5696335, 1)
+albedo_texture = ExtResource("934_1tkeb")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jlydw"]
+albedo_color = Color(0.6015625, 0.37127686, 0.37127686, 1)
+albedo_texture = ExtResource("935_shr4g")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjbr5"]
+albedo_color = Color(0.6796875, 0.6501088, 0.5150757, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tkeb"]
+albedo_texture = ExtResource("936_agl2t")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3b0yr"]
+albedo_color = Color(0.40545812, 0.30457464, 0.13516742, 1)
+albedo_texture = ExtResource("938_lmwmg")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7p5p"]
+albedo_color = Color(0.7343415, 0.8034105, 0.8159139, 1)
+albedo_texture = ExtResource("933_agl2t")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b64uh"]
+albedo_color = Color(0.17929694, 0.22760147, 0.08951085, 1)
+albedo_texture = ExtResource("939_3b0yr")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lpj1t"]
+albedo_color = Color(0.037871692, 0.09862896, 0.05547812, 1)
+albedo_texture = ExtResource("940_rdipx")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gw3q"]
+albedo_color = Color(0.40392157, 0.30588236, 0.13333334, 1)
+albedo_texture = ExtResource("940_rdipx")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rtel"]
+albedo_color = Color(0.455338, 0.19571087, 0.061413415, 1)
+albedo_texture = ExtResource("941_jlydw")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhj26"]
+albedo_color = Color(0.31990442, 0.20295358, 0.005437596, 1)
+albedo_texture = ExtResource("942_bjbr5")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t61ja"]
+albedo_color = Color(0.69128454, 0.66809493, 0.6758491, 1)
+albedo_texture = ExtResource("943_b64uh")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fefhx"]
+albedo_texture = ExtResource("936_agl2t")
+texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6bny"]
 albedo_texture = ExtResource("927_4aw2u")
@@ -2378,40 +2499,56 @@ emission_enabled = true
 emission = Color(1, 1, 0, 1)
 emission_energy_multiplier = 16.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmwmg"]
-albedo_color = Color(0.5625, 0.42252302, 0.35046387, 1)
-albedo_texture = ExtResource("932_yxesf")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hslox"]
+albedo_color = Color(0.4271273, 0.33114782, 0.09666734, 1)
+albedo_texture = ExtResource("937_lpj1t")
 texture_filter = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3b0yr"]
-albedo_color = Color(0.5187806, 0.21438599, 0.5488281, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_us8oc"]
+albedo_color = Color(0.24989417, 0.22665176, 0.10851943, 1)
+albedo_texture = ExtResource("938_4gw3q")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bqxl"]
+albedo_color = Color(0.73333335, 0.8039216, 0.8156863, 1)
 albedo_texture = ExtResource("933_agl2t")
-metallic = 1.0
-roughness = 0.0
 texture_filter = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdipx"]
-albedo_color = Color(0.76953125, 0.5696335, 0.5696335, 1)
-albedo_texture = ExtResource("934_1tkeb")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2dnp"]
+albedo_color = Color(0.6901961, 0.6666667, 0.6745098, 1)
+albedo_texture = ExtResource("943_b64uh")
 texture_filter = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jlydw"]
-albedo_color = Color(0.6015625, 0.37127686, 0.37127686, 1)
-albedo_texture = ExtResource("935_shr4g")
-texture_filter = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjbr5"]
-albedo_color = Color(0.6796875, 0.6501088, 0.5150757, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tkeb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhl1v"]
 albedo_texture = ExtResource("936_agl2t")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a2g2v"]
+albedo_color = Color(0.26475334, 0.26475334, 0.2647533, 1)
+albedo_texture = ExtResource("913_0rtel")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qxotl"]
+albedo_color = Color(0.26475334, 0.26475334, 0.2647533, 1)
+albedo_texture = ExtResource("914_jhj26")
 texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2dnp"]
 size = Vector3(43.919678, 7.7070313, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tqb4"]
+albedo_color = Color(0.2285108, 0.2285108, 0.2285108, 1)
+albedo_texture = ExtResource("913_0rtel")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3psa0"]
+albedo_color = Color(0.2285108, 0.2285108, 0.2285108, 1)
+albedo_texture = ExtResource("914_jhj26")
+texture_filter = 0
+
 [node name="World" type="Node3D"]
-script = ExtResource("1_shr4g")
+script = ExtResource("1_qtthl")
+_endDemoText = "You beat the demo!"
 
 [node name="PaperMap" type="SubViewportContainer" parent="."]
 visible = false
@@ -2701,7 +2838,7 @@ WaterDefinition = SubResource("Resource_b7wla")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_6rohr")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = true
+metadata/_edit_lock_ = false
 
 [node name="Mary" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46323, 1.9490459, 40.31227)
@@ -2717,13 +2854,19 @@ QuestTitle = "Find Mary's lost cats, Taz, Bridger, and Gnocchi, somewhere in the
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Mary/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9904611, -0.055199992)
-bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
-bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
-bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
-bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
-bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
-bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
+bones/0/position = Vector3(0, 0.99650675, -0.05519999)
+bones/2/rotation = Quaternion(-0.077304594, 0, 0, 0.99700755)
+bones/5/rotation = Quaternion(-0.07189194, 0.007378067, 0.02177353, 0.99714744)
+bones/25/rotation = Quaternion(0.9763031, 0.015190131, -0.009024318, 0.21568517)
+bones/26/rotation = Quaternion(0.1842091, 0.0015814956, 0.014766725, 0.982775)
+bones/34/rotation = Quaternion(0.9763031, -0.015190132, 0.0090242755, 0.21568517)
+bones/35/rotation = Quaternion(0.1842091, -0.0015814966, -0.014766725, 0.982775)
+
+[node name="Cube" parent="Mary/villagerblank/metarig_001/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hy64a")
+
+[node name="Cube_002" parent="Mary/villagerblank/metarig_001/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jchk6")
 
 [node name="Elizabeth" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3819237, 1.9490459, 35.37815)
@@ -2739,13 +2882,19 @@ QuestTitle = "Gather firewood from the forest for Elizabeth "
 QuestGoal = "0/15"
 
 [node name="Skeleton3D" parent="Elizabeth/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9904611, -0.055199992)
-bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
-bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
-bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
-bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
-bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
-bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
+bones/0/position = Vector3(0, 0.99650675, -0.05519999)
+bones/2/rotation = Quaternion(-0.077304594, 0, 0, 0.99700755)
+bones/5/rotation = Quaternion(-0.07189194, 0.007378067, 0.02177353, 0.99714744)
+bones/25/rotation = Quaternion(0.9763031, 0.015190131, -0.009024318, 0.21568517)
+bones/26/rotation = Quaternion(0.1842091, 0.0015814956, 0.014766725, 0.982775)
+bones/34/rotation = Quaternion(0.9763031, -0.015190132, 0.0090242755, 0.21568517)
+bones/35/rotation = Quaternion(0.1842091, -0.0015814966, -0.014766725, 0.982775)
+
+[node name="Cube" parent="Elizabeth/villagerblank/metarig_001/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_dtvt8")
+
+[node name="Cube_002" parent="Elizabeth/villagerblank/metarig_001/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kkecq")
 
 [node name="Range" parent="Elizabeth" index="6"]
 radius = 11.462789
@@ -2766,13 +2915,13 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9904611, -0.055199992)
-bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
-bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
-bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
-bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
-bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
-bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
+bones/0/position = Vector3(0, 0.99650675, -0.05519999)
+bones/2/rotation = Quaternion(-0.077304594, 0, 0, 0.99700755)
+bones/5/rotation = Quaternion(-0.07189194, 0.007378067, 0.02177353, 0.99714744)
+bones/25/rotation = Quaternion(0.9763031, 0.015190131, -0.009024318, 0.21568517)
+bones/26/rotation = Quaternion(0.1842091, 0.0015814956, 0.014766725, 0.982775)
+bones/34/rotation = Quaternion(0.9763031, -0.015190132, 0.0090242755, 0.21568517)
+bones/35/rotation = Quaternion(0.1842091, -0.0015814966, -0.014766725, 0.982775)
 
 [node name="Range" parent="Dillon" index="6"]
 radius = 12.0
@@ -2791,13 +2940,19 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9904611, -0.055199992)
-bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
-bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
-bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
-bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
-bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
-bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
+bones/0/position = Vector3(0, 0.99650675, -0.05519999)
+bones/2/rotation = Quaternion(-0.077304594, 0, 0, 0.99700755)
+bones/5/rotation = Quaternion(-0.07189194, 0.007378067, 0.02177353, 0.99714744)
+bones/25/rotation = Quaternion(0.9763031, 0.015190131, -0.009024318, 0.21568517)
+bones/26/rotation = Quaternion(0.1842091, 0.0015814956, 0.014766725, 0.982775)
+bones/34/rotation = Quaternion(0.9763031, -0.015190132, 0.0090242755, 0.21568517)
+bones/35/rotation = Quaternion(0.1842091, -0.0015814966, -0.014766725, 0.982775)
+
+[node name="Cube" parent="Lukas/villagerblank/metarig_001/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_83jqk")
+
+[node name="Cube_002" parent="Lukas/villagerblank/metarig_001/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rna7i")
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2826,13 +2981,19 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's family"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9904611, -0.055199992)
-bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
-bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
-bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
-bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
-bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
-bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
+bones/0/position = Vector3(0, 0.99650675, -0.05519999)
+bones/2/rotation = Quaternion(-0.077304594, 0, 0, 0.99700755)
+bones/5/rotation = Quaternion(-0.07189194, 0.007378067, 0.02177353, 0.99714744)
+bones/25/rotation = Quaternion(0.9763031, 0.015190131, -0.009024318, 0.21568517)
+bones/26/rotation = Quaternion(0.1842091, 0.0015814956, 0.014766725, 0.982775)
+bones/34/rotation = Quaternion(0.9763031, -0.015190132, 0.0090242755, 0.21568517)
+bones/35/rotation = Quaternion(0.1842091, -0.0015814966, -0.014766725, 0.982775)
+
+[node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_tqcmk")
+
+[node name="Cube_002" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_b2kqp")
 
 [node name="Range" parent="Martha" index="6"]
 radius = 15.0
@@ -3071,11 +3232,221 @@ transform = Transform3D(0.99997383, 0, 0, 0, 1, 0, 0, 0, 0.99997383, 0, 0, 0)
 size = Vector3(143.54468, 31.83496, 25.663895)
 material = SubResource("StandardMaterial3D_ii1jl")
 
-[node name="Map" type="Node3D" parent="." groups=["Terrain"]]
+[node name="Brittlebay Village" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 426.49542, -0.26628494, 122.45715)
 
-[node name="house1" parent="Map" instance=ExtResource("432_p2h30")]
-transform = Transform3D(0.8411616, 0, 0.5407839, 0, 1, 0, -0.5407839, 0, 0.8411616, -440.93216, 0.92800975, -41.122498)
+[node name="House1" parent="Brittlebay Village" instance=ExtResource("943_iuhso")]
+transform = Transform3D(0.93732446, 0, 0.3484577, 0, 1, 0, -0.3484577, 0, 0.93732446, -442.4198, 1.2900902, -43.1277)
+
+[node name="house" parent="Brittlebay Village/House1" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lmwmg")
+surface_material_override/1 = SubResource("StandardMaterial3D_shr4g")
+surface_material_override/2 = SubResource("StandardMaterial3D_rdipx")
+surface_material_override/3 = SubResource("StandardMaterial3D_jlydw")
+
+[node name="colision" parent="Brittlebay Village/House1" index="1"]
+visible = false
+
+[node name="Sphere" parent="Brittlebay Village/House1" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bjbr5")
+
+[node name="vines" parent="Brittlebay Village/House1" index="3"]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_1tkeb")
+
+[node name="House2" parent="Brittlebay Village" instance=ExtResource("943_iuhso")]
+transform = Transform3D(-0.5507284, 0, -0.8346846, 0, 1, 0, 0.8346846, 0, -0.5507284, -436.06915, 0.99566305, -79.570816)
+
+[node name="house" parent="Brittlebay Village/House2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lmwmg")
+surface_material_override/1 = SubResource("StandardMaterial3D_shr4g")
+surface_material_override/2 = SubResource("StandardMaterial3D_rdipx")
+surface_material_override/3 = SubResource("StandardMaterial3D_jlydw")
+
+[node name="colision" parent="Brittlebay Village/House2" index="1"]
+visible = false
+
+[node name="Sphere" parent="Brittlebay Village/House2" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bjbr5")
+
+[node name="vines" parent="Brittlebay Village/House2" index="3"]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_1tkeb")
+
+[node name="House3" parent="Brittlebay Village" instance=ExtResource("943_iuhso")]
+transform = Transform3D(-0.7065266, 0, 0.7076865, 0, 1, 0, -0.7076865, 0, -0.7065266, -410.40234, 1.1619786, -85.43787)
+
+[node name="house" parent="Brittlebay Village/House3" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lmwmg")
+surface_material_override/1 = SubResource("StandardMaterial3D_shr4g")
+surface_material_override/2 = SubResource("StandardMaterial3D_rdipx")
+surface_material_override/3 = SubResource("StandardMaterial3D_jlydw")
+
+[node name="colision" parent="Brittlebay Village/House3" index="1"]
+visible = false
+
+[node name="Sphere" parent="Brittlebay Village/House3" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bjbr5")
+
+[node name="vines" parent="Brittlebay Village/House3" index="3"]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_1tkeb")
+
+[node name="House4" parent="Brittlebay Village" instance=ExtResource("945_agl2t")]
+transform = Transform3D(2.3797998, 0, -1.5969896, 0, 2.8659766, 0, 1.5969896, 0, 2.3797998, -413.11615, 0.53299433, -78.81865)
+
+[node name="house" parent="Brittlebay Village/House4" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3b0yr")
+surface_material_override/1 = SubResource("StandardMaterial3D_h7p5p")
+
+[node name="roof" parent="Brittlebay Village/House4" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_b64uh")
+
+[node name="roofbar" parent="Brittlebay Village/House4" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lpj1t")
+
+[node name="balcony" parent="Brittlebay Village/House4" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4gw3q")
+
+[node name="railing" parent="Brittlebay Village/House4" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0rtel")
+
+[node name="doors" parent="Brittlebay Village/House4" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jhj26")
+
+[node name="doorknobs" parent="Brittlebay Village/House4" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t61ja")
+
+[node name="vines" parent="Brittlebay Village/House4" index="7"]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_fefhx")
+
+[node name="colision" parent="Brittlebay Village/House4" index="8"]
+visible = false
+
+[node name="House5" parent="Brittlebay Village" instance=ExtResource("945_agl2t")]
+transform = Transform3D(-1.6102146, 0, 2.3708713, 0, 2.865976, 0, -2.3708713, 0, -1.6102146, -452.4731, 0.36418515, -66.30568)
+
+[node name="house" parent="Brittlebay Village/House5" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3b0yr")
+surface_material_override/1 = SubResource("StandardMaterial3D_h7p5p")
+
+[node name="roof" parent="Brittlebay Village/House5" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_b64uh")
+
+[node name="roofbar" parent="Brittlebay Village/House5" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lpj1t")
+
+[node name="balcony" parent="Brittlebay Village/House5" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4gw3q")
+
+[node name="railing" parent="Brittlebay Village/House5" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0rtel")
+
+[node name="doors" parent="Brittlebay Village/House5" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jhj26")
+
+[node name="doorknobs" parent="Brittlebay Village/House5" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t61ja")
+
+[node name="vines" parent="Brittlebay Village/House5" index="7"]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_fefhx")
+
+[node name="colision" parent="Brittlebay Village/House5" index="8"]
+visible = false
+
+[node name="House6" parent="Brittlebay Village" instance=ExtResource("945_agl2t")]
+transform = Transform3D(2.3599412, 0, -1.6261913, 0, 2.8659756, 0, 1.6261913, 0, 2.3599412, -427.26227, 0.5516432, -54.327087)
+
+[node name="house" parent="Brittlebay Village/House6" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3b0yr")
+surface_material_override/1 = SubResource("StandardMaterial3D_h7p5p")
+
+[node name="roof" parent="Brittlebay Village/House6" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_b64uh")
+
+[node name="roofbar" parent="Brittlebay Village/House6" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lpj1t")
+
+[node name="balcony" parent="Brittlebay Village/House6" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4gw3q")
+
+[node name="railing" parent="Brittlebay Village/House6" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0rtel")
+
+[node name="doors" parent="Brittlebay Village/House6" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jhj26")
+
+[node name="doorknobs" parent="Brittlebay Village/House6" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t61ja")
+
+[node name="vines" parent="Brittlebay Village/House6" index="7"]
+visible = false
+surface_material_override/0 = SubResource("StandardMaterial3D_fefhx")
+
+[node name="colision" parent="Brittlebay Village/House6" index="8"]
+visible = false
+
+[node name="Barrel1" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -418.7066, 1.835387, -74.594)
+
+[node name="Barrel2" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -417.6567, 1.835387, -73.7834)
+
+[node name="Barrel3" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.0072453865, 0.34021938, -0.36633086, -0.49988666, 0.010645696, 0, 0.007799694, 0.36624783, 0.3402965, -418.81912, 1.704951, -73.23996)
+
+[node name="Barrel4" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -436.36813, 1.5827324, -93.41562)
+
+[node name="Barrel5" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -437.27167, 1.5827324, -92.23978)
+
+[node name="Barrel6" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -445.26947, 1.5827324, -73.03753)
+
+[node name="Barrel7" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -448.4775, 1.5827324, -71.49516)
+
+[node name="Barrel8" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -446.66702, 1.5827324, -71.43324)
+
+[node name="Barrel9" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -456.37823, 1.6483288, -65.11478)
+
+[node name="Barrel10" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.0024958057, 0.49999377, 0, -0.49999377, 0.0024958057, 0, 0, 0, 0.5, -456.17197, 1.5740143, -63.809593)
+
+[node name="Barrel11" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -442.9834, 2.4652097, -40.803688)
+
+[node name="Barrel12" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -443.07376, 2.4652097, -42.013863)
+
+[node name="Barrel13" parent="Brittlebay Village" instance=ExtResource("946_shr4g")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -443.07376, 3.703752, -41.40119)
+
+[node name="Cart" parent="Brittlebay Village" instance=ExtResource("948_3b0yr")]
+transform = Transform3D(1.6104425, 0.32501265, -1.8843676, 0, 2.4636235, 0.42492178, 1.912191, -0.27372485, 1.5870097, -416.62576, 1.3599559, -94.83069)
+
+[node name="Cart2" parent="Brittlebay Village" instance=ExtResource("948_3b0yr")]
+transform = Transform3D(1.3759103, -0.35477775, 2.05694, 0, 2.4636238, 0.42492184, -2.0873117, -0.23386168, 1.35589, -423.9466, 1.4189736, -57.50158)
+
+[node name="Cart3" parent="Brittlebay Village" instance=ExtResource("948_3b0yr")]
+transform = Transform3D(-1.6904452, 0.3012333, -1.8170452, 0.139397, 2.4801888, 0.2814858, 1.8365635, 0.08901815, -1.6938457, -458.22205, 2.315597, -50.161324)
+
+[node name="Bucket1" parent="Brittlebay Village" instance=ExtResource("947_lmwmg")]
+transform = Transform3D(0.07880046, 0, -0.23725617, 0, 0.25, 0, 0.23725617, 0, 0.07880046, -423.0266, 1.2358214, -58.725456)
+
+[node name="Bucket2" parent="Brittlebay Village" instance=ExtResource("947_lmwmg")]
+transform = Transform3D(0.07880046, 0, -0.23725617, 0, 0.25, 0, 0.23725617, 0, 0.07880046, -411.5333, 1.1920298, -85.77466)
+
+[node name="Bucket3" parent="Brittlebay Village" instance=ExtResource("947_lmwmg")]
+transform = Transform3D(-0.1598027, 0, -0.19225788, 0, 0.25, 0, 0.19225788, 0, -0.1598027, -445.0466, 0.94411016, -71.85028)
+
+[node name="Map" type="Node3D" parent="." groups=["Terrain"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 426.49542, -0.26628494, 122.45715)
 
 [node name="Lamp3" parent="Map" instance=ExtResource("434_jgbub")]
 transform = Transform3D(0.022757113, 0, -0.99974114, 0, 1, 0, 0.99974114, 0, 0.022757113, -459.38174, 4.3737926, -66.107155)
@@ -3752,7 +4123,7 @@ NPCName = "Old Boat"
 InitialDialogue = "E to Interact"
 
 [node name="Anvil" parent="." instance=ExtResource("936_654ae")]
-transform = Transform3D(0.82108945, 0, 0.57079947, 0, 1, 0, -0.57079947, 0, 0.82108945, -14.543283, 1.8387071, 80.178024)
+transform = Transform3D(0.9056354, 0, 0.42405713, 0, 1, 0, -0.42405713, 0, 0.9056354, -15.377282, 1.829504, 78.6284)
 
 [node name="ObjectSpawner" parent="." instance=ExtResource("941_xpmv6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.590775, 2, 70.39445)
@@ -3770,7 +4141,7 @@ transform = Transform3D(-0.8590582, 0, 0.51187783, 0, 1, 0, -0.51187783, 0, -0.8
 
 [node name="house" parent="Overgrown Dimwood Village/overgrownhouse1" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lmwmg")
-surface_material_override/1 = SubResource("StandardMaterial3D_3b0yr")
+surface_material_override/1 = SubResource("StandardMaterial3D_shr4g")
 surface_material_override/2 = SubResource("StandardMaterial3D_rdipx")
 surface_material_override/3 = SubResource("StandardMaterial3D_jlydw")
 
@@ -3784,19 +4155,116 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bjbr5")
 surface_material_override/0 = SubResource("StandardMaterial3D_1tkeb")
 
 [node name="overgrownhouse4" parent="Overgrown Dimwood Village" instance=ExtResource("943_iuhso")]
-transform = Transform3D(0.96600705, 0, -0.2585154, 0, 1, 0, 0.2585154, 0, 0.96600705, -174.62445, 0.0030146427, 735.6516)
+transform = Transform3D(-0.32645902, 0, -0.94521123, 0, 1, 0, 0.94521123, 0, -0.32645902, -170.93803, 0.0030146427, 707.3777)
+
+[node name="house" parent="Overgrown Dimwood Village/overgrownhouse4" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lmwmg")
+surface_material_override/1 = SubResource("StandardMaterial3D_shr4g")
+surface_material_override/2 = SubResource("StandardMaterial3D_rdipx")
+surface_material_override/3 = SubResource("StandardMaterial3D_jlydw")
+
+[node name="colision" parent="Overgrown Dimwood Village/overgrownhouse4" index="1"]
+visible = false
+
+[node name="Sphere" parent="Overgrown Dimwood Village/overgrownhouse4" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bjbr5")
+
+[node name="vines" parent="Overgrown Dimwood Village/overgrownhouse4" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1tkeb")
 
 [node name="overgrownhouse5" parent="Overgrown Dimwood Village" instance=ExtResource("943_iuhso")]
-transform = Transform3D(-0.25362268, 0, -0.96730316, 0, 1, 0, 0.96730316, 0, -0.25362268, -171.30226, 0.0030146427, 708.26434)
+transform = Transform3D(0.918605, 0, -0.39517665, 0, 1, 0, 0.39517665, 0, 0.918605, -173.89377, 0.0030146427, 735.7978)
+
+[node name="house" parent="Overgrown Dimwood Village/overgrownhouse5" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lmwmg")
+surface_material_override/1 = SubResource("StandardMaterial3D_shr4g")
+surface_material_override/2 = SubResource("StandardMaterial3D_rdipx")
+surface_material_override/3 = SubResource("StandardMaterial3D_jlydw")
+
+[node name="colision" parent="Overgrown Dimwood Village/overgrownhouse5" index="1"]
+visible = false
+
+[node name="Sphere" parent="Overgrown Dimwood Village/overgrownhouse5" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_bjbr5")
+
+[node name="vines" parent="Overgrown Dimwood Village/overgrownhouse5" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1tkeb")
 
 [node name="overgrownhouse2" parent="Overgrown Dimwood Village" instance=ExtResource("944_yxesf")]
 transform = Transform3D(1.4730425, 0, 0, 0, 1.4730425, 0, 0, 0, 1.4730425, -146.44595, -0.05453673, 719.7698)
 
+[node name="Cube" parent="Overgrown Dimwood Village/overgrownhouse2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hslox")
+surface_material_override/1 = SubResource("StandardMaterial3D_us8oc")
+surface_material_override/2 = SubResource("StandardMaterial3D_1bqxl")
+
+[node name="Cylinder" parent="Overgrown Dimwood Village/overgrownhouse2" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_v2dnp")
+
+[node name="Plane_004" parent="Overgrown Dimwood Village/overgrownhouse2" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jhl1v")
+
 [node name="overgrownhouse3" parent="Overgrown Dimwood Village" instance=ExtResource("945_agl2t")]
 transform = Transform3D(2.7673998, 0, 0.74519926, 0, 2.8659768, 0, -0.74519926, 0, 2.7673998, -150.21791, -0.6092424, 709.70447)
 
+[node name="house" parent="Overgrown Dimwood Village/overgrownhouse3" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3b0yr")
+surface_material_override/1 = SubResource("StandardMaterial3D_h7p5p")
+
+[node name="roof" parent="Overgrown Dimwood Village/overgrownhouse3" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_b64uh")
+
+[node name="roofbar" parent="Overgrown Dimwood Village/overgrownhouse3" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lpj1t")
+
+[node name="balcony" parent="Overgrown Dimwood Village/overgrownhouse3" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4gw3q")
+
+[node name="railing" parent="Overgrown Dimwood Village/overgrownhouse3" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0rtel")
+
+[node name="doors" parent="Overgrown Dimwood Village/overgrownhouse3" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jhj26")
+
+[node name="doorknobs" parent="Overgrown Dimwood Village/overgrownhouse3" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t61ja")
+
+[node name="vines" parent="Overgrown Dimwood Village/overgrownhouse3" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fefhx")
+
+[node name="colision" parent="Overgrown Dimwood Village/overgrownhouse3" index="8"]
+visible = false
+
 [node name="overgrownhouse6" parent="Overgrown Dimwood Village" instance=ExtResource("945_agl2t")]
-transform = Transform3D(2.746716, 0, -0.818153, 0, 2.8659768, 0, 0.818153, 0, 2.746716, -149.61952, -0.6092424, 734.06024)
+transform = Transform3D(2.631652, 0, -1.1350024, 0, 2.8659768, 0, 1.1350024, 0, 2.631652, -151.013, -0.6092424, 732.97504)
+
+[node name="house" parent="Overgrown Dimwood Village/overgrownhouse6" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3b0yr")
+surface_material_override/1 = SubResource("StandardMaterial3D_h7p5p")
+
+[node name="roof" parent="Overgrown Dimwood Village/overgrownhouse6" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_b64uh")
+
+[node name="roofbar" parent="Overgrown Dimwood Village/overgrownhouse6" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_lpj1t")
+
+[node name="balcony" parent="Overgrown Dimwood Village/overgrownhouse6" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4gw3q")
+
+[node name="railing" parent="Overgrown Dimwood Village/overgrownhouse6" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0rtel")
+
+[node name="doors" parent="Overgrown Dimwood Village/overgrownhouse6" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jhj26")
+
+[node name="doorknobs" parent="Overgrown Dimwood Village/overgrownhouse6" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_t61ja")
+
+[node name="vines" parent="Overgrown Dimwood Village/overgrownhouse6" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fefhx")
+
+[node name="colision" parent="Overgrown Dimwood Village/overgrownhouse6" index="8"]
+visible = false
 
 [node name="long_fence" parent="Overgrown Dimwood Village" instance=ExtResource("926_ptcpy")]
 transform = Transform3D(-0.99935883, 0, 0.03580651, 0, 1, 0, -0.03580651, 0, -0.99935883, -180.7923, 0.2721597, 709.9852)
@@ -3882,14 +4350,53 @@ transform = Transform3D(1.6104425, 0.32501265, -1.8843676, 0, 2.4636235, 0.42492
 [node name="cart2" parent="Overgrown Dimwood Village" instance=ExtResource("948_3b0yr")]
 transform = Transform3D(0.57266116, 0.4136237, -2.398119, 0, 2.4636235, 0.4249218, 2.4335282, -0.09733449, 0.5643286, -151.34726, 0.1648922, 705.80084)
 
+[node name="Hollow Bush" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(1.4351814, 0, 0, 0, 1.2737586, 0, 0, 0, 1.4351814, -168.24107, -0.14950293, 724.7625)
+
+[node name="Bush2" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(1.321873, 0, -0.5589248, 0, 1.4351813, 0, 0.5589248, 0, 1.321873, -168.46236, -0.14950293, 733.47955)
+
+[node name="Bush3" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(1.321873, 0, -0.5589248, 0, 1.4351813, 0, 0.5589248, 0, 1.321873, -153.58623, -0.14950293, 727.2628)
+
+[node name="Bush4" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(1.321873, 0, -0.5589248, 0, 1.4351813, 0, 0.5589248, 0, 1.321873, -157.013, -0.14950293, 706.0757)
+
+[node name="Bush5" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(1.321873, 0, -0.5589248, 0, 1.1689402, 0, 0.5589248, 0, 1.321873, -169.98572, -0.14950293, 711.1681)
+
+[node name="Bush6" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(1.321873, 0, -0.5589248, 0, 1.4351813, 0, 0.5589248, 0, 1.321873, -168.18362, -0.14950293, 709.90674)
+
+[node name="Bush7" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(1.321873, 0, -0.5589248, 0, 1.0301201, 0, 0.5589248, 0, 1.321873, -164.51308, -0.14950293, 720.53894)
+
+[node name="Bush8" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(0.77116454, 0, -1.2103926, 0, 1.4351814, 0, 1.2103926, 0, 0.77116454, -170.19566, -0.14950293, 717.65)
+
+[node name="Bush9" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(1.4040322, 0, 0.29738635, 0, 1.0737656, 0, -0.29738635, 0, 1.4040322, -161.07454, -0.14950293, 713.5624)
+
+[node name="Bush10" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(0.9161886, 0, -1.1046916, 0, 1.4351814, 0, 1.1046916, 0, 0.9161886, -161.07454, -0.14950293, 728.7542)
+
+[node name="Bush11" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(0.9161886, 0, -1.1046916, 0, 1.4351814, 0, 1.1046916, 0, 0.9161886, -159.32877, -0.14950293, 727.20135)
+
+[node name="Bush12" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(0.9161886, 0, -1.1046916, 0, 1.4351814, 0, 1.1046916, 0, 0.9161886, -159.32877, -0.14950293, 714.07745)
+
+[node name="Bush13" parent="Overgrown Dimwood Village" instance=ExtResource("958_jhj26")]
+transform = Transform3D(0.9161886, 0, -1.1046916, 0, 1.1457602, 0, 1.1046916, 0, 0.9161886, -166.90164, -0.14950293, 734.6764)
+
 [node name="Taz" parent="." instance=ExtResource("942_xpmv6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.666569, 1.0721328, 43.002872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1296215, 0.95708406, -11.688211)
 
 [node name="Bridger" parent="." instance=ExtResource("942_xpmv6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.183912, 1.0721328, 43.002872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.226547, 1.058364, -11.95393)
 
 [node name="Gnocchi" parent="." instance=ExtResource("942_xpmv6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.86915, 1.0721328, 43.002872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6638823, 0.9322392, -10.200304)
 
 [node name="Player_3d" parent="." instance=ExtResource("36_r0smi")]
 transform = Transform3D(0.07858065, 0, -0.9969076, 0, 1, 0, 0.9969076, 0, 0.07858065, -233.75253, 2.9183943, 770.13727)
@@ -3905,13 +4412,19 @@ IgnoredDialogue = Array[String](["Well, that's good at least. Don't forget the r
 WaitingDialogue = "Don't disappoint our King. Head over to that village down the road. "
 
 [node name="Skeleton3D" parent="Richard/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9904611, -0.055199992)
-bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
-bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
-bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
-bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
-bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
-bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
+bones/0/position = Vector3(0, 0.99650675, -0.05519999)
+bones/2/rotation = Quaternion(-0.077304594, 0, 0, 0.99700755)
+bones/5/rotation = Quaternion(-0.07189194, 0.007378067, 0.02177353, 0.99714744)
+bones/25/rotation = Quaternion(0.9763031, 0.015190131, -0.009024318, 0.21568517)
+bones/26/rotation = Quaternion(0.1842091, 0.0015814956, 0.014766725, 0.982775)
+bones/34/rotation = Quaternion(0.9763031, -0.015190132, 0.0090242755, 0.21568517)
+bones/35/rotation = Quaternion(0.1842091, -0.0015814966, -0.014766725, 0.982775)
+
+[node name="Cube" parent="Richard/villagerblank/metarig_001/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_a2g2v")
+
+[node name="Cube_002" parent="Richard/villagerblank/metarig_001/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qxotl")
 
 [node name="CollisionShape3D" parent="Richard" index="2"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.89464927, 0)
@@ -3951,13 +4464,10 @@ shape = SubResource("BoxShape3D_v2dnp")
 [node name="Cutscene3" parent="." instance=ExtResource("953_bjbr5")]
 transform = Transform3D(0.5883499, 0, -0.8086064, 0, 1, 0, 0.8086064, 0, 0.5883499, -165.0943, 0, 718.7757)
 
-[node name="Drag" parent="Cutscene3" index="4"]
+[node name="Drag" parent="Cutscene3" index="0"]
 transform = Transform3D(0.24973771, 0, 0.9683136, 0, 1, 0, -0.9683136, 0, 0.24973771, -55.558594, -5.96682, -16.925903)
 
-[node name="Cursed" parent="Cutscene3" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110.45422, -4.219802, -70.79816)
-
-[node name="Waking" parent="Cutscene3" index="6"]
+[node name="Waking" parent="Cutscene3" index="1"]
 transform = Transform3D(-0.5023712, 0, 0.86465204, 0, 1, 0, -0.86465204, 0, -0.5023712, -465.22403, 1.2267355, -481.94385)
 
 [node name="Skeleton3D" parent="Cutscene3/Waking/metarig_001" index="0"]
@@ -3991,13 +4501,175 @@ bones/40/rotation = Quaternion(-0.6320816, 0.72477007, -0.18002336, -0.20681581)
 [node name="spine_006" parent="Cutscene3/Waking/metarig_001/Skeleton3D" index="0"]
 transform = Transform3D(1, -8.881784e-15, -4.2632564e-14, 3.28626e-14, 0.99964523, 0.026627362, -2.842171e-14, -0.026627332, 0.9996452, -1.24983e-14, 1.688588, -0.001851599)
 
+[node name="Cursed" parent="Cutscene3" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110.45422, -4.219802, -70.79816)
+
+[node name="Skeleton3D" parent="Cutscene3/Cursed/metarig_001" index="0"]
+bones/0/position = Vector3(2.3092639e-14, 0.9426751, -0.06494784)
+bones/1/rotation = Quaternion(-0.04276602, 3.139252e-14, -1.0196214e-08, 0.9990851)
+bones/5/rotation = Quaternion(-0.13906483, 1.18051e-07, -1.6577815e-08, 0.99028325)
+bones/8/rotation = Quaternion(-0.19815461, 0.65547884, -0.51785547, 0.5127457)
+bones/9/rotation = Quaternion(0.03841127, -0.0043002632, 0.018825252, 0.9990754)
+bones/10/rotation = Quaternion(0.051021136, -0.21205248, 0.0958967, 0.97120255)
+bones/14/rotation = Quaternion(0.24868117, -0.09416566, -0.26102602, 0.9279849)
+bones/15/rotation = Quaternion(-0.20784114, 0.06874573, 0.12904152, 0.9671734)
+bones/16/rotation = Quaternion(0.025080645, 0.012580059, 0.11781119, 0.99263954)
+bones/18/rotation = Quaternion(-0.197958, -0.6481506, 0.5282889, 0.5114922)
+bones/19/rotation = Quaternion(0.033738244, 0.005106121, -0.015554432, 0.9992966)
+bones/20/rotation = Quaternion(0.080469534, -0.024249483, -0.21176815, 0.9736996)
+bones/21/rotation = Quaternion(-0.057895903, -0.002011476, 0.17267391, 0.983274)
+bones/24/rotation = Quaternion(0.35936347, 0.09913032, 0.32073864, 0.8707226)
+bones/25/rotation = Quaternion(-0.30554163, -0.04084375, -0.14845447, 0.9396475)
+bones/27/rotation = Quaternion(-5.4202435e-08, 0.6961122, 0.717933, -5.2555006e-08)
+bones/28/rotation = Quaternion(-5.4202435e-08, 0.6961122, 0.717933, -5.2555006e-08)
+bones/31/rotation = Quaternion(0.9832777, 0.027317153, -0.0051201587, 0.17997932)
+bones/32/rotation = Quaternion(0.09792147, 0.0042957175, 0.012534035, 0.995106)
+bones/33/rotation = Quaternion(-0.520269, -0.051938374, -0.059198014, 0.85036355)
+bones/36/rotation = Quaternion(0.98315495, -0.031415023, 0.0058883596, 0.17995772)
+bones/37/rotation = Quaternion(0.09792464, -0.0042795097, -0.021280056, 0.9949571)
+bones/38/rotation = Quaternion(-0.52187836, 0.040999435, 0.04926114, 0.8506088)
+bones/39/rotation = Quaternion(-0.06138559, 0.959714, -0.26865855, -0.054803982)
+bones/40/rotation = Quaternion(-0.6320816, 0.72477007, -0.18002336, -0.20681581)
+bones/41/position = Vector3(0.13015282, 0.082402706, -0.01566811)
+bones/42/rotation = Quaternion(0.9998904, -0.00040637932, 0.010296416, -0.010628726)
+bones/43/position = Vector3(-0.13015282, 0.082402706, -0.015668197)
+bones/44/rotation = Quaternion(0.9998904, 0.00040637932, -0.010296416, -0.010628726)
+
+[node name="spine_006" parent="Cutscene3/Cursed/metarig_001/Skeleton3D" index="0"]
+transform = Transform3D(1, -1.4210855e-14, -1.4210855e-14, 5.3290705e-14, 0.9996452, 0.026627421, -7.1054274e-14, -0.026627354, 0.99964505, -2.3345572e-13, 1.6885873, -0.0018517354)
+
+[node name="forearm_L" parent="Cutscene3/Cursed/metarig_001/Skeleton3D" index="1"]
+transform = Transform3D(-0.8569463, 0.5100424, 0.07415857, -0.49833253, -0.85666454, 0.13337907, 0.13155794, 0.07734303, 0.9882862, 0.30685064, 1.3072851, -0.014776422)
+
+[node name="forearm_R" parent="Cutscene3/Cursed/metarig_001/Skeleton3D" index="2"]
+transform = Transform3D(-0.86712545, -0.49270383, -0.073049724, 0.47946078, -0.86540276, 0.14558421, -0.13494736, 0.09121531, 0.9866447, -0.29646415, 1.3260444, -0.018206472)
+
+[node name="Skeleton3D" parent="Cutscene3/Cursed/metarig_002" index="0"]
+bones/0/position = Vector3(0, 0.9426751, -0.06494784)
+bones/1/rotation = Quaternion(-0.04276602, -3.1300862e-10, -1.0686508e-08, 0.9990851)
+bones/5/rotation = Quaternion(-0.13906482, 1.3616867e-07, -1.7027675e-08, 0.99028325)
+bones/8/rotation = Quaternion(-0.19815466, 0.6554788, -0.51785535, 0.51274574)
+bones/9/rotation = Quaternion(0.038411282, -0.004300256, 0.018825263, 0.9990754)
+bones/10/rotation = Quaternion(0.051021133, -0.21205248, 0.09589669, 0.97120255)
+bones/14/rotation = Quaternion(0.24868117, -0.09416568, -0.26102602, 0.9279849)
+bones/15/rotation = Quaternion(-0.20784114, 0.06874573, 0.12904152, 0.9671734)
+bones/16/rotation = Quaternion(0.025080636, 0.012580068, 0.11781117, 0.99263954)
+bones/18/rotation = Quaternion(-0.19795798, -0.6481506, 0.52828896, 0.51149213)
+bones/19/rotation = Quaternion(0.033738237, 0.005106126, -0.015554411, 0.9992966)
+bones/20/rotation = Quaternion(0.08046952, -0.024249481, -0.21176817, 0.9736996)
+bones/21/rotation = Quaternion(-0.057895895, -0.002011476, 0.17267387, 0.983274)
+bones/24/rotation = Quaternion(0.35936347, 0.099130355, 0.32073858, 0.8707226)
+bones/25/rotation = Quaternion(-0.30554172, -0.040843733, -0.14845447, 0.93964744)
+bones/27/rotation = Quaternion(-5.4526733e-08, 0.6961122, 0.717933, -4.2177195e-08)
+bones/28/rotation = Quaternion(-5.4526733e-08, 0.6961122, 0.717933, -3.1799363e-08)
+bones/31/rotation = Quaternion(0.9832777, 0.02731714, -0.0051201577, 0.17997932)
+bones/32/rotation = Quaternion(0.097921476, 0.0042957235, 0.012534037, 0.9951059)
+bones/33/rotation = Quaternion(-0.520269, -0.05193838, -0.05919801, 0.85036355)
+bones/36/rotation = Quaternion(0.98315495, -0.031415023, 0.0058883796, 0.1799577)
+bones/37/rotation = Quaternion(0.09792465, -0.004279505, -0.021280063, 0.9949571)
+bones/38/rotation = Quaternion(-0.52187836, 0.04099943, 0.049261153, 0.8506088)
+bones/39/rotation = Quaternion(-0.061385587, 0.959714, -0.2686586, -0.05480398)
+bones/40/rotation = Quaternion(-0.63208157, 0.7247702, -0.18002333, -0.20681576)
+bones/41/position = Vector3(0.13015282, 0.082402706, -0.015668392)
+bones/42/rotation = Quaternion(0.9998904, -0.00040638793, 0.0102964165, -0.010628728)
+bones/43/position = Vector3(-0.13015294, 0.082402706, -0.015668392)
+bones/44/rotation = Quaternion(0.9998904, 0.00040638042, -0.0102964165, -0.010628727)
+
+[node name="spine_006" parent="Cutscene3/Cursed/metarig_002/Skeleton3D" index="0"]
+transform = Transform3D(0.9999998, -5.976748e-09, -8.400235e-09, 6.198304e-09, 0.9996454, 0.026627425, 8.238146e-09, -0.026627291, 0.99964494, -2.4496322e-07, 1.6885874, -0.001851117)
+
+[node name="forearm_L" parent="Cutscene3/Cursed/metarig_002/Skeleton3D" index="1"]
+transform = Transform3D(-0.85694593, 0.5100426, 0.0741588, -0.4983328, -0.85666424, 0.13337907, 0.13155831, 0.077342786, 0.9882859, 0.3068503, 1.3072845, -0.014776501)
+
+[node name="forearm_R" parent="Cutscene3/Cursed/metarig_002/Skeleton3D" index="2"]
+transform = Transform3D(-0.8671254, -0.49270368, -0.073049635, 0.4794606, -0.86540294, 0.14558423, -0.13494709, 0.09121544, 0.98664486, -0.2964645, 1.326043, -0.018206779)
+
+[node name="Skeleton3D" parent="Cutscene3/Cursed/metarig_003" index="0"]
+bones/9/rotation = Quaternion(0.038411286, -0.004300259, 0.018825253, 0.9990754)
+bones/10/rotation = Quaternion(0.05102113, -0.21205246, 0.09589669, 0.97120255)
+bones/19/rotation = Quaternion(0.03373825, 0.005106078, -0.015554424, 0.9992966)
+bones/42/rotation = Quaternion(0.9998904, -0.00040639527, 0.010296416, -0.0106287245)
+bones/44/rotation = Quaternion(0.9998904, 0.00040636546, -0.010296415, -0.010628726)
+
+[node name="forearm_L" parent="Cutscene3/Cursed/metarig_003/Skeleton3D" index="1"]
+transform = Transform3D(-0.85694635, 0.5100424, 0.07415865, -0.49833253, -0.85666454, 0.13337913, 0.13155799, 0.077343, 0.98828596, 0.3068499, 1.3072846, -0.014777066)
+
+[node name="forearm_R" parent="Cutscene3/Cursed/metarig_003/Skeleton3D" index="2"]
+transform = Transform3D(-0.8671251, -0.49270377, -0.073049664, 0.47946057, -0.86540276, 0.14558423, -0.13494718, 0.09121533, 0.9866445, -0.29646534, 1.326043, -0.018206963)
+
+[node name="Skeleton3D" parent="Cutscene3/metarig" index="0"]
+bones/0/position = Vector3(-0.06494781, 0.9426751, -7.652724e-08)
+bones/0/rotation = Quaternion(0.088967934, 0.70148766, -0.08896788, 0.70148736)
+bones/1/rotation = Quaternion(-0.042766012, -1.0708946e-08, -1.3944195e-08, 0.9990851)
+bones/2/rotation = Quaternion(-0.09912087, -1.0090121e-07, -2.5832854e-08, 0.9950754)
+bones/3/rotation = Quaternion(0.00047881776, -1.5944151e-08, 6.860557e-11, 0.9999999)
+bones/5/rotation = Quaternion(-0.13906471, 1.07457964e-07, -4.376788e-08, 0.9902833)
+bones/6/rotation = Quaternion(-0.03301014, -1.2636647e-07, -9.797652e-09, 0.99945503)
+bones/7/position = Vector3(0.017700382, 0.15318945, 0.076623894)
+bones/7/rotation = Quaternion(-0.6161369, -0.32416072, -0.33460873, 0.6350844)
+bones/8/position = Vector3(0.023210637, 0.17969443, -0.025847577)
+bones/8/rotation = Quaternion(-0.19815469, 0.6554788, -0.51785535, 0.51274574)
+bones/9/rotation = Quaternion(0.038411297, -0.0043003038, 0.018825237, 0.9990754)
+bones/10/rotation = Quaternion(0.051021155, -0.21205246, 0.09589677, 0.97120255)
+bones/11/rotation = Quaternion(-0.033571567, 1.1088447e-08, -0.06399544, 0.9973854)
+bones/12/rotation = Quaternion(-0.063097514, 0.019820428, -0.15302946, 0.986006)
+bones/13/rotation = Quaternion(-0.012974057, -0.02461377, -0.006866424, 0.99958926)
+bones/14/rotation = Quaternion(0.24868111, -0.09416573, -0.26102617, 0.92798483)
+bones/15/rotation = Quaternion(-0.20784116, 0.068745896, 0.1290416, 0.9671734)
+bones/16/rotation = Quaternion(0.025080677, 0.012580086, 0.11781116, 0.99263954)
+bones/17/position = Vector3(-0.017698102, 0.15318945, 0.07662389)
+bones/17/rotation = Quaternion(-0.6161816, 0.32407555, 0.33452117, 0.63513064)
+bones/18/position = Vector3(-0.012263213, 0.18032394, -0.009080253)
+bones/18/rotation = Quaternion(-0.19795784, -0.6481505, 0.528289, 0.5114922)
+bones/19/rotation = Quaternion(0.0337382, 0.005106189, -0.015554441, 0.9992966)
+bones/20/rotation = Quaternion(0.08046949, -0.024249496, -0.21176824, 0.97369957)
+bones/21/rotation = Quaternion(-0.05789585, -0.0020113837, 0.17267397, 0.983274)
+bones/22/rotation = Quaternion(0.019991975, 0.008247274, 0.10540466, 0.99419427)
+bones/23/rotation = Quaternion(-0.06048569, -0.012738501, 0.06532369, 0.9959478)
+bones/24/rotation = Quaternion(0.3593634, 0.09913034, 0.32073858, 0.87072265)
+bones/25/rotation = Quaternion(-0.30554166, -0.040843643, -0.1484545, 0.9396475)
+bones/26/rotation = Quaternion(-0.074852236, -0.0027811874, -0.19852775, 0.9772288)
+bones/27/rotation = Quaternion(-1.3370268e-07, 0.6961123, 0.71793294, -5.2555016e-08)
+bones/28/rotation = Quaternion(-1.3370268e-07, 0.6961123, 0.71793294, -5.2555016e-08)
+bones/31/rotation = Quaternion(0.9832777, 0.02731708, -0.0051203696, 0.17997923)
+bones/32/rotation = Quaternion(0.09792138, 0.0042956285, 0.012533986, 0.995106)
+bones/33/rotation = Quaternion(-0.520269, -0.051938303, -0.059197918, 0.85036355)
+bones/36/position = Vector3(0.020142402, 0.104375586, 0.18106206)
+bones/37/position = Vector3(0.02828618, 0.10465092, -0.102531634)
+bones/38/position = Vector3(0.014166819, 0.022877574, 0.11196914)
+bones/39/position = Vector3(0.021993522, 0.05784633, -0.12260673)
+bones/40/rotation = Quaternion(0.98315495, -0.03141505, 0.0058882893, 0.17995772)
+bones/41/rotation = Quaternion(0.097924665, -0.00427953, -0.021280078, 0.9949571)
+bones/42/rotation = Quaternion(-0.5218785, 0.040999506, 0.04926126, 0.85060877)
+bones/43/rotation = Quaternion(-0.0613857, 0.95971394, -0.2686587, -0.054804005)
+bones/44/rotation = Quaternion(-0.6320816, 0.72477007, -0.18002325, -0.20681581)
+bones/45/position = Vector3(-0.04056134, 0.11910314, 0.1549051)
+bones/46/position = Vector3(-0.031988207, 0.10910243, -0.11548304)
+bones/47/position = Vector3(-0.02160455, 0.0315258, 0.10408278)
+bones/48/position = Vector3(-0.012682756, 0.050877333, -0.118810035)
+bones/48/rotation = Quaternion(0.047498506, 1.2269197e-05, 0.00017820777, 0.99887127)
+bones/49/position = Vector3(-0.015668165, 0.08240293, -0.13015278)
+bones/50/position = Vector3(-0.0013254025, -0.15288372, 0.49792475)
+bones/50/rotation = Quaternion(0.9998904, -0.00040637443, 0.010296477, -0.010628727)
+bones/51/position = Vector3(-0.015668187, 0.08240293, 0.13015263)
+bones/52/rotation = Quaternion(0.9998904, 0.00040638488, -0.010296394, -0.010628727)
+
+[node name="spine_006" parent="Cutscene3/metarig/Skeleton3D" index="0"]
+transform = Transform3D(-2.7500104e-07, -0.026627082, 0.99964535, 3.0302555e-08, 0.9996451, 0.026627097, -1, 5.108028e-08, -2.5305363e-07, -0.0018518653, 1.6885883, -5.1413163e-06)
+
+[node name="forearm_L" parent="Cutscene3/metarig/Skeleton3D" index="1"]
+transform = Transform3D(0.13155854, 0.077342875, 0.98828655, -0.49833268, -0.85666466, 0.13337913, 0.8569462, -0.51004267, -0.07415907, -0.014776238, 1.3072847, -0.30685443)
+
+[node name="forearm_R" parent="Cutscene3/metarig/Skeleton3D" index="2"]
+transform = Transform3D(-0.1349473, 0.09121536, 0.9866456, 0.4794606, -0.8654029, 0.14558409, 0.86712563, 0.49270377, 0.07304947, -0.018206785, 1.3260442, 0.29646063)
+
 [node name="MonstItemDropper" type="Node3D" parent="."]
 script = ExtResource("954_b64uh")
 
 [node name="Enviorment" parent="." instance=ExtResource("948_shr4g")]
 
 [node name="PlayerSpawnAfterCut" type="Node3D" parent="."]
-transform = Transform3D(0.972622, 0, -0.23239303, 0, 1, 0, 0.23239303, 0, 0.972622, -33.586258, 2.2260454, 59.268795)
+transform = Transform3D(0.972622, 0, -0.23239303, 0, 1, 0, 0.23239303, 0, 0.972622, -33.586258, 2.2260454, 59.565254)
 
 [node name="Matthew" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(0, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 0, -32.437317, 2.0682554, 60.267693)
@@ -4010,22 +4682,25 @@ IgnoredDialogue = []
 WaitingDialogue = "Please help out the townsfolk. We need your help."
 
 [node name="Skeleton3D" parent="Matthew/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9904611, -0.055199992)
-bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
-bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
-bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
-bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
-bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
-bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
+bones/0/position = Vector3(0, 0.99650675, -0.05519999)
+bones/2/rotation = Quaternion(-0.077304594, 0, 0, 0.99700755)
+bones/5/rotation = Quaternion(-0.07189194, 0.007378067, 0.02177353, 0.99714744)
+bones/25/rotation = Quaternion(0.9763031, 0.015190131, -0.009024318, 0.21568517)
+bones/26/rotation = Quaternion(0.1842091, 0.0015814956, 0.014766725, 0.982775)
+bones/34/rotation = Quaternion(0.9763031, -0.015190132, 0.0090242755, 0.21568517)
+bones/35/rotation = Quaternion(0.1842091, -0.0015814966, -0.014766725, 0.982775)
+
+[node name="Cube" parent="Matthew/villagerblank/metarig_001/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1tqb4")
+
+[node name="Cube_002" parent="Matthew/villagerblank/metarig_001/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3psa0")
 
 [node name="CollisionShape3D" parent="Matthew" index="2"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.89464927, 0)
 
 [node name="Range" parent="Matthew" index="6"]
 radius = 0.001
-
-[node name="VillageMark" type="Marker3D" parent="."]
-transform = Transform3D(-0.7856302, 0.61869633, 2.7044077e-08, 3.5527137e-15, -4.371139e-08, 1, 0.61869633, 0.7856302, 3.434099e-08, -31.408829, 4.2523804, 62.485588)
 
 [editable path="MonsterHolder/RatSpawner"]
 [editable path="MonsterHolder/RatSpawner2"]
@@ -4052,6 +4727,12 @@ transform = Transform3D(-0.7856302, 0.61869633, 2.7044077e-08, 3.5527137e-15, -4
 [editable path="Martha"]
 [editable path="Martha/villagerblank"]
 [editable path="HushedTrees"]
+[editable path="Brittlebay Village/House1"]
+[editable path="Brittlebay Village/House2"]
+[editable path="Brittlebay Village/House3"]
+[editable path="Brittlebay Village/House4"]
+[editable path="Brittlebay Village/House5"]
+[editable path="Brittlebay Village/House6"]
 [editable path="Map/Sign2"]
 [editable path="Map/Sign2/sign"]
 [editable path="Map/Sign7"]
@@ -4097,6 +4778,11 @@ transform = Transform3D(-0.7856302, 0.61869633, 2.7044077e-08, 3.5527137e-15, -4
 [editable path="GoalArea"]
 [editable path="ObjectSpawner"]
 [editable path="Overgrown Dimwood Village/overgrownhouse1"]
+[editable path="Overgrown Dimwood Village/overgrownhouse4"]
+[editable path="Overgrown Dimwood Village/overgrownhouse5"]
+[editable path="Overgrown Dimwood Village/overgrownhouse2"]
+[editable path="Overgrown Dimwood Village/overgrownhouse3"]
+[editable path="Overgrown Dimwood Village/overgrownhouse6"]
 [editable path="Overgrown Dimwood Village/long_fence2"]
 [editable path="Overgrown Dimwood Village/long_fence3"]
 [editable path="Overgrown Dimwood Village/long_fence4"]

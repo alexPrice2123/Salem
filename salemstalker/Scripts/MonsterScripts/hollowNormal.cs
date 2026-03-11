@@ -40,20 +40,20 @@ public partial class hollowNormal : Monster3d
 			}
 			int i = 0;
 			if(Cutscene)
-            {
-                foreach (Monster3d monst in GetParent().GetChildren())
-                {
-                    if (monst != this)
-                    {
-                        monst.ForceSeePlayer();
+			{
+				foreach (Monster3d monst in GetParent().GetChildren())
+				{
+					if (monst != this)
+					{
+						monst.ForceSeePlayer();
 						i++;
-                    }
-                }
+					}
+				}
 				if (i == 0)
 				{
 					_player.GetParent().GetNode<Cutscene3>("Cutscene3").StartCut(_player);
 				}
-            }
+			}
 			if(!Cutscene)
 			{
 				_itemDropper.Drop("deadooze", 0.5f, 3, GlobalPosition);
