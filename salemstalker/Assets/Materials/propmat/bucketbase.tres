@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bs81e7t71o5go"]
+
+[ext_resource type="Texture2D" uid="uid://b0wixgf2wq0qa" path="res://Assets/proptextures/bucket/wood_Base_color.png" id="1_7c5j0"]
+
+[resource]
+albedo_texture = ExtResource("1_7c5j0")
+texture_filter = 0

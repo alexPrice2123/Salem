@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://da3ov6c2yxc2r"]
+
+[ext_resource type="Texture2D" uid="uid://b5h8w2jic804g" path="res://Assets/proptextures/cart/cartholder_Base_color.png" id="1_mv4wh"]
+
+[resource]
+albedo_texture = ExtResource("1_mv4wh")
+texture_filter = 0

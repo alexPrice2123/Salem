@@ -1312,7 +1312,7 @@ public partial class Player3d : CharacterBody3D
 		{
 			villager.Talk();
 		}
-    }
+    }//hello it is me, the code. please kill me
 
 	public void CutsceneToggle(bool toggle)
     {
