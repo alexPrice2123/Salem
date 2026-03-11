@@ -134,8 +134,12 @@ public partial class Monster3d : CharacterBody3D
 	// --- DAMAGE SYSTEM --- //
 	public void Damaged(Area3D body)
 	{
+		GD.Print("I was hit");
+		GD.Print(_canBeHit);
 		if (body.IsInGroup("Weapon") && _canBeHit)
 		{
+			GD.Print("By a player weapon!");
+			GD.Print();
 			DamageHandler(false, _player._damage);
 		}
 		else if (body.IsInGroup("PlayerProj") && _canBeHit)
