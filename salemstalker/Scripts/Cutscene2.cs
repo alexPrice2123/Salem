@@ -34,6 +34,7 @@ public partial class Cutscene2 : Node3D
 			await ToSignal(GetTree().CreateTimer(2f), "timeout");
 			plr.GetNode<Ui>("UI")._fadeProg = 1;
 			await ToSignal(GetTree().CreateTimer(2), "timeout");
+			plr.GetNode<Label>("UI/TutTextComb").Visible = true;
 
 			for (int i = 1; i <= 3; i++)
             {
@@ -61,7 +62,6 @@ public partial class Cutscene2 : Node3D
 			plr.GetNode<Ui>("UI")._fadeProg = 0;
 			GetNode<Camera3D>("Fight/Camera").Current = false;
 
-			
         }
     }
 }
