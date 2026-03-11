@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cduvpiwwnsk20"]
+
+[ext_resource type="Script" uid="uid://cv2sbc60tydgi" path="res://Scenes/OffHandWeapons/weaponExtra/KnifeProj.cs" id="1_pjfag"]
+[ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_pjfag"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0scey"]
+size = Vector3(0.17208862, 0.19906616, 0.6230469)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5laef"]
+radius = 0.32958984
+height = 0.81359863
+
+[node name="Knife" type="RigidBody3D" groups=["PlayerProj"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.021261051)
+collision_layer = 256
+collision_mask = 256
+mass = 0.05
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.05, 0)
+angular_velocity = Vector3(3.1415927, 0, 0)
+script = ExtResource("1_pjfag")
+metadata/damagePerBoss = 0.15
+metadata/DamagePer = 0.35
+
+[node name="dagger" parent="." instance=ExtResource("2_pjfag")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, -0.22006688, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_0scey")
+
+[node name="HitArea3D" type="Area3D" parent="." groups=["PlayerProj"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea3D"]
+shape = SubResource("CapsuleShape3D_5laef")
+
+[connection signal="body_entered" from="HitArea3D" to="." method="_on_hit_area_3d_body_entered"]

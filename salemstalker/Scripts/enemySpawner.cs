@@ -55,7 +55,7 @@ public partial class enemySpawner : Node3D
 	// --- SPAWN HANDLER ---
 	private void _on_spawn_time_timeout()
 	{
-		if (Name.ToString().Contains("Rat") && GetParent().GetParent<DemoHandler>()._dillonDone)
+		/*if (Name.ToString().Contains("Rat") && GetParent().GetParent<DemoHandler>()._dillonDone)
 		{
 			foreach (CharacterBody3D rat in _holder.GetChildren())
 			{
@@ -70,7 +70,7 @@ public partial class enemySpawner : Node3D
 		else if (!Name.ToString().Contains("Rat"))
 		{
 			SpawnMonster();
-		}
+		}*/
 	}
 	
 	private async void SpawnMonster()

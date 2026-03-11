@@ -67,7 +67,7 @@ public partial class villageRat : Monster3d
 		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
 		{
 			_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "None");
-			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
+			_attackBox.Disabled = true;
 			_hasHit = true;
 		}
 	}

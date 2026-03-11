@@ -10,6 +10,7 @@ public partial class Player3d : CharacterBody3D
 	// --- CONSTANTS ---
 	public const float Speed = 3.5f;                 // Base player movement speed (units/second)
 	public const float RunSpeed = 4.5f;              // Additional speed when running
+	public const float crouchSpeed = -2f; 			 // Removed speed when crouching
 	public const float JumpVelocity = 6.5f;          // Vertical velocity applied for jumping (not used in _PhysicsProcess shown)
 	public const float BobFreq = 2f;                 // Frequency (speed) of the camera head-bob effect
 	public const float BobAmp = 0.06f;               // Amplitude (intensity) of the camera head-bob effect
@@ -21,10 +22,8 @@ public partial class Player3d : CharacterBody3D
 	private Slider _senseBar;                        // Slider control within the pause menu for adjusting sensitivity
 	public Control _inv;                             // Reference to the Inventory UI
 	public Node3D _sword;                           // The currently equipped sword's mesh/root node
-	private Node3D _eSecWeapon1;					 // The secondary weapon slot 1's root node
-	private Node3D _eSecWeapon2;					 // The secondary weapon slot 2's root node
-	private Node3D _eSecWeapon3;					 // The secondary weapon slot 3's root node
-	private Node3D _eSecWeapon4;					 // The secondary weapon slot 4's root node
+	public Node3D _eSecWeapon1;					 // The secondary weapon slot 1's root node
+	public Node3D _eSecWeapon2;					 // The secondary weapon slot 2's root node
 	private Control _combatNotif;                    // UI element for combat notifications/status
 	private RayCast3D _ray;                          // Raycast used to detect interactable objects (NPCs, items)
 	private Control _questBook;                      // The main container for the Quest Log UI
@@ -36,12 +35,13 @@ public partial class Player3d : CharacterBody3D
 	public itemList _itemInv;						//Reference to resource inv
 
 	// --- WEAPON REFERENCES ---
-	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
 	private PackedScene _falchion = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/falchion.tscn"); // Pre-load falchion scene resource
 	private PackedScene _dagger = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/dagger.tscn"); // Pre-load falchion scene resource
 	private PackedScene _longsword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/longsword.tscn"); // Pre-load falchion scene resource
+	private PackedScene _shortSword = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/shortsword.tscn"); // Pre-load shortsword scene resource
 	private PackedScene _flintGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Flintlock.tscn"); // Pre-load Flintlock scene resource
 	private PackedScene _stakeGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/stake_gun.tscn"); // Pre-load Stake Gun scene resource
+	private PackedScene _tomahawk = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Tomahawk.tscn"); // Pre-load Stake Gun scene resource
 	public Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 	private Dictionary<string, PackedScene> _secWeapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
@@ -60,7 +60,8 @@ public partial class Player3d : CharacterBody3D
 	private float _dashVelocity = 0f;                	// Current extra speed from dashing
 	private float _fullDashValue = 10.0f;            	// Max speed boost granted by a full dash
 	private float _knockVelocity = 0f;               	// Current knockback applied to player
-	private bool _cooldownSec;						 	// Tracks whether the player can use their secondary weapon
+	public bool _cooldownSec1;						 	// Tracks whether the player can use their first secondary weapon
+	public bool _cooldownSec2;						 	// Tracks whether the player can use their second secondary weapon
 	public bool _running = false;                   	// True if the 'run' input is held down
 	private bool _inStep = false;					 	// Prevents footstep audio from playing if player is already playing a step.
 	private float _bobTime = 0.0f;                   	// Accumulator for the head-bob sine wave function
@@ -85,9 +86,9 @@ public partial class Player3d : CharacterBody3D
 	public bool _parry = false; 						// Flag: true during the small parry window at the start of a block
 	public bool _parried = false; 						// Flag: true if a parry was successful (set by the enemy/damage function)
 	private float _parryWindow = 0.15f; 				// Duration of the parry window (in seconds)
-	private float _currentParryWindow; 					// Remaining time in the parry window
 	public NpcVillager _villager; 						// Reference to the currently interacting villager NPC
 	public bool _hasApple = false; 						// Quest item flag
+	public bool crouching = false;
 	private float _staminaTimer = 2f;
 	private float _currentStaminaTimer = 0f;
 	private int equipSec = 2;
@@ -160,6 +161,7 @@ public partial class Player3d : CharacterBody3D
 		_weapon.Add("dagger", _dagger);
 		_secWeapon.Add("FlintGun", _flintGun);
 		_secWeapon.Add("StakeGun", _stakeGun);
+		_secWeapon.Add("Tomahawk",_tomahawk);
 		StartCut();
 	}
 
@@ -177,7 +179,6 @@ public partial class Player3d : CharacterBody3D
 			Input.MouseMode = Input.MouseModeEnum.Visible;
 		}
 		if (_dead == true){return;}
-		
 		// --- Camera look ---
 		if (@event is InputEventMouseMotion motion && Input.MouseMode == Input.MouseModeEnum.Captured)
 		{
@@ -197,6 +198,23 @@ public partial class Player3d : CharacterBody3D
 		// --- Pause menu toggle (Escape) ---
 		else if (Input.IsActionJustPressed("pause"))
 		{
+			if (_inv.Visible == true) // pressing escape while the inventory is open will close it.
+			{
+				_inv.Visible = false;
+				Input.MouseMode = Input.MouseModeEnum.Captured;
+			}
+			if (_questBook.Visible == true)
+			{
+				_questBook.Visible = false;
+				Input.MouseMode = Input.MouseModeEnum.Captured;
+			}                                                 // same for the quest and shop UI
+			if (_smithShop.Visible == true)
+			{
+				_smithShop.Visible = false;
+				Input.MouseMode = Input.MouseModeEnum.Captured;
+			}
+			if (_dialogue.Visible == true) { return; }
+
 			if (Input.MouseMode == Input.MouseModeEnum.Captured)
 			{
 				// Un-capture mouse, show pause menu, update sensitivity slider to current value
@@ -212,41 +230,31 @@ public partial class Player3d : CharacterBody3D
 					menu._player = this;
 				}
 			}
-			else
-			{
-				if (_inv.Visible == true) // pressing escape while the inventory is open will close it.
-				{
-					_inv.Visible = false;
-					Input.MouseMode = Input.MouseModeEnum.Captured;
-				}
-				if (_questBook.Visible == true)
-				{
-					_questBook.Visible = false;
-					Input.MouseMode = Input.MouseModeEnum.Captured;
-				}                                                 // same for the quest and shop UI
-				if (_smithShop.Visible == true)
-				{
-					_smithShop.Visible = false;
-					Input.MouseMode = Input.MouseModeEnum.Captured;
-				}
-				if (_dialogue.Visible == true) { return; }
-			}
 		}
-
+		
+		
 		// --- Sword attack (Attack Action) ---
-		else if (Input.IsActionPressed("attack")
-				 && _attackCooldown == false
-				 && !IsInstanceValid(_lastSeen) // Not looking at an interactable object
-				 && _inv.Visible == false)
+		else if (Input.IsActionPressed("attack"))
 		{
-			// This block handles the first attack, potentially hiding a "Controls" overlay
-			if (GetNode<Sprite2D>("UI/Controls").Visible == true)
+			if(!GetNode<Sprite2D>("UI/Controls").Visible)
+			{
+				if(!IsInstanceValid(_lastSeen) && !_inv.Visible)
+				{
+					Swing(); // Perform a normal sword swing
+				}
+				if (IsInstanceValid(_lastSeen) && !_inv.Visible)
+				{
+					if (_lastSeen.Name == "Anvil")
+					{
+						_lastSeen = null;
+						_smithShop.Visible = true;
+						Input.MouseMode = Input.MouseModeEnum.Visible;
+					}
+				}
+			}
+			else // This block handles the first attack, potentially hiding a "Controls" overlay
 			{
 				GetNode<Sprite2D>("UI/Controls").Visible = false;
-			}
-			else
-			{
-				Swing(false); // Perform a normal sword swing
 			}
 		}
 
@@ -260,7 +268,6 @@ public partial class Player3d : CharacterBody3D
 		}
 		// --- Block End (Block Action) ---
 		else if (Input.IsActionJustReleased("block")
-				 && _attackCooldown == false
 				 && !IsInstanceValid(_lastSeen)
 				 && _inv.Visible == false)
 		{
@@ -270,7 +277,6 @@ public partial class Player3d : CharacterBody3D
 		// --- Inventory toggle (Inventory Action) ---
 		else if (Input.IsActionJustPressed("inventory"))
 		{
-			GD.Print("INV");
 			if (_inCombat == true || _questBook.Visible == true || _map.Visible == true) { return; } // Cannot open in combat or if quest book is open
 
 			if (_inv.Visible == true)
@@ -351,6 +357,22 @@ public partial class Player3d : CharacterBody3D
 			}
 		}
 
+		// --- Crouch toggle (C Key) ---
+		else if (Input.IsActionJustPressed("crouchToggle"))
+		{
+			crouching = !crouching;
+		}
+
+		// --- Crouch hold (Ctrl Key) ---
+		else if (Input.IsActionPressed("crouch"))
+		{
+			crouching = true;
+		}
+		// --- Crouch hold (Ctrl Key) ---
+		else if (Input.IsActionJustReleased("crouch"))
+		{
+			crouching = false;
+		}
 		// --- Interact (E Key) ---
 		else if (Input.IsActionJustPressed("interact"))
 		{
@@ -386,66 +408,56 @@ public partial class Player3d : CharacterBody3D
 		// --- Swap equiped secondary weapon ---
 		else if (Input.IsActionJustPressed("specialSwap1")) { equipSec = 1; }
 		else if (Input.IsActionJustPressed("specialSwap2")) { equipSec = 2; }
-		else if (Input.IsActionJustPressed("specialSwap3")) { if (!_twoHand) { equipSec = 3; } 
-															else { play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/errorTemp.ogg")); }}
-		else if (Input.IsActionJustPressed("specialSwap4")) { if (!_twoHand) { equipSec = 4; }
-															else { play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/errorTemp.ogg")); } }
+		//else if (Input.IsActionJustPressed("specialSwap3")) { if (!_twoHand) { equipSec = 3; } 
+															//else { play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/errorTemp.ogg")); }}
+		//else if (Input.IsActionJustPressed("specialSwap4")) { if (!_twoHand) { equipSec = 4; }
+															//else { play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/errorTemp.ogg")); } }
 
 		// --- Use secondary weapon ---
 		else if (Input.IsActionJustPressed("special"))
 		{
-			if (!_cooldownSec)
+			if (equipSec == 1 && !_cooldownSec1)
 			{
 				secondaryCooldown();
-				if (equipSec == 1)
+				if (_eSecWeapon1 is Flintlock flintchild)
 				{
-					if (_eSecWeapon1 is Flintlock flintchild)
-					{
-						GD.Print("wtf?");
-						flintchild.specAction();
-					}
-					else if (_eSecWeapon1 is StakeGun stakeChild)
-					{
-						GD.Print("ShootPlease");
-						stakeChild.specAction();
-					}
+					flintchild.specAction();
 				}
-				else if (equipSec == 2)
+				else if (_eSecWeapon1 is StakeGun stakeChild)
 				{
-					if (_eSecWeapon2 is Flintlock flintchild)
-					{
-						flintchild.specAction();
-					}
-					else if (_eSecWeapon1 is StakeGun stakeChild)
-					{
-						stakeChild.specAction();
-					}
+					stakeChild.specAction();
 				}
-				else if (equipSec == 3 && !_twoHand)
+				else if (_eSecWeapon1 is Tomahawk hawkChild)
 				{
-					if (_eSecWeapon3 is Flintlock flintchild)
-					{
-						flintchild.specAction();
-					}
-					else if (_eSecWeapon1 is StakeGun stakeChild)
-					{
-						stakeChild.specAction();
-					}
+					fountain(hawkChild);
 				}
-				else if (equipSec == 4 && !_twoHand)
+				else if (_eSecWeapon1 is ThrowingKnife knifeChild)
 				{
-					if (_eSecWeapon4 is Flintlock flintchild)
-					{
-						flintchild.specAction();
-					}
-					else if (_eSecWeapon1 is StakeGun stakeChild)
-					{
-						stakeChild.specAction();
-					}
+					knifeChild.specAction();
+				}
+			}
+			else if (equipSec == 2 && !_cooldownSec2)
+			{
+				secondaryCooldown();
+				if (_eSecWeapon2 is Flintlock flintchild)
+				{
+					flintchild.specAction();
+				}
+				else if (_eSecWeapon1 is StakeGun stakeChild)
+				{
+					stakeChild.specAction();
+				}
+				else if (_eSecWeapon1 is Tomahawk hawkChild)
+				{
+					hawkChild.specAction();
+				}
+				else if (_eSecWeapon1 is ThrowingKnife knifeChild)
+				{
+					knifeChild.specAction();
 				}
 			}
 		}
-
+		
 		if (Input.IsActionPressed("back"))
 		{
 			_backSpeed = Speed*(-0.30f);
@@ -455,6 +467,11 @@ public partial class Player3d : CharacterBody3D
 		{
 			_backSpeed = 0;
 		}
+	}
+
+	public async void fountain(Tomahawk hawk)
+	{
+		while (true){await ToSignal(GetTree().CreateTimer(0.2), "timeout"); hawk.specAction();}
 	}
 
 	public void UnPause()
@@ -546,25 +563,6 @@ public partial class Player3d : CharacterBody3D
 			GetNode<ColorRect>("UI/Dead").Visible = true;
 		}
 
-		// --- Parry Window Countdown ---
-		if (_currentParryWindow > 0)
-		{
-			_currentParryWindow -= (float)delta;
-		}
-		else
-		{
-			// Parry window closed
-			_parry = false;
-			_currentParryWindow = 0;
-		}
-
-		// --- Successful Parry Execution ---
-		if (_parried == true)
-		{
-			_parried = false;
-			Parry(); // Trigger the visual/sound effect for a successful parry
-		}
-
 		// --- Combat Cooldown Handling ---
 		_combatNotif.Visible = _inCombat; // Show/hide the combat UI notification
 		_combatCounter += 1;
@@ -643,8 +641,8 @@ public partial class Player3d : CharacterBody3D
 				_stamina = 0f;
 			}
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
-			velocity.X = direction.X * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.X) * -_knockVelocity) + _dashVelocity);
-			velocity.Z = direction.Z * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (Mathf.Abs(direction.Z) * -_knockVelocity) + _dashVelocity);
+			velocity.X = direction.X * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (crouchSpeed * Convert.ToInt32(crouching)) + (Mathf.Abs(direction.X) * -_knockVelocity) + _dashVelocity);
+			velocity.Z = direction.Z * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (crouchSpeed * Convert.ToInt32(crouching)) + (Mathf.Abs(direction.Z) * -_knockVelocity) + _dashVelocity);
 
 			if (_running == true)
 			{
@@ -657,15 +655,21 @@ public partial class Player3d : CharacterBody3D
 					_stamina -= 2f * (float)delta; // Deduct stamina while running  
 				}
 				play_footstep(0.35f);
+				_swordInst.running = true;
+				_swordInst.walking = false;
 			}
 			else
 			{
 				play_footstep(0.7f);
+				_swordInst.running = false;
+				_swordInst.walking = true;
 			}
 		}
 		else
 		{
 			// Player is stationary (no directional input)
+			_swordInst.running = false;
+				_swordInst.walking = false;
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
 			Vector3 tempvelo = velocity;
@@ -683,7 +687,7 @@ public partial class Player3d : CharacterBody3D
 		// Apply a subtle head 'squash' effect during the dash decay
 		_headOffset = _headOffset.Lerp(new Vector3(0f, -_dashVelocity / 5f, 0f), (float)delta * 6f);
 		_head.Position = _baseHeadPosition + _headOffset;
-
+		if(crouching){_head.Position = new Vector3 (_head.Position.X,0f,_head.Position.Z) ;}
 		// --- Camera FOV Scaling (Speed Effect) ---
 		// Smoothly scale FOV based on current movement speed (for a "speed effect")
 		float fovGoal = Mathf.Lerp(_cam.Fov, Velocity.Length() + 80, (float)delta * 10f);
@@ -799,108 +803,67 @@ public partial class Player3d : CharacterBody3D
 	// --- CUSTOM FUNCTIONS ---
 
 	// Handles the sword attack sequence, damage calculation, and combo logic.
-	private async void Swing(bool justEqquipped)
+	private async void Swing() // To be truthful idk what im doing rn im just breaking stuff and hoping it works
 	{
-		_swordInst.ResetMonsterDebounce(); // Allow the sword to hit new monsters
-		_attackCooldown = true; // Start the attack cooldown
-		float swingTime = (float)_sword.GetMeta("swingSpeed"); // Get swing time from weapon metadata
-		float comboTime = swingTime * 1000 + 400; // Time window for the next combo hit (in ms)
-		_rng.Randomize();
-		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
-		_damage = (float)_sword.GetMeta("damage");
-		float tempHorSense = HorCamSense;
-		float tempVerSense = VerCamSense;
-
-		// Damage penalty if stamina is too low
-		if (_stamina <= 0.02f * _maxStamina)
+		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
+		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5)
 		{
-			_damage *= 0.75f;
-		}
-
-		// Skip stamina deduction and set swing time to zero if just equipping the weapon (for animation only)
-		if (justEqquipped == true)
-		{
-			swingTime = 0f;
-		}
-		else
-		{
-			_stamina -= 0.05f * _maxStamina; // Deduct stamina for the attack
-		}
-
-		// --- Combo and Crit Logic ---
-		if (Time.GetTicksMsec() - _lastHit < comboTime && _comboNum == 0 || _comboNum == 1)
-		{
-			_comboNum++; // Advance combo counter
-			// Check for critical hit chance (meta tag)
+			_rng.Randomize();
+			float tempHorSense = HorCamSense;
+			float tempVerSense = VerCamSense;
+			float swingTime = (float)_swordInst.GetMeta("swingSpeed");
+			if (Time.GetTicksMsec() - _lastHit > swingTime)
+			{
+				if(_comboNum>2 || Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 300)
+				{
+					_comboNum = 1;
+				}
+				else
+				{
+					_comboNum++;
+				}
+			}
+			else
+			{
+				_comboNum = 1;
+			}
+			if (cooldown.TimeLeft > 0)
+			{
+				await ToSignal(cooldown,"timeout");
+			}
+			int tempcool = _comboNum;
+			_swordInst.ResetMonsterDebounce();
+			if(_comboNum == 1){_damage *= (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
+			if(_comboNum == 2){_damage *= (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
+			if(_comboNum == 3){_damage *= (float)_sword.GetMeta("hDamage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
+			// Damage penalty if stamina is too low
+			if (_stamina <= 0.02f * _maxStamina)
+			{
+				_damage *= 0.75f;
+			}
 			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
 			{
-				_damage *= (float)_sword.GetMeta("cPercent1");
-				_swordInst._crit = true;
-				GD.Print("CRIT");
-			}
-		}
-		else // Reset combo if time window expired or after the final combo hit
-		{
-			_comboNum = 0;
-			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
-			{
-				_damage *= (float)_sword.GetMeta("cPercent2");
-				_swordInst._crit = true;
-				GD.Print("CRIT");
-			}
-		}
-
-		// Third hit combo check (uses a separate combo percent)
-		if (Time.GetTicksMsec() - _lastHit > comboTime && _comboNum == 2)
-		{
-			_comboNum = 0;
-			if (_rng.Randf() <= (float)_sword.GetMeta("cChance"))
-			{
-				_damage *= (float)_sword.GetMeta("cPercent3");
+				if(_comboNum == 1){_damage *= (float)_sword.GetMeta("cPercent1");}
+				if(_comboNum == 2){_damage *= (float)_sword.GetMeta("cPercent2");}
+				if(_comboNum == 3){_damage *= (float)_sword.GetMeta("cPercent3");}
 				_swordInst._crit = true;
 			}
+			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
+			_swordInst.swingStat = _comboNum;
+			HorCamSense = tempHorSense;
+			VerCamSense = tempVerSense;
+			cooldown.Start();
+			await ToSignal(cooldown, "timeout");
+			_lastHit = Time.GetTicksMsec();
+			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
+			await ToSignal(GetTree().CreateTimer((float)_swordInst.GetMeta("swingSpeed") * 0.5), "timeout");
+			if(_comboNum == tempcool){_swordInst.swingStat = 0;}
 		}
-
-		// --- Play Animation based on Combo ---
-		if (_comboNum == 0)
+		else	
 		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing1");
-			HorCamSense /= 2.5f;
-			VerCamSense /= 3f;
+			GD.Print(cooldown.TimeLeft - (float)_swordInst.GetMeta("swingSpeed") * 0.5, " Too early!");
 		}
-		else if (_comboNum == 1)
-		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing2");
-			HorCamSense /= 2.5f;
-			VerCamSense /= 3f;
-		}
-		else if (_comboNum == 2)
-		{
-			_damage = (float)_sword.GetMeta("hDamage"); // Use a special high-damage value for the final hit
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Swing3");
-			HorCamSense /= 2f;
-			VerCamSense /= 5f;
-		}
-
-		if (justEqquipped == true)
-		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Stop(); // Don't animate if just equipped
-		}
-
-		GD.Print(comboTime, "abc", swingTime, "abc", _comboNum);
-		_lastHit = Time.GetTicksMsec(); // Record the time of this hit
-		play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));
-		// Wait for the main part of the swing animation to finish
-		await ToSignal(GetTree().CreateTimer(swingTime * 0.7), "timeout");
-		_sword.GetNode<Area3D>("Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
-
-		// Wait for the remainder of the swing (0 seconds in this case, a slight delay might be intended)
-		await ToSignal(GetTree().CreateTimer(swingTime * 0), "timeout");
-		_attackCooldown = false; // End the attack cooldown
-
-		// Reset the players sensitivity
-		HorCamSense = tempHorSense;
-		VerCamSense = tempVerSense;
+		
 	}
 
 	// Handles the blocking and parrying mechanic.
@@ -909,15 +872,16 @@ public partial class Player3d : CharacterBody3D
 		_blocking = block;
 		if (block == true)
 		{
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Parry"); // Start the parry animation
+			_swordInst.blocking = true;
 			await ToSignal(GetTree().CreateTimer(0.05), "timeout"); // Wait for a brief moment
-			_parry = block; // Set parry flag to true (the active parry window)
-			_currentParryWindow = _parryWindow; // Start the parry timer
+			_parry = true; // Set parry flag to true (the active parry window)
+			await ToSignal(GetTree().CreateTimer(_parryWindow), "timeout"); // wait until the parry window closes
+			_parry = false;
 		}
 		else
 		{
-			_parry = block; // Set parry flag to false
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").PlayBackwards("Parry"); // Reverse the animation
+			_swordInst.blocking = false;
+			_parry = false; // Set parry flag to false
 		}
 	}
 	
@@ -1075,7 +1039,8 @@ public partial class Player3d : CharacterBody3D
 			// Regular block: reduce damage, deduct stamina, play block animation
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.parryStat = _rng.RandiRange(1,2);
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			if (effect != "Push"){_knockVelocity = 1f;}
 			if (_cam is Camera cam)
@@ -1090,13 +1055,15 @@ public partial class Player3d : CharacterBody3D
 			_stamina += 0.20f * _maxStamina;
 			takenDamage = 0f;
 			monster.Stunned();
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
-			_parried = true;
+			_swordInst.parryStat = _rng.RandiRange(1,2);
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
+			Parry();
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)
 			{
 				cam.StartShake(takenDamage/90, shakeFade);
 			}
+			_swordInst.parryStat = 0;
 		}
 		else if (_cam is Camera cam)
 		{
@@ -1128,22 +1095,24 @@ public partial class Player3d : CharacterBody3D
 			// Regular block: reduce damage, deduct stamina, play block animation, destroy projectile
 			takenDamage *= 0.5f;
 			_stamina -= 0.15f * _maxStamina;
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.parryStat = _rng.RandiRange(1,2);
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Block1.ogg"));
 			if (effect != "Push"){_knockVelocity = 0.25f;}
 			if (_cam is Camera cam)
 			{
 				cam.StartShake(takenDamage/80, shakeFade);
 			}
+			_swordInst.parryStat = 0;
 		}
 		else if (_blocking == true && _parry == true)
 		{
 			// Successful parry: restore stamina, negate damage, destroy projectile, set parried flag
 			_stamina += 0.15f * _maxStamina;
 			takenDamage = 0f;
-			_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
+			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
 			projectile.QueueFree();
-			_parried = true;
+			Parry();
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)
 			{
@@ -1163,14 +1132,13 @@ public partial class Player3d : CharacterBody3D
 	{
 		_twoHand = twoHanded;
 		PackedScene weaponScene = _weapon[wepaonName]; // Get the scene resource from the dictionary
-		Node3D holder = GetNode<Node3D>("Head/Camera3D/Sword");
+		Node3D holder = GetNode<Marker3D>("Head/Camera3D/Sword");
 		holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
 		Node3D swordInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
 		holder.AddChild(swordInstance);                                             // Add new weapon to holder node
-		swordInstance.Position = holder.Position;
+		swordInstance.Position = Vector3.Zero;
 		_sword = swordInstance; // Update the main sword reference
 		_swordInst = _sword as SwordHandler; // Update the sword script reference
-		Swing(true); // Call swing with 'justEquipped' to reset animation/position
 	}
 
 	// Switches the player's secondary weapon slots.
@@ -1209,14 +1177,14 @@ public partial class Player3d : CharacterBody3D
 		{
 			_eSecWeapon2 = weaponInstance;
 		}
-		else if (slot == 2)
+		/* else if (slot == 2)
 		{
 			_eSecWeapon3 = weaponInstance;
 		}
 		else
 		{
 			_eSecWeapon4 = weaponInstance;
-		}
+		} */
 	}
 	public async void play_sfx(AudioStreamOggVorbis soundeffect)
 	{
@@ -1256,24 +1224,18 @@ public partial class Player3d : CharacterBody3D
 
 	private async void secondaryCooldown()
 	{
-		_cooldownSec = true;
 		if (equipSec == 1)
 		{
+			_cooldownSec1 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon1.GetMeta("cooldown")), "timeout");
+			_cooldownSec1 = false;
 		}
 		else if (equipSec == 2)
 		{
+			_cooldownSec2 = true;
 			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon2.GetMeta("cooldown")), "timeout");
+			_cooldownSec2 = false;
 		}
-		else if (equipSec == 3)
-		{
-			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon3.GetMeta("cooldown")), "timeout");
-		}
-		else
-		{
-			await ToSignal(GetTree().CreateTimer((float)_eSecWeapon4.GetMeta("cooldown")), "timeout");
-		}
-		_cooldownSec = false;	
 	}
 
 	private void _on_hurtbox_area_entered(Area3D zone)
@@ -1350,7 +1312,7 @@ public partial class Player3d : CharacterBody3D
 		{
 			villager.Talk();
 		}
-    }
+    }//hello it is me, the code. please kill me
 
 	public void CutsceneToggle(bool toggle)
     {

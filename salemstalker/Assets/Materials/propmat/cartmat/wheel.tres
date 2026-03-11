@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ctp4so06dmxqr"]
+
+[ext_resource type="Texture2D" uid="uid://c6lpriq3y5ews" path="res://Assets/proptextures/cart/wheel.001_Base_color.png" id="1_7nmom"]
+
+[resource]
+albedo_texture = ExtResource("1_7nmom")
+texture_filter = 0
