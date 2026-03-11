@@ -2701,7 +2701,7 @@ WaterDefinition = SubResource("Resource_b7wla")
 MetaInfoLayers = []
 TerrainZones = SubResource("Resource_6rohr")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
-metadata/_edit_lock_ = false
+metadata/_edit_lock_ = true
 
 [node name="Mary" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46323, 1.9490459, 40.31227)
@@ -2717,13 +2717,13 @@ QuestTitle = "Find Mary's lost cats, Taz, Bridger, and Gnocchi, somewhere in the
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Mary/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9930295, -0.05519999)
-bones/2/rotation = Quaternion(-0.04125459, 0, 0, 0.99914867)
-bones/5/rotation = Quaternion(-0.10296036, 0.00684762, 0.021774067, 0.99442357)
-bones/25/rotation = Quaternion(0.97433263, 0.015980601, -0.009103594, 0.22436078)
-bones/26/rotation = Quaternion(0.20184244, 0.0015758784, 0.016180258, 0.97928315)
-bones/34/rotation = Quaternion(0.97433263, -0.015980601, 0.009103552, 0.22436078)
-bones/35/rotation = Quaternion(0.20184244, -0.001575878, -0.016180255, 0.97928315)
+bones/0/position = Vector3(0, 0.9904611, -0.055199992)
+bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
+bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
+bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
+bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
+bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
+bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
 
 [node name="Elizabeth" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3819237, 1.9490459, 35.37815)
@@ -2739,13 +2739,13 @@ QuestTitle = "Gather firewood from the forest for Elizabeth "
 QuestGoal = "0/15"
 
 [node name="Skeleton3D" parent="Elizabeth/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9930295, -0.05519999)
-bones/2/rotation = Quaternion(-0.04125459, 0, 0, 0.99914867)
-bones/5/rotation = Quaternion(-0.10296036, 0.00684762, 0.021774067, 0.99442357)
-bones/25/rotation = Quaternion(0.97433263, 0.015980601, -0.009103594, 0.22436078)
-bones/26/rotation = Quaternion(0.20184244, 0.0015758784, 0.016180258, 0.97928315)
-bones/34/rotation = Quaternion(0.97433263, -0.015980601, 0.009103552, 0.22436078)
-bones/35/rotation = Quaternion(0.20184244, -0.001575878, -0.016180255, 0.97928315)
+bones/0/position = Vector3(0, 0.9904611, -0.055199992)
+bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
+bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
+bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
+bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
+bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
+bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
 
 [node name="Range" parent="Elizabeth" index="6"]
 radius = 11.462789
@@ -2766,13 +2766,13 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9930295, -0.05519999)
-bones/2/rotation = Quaternion(-0.04125459, 0, 0, 0.99914867)
-bones/5/rotation = Quaternion(-0.10296036, 0.00684762, 0.021774067, 0.99442357)
-bones/25/rotation = Quaternion(0.97433263, 0.015980601, -0.009103594, 0.22436078)
-bones/26/rotation = Quaternion(0.20184244, 0.0015758784, 0.016180258, 0.97928315)
-bones/34/rotation = Quaternion(0.97433263, -0.015980601, 0.009103552, 0.22436078)
-bones/35/rotation = Quaternion(0.20184244, -0.001575878, -0.016180255, 0.97928315)
+bones/0/position = Vector3(0, 0.9904611, -0.055199992)
+bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
+bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
+bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
+bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
+bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
+bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
 
 [node name="Range" parent="Dillon" index="6"]
 radius = 12.0
@@ -2791,13 +2791,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9930295, -0.05519999)
-bones/2/rotation = Quaternion(-0.04125459, 0, 0, 0.99914867)
-bones/5/rotation = Quaternion(-0.10296036, 0.00684762, 0.021774067, 0.99442357)
-bones/25/rotation = Quaternion(0.97433263, 0.015980601, -0.009103594, 0.22436078)
-bones/26/rotation = Quaternion(0.20184244, 0.0015758784, 0.016180258, 0.97928315)
-bones/34/rotation = Quaternion(0.97433263, -0.015980601, 0.009103552, 0.22436078)
-bones/35/rotation = Quaternion(0.20184244, -0.001575878, -0.016180255, 0.97928315)
+bones/0/position = Vector3(0, 0.9904611, -0.055199992)
+bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
+bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
+bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
+bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
+bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
+bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
 
 [node name="Range" parent="Lukas" index="6"]
 radius = 13.0
@@ -2826,13 +2826,13 @@ QuestTitle = "Kill creatures from the forest biome to avenge Martha's family"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9930295, -0.05519999)
-bones/2/rotation = Quaternion(-0.04125459, 0, 0, 0.99914867)
-bones/5/rotation = Quaternion(-0.10296036, 0.00684762, 0.021774067, 0.99442357)
-bones/25/rotation = Quaternion(0.97433263, 0.015980601, -0.009103594, 0.22436078)
-bones/26/rotation = Quaternion(0.20184244, 0.0015758784, 0.016180258, 0.97928315)
-bones/34/rotation = Quaternion(0.97433263, -0.015980601, 0.009103552, 0.22436078)
-bones/35/rotation = Quaternion(0.20184244, -0.001575878, -0.016180255, 0.97928315)
+bones/0/position = Vector3(0, 0.9904611, -0.055199992)
+bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
+bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
+bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
+bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
+bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
+bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
 
 [node name="Range" parent="Martha" index="6"]
 radius = 15.0
@@ -3905,13 +3905,13 @@ IgnoredDialogue = Array[String](["Well, that's good at least. Don't forget the r
 WaitingDialogue = "Don't disappoint our King. Head over to that village down the road. "
 
 [node name="Skeleton3D" parent="Richard/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9930295, -0.05519999)
-bones/2/rotation = Quaternion(-0.04125459, 0, 0, 0.99914867)
-bones/5/rotation = Quaternion(-0.10296036, 0.00684762, 0.021774067, 0.99442357)
-bones/25/rotation = Quaternion(0.97433263, 0.015980601, -0.009103594, 0.22436078)
-bones/26/rotation = Quaternion(0.20184244, 0.0015758784, 0.016180258, 0.97928315)
-bones/34/rotation = Quaternion(0.97433263, -0.015980601, 0.009103552, 0.22436078)
-bones/35/rotation = Quaternion(0.20184244, -0.001575878, -0.016180255, 0.97928315)
+bones/0/position = Vector3(0, 0.9904611, -0.055199992)
+bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
+bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
+bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
+bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
+bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
+bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
 
 [node name="CollisionShape3D" parent="Richard" index="2"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.89464927, 0)
@@ -4010,19 +4010,22 @@ IgnoredDialogue = []
 WaitingDialogue = "Please help out the townsfolk. We need your help."
 
 [node name="Skeleton3D" parent="Matthew/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9930295, -0.05519999)
-bones/2/rotation = Quaternion(-0.04125459, 0, 0, 0.99914867)
-bones/5/rotation = Quaternion(-0.10296036, 0.00684762, 0.021774067, 0.99442357)
-bones/25/rotation = Quaternion(0.97433263, 0.015980601, -0.009103594, 0.22436078)
-bones/26/rotation = Quaternion(0.20184244, 0.0015758784, 0.016180258, 0.97928315)
-bones/34/rotation = Quaternion(0.97433263, -0.015980601, 0.009103552, 0.22436078)
-bones/35/rotation = Quaternion(0.20184244, -0.001575878, -0.016180255, 0.97928315)
+bones/0/position = Vector3(0, 0.9904611, -0.055199992)
+bones/2/rotation = Quaternion(-0.018978467, 0, 0, 0.99981993)
+bones/5/rotation = Quaternion(-0.12214275, 0.006515915, 0.021763781, 0.9922525)
+bones/25/rotation = Quaternion(0.9729354, 0.016524611, -0.009160935, 0.230304)
+bones/26/rotation = Quaternion(0.21379408, 0.0015717656, 0.017138334, 0.9767271)
+bones/34/rotation = Quaternion(0.9729354, -0.016524615, 0.00916089, 0.230304)
+bones/35/rotation = Quaternion(0.21379408, -0.0015717654, -0.01713833, 0.9767271)
 
 [node name="CollisionShape3D" parent="Matthew" index="2"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.89464927, 0)
 
 [node name="Range" parent="Matthew" index="6"]
 radius = 0.001
+
+[node name="VillageMark" type="Marker3D" parent="."]
+transform = Transform3D(-0.7856302, 0.61869633, 2.7044077e-08, 3.5527137e-15, -4.371139e-08, 1, 0.61869633, 0.7856302, 3.434099e-08, -31.408829, 4.2523804, 62.485588)
 
 [editable path="MonsterHolder/RatSpawner"]
 [editable path="MonsterHolder/RatSpawner2"]
