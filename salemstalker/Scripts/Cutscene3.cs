@@ -28,7 +28,7 @@ public partial class Cutscene3 : Node3D
 		GetNode<AnimationPlayer>("CamAnim").Play("CameraAction");
 		GetNode<AnimationPlayer>("CultAnim").Play("attack_1");
 		GetNode<Camera3D>("Camera").Current = true;
-		await ToSignal(GetTree().CreateTimer(6.77), "timeout");
+		await ToSignal(GetTree().CreateTimer(5.82), "timeout");
 		plr.GetNode<Ui>("UI")._fadeProg = 1;
 		plr.GetNode<ColorRect>("Fade").Color = new Color(0,0,0,1);
 		GetNode<Camera3D>("Camera").Current = false;
@@ -45,7 +45,9 @@ public partial class Cutscene3 : Node3D
 		GetNode<Camera3D>("Cursed/Camera").Current = true;
 		plr.GetNode<Ui>("UI")._fadeProg = 0;
 		GetNode<AnimationPlayer>("Cursed/CamAnim").Play("CameraAction");
-		GetNode<AnimationPlayer>("Cursed/CultAnim").Play("chargeup");
+		GetNode<AnimationPlayer>("Cursed/CultAnim1").Play("chargeup");
+		GetNode<AnimationPlayer>("Cursed/CultAnim2").Play("chargeup_001");
+		GetNode<AnimationPlayer>("Cursed/CultAnim3").Play("chargeup_002");
 		await ToSignal(GetTree().CreateTimer(5.3), "timeout");
 		plr.GetNode<Ui>("UI")._fadeProg = 1; 
 		await ToSignal(GetTree().CreateTimer(2), "timeout");
@@ -67,7 +69,7 @@ public partial class Cutscene3 : Node3D
 		GetNode<Camera3D>("Waking/metarig_001/Skeleton3D/spine_006/Camera").Current = false;
 		plr.GetNode<Ui>("UI")._fadeProg = 0;
 		plr.CutsceneToggle(false);
-		plr.CamLookAtPos(plr.GetParent().GetNode<Node3D>("Matthew/LookAt").GlobalPosition);
+		plr.CamLookAtPos(plr.GetParent().GetNode<Node3D>("Matthew").GlobalPosition);
     }
 	private async void Vision(ShaderMaterial mat, bool toggle)
 	{

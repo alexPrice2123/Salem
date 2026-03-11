@@ -1,10 +1,12 @@
 [gd_resource type="ArrayMesh" load_steps=3 format=4 uid="uid://c03p1wq8x7grl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ay4us"]
-blend_mode = 2
+transparency = 4
+blend_mode = 1
 cull_mode = 1
 depth_draw_mode = 1
 diffuse_mode = 3
+albedo_color = Color(1, 1, 1, 0)
 refraction_scale = 0.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_81oc7"]

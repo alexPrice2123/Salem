@@ -1,0 +1,28 @@
+using Godot;
+using System; 
+using System.Collections.Generic;
+
+public partial class NewWorld : Node3D
+{
+    public Godot.Collections.Dictionary<string,Variant> data = new Godot.Collections.Dictionary<string,Variant>();
+    private string _savePath = "user://saveData.json";
+
+    // Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+    {
+        if ( !FileAccess.FileExists(_savePath) )
+        {
+            GD.Print("Save file missing");
+            SaveHandler.createSaveFile(_savePath);
+            GD.Print("Save file created");
+        }
+        else{ GD.Print("Save file exists"); }
+        data = SaveHandler.LoadFromFile(_savePath);
+        GD.Print("Save file loaded");
+        if ((bool)data["tutorialComplete"] == true)
+        {
+            GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("VillageMark").GlobalPosition ;
+        }
+    }
+    
+}
