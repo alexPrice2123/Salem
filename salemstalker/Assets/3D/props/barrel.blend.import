@@ -41,7 +41,7 @@ _subresources={
 "materials": {
 "barrel": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/Materials/barrel.tres",
+"use_external/fallback_path": "res://Assets/Materials/propmat/barrel.tres",
 "use_external/path": "uid://dcsru3pdx687d"
 }
 }

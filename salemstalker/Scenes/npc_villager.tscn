@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cqm83otrgcv18" path="res://Scripts/VillagerScripts/NpcVillager.cs" id="1_820w5"]
 [ext_resource type="PackedScene" uid="uid://c6jmp7jqyytkw" path="res://Assets/3D/charatermodel/villagerblank.blend" id="2_8tk1i"]
-[ext_resource type="Texture2D" uid="uid://civfj60coe4pf" path="res://Assets/othermodeltxt/villager/body_Base_color.png" id="3_6212y"]
-[ext_resource type="Texture2D" uid="uid://j76j6uq1iku5" path="res://Assets/othermodeltxt/villager/pants_Base_color.png" id="4_tjcig"]
-[ext_resource type="Texture2D" uid="uid://jbf4vn2mxsrh" path="res://Assets/othermodeltxt/villager/shoes_Base_color.png" id="5_morsg"]
-[ext_resource type="Texture2D" uid="uid://dt2uat3qamj2e" path="res://Assets/othermodeltxt/villager/skin_Base_color.png" id="6_ada2i"]
+[ext_resource type="Texture2D" uid="uid://dg6dks7xurav4" path="res://Assets/othermodeltxt/villager/body_Base_color.png" id="3_6212y"]
+[ext_resource type="Texture2D" uid="uid://bcut85ivpps6a" path="res://Assets/othermodeltxt/villager/pants_Base_color.png" id="4_tjcig"]
+[ext_resource type="Texture2D" uid="uid://dnroknxeakgh" path="res://Assets/othermodeltxt/villager/shoes_Base_color.png" id="5_morsg"]
+[ext_resource type="Texture2D" uid="uid://pquuq2mdwjrv" path="res://Assets/othermodeltxt/villager/skin_Base_color.png" id="6_ada2i"]
 [ext_resource type="FontFile" uid="uid://c2u1385tn7ero" path="res://Assets/Fonts/DumNorm.ttf" id="7_2nh1k"]
-[ext_resource type="Texture2D" uid="uid://bpr2bindf7kds" path="res://Assets/othermodeltxt/villager/arms_Base_color.png" id="7_ilb84"]
+[ext_resource type="Texture2D" uid="uid://brlpvn88qtoh3" path="res://Assets/othermodeltxt/villager/arms_Base_color.png" id="7_ilb84"]
 [ext_resource type="PackedScene" uid="uid://caqnpxg4unpwp" path="res://Scenes/tutorial_area.tscn" id="8_7eycp"]
-[ext_resource type="Texture2D" uid="uid://73g6l036eea2" path="res://Assets/othermodeltxt/villager/face_Base_color.png" id="8_27dgc"]
+[ext_resource type="Texture2D" uid="uid://uvus35kw7x21" path="res://Assets/othermodeltxt/villager/face_Base_color.png" id="8_27dgc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_funfr"]
 albedo_texture = ExtResource("3_6212y")
@@ -32,10 +32,12 @@ albedo_texture = ExtResource("7_ilb84")
 texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34ubn"]
+albedo_color = Color(0.84705883, 0.73333335, 0.6627451, 1)
 albedo_texture = ExtResource("6_ada2i")
 texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfwci"]
+albedo_color = Color(0.84705883, 0.73333335, 0.6627451, 1)
 albedo_texture = ExtResource("8_27dgc")
 texture_filter = 0
 
@@ -81,10 +83,10 @@ script = ExtResource("1_820w5")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9848202, -0.055199992)
+bones/0/position = Vector3(0, 0.99614483, -0.05519999)
 bones/1/rotation = Quaternion(0.02974452, 0, 0, 0.9995576)
-bones/2/rotation = Quaternion(-0.016547725, 0, 0, 0.9998631)
-bones/5/rotation = Quaternion(-0.124232784, 0.0064795786, 0.021762166, 0.99199325)
+bones/2/rotation = Quaternion(-0.07661916, 0, 0, 0.9970604)
+bones/5/rotation = Quaternion(-0.07238706, 0.007369679, 0.021773707, 0.9971117)
 bones/8/rotation = Quaternion(-0.25204387, 0.4770401, -0.6706099, 0.5091061)
 bones/9/rotation = Quaternion(0.20272473, 0.094213, -0.6563358, 0.72059)
 bones/10/rotation = Quaternion(-0.1702162, 0.16236909, -0.16637525, 0.95759183)
@@ -95,11 +97,11 @@ bones/17/rotation = Quaternion(-0.24278422, -0.20150147, 0.13319576, 0.9395275)
 bones/19/rotation = Quaternion(-0.05178894, -0.040206723, 0.5085042, 0.8585597)
 bones/21/rotation = Quaternion(-5.4142053e-08, 0.6969362, 0.7171332, -5.2617224e-08)
 bones/22/rotation = Quaternion(-5.4142053e-08, 0.6969362, 0.7171332, -5.2617224e-08)
-bones/25/rotation = Quaternion(0.96993744, 0.017651035, -0.009286787, 0.24253605)
-bones/26/rotation = Quaternion(0.23854405, 0.0015624581, 0.019122362, 0.97094226)
+bones/25/rotation = Quaternion(0.9761869, 0.01523757, -0.0090289535, 0.21620704)
+bones/26/rotation = Quaternion(0.18484381, 0.0015813026, 0.014817605, 0.9826549)
 bones/27/rotation = Quaternion(-0.56675655, -0.06371846, -0.08171159, 0.8173434)
-bones/34/rotation = Quaternion(0.96993744, -0.017651036, 0.009286744, 0.24253605)
-bones/35/rotation = Quaternion(0.23854408, -0.0015624579, -0.019122362, 0.97094226)
+bones/34/rotation = Quaternion(0.9761869, -0.0152375735, 0.009028909, 0.21620704)
+bones/35/rotation = Quaternion(0.18484381, -0.0015813031, -0.014817605, 0.9826549)
 bones/36/rotation = Quaternion(-0.56219697, 0.06322342, 0.082132496, 0.82048255)
 bones/37/rotation = Quaternion(-0.01838452, 0.9591089, -0.27506912, -0.06410314)
 bones/43/position = Vector3(0.11409071, 0.0852, -0.014552689)
