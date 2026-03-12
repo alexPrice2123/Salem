@@ -45,6 +45,11 @@ public partial class Ui : Control
 	private Texture2D _invIcon;
 	private Control _inv;
 	public float _fadeProg = 0; //fade progress for fading to black
+
+	// ---------------- MMM SPAGHETTI
+	public static string[] _daggerUpg1Req { get; set; } = { "emptyves", "seed" }; public static int[] _daggerUpg1Amount { get; set; } = { 3, 3 };
+    public static string[] _daggerUpg2Req { get; set; } = { "seed", "scorchedflesh", "heart" }; public static int[] _daggerUpg2Amount { get; set; } = { 6, 3, 3 };
+
 	public override void _Ready()
 	{
 		Instance = this;
@@ -93,6 +98,7 @@ public partial class Ui : Control
 			//GD.Print(_gridContainer.GetChild(i).Name);
         }
 
+		PlayShopAnim("dagger");
 		PlayShopAnim("falchion");
 		PlayShopAnim("shortsword");
 		Load();
@@ -117,7 +123,8 @@ public partial class Ui : Control
 			GetNode<Label>("BlacksmithShop/ShopOption2/Label").Text = "Falchion";
 			GetNode<Label>("BlacksmithShop/ShopOption3/Label").Text = "Rapier";
 			GetNode<Label>("BlacksmithShop/ShopOption4/Label").Text = "Dagger";
-			_shopOption4.Visible = true;
+			//_shopOption4.Visible = true;
+			_shopOption1.Visible = true;
 		}
 		else if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 1)
 		{
@@ -125,7 +132,8 @@ public partial class Ui : Control
 			GetNode<Label>("BlacksmithShop/ShopOption2/Label").Text = "Greatsword";
 			GetNode<Label>("BlacksmithShop/ShopOption3/Label").Text = "Battle Axe";
 			GetNode<Label>("BlacksmithShop/ShopOption4/Label").Text = "Halberd";
-			_shopOption4.Visible = true;
+			//_shopOption4.Visible = true;
+			_shopOption1.Visible = false;
 		}
 		else if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 2)
 		{
@@ -167,14 +175,16 @@ public partial class Ui : Control
 	// --- Blacksmith Shop ---
 	private void _on_shop_option1_button_up()
 	{
-		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("shortsword"); _shopSelection = "Shortsword"; _player.SwitchPrimaryWeapon(_shopSelection); }
+		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
+		{ PlayShopAnim("shortsword"); _shopSelection = "Shortsword"; _player.SwitchPrimaryWeapon(_shopSelection); }
 		/*if (_shopTypeSelection.Selected == 1) { PlayShopAnim("Longsword"); }
 		if (_shopTypeSelection.Selected == 2) { PlayShopAnim("Flintlock"); }
 		if (_shopTypeSelection.Selected == 3) { PlayShopAnim("Shield"); }*/
 	}
 	private void _on_shop_option2_button_up()
 	{
-		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("falchion"); _shopSelection = "Falchion"; _player.SwitchPrimaryWeapon(_shopSelection); }
+		//if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
+		//{ PlayShopAnim("falchion"); _shopSelection = "Falchion"; _player.SwitchPrimaryWeapon(_shopSelection); }
 		/*if (_shopTypeSelection.Selected == 1) { PlayShopAnim("Greatsword"); }
 		if (_shopTypeSelection.Selected == 2) { PlayShopAnim("Stake Launcher"); }
 		if (_shopTypeSelection.Selected == 3) { PlayShopAnim("Chain Hook"); }*/ // We only have the first 2 one-handed weapons so they're the only ones that aren't commented out
@@ -188,7 +198,8 @@ public partial class Ui : Control
 	}*/
 	private void _on_shop_option4_button_up()
 	{
-		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("dagger"); _shopSelection = "Dagger"; _player.SwitchPrimaryWeapon(_shopSelection); }
+		//if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
+		//{ PlayShopAnim("dagger"); _shopSelection = "Dagger"; _player.SwitchPrimaryWeapon(_shopSelection); }
 		//if (_shopTypeSelection.Selected == 1) { PlayShopAnim(""); }
 		//if (_shopTypeSelection.Selected == 2) { PlayShopAnim(""); }
 	}
@@ -242,23 +253,40 @@ public partial class Ui : Control
 	{
 		GetNode<Label>("BlacksmithShop/View/UpgradeMenu/UpgradePrompt").Text = _shopSelection + "\nUpgraded!";
 		Node3D swordInst = (Node3D)_player._weapon[_shopSelection].Instantiate();
+		string[] _requirements = (string[])Get("_" + _shopSelection + "Upg" + ((int)_player._weapon[_shopSelection].GetMeta("level") - 1) + "Req");
+		int[] _amount = (int[])Get("_" + _shopSelection + "Upg" + ((int)_player._weapon[_shopSelection].GetMeta("level") - 1) + "Amount");
+		itemList _resourceScript = (itemList)_resourceInv.GetScript();
+		int count = 0;
 
 		_player._weapon[_shopSelection].SetMeta("level", (int)_player._weapon[_shopSelection].GetMeta("level") + 1);
-		foreach (string stat in GetUpgrades(swordInst))
+		for(int i = 0; i < _requirements.Length; i++)
 		{
-			if ((stat.Equals("cChance") || stat.Equals("bChance")) && (int)_player._weapon[_shopSelection].GetMeta("level") < 4)
+			if(_resourceScript.GetItemCount(_requirements[i]) >= _daggerUpg1Amount[i])
 			{
-				SetResults(stat, stat, _upgradeNames[stat]);
+				_resourceScript.SubtractResource(_requirements[i], _amount[i]);
+				count++;
 			}
-			if ((stat.Equals("damage") || stat.Equals("hDamage")) && (int)_player._weapon[_shopSelection].GetMeta("level") < 4)
-			{
-				SetResults(stat, GetUpgrades(swordInst)[0] + (int)_player._weapon[_shopSelection].GetMeta("level"), _upgradeNames[stat]);
-			}
-			if ((stat.Equals("cPercent1") || stat.Equals("cPercent2") || stat.Equals("cPercent3")) && (int)_player._weapon[_shopSelection].GetMeta("level") >= 4)
-            {
-				SetResults(stat, "cPercent", _upgradeNames[stat]);
-            }
 		}
+
+		if(count >= _requirements.Length)
+		{
+			foreach (string stat in GetUpgrades(swordInst))
+			{
+				if ((stat.Equals("cChance") || stat.Equals("bChance")) && (int)_player._weapon[_shopSelection].GetMeta("level") < 4)
+				{
+					SetResults(stat, stat, _upgradeNames[stat]);
+				}
+				if ((stat.Equals("damage") || stat.Equals("hDamage")) && (int)_player._weapon[_shopSelection].GetMeta("level") < 4)
+				{
+					SetResults(stat, GetUpgrades(swordInst)[0] + (int)_player._weapon[_shopSelection].GetMeta("level"), _upgradeNames[stat]);
+				}
+				if ((stat.Equals("cPercent1") || stat.Equals("cPercent2") || stat.Equals("cPercent3")) && (int)_player._weapon[_shopSelection].GetMeta("level") >= 4)
+				{
+					SetResults(stat, "cPercent", _upgradeNames[stat]);
+				}
+			}
+		}
+		
 		GD.Print((float)_player._weapon[_shopSelection].GetMeta("damage"));
 		GetNode<Control>("BlacksmithShop/View/UpgradeMenu/Requirements").Visible = false;
 		GetNode<Control>("BlacksmithShop/View/UpgradeMenu/Results").Visible = true;
@@ -299,7 +327,7 @@ public partial class Ui : Control
 	// --- Dagger ---
 	private void _on_dagger_mouse_entered() { PlayInvAnim("dagger", true); }
 	private void _on_dagger_mouse_exited() { PlayInvAnim("dagger", false); }
-	private void _on_dagger_button_up(){ _player.SwitchPrimaryWeapon("dagger"); }
+	private void _on_dagger_button_up(){ _player.SwitchPrimaryWeapon("Dagger"); }
 	
 	// --- ShortSword ---
 	private void _on_shortsword_mouse_entered(){ PlayInvAnim("Shortsword", true); }
@@ -309,7 +337,7 @@ public partial class Ui : Control
 	// --- Longsword ---
 	private void _on_longsword_mouse_entered() { PlayInvAnim("longsword", true); }
 	private void _on_longsword_mouse_exited() { PlayInvAnim("longsword", false); }
-	private void _on_longsword_button_up(){ _player.SwitchPrimaryWeapon("longsword"); }
+	private void _on_longsword_button_up(){ _player.SwitchPrimaryWeapon("Longsword"); }
 
 	// --- StakeGun ---
 	private void _on_stake_gun_mouse_entered() { PlayInvAnim("StakeGun", true); }
@@ -331,7 +359,7 @@ public partial class Ui : Control
 
 	private async void Load()
 	{
-		await ToSignal(GetTree().CreateTimer(1), "timeout");
+		await ToSignal(GetTree().CreateTimer(4), "timeout");
 		_loaded = true;
 	}
 	public void Opened()
@@ -364,10 +392,10 @@ public partial class Ui : Control
 		{
 			if (_prevSelection != null) 
 			{ 
-				GetNode<Node3D>("BlacksmithShop/View/PortContainer/Port/ShopPreviewWorld").GetNode<Node3D>(_prevSelection).GetNode<AnimationPlayer>("PreviewAnim").PlayBackwards("PreviewAnim");
+				GetNode<Node3D>("BlacksmithShop/View/PortContainer/Port/ShopPreviewWorld").GetNode<Node3D>(_prevSelection).GetNode<AnimationPlayer>("PreviewAnim").PlayBackwards(item.Substr(0, 3).ToLower() + "PreviewAnim");
 			}
 			_prevSelection = item;
-			GetNode<Node3D>("BlacksmithShop/View/PortContainer/Port/ShopPreviewWorld").GetNode<Node3D>(item).GetNode<AnimationPlayer>("PreviewAnim").Play("PreviewAnim");
+			GetNode<Node3D>("BlacksmithShop/View/PortContainer/Port/ShopPreviewWorld").GetNode<Node3D>(item).GetNode<AnimationPlayer>("PreviewAnim").Play(item.Substr(0, 3).ToLower() + "PreviewAnim");
 		}
 	}
 

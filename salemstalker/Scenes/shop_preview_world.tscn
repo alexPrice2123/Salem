@@ -1,47 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6vrp768yxybg"]
+[gd_scene load_steps=9 format=3 uid="uid://b6vrp768yxybg"]
 
 [ext_resource type="PackedScene" uid="uid://c1ixg535pupsm" path="res://Assets/Weapons/shortsword.blend" id="1_542hg"]
 [ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="2_8uyb0"]
-
-[sub_resource type="Animation" id="Animation_ic87m"]
-resource_name = "PreviewAnim"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(-2.5, -2.5),
-"update": 0,
-"values": [Vector3(-1.7, -0.11, -1.68), Vector3(-0.24, 0.12, -1.4)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(-2.5, -2.5),
-"update": 0,
-"values": [Vector3(-1.20428, 1.90241, 0.837758), Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(-2.5, -2.5),
-"update": 0,
-"values": [Vector3(3.39, 3.39, 3.39), Vector3(1.43, 1.43, 1.43)]
-}
+[ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="3_8uyb0"]
 
 [sub_resource type="Animation" id="Animation_542hg"]
 length = 0.001
@@ -82,10 +43,132 @@ tracks/2/keys = {
 "values": [Vector3(1.5, 1.5, 1.5)]
 }
 
+[sub_resource type="Animation" id="Animation_b22hd"]
+resource_name = "dagPreviewAnim"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Vector3(-1.7, -0.11, -1.68), Vector3(0.01, 0.36, -1.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Vector3(-1.2042772, 1.5882496, 0.83775806), Vector3(0, 1.5882496, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Vector3(0.55, 0.55, 0.55), Vector3(0.26, 0.26, 0.26)]
+}
+
+[sub_resource type="Animation" id="Animation_ic87m"]
+resource_name = "falPreviewAnim"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Vector3(-1.7, -0.11, -1.68), Vector3(-0.24, 0.12, -1.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Vector3(-1.20428, 1.90241, 0.837758), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Vector3(3.39, 3.39, 3.39), Vector3(1.43, 1.43, 1.43)]
+}
+
+[sub_resource type="Animation" id="Animation_7wgxo"]
+resource_name = "shoPreviewAnim"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Vector3(-1.7, -0.11, -1.68), Vector3(0, 0.16, -1.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Vector3(-1.20428, 1.90241, 0.837758), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2.5, -2.5),
+"update": 0,
+"values": [Vector3(3.39, 3.39, 3.39), Vector3(1.43, 1.43, 1.43)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8uyb0"]
 _data = {
-&"PreviewAnim": SubResource("Animation_ic87m"),
-&"RESET": SubResource("Animation_542hg")
+&"RESET": SubResource("Animation_542hg"),
+&"dagPreviewAnim": SubResource("Animation_b22hd"),
+&"falPreviewAnim": SubResource("Animation_ic87m"),
+&"shoPreviewAnim": SubResource("Animation_7wgxo")
 }
 
 [node name="ShopPreviewWorld" type="Node3D"]
@@ -107,7 +190,7 @@ omni_range = 3.285
 omni_attenuation = 0.5
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27959, -1.688)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2795897, -1.7596618)
 size = Vector3(4.15332, 2.99432, 0.185547)
 
 [node name="shortsword" parent="." instance=ExtResource("1_542hg")]
@@ -122,6 +205,14 @@ libraries = {
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="PreviewAnim" type="AnimationPlayer" parent="falchion"]
+libraries = {
+&"": SubResource("AnimationLibrary_8uyb0")
+}
+
+[node name="dagger" parent="." instance=ExtResource("3_8uyb0")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="PreviewAnim" type="AnimationPlayer" parent="dagger"]
 libraries = {
 &"": SubResource("AnimationLibrary_8uyb0")
 }

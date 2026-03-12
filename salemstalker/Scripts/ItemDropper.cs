@@ -26,7 +26,7 @@ public partial class ItemDropper : Node3D
 				_itemInst.Name = name;
 				_itemInst.GlobalPosition = location;
 				_itemInst.PickUpPause(_itemInst.GetNode<Area3D>("Hitbox"));
-				int _randHoriz = _rng.RandiRange(-1, 1);
+				float _randHoriz = _rng.RandfRange(-1f, 1f);
 				_itemInst._dropDirection = new Vector3(_randHoriz, 1.5f, _randHoriz);
 				_itemInst.Velocity = _itemInst._dropDirection;
 				GD.Print("dropped at " + _itemInst.GlobalPosition);
