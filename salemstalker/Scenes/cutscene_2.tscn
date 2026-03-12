@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ctqvpwescxn5n" path="res://Scripts/Cutscene2.cs" id="1_ph4n5"]
 [ext_resource type="Texture2D" uid="uid://v5xr3amxtjuf" path="res://Assets/monstertextures/hollow/body_Base_color.png" id="2_q6643"]
-[ext_resource type="Texture2D" uid="uid://uq0ufatdw0nb" path="res://Assets/monstertextures/hollow/pants_Base_color.png" id="3_dbkvj"]
-[ext_resource type="Texture2D" uid="uid://c21tckfd4ctak" path="res://Assets/monstertextures/hollow/shoes_Base_color.png" id="4_4aoan"]
-[ext_resource type="Texture2D" uid="uid://i6vlr8g28454" path="res://Assets/monstertextures/hollow/skin_Base_color.png" id="5_dqfrl"]
+[ext_resource type="Texture2D" uid="uid://bbdtb8iabjybs" path="res://Assets/monstertextures/hollow/pants_Base_color.png" id="3_dbkvj"]
+[ext_resource type="Texture2D" uid="uid://cfp2h1eh6vk8x" path="res://Assets/monstertextures/hollow/shoes_Base_color.png" id="4_4aoan"]
+[ext_resource type="Texture2D" uid="uid://shkf0pc8dvfp" path="res://Assets/monstertextures/hollow/skin_Base_color.png" id="5_dqfrl"]
 [ext_resource type="Texture2D" uid="uid://632b4mwyk83" path="res://Assets/monstertextures/hollow/tenticle_1_Base_color.png" id="6_352am"]
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="7_qgqwn"]
-[ext_resource type="Texture2D" uid="uid://dci3agfvc7kq3" path="res://Assets/monstertextures/hollow/face_Base_color.png" id="8_idv5x"]
+[ext_resource type="Texture2D" uid="uid://bi6nc4h0s82j7" path="res://Assets/monstertextures/hollow/face_Base_color.png" id="8_idv5x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_28g0a"]
 radius = 15.0

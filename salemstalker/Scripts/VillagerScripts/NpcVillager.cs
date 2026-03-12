@@ -240,7 +240,7 @@ public partial class NpcVillager : CharacterBody3D
 
 	public void EndDialouge()
     {
-		if (Villager is RichardVillager)
+		if (Name == "Richard")
         {
             _questPrompt.Text = WaitingDialogue;
 			_player._originalDialouge = WaitingDialogue;
@@ -349,6 +349,11 @@ public partial class NpcVillager : CharacterBody3D
 
 	public void Talk()
 	{
+		if (Name != "Richard")
+        {
+			_dialogue.GetNode<Button>("AcceptButton").Text = "Accept";
+			_dialogue.GetNode<Button>("IgnoreButton").Text = "Ignore";
+		}
 		if (_questComplete == true && _questInProgress == false && _hasTalked == true) { return; } //if the quest is done the player can't interact
 
 		if (_questComplete == true ) //what happens when the player talks to him after completing the quest
@@ -386,7 +391,7 @@ public partial class NpcVillager : CharacterBody3D
 
     private void CheckDialougeIndex()
     {
-		if (Villager is RichardVillager)
+		if (Name == "Richard")
         {
 			_dialogue.GetNode<Button>("AcceptButton").Text = "I Forget...";
 			_dialogue.GetNode<Button>("IgnoreButton").Text = "I Remember";   

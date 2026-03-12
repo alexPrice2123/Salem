@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Texture2D" uid="uid://ckypyf8nhveux" path="res://Assets/UI/resources/bleedheart.png" id="13_kjfio"]
 [ext_resource type="Texture2D" uid="uid://cqu65nmwafl6m" path="res://Assets/UI/resources/heart.png" id="14_0o3wc"]
-[ext_resource type="Texture2D" uid="uid://drpxtirm2sbrn" path="res://Assets/2D/Controls.png" id="14_8fs27"]
+[ext_resource type="Texture2D" uid="uid://bhqvesq42a0yu" path="res://Assets/2D/Controls.png" id="14_8fs27"]
 [ext_resource type="Texture2D" uid="uid://2kjwf2irjlgu" path="res://Assets/UI/resources/chippedfang.png" id="15_ebfgw"]
 [ext_resource type="Texture2D" uid="uid://dbcr6g2lqi5f5" path="res://Assets/UI/resources/fang.png" id="16_mirbq"]
 [ext_resource type="FontFile" uid="uid://c2u1385tn7ero" path="res://Assets/Fonts/DumNorm.ttf" id="17_fe2sg"]
@@ -1085,6 +1085,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShopOption2" type="TextureButton" parent="BlacksmithShop"]
+visible = false
 layout_mode = 0
 offset_top = 150.0
 offset_right = 415.0
@@ -1392,12 +1393,6 @@ offset_top = -0.236
 offset_right = 0.0449829
 offset_bottom = 0.295959
 
-[node name="Controls" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(538, 305)
-scale = Vector2(0.561458, 0.559259)
-texture = ExtResource("14_8fs27")
-
 [node name="Health" type="TextureProgressBar" parent="."]
 layout_mode = 0
 offset_left = 14.0
@@ -1419,6 +1414,21 @@ mouse_filter = 2
 value = 100.0
 texture_under = ExtResource("22_85lyl")
 texture_progress = ExtResource("23_mplvk")
+
+[node name="Controls" type="Sprite2D" parent="."]
+z_index = 5
+position = Vector2(539, 306)
+scale = Vector2(0.56, 0.56)
+texture = ExtResource("14_8fs27")
+
+[node name="ColorRect" type="ColorRect" parent="Controls"]
+z_index = -1
+offset_left = -1023.21423
+offset_top = -628.5714
+offset_right = -983.21423
+offset_bottom = -588.5714
+scale = Vector2(50.928577, 31.71428)
+color = Color(0, 0, 0, 0.5882353)
 
 [connection signal="button_up" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_mouse_entered"]

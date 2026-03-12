@@ -387,6 +387,7 @@ skeleton = NodePath("")
 
 [node name="Cylinder_002" type="MeshInstance3D" parent="Log1"]
 transform = Transform3D(0.06212584, 0.16830325, -0.010195174, -0.031654544, 0.095774844, -0.066983685, -0.036846608, 0.20149131, 0.040355258, -0.10298606, 0.1782631, 0.0468437)
+material_override = SubResource("StandardMaterial3D_2026k")
 mesh = SubResource("ArrayMesh_30y04")
 skeleton = NodePath("")
 

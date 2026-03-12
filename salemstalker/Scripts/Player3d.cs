@@ -162,14 +162,13 @@ public partial class Player3d : CharacterBody3D
 		_secWeapon.Add("FlintGun", _flintGun);
 		_secWeapon.Add("StakeGun", _stakeGun);
 		_secWeapon.Add("Tomahawk",_tomahawk);
-		StartCut();
 	}
 
 	// --- INPUT HANDLER ---
 	// Called when an input event occurs.
 	public override void _Input(InputEvent @event)
 	{
-		if (_inCutscene){return;}
+		if (_inCutscene || (GetNode<Sprite2D>("UI/Controls").Visible == true && !Input.IsActionPressed("attack"))){return;}
 		if (Input.IsActionJustPressed("retry") && _dead == true)
 		{
 			GetNode<Ui>("UI")._loadingGoal = -1f;
@@ -256,6 +255,7 @@ public partial class Player3d : CharacterBody3D
 			else // This block handles the first attack, potentially hiding a "Controls" overlay
 			{
 				GetNode<Sprite2D>("UI/Controls").Visible = false;
+				StartCut(0f);
 			}
 		}
 
@@ -692,7 +692,7 @@ public partial class Player3d : CharacterBody3D
 		// --- Camera FOV Scaling (Speed Effect) ---
 		// Smoothly scale FOV based on current movement speed (for a "speed effect")
 		float fovGoal = Mathf.Lerp(_cam.Fov, Velocity.Length() + 80, (float)delta * 10f);
-		if (GetNode<Sprite2D>("UI/Controls").Visible == false){_cam.Fov = fovGoal;}
+		if (GetNode<Sprite2D>("UI/Controls").Visible == false && _originalDialouge == null){_cam.Fov = fovGoal;}
 		
 		
 		// --- Interaction detection (General) ---
@@ -765,7 +765,7 @@ public partial class Player3d : CharacterBody3D
 		}
 
 		// --- Head bob + sword bob ---
-		if (_dashVelocity <= 1.0) // Only apply bob when not dashing
+		if (_dashVelocity <= 1.0 && _originalDialouge == null) // Only apply bob when not dashing
 		{
 			// Calculate head bob position and apply to the camera
 			Transform3D camTransformGoal = _cam.Transform;
@@ -1306,9 +1306,9 @@ public partial class Player3d : CharacterBody3D
 		return alignment;
 	}
 
-	public async void StartCut()
+	public async void StartCut(float watiTime)
     {
-        await ToSignal(GetTree().CreateTimer(2f), "timeout");
+        await ToSignal(GetTree().CreateTimer(watiTime), "timeout");
 		if (IsInstanceValid(_lastSeen) && _lastSeen is NpcVillager villager)
 		{
 			villager.Talk();
