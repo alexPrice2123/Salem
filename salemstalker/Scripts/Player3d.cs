@@ -806,9 +806,11 @@ public partial class Player3d : CharacterBody3D
 	// Handles the sword attack sequence, damage calculation, and combo logic.
 	private async void Swing() // To be truthful idk what im doing rn im just breaking stuff and hoping it works
 	{
+
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
 		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5)
 		{
+			GD.Print("Not too early");
 			_rng.Randomize();
 			float tempHorSense = HorCamSense;
 			float tempVerSense = VerCamSense;
@@ -857,7 +859,7 @@ public partial class Player3d : CharacterBody3D
 			await ToSignal(cooldown, "timeout");
 			_lastHit = Time.GetTicksMsec();
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
-			_damage = 0;
+			_damage = 0; 
 			await ToSignal(GetTree().CreateTimer((float)_swordInst.GetMeta("swingSpeed") * 0.7), "timeout");
 			if(_comboNum == tempcool){_swordInst.swingStat = 0;}
 		}

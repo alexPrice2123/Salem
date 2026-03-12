@@ -72,5 +72,9 @@ public partial class titleScreen : Node3D
 		if (_play){return;}
         GetNode<ColorRect>("Credits").Visible = false;
     }
+    private void _on_reset_save_button_pressed()
+    {
+        SaveHandler.createSaveFile("user://saveData.json");
+    }
 	
 }
