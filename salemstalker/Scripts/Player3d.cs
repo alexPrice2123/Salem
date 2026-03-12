@@ -833,9 +833,9 @@ public partial class Player3d : CharacterBody3D
 			}
 			int tempcool = _comboNum;
 			_swordInst.ResetMonsterDebounce();
-			if(_comboNum == 1 || _comboNum == 0){_damage *= (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
-			if(_comboNum == 2){_damage *= (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
-			if(_comboNum == 3){_damage *= (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f;}
+			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
+			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
+			if(_comboNum == 3){_damage += (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f;}
 			// Damage penalty if stamina is too low
 			if (_stamina <= 0.02f * _maxStamina)
 			{
