@@ -21,6 +21,8 @@ public partial class SaveHandler : GodotObject
 
     public static void createSaveFile(string savePath)
     {
+        if(!FileAccess.FileExists(savePath)){GD.Print("Creating save file");}
+        else{GD.Print("File exists, reseting");}
         using FileAccess file = FileAccess.Open(savePath, FileAccess.ModeFlags.Write);
         string jsonData = Json.Stringify(new Godot.Collections.Dictionary<string, Variant>{
             { "lastLocation", "intro" },
