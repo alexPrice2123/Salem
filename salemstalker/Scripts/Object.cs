@@ -11,9 +11,9 @@ public partial class Object : CharacterBody3D
 	public async override void _Ready()
     {
 		await ToSignal(GetTree().CreateTimer(.1), "timeout");
-		GD.Print(Name);
+		GD.Print(Name);	
 		_rng.Randomize();
-        if (((string)Name).Contains("Log")){GetNode<Node3D>($"Log{_rng.RandiRange(1,2)}").Visible = true;}
+       	if (((string)Name).Contains("Log")){GetNode<Node3D>($"Log{_rng.RandiRange(1,2)}").Visible = true;}
 		else {GetNodeOrNull<MeshInstance3D>((string)Name).Visible = true;}
     }
 	public override void _PhysicsProcess(double delta)
@@ -28,5 +28,6 @@ public partial class Object : CharacterBody3D
 		{
 			GetNode<Label3D>("Title").Visible = false;
 		}
+		
 	}
 }

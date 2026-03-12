@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class NewWorld : Node3D
 {
     public Godot.Collections.Dictionary<string,Variant> data = new Godot.Collections.Dictionary<string,Variant>();
-    private string _savePath = "user://saveData.json";
+    public string _savePath = "user://saveData.json";
 
     // Called when the node enters the scene tree for the first time.
 	public override void _Ready()

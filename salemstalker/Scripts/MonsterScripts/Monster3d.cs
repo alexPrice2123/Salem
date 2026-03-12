@@ -134,8 +134,12 @@ public partial class Monster3d : CharacterBody3D
 	// --- DAMAGE SYSTEM --- //
 	public void Damaged(Area3D body)
 	{
+		GD.Print("I was hit");
+		GD.Print(_canBeHit);
 		if (body.IsInGroup("Weapon") && _canBeHit)
 		{
+			GD.Print("By a player weapon!");
+			GD.Print(_player._damage);
 			DamageHandler(false, _player._damage);
 		}
 		else if (body.IsInGroup("PlayerProj") && _canBeHit)
@@ -158,7 +162,7 @@ public partial class Monster3d : CharacterBody3D
 		_hitFX.Visible = true;
 		_body.Visible = false;
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-
+		GD.Print(damage);
 		_health -= damage;
 		_hitFX.Visible = false;
 		_body.Visible = true;

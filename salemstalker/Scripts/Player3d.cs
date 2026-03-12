@@ -169,6 +169,7 @@ public partial class Player3d : CharacterBody3D
 	// Called when an input event occurs.
 	public override void _Input(InputEvent @event)
 	{
+		if (_inCutscene){return;}
 		if (Input.IsActionJustPressed("retry") && _dead == true)
 		{
 			GetNode<Ui>("UI")._loadingGoal = -1f;
@@ -429,7 +430,7 @@ public partial class Player3d : CharacterBody3D
 				}
 				else if (_eSecWeapon1 is Tomahawk hawkChild)
 				{
-					fountain(hawkChild);
+					hawkChild.specAction();
 				}
 				else if (_eSecWeapon1 is ThrowingKnife knifeChild)
 				{
@@ -814,7 +815,7 @@ public partial class Player3d : CharacterBody3D
 			float swingTime = (float)_swordInst.GetMeta("swingSpeed");
 			if (Time.GetTicksMsec() - _lastHit > swingTime)
 			{
-				if(_comboNum>2 || Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 300)
+				if(_comboNum>2 || Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 100)
 				{
 					_comboNum = 1;
 				}
@@ -833,9 +834,9 @@ public partial class Player3d : CharacterBody3D
 			}
 			int tempcool = _comboNum;
 			_swordInst.ResetMonsterDebounce();
-			if(_comboNum == 1){_damage *= (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
-			if(_comboNum == 2){_damage *= (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
-			if(_comboNum == 3){_damage *= (float)_sword.GetMeta("hDamage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
+			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
+			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
+			if(_comboNum == 3){_damage += (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f;}
 			// Damage penalty if stamina is too low
 			if (_stamina <= 0.02f * _maxStamina)
 			{
@@ -856,6 +857,7 @@ public partial class Player3d : CharacterBody3D
 			await ToSignal(cooldown, "timeout");
 			_lastHit = Time.GetTicksMsec();
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
+			_damage = 0;
 			await ToSignal(GetTree().CreateTimer((float)_swordInst.GetMeta("swingSpeed") * 0.5), "timeout");
 			if(_comboNum == tempcool){_swordInst.swingStat = 0;}
 		}
@@ -1056,7 +1058,6 @@ public partial class Player3d : CharacterBody3D
 			takenDamage = 0f;
 			monster.Stunned();
 			_swordInst.parryStat = _rng.RandiRange(1,2);
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
 			Parry();
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)
@@ -1109,9 +1110,7 @@ public partial class Player3d : CharacterBody3D
 			// Successful parry: restore stamina, negate damage, destroy projectile, set parried flag
 			_stamina += 0.15f * _maxStamina;
 			takenDamage = 0f;
-			//_sword.GetNode<AnimationPlayer>("AnimationPlayer").Play("Block");
-			_swordInst.updateVar(_swordInst.getBoolVar(0),_swordInst.getBoolVar(1),_swordInst.getBoolVar(2),_swordInst.getIntVar(0),1);
-			projectile.QueueFree();
+			_swordInst.parryStat = _rng.RandiRange(1,2);
 			Parry();
 			_knockVelocity = 0f;
 			if (_cam is Camera cam)

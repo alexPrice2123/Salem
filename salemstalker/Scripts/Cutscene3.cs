@@ -69,7 +69,10 @@ public partial class Cutscene3 : Node3D
 		GetNode<Camera3D>("Waking/metarig_001/Skeleton3D/spine_006/Camera").Current = false;
 		plr.GetNode<Ui>("UI")._fadeProg = 0;
 		plr.CutsceneToggle(false);
-		plr.CamLookAtPos(plr.GetParent().GetNode<Node3D>("Matthew").GlobalPosition);
+		plr.CamLookAtPos(plr.GetParent().GetNode<Node3D>("Matthew/LookAt").GlobalPosition);
+		plr._inCombat = false;
+		plr.GetParent<NewWorld>().data["tutorialComplete"] = true;
+		SaveHandler.SaveToFile(plr.GetParent<NewWorld>().data,plr.GetParent<NewWorld>()._savePath);
     }
 	private async void Vision(ShaderMaterial mat, bool toggle)
 	{

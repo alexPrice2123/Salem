@@ -25,5 +25,6 @@ public partial class SaveHandler : GodotObject
             { "tutorialComplete", true}
         });
         file.StoreLine(jsonData);
+        GD.Print("File set to defaults");
     }
 }
