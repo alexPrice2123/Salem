@@ -71,6 +71,8 @@ public partial class Cutscene3 : Node3D
 		plr.CutsceneToggle(false);
 		plr.CamLookAtPos(plr.GetParent().GetNode<Node3D>("Matthew/LookAt").GlobalPosition);
 		plr._inCombat = false;
+		plr.GetParent<NewWorld>().data["tutorialComplete"] = true;
+		SaveHandler.SaveToFile(plr.GetParent<NewWorld>().data,plr.GetParent<NewWorld>()._savePath);
     }
 	private async void Vision(ShaderMaterial mat, bool toggle)
 	{
