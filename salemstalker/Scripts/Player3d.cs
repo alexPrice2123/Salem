@@ -833,7 +833,6 @@ public partial class Player3d : CharacterBody3D
 				await ToSignal(cooldown,"timeout");
 			}
 			int tempcool = _comboNum;
-			_swordInst.ResetMonsterDebounce();
 			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
 			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
 			if(_comboNum == 3){_damage += (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f;}
@@ -850,6 +849,7 @@ public partial class Player3d : CharacterBody3D
 				_swordInst._crit = true;
 			}
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
+			_swordInst.ResetMonsterDebounce();
 			_swordInst.swingStat = _comboNum;
 			HorCamSense = tempHorSense;
 			VerCamSense = tempVerSense;
@@ -858,7 +858,7 @@ public partial class Player3d : CharacterBody3D
 			_lastHit = Time.GetTicksMsec();
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
 			_damage = 0;
-			await ToSignal(GetTree().CreateTimer((float)_swordInst.GetMeta("swingSpeed") * 0.5), "timeout");
+			await ToSignal(GetTree().CreateTimer((float)_swordInst.GetMeta("swingSpeed") * 0.7), "timeout");
 			if(_comboNum == tempcool){_swordInst.swingStat = 0;}
 		}
 		else	

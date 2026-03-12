@@ -24,7 +24,7 @@ public partial class SaveHandler : GodotObject
         using FileAccess file = FileAccess.Open(savePath, FileAccess.ModeFlags.Write);
         string jsonData = Json.Stringify(new Godot.Collections.Dictionary<string, Variant>{
             { "lastLocation", "intro" },
-            { "tutorialComplete", true}
+            { "tutorialComplete", false}
         });
         file.StoreLine(jsonData);
         GD.Print("File set to defaults");
