@@ -649,6 +649,7 @@ WaterFresnelColor = Color(0, 0.404081, 0.340577, 1)
 WaterMetallic = 1.0
 WaterRoughness = 1.0
 WaterNormalMap = ExtResource("28_ugwr4")
+WaterStrength = 15.0
 WaterWave = SubResource("NoiseTexture2D_nbiyt")
 WaterColorDeep = Color(0, 0, 0, 1)
 WaterEdgeScale = 1.0
