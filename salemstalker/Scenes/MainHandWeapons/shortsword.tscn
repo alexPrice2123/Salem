@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://3v4hdgpge0v6"]
+[gd_scene load_steps=98 format=3 uid="uid://3v4hdgpge0v6"]
 
 [ext_resource type="Script" uid="uid://b1ax0drvppbgl" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_ckg03"]
 [ext_resource type="PackedScene" uid="uid://c1ixg535pupsm" path="res://Assets/Weapons/shortsword.blend" id="2_pkki5"]
@@ -296,13 +296,8 @@ switch_mode = 2
 advance_mode = 2
 advance_expression = "swingStat == 0 && !running && !walking"
 
-[sub_resource type="Curve" id="Curve_4ujmf"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 1.1687639, 1.1687639, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2y8h8"]
-xfade_time = 0.05
-xfade_curve = SubResource("Curve_4ujmf")
+xfade_time = 0.1
 priority = 5
 switch_mode = 2
 advance_mode = 2
@@ -438,11 +433,11 @@ advance_expression = "!blocking"
 states/End/position = Vector2(1256, 113)
 states/Start/position = Vector2(-364, 42.8125)
 states/attack1/node = SubResource("AnimationNodeAnimation_kwmjs")
-states/attack1/position = Vector2(738.999, 568.8262)
+states/attack1/position = Vector2(723.499, 646.8262)
 states/attack2/node = SubResource("AnimationNodeAnimation_mw22n")
 states/attack2/position = Vector2(862.61414, 641.43854)
 states/attack3/node = SubResource("AnimationNodeAnimation_wvwlr")
-states/attack3/position = Vector2(906.86414, 558.5)
+states/attack3/position = Vector2(864.73914, 555)
 states/block/node = SubResource("AnimationNodeAnimation_jta0k")
 states/block/position = Vector2(765.459, -327.3501)
 "states/block Reverse/node" = SubResource("AnimationNodeAnimation_pxq68")
@@ -504,8 +499,8 @@ bones/7/rotation = Quaternion(-0.586, -0.324, -0.335, 0.635)
 bones/8/rotation = Quaternion(-0.28827924, 0.63253677, -0.5684554, 0.44005772)
 bones/9/rotation = Quaternion(0.5499285, 0.0012709559, -0.13263234, 0.82461244)
 bones/17/rotation = Quaternion(-0.59, 0.348, 0.33, 0.649)
-bones/18/rotation = Quaternion(-0.15518002, -0.5170649, 0.6965466, 0.47263712)
-bones/19/rotation = Quaternion(0.5951033, -0.035555437, 0.030155044, 0.8022958)
+bones/18/rotation = Quaternion(-0.15677886, -0.5136763, 0.69492334, 0.47816178)
+bones/19/rotation = Quaternion(0.5924724, -0.03551947, 0.031285923, 0.8041991)
 bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
 bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
 bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
@@ -518,7 +513,7 @@ bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5369101, 0.04762841, 0.8422939, 0.036180332, 0.9987866, -0.033414945, -0.8428629, 0.0125338435, -0.53798175, -0.1821276, 1.4069791, 0.41678533)
+transform = Transform3D(-0.526816, 0.047795378, 0.84863466, 0.035774566, 0.99878, -0.0340437, -0.84922594, 0.0124249235, -0.527883, -0.18758555, 1.4080974, 0.41840136)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
