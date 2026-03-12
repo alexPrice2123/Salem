@@ -1,4 +1,4 @@
-[gd_scene load_steps=175 format=4 uid="uid://bx56nwvot6ch4"]
+[gd_scene load_steps=202 format=4 uid="uid://bx56nwvot6ch4"]
 
 [ext_resource type="Texture2D" uid="uid://c3m188jvtfp6e" path="res://Assets/3D/props/prop_textures/inquisitor_boat/inquisitorboat_DefaultMaterial_BaseColor.png" id="1_bry56"]
 [ext_resource type="Script" uid="uid://cu5lcqiogq20c" path="res://Scripts/Cutscene1.cs" id="1_jdm0i"]
@@ -102,7 +102,31 @@
 [ext_resource type="Texture2D" uid="uid://bm3wfw6psfqjw" path="res://Scenes/cutscene1/Splatmap_-1_-1_1.res" id="100_8ekmv"]
 [ext_resource type="Texture2D" uid="uid://ceavs2gelqq8u" path="res://Scenes/cutscene1/Splatmap_-1_-1_2.res" id="101_o0nwo"]
 [ext_resource type="Texture2D" uid="uid://dtl576ypuc5f2" path="res://Scenes/cutscene1/Water_-1_-1.res" id="102_gyobh"]
+[ext_resource type="Texture2D" uid="uid://3t0rgtmlyhy6" path="res://Scenes/cutscene1/Foliage_-2_0_0.res" id="103_jycwe"]
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="103_nasvu"]
+[ext_resource type="Texture2D" uid="uid://dwgnj78tlex6a" path="res://Scenes/cutscene1/Foliage_-2_0_1.res" id="104_2fvaj"]
+[ext_resource type="Texture2D" uid="uid://ps2fb2r8ax4q" path="res://Scenes/cutscene1/Heightmap_-2_0.res" id="105_qw2jh"]
+[ext_resource type="Texture2D" uid="uid://wg50xv6ou4k0" path="res://Scenes/cutscene1/Object_-2_0_0.res" id="106_olrhv"]
+[ext_resource type="Texture2D" uid="uid://sjd2niifauis" path="res://Scenes/cutscene1/Splatmap_-2_0_0.res" id="107_2wjcy"]
+[ext_resource type="Texture2D" uid="uid://b2tbui51yb2dl" path="res://Scenes/cutscene1/Splatmap_-2_0_1.res" id="108_xr0k8"]
+[ext_resource type="Texture2D" uid="uid://dsfq8fvmdsdey" path="res://Scenes/cutscene1/Splatmap_-2_0_2.res" id="109_7kpvb"]
+[ext_resource type="Texture2D" uid="uid://b46kn6q2uexir" path="res://Scenes/cutscene1/Water_-2_0.res" id="110_50xtx"]
+[ext_resource type="Texture2D" uid="uid://1rbr1foy5jbm" path="res://Scenes/cutscene1/Foliage_-2_1_0.res" id="111_kjct0"]
+[ext_resource type="Texture2D" uid="uid://dew0w121ao6cq" path="res://Scenes/cutscene1/Foliage_-2_1_1.res" id="112_kkiaa"]
+[ext_resource type="Texture2D" uid="uid://df5ongcnpd78v" path="res://Scenes/cutscene1/Heightmap_-2_1.res" id="113_vmgvj"]
+[ext_resource type="Texture2D" uid="uid://dhdl7346c4syg" path="res://Scenes/cutscene1/Object_-2_1_0.res" id="114_y734x"]
+[ext_resource type="Texture2D" uid="uid://d1qwisghn700k" path="res://Scenes/cutscene1/Splatmap_-2_1_0.res" id="115_qfoeb"]
+[ext_resource type="Texture2D" uid="uid://chwgi61nniy46" path="res://Scenes/cutscene1/Splatmap_-2_1_1.res" id="116_32bbk"]
+[ext_resource type="Texture2D" uid="uid://c7ruixi5gdk34" path="res://Scenes/cutscene1/Splatmap_-2_1_2.res" id="117_p6xj0"]
+[ext_resource type="Texture2D" uid="uid://cg1tv6m5h6tho" path="res://Scenes/cutscene1/Water_-2_1.res" id="118_pd1ba"]
+[ext_resource type="Texture2D" uid="uid://7a6w1288xegg" path="res://Scenes/cutscene1/Foliage_-2_-1_0.res" id="119_vyl8p"]
+[ext_resource type="Texture2D" uid="uid://eb5017c70elh" path="res://Scenes/cutscene1/Foliage_-2_-1_1.res" id="120_e6c05"]
+[ext_resource type="Texture2D" uid="uid://bj0lvhuiad3il" path="res://Scenes/cutscene1/Heightmap_-2_-1.res" id="121_q2211"]
+[ext_resource type="Texture2D" uid="uid://csiscsqexe2vo" path="res://Scenes/cutscene1/Object_-2_-1_0.res" id="122_5tdiu"]
+[ext_resource type="Texture2D" uid="uid://bq7wgmkg04j1j" path="res://Scenes/cutscene1/Splatmap_-2_-1_0.res" id="123_08k3q"]
+[ext_resource type="Texture2D" uid="uid://dgqqasekb0del" path="res://Scenes/cutscene1/Splatmap_-2_-1_1.res" id="124_u7nxp"]
+[ext_resource type="Texture2D" uid="uid://ba570mqyq3taw" path="res://Scenes/cutscene1/Splatmap_-2_-1_2.res" id="125_lwjcx"]
+[ext_resource type="Texture2D" uid="uid://dg8v6h4kb8t1x" path="res://Scenes/cutscene1/Water_-2_-1.res" id="126_j7uqk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eopnx"]
 shader = ExtResource("2_4dgfs")
@@ -139,11 +163,13 @@ shader_parameter/overwritten_time = 0.0
 sky_material = SubResource("ShaderMaterial_eopnx")
 
 [sub_resource type="Environment" id="Environment_jdm0i"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.1225099, 0.11100769, 0.14648438, 1)
+background_energy_multiplier = 0.56
 sky = SubResource("Sky_6egv1")
 tonemap_mode = 2
 glow_enabled = true
-fog_light_color = Color(4.6205523e-06, 0.5651098, 0.76645315, 1)
+fog_light_color = Color(0.11530627, 0.091617584, 0.14257813, 1)
 fog_light_energy = 2.98
 fog_density = 0.0001
 fog_sky_affect = 0.405
@@ -198,7 +224,7 @@ metadata/extras = {
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gvpnd"]
-albedo_color = Color(5.0838105e-07, 0.24757972, 2.4065375e-08, 1)
+albedo_color = Color(0.14097548, 0.171875, 0.11413574, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dgfs"]
 albedo_color = Color(6.738305e-07, 0.57300085, 0.6543376, 1)
@@ -322,7 +348,7 @@ seamless = true
 render_priority = 2
 shader = ExtResource("26_72hg8")
 shader_parameter/speed = Vector2(0.2, 0.2)
-shader_parameter/barrier_color = Color(0, 0, 0, 1)
+shader_parameter/barrier_color = Color(0.2052784, 0.16641617, 0.24414063, 0.80784315)
 shader_parameter/barrier_force = -2.0
 shader_parameter/barrier_fog_noise_force = 1.0
 shader_parameter/distortion_strength = 0.15
@@ -337,7 +363,7 @@ shader_parameter/barrier_noise = SubResource("NoiseTexture2D_6egv1")
 render_priority = 1
 shader = ExtResource("26_72hg8")
 shader_parameter/speed = Vector2(0.1, 0.1)
-shader_parameter/barrier_color = Color(0, 0, 0, 0.6901961)
+shader_parameter/barrier_color = Color(0, 0, 0, 0.80100006)
 shader_parameter/barrier_force = -4.0
 shader_parameter/barrier_fog_noise_force = 3.85
 shader_parameter/distortion_strength = 0.15
@@ -623,7 +649,6 @@ WaterFresnelColor = Color(0, 0.404081, 0.340577, 1)
 WaterMetallic = 1.0
 WaterRoughness = 1.0
 WaterNormalMap = ExtResource("28_ugwr4")
-WaterStrength = 15.0
 WaterWave = SubResource("NoiseTexture2D_nbiyt")
 WaterColorDeep = Color(0, 0, 0, 1)
 WaterEdgeScale = 1.0
@@ -710,9 +735,36 @@ FoliagesTexture = [ExtResource("95_icrs7"), ExtResource("96_nnkt7")]
 ObjectsTexture = [ExtResource("98_36k6s")]
 WaterTexture = ExtResource("102_gyobh")
 
+[sub_resource type="Resource" id="Resource_ghsyk"]
+script = ExtResource("38_fvnjf")
+ZonePosition = Vector2i(-2, 0)
+HeightMapTexture = ExtResource("105_qw2jh")
+SplatmapsTexture = [ExtResource("107_2wjcy"), ExtResource("108_xr0k8"), ExtResource("109_7kpvb")]
+FoliagesTexture = [ExtResource("103_jycwe"), ExtResource("104_2fvaj")]
+ObjectsTexture = [ExtResource("106_olrhv")]
+WaterTexture = ExtResource("110_50xtx")
+
+[sub_resource type="Resource" id="Resource_mi7rf"]
+script = ExtResource("38_fvnjf")
+ZonePosition = Vector2i(-2, 1)
+HeightMapTexture = ExtResource("113_vmgvj")
+SplatmapsTexture = [ExtResource("115_qfoeb"), ExtResource("116_32bbk"), ExtResource("117_p6xj0")]
+FoliagesTexture = [ExtResource("111_kjct0"), ExtResource("112_kkiaa")]
+ObjectsTexture = [ExtResource("114_y734x")]
+WaterTexture = ExtResource("118_pd1ba")
+
+[sub_resource type="Resource" id="Resource_hu7n5"]
+script = ExtResource("38_fvnjf")
+ZonePosition = Vector2i(-2, -1)
+HeightMapTexture = ExtResource("121_q2211")
+SplatmapsTexture = [ExtResource("123_08k3q"), ExtResource("124_u7nxp"), ExtResource("125_lwjcx")]
+FoliagesTexture = [ExtResource("119_vyl8p"), ExtResource("120_e6c05")]
+ObjectsTexture = [ExtResource("122_5tdiu")]
+WaterTexture = ExtResource("126_j7uqk")
+
 [sub_resource type="Resource" id="Resource_cl5iw"]
 script = ExtResource("103_nasvu")
-Zones = [SubResource("Resource_kwju7"), SubResource("Resource_iou78"), SubResource("Resource_ksh5i"), SubResource("Resource_gh8md"), SubResource("Resource_lhpf7"), SubResource("Resource_bcbxf"), SubResource("Resource_jdnny"), SubResource("Resource_wk12o"), SubResource("Resource_5ke7o")]
+Zones = [SubResource("Resource_kwju7"), SubResource("Resource_iou78"), SubResource("Resource_ksh5i"), SubResource("Resource_gh8md"), SubResource("Resource_lhpf7"), SubResource("Resource_bcbxf"), SubResource("Resource_jdnny"), SubResource("Resource_wk12o"), SubResource("Resource_5ke7o"), SubResource("Resource_ghsyk"), SubResource("Resource_mi7rf"), SubResource("Resource_hu7n5")]
 
 [node name="Cutscene1" type="Node3D"]
 script = ExtResource("1_jdm0i")
