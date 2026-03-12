@@ -169,6 +169,7 @@ public partial class Player3d : CharacterBody3D
 	// Called when an input event occurs.
 	public override void _Input(InputEvent @event)
 	{
+		if (_inCutscene){return;}
 		if (Input.IsActionJustPressed("retry") && _dead == true)
 		{
 			GetNode<Ui>("UI")._loadingGoal = -1f;

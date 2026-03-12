@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bfpffyfg2ismx"]
 
-[ext_resource type="PackedScene" uid="uid://bphw61mmo8r13" path="res://Assets/3D/buildings/sign.blend" id="1_m6mpx"]
+[ext_resource type="PackedScene" uid="uid://cbabcs1nun88j" path="res://Assets/3D/buildings/sign.blend" id="1_m6mpx"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="2_6c32n"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="2_hqvqy"]
 
