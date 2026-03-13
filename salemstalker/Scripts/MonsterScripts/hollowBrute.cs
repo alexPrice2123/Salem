@@ -34,6 +34,11 @@ public partial class hollowBrute : Monster3d
 	{
 		EveryFrame(delta);
 		_distance = (_player.GlobalPosition - GlobalPosition).Length();
+		if (_distance <= WalkRange)
+        {
+            _speedOffset = RunSpeed - WalkSpeed;
+        }
+		else{_speedOffset = 0f;}
 		if (_health <= 0)
 		{
 			_player.MonsterKilled("hollowBrute", Biome);
@@ -69,7 +74,7 @@ public partial class hollowBrute : Monster3d
 
 	public void _on_attackbox_area_entered(Node3D body)
 	{
-		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
+		if (body.IsInGroup("PlayerHurtbox") && _hasHit == false && body.Name == "Hurtbox")
 		{
 			_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "None");
 			_attackBox.Disabled = true;

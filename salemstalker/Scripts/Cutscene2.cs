@@ -19,7 +19,7 @@ public partial class Cutscene2 : Node3D
         {
 			plr.GetNode<Ui>("UI")._fadeProg = 1;
 			plr.CutsceneToggle(true);
-			GetNode<Area3D>("Area3D").Monitoring = false;
+			GetNode<Area3D>("Area3D").SetDeferred("monitoring", false);
 			await ToSignal(GetTree().CreateTimer(2), "timeout");
 			plr.GetNode<Ui>("UI")._fadeProg = 0;
 			GetNode<Camera3D>("Fight/Camera").Current = true;
