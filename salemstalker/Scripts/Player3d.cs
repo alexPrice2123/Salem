@@ -858,6 +858,7 @@ public partial class Player3d : CharacterBody3D
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
 			await ToSignal(GetTree().CreateTimer((float)_swordInst.GetMeta("swingSpeed") * 0.5), "timeout");
 			if(_comboNum == tempcool){_swordInst.swingStat = 0;}
+			GD.Print(_comboNum, " : ", tempcool);
 		}
 		else	
 		{
