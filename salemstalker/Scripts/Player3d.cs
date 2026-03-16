@@ -862,6 +862,7 @@ public partial class Player3d : CharacterBody3D
 			_damage = 0; 
 			await ToSignal(GetTree().CreateTimer((float)_swordInst.GetMeta("swingSpeed") * 0.7), "timeout");
 			if(_comboNum == tempcool){_swordInst.swingStat = 0;}
+			GD.Print(_comboNum, " : ", tempcool);
 		}
 		else	
 		{
