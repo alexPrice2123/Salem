@@ -137,21 +137,7 @@ public partial class NpcVillager : CharacterBody3D
 		
 
 		if (_questComplete == true && _questInProgress == false && _hasTalked == true)
-		{
 			_questPrompt.Text = PostDoneDialogue;
-			if (NPCName == "Martha")
-            {
-                GetParent<DemoHandler>()._marthaDone = true;
-            }
-			else if (NPCName == "Lukas")
-            {
-                GetParent<DemoHandler>()._lukasDone = true;
-            }
-			else if (NPCName == "Dillon")
-            {
-                GetParent<DemoHandler>()._dillonDone = true;
-            }
-		}
 
 		if (_navigationAgent.IsNavigationFinished()) // If the AI is close enough to pathfinding target
 		{
@@ -245,9 +231,7 @@ public partial class NpcVillager : CharacterBody3D
             _questPrompt.Text = WaitingDialogue;
 			_player._originalDialouge = WaitingDialogue;
 			_hasTalked = true;
-			_questInProgress = true;
-			_dialogue.GetNode<Button>("AcceptButton").Text = "Accept";
-			_dialogue.GetNode<Button>("IgnoreButton").Text = "Ignore";   
+			_questInProgress = true; 
 			GetNode<tutorialArea>("TutorialArea").Tutorial(_player, "Use [WASD] To Move", 5);
         }
 		_player._villager = null;
@@ -326,7 +310,6 @@ public partial class NpcVillager : CharacterBody3D
 				_dialogueBox.Text = IgnoredDialogue[_dialougeIndex];
             }
 		}
-		
 		else
 		{
 			if (_currentDialouge == "Done")
@@ -356,7 +339,7 @@ public partial class NpcVillager : CharacterBody3D
 		}
 		if (_questComplete == true && _questInProgress == false && _hasTalked == true) { return; } //if the quest is done the player can't interact
 
-		if (_questComplete == true ) //what happens when the player talks to him after completing the quest
+		if (_questComplete == true && _hasTalked == true) //what happens when the player talks to him after completing the quest
 		{
 			_dialougeIndex = 0;
 			_currentDialouge = "Done";
@@ -372,7 +355,7 @@ public partial class NpcVillager : CharacterBody3D
 			_dialogueBox.Text = WaitingDialogue;
 		}
 		
-		if (_questPrompt.Visible == true && _questInProgress == false && _questComplete == false && _currentDialouge != "Quest")
+		if (_questPrompt.Visible == true && _questInProgress == false && _currentDialouge != "Quest")
 		{
 			_dialougeIndex = 0;
 			_currentDialouge = "Quest";
@@ -389,13 +372,13 @@ public partial class NpcVillager : CharacterBody3D
 	}
 		
 
-    private void CheckDialougeIndex()
-    {
+	private void CheckDialougeIndex()
+	{
 		if (Name == "Richard")
-        {
-			_dialogue.GetNode<Button>("AcceptButton").Text = "I Forget...";
-			_dialogue.GetNode<Button>("IgnoreButton").Text = "I Remember";   
-        }
+		{
+			_dialogue.GetNode<Button>("AcceptButton").Text = "Remind Me (Story)";
+			_dialogue.GetNode<Button>("IgnoreButton").Text = "No Need (Skip)";
+		}
 		if (_currentDialouge == "Quest")
 		{
 			if (_dialougeIndex < QuestDialogue.Count - 1)
@@ -416,6 +399,6 @@ public partial class NpcVillager : CharacterBody3D
 			_dialogue.GetNode<Button>("Continue").Visible = true;
 			_dialogue.GetNode<Button>("AcceptButton").Visible = false;
 			_dialogue.GetNode<Button>("IgnoreButton").Visible = false;
-        }
-    }
+		}
+	}
 }

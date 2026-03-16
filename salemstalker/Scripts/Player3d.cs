@@ -727,7 +727,7 @@ public partial class Player3d : CharacterBody3D
 				if (villager._object == "None")
 				{
 					// Handle different quest states by modifying the NPC's displayed dialogue
-					if (villager._questComplete == false && villager._questInProgress == false) // Initial quest state
+					if (villager._questInProgress == false) // Initial quest state
 					{
 						_lastSeen = villager;
 						_originalDialouge = villager._questPrompt.Text;

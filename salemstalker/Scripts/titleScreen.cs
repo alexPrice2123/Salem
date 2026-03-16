@@ -11,6 +11,9 @@ public partial class titleScreen : Node3D
     private TextureButton _quitButton;
     private TextureButton _backButton;
     private Vector2 _baseButtonScale;
+    private string _nextScene;
+    public Godot.Collections.Dictionary<string,Variant> data = new Godot.Collections.Dictionary<string,Variant>();
+    public string _savePath = "user://saveData.json";
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {
@@ -21,6 +24,19 @@ public partial class titleScreen : Node3D
         _quitButton = GetNode<TextureButton>("Buttons/Quit");
         _backButton = GetNode<TextureButton>("Credits/Back");
         _baseButtonScale = _playButton.Scale;
+        if ( !FileAccess.FileExists(_savePath) )
+        {
+            GD.Print("Save file missing");
+            SaveHandler.createSaveFile(_savePath);
+            GD.Print("Save file created");
+        }
+        else{ GD.Print("Save file exists"); }
+        data = SaveHandler.LoadFromFile(_savePath);
+        GD.Print("Save file loaded");
+        if ((bool)data["tutorialComplete"] == true)
+        {
+            _nextScene = "res://Scenes/newWorld.tscn";
+        }else{_nextScene = "res://Scenes/cutscene_1.tscn";}
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,7 +47,7 @@ public partial class titleScreen : Node3D
             _loadingMaterial.SetShaderParameter("progress", (float)_loadingMaterial.GetShaderParameter("progress")-0.05f);
 			if ((float)_loadingMaterial.GetShaderParameter("progress") <= -1f)
             {
-                GetTree().ChangeSceneToFile("res://Scenes/cutscene_1.tscn");
+                GetTree().ChangeSceneToFile(_nextScene);
             }
         }
         if (_playButton.IsHovered() && _playButton.Scale < _baseButtonScale * new Vector2(1.1f, 1.1f)){ScaleButton(_playButton, true);}
@@ -78,3 +94,5 @@ public partial class titleScreen : Node3D
     }
 	
 }
+
+// code code coding code code 1+1=2 code woahhh code woahhhh coding code im adding yaoi to the code yaoi code + yuri code

@@ -11,7 +11,7 @@ public partial class Monster3d : CharacterBody3D
 	protected float RunSpeed = 3f;
 	protected float WalkSpeed = 2f;
 	public float MaxHealth = 100.0f;
-	protected float WalkRange;
+	protected float WalkRange = 3.0f;
 	protected float AgroFOV = 5.0f;
 	protected float AgroLength = 5.0f;
 	protected double SpawnDistance = 100;
@@ -34,7 +34,7 @@ public partial class Monster3d : CharacterBody3D
 	public float MaxLookTime = 1f;
 	public Node3D MultBodyRef = null;
 	public Node3D MultHitRef = null;
-	public bool DebugShapes = false;
+	public bool DebugShapes = true;
 	public bool Disabled = false;               // When true, monster stays idle and ignores everything
 	public bool Cutscene = false;
 
@@ -546,7 +546,7 @@ public partial class Monster3d : CharacterBody3D
 			WalkRange  = 0.5f;
 			AgroLength = 1f;
 		}
-        else
+        else if (Cutscene)
         {
             WalkRange = 20f;
         }
