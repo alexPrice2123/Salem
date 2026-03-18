@@ -37,7 +37,30 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"bar": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/cartmat/bar.tres",
+"use_external/path": "uid://3hoomopw32eu"
+},
+"cartholder": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/cartmat/cartbase.tres",
+"use_external/path": "uid://da3ov6c2yxc2r"
+},
+"handles": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/cartmat/handles.tres",
+"use_external/path": "uid://v8cxd77lvf8a"
+},
+"wheel.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/cartmat/wheel.tres",
+"use_external/path": "uid://ctp4so06dmxqr"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

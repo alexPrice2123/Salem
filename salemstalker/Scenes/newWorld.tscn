@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://bp2gqxihfqjlx" path="res://Scenes/NewWorld.cs" id="1_jhj26"]
-[ext_resource type="Texture2D" uid="uid://cknlmd0xqnxbe" path="res://Assets/UI/mapagainagain.png" id="2_v8qwt"]
+[ext_resource type="Texture2D" uid="uid://d1pv7egbxv0kk" path="res://Assets/UI/mapagainagain.png" id="2_v8qwt"]
 [ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/hollowBrute.tscn" id="5_4psjf"]
 [ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="5_nc3gf"]
 [ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/sCultist.tscn" id="6_81ace"]
@@ -25,7 +25,7 @@
 [ext_resource type="Script" uid="uid://comabiqrwe5u0" path="res://addons/terrabrush/Scripts/EditorResources/ObjectResource.cs" id="23_r0smi"]
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="24_nly56"]
 [ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="25_tjcsd"]
-[ext_resource type="Texture2D" uid="uid://c084sgp8ry4rn" path="res://Assets/3D/plants/grass3d.png" id="26_iuhso"]
+[ext_resource type="Texture2D" uid="uid://qwr5lnd3231y" path="res://Assets/3D/plants/grass3d.png" id="26_iuhso"]
 [ext_resource type="Texture2D" uid="uid://tjq33somhl15" path="res://Scenes/World/Foliage_0_0_0.res" id="26_n5auh"]
 [ext_resource type="Texture2D" uid="uid://daaucpomjga2y" path="res://Scenes/World/Foliage_0_0_1.res" id="27_ejjek"]
 [ext_resource type="Texture2D" uid="uid://mngvtc65froj" path="res://Scenes/World/Heightmap_0_0.res" id="28_v02e0"]
@@ -925,30 +925,30 @@
 [ext_resource type="PackedScene" uid="uid://cw86i51qs7jry" path="res://Scenes/boat.tscn" id="922_qtthl"]
 [ext_resource type="Script" uid="uid://djprwulc3bex0" path="res://Scripts/BorderTool.cs" id="926_3vgip"]
 [ext_resource type="Script" uid="uid://c8ixt3vjg78bx" path="res://Scripts/VillagerScripts/RichardVillager.cs" id="926_lmwmg"]
-[ext_resource type="PackedScene" uid="uid://07sk25v6dh1t" path="res://Assets/3D/charatermodel/long_fence.blend" id="926_ptcpy"]
+[ext_resource type="PackedScene" uid="uid://dspyi0ujanve1" path="res://Assets/3D/charatermodel/long_fence.blend" id="926_ptcpy"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="927_4aw2u"]
-[ext_resource type="Texture2D" uid="uid://c3f02ea4jcvsd" path="res://Assets/buildingtextures/house1/house_Base_color.png" id="932_yxesf"]
-[ext_resource type="Texture2D" uid="uid://dtolrl64u1duy" path="res://Assets/buildingtextures/house1/window_Base_color.png" id="933_agl2t"]
-[ext_resource type="Texture2D" uid="uid://tcvi3pu88kqj" path="res://Assets/buildingtextures/house1/chimney_Base_color.png" id="934_1tkeb"]
-[ext_resource type="Texture2D" uid="uid://dd4462v8an6xq" path="res://Assets/buildingtextures/house1/roof_Base_color.png" id="935_shr4g"]
+[ext_resource type="Texture2D" uid="uid://ddp7pxhn2ue4r" path="res://Assets/buildingtextures/house1/house_Base_color.png" id="932_yxesf"]
+[ext_resource type="Texture2D" uid="uid://clfv5nty8caex" path="res://Assets/buildingtextures/house1/window_Base_color.png" id="933_agl2t"]
+[ext_resource type="Texture2D" uid="uid://bmeb0nyg0gc2g" path="res://Assets/buildingtextures/house1/chimney_Base_color.png" id="934_1tkeb"]
+[ext_resource type="Texture2D" uid="uid://b2mpw4ekuukmw" path="res://Assets/buildingtextures/house1/roof_Base_color.png" id="935_shr4g"]
 [ext_resource type="PackedScene" uid="uid://bqjcb30xsr68w" path="res://Scenes/blacksmith_shop.tscn" id="936_654ae"]
-[ext_resource type="Texture2D" uid="uid://c4475fbpv85bw" path="res://Assets/buildingtextures/house1/vines_Base_color.png" id="936_agl2t"]
-[ext_resource type="Texture2D" uid="uid://c7v0nrjabutxn" path="res://Assets/buildingtextures/house2/house_Base_color.png" id="937_lpj1t"]
-[ext_resource type="Texture2D" uid="uid://b0bnn0w1r6s4q" path="res://Assets/buildingtextures/house1/door_Base_color.png" id="938_4gw3q"]
-[ext_resource type="Texture2D" uid="uid://bnim2ilnm4ua6" path="res://Assets/buildingtextures/house3/house_Base_color.png" id="938_lmwmg"]
-[ext_resource type="Texture2D" uid="uid://bxtnow7pxjybe" path="res://Assets/buildingtextures/house3/roof_Base_color.png" id="939_3b0yr"]
-[ext_resource type="Texture2D" uid="uid://bf1ra0bfm7fm8" path="res://Assets/buildingtextures/house3/barroof_Base_color.png" id="940_rdipx"]
-[ext_resource type="Texture2D" uid="uid://xk5fgip4at7m" path="res://Assets/buildingtextures/house3/railing_Base_color.png" id="941_jlydw"]
+[ext_resource type="Texture2D" uid="uid://bvitsb555fkcw" path="res://Assets/buildingtextures/house1/vines_Base_color.png" id="936_agl2t"]
+[ext_resource type="Texture2D" uid="uid://by0yxnjx0nsnv" path="res://Assets/buildingtextures/house2/house_Base_color.png" id="937_lpj1t"]
+[ext_resource type="Texture2D" uid="uid://dfu1cnas1i1gs" path="res://Assets/buildingtextures/house1/door_Base_color.png" id="938_4gw3q"]
+[ext_resource type="Texture2D" uid="uid://wvl8ko06k0ad" path="res://Assets/buildingtextures/house3/house_Base_color.png" id="938_lmwmg"]
+[ext_resource type="Texture2D" uid="uid://u2ml4wafqdw8" path="res://Assets/buildingtextures/house3/roof_Base_color.png" id="939_3b0yr"]
+[ext_resource type="Texture2D" uid="uid://byvknu77uxxts" path="res://Assets/buildingtextures/house3/barroof_Base_color.png" id="940_rdipx"]
+[ext_resource type="Texture2D" uid="uid://ccktdjtjb4vx1" path="res://Assets/buildingtextures/house3/railing_Base_color.png" id="941_jlydw"]
 [ext_resource type="PackedScene" uid="uid://dvqgpuxj5qgxl" path="res://Scenes/object_spawner.tscn" id="941_xpmv6"]
-[ext_resource type="Texture2D" uid="uid://ckwo75hkv8o0c" path="res://Assets/buildingtextures/house3/door_1_Base_color.png" id="942_bjbr5"]
+[ext_resource type="Texture2D" uid="uid://slifo0mmea0e" path="res://Assets/buildingtextures/house3/door_1_Base_color.png" id="942_bjbr5"]
 [ext_resource type="PackedScene" uid="uid://4vr5la4k53qs" path="res://Scenes/item.tscn" id="942_xpmv6"]
-[ext_resource type="Texture2D" uid="uid://c3b48qcr5qf1" path="res://Assets/buildingtextures/house3/doorknob_Base_color.png" id="943_b64uh"]
+[ext_resource type="Texture2D" uid="uid://bt68tx4lt6cwh" path="res://Assets/buildingtextures/house3/doorknob_Base_color.png" id="943_b64uh"]
 [ext_resource type="PackedScene" uid="uid://d21lcg1to6bup" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse1.blend" id="943_iuhso"]
-[ext_resource type="PackedScene" uid="uid://b3m6igwlvm6be" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse2.blend" id="944_yxesf"]
-[ext_resource type="PackedScene" uid="uid://b62lmqtd8jah5" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse3.blend" id="945_agl2t"]
+[ext_resource type="PackedScene" uid="uid://ckog4e8mf4n67" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse2.blend" id="944_yxesf"]
+[ext_resource type="PackedScene" uid="uid://cry8avahrtits" path="res://Assets/3D/buildings/overngrownhouses/overgrownhouse3.blend" id="945_agl2t"]
 [ext_resource type="PackedScene" uid="uid://b8oqcyyq6ca08" path="res://Assets/3D/props/barrel.blend" id="946_shr4g"]
-[ext_resource type="PackedScene" uid="uid://cs7wfyov51sow" path="res://Assets/3D/props/bucket.blend" id="947_lmwmg"]
-[ext_resource type="PackedScene" uid="uid://jckqbfj603wt" path="res://Assets/3D/props/cart.blend" id="948_3b0yr"]
+[ext_resource type="PackedScene" uid="uid://dlk61gxhf6fxt" path="res://Assets/3D/props/bucket.blend" id="947_lmwmg"]
+[ext_resource type="PackedScene" uid="uid://li3l5yncf2vl" path="res://Assets/3D/props/cart.blend" id="948_3b0yr"]
 [ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="948_shr4g"]
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="949_jhj26"]
 [ext_resource type="PackedScene" uid="uid://dghyarcbk4mvk" path="res://Scenes/cutscene_2.tscn" id="951_jlydw"]
@@ -957,7 +957,7 @@
 [ext_resource type="PackedScene" uid="uid://cfhk0ja1rxejm" path="res://Scenes/cutscene_3.tscn" id="953_bjbr5"]
 [ext_resource type="Script" uid="uid://cuwu4fu7nu2uv" path="res://Scripts/ItemDropper.cs" id="954_b64uh"]
 [ext_resource type="PackedScene" uid="uid://cacxdfd610dnh" path="res://Assets/3D/plants/bush.blend" id="958_jhj26"]
-[ext_resource type="PackedScene" uid="uid://dadqhvugimf64" path="res://Assets/3D/buildings/dock.blend" id="960_fefhx"]
+[ext_resource type="PackedScene" uid="uid://fpgfsexof26b" path="res://Assets/3D/buildings/dock.blend" id="960_fefhx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70xvq"]
 
@@ -2888,20 +2888,21 @@ NPCName = "Mary"
 InitialDialogue = "Oh my sweet little babies! Please come back to me!"
 QuestDialogue = Array[String](["Lord Inquisitor sir! Won't you help an old woman out? I've lost my young and dearest kitties, Taz, Bridger, and Gnocchi.", "I last saw them approach some strange individuals in purple robes outside of the village.", "Would you please find them and bring them back home?"])
 AcceptedDialogue = Array[String](["Oh thank you! Please make sure they comes back safely."])
+IgnoredDialogue = Array[String](["Oh dear. Maybe they'll come back on their own some day..."])
 WaitingDialogue = "Have you found my babies yet?"
 DoneDialogue = Array[String](["Oh thank you Lord Inquisitor! Don't ever leave me again my cuties. Mama Mary will protect you here."])
 PostDoneDialogue = "Ahhh! No biting Bridger. "
-QuestTitle = "Find Mary's lost cats, Taz, Bridger, and Gnocchi, somewhere in the woods."
+QuestTitle = "Find Mary's lost cats, Taz, Bridger, and Gnocchi, somewhere in the woods near Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Mary/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98528963, -0.055199992)
-bones/2/rotation = Quaternion(-0.020427376, 0, 0, 0.9997913)
-bones/5/rotation = Quaternion(-0.12089669, 0.0065375594, 0.021764696, 0.99240494)
-bones/25/rotation = Quaternion(0.97018504, 0.017559923, -0.009276256, 0.24155037)
-bones/26/rotation = Quaternion(0.23659095, 0.0015632319, 0.018965796, 0.97142303)
-bones/34/rotation = Quaternion(0.97018504, -0.017559925, 0.009276212, 0.24155039)
-bones/35/rotation = Quaternion(0.23659095, -0.0015632319, -0.018965796, 0.97142303)
+bones/0/position = Vector3(0, 0.9920446, -0.05519999)
+bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
+bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
+bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
+bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
+bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
+bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
 
 [node name="Cube" parent="Mary/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_hy64a")
@@ -2913,23 +2914,24 @@ surface_material_override/0 = SubResource("StandardMaterial3D_jchk6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3819237, 1.9490459, 35.37815)
 script = ExtResource("423_e2eg3")
 NPCName = "Elizabeth"
-InitialDialogue = "It's been getting colder and colder..."
-QuestDialogue = Array[String](["My husband, along with other Lumberjacks from our town have gone missing over the past few days and we've been out of firewood.", "Could you gather some firewood so we can stay warm at night? You may run into those guys in the forest too. "])
-AcceptedDialogue = Array[String](["Yes! This should be enough to keep us warm for a while. Thank you.", "Let me know if gather any information of their whereabouts."])
-WaitingDialogue = "Still waiting on that firewood once you gather enough."
-DoneDialogue = Array[String](["Yes! This should be enough to keep us warm for a while. Thank you.", "It's a shame you couldn't find those lumberjacks. I do home they come back safely."])
+InitialDialogue = "Where have the lumberjacks gone? It's too cold..."
+QuestDialogue = Array[String](["My husband, along with other Lumberjacks from our town have gone missing over the past few days and we've been out of firewood.", "Would you please gather some firewood so we can stay warm? You may run into those lumberers somewhere in the woods too. "])
+AcceptedDialogue = Array[String](["Thank you Lord Inquisitor. Please come back to me once you've gotten enough.", "Let me know if you gather any information of their whereabouts. "])
+IgnoredDialogue = Array[String](["Oh, that's alright. Maybe those lumberjacks will come back soon."])
+WaitingDialogue = "Still waiting on that firewood once you've gathered enough."
+DoneDialogue = Array[String](["Yes! This should be enough to keep us warm for a while. Thank you.", "It's a shame you couldn't find those lumberjacks. I do hope they come back safely. "])
 PostDoneDialogue = "Now we'll stay warm through the night."
-QuestTitle = "Gather firewood from the forest for Elizabeth "
+QuestTitle = "Gather firewood around Brittlebay's woods for Elizabeth"
 QuestGoal = "0/15"
 
 [node name="Skeleton3D" parent="Elizabeth/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98528963, -0.055199992)
-bones/2/rotation = Quaternion(-0.020427376, 0, 0, 0.9997913)
-bones/5/rotation = Quaternion(-0.12089669, 0.0065375594, 0.021764696, 0.99240494)
-bones/25/rotation = Quaternion(0.97018504, 0.017559923, -0.009276256, 0.24155037)
-bones/26/rotation = Quaternion(0.23659095, 0.0015632319, 0.018965796, 0.97142303)
-bones/34/rotation = Quaternion(0.97018504, -0.017559925, 0.009276212, 0.24155039)
-bones/35/rotation = Quaternion(0.23659095, -0.0015632319, -0.018965796, 0.97142303)
+bones/0/position = Vector3(0, 0.9920446, -0.05519999)
+bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
+bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
+bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
+bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
+bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
+bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
 
 [node name="Cube" parent="Elizabeth/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_dtvt8")
@@ -2945,24 +2947,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5462093, 1.9490459, 37.8860
 visible = false
 script = ExtResource("424_nr7af")
 NPCName = "Dillon"
-InitialDialogue = "Gosh darn it! Those damn rats keep eating our food!"
-QuestDialogue = Array[String](["Hey! If you're looking for clues my \"Royal Inquisitor\", you need to take a look at those rats.", "They keep eating all of our food in our village and seem to have some sort of purple glow to them. Won't you help us by killing those rodents?"])
+InitialDialogue = "Gosh darn it! Those damn rats keep eating our food! "
+QuestDialogue = Array[String](["Hey! I heard you're looking for some clues about those cultists, and I might have found a lead.", "I believe it has something to do with those stinking rats, but we have no way in dealing with them. They're way too quick for us.", "They keep eating all our food and seem to have some sort of purple glow to them. Won't you help us by killing those rodents?"])
 AcceptedDialogue = Array[String](["Thanks Inquisitor sir. Make sure those rodents never try eating our food again."])
+IgnoredDialogue = Array[String](["Hmph. There's gotta be a way to drive them out..."])
 WaitingDialogue = "I still see rats scurrying about. "
-DoneDialogue = Array[String](["Hmph! Not too shabby. We'll finally be able to eat food in peace. Thank you sir.", "I believe those rats came from outside the village from some sort of campsite. That's all I know."])
+DoneDialogue = Array[String](["Hmph! Not too shabby. We'll finally be able to eat food in peace. Thank you sir.", "I believe those rats came from outside the village from some sort of campsite. That's all I know. "])
 PostDoneDialogue = "We can finally eat food again. Thank you. "
-QuestTitle = "Find and kill rats around the Village"
+QuestTitle = "Find and kill rats around Brittlebay village"
 QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98528963, -0.055199992)
-bones/2/rotation = Quaternion(-0.020427376, 0, 0, 0.9997913)
-bones/5/rotation = Quaternion(-0.12089669, 0.0065375594, 0.021764696, 0.99240494)
-bones/25/rotation = Quaternion(0.97018504, 0.017559923, -0.009276256, 0.24155037)
-bones/26/rotation = Quaternion(0.23659095, 0.0015632319, 0.018965796, 0.97142303)
-bones/34/rotation = Quaternion(0.97018504, -0.017559925, 0.009276212, 0.24155039)
-bones/35/rotation = Quaternion(0.23659095, -0.0015632319, -0.018965796, 0.97142303)
+bones/0/position = Vector3(0, 0.9920446, -0.05519999)
+bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
+bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
+bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
+bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
+bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
+bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
 
 [node name="Range" parent="Dillon" index="6"]
 radius = 12.0
@@ -2971,23 +2974,24 @@ radius = 12.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9220867, 1.9490459, 51.938004)
 script = ExtResource("425_ym0xd")
 NPCName = "Lukas"
-InitialDialogue = "Please, is there anyone to help? I've made such an important discovery!"
-QuestDialogue = Array[String](["Oh, Master Inquisitor. I didn't expect you to come. Knowing you, you make have already seen them, but I'll mention them again.", "There's been strange wooden shrines appearing around our village by those hooded individuals.", "I believe those damn Cultists set them up, and it seems to be enhancing their powers by summoning more creatures of Kyron, the God of Darkness.", "You seem like a capable fighter. Could you do the village a favor and destroy those Shrines?"])
-AcceptedDialogue = Array[String](["Oh we are truly grateful Master Inquisitor. The Kingdom and her holiness shall forever be in our debt.", "Come back to me once those Shrines have been vanquished."])
-WaitingDialogue = "Keep looking around Brittlebay village and you should find those Shrines."
-DoneDialogue = Array[String](["You did it! Our village is now safe once again. I'll look into those Shrines more in the meantime.", "You may get some more information from the town Wizard if you haven't already spoken to him."])
-PostDoneDialogue = "I heard of Shrine sightings in the next village over..."
+InitialDialogue = "Please, is there who'd hear me out? I've made such an important discovery!"
+QuestDialogue = Array[String](["Oh, Master Inquisitor. It's good to see the royal capital lending out a hand to Saltus.", "I've been doing some digging of my own into what's been going on around here and I've found something you may want to hear.", "There's been strange wooden shrines appearing around our village by some hooded individuals.", "I believe those damn Cultists set them up, and it seems to be enhancing their powers by summoning more creatures of Kyron, the God of Darkness.", "You seem like a capable fighter. Please, would you do us a favor and destroy those Shrines?"])
+AcceptedDialogue = Array[String](["Oh we are truly grateful Master Inquisitor. The King and Her holiness shall forever be in our debt.", "I marked the locations of those shrines on your map. Come back to me once those shrines have been vanquished. "])
+IgnoredDialogue = Array[String](["I understand. You must have a lot happening currently."])
+WaitingDialogue = "Look on your map for those shrines. "
+DoneDialogue = Array[String](["You did it! Our village is now safe once again. I'll look into those shrines more in the meantime.", "You may get some more information from the town Wizard if you haven't already spoken to him."])
+PostDoneDialogue = "I heard of shrine sightings in the next village over..."
 QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98528963, -0.055199992)
-bones/2/rotation = Quaternion(-0.020427376, 0, 0, 0.9997913)
-bones/5/rotation = Quaternion(-0.12089669, 0.0065375594, 0.021764696, 0.99240494)
-bones/25/rotation = Quaternion(0.97018504, 0.017559923, -0.009276256, 0.24155037)
-bones/26/rotation = Quaternion(0.23659095, 0.0015632319, 0.018965796, 0.97142303)
-bones/34/rotation = Quaternion(0.97018504, -0.017559925, 0.009276212, 0.24155039)
-bones/35/rotation = Quaternion(0.23659095, -0.0015632319, -0.018965796, 0.97142303)
+bones/0/position = Vector3(0, 0.9920446, -0.05519999)
+bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
+bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
+bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
+bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
+bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
+bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
 
 [node name="Cube" parent="Lukas/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_83jqk")
@@ -2998,37 +3002,43 @@ surface_material_override/0 = SubResource("StandardMaterial3D_rna7i")
 [node name="Range" parent="Lukas" index="6"]
 radius = 9.0
 
-[node name="Samual" parent="." instance=ExtResource("421_81rqo")]
+[node name="Samuel" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.565277, 1.9490459, 53.176186)
 visible = false
 script = ExtResource("426_xyhap")
-NPCName = "Samual"
+NPCName = "Samuel"
 InitialDialogue = "Somebody please! Help my son!"
-WaitingDialogue = "Please deliver the medicine to me soon. "
-QuestTitle = "Gather resources to craft the medicine "
-QuestGoal = "Bleeding Heart: 0/3, Dead Ooze: 0/3, Seed: 0/3"
+QuestDialogue = Array[String](["Lord Inquisitor! My son has been ill for quite some time now. He's gotten worse, but the local Wizard has figured out a cure.", "Please, won't you gather the resources needed so I can craft the medicine?"])
+AcceptedDialogue = Array[String](["Oh thank you! Once you have what's needed, please give them to me so I can make the medicine. Please be quick!"])
+IgnoredDialogue = Array[String](["No. But my son..."])
+WaitingDialogue = "Please deliver the resources to me soon."
+DoneDialogue = Array[String](["You did it! I'll make the medicine for my boy as soon as I can. Thank you so much!"])
+PostDoneDialogue = "My son will get better soon. Thank you again."
+QuestTitle = "Gather monster resources and deliver it to Samuel so he can craft a medicine"
+QuestGoal = "Bleeding Heart: 0/3, Dead Ooze: 0/4, Seed: 0/2"
 
 [node name="Martha" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.576809, 1.9490459, 64.33432)
 script = ExtResource("427_46020")
 NPCName = "Martha"
 InitialDialogue = "Those Cultists took my family! Something must be done! "
-QuestDialogue = Array[String](["Lord Inquisitor! Those Cultists took my husband and daughter and changed them into these creatures of darkness right in front of my eyes!", "Please, won't you get the vengeance that they deserve?"])
-AcceptedDialogue = Array[String](["Oh thank you Lord Inquisitor! May her lady's grace forever be upon us. Return to me once those monsters are brought to justice."])
+QuestDialogue = Array[String](["Lord Inquisitor! Those cultists took my husband and daughter and changed them into these creatures of darkness right in front of my eyes!", "Please, won't you get the vengeance that they deserve?"])
+AcceptedDialogue = Array[String](["Oh thank you Lord Inquisitor! May Her Lady's grace forever be upon us. Please return to me once those monsters are brought to justice."])
+IgnoredDialogue = Array[String](["Maybe someone else can help me."])
 WaitingDialogue = "My family won't be brought to justice until those monsters are dead!"
-DoneDialogue = Array[String](["Thank you, oh thank you so much Lord Inquisitor. My husband and daughter may now rest in peace. If you find any more of those Cultists, make sure they get what they deserve."])
+DoneDialogue = Array[String](["Thank you, oh thank you so much Lord Inquisitor! My husband and daughter may now rest in peace. If you find any more of those cultists, make sure they get what they deserve."])
 PostDoneDialogue = "My family can now rest in peace. Thank you."
-QuestTitle = "Kill creatures from the forest biome to avenge Martha's family"
+QuestTitle = "Kill creatures that reside in the forest to avenge Martha's family"
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98528963, -0.055199992)
-bones/2/rotation = Quaternion(-0.020427376, 0, 0, 0.9997913)
-bones/5/rotation = Quaternion(-0.12089669, 0.0065375594, 0.021764696, 0.99240494)
-bones/25/rotation = Quaternion(0.97018504, 0.017559923, -0.009276256, 0.24155037)
-bones/26/rotation = Quaternion(0.23659095, 0.0015632319, 0.018965796, 0.97142303)
-bones/34/rotation = Quaternion(0.97018504, -0.017559925, 0.009276212, 0.24155039)
-bones/35/rotation = Quaternion(0.23659095, -0.0015632319, -0.018965796, 0.97142303)
+bones/0/position = Vector3(0, 0.9920446, -0.05519999)
+bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
+bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
+bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
+bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
+bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
+bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_tqcmk")
@@ -3044,9 +3054,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6124573, 1.9490459, 27.186
 visible = false
 script = ExtResource("428_of432")
 NPCName = "Finn"
-InitialDialogue = "Hey mister. I've got some valuable information you might want to hear. "
+InitialDialogue = "Master Inquisitor, I've got some valuable information you may want to hear."
+QuestDialogue = Array[String](["After we had to move from our past village, we left a lot of valuable things behind.", "I heard of a useful tool somewhere in Willow-Mire. You may want to check it out."])
+AcceptedDialogue = Array[String](["Be careful when looking around the town. It's changed since the last time we were there. Be on your guard."])
+IgnoredDialogue = Array[String](["You may want to reconsider. It could help you further down the road."])
 WaitingDialogue = "I still wonder what that tool could be."
-QuestTitle = "Find the hidden weapon on the swamp island"
+PostDoneDialogue = "So the tool was some caltrops? Sounds useful."
+QuestTitle = "Find the hidden weapon somewhere in the swamp island village"
 QuestGoal = "0/1"
 
 [node name="HushedTrees" parent="." groups=["Terrain"] instance=ExtResource("430_2rj2p")]
@@ -4254,19 +4268,19 @@ transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.
 script = ExtResource("926_lmwmg")
 NPCName = "Inquisitor Richard"
 InitialDialogue = ""
-QuestDialogue = Array[String](["Welp, looks like we made it. Took quite a while to reach Saltus Island.", "The King will be pleased once we finish our mission, so let's get is done quickly now shall we?", "You've been a little quiet since we got here. Wait, don't tell me you forgot our mission?"])
-AcceptedDialogue = Array[String](["Fine, I guess I'll have to remind you now don't I?", "We're Inquisitors from the Kingdom of Whilstrum.", "The King has tasked us to investigate the disturbances happening in Saltus, one of the Kingdom's many provinces.", "I've been told that there's been a series of kidnappings, deaths, and even religious defiance to our God, Xoraya.", "From the information we've been given, a new Cultist group has emerged on the island.", "They may have something to do with what's been going on.", "Don't forget why we're here next time. And remember that you're only really here for your fighting capabilities.", "Leave the hard work to those above you.", "Make yourself useful and go investigate the village down the path. They may know something we don't. "])
-IgnoredDialogue = Array[String](["Well, that's good at least. Don't forget the reason you were invited to come. Those fighting capabilities are the only thing you're good for.", "Now go make yourself useful and investigate the village down the path. They may know something we don't."])
-WaitingDialogue = "Don't disappoint our King. Head over to that village down the road. "
+QuestDialogue = Array[String](["Here we are rookie. Saltus Island. Took us quite a while to reach it.", "Our King shall be pleased once we've completed our mission, so let's get it done quickly now shall we?", "You've been a little quiet since we got here. You doing alright? I can debrief the mission again if you'd like."])
+AcceptedDialogue = Array[String](["All right rookie. Let me recount the details for you once more.", "As Inquisitors, It's our holy duty to assist the vast regions of the Whilstrum Kingdom in dire times of need.", "Our King has tasked us to investigate the disturbances occurring in Saltus, a far off island from the Kingdom's capital.", "We've been told that there's been a series of kidnappings, deaths, and even open defiance to our God, Xoraya. ", "From the information we've been given, a new cultist group has emerged on the island. They may have something to do with what's been going on.", "Now that you're caught up with our mission, let's start our holy work.", "I heard back at the capital of your incredible fighting skills, make good use of it when you're in danger. We don't want to lose more capable people.", "I'll get more of our supplies from the ship. Why don't you go investigate the village down the path? They may know something we don't."])
+IgnoredDialogue = Array[String](["Well good thing you remember, we've got a lot to do.", "I'll get more of our supplies from the ship. Why don't you go investigate the village down the path? They may know something we don't."])
+WaitingDialogue = "Check up on that village down the road. I'll get our supplies."
 
 [node name="Skeleton3D" parent="Richard/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98528963, -0.055199992)
-bones/2/rotation = Quaternion(-0.020427376, 0, 0, 0.9997913)
-bones/5/rotation = Quaternion(-0.12089669, 0.0065375594, 0.021764696, 0.99240494)
-bones/25/rotation = Quaternion(0.97018504, 0.017559923, -0.009276256, 0.24155037)
-bones/26/rotation = Quaternion(0.23659095, 0.0015632319, 0.018965796, 0.97142303)
-bones/34/rotation = Quaternion(0.97018504, -0.017559925, 0.009276212, 0.24155039)
-bones/35/rotation = Quaternion(0.23659095, -0.0015632319, -0.018965796, 0.97142303)
+bones/0/position = Vector3(0, 0.9920446, -0.05519999)
+bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
+bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
+bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
+bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
+bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
+bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
 
 [node name="Cube" parent="Richard/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_a2g2v")
@@ -4524,19 +4538,19 @@ transform = Transform3D(0, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 0, -32.437317
 script = ExtResource("429_wkm1a")
 NPCName = "Matthew"
 InitialDialogue = ""
-QuestDialogue = Array[String](["Young man, are you alright? You don't look too well...", "From the looks of it, you seem to be an Inquisitor.. from the Kingdom of Whilstrum!?", "Please excuse my rudeness Master Inquisitor, I only meant to see if you weren't in any harm. You seem to be alright.", "It's such a relief that the Kingdom sent over Inquisitors. The island of Saltus is in dire need of your help.", "Please, assist some of my village's townsfolk in their needs, then you'll understand more of what's going on here.", "Oh and one more thing Master Inquisitor. Welcome to Brittlebay village. May her holy light shine upon us all."])
+QuestDialogue = Array[String](["Young man, are you alright? You don't look too well...", "From the looks of it, you seem to be an Inquisitor... from the Kingdom's capital!?", "Please excuse my rudeness Master Inquisitor, I only meant to see if you weren't in any harm. You seem to be alright from the looks of it.", "It's such a relief that the King sent over Inquisitors. The island of Saltus is in dire need of your help.", "Please, assist some of my village's townsfolk in their needs, then you'll understand more of what's going on here.", "Oh, and one more thing, Master Inquisitor. Welcome to Brittlebay village. My name is Matthew, and I am the chief of this village. May Her holy light shine upon us all. "])
 AcceptedDialogue = []
 IgnoredDialogue = []
 WaitingDialogue = "Please help out the townsfolk. We need your help."
 
 [node name="Skeleton3D" parent="Matthew/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98528963, -0.055199992)
-bones/2/rotation = Quaternion(-0.020427376, 0, 0, 0.9997913)
-bones/5/rotation = Quaternion(-0.12089669, 0.0065375594, 0.021764696, 0.99240494)
-bones/25/rotation = Quaternion(0.97018504, 0.017559923, -0.009276256, 0.24155037)
-bones/26/rotation = Quaternion(0.23659095, 0.0015632319, 0.018965796, 0.97142303)
-bones/34/rotation = Quaternion(0.97018504, -0.017559925, 0.009276212, 0.24155039)
-bones/35/rotation = Quaternion(0.23659095, -0.0015632319, -0.018965796, 0.97142303)
+bones/0/position = Vector3(0, 0.9920446, -0.05519999)
+bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
+bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
+bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
+bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
+bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
+bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
 
 [node name="Cube" parent="Matthew/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_1tqb4")

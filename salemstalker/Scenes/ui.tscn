@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=65 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dufmkp4txcmvx" path="res://Scenes/inv_world.tscn" id="3_nf4gj"]
 [ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
+[ext_resource type="Texture2D" uid="uid://c8lsaswuoorux" path="res://Assets/UI/loadingtemp.png" id="6_0o3wc"]
 [ext_resource type="Script" uid="uid://b351y65ve7t5e" path="res://Scripts/itemList.cs" id="6_kuui0"]
 [ext_resource type="PackedScene" uid="uid://devj8nqafvvvk" path="res://Scenes/quest_world.tscn" id="6_ryf15"]
 [ext_resource type="PackedScene" uid="uid://bjqhyqqld6job" path="res://Scenes/resource_World.tscn" id="6_whq80"]
@@ -15,22 +16,22 @@
 [ext_resource type="Texture2D" uid="uid://wso5sa0t8sgl" path="res://Assets/2D/Placeholder/cat2.png" id="10_jd57c"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="10_nt8jn"]
 [ext_resource type="Texture2D" uid="uid://bfghb222o1dor" path="res://Assets/2D/Placeholder/cat3.jpeg" id="11_85lyl"]
-[ext_resource type="Texture2D" uid="uid://c4cernxpmcelt" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
+[ext_resource type="Texture2D" uid="uid://cngcek0e1h5h3" path="res://Assets/UI/uiblacksmith.png" id="12_kuui0"]
 [ext_resource type="PackedScene" uid="uid://b6vrp768yxybg" path="res://Scenes/shop_preview_world.tscn" id="12_whq80"]
 [ext_resource type="Texture2D" uid="uid://ckypyf8nhveux" path="res://Assets/UI/resources/bleedheart.png" id="13_kjfio"]
 [ext_resource type="Texture2D" uid="uid://cqu65nmwafl6m" path="res://Assets/UI/resources/heart.png" id="14_0o3wc"]
 [ext_resource type="Texture2D" uid="uid://bhqvesq42a0yu" path="res://Assets/2D/Controls.png" id="14_8fs27"]
 [ext_resource type="Texture2D" uid="uid://2kjwf2irjlgu" path="res://Assets/UI/resources/chippedfang.png" id="15_ebfgw"]
 [ext_resource type="Texture2D" uid="uid://dbcr6g2lqi5f5" path="res://Assets/UI/resources/fang.png" id="16_mirbq"]
-[ext_resource type="FontFile" uid="uid://c2u1385tn7ero" path="res://Assets/Fonts/DumNorm.ttf" id="17_fe2sg"]
+[ext_resource type="FontFile" uid="uid://h85473eyjlu7" path="res://Assets/Fonts/DumNorm.ttf" id="17_fe2sg"]
 [ext_resource type="Texture2D" uid="uid://cumokc43ikhlr" path="res://Assets/UI/resources/rottenflesh.png" id="17_ipwe8"]
 [ext_resource type="Texture2D" uid="uid://hwcjtkbockhg" path="res://Assets/UI/resources/scorchedflesh.png" id="18_al6qt"]
 [ext_resource type="Texture2D" uid="uid://dlsorxoxss6mc" path="res://Assets/UI/resources/seed.png" id="19_mdsrb"]
 [ext_resource type="Texture2D" uid="uid://cgn6ppmfn5m1x" path="res://Assets/UI/resources/deadooze.png" id="20_bsvcc"]
-[ext_resource type="Texture2D" uid="uid://kyojqtb6o382" path="res://Assets/UI/voidhbar.png" id="20_jd57c"]
-[ext_resource type="Texture2D" uid="uid://c82kcangufgao" path="res://Assets/UI/healbar.png" id="21_jd57c"]
-[ext_resource type="Texture2D" uid="uid://cilwykdcbmrj3" path="res://Assets/UI/voidbar.png" id="22_85lyl"]
-[ext_resource type="Texture2D" uid="uid://bvd0ptu4spxoi" path="res://Assets/UI/stambar.png" id="23_mplvk"]
+[ext_resource type="Texture2D" uid="uid://chc6qthr84456" path="res://Assets/UI/voidhbar.png" id="20_jd57c"]
+[ext_resource type="Texture2D" uid="uid://du1ky338dkiqv" path="res://Assets/UI/healbar.png" id="21_jd57c"]
+[ext_resource type="Texture2D" uid="uid://mfl2f3gvrrlv" path="res://Assets/UI/voidbar.png" id="22_85lyl"]
+[ext_resource type="Texture2D" uid="uid://c0mv51nrsl3a2" path="res://Assets/UI/stambar.png" id="23_mplvk"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
 
@@ -57,18 +58,19 @@ shader_parameter/clock_feather = 0.0
 shader_parameter/progress = -1.0
 shader_parameter/progress_bias = Vector2(0, 0)
 
-[sub_resource type="LabelSettings" id="LabelSettings_4vbiv"]
-line_spacing = 3.08
-font_size = 75
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_pmm21"]
 line_spacing = 3.08
 font = ExtResource("17_fe2sg")
 font_size = 17
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ebfgw"]
+font = ExtResource("10_nt8jn")
+font_size = 100
+font_color = Color(0.36862746, 0.25490198, 0.4862745, 1)
+outline_size = 15
+outline_color = Color(0.85490197, 0.7647059, 0.8745098, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_85lyl"]
 line_spacing = 3.08
@@ -261,33 +263,20 @@ grow_vertical = 2
 script = ExtResource("1_smcll")
 
 [node name="Loading" type="ColorRect" parent="."]
-visible = false
 z_index = 4096
 material = SubResource("ShaderMaterial_3r70p")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -0.9999962
+offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(539, 303)
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
-
-[node name="Text" type="Label" parent="Loading"]
-use_parent_material = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_qdvrb")
-text = "Loading..."
-label_settings = SubResource("LabelSettings_4vbiv")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Q" type="Label" parent="Loading"]
 visible = false
@@ -304,6 +293,28 @@ text = "'Q' to quit"
 label_settings = SubResource("LabelSettings_pmm21")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="NameText" type="Label" parent="Loading"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -235.0
+offset_bottom = -264.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_nt8jn")
+text = "Loading Game"
+label_settings = SubResource("LabelSettings_ebfgw")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Load" type="Sprite2D" parent="Loading"]
+use_parent_material = true
+position = Vector2(542.63635, 425.72726)
+scale = Vector2(0.9090909, 0.9090909)
+texture = ExtResource("6_0o3wc")
 
 [node name="Dead" type="ColorRect" parent="."]
 visible = false
