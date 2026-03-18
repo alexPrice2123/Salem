@@ -35,9 +35,9 @@ public partial class hollowBrute : Monster3d
 		EveryFrame(delta);
 		_distance = (_player.GlobalPosition - GlobalPosition).Length();
 		if (_distance <= WalkRange)
-        {
-            _speedOffset = RunSpeed - WalkSpeed;
-        }
+		{
+			_speedOffset = RunSpeed - WalkSpeed;
+		}
 		else{_speedOffset = 0f;}
 		if (_health <= 0)
 		{
