@@ -563,11 +563,11 @@ public partial class Monster3d : CharacterBody3D
 		if (_runArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape.Duplicate() is SphereShape3D shape2)
 		{
 			shape2.Radius = WalkRange * 3;
-			_walkArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape = shape2;
-			if (_walkArea.GetNode<MeshInstance3D>("Debug").Mesh.Duplicate() is SphereMesh debugShape)
+			_runArea.GetNode<CollisionShape3D>("CollisionShape3D").Shape = shape2;
+			if (_runArea.GetNode<MeshInstance3D>("Debug").Mesh.Duplicate() is SphereMesh debugShape)
 			{
 				debugShape.Radius = WalkRange * 3;
-				_walkArea.GetNode<MeshInstance3D>("Debug").Mesh = debugShape;
+				_runArea.GetNode<MeshInstance3D>("Debug").Mesh = debugShape;
 			}
 		}
 		if (DebugShapes)
@@ -588,7 +588,8 @@ public partial class Monster3d : CharacterBody3D
 		AttackRangeSqr = AttackRange * AttackRange;
 		SpawnRangeSqr = SpawnRange * SpawnRange;
 
-		Vector3 diff        = _player.GlobalPosition - GlobalPosition;
+		Vector3 diff = _player.GlobalPosition - GlobalPosition;
+		GD.Print(diff);
 		if (diff.Length() <= WalkRange)
         {
             ForceSeePlayer();
