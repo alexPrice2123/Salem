@@ -234,28 +234,31 @@ public partial class Player3d : CharacterBody3D
 		
 		
 		// --- Sword attack (Attack Action) ---
-		else if (Input.IsActionPressed("attack"))
+		else if (@event.IsActionPressed("attack"))
 		{
-			if(!GetNode<Sprite2D>("UI/Controls").Visible)
+			if (true)
 			{
-				if(!IsInstanceValid(_lastSeen) && !_inv.Visible)
+				if(!GetNode<Sprite2D>("UI/Controls").Visible)
 				{
-					Swing(); // Perform a normal sword swing
-				}
-				if (IsInstanceValid(_lastSeen) && !_inv.Visible)
-				{
-					if (_lastSeen.Name == "Anvil")
+					if(!IsInstanceValid(_lastSeen) && !_inv.Visible)
 					{
-						_lastSeen = null;
-						_smithShop.Visible = true;
-						Input.MouseMode = Input.MouseModeEnum.Visible;
+						Swing(); // Perform a normal sword swing
+					}
+					if (IsInstanceValid(_lastSeen) && !_inv.Visible)
+					{
+						if (_lastSeen.Name == "Anvil")
+						{
+							_lastSeen = null;
+							_smithShop.Visible = true;
+							Input.MouseMode = Input.MouseModeEnum.Visible;
+						}
 					}
 				}
-			}
-			else // This block handles the first attack, potentially hiding a "Controls" overlay
-			{
-				GetNode<Sprite2D>("UI/Controls").Visible = false;
-				StartCut(0f);
+				else // This block handles the first attack, potentially hiding a "Controls" overlay
+				{
+					GetNode<Sprite2D>("UI/Controls").Visible = false;
+					StartCut(0f);
+				}
 			}
 		}
 
@@ -818,16 +821,20 @@ public partial class Player3d : CharacterBody3D
 			if (Time.GetTicksMsec() - _lastHit > swingTime)
 			{
 				if(_comboNum>2 || Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 100)
+				
 				{
+					GD.Print("combo");
 					_comboNum = 1;
 				}
-				else
+				else             
 				{
+					GD.Print("++");
 					_comboNum++;
 				}
 			}
 			else
 			{
+				GD.Print("working?");
 				_comboNum = 1;
 			}
 			if (cooldown.TimeLeft > 0)
