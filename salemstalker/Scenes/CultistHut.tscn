@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://dmgtv0o1qnx6"]
+[gd_scene load_steps=35 format=3 uid="uid://dmgtv0o1qnx6"]
 
 [ext_resource type="Script" uid="uid://csc1wgxwkys3h" path="res://Scripts/CultistHut.cs" id="1_sak6b"]
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_n642y"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_4aca4"]
-[ext_resource type="PackedScene" uid="uid://cunysakvjyg8r" path="res://Assets/3D/buildings/cultistshrineorbtest.blend" id="4_0bcjk"]
+[ext_resource type="PackedScene" uid="uid://cbougraiw7tt1" path="res://Assets/3D/buildings/cultistshrineorbtest.blend" id="4_0bcjk"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="5_mqdp6"]
+[ext_resource type="Texture2D" uid="uid://dyqrakudt8des" path="res://Assets/UI/shrineicon.png" id="6_7m6cr"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7m6cr"]
 seamless = true
@@ -132,16 +133,32 @@ shader_parameter/noise = SubResource("NoiseTexture2D_xdlj8")
 radius = 0.5649414
 height = 3.314209
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7m6cr"]
+animation = &"Sphere_002Action"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mdjrw"]
 animation = &"Sphere_002Action"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ve2r1"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_50012"]
+xfade_time = 1.0
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6udep"]
+xfade_time = 1.0
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jyhde"]
 states/Sphere_002Action/node = SubResource("AnimationNodeAnimation_mdjrw")
 states/Sphere_002Action/position = Vector2(410, 130)
-transitions = ["Start", "Sphere_002Action", SubResource("AnimationNodeStateMachineTransition_ve2r1")]
+"states/Sphere_002Action 2/node" = SubResource("AnimationNodeAnimation_7m6cr")
+"states/Sphere_002Action 2/position" = Vector2(420.5, 25)
+transitions = ["Start", "Sphere_002Action", SubResource("AnimationNodeStateMachineTransition_ve2r1"), "Sphere_002Action", "Sphere_002Action 2", SubResource("AnimationNodeStateMachineTransition_50012"), "Sphere_002Action 2", "Sphere_002Action", SubResource("AnimationNodeStateMachineTransition_6udep")]
+graph_offset = Vector2(36, -80)
 
 [node name="Shrine" type="Node3D"]
 script = ExtResource("1_sak6b")
@@ -198,7 +215,7 @@ material_override = SubResource("StandardMaterial3D_mqdp6")
 material_override = SubResource("StandardMaterial3D_mqdp6")
 
 [node name="Sphere_002" parent="Model" index="4"]
-transform = Transform3D(-0.05405041, -0.022552654, 0.07574394, -0.0054102303, 0.092604905, 0.023712283, -0.07884477, 0.009106074, -0.05355181, -0.00052637234, 1.0754052, 0.0016484503)
+transform = Transform3D(-0.00047859093, -0.036939923, 0.088331364, -0.0067413608, 0.088126205, 0.03681763, -0.09550674, -0.0060352953, -0.0030414136, -0.00052637234, 1.0754052, 0.0016484503)
 material_override = SubResource("ShaderMaterial_mqdp6")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Model"]
@@ -212,6 +229,14 @@ shape = SubResource("CapsuleShape3D_mqdp6")
 root_node = NodePath("../Model")
 tree_root = SubResource("AnimationNodeStateMachine_jyhde")
 anim_player = NodePath("../Model/AnimationPlayer")
+
+[node name="Icon" type="Sprite3D" parent="."]
+transform = Transform3D(-5.6824803e-08, 1.3, 5.6824803e-08, 0, -5.6824803e-08, 1.3, 1.3, 5.6824803e-08, 2.483891e-15, 0, 326.74033, 0)
+visible = false
+layers = 2
+pixel_size = 0.4
+texture_filter = 0
+texture = ExtResource("6_7m6cr")
 
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
 

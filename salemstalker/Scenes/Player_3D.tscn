@@ -96,7 +96,7 @@ shader_parameter/dizziness = 0.0
 shader_parameter/wiggleMult = 0.1
 shader_parameter/wiggleTime = 1.0
 shader_parameter/wiggleY = 2.0
-shader_parameter/BlendAmount = 1.4901199918426755e-07
+shader_parameter/BlendAmount = 1.4901199918426758e-07
 shader_parameter/change_color_depth = true
 shader_parameter/target_color_depth = 4
 shader_parameter/dithering = true
@@ -129,18 +129,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.422
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.1555266, -0.5163339, 0.69619817, 0.47383434)
-bones/19/rotation = Quaternion(0.5927497, -0.03552327, 0.031166853, 0.8039991)
-bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
-bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
-bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
-bones/23/rotation = Quaternion(-0.078242995, 0.054600544, 0.59484905, 0.79815507)
-bones/25/rotation = Quaternion(0.367195, 0.110883325, 0.45397994, 0.80422324)
-bones/26/rotation = Quaternion(-0.30964947, -0.010137768, -0.10400323, 0.9450914)
-bones/27/rotation = Quaternion(-0.0527684, -0.02960059, -0.34093818, 0.9381367)
+bones/18/rotation = Quaternion(-0.15686579, -0.5134909, 0.694834, 0.47846204)
+bones/19/rotation = Quaternion(0.5891057, -0.035472956, 0.032728244, 0.8066133)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5344945, 0.047013365, 0.8438632, 0.039638847, 0.9987475, -0.030535556, -0.84424156, 0.01712887, -0.5356884, -0.18344894, 1.4057474, 0.41744462)
+transform = Transform3D(-0.5258363, 0.046533257, 0.84931195, 0.04212571, 0.99870193, -0.028636992, -0.8495416, 0.020719554, -0.52711385, -0.18814531, 1.405508, 0.41902784)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")
