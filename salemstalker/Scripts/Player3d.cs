@@ -839,7 +839,9 @@ public partial class Player3d : CharacterBody3D
 			}
 			if (cooldown.TimeLeft > 0)
 			{
-				await ToSignal(cooldown,"timeout");
+				return;
+				//GD.Print("timeout_await");
+				//await ToSignal(cooldown,"timeout");
 			}
 			int tempcool = _comboNum;
 			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
