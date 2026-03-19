@@ -17,6 +17,7 @@ public partial class Item : CharacterBody3D
 		Vector3 velocity = Velocity;
 		if (!IsOnFloor()) { velocity.Y -= 7f * (float)delta; } else { velocity = new Vector3(0, 0, 0); }
 		Velocity = velocity;
+		LookAt(new Vector3(_cachedPlayerPos.X, GlobalPosition.Y, _cachedPlayerPos.Z), Vector3.Up);
 		MoveAndSlide();
 	}
 	private void _on_hitbox_body_entered(Node3D body) // This method essentially works as a PickUpItem method
