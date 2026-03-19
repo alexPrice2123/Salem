@@ -1,924 +1,33 @@
-[gd_scene load_steps=1189 format=4 uid="uid://bap0k6fax0p86"]
+[gd_scene load_steps=158 format=4 uid="uid://bap0k6fax0p86"]
 
-[ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="1_fb5os"]
 [ext_resource type="Script" uid="uid://bp2gqxihfqjlx" path="res://Scenes/NewWorld.cs" id="1_jhj26"]
 [ext_resource type="Texture2D" uid="uid://d1pv7egbxv0kk" path="res://Assets/UI/mapagainagain.png" id="2_v8qwt"]
 [ext_resource type="PackedScene" uid="uid://huk253tl7ax7" path="res://Scenes/Monsters/hollowBrute.tscn" id="5_4psjf"]
-[ext_resource type="Script" uid="uid://c2l8t4xcdxwvu" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="5_nc3gf"]
 [ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/sCultist.tscn" id="6_81ace"]
 [ext_resource type="PackedScene" uid="uid://dmgtv0o1qnx6" path="res://Scenes/CultistHut.tscn" id="6_677id"]
-[ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="6_r8fd3"]
 [ext_resource type="PackedScene" uid="uid://cdyf44r2hpl3e" path="res://Scenes/Monsters/vineTangler.tscn" id="7_5m6g4"]
-[ext_resource type="Texture2D" uid="uid://chu6uwfbaqyat" path="res://Assets/2D/sand.png" id="7_h8aoc"]
-[ext_resource type="Texture2D" uid="uid://xcspp642up40" path="res://Assets/2D/midocean.png" id="9_1uftk"]
 [ext_resource type="PackedScene" uid="uid://bu17vktj11nsu" path="res://Scenes/Monsters/lumberJack.tscn" id="9_byw2m"]
 [ext_resource type="PackedScene" uid="uid://c3gi3vrev7n0x" path="res://Scenes/Monsters/underBrush.tscn" id="10_ptcpy"]
 [ext_resource type="PackedScene" uid="uid://crxygapcq66ft" path="res://Scenes/Monsters/flyingPesk.tscn" id="10_qcek0"]
-[ext_resource type="Script" uid="uid://043vjblb04jf" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="15_v02e0"]
-[ext_resource type="Texture2D" uid="uid://duyqji6d5wl4n" path="res://Assets/3D/plants/bush_goodtreebkgdless_kat_px.png" id="16_hs260"]
-[ext_resource type="Texture2D" uid="uid://bvetwdh4pb7vn" path="res://Assets/2D/Grass.png" id="16_rdipx"]
-[ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="17_q2rbx"]
-[ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="17_rjq1j"]
-[ext_resource type="Script" uid="uid://d33x21vao7tj2" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="18_osg54"]
-[ext_resource type="PackedScene" uid="uid://blt7o2y8rc0lv" path="res://Assets/3D/plants/tree.blend" id="21_rxyfw"]
-[ext_resource type="Script" uid="uid://cgf61yxk46wa4" path="res://addons/terrabrush/Scripts/EditorResources/ObjectDefinitionResource.cs" id="22_rabu8"]
-[ext_resource type="Script" uid="uid://comabiqrwe5u0" path="res://addons/terrabrush/Scripts/EditorResources/ObjectResource.cs" id="23_r0smi"]
-[ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="24_nly56"]
-[ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="25_tjcsd"]
-[ext_resource type="Texture2D" uid="uid://qwr5lnd3231y" path="res://Assets/3D/plants/grass3d.png" id="26_iuhso"]
-[ext_resource type="Texture2D" uid="uid://tjq33somhl15" path="res://Scenes/World/Foliage_0_0_0.res" id="26_n5auh"]
-[ext_resource type="Texture2D" uid="uid://daaucpomjga2y" path="res://Scenes/World/Foliage_0_0_1.res" id="27_ejjek"]
-[ext_resource type="Texture2D" uid="uid://mngvtc65froj" path="res://Scenes/World/Heightmap_0_0.res" id="28_v02e0"]
-[ext_resource type="Texture2D" uid="uid://jljni2un267f" path="res://Scenes/World/Object_0_0_0.res" id="29_hs260"]
-[ext_resource type="Texture2D" uid="uid://c6b2si6o2cvl0" path="res://Scenes/World/Splatmap_0_0_0.res" id="30_rjq1j"]
-[ext_resource type="Texture2D" uid="uid://c1h7belsbf2yo" path="res://Scenes/World/Splatmap_0_0_1.res" id="31_osg54"]
-[ext_resource type="Texture2D" uid="uid://b0mpdy7tb6ldf" path="res://Scenes/World/Splatmap_0_0_2.res" id="32_o2cid"]
-[ext_resource type="Texture2D" uid="uid://dhejp87xfpifv" path="res://Scenes/World/Water_0_0.res" id="33_ve2tm"]
-[ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="34_rxyfw"]
-[ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="35_rabu8"]
-[ext_resource type="Texture2D" uid="uid://cels2dpuuom03" path="res://Scenes/World/Foliage_-1_0_0.res" id="36_g5cmj"]
 [ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="36_r0smi"]
-[ext_resource type="Texture2D" uid="uid://ndwxshctfwxv" path="res://Scenes/World/Foliage_-1_0_1.res" id="37_y2u06"]
-[ext_resource type="Texture2D" uid="uid://bkln8nthucnkb" path="res://Scenes/World/Heightmap_-1_0.res" id="38_13etl"]
 [ext_resource type="PackedScene" uid="uid://dbhqhurkcdks0" path="res://Scenes/Monsters/hollowNormal.tscn" id="38_osg54"]
-[ext_resource type="Texture2D" uid="uid://nx01e1rsa1yk" path="res://Scenes/World/Object_-1_0_0.res" id="39_gvihv"]
-[ext_resource type="Texture2D" uid="uid://cnshr2h3d25vv" path="res://Scenes/World/Splatmap_-1_0_0.res" id="40_n36u0"]
-[ext_resource type="Texture2D" uid="uid://c6wsk0flnno4h" path="res://Scenes/World/Splatmap_-1_0_1.res" id="41_f1a1r"]
-[ext_resource type="Texture2D" uid="uid://2x1sktrokhi5" path="res://Scenes/World/Splatmap_-1_0_2.res" id="42_k7atx"]
-[ext_resource type="Texture2D" uid="uid://bfpa532cel4s0" path="res://Scenes/World/Water_-1_0.res" id="43_xxkyo"]
-[ext_resource type="Texture2D" uid="uid://0k258of2hevp" path="res://Scenes/World/Foliage_-1_-1_0.res" id="44_jmvp8"]
-[ext_resource type="Texture2D" uid="uid://c5yaql3r6joop" path="res://Scenes/World/Foliage_-1_-1_1.res" id="45_nncql"]
-[ext_resource type="Texture2D" uid="uid://c3p4davitlja2" path="res://Scenes/World/Heightmap_-1_-1.res" id="46_yj2l7"]
-[ext_resource type="Texture2D" uid="uid://mfr7for7bcvx" path="res://Scenes/World/Object_-1_-1_0.res" id="47_fx6sd"]
-[ext_resource type="Texture2D" uid="uid://dkte2sl1mbgpf" path="res://Scenes/World/Splatmap_-1_-1_0.res" id="48_8b3bu"]
-[ext_resource type="Texture2D" uid="uid://65ijvriu6fwq" path="res://Scenes/World/Splatmap_-1_-1_1.res" id="49_pj1wl"]
-[ext_resource type="Texture2D" uid="uid://mtwre2rra1n2" path="res://Scenes/World/Splatmap_-1_-1_2.res" id="50_1nepi"]
-[ext_resource type="Texture2D" uid="uid://ckyrpt0n5xjqb" path="res://Scenes/World/Water_-1_-1.res" id="51_xydo5"]
-[ext_resource type="Texture2D" uid="uid://cyrwnwba6l2dj" path="res://Scenes/World/Foliage_0_-1_0.res" id="52_7lsta"]
-[ext_resource type="Texture2D" uid="uid://byefs5t43eeiw" path="res://Scenes/World/Foliage_0_-1_1.res" id="53_81rqo"]
-[ext_resource type="Texture2D" uid="uid://f4ry2x28khk" path="res://Scenes/World/Heightmap_0_-1.res" id="54_pvlar"]
-[ext_resource type="Texture2D" uid="uid://djnefmcwptfwe" path="res://Scenes/World/Object_0_-1_0.res" id="55_e2eg3"]
-[ext_resource type="Texture2D" uid="uid://cx7qyaen1jt5o" path="res://Scenes/World/Splatmap_0_-1_0.res" id="56_nr7af"]
-[ext_resource type="Texture2D" uid="uid://eops2soyvhag" path="res://Scenes/World/Splatmap_0_-1_1.res" id="57_ym0xd"]
-[ext_resource type="Texture2D" uid="uid://dec53p7jw8j2k" path="res://Scenes/World/Splatmap_0_-1_2.res" id="58_xyhap"]
-[ext_resource type="Texture2D" uid="uid://e6x1ni5klegs" path="res://Scenes/World/Water_0_-1.res" id="59_46020"]
-[ext_resource type="Texture2D" uid="uid://b3axyrp1woolk" path="res://Scenes/World/Foliage_1_-1_0.res" id="60_of432"]
-[ext_resource type="Texture2D" uid="uid://bkj00nlxxc46r" path="res://Scenes/World/Foliage_1_-1_1.res" id="61_wkm1a"]
-[ext_resource type="Texture2D" uid="uid://8shrob030qh8" path="res://Scenes/World/Heightmap_1_-1.res" id="62_2rj2p"]
-[ext_resource type="Texture2D" uid="uid://db61tf0wr8xrq" path="res://Scenes/World/Object_1_-1_0.res" id="63_wrhnx"]
-[ext_resource type="Texture2D" uid="uid://r01aqhxtgg82" path="res://Scenes/World/Splatmap_1_-1_0.res" id="64_p2h30"]
-[ext_resource type="Texture2D" uid="uid://c0qyop35lti82" path="res://Scenes/World/Splatmap_1_-1_1.res" id="65_jsh0i"]
-[ext_resource type="Texture2D" uid="uid://c6qqr20xtiewx" path="res://Scenes/World/Splatmap_1_-1_2.res" id="66_jgbub"]
-[ext_resource type="Texture2D" uid="uid://cr7wa4pk1ucyr" path="res://Scenes/World/Water_1_-1.res" id="67_r6r1r"]
-[ext_resource type="Texture2D" uid="uid://3yxfl1oitblo" path="res://Scenes/World/Foliage_1_0_0.res" id="68_wk3sn"]
-[ext_resource type="Texture2D" uid="uid://d37c1p8qk5nfk" path="res://Scenes/World/Foliage_1_0_1.res" id="69_bxpwq"]
-[ext_resource type="Texture2D" uid="uid://xq7548vk75dm" path="res://Scenes/World/Heightmap_1_0.res" id="70_v2isk"]
-[ext_resource type="Texture2D" uid="uid://d1ld7311hfnwr" path="res://Scenes/World/Object_1_0_0.res" id="71_rjbv3"]
-[ext_resource type="Texture2D" uid="uid://u3hk6qdpvxun" path="res://Scenes/World/Splatmap_1_0_0.res" id="72_l4l1r"]
-[ext_resource type="Texture2D" uid="uid://cjbv28bxine4w" path="res://Scenes/World/Splatmap_1_0_1.res" id="73_wg0hf"]
-[ext_resource type="Texture2D" uid="uid://ks1u5apcrebl" path="res://Scenes/World/Splatmap_1_0_2.res" id="74_x5sta"]
-[ext_resource type="Texture2D" uid="uid://pxvkw10c5148" path="res://Scenes/World/Water_1_0.res" id="75_81wgp"]
-[ext_resource type="Texture2D" uid="uid://dnihmip8isqu1" path="res://Scenes/World/Foliage_1_1_0.res" id="76_cnlug"]
-[ext_resource type="Texture2D" uid="uid://desol5naxpidi" path="res://Scenes/World/Foliage_1_1_1.res" id="77_1d31q"]
-[ext_resource type="Texture2D" uid="uid://t1a7i5sculge" path="res://Scenes/World/Heightmap_1_1.res" id="78_2l5oe"]
-[ext_resource type="Texture2D" uid="uid://mid411qje5q2" path="res://Scenes/World/Object_1_1_0.res" id="79_4tjdn"]
-[ext_resource type="Texture2D" uid="uid://c1nmd81hobsxc" path="res://Scenes/World/Splatmap_1_1_0.res" id="80_enjp3"]
-[ext_resource type="Texture2D" uid="uid://c2jtn5tr5pdw5" path="res://Scenes/World/Splatmap_1_1_1.res" id="81_l87i6"]
-[ext_resource type="Texture2D" uid="uid://cs5cdgiboxv7o" path="res://Scenes/World/Splatmap_1_1_2.res" id="82_0k8bs"]
-[ext_resource type="Texture2D" uid="uid://c5slssekt6pfp" path="res://Scenes/World/Water_1_1.res" id="83_or0hy"]
-[ext_resource type="Texture2D" uid="uid://b3lw0d3i3boa5" path="res://Scenes/World/Foliage_0_1_0.res" id="84_7raob"]
-[ext_resource type="Texture2D" uid="uid://cmab0shhwcv1g" path="res://Scenes/World/Foliage_0_1_1.res" id="85_x33qj"]
-[ext_resource type="Texture2D" uid="uid://3box7aabtkdy" path="res://Scenes/World/Heightmap_0_1.res" id="86_0p3ye"]
-[ext_resource type="Texture2D" uid="uid://cpuconi4rtg6y" path="res://Scenes/World/Object_0_1_0.res" id="87_6y3jj"]
-[ext_resource type="Texture2D" uid="uid://bclkqcru4o56d" path="res://Scenes/World/Splatmap_0_1_0.res" id="88_hdfep"]
-[ext_resource type="Texture2D" uid="uid://bxf0wqwhujouo" path="res://Scenes/World/Splatmap_0_1_1.res" id="89_gm54p"]
-[ext_resource type="Texture2D" uid="uid://chvxj17mfe1pb" path="res://Scenes/World/Splatmap_0_1_2.res" id="90_d10hb"]
-[ext_resource type="Texture2D" uid="uid://cwkglm0ns6n31" path="res://Scenes/World/Water_0_1.res" id="91_j1kvn"]
-[ext_resource type="Texture2D" uid="uid://x3lab63a6it" path="res://Scenes/World/Foliage_-1_1_0.res" id="92_phlb0"]
-[ext_resource type="Texture2D" uid="uid://d2j116ooxlb7q" path="res://Scenes/World/Foliage_-1_1_1.res" id="93_yh0mm"]
-[ext_resource type="Texture2D" uid="uid://caavmsi5euykb" path="res://Scenes/World/Heightmap_-1_1.res" id="94_m6obd"]
-[ext_resource type="Texture2D" uid="uid://yrd0lylw0qbe" path="res://Scenes/World/Object_-1_1_0.res" id="95_4qxu6"]
-[ext_resource type="Texture2D" uid="uid://op81owoul4qa" path="res://Scenes/World/Splatmap_-1_1_0.res" id="96_ns5xa"]
-[ext_resource type="Texture2D" uid="uid://85enw8o4ykha" path="res://Scenes/World/Splatmap_-1_1_1.res" id="97_7wkcv"]
-[ext_resource type="Texture2D" uid="uid://c8urrhgjct6v3" path="res://Scenes/World/Splatmap_-1_1_2.res" id="98_i7q85"]
-[ext_resource type="Texture2D" uid="uid://dwugls74173wk" path="res://Scenes/World/Water_-1_1.res" id="99_soowo"]
-[ext_resource type="Texture2D" uid="uid://cq2i6h2b0pxw6" path="res://Scenes/World/Foliage_-2_1_0.res" id="100_lgc0t"]
-[ext_resource type="Texture2D" uid="uid://b4c7cu2vrxegb" path="res://Scenes/World/Foliage_-2_1_1.res" id="101_1dypy"]
-[ext_resource type="Texture2D" uid="uid://cy8jxooltuspv" path="res://Scenes/World/Heightmap_-2_1.res" id="102_rlxc0"]
-[ext_resource type="Texture2D" uid="uid://bwv4jo5p4idr" path="res://Scenes/World/Object_-2_1_0.res" id="103_gumej"]
-[ext_resource type="Texture2D" uid="uid://c3gbn2teo88u8" path="res://Scenes/World/Splatmap_-2_1_0.res" id="104_wu4hr"]
-[ext_resource type="Texture2D" uid="uid://d2srvnt5ss4rc" path="res://Scenes/World/Splatmap_-2_1_1.res" id="105_07fgs"]
-[ext_resource type="Texture2D" uid="uid://kq03v2ccfw2u" path="res://Scenes/World/Splatmap_-2_1_2.res" id="106_0yd4p"]
-[ext_resource type="Texture2D" uid="uid://c8bmjmo8rs31q" path="res://Scenes/World/Water_-2_1.res" id="107_q6xjr"]
-[ext_resource type="Texture2D" uid="uid://0bcuamt8mu81" path="res://Scenes/World/Foliage_-2_0_0.res" id="108_suvwx"]
-[ext_resource type="Texture2D" uid="uid://cs7mvwloiepsq" path="res://Scenes/World/Foliage_-2_0_1.res" id="109_nqj5c"]
-[ext_resource type="Texture2D" uid="uid://dm6xli007x7h1" path="res://Scenes/World/Heightmap_-2_0.res" id="110_euvpd"]
-[ext_resource type="Texture2D" uid="uid://bxynhuq1pnvki" path="res://Scenes/World/Object_-2_0_0.res" id="111_gacqc"]
-[ext_resource type="Texture2D" uid="uid://cfbn51xygvou1" path="res://Scenes/World/Splatmap_-2_0_0.res" id="112_map5x"]
-[ext_resource type="Texture2D" uid="uid://cgm7dehfvw8jx" path="res://Scenes/World/Splatmap_-2_0_1.res" id="113_r1b1d"]
-[ext_resource type="Texture2D" uid="uid://2rfxfvf838yq" path="res://Scenes/World/Splatmap_-2_0_2.res" id="114_igk5s"]
-[ext_resource type="Texture2D" uid="uid://ctckk146r6ggn" path="res://Scenes/World/Water_-2_0.res" id="115_0ktac"]
-[ext_resource type="Texture2D" uid="uid://4djrjk0aulkp" path="res://Scenes/World/Foliage_-2_-1_0.res" id="116_s7pwp"]
-[ext_resource type="Texture2D" uid="uid://dwo0papmry4g" path="res://Scenes/World/Foliage_-2_-1_1.res" id="117_ptdsg"]
-[ext_resource type="Texture2D" uid="uid://bc72cg0gxw5b1" path="res://Scenes/World/Heightmap_-2_-1.res" id="118_3emuh"]
-[ext_resource type="Texture2D" uid="uid://lw4pg4b33r8k" path="res://Scenes/World/Object_-2_-1_0.res" id="119_t3n51"]
-[ext_resource type="Texture2D" uid="uid://p62ltlchdsiu" path="res://Scenes/World/Splatmap_-2_-1_0.res" id="120_k0hdb"]
-[ext_resource type="Texture2D" uid="uid://cthl8v2og787d" path="res://Scenes/World/Splatmap_-2_-1_1.res" id="121_uhd2t"]
-[ext_resource type="Texture2D" uid="uid://ckqlmw0o5rlik" path="res://Scenes/World/Splatmap_-2_-1_2.res" id="122_wu4mf"]
-[ext_resource type="Texture2D" uid="uid://djgetuno2ou8i" path="res://Scenes/World/Water_-2_-1.res" id="123_ju2s7"]
-[ext_resource type="Texture2D" uid="uid://cvcieafl6m4rp" path="res://Scenes/World/Foliage_-2_-2_0.res" id="124_cunwq"]
-[ext_resource type="Texture2D" uid="uid://b1t1lgiht8k2w" path="res://Scenes/World/Foliage_-2_-2_1.res" id="125_vh0sa"]
-[ext_resource type="Texture2D" uid="uid://bcil031h5xf8r" path="res://Scenes/World/Heightmap_-2_-2.res" id="126_hh17a"]
-[ext_resource type="Texture2D" uid="uid://bv7recly4ju3t" path="res://Scenes/World/Object_-2_-2_0.res" id="127_6cf34"]
-[ext_resource type="Texture2D" uid="uid://dmuy0qw1myak4" path="res://Scenes/World/Splatmap_-2_-2_0.res" id="128_t6evk"]
-[ext_resource type="Texture2D" uid="uid://bmrqnfwgd0jyu" path="res://Scenes/World/Splatmap_-2_-2_1.res" id="129_vjp4y"]
-[ext_resource type="Texture2D" uid="uid://bvcu5hi0nnkms" path="res://Scenes/World/Splatmap_-2_-2_2.res" id="130_gy5ag"]
-[ext_resource type="Texture2D" uid="uid://bn1taek0hjavf" path="res://Scenes/World/Water_-2_-2.res" id="131_3maoo"]
-[ext_resource type="Texture2D" uid="uid://b8w2t64h28oht" path="res://Scenes/World/Foliage_-1_-2_0.res" id="132_1cdjv"]
-[ext_resource type="Texture2D" uid="uid://b1vqxk0rvkcha" path="res://Scenes/World/Foliage_-1_-2_1.res" id="133_fu4tr"]
-[ext_resource type="Texture2D" uid="uid://c3te2umio3515" path="res://Scenes/World/Heightmap_-1_-2.res" id="134_h133x"]
-[ext_resource type="Texture2D" uid="uid://df5726f7vaujv" path="res://Scenes/World/Object_-1_-2_0.res" id="135_btk82"]
-[ext_resource type="Texture2D" uid="uid://b30irbj3202ho" path="res://Scenes/World/Splatmap_-1_-2_0.res" id="136_dmnga"]
-[ext_resource type="Texture2D" uid="uid://c3bs7174m3cg2" path="res://Scenes/World/Splatmap_-1_-2_1.res" id="137_t3616"]
-[ext_resource type="Texture2D" uid="uid://tqe2ffn45yfa" path="res://Scenes/World/Splatmap_-1_-2_2.res" id="138_tqghj"]
-[ext_resource type="Texture2D" uid="uid://cr834vvju0gw8" path="res://Scenes/World/Water_-1_-2.res" id="139_grskf"]
-[ext_resource type="Texture2D" uid="uid://cduoo0kbm2cl" path="res://Scenes/World/Foliage_0_-2_0.res" id="140_4exn6"]
-[ext_resource type="Texture2D" uid="uid://jv6n6ptbjvpc" path="res://Scenes/World/Foliage_0_-2_1.res" id="141_j38e7"]
-[ext_resource type="Texture2D" uid="uid://cvxgj7c8s7yip" path="res://Scenes/World/Heightmap_0_-2.res" id="142_4w4o6"]
-[ext_resource type="Texture2D" uid="uid://co1e3v01ybh50" path="res://Scenes/World/Object_0_-2_0.res" id="143_tmt0m"]
-[ext_resource type="Texture2D" uid="uid://d1muqv5qv4rm5" path="res://Scenes/World/Splatmap_0_-2_0.res" id="144_5umxo"]
-[ext_resource type="Texture2D" uid="uid://b3650mlt8opub" path="res://Scenes/World/Splatmap_0_-2_1.res" id="145_px36d"]
-[ext_resource type="Texture2D" uid="uid://k7mfx7kf5enh" path="res://Scenes/World/Splatmap_0_-2_2.res" id="146_f1m12"]
-[ext_resource type="Texture2D" uid="uid://bab7lncf5gkvc" path="res://Scenes/World/Water_0_-2.res" id="147_qukh6"]
-[ext_resource type="Texture2D" uid="uid://r5axun111kpu" path="res://Scenes/World/Foliage_1_-2_0.res" id="148_e2slq"]
-[ext_resource type="Texture2D" uid="uid://c7mpwtv4apvas" path="res://Scenes/World/Foliage_1_-2_1.res" id="149_0m7x8"]
-[ext_resource type="Texture2D" uid="uid://dh6tqw5tqdvf5" path="res://Scenes/World/Heightmap_1_-2.res" id="150_pcumd"]
-[ext_resource type="Texture2D" uid="uid://qweyjt0jwkdh" path="res://Scenes/World/Object_1_-2_0.res" id="151_w4rlq"]
-[ext_resource type="Texture2D" uid="uid://b73sift8p30mh" path="res://Scenes/World/Splatmap_1_-2_0.res" id="152_h2qpt"]
-[ext_resource type="Texture2D" uid="uid://dt0c1tcj2ubrg" path="res://Scenes/World/Splatmap_1_-2_1.res" id="153_764xv"]
-[ext_resource type="Texture2D" uid="uid://cqyffm2upkovk" path="res://Scenes/World/Splatmap_1_-2_2.res" id="154_k08fu"]
-[ext_resource type="Texture2D" uid="uid://dt5wvmg3bafsu" path="res://Scenes/World/Water_1_-2.res" id="155_s2yc2"]
-[ext_resource type="Texture2D" uid="uid://btxhpfsk63f68" path="res://Scenes/World/Foliage_2_-2_0.res" id="156_rfmk8"]
-[ext_resource type="Texture2D" uid="uid://c2jn331pv63g7" path="res://Scenes/World/Foliage_2_-2_1.res" id="157_mxcgt"]
-[ext_resource type="Texture2D" uid="uid://cr8gvhjp8ahva" path="res://Scenes/World/Heightmap_2_-2.res" id="158_8lrhb"]
-[ext_resource type="Texture2D" uid="uid://doul202npb6q6" path="res://Scenes/World/Object_2_-2_0.res" id="159_medvj"]
-[ext_resource type="Texture2D" uid="uid://c88erb1m20dkt" path="res://Scenes/World/Splatmap_2_-2_0.res" id="160_j53hi"]
-[ext_resource type="Texture2D" uid="uid://cn38ffqbs2qpe" path="res://Scenes/World/Splatmap_2_-2_1.res" id="161_0veb2"]
-[ext_resource type="Texture2D" uid="uid://cs17uwxbq1sjc" path="res://Scenes/World/Splatmap_2_-2_2.res" id="162_8ihdf"]
-[ext_resource type="Texture2D" uid="uid://dpr6oo5bdxqfw" path="res://Scenes/World/Water_2_-2.res" id="163_kn3mn"]
-[ext_resource type="Texture2D" uid="uid://cnq2b7t8ptguj" path="res://Scenes/World/Foliage_2_-1_0.res" id="164_t7rqt"]
-[ext_resource type="Texture2D" uid="uid://byswtvs8d8omo" path="res://Scenes/World/Foliage_2_-1_1.res" id="165_pe2pk"]
-[ext_resource type="Texture2D" uid="uid://c055ptva5ykas" path="res://Scenes/World/Heightmap_2_-1.res" id="166_f7he5"]
-[ext_resource type="Texture2D" uid="uid://0yc3dtf0aiwk" path="res://Scenes/World/Object_2_-1_0.res" id="167_8bon8"]
-[ext_resource type="Texture2D" uid="uid://b83fuaqr88jt3" path="res://Scenes/World/Splatmap_2_-1_0.res" id="168_7yost"]
-[ext_resource type="Texture2D" uid="uid://dmmnyjwwuuu07" path="res://Scenes/World/Splatmap_2_-1_1.res" id="169_a6nrb"]
-[ext_resource type="Texture2D" uid="uid://dslm7ub0geh53" path="res://Scenes/World/Splatmap_2_-1_2.res" id="170_ycr5r"]
-[ext_resource type="Texture2D" uid="uid://rpljpdv6gp1b" path="res://Scenes/World/Water_2_-1.res" id="171_pcsbl"]
-[ext_resource type="Texture2D" uid="uid://cqxrxwtteoxp5" path="res://Scenes/World/Foliage_2_0_0.res" id="172_fqa13"]
-[ext_resource type="Texture2D" uid="uid://i5yln7w7kmk2" path="res://Scenes/World/Foliage_2_0_1.res" id="173_jd0l7"]
-[ext_resource type="Texture2D" uid="uid://5a6ufbh6o8y7" path="res://Scenes/World/Heightmap_2_0.res" id="174_jdxg0"]
-[ext_resource type="Texture2D" uid="uid://53jvjascihj8" path="res://Scenes/World/Object_2_0_0.res" id="175_6ccoq"]
-[ext_resource type="Texture2D" uid="uid://dqrwp0gkpuuh6" path="res://Scenes/World/Splatmap_2_0_0.res" id="176_4cjq6"]
-[ext_resource type="Texture2D" uid="uid://csi28jb4w20wo" path="res://Scenes/World/Splatmap_2_0_1.res" id="177_qhq7m"]
-[ext_resource type="Texture2D" uid="uid://dcjqcej5oo1yi" path="res://Scenes/World/Splatmap_2_0_2.res" id="178_0my4s"]
-[ext_resource type="Texture2D" uid="uid://b2u5fwmbcghvt" path="res://Scenes/World/Water_2_0.res" id="179_q3kvd"]
-[ext_resource type="Texture2D" uid="uid://dl2o70mnmgx84" path="res://Scenes/World/Foliage_2_1_0.res" id="180_eehd7"]
-[ext_resource type="Texture2D" uid="uid://cv0n4ogxdo2tn" path="res://Scenes/World/Foliage_2_1_1.res" id="181_msogf"]
-[ext_resource type="Texture2D" uid="uid://b5qd77pbc4l7r" path="res://Scenes/World/Heightmap_2_1.res" id="182_nstq3"]
-[ext_resource type="Texture2D" uid="uid://btvanbsdaatsp" path="res://Scenes/World/Object_2_1_0.res" id="183_ibnpc"]
-[ext_resource type="Texture2D" uid="uid://ckygx7xxuxwg6" path="res://Scenes/World/Splatmap_2_1_0.res" id="184_fwbgc"]
-[ext_resource type="Texture2D" uid="uid://bqrwksqdfh2uk" path="res://Scenes/World/Splatmap_2_1_1.res" id="185_k4ff6"]
-[ext_resource type="Texture2D" uid="uid://bro2w8vbd43d4" path="res://Scenes/World/Splatmap_2_1_2.res" id="186_gdbcs"]
-[ext_resource type="Texture2D" uid="uid://btlrw0tx8i25j" path="res://Scenes/World/Water_2_1.res" id="187_ajatb"]
-[ext_resource type="Texture2D" uid="uid://dvql1jw2e3657" path="res://Scenes/World/Foliage_1_2_0.res" id="188_ahg4v"]
-[ext_resource type="Texture2D" uid="uid://cio2yuyjqbcug" path="res://Scenes/World/Foliage_1_2_1.res" id="189_4o8n3"]
-[ext_resource type="Texture2D" uid="uid://bf54wlorv6ecs" path="res://Scenes/World/Heightmap_1_2.res" id="190_h6vpm"]
-[ext_resource type="Texture2D" uid="uid://cysqx4sn0g080" path="res://Scenes/World/Object_1_2_0.res" id="191_wxnst"]
-[ext_resource type="Texture2D" uid="uid://c3377kdwokg5k" path="res://Scenes/World/Splatmap_1_2_0.res" id="192_6nay0"]
-[ext_resource type="Texture2D" uid="uid://bgr6clbqkda0y" path="res://Scenes/World/Splatmap_1_2_1.res" id="193_f1wpr"]
-[ext_resource type="Texture2D" uid="uid://jpigyu08uflf" path="res://Scenes/World/Splatmap_1_2_2.res" id="194_nm7gi"]
-[ext_resource type="Texture2D" uid="uid://1dd0hf4qjema" path="res://Scenes/World/Water_1_2.res" id="195_6oub2"]
-[ext_resource type="Texture2D" uid="uid://dduscmcbvlgqs" path="res://Scenes/World/Foliage_2_2_0.res" id="196_lvqbu"]
-[ext_resource type="Texture2D" uid="uid://bhglojlbmyhks" path="res://Scenes/World/Foliage_2_2_1.res" id="197_pmo7h"]
-[ext_resource type="Texture2D" uid="uid://cvh3yx1lcklyw" path="res://Scenes/World/Heightmap_2_2.res" id="198_j14kg"]
-[ext_resource type="Texture2D" uid="uid://cuxfm80lwwbr3" path="res://Scenes/World/Object_2_2_0.res" id="199_dgxa5"]
-[ext_resource type="Texture2D" uid="uid://bm6jam0bnpii2" path="res://Scenes/World/Splatmap_2_2_0.res" id="200_b4llk"]
-[ext_resource type="Texture2D" uid="uid://l2opq10gayjb" path="res://Scenes/World/Splatmap_2_2_1.res" id="201_3pkt8"]
-[ext_resource type="Texture2D" uid="uid://dxp22y0ayv7xa" path="res://Scenes/World/Splatmap_2_2_2.res" id="202_co01k"]
-[ext_resource type="Texture2D" uid="uid://cfydxyevjimat" path="res://Scenes/World/Water_2_2.res" id="203_wiajr"]
-[ext_resource type="Texture2D" uid="uid://bjhla5yf80q7i" path="res://Scenes/World/Foliage_0_2_0.res" id="204_n1bqm"]
-[ext_resource type="Texture2D" uid="uid://bx6g5uhio24uw" path="res://Scenes/World/Foliage_0_2_1.res" id="205_bw50e"]
-[ext_resource type="Texture2D" uid="uid://dq3w54smv6jjr" path="res://Scenes/World/Heightmap_0_2.res" id="206_cqc0x"]
-[ext_resource type="Texture2D" uid="uid://boxs10kdr01o1" path="res://Scenes/World/Object_0_2_0.res" id="207_joeud"]
-[ext_resource type="Texture2D" uid="uid://dexlphl7wg76a" path="res://Scenes/World/Splatmap_0_2_0.res" id="208_86ftq"]
-[ext_resource type="Texture2D" uid="uid://dbkw146px6p47" path="res://Scenes/World/Splatmap_0_2_1.res" id="209_nupp3"]
-[ext_resource type="Texture2D" uid="uid://chg0a3v3f04f4" path="res://Scenes/World/Splatmap_0_2_2.res" id="210_7cc5f"]
-[ext_resource type="Texture2D" uid="uid://duwt5ue6ta6v7" path="res://Scenes/World/Water_0_2.res" id="211_hnsfd"]
-[ext_resource type="Texture2D" uid="uid://7axjwghdd4kg" path="res://Scenes/World/Foliage_-1_2_0.res" id="212_0sgjx"]
-[ext_resource type="Texture2D" uid="uid://bdwcrbatrxhpw" path="res://Scenes/World/Foliage_-1_2_1.res" id="213_hs43h"]
-[ext_resource type="Texture2D" uid="uid://byop0jsjrcke8" path="res://Scenes/World/Heightmap_-1_2.res" id="214_1f6nm"]
-[ext_resource type="Texture2D" uid="uid://c51u1necbu8um" path="res://Scenes/World/Object_-1_2_0.res" id="215_slinn"]
-[ext_resource type="Texture2D" uid="uid://gl7aheenudhb" path="res://Scenes/World/Splatmap_-1_2_0.res" id="216_g632x"]
-[ext_resource type="Texture2D" uid="uid://ilcm0f4racm7" path="res://Scenes/World/Splatmap_-1_2_1.res" id="217_whg8j"]
-[ext_resource type="Texture2D" uid="uid://bneheksk37iqu" path="res://Scenes/World/Splatmap_-1_2_2.res" id="218_dru3u"]
-[ext_resource type="Texture2D" uid="uid://rsug7oas8qmh" path="res://Scenes/World/Water_-1_2.res" id="219_3td5l"]
-[ext_resource type="Texture2D" uid="uid://cp6vc3fkk8i6e" path="res://Scenes/World/Foliage_-2_2_0.res" id="220_40afu"]
-[ext_resource type="Texture2D" uid="uid://bv1vymoircwu1" path="res://Scenes/World/Foliage_-2_2_1.res" id="221_chyek"]
-[ext_resource type="Texture2D" uid="uid://cykcpy1brnr24" path="res://Scenes/World/Heightmap_-2_2.res" id="222_gxpy0"]
-[ext_resource type="Texture2D" uid="uid://dh5agymx22v0" path="res://Scenes/World/Object_-2_2_0.res" id="223_rk4yy"]
-[ext_resource type="Texture2D" uid="uid://bpxfa3iedrthk" path="res://Scenes/World/Splatmap_-2_2_0.res" id="224_4sp72"]
-[ext_resource type="Texture2D" uid="uid://bnfelrrogew80" path="res://Scenes/World/Splatmap_-2_2_1.res" id="225_5r1vi"]
-[ext_resource type="Texture2D" uid="uid://pmgaseialbpt" path="res://Scenes/World/Splatmap_-2_2_2.res" id="226_t7jka"]
-[ext_resource type="Texture2D" uid="uid://cpxnsft3sdths" path="res://Scenes/World/Water_-2_2.res" id="227_hlhw6"]
-[ext_resource type="Texture2D" uid="uid://3ihtk6yd0o42" path="res://Scenes/World/Foliage_2_3_0.res" id="228_lycv8"]
-[ext_resource type="Texture2D" uid="uid://b6poi444igr6b" path="res://Scenes/World/Foliage_2_3_1.res" id="229_ife7n"]
-[ext_resource type="Texture2D" uid="uid://oapcsf51svxq" path="res://Scenes/World/Heightmap_2_3.res" id="230_3d2g6"]
-[ext_resource type="Texture2D" uid="uid://bfxsvv5ps78t3" path="res://Scenes/World/Object_2_3_0.res" id="231_u7fgm"]
-[ext_resource type="Texture2D" uid="uid://ckxkiiax8kdtk" path="res://Scenes/World/Splatmap_2_3_0.res" id="232_on75t"]
-[ext_resource type="Texture2D" uid="uid://nevadolgchik" path="res://Scenes/World/Splatmap_2_3_1.res" id="233_p5ni1"]
-[ext_resource type="Texture2D" uid="uid://bj6nky33vhst8" path="res://Scenes/World/Splatmap_2_3_2.res" id="234_ghmfx"]
-[ext_resource type="Texture2D" uid="uid://csacj573hodjy" path="res://Scenes/World/Water_2_3.res" id="235_ow66n"]
-[ext_resource type="Texture2D" uid="uid://bvwf3uas1hi6t" path="res://Scenes/World/Foliage_1_3_0.res" id="236_125wo"]
-[ext_resource type="Texture2D" uid="uid://b2p8yn1lwsstx" path="res://Scenes/World/Foliage_1_3_1.res" id="237_tc8r4"]
-[ext_resource type="Texture2D" uid="uid://6g68erqco24d" path="res://Scenes/World/Heightmap_1_3.res" id="238_4qa1w"]
-[ext_resource type="Texture2D" uid="uid://bolpw2h34ncfi" path="res://Scenes/World/Object_1_3_0.res" id="239_wkrhb"]
-[ext_resource type="Texture2D" uid="uid://c2233hticl3sw" path="res://Scenes/World/Splatmap_1_3_0.res" id="240_ekr2v"]
-[ext_resource type="Texture2D" uid="uid://cs3ic3r5bpdo8" path="res://Scenes/World/Splatmap_1_3_1.res" id="241_v3p6u"]
-[ext_resource type="Texture2D" uid="uid://crtysbn7v4onc" path="res://Scenes/World/Splatmap_1_3_2.res" id="242_8qtul"]
-[ext_resource type="Texture2D" uid="uid://dohq6g7qy51ne" path="res://Scenes/World/Water_1_3.res" id="243_jlato"]
-[ext_resource type="Texture2D" uid="uid://c3qmv83mka8cm" path="res://Scenes/World/Foliage_0_3_0.res" id="244_6ts1r"]
-[ext_resource type="Texture2D" uid="uid://2ktf0epo6f8l" path="res://Scenes/World/Foliage_0_3_1.res" id="245_mnx08"]
-[ext_resource type="Texture2D" uid="uid://d2x8hg2aeva3v" path="res://Scenes/World/Heightmap_0_3.res" id="246_d6sdr"]
-[ext_resource type="Texture2D" uid="uid://c8yrtmdlh0qby" path="res://Scenes/World/Object_0_3_0.res" id="247_bd6i5"]
-[ext_resource type="Texture2D" uid="uid://dnnufk6bjbam1" path="res://Scenes/World/Foliage_4_-3_0.res" id="247_nufjf"]
-[ext_resource type="Texture2D" uid="uid://367py1veanea" path="res://Scenes/World/Splatmap_0_3_0.res" id="248_4us8m"]
-[ext_resource type="Texture2D" uid="uid://c0avnwa8g5xex" path="res://Scenes/World/Foliage_4_-3_1.res" id="248_h1utm"]
-[ext_resource type="Texture2D" uid="uid://vl64slxcdlni" path="res://Scenes/World/Splatmap_0_3_1.res" id="249_8m7o3"]
-[ext_resource type="Texture2D" uid="uid://b53rpaun68sfk" path="res://Scenes/World/Heightmap_4_-3.res" id="249_qtthl"]
-[ext_resource type="Texture2D" uid="uid://dv42ka68fp40v" path="res://Scenes/World/Splatmap_0_3_2.res" id="250_sla70"]
-[ext_resource type="Texture2D" uid="uid://cb6mwxwg5knbm" path="res://Scenes/World/Object_4_-3_0.res" id="250_v8qwt"]
-[ext_resource type="Texture2D" uid="uid://sb6aato4is7r" path="res://Scenes/World/Water_0_3.res" id="251_35m2y"]
-[ext_resource type="Texture2D" uid="uid://b6gw55jwx8h4m" path="res://Scenes/World/Splatmap_4_-3_0.res" id="251_677id"]
-[ext_resource type="Texture2D" uid="uid://d2a81bek0madk" path="res://Scenes/World/Foliage_-1_3_0.res" id="252_5f46b"]
-[ext_resource type="Texture2D" uid="uid://bym8ocjbahu0h" path="res://Scenes/World/Splatmap_4_-3_1.res" id="252_70xvq"]
-[ext_resource type="Texture2D" uid="uid://cfibaqctxe2ro" path="res://Scenes/World/Foliage_-1_3_1.res" id="253_cq35o"]
-[ext_resource type="Texture2D" uid="uid://73i7m33bq07c" path="res://Scenes/World/Splatmap_4_-3_2.res" id="253_db4bj"]
-[ext_resource type="Texture2D" uid="uid://d1p4bmcfavkeb" path="res://Scenes/World/Water_4_-3.res" id="254_4wxgn"]
-[ext_resource type="Texture2D" uid="uid://bk22je47m2fsk" path="res://Scenes/World/Heightmap_-1_3.res" id="254_hvkk6"]
-[ext_resource type="Texture2D" uid="uid://dpgeibs7pudgw" path="res://Scenes/World/Foliage_4_-2_0.res" id="255_4psjf"]
-[ext_resource type="Texture2D" uid="uid://b7yhoerxmuwoi" path="res://Scenes/World/Object_-1_3_0.res" id="255_lsps4"]
-[ext_resource type="Texture2D" uid="uid://cj5ygjisvmwb1" path="res://Scenes/World/Foliage_4_-2_1.res" id="256_81ace"]
-[ext_resource type="Texture2D" uid="uid://cegsyi1i7smau" path="res://Scenes/World/Splatmap_-1_3_0.res" id="256_gbjvf"]
-[ext_resource type="Texture2D" uid="uid://cv4li3smu4eje" path="res://Scenes/World/Heightmap_4_-2.res" id="257_5m6g4"]
-[ext_resource type="Texture2D" uid="uid://cfnmdxsh4yvmv" path="res://Scenes/World/Splatmap_-1_3_1.res" id="257_e65xy"]
-[ext_resource type="Texture2D" uid="uid://doph0tsgv5my3" path="res://Scenes/World/Splatmap_-1_3_2.res" id="258_hdlnl"]
-[ext_resource type="Texture2D" uid="uid://d3kyg8goo4cu2" path="res://Scenes/World/Object_4_-2_0.res" id="258_ptcpy"]
-[ext_resource type="Texture2D" uid="uid://dm0qlwdx8iah6" path="res://Scenes/World/Splatmap_4_-2_0.res" id="259_4aw2u"]
-[ext_resource type="Texture2D" uid="uid://bnqtu6ivfwxlx" path="res://Scenes/World/Water_-1_3.res" id="259_lpqse"]
-[ext_resource type="Texture2D" uid="uid://cop1fd7nm575j" path="res://Scenes/World/Foliage_-2_3_0.res" id="260_o3s2b"]
-[ext_resource type="Texture2D" uid="uid://cnwwanfnas7xx" path="res://Scenes/World/Splatmap_4_-2_1.res" id="260_obu7h"]
-[ext_resource type="Texture2D" uid="uid://uakrdk310058" path="res://Scenes/World/Splatmap_4_-2_2.res" id="261_qcek0"]
-[ext_resource type="Texture2D" uid="uid://bfh5m33wo7ll" path="res://Scenes/World/Foliage_-2_3_1.res" id="261_rfxeh"]
-[ext_resource type="Texture2D" uid="uid://cu3n46jg7sxdy" path="res://Scenes/World/Water_4_-2.res" id="262_bkflp"]
-[ext_resource type="Texture2D" uid="uid://cdnfjb5v1pi4h" path="res://Scenes/World/Heightmap_-2_3.res" id="262_og24w"]
-[ext_resource type="Texture2D" uid="uid://c1s470wpfcitr" path="res://Scenes/World/Object_-2_3_0.res" id="263_57v73"]
-[ext_resource type="Texture2D" uid="uid://dewq7x42kfo3w" path="res://Scenes/World/Foliage_5_-2_0.res" id="263_654ae"]
-[ext_resource type="Texture2D" uid="uid://dt1a1eoebke4b" path="res://Scenes/World/Foliage_5_-2_1.res" id="264_3vgip"]
-[ext_resource type="Texture2D" uid="uid://cv2aps6rogn4s" path="res://Scenes/World/Splatmap_-2_3_0.res" id="264_gyhjf"]
-[ext_resource type="Texture2D" uid="uid://dtde43v7n6rei" path="res://Scenes/World/Splatmap_-2_3_1.res" id="265_ixuc5"]
-[ext_resource type="Texture2D" uid="uid://ccbtgl5fg6auc" path="res://Scenes/World/Heightmap_5_-2.res" id="265_ub1ot"]
-[ext_resource type="Texture2D" uid="uid://47sxlvpk1e6t" path="res://Scenes/World/Object_5_-2_0.res" id="266_byw2m"]
-[ext_resource type="Texture2D" uid="uid://ct45hm718j63o" path="res://Scenes/World/Splatmap_-2_3_2.res" id="266_ft6ni"]
-[ext_resource type="Texture2D" uid="uid://dbs1wo5ws5a8l" path="res://Scenes/World/Splatmap_5_-2_0.res" id="267_5j1yv"]
-[ext_resource type="Texture2D" uid="uid://cyrsado7vcto2" path="res://Scenes/World/Water_-2_3.res" id="267_gyial"]
-[ext_resource type="Texture2D" uid="uid://dnwt8e6kiru5y" path="res://Scenes/World/Foliage_-3_3_0.res" id="268_5brbo"]
-[ext_resource type="Texture2D" uid="uid://c634rmmnpyqkm" path="res://Scenes/World/Splatmap_5_-2_1.res" id="268_ii1jl"]
-[ext_resource type="Texture2D" uid="uid://bf5f0xpbj6v7x" path="res://Scenes/World/Foliage_-3_3_1.res" id="269_l0qe3"]
-[ext_resource type="Texture2D" uid="uid://bqh2w8ph6j6q5" path="res://Scenes/World/Splatmap_5_-2_2.res" id="269_xpmv6"]
-[ext_resource type="Texture2D" uid="uid://dwlmsu2ymd1pf" path="res://Scenes/World/Heightmap_-3_3.res" id="270_03drx"]
-[ext_resource type="Texture2D" uid="uid://c1yyqhq6cnkeo" path="res://Scenes/World/Water_5_-2.res" id="270_iuhso"]
-[ext_resource type="Texture2D" uid="uid://d3n0edmfgud70" path="res://Scenes/World/Object_-3_3_0.res" id="271_1m7ww"]
-[ext_resource type="Texture2D" uid="uid://p7fttt2hgak4" path="res://Scenes/World/Foliage_4_-1_0.res" id="271_q2rbx"]
-[ext_resource type="Texture2D" uid="uid://ythueae6we4l" path="res://Scenes/World/Splatmap_-3_3_0.res" id="272_0qu5i"]
-[ext_resource type="Texture2D" uid="uid://om8mlsa2h5im" path="res://Scenes/World/Foliage_4_-1_1.res" id="272_yxesf"]
-[ext_resource type="Texture2D" uid="uid://b3tc8rebxam32" path="res://Scenes/World/Heightmap_4_-1.res" id="273_agl2t"]
-[ext_resource type="Texture2D" uid="uid://bulloky7orryc" path="res://Scenes/World/Splatmap_-3_3_1.res" id="273_honoj"]
-[ext_resource type="Texture2D" uid="uid://4iupdh1ja0gm" path="res://Scenes/World/Object_4_-1_0.res" id="274_1tkeb"]
-[ext_resource type="Texture2D" uid="uid://djk5xkpsfosh6" path="res://Scenes/World/Splatmap_-3_3_2.res" id="274_i6lac"]
-[ext_resource type="Texture2D" uid="uid://b2bb113o4cdr6" path="res://Scenes/World/Water_-3_3.res" id="275_nv55e"]
-[ext_resource type="Texture2D" uid="uid://b84w0g808mmd3" path="res://Scenes/World/Splatmap_4_-1_0.res" id="275_shr4g"]
-[ext_resource type="Texture2D" uid="uid://cbadvjc7u58th" path="res://Scenes/World/Foliage_-3_2_0.res" id="276_4mbw5"]
-[ext_resource type="Texture2D" uid="uid://8yuj16r0117s" path="res://Scenes/World/Splatmap_4_-1_1.res" id="276_lmwmg"]
-[ext_resource type="Texture2D" uid="uid://b4d1usdm8wo5o" path="res://Scenes/World/Splatmap_4_-1_2.res" id="277_3b0yr"]
-[ext_resource type="Texture2D" uid="uid://viiiiysxyqr4" path="res://Scenes/World/Foliage_-3_2_1.res" id="277_4amgw"]
-[ext_resource type="Texture2D" uid="uid://beqy5tqmjgakx" path="res://Scenes/World/Heightmap_-3_2.res" id="278_c5p7u"]
-[ext_resource type="Texture2D" uid="uid://c5b5nvo0jktkb" path="res://Scenes/World/Water_4_-1.res" id="278_rdipx"]
-[ext_resource type="Texture2D" uid="uid://bgrmo3cdx8jgd" path="res://Scenes/World/Foliage_5_-1_0.res" id="279_jlydw"]
-[ext_resource type="Texture2D" uid="uid://b3gklfkptwhvw" path="res://Scenes/World/Object_-3_2_0.res" id="279_vuran"]
-[ext_resource type="Texture2D" uid="uid://eefiuilwobu5" path="res://Scenes/World/Foliage_5_-1_1.res" id="280_bjbr5"]
-[ext_resource type="Texture2D" uid="uid://dgt0hnwlnagxa" path="res://Scenes/World/Splatmap_-3_2_0.res" id="280_w0pf6"]
-[ext_resource type="Texture2D" uid="uid://dnw7ud1rq80ed" path="res://Scenes/World/Heightmap_5_-1.res" id="281_b64uh"]
-[ext_resource type="Texture2D" uid="uid://bxo77ldrg38g6" path="res://Scenes/World/Splatmap_-3_2_1.res" id="281_nqiiv"]
-[ext_resource type="Texture2D" uid="uid://dnschj4mstlgi" path="res://Scenes/World/Object_5_-1_0.res" id="282_lpj1t"]
-[ext_resource type="Texture2D" uid="uid://dn7t454cfvjdk" path="res://Scenes/World/Splatmap_-3_2_2.res" id="282_nu3hp"]
-[ext_resource type="Texture2D" uid="uid://cisjq2faaqeik" path="res://Scenes/World/Splatmap_5_-1_0.res" id="283_4gw3q"]
-[ext_resource type="Texture2D" uid="uid://76opnrpr7qi8" path="res://Scenes/World/Water_-3_2.res" id="283_ouy4t"]
-[ext_resource type="Texture2D" uid="uid://duat18a0dfhco" path="res://Scenes/World/Splatmap_5_-1_1.res" id="284_0rtel"]
-[ext_resource type="Texture2D" uid="uid://dvc3oukr334ul" path="res://Scenes/World/Foliage_-3_1_0.res" id="284_ixyha"]
-[ext_resource type="Texture2D" uid="uid://dm0oxfpaj31i2" path="res://Scenes/World/Foliage_-3_1_1.res" id="285_4pe7v"]
-[ext_resource type="Texture2D" uid="uid://ofuttnobghs6" path="res://Scenes/World/Splatmap_5_-1_2.res" id="285_jhj26"]
-[ext_resource type="Texture2D" uid="uid://qcm0c4wkurxy" path="res://Scenes/World/Heightmap_-3_1.res" id="286_dkonl"]
-[ext_resource type="Texture2D" uid="uid://d27khwvs0mvc4" path="res://Scenes/World/Water_5_-1.res" id="286_t61ja"]
-[ext_resource type="Texture2D" uid="uid://b6m2ju2s8oitb" path="res://Scenes/World/Object_-3_1_0.res" id="287_5i57m"]
-[ext_resource type="Texture2D" uid="uid://d0chedcbx23vc" path="res://Scenes/World/Foliage_4_0_0.res" id="287_fefhx"]
-[ext_resource type="Texture2D" uid="uid://dqdkbcqtstav6" path="res://Scenes/World/Splatmap_-3_1_0.res" id="288_bqqba"]
-[ext_resource type="Texture2D" uid="uid://bjg2l7im44l1s" path="res://Scenes/World/Foliage_4_0_1.res" id="288_h7p5p"]
-[ext_resource type="Texture2D" uid="uid://bg38kam23njl4" path="res://Scenes/World/Splatmap_-3_1_1.res" id="289_1722b"]
-[ext_resource type="Texture2D" uid="uid://dq47j4wkws0qb" path="res://Scenes/World/Heightmap_4_0.res" id="289_hslox"]
-[ext_resource type="Texture2D" uid="uid://bccb3mgwel6fm" path="res://Scenes/World/Splatmap_-3_1_2.res" id="290_bg6oj"]
-[ext_resource type="Texture2D" uid="uid://ib3d570obtlr" path="res://Scenes/World/Object_4_0_0.res" id="290_us8oc"]
-[ext_resource type="Texture2D" uid="uid://d2xc0xqp6d435" path="res://Scenes/World/Splatmap_4_0_0.res" id="291_1bqxl"]
-[ext_resource type="Texture2D" uid="uid://bx41lu2ugi64s" path="res://Scenes/World/Water_-3_1.res" id="291_c7grx"]
-[ext_resource type="Texture2D" uid="uid://divxuo4hbeeac" path="res://Scenes/World/Foliage_-3_0_0.res" id="292_4pkxe"]
-[ext_resource type="Texture2D" uid="uid://caggien8erdpq" path="res://Scenes/World/Splatmap_4_0_1.res" id="292_v2dnp"]
-[ext_resource type="Texture2D" uid="uid://b1cqtu3tln67v" path="res://Scenes/World/Foliage_-3_0_1.res" id="293_i2w7f"]
-[ext_resource type="Texture2D" uid="uid://x1be14b2l1wo" path="res://Scenes/World/Splatmap_4_0_2.res" id="293_jhl1v"]
-[ext_resource type="Texture2D" uid="uid://shixqxpl1apc" path="res://Scenes/World/Heightmap_-3_0.res" id="294_5t7tj"]
-[ext_resource type="Texture2D" uid="uid://bot43cchrj45c" path="res://Scenes/World/Water_4_0.res" id="294_tqcmk"]
-[ext_resource type="Texture2D" uid="uid://bjb2qdlbcip4r" path="res://Scenes/World/Object_-3_0_0.res" id="295_iawqp"]
-[ext_resource type="Texture2D" uid="uid://dqqvectpawlap" path="res://Scenes/World/Splatmap_-3_0_0.res" id="296_pxv54"]
-[ext_resource type="Texture2D" uid="uid://dwf8gl8meyg1t" path="res://Scenes/World/Splatmap_-3_0_1.res" id="297_xwtxv"]
-[ext_resource type="Texture2D" uid="uid://cpvup6u5di6ep" path="res://Scenes/World/Splatmap_-3_0_2.res" id="298_wuivs"]
-[ext_resource type="Texture2D" uid="uid://d1q1da1fp6m58" path="res://Scenes/World/Water_-3_0.res" id="299_mi4cr"]
-[ext_resource type="Texture2D" uid="uid://drdny2tpt7s8" path="res://Scenes/World/Foliage_-3_-1_0.res" id="300_qyps4"]
-[ext_resource type="Texture2D" uid="uid://kay6dm5pvwg2" path="res://Scenes/World/Foliage_-3_-1_1.res" id="301_mmlco"]
-[ext_resource type="Texture2D" uid="uid://dcb10cqmjetoi" path="res://Scenes/World/Heightmap_-3_-1.res" id="302_2lcan"]
-[ext_resource type="Texture2D" uid="uid://diccpd1x7824w" path="res://Scenes/World/Object_-3_-1_0.res" id="303_n6qkg"]
-[ext_resource type="Texture2D" uid="uid://d0v5yc2tpgnsu" path="res://Scenes/World/Splatmap_-3_-1_0.res" id="304_b88qu"]
-[ext_resource type="Texture2D" uid="uid://3p7mdcavuixt" path="res://Scenes/World/Splatmap_-3_-1_1.res" id="305_20pku"]
-[ext_resource type="Texture2D" uid="uid://c6oxqscdscs5v" path="res://Scenes/World/Splatmap_-3_-1_2.res" id="306_r13e0"]
-[ext_resource type="Texture2D" uid="uid://dqoaqt5h15m5b" path="res://Scenes/World/Water_-3_-1.res" id="307_e0dko"]
-[ext_resource type="Texture2D" uid="uid://deicnkt6ecrw4" path="res://Scenes/World/Foliage_-3_-2_0.res" id="308_plvv2"]
-[ext_resource type="Texture2D" uid="uid://c5g84s7vumhua" path="res://Scenes/World/Foliage_-3_-2_1.res" id="309_3tct4"]
-[ext_resource type="Texture2D" uid="uid://co5uh7r7d1y1" path="res://Scenes/World/Heightmap_-3_-2.res" id="310_pluev"]
-[ext_resource type="Texture2D" uid="uid://w5vjglq3w4wb" path="res://Scenes/World/Foliage_4_1_0.res" id="311_b2kqp"]
-[ext_resource type="Texture2D" uid="uid://d1xcnprx22yn6" path="res://Scenes/World/Object_-3_-2_0.res" id="311_hfyme"]
-[ext_resource type="Texture2D" uid="uid://cuen1f281k4iq" path="res://Scenes/World/Splatmap_-3_-2_0.res" id="312_1aqcl"]
-[ext_resource type="Texture2D" uid="uid://cnpend8dhb6yo" path="res://Scenes/World/Foliage_4_1_1.res" id="312_dtvt8"]
-[ext_resource type="Texture2D" uid="uid://ckdgd0nanww3a" path="res://Scenes/World/Splatmap_-3_-2_1.res" id="313_i0ejg"]
-[ext_resource type="Texture2D" uid="uid://ckpddp7w0jw5m" path="res://Scenes/World/Heightmap_4_1.res" id="313_kkecq"]
-[ext_resource type="Texture2D" uid="uid://dwbh2bp8fml7q" path="res://Scenes/World/Splatmap_-3_-2_2.res" id="314_7k5o7"]
-[ext_resource type="Texture2D" uid="uid://33rw0mir73oi" path="res://Scenes/World/Object_4_1_0.res" id="314_83jqk"]
-[ext_resource type="Texture2D" uid="uid://c38jwpkp5h7s6" path="res://Scenes/World/Water_-3_-2.res" id="315_lfajx"]
-[ext_resource type="Texture2D" uid="uid://dqkf88fkp4bu4" path="res://Scenes/World/Splatmap_4_1_0.res" id="315_rna7i"]
-[ext_resource type="Texture2D" uid="uid://gclvswskgx73" path="res://Scenes/World/Splatmap_4_1_1.res" id="316_1tqb4"]
-[ext_resource type="Texture2D" uid="uid://cdp8lloeaqhyf" path="res://Scenes/World/Foliage_-3_-3_0.res" id="316_33n82"]
-[ext_resource type="Texture2D" uid="uid://85k8m1k53anc" path="res://Scenes/World/Splatmap_4_1_2.res" id="317_3psa0"]
-[ext_resource type="Texture2D" uid="uid://bj6jw7ke7toum" path="res://Scenes/World/Foliage_-3_-3_1.res" id="317_eli1r"]
-[ext_resource type="Texture2D" uid="uid://cmbir7igmsnw4" path="res://Scenes/World/Heightmap_-3_-3.res" id="318_2t11w"]
-[ext_resource type="Texture2D" uid="uid://cocrpfuxf1ual" path="res://Scenes/World/Water_4_1.res" id="318_hy64a"]
-[ext_resource type="Texture2D" uid="uid://6hcjic1bseu6" path="res://Scenes/World/Object_-3_-3_0.res" id="319_tqfs6"]
-[ext_resource type="Texture2D" uid="uid://6vm1y13wekdc" path="res://Scenes/World/Splatmap_-3_-3_0.res" id="320_dgsrl"]
-[ext_resource type="Texture2D" uid="uid://d0ab668spq0er" path="res://Scenes/World/Splatmap_-3_-3_1.res" id="321_u844l"]
-[ext_resource type="Texture2D" uid="uid://btag143bptrxy" path="res://Scenes/World/Splatmap_-3_-3_2.res" id="322_3kjt4"]
-[ext_resource type="Texture2D" uid="uid://bucjqpfbaqu1g" path="res://Scenes/World/Water_-3_-3.res" id="323_hm7dm"]
-[ext_resource type="Texture2D" uid="uid://c56hg2r6as5bq" path="res://Scenes/World/Foliage_-2_-3_0.res" id="324_fvc0h"]
-[ext_resource type="Texture2D" uid="uid://c0pxlqskir8kp" path="res://Scenes/World/Foliage_-2_-3_1.res" id="325_f5pl2"]
-[ext_resource type="Texture2D" uid="uid://de6iw1681mdvn" path="res://Scenes/World/Heightmap_-2_-3.res" id="326_8r8pr"]
-[ext_resource type="Texture2D" uid="uid://b0a7ty31ot8jw" path="res://Scenes/World/Foliage_4_2_0.res" id="327_jchk6"]
-[ext_resource type="Texture2D" uid="uid://cuqptk2loxum4" path="res://Scenes/World/Object_-2_-3_0.res" id="327_jo6f7"]
-[ext_resource type="Texture2D" uid="uid://b43l8vfpsr2rn" path="res://Scenes/World/Foliage_4_2_1.res" id="328_a2g2v"]
-[ext_resource type="Texture2D" uid="uid://cgc3oglf57o4h" path="res://Scenes/World/Splatmap_-2_-3_0.res" id="328_fybvo"]
-[ext_resource type="Texture2D" uid="uid://cttspw7x7d4lt" path="res://Scenes/World/Splatmap_-2_-3_1.res" id="329_5qykd"]
-[ext_resource type="Texture2D" uid="uid://cihmr1txddyoj" path="res://Scenes/World/Heightmap_4_2.res" id="329_qxotl"]
-[ext_resource type="Texture2D" uid="uid://bif87yakp2frp" path="res://Scenes/World/Splatmap_-2_-3_2.res" id="330_d7p1a"]
-[ext_resource type="Texture2D" uid="uid://cc24mndq65r8i" path="res://Scenes/World/Object_4_2_0.res" id="330_krhxp"]
-[ext_resource type="Texture2D" uid="uid://dxesxy0udm6hr" path="res://Scenes/World/Splatmap_4_2_0.res" id="331_ia4dk"]
-[ext_resource type="Texture2D" uid="uid://27eahwgc864q" path="res://Scenes/World/Water_-2_-3.res" id="331_r6d16"]
-[ext_resource type="Texture2D" uid="uid://doq7uxgf8lbdl" path="res://Scenes/World/Splatmap_4_2_1.res" id="332_js4bt"]
-[ext_resource type="Texture2D" uid="uid://snjyqwk1x7ci" path="res://Scenes/World/Foliage_-1_-3_0.res" id="332_wqude"]
-[ext_resource type="Texture2D" uid="uid://c5nvmxc152h7v" path="res://Scenes/World/Foliage_-1_-3_1.res" id="333_m2qhm"]
-[ext_resource type="Texture2D" uid="uid://dfq2ffhbs62m2" path="res://Scenes/World/Splatmap_4_2_2.res" id="333_x64uv"]
-[ext_resource type="Texture2D" uid="uid://bjefqurksxye2" path="res://Scenes/World/Water_4_2.res" id="334_r6ih7"]
-[ext_resource type="Texture2D" uid="uid://bdtxocdoewi5c" path="res://Scenes/World/Heightmap_-1_-3.res" id="334_yglyy"]
-[ext_resource type="Texture2D" uid="uid://btfdia1jo6eqv" path="res://Scenes/World/Foliage_4_3_0.res" id="335_kj5vc"]
-[ext_resource type="Texture2D" uid="uid://dbo4jdq5736vs" path="res://Scenes/World/Object_-1_-3_0.res" id="335_vr5b1"]
-[ext_resource type="Texture2D" uid="uid://c7jurlbar0lds" path="res://Scenes/World/Foliage_4_3_1.res" id="336_0bt28"]
-[ext_resource type="Texture2D" uid="uid://cc1rvy4gjiesf" path="res://Scenes/World/Splatmap_-1_-3_0.res" id="336_6i8sk"]
-[ext_resource type="Texture2D" uid="uid://cecow124wwqx8" path="res://Scenes/World/Splatmap_-1_-3_1.res" id="337_jburx"]
-[ext_resource type="Texture2D" uid="uid://56gwtrj07hot" path="res://Scenes/World/Heightmap_4_3.res" id="337_t0dp6"]
-[ext_resource type="Texture2D" uid="uid://ctdnkwvs242ru" path="res://Scenes/World/Splatmap_-1_-3_2.res" id="338_id3w4"]
-[ext_resource type="Texture2D" uid="uid://cs1qk8o56tu4q" path="res://Scenes/World/Object_4_3_0.res" id="338_ttjsi"]
-[ext_resource type="Texture2D" uid="uid://dwwe2fq3jjmr1" path="res://Scenes/World/Splatmap_4_3_0.res" id="339_8hf5x"]
-[ext_resource type="Texture2D" uid="uid://4g2707wh45ra" path="res://Scenes/World/Water_-1_-3.res" id="339_wgsp7"]
-[ext_resource type="Texture2D" uid="uid://cssevh0wlgwmg" path="res://Scenes/World/Splatmap_4_3_1.res" id="340_b3unv"]
-[ext_resource type="Texture2D" uid="uid://b3rpugnnguc5w" path="res://Scenes/World/Foliage_0_-3_0.res" id="340_bkeq0"]
-[ext_resource type="Texture2D" uid="uid://0oad41mxuvv7" path="res://Scenes/World/Foliage_0_-3_1.res" id="341_bjdiu"]
-[ext_resource type="Texture2D" uid="uid://o3ueu2wasghd" path="res://Scenes/World/Splatmap_4_3_2.res" id="341_vx6et"]
-[ext_resource type="Texture2D" uid="uid://e1gb3fq3wy3h" path="res://Scenes/World/Heightmap_0_-3.res" id="342_448ib"]
-[ext_resource type="Texture2D" uid="uid://cm1huajad8nev" path="res://Scenes/World/Water_4_3.res" id="342_kc8h5"]
-[ext_resource type="Texture2D" uid="uid://blrsg3x2k7shj" path="res://Scenes/World/Object_0_-3_0.res" id="343_cjqbs"]
-[ext_resource type="Texture2D" uid="uid://bqnku8h5l3hxt" path="res://Scenes/World/Foliage_4_4_0.res" id="343_nem87"]
-[ext_resource type="Texture2D" uid="uid://cbiy35v1001p" path="res://Scenes/World/Splatmap_0_-3_0.res" id="344_33e24"]
-[ext_resource type="Texture2D" uid="uid://bpvpnr33jo7iw" path="res://Scenes/World/Foliage_4_4_1.res" id="344_bymik"]
-[ext_resource type="Texture2D" uid="uid://brfr0b0hp1jul" path="res://Scenes/World/Heightmap_4_4.res" id="345_3d6th"]
-[ext_resource type="Texture2D" uid="uid://dwc2cbarvfj7u" path="res://Scenes/World/Splatmap_0_-3_1.res" id="345_ijxvc"]
-[ext_resource type="Texture2D" uid="uid://1v15b77b0qoi" path="res://Scenes/World/Splatmap_0_-3_2.res" id="346_5nxfk"]
-[ext_resource type="Texture2D" uid="uid://ctawov04w2qw0" path="res://Scenes/World/Object_4_4_0.res" id="346_afxwf"]
-[ext_resource type="Texture2D" uid="uid://bj6vgs2106k5d" path="res://Scenes/World/Splatmap_4_4_0.res" id="347_gf86u"]
-[ext_resource type="Texture2D" uid="uid://crf504krsyvy6" path="res://Scenes/World/Water_0_-3.res" id="347_jv0vl"]
-[ext_resource type="Texture2D" uid="uid://m14lw86nnyxy" path="res://Scenes/World/Foliage_1_-3_0.res" id="348_mjt34"]
-[ext_resource type="Texture2D" uid="uid://b1dh4gjf5bo4o" path="res://Scenes/World/Splatmap_4_4_1.res" id="348_w6day"]
-[ext_resource type="Texture2D" uid="uid://dgxjribsm2t7i" path="res://Scenes/World/Foliage_1_-3_1.res" id="349_2ctns"]
-[ext_resource type="Texture2D" uid="uid://b0aq33kou67np" path="res://Scenes/World/Splatmap_4_4_2.res" id="349_ofjvm"]
-[ext_resource type="Texture2D" uid="uid://dgf76cba88q5f" path="res://Scenes/World/Water_4_4.res" id="350_8r2vn"]
-[ext_resource type="Texture2D" uid="uid://c74rlml8qpt7" path="res://Scenes/World/Heightmap_1_-3.res" id="350_poy7t"]
-[ext_resource type="Texture2D" uid="uid://djkp1c3pjl60d" path="res://Scenes/World/Foliage_4_5_0.res" id="351_0buwe"]
-[ext_resource type="Texture2D" uid="uid://bgme4lccrpihr" path="res://Scenes/World/Object_1_-3_0.res" id="351_dlygi"]
-[ext_resource type="Texture2D" uid="uid://cxuqwvddlswat" path="res://Scenes/World/Foliage_4_5_1.res" id="352_docne"]
-[ext_resource type="Texture2D" uid="uid://d1bp6lh48jq6q" path="res://Scenes/World/Splatmap_1_-3_0.res" id="352_hrex7"]
-[ext_resource type="Texture2D" uid="uid://d2oski4x4rfln" path="res://Scenes/World/Splatmap_1_-3_1.res" id="353_is2qr"]
-[ext_resource type="Texture2D" uid="uid://cwcgn72ma4gps" path="res://Scenes/World/Heightmap_4_5.res" id="353_si2hd"]
-[ext_resource type="Texture2D" uid="uid://4kqad4smfo5c" path="res://Scenes/World/Object_4_5_0.res" id="354_npgxp"]
-[ext_resource type="Texture2D" uid="uid://w0o6va87vqin" path="res://Scenes/World/Splatmap_1_-3_2.res" id="354_q0fob"]
-[ext_resource type="Texture2D" uid="uid://diflwvvm1gem8" path="res://Scenes/World/Water_1_-3.res" id="355_4nalf"]
-[ext_resource type="Texture2D" uid="uid://b8wh3qtvr3ets" path="res://Scenes/World/Splatmap_4_5_0.res" id="355_8bjov"]
-[ext_resource type="Texture2D" uid="uid://c5w6mejfhocqm" path="res://Scenes/World/Foliage_2_-3_0.res" id="356_4ll4h"]
-[ext_resource type="Texture2D" uid="uid://5dx3vjgjcdrp" path="res://Scenes/World/Splatmap_4_5_1.res" id="356_dj1gu"]
-[ext_resource type="Texture2D" uid="uid://cb5frnhxojkgd" path="res://Scenes/World/Splatmap_4_5_2.res" id="357_ci5dx"]
-[ext_resource type="Texture2D" uid="uid://dpwtrfryido4d" path="res://Scenes/World/Foliage_2_-3_1.res" id="357_ph3qv"]
-[ext_resource type="Texture2D" uid="uid://7xm2ccsd3nb5" path="res://Scenes/World/Heightmap_2_-3.res" id="358_0tsex"]
-[ext_resource type="Texture2D" uid="uid://byvrb8v7qydrp" path="res://Scenes/World/Water_4_5.res" id="358_wynec"]
-[ext_resource type="Texture2D" uid="uid://p4alwmw5yx3a" path="res://Scenes/World/Object_2_-3_0.res" id="359_oo171"]
-[ext_resource type="Texture2D" uid="uid://bupjo8ps2u3om" path="res://Scenes/World/Foliage_3_5_0.res" id="359_rdacl"]
-[ext_resource type="Texture2D" uid="uid://gjtr5bimwuhs" path="res://Scenes/World/Splatmap_2_-3_0.res" id="360_rml0p"]
-[ext_resource type="Texture2D" uid="uid://nsywh3tj2u2x" path="res://Scenes/World/Foliage_3_5_1.res" id="360_v77lc"]
-[ext_resource type="Texture2D" uid="uid://btit5uu2wccfo" path="res://Scenes/World/Splatmap_2_-3_1.res" id="361_sj8d8"]
-[ext_resource type="Texture2D" uid="uid://biv8gp6n62bnj" path="res://Scenes/World/Heightmap_3_5.res" id="361_vyr3b"]
-[ext_resource type="Texture2D" uid="uid://cnan2mfnxkwhx" path="res://Scenes/World/Object_3_5_0.res" id="362_22w84"]
-[ext_resource type="Texture2D" uid="uid://cm6gvhq18ril3" path="res://Scenes/World/Splatmap_2_-3_2.res" id="362_p8pqq"]
-[ext_resource type="Texture2D" uid="uid://bud0i4jddf561" path="res://Scenes/World/Splatmap_3_5_0.res" id="363_thwgj"]
-[ext_resource type="Texture2D" uid="uid://buu8vi2flk0vf" path="res://Scenes/World/Water_2_-3.res" id="363_vqhks"]
-[ext_resource type="Texture2D" uid="uid://dslexasbl6ptb" path="res://Scenes/World/Splatmap_3_5_1.res" id="364_cm4iw"]
-[ext_resource type="Texture2D" uid="uid://b6k6o085jlxo3" path="res://Scenes/World/Foliage_3_-3_0.res" id="364_dshqo"]
-[ext_resource type="Texture2D" uid="uid://cw1i3kfc1tjcn" path="res://Scenes/World/Splatmap_3_5_2.res" id="365_o7yo1"]
-[ext_resource type="Texture2D" uid="uid://drhirl6up2dgn" path="res://Scenes/World/Foliage_3_-3_1.res" id="365_rl53u"]
-[ext_resource type="Texture2D" uid="uid://yn34v6j73y78" path="res://Scenes/World/Water_3_5.res" id="366_p2yit"]
-[ext_resource type="Texture2D" uid="uid://c8mo1y1unuia3" path="res://Scenes/World/Heightmap_3_-3.res" id="366_q6xnt"]
-[ext_resource type="Texture2D" uid="uid://dbgshk3w635io" path="res://Scenes/World/Foliage_3_6_0.res" id="367_hq7f0"]
-[ext_resource type="Texture2D" uid="uid://rgn0xtbrqmie" path="res://Scenes/World/Object_3_-3_0.res" id="367_iimqp"]
-[ext_resource type="Texture2D" uid="uid://crcm56ck6gt8g" path="res://Scenes/World/Foliage_3_6_1.res" id="368_7nmcm"]
-[ext_resource type="Texture2D" uid="uid://bwmyckqaoyuni" path="res://Scenes/World/Splatmap_3_-3_0.res" id="368_jgaq1"]
-[ext_resource type="Texture2D" uid="uid://pwi35dtlxg3h" path="res://Scenes/World/Heightmap_3_6.res" id="369_2m5w0"]
-[ext_resource type="Texture2D" uid="uid://bjb7y1bve8j12" path="res://Scenes/World/Splatmap_3_-3_1.res" id="369_dqhsd"]
-[ext_resource type="Texture2D" uid="uid://73kgd6dkvniw" path="res://Scenes/World/Object_3_6_0.res" id="370_j3s4d"]
-[ext_resource type="Texture2D" uid="uid://bfbopawupbwvb" path="res://Scenes/World/Splatmap_3_-3_2.res" id="370_kx454"]
-[ext_resource type="Texture2D" uid="uid://c5mi8qpef6l1o" path="res://Scenes/World/Water_3_-3.res" id="371_hv7on"]
-[ext_resource type="Texture2D" uid="uid://b8x8n6yuqm8u6" path="res://Scenes/World/Splatmap_3_6_0.res" id="371_nu433"]
-[ext_resource type="Texture2D" uid="uid://bwb4imxdw2doq" path="res://Scenes/World/Foliage_3_-2_0.res" id="372_76v7d"]
-[ext_resource type="Texture2D" uid="uid://dtso3ww3anmgb" path="res://Scenes/World/Splatmap_3_6_1.res" id="372_ph6wx"]
-[ext_resource type="Texture2D" uid="uid://dh7bfs10mqt4k" path="res://Scenes/World/Foliage_3_-2_1.res" id="373_6fjhc"]
-[ext_resource type="Texture2D" uid="uid://l4533jeavowc" path="res://Scenes/World/Splatmap_3_6_2.res" id="373_o5wvj"]
-[ext_resource type="Texture2D" uid="uid://obrv1kaeku6e" path="res://Scenes/World/Water_3_6.res" id="374_ekmxp"]
-[ext_resource type="Texture2D" uid="uid://ccyyg8w4h112p" path="res://Scenes/World/Heightmap_3_-2.res" id="374_ie8n5"]
-[ext_resource type="Texture2D" uid="uid://syrt4tmfuwjj" path="res://Scenes/World/Foliage_4_6_0.res" id="375_fqqq7"]
-[ext_resource type="Texture2D" uid="uid://bmupabw72nhoy" path="res://Scenes/World/Object_3_-2_0.res" id="375_stitw"]
-[ext_resource type="Texture2D" uid="uid://t3vu8pnkygm2" path="res://Scenes/World/Splatmap_3_-2_0.res" id="376_0ap2v"]
-[ext_resource type="Texture2D" uid="uid://dt7efg1u3s6ch" path="res://Scenes/World/Foliage_4_6_1.res" id="376_md6jy"]
-[ext_resource type="Texture2D" uid="uid://carky6eybmgj3" path="res://Scenes/World/Heightmap_4_6.res" id="377_1vrvr"]
-[ext_resource type="Texture2D" uid="uid://egnkhxpikqph" path="res://Scenes/World/Splatmap_3_-2_1.res" id="377_owixw"]
-[ext_resource type="Texture2D" uid="uid://d2cgv3jqwdktg" path="res://Scenes/World/Splatmap_3_-2_2.res" id="378_0v05p"]
-[ext_resource type="Texture2D" uid="uid://c21tmy0hwxl23" path="res://Scenes/World/Object_4_6_0.res" id="378_6d1yh"]
-[ext_resource type="Texture2D" uid="uid://srvc141k78q7" path="res://Scenes/World/Splatmap_4_6_0.res" id="379_d5f50"]
-[ext_resource type="Texture2D" uid="uid://bfp5uhv70ud6l" path="res://Scenes/World/Water_3_-2.res" id="379_o36du"]
-[ext_resource type="Texture2D" uid="uid://bbjhmeiafoi8n" path="res://Scenes/World/Splatmap_4_6_1.res" id="380_2ry37"]
-[ext_resource type="Texture2D" uid="uid://dgexv3nvrmm1n" path="res://Scenes/World/Foliage_3_-1_0.res" id="380_bcxqa"]
-[ext_resource type="Texture2D" uid="uid://c4xy4jvr5l8pa" path="res://Scenes/World/Foliage_3_-1_1.res" id="381_5wl47"]
-[ext_resource type="Texture2D" uid="uid://idrr6hggubu0" path="res://Scenes/World/Splatmap_4_6_2.res" id="381_657dt"]
-[ext_resource type="Texture2D" uid="uid://ka0puc7lb1gq" path="res://Scenes/World/Heightmap_3_-1.res" id="382_hs4bn"]
-[ext_resource type="Texture2D" uid="uid://dewbodvsncirh" path="res://Scenes/World/Water_4_6.res" id="382_t4t42"]
-[ext_resource type="Texture2D" uid="uid://cptbl74fy3exh" path="res://Scenes/World/Object_3_-1_0.res" id="383_h0loy"]
-[ext_resource type="Texture2D" uid="uid://cr16f37huspai" path="res://Scenes/World/Splatmap_3_-1_0.res" id="384_ruxh4"]
-[ext_resource type="Texture2D" uid="uid://bj4ijc3jnr1wi" path="res://Scenes/World/Splatmap_3_-1_1.res" id="385_m351m"]
-[ext_resource type="Texture2D" uid="uid://bruytav3jfsik" path="res://Scenes/World/Splatmap_3_-1_2.res" id="386_crt1i"]
-[ext_resource type="Texture2D" uid="uid://b5755mh2sfai6" path="res://Scenes/World/Water_3_-1.res" id="387_tspmx"]
-[ext_resource type="Texture2D" uid="uid://bqwk6xpv42oos" path="res://Scenes/World/Foliage_3_0_0.res" id="388_nx3aq"]
-[ext_resource type="Texture2D" uid="uid://b1o4q2jtoavuj" path="res://Scenes/World/Foliage_3_0_1.res" id="389_w2nlc"]
-[ext_resource type="Texture2D" uid="uid://poh6oxdjo74v" path="res://Scenes/World/Heightmap_3_0.res" id="390_wpxbi"]
-[ext_resource type="Texture2D" uid="uid://dpq7tns41inid" path="res://Scenes/World/Object_3_0_0.res" id="391_et6nw"]
-[ext_resource type="Texture2D" uid="uid://bn52b3vior4fh" path="res://Scenes/World/Foliage_-1_5_0.res" id="391_xq62r"]
-[ext_resource type="Texture2D" uid="uid://dx1uyxjhu3udu" path="res://Scenes/World/Splatmap_3_0_0.res" id="392_gtcan"]
-[ext_resource type="Texture2D" uid="uid://cjc1o4neuucx" path="res://Scenes/World/Foliage_-1_5_1.res" id="392_t72ud"]
-[ext_resource type="Texture2D" uid="uid://uy2irhsa6djb" path="res://Scenes/World/Heightmap_-1_5.res" id="393_bt1ko"]
-[ext_resource type="Texture2D" uid="uid://bwvbjsthhk1cj" path="res://Scenes/World/Splatmap_3_0_1.res" id="393_ua4sc"]
-[ext_resource type="Texture2D" uid="uid://ckur7u20fcws1" path="res://Scenes/World/Splatmap_3_0_2.res" id="394_s3pg1"]
-[ext_resource type="Texture2D" uid="uid://bvh2u05n611mr" path="res://Scenes/World/Object_-1_5_0.res" id="394_urens"]
-[ext_resource type="Texture2D" uid="uid://c1m1pb1ykksb0" path="res://Scenes/World/Splatmap_-1_5_0.res" id="395_lhkg2"]
-[ext_resource type="Texture2D" uid="uid://ykpo0af6ufkf" path="res://Scenes/World/Water_3_0.res" id="395_uuglo"]
-[ext_resource type="Texture2D" uid="uid://b1hlgmgc7mjv2" path="res://Scenes/World/Splatmap_-1_5_1.res" id="396_daplo"]
-[ext_resource type="Texture2D" uid="uid://bg517mht0xwia" path="res://Scenes/World/Foliage_3_1_0.res" id="396_egcrv"]
-[ext_resource type="Texture2D" uid="uid://c4uonhhb7avsu" path="res://Scenes/World/Splatmap_-1_5_2.res" id="397_byw5m"]
-[ext_resource type="Texture2D" uid="uid://d25av3qbus046" path="res://Scenes/World/Foliage_3_1_1.res" id="397_npxt8"]
-[ext_resource type="Texture2D" uid="uid://d175smapvg6i2" path="res://Scenes/World/Heightmap_3_1.res" id="398_5av82"]
-[ext_resource type="Texture2D" uid="uid://yeha2w33cljp" path="res://Scenes/World/Water_-1_5.res" id="398_jbgv1"]
-[ext_resource type="Texture2D" uid="uid://blxakj3nkpttv" path="res://Scenes/World/Object_3_1_0.res" id="399_dd5us"]
-[ext_resource type="Texture2D" uid="uid://tbbptdci1cdl" path="res://Scenes/World/Splatmap_3_1_0.res" id="400_htoa0"]
-[ext_resource type="Texture2D" uid="uid://c2p18aqeuhg05" path="res://Scenes/World/Splatmap_3_1_1.res" id="401_wfhr6"]
-[ext_resource type="Texture2D" uid="uid://bm8e1vyd24w1c" path="res://Scenes/World/Splatmap_3_1_2.res" id="402_p8fdf"]
-[ext_resource type="Texture2D" uid="uid://dy0r26i1fr0w5" path="res://Scenes/World/Water_3_1.res" id="403_ujxt1"]
-[ext_resource type="Texture2D" uid="uid://it25atrq8qfc" path="res://Scenes/World/Foliage_3_2_0.res" id="404_ny238"]
-[ext_resource type="Texture2D" uid="uid://cv0p6v3mfhbqk" path="res://Scenes/World/Foliage_3_2_1.res" id="405_ksnvr"]
-[ext_resource type="Texture2D" uid="uid://likesuplafjs" path="res://Scenes/World/Heightmap_3_2.res" id="406_wkvq6"]
-[ext_resource type="Texture2D" uid="uid://1wbp4umntdw6" path="res://Scenes/World/Object_3_2_0.res" id="407_7pfrm"]
-[ext_resource type="Texture2D" uid="uid://cr6iidy1c3mjs" path="res://Scenes/World/Foliage_1_5_0.res" id="407_iv66x"]
-[ext_resource type="Texture2D" uid="uid://dx7bf7lk5dsin" path="res://Scenes/World/Foliage_1_5_1.res" id="408_gk44o"]
-[ext_resource type="Texture2D" uid="uid://d261c6dk3r0ny" path="res://Scenes/World/Splatmap_3_2_0.res" id="408_uit06"]
-[ext_resource type="Texture2D" uid="uid://b2831a0nb3njq" path="res://Scenes/World/Heightmap_1_5.res" id="409_auvvl"]
-[ext_resource type="Texture2D" uid="uid://b3rrxgvd4gg7o" path="res://Scenes/World/Splatmap_3_2_1.res" id="409_tqwhd"]
-[ext_resource type="Texture2D" uid="uid://t08dyfkk6tqn" path="res://Scenes/World/Object_1_5_0.res" id="410_h8toc"]
-[ext_resource type="Texture2D" uid="uid://q8s8kstle5u4" path="res://Scenes/World/Splatmap_3_2_2.res" id="410_v8gv0"]
-[ext_resource type="Texture2D" uid="uid://b2lncltcm3agb" path="res://Scenes/World/Water_3_2.res" id="411_7inf7"]
-[ext_resource type="Texture2D" uid="uid://cjlbwb3x5ng3r" path="res://Scenes/World/Splatmap_1_5_0.res" id="411_bxxq6"]
-[ext_resource type="Texture2D" uid="uid://bf3anjyj04q6n" path="res://Scenes/World/Splatmap_1_5_1.res" id="412_4tuv7"]
-[ext_resource type="Texture2D" uid="uid://ldaly3bx465m" path="res://Scenes/World/Foliage_3_3_0.res" id="412_i85qj"]
-[ext_resource type="Texture2D" uid="uid://dqc72jen0ckk" path="res://Scenes/World/Splatmap_1_5_2.res" id="413_flpxc"]
-[ext_resource type="Texture2D" uid="uid://oebkfhji8j6s" path="res://Scenes/World/Foliage_3_3_1.res" id="413_gd7ms"]
-[ext_resource type="Texture2D" uid="uid://785nc1pk5eoo" path="res://Scenes/World/Heightmap_3_3.res" id="414_sebch"]
-[ext_resource type="Texture2D" uid="uid://cs2p36elehhna" path="res://Scenes/World/Water_1_5.res" id="414_u3fh7"]
-[ext_resource type="Texture2D" uid="uid://cucfa28hay8tp" path="res://Scenes/World/Foliage_0_6_0.res" id="415_7dtkg"]
-[ext_resource type="Texture2D" uid="uid://dvqseiyncwuke" path="res://Scenes/World/Object_3_3_0.res" id="415_has30"]
-[ext_resource type="Texture2D" uid="uid://caqd1alcmjtlj" path="res://Scenes/World/Foliage_0_6_1.res" id="416_8qydd"]
-[ext_resource type="Texture2D" uid="uid://bpraka0crc806" path="res://Scenes/World/Splatmap_3_3_0.res" id="416_io2m4"]
-[ext_resource type="Texture2D" uid="uid://5qfkke8m3vfq" path="res://Scenes/World/Splatmap_3_3_1.res" id="417_nw14b"]
-[ext_resource type="Texture2D" uid="uid://bacmwut0d5b7o" path="res://Scenes/World/Heightmap_0_6.res" id="417_yckje"]
-[ext_resource type="Texture2D" uid="uid://b40ld4sk4krj3" path="res://Scenes/World/Splatmap_3_3_2.res" id="418_kto18"]
-[ext_resource type="Texture2D" uid="uid://cpp4b8stbe5ev" path="res://Scenes/World/Object_0_6_0.res" id="418_r3kqk"]
-[ext_resource type="Texture2D" uid="uid://ddgu6ueysjp24" path="res://Scenes/World/Splatmap_0_6_0.res" id="419_bppyh"]
-[ext_resource type="Texture2D" uid="uid://p1n4vggvfhyq" path="res://Scenes/World/Water_3_3.res" id="419_rjsgy"]
-[ext_resource type="Texture2D" uid="uid://dsbbfmn3v3h5f" path="res://Scenes/World/Splatmap_0_6_1.res" id="420_sdvil"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="421_81rqo"]
-[ext_resource type="Texture2D" uid="uid://cpoevea7x1sah" path="res://Scenes/World/Splatmap_0_6_2.res" id="421_niho0"]
 [ext_resource type="PackedScene" uid="uid://bw2fjllusx7kw" path="res://Scenes/enemy_spawner.tscn" id="421_wrhnx"]
-[ext_resource type="Texture2D" uid="uid://bkfjpuiwgvlrm" path="res://Scenes/World/Water_0_6.res" id="422_n2ckw"]
 [ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/VillagerScripts/MaryVillager.cs" id="422_pvlar"]
 [ext_resource type="Script" uid="uid://bwc5be1j0grxx" path="res://Scripts/VillagerScripts/ElizabethVillager.cs" id="423_e2eg3"]
-[ext_resource type="Texture2D" uid="uid://dk3kg3eux1oj2" path="res://Scenes/World/Foliage_1_6_0.res" id="423_mqv2g"]
-[ext_resource type="Texture2D" uid="uid://togmjshmgi15" path="res://Scenes/World/Foliage_1_6_1.res" id="424_25cje"]
 [ext_resource type="Script" uid="uid://fpbtgg4ofyo" path="res://Scripts/VillagerScripts/DillonVillager.cs" id="424_nr7af"]
-[ext_resource type="Texture2D" uid="uid://bmxjusg7r8l8f" path="res://Scenes/World/Heightmap_1_6.res" id="425_2xmtc"]
 [ext_resource type="Script" uid="uid://1j4tnfmggee4" path="res://Scripts/VillagerScripts/LukasVillager.cs" id="425_ym0xd"]
-[ext_resource type="Texture2D" uid="uid://bxdxqv1iukq33" path="res://Scenes/World/Object_1_6_0.res" id="426_hse6p"]
 [ext_resource type="Script" uid="uid://cvaa6k23p1fy6" path="res://Scripts/VillagerScripts/SamualVillager.cs" id="426_xyhap"]
 [ext_resource type="Script" uid="uid://brv6v4lm6cph8" path="res://Scripts/VillagerScripts/MarthaVillager.cs" id="427_46020"]
-[ext_resource type="Texture2D" uid="uid://bgj4r0k21r7v1" path="res://Scenes/World/Splatmap_1_6_0.res" id="427_h2hq1"]
-[ext_resource type="Texture2D" uid="uid://cmmyt7gh45bs1" path="res://Scenes/World/Splatmap_1_6_1.res" id="428_awigb"]
 [ext_resource type="Script" uid="uid://cd1hk520uuwo4" path="res://Scripts/VillagerScripts/FinnVillager.cs" id="428_of432"]
-[ext_resource type="Texture2D" uid="uid://fgxm33c2u72e" path="res://Scenes/World/Splatmap_1_6_2.res" id="429_8kdxt"]
 [ext_resource type="PackedScene" uid="uid://4khu1i6od862" path="res://Scenes/Monsters/villageRat.tscn" id="429_wk3sn"]
 [ext_resource type="Script" uid="uid://deqndpcgi731" path="res://Scripts/VillagerScripts/MatthewVillager.cs" id="429_wkm1a"]
 [ext_resource type="PackedScene" uid="uid://ctodbn6m6s5i2" path="res://Scenes/Monsters/Bosses/theHushedBark.tscn" id="430_2rj2p"]
-[ext_resource type="Texture2D" uid="uid://4cofibfb1tel" path="res://Scenes/World/Foliage_-2_4_0.res" id="430_7wkcv"]
-[ext_resource type="Texture2D" uid="uid://b7uu85vu6na1g" path="res://Scenes/World/Water_1_6.res" id="430_50r3k"]
-[ext_resource type="Texture2D" uid="uid://cmx84ls5fo108" path="res://Scenes/World/Foliage_-2_4_1.res" id="431_i7q85"]
-[ext_resource type="Texture2D" uid="uid://3d4ai6fk8isy" path="res://Scenes/World/Foliage_2_5_0.res" id="431_qvbks"]
 [ext_resource type="PackedScene" uid="uid://syqvg0yul3mk" path="res://Scenes/Monsters/MonsterAssets/fakeTree.tscn" id="431_wrhnx"]
-[ext_resource type="Texture2D" uid="uid://cgf7ie52otuoe" path="res://Scenes/World/Foliage_2_5_1.res" id="432_7r2xp"]
-[ext_resource type="Texture2D" uid="uid://c0kre81qgakrd" path="res://Scenes/World/Heightmap_-2_4.res" id="432_soowo"]
-[ext_resource type="Texture2D" uid="uid://txi4yfb0hdx0" path="res://Scenes/World/Object_-2_4_0.res" id="433_lgc0t"]
-[ext_resource type="Texture2D" uid="uid://bkea7he1ihcqb" path="res://Scenes/World/Heightmap_2_5.res" id="433_om0sc"]
-[ext_resource type="Texture2D" uid="uid://ve2chk6eaws5" path="res://Scenes/World/Splatmap_-2_4_0.res" id="434_1dypy"]
-[ext_resource type="Texture2D" uid="uid://cgbddc3jvio0f" path="res://Scenes/World/Object_2_5_0.res" id="434_870km"]
 [ext_resource type="PackedScene" uid="uid://dp8uiiauk5326" path="res://Scenes/lamp.tscn" id="434_jgbub"]
-[ext_resource type="Texture2D" uid="uid://baab40rg6o1by" path="res://Scenes/World/Splatmap_2_5_0.res" id="435_ad74o"]
-[ext_resource type="Texture2D" uid="uid://p3xi5wdt3ek8" path="res://Scenes/World/Splatmap_-2_4_1.res" id="435_rlxc0"]
-[ext_resource type="Texture2D" uid="uid://c658dc5oog4jg" path="res://Scenes/World/Splatmap_2_5_1.res" id="436_1cg4v"]
-[ext_resource type="Texture2D" uid="uid://mj8dllixt7vs" path="res://Scenes/World/Splatmap_-2_4_2.res" id="436_gumej"]
 [ext_resource type="PackedScene" uid="uid://bfpffyfg2ismx" path="res://Scenes/sign.tscn" id="436_wk3sn"]
 [ext_resource type="PackedScene" uid="uid://dgw0pwu2iwx5p" path="res://Scenes/biome_zone.tscn" id="437_bxpwq"]
-[ext_resource type="Texture2D" uid="uid://b0b6qrpoe5twg" path="res://Scenes/World/Splatmap_2_5_2.res" id="437_uxigg"]
-[ext_resource type="Texture2D" uid="uid://c4oxbi1nsmjdh" path="res://Scenes/World/Water_-2_4.res" id="437_wu4hr"]
-[ext_resource type="Texture2D" uid="uid://jkos6w7tup08" path="res://Scenes/World/Foliage_-1_4_0.res" id="438_07fgs"]
-[ext_resource type="Texture2D" uid="uid://b55oi740je0vn" path="res://Scenes/World/Water_2_5.res" id="438_sbehl"]
-[ext_resource type="Texture2D" uid="uid://buf3cjimjwnwt" path="res://Scenes/World/Foliage_2_6_0.res" id="439_0q2e5"]
-[ext_resource type="Texture2D" uid="uid://dglhn836di633" path="res://Scenes/World/Foliage_-1_4_1.res" id="439_0yd4p"]
-[ext_resource type="Texture2D" uid="uid://dvoq4uuhnycud" path="res://Scenes/World/Foliage_2_6_1.res" id="440_n13bc"]
-[ext_resource type="Texture2D" uid="uid://dgkrav76jnn2e" path="res://Scenes/World/Heightmap_-1_4.res" id="440_q6xjr"]
-[ext_resource type="Texture2D" uid="uid://df1t0wpsat5r1" path="res://Scenes/World/Heightmap_2_6.res" id="441_rkljy"]
-[ext_resource type="Texture2D" uid="uid://duh8p2fmrugou" path="res://Scenes/World/Object_-1_4_0.res" id="441_suvwx"]
-[ext_resource type="Texture2D" uid="uid://dvg6cn8wd8vy8" path="res://Scenes/World/Object_2_6_0.res" id="442_epqte"]
-[ext_resource type="Texture2D" uid="uid://bbjqlrcjb7hy3" path="res://Scenes/World/Splatmap_-1_4_0.res" id="442_nqj5c"]
-[ext_resource type="Texture2D" uid="uid://bl7v0kp7wnnfh" path="res://Scenes/World/Splatmap_-1_4_1.res" id="443_euvpd"]
-[ext_resource type="Texture2D" uid="uid://bjnmwo72ja1db" path="res://Scenes/World/Splatmap_2_6_0.res" id="443_v28ce"]
-[ext_resource type="Texture2D" uid="uid://8rd0e5v1xbm5" path="res://Scenes/World/Splatmap_-1_4_2.res" id="444_gacqc"]
-[ext_resource type="Texture2D" uid="uid://oym8tnuf63um" path="res://Scenes/World/Splatmap_2_6_1.res" id="444_pqvg0"]
-[ext_resource type="Texture2D" uid="uid://csq0oj0c5t8n7" path="res://Scenes/World/Splatmap_2_6_2.res" id="445_ib60i"]
-[ext_resource type="Texture2D" uid="uid://b6bdvdsh53dxq" path="res://Scenes/World/Water_-1_4.res" id="445_map5x"]
-[ext_resource type="Texture2D" uid="uid://b130go8e18tu4" path="res://Scenes/World/Water_2_6.res" id="446_d0gmd"]
-[ext_resource type="Texture2D" uid="uid://majaedyxi61x" path="res://Scenes/World/Foliage_0_4_0.res" id="446_r1b1d"]
-[ext_resource type="Texture2D" uid="uid://dh0y3croi4vdt" path="res://Scenes/World/Foliage_1_4_0.res" id="447_1746f"]
-[ext_resource type="Texture2D" uid="uid://dxchlrf6g1bt3" path="res://Scenes/World/Foliage_0_4_1.res" id="447_igk5s"]
-[ext_resource type="Texture2D" uid="uid://cbkgmfeco4txs" path="res://Scenes/World/Heightmap_0_4.res" id="448_0ktac"]
-[ext_resource type="Texture2D" uid="uid://ct3i82h5wvueu" path="res://Scenes/World/Foliage_1_4_1.res" id="448_w5cd0"]
-[ext_resource type="Texture2D" uid="uid://okduyisd03gc" path="res://Scenes/World/Heightmap_1_4.res" id="449_apsxd"]
 [ext_resource type="PackedScene" uid="uid://d1omoohngw1as" path="res://Scenes/goal_area.tscn" id="449_jsh0i"]
-[ext_resource type="Texture2D" uid="uid://dkfj5iffr6f03" path="res://Scenes/World/Object_0_4_0.res" id="449_s7pwp"]
-[ext_resource type="Texture2D" uid="uid://ek3lly3aldh8" path="res://Scenes/World/Splatmap_0_4_0.res" id="450_ptdsg"]
-[ext_resource type="Texture2D" uid="uid://c7aimxmwwhgxx" path="res://Scenes/World/Object_1_4_0.res" id="450_xyw6j"]
-[ext_resource type="Texture2D" uid="uid://bqd8xpc0mj3dq" path="res://Scenes/World/Splatmap_0_4_1.res" id="451_3emuh"]
-[ext_resource type="Texture2D" uid="uid://im6m37ab2ske" path="res://Scenes/World/Splatmap_1_4_0.res" id="451_g6p6h"]
-[ext_resource type="Texture2D" uid="uid://bg4vwhboqhv8g" path="res://Scenes/World/Splatmap_0_4_2.res" id="452_t3n51"]
-[ext_resource type="Texture2D" uid="uid://c1fptessljok3" path="res://Scenes/World/Splatmap_1_4_1.res" id="452_urqdd"]
-[ext_resource type="Texture2D" uid="uid://4lj7np8yrcyc" path="res://Scenes/World/Water_0_4.res" id="453_k0hdb"]
-[ext_resource type="Texture2D" uid="uid://cytfk5cx7ssvd" path="res://Scenes/World/Splatmap_1_4_2.res" id="453_sdqwp"]
-[ext_resource type="Texture2D" uid="uid://drqknu3pykxn5" path="res://Scenes/World/Water_1_4.res" id="454_1msh0"]
-[ext_resource type="Texture2D" uid="uid://era3hseywjfv" path="res://Scenes/World/Foliage_0_5_0.res" id="454_uhd2t"]
-[ext_resource type="Texture2D" uid="uid://c1gm6f8sgrfth" path="res://Scenes/World/Foliage_2_4_0.res" id="455_mgf2m"]
-[ext_resource type="Texture2D" uid="uid://dqbsxqwo58461" path="res://Scenes/World/Foliage_0_5_1.res" id="455_wu4mf"]
-[ext_resource type="Texture2D" uid="uid://co20owhgo0dvg" path="res://Scenes/World/Foliage_2_4_1.res" id="456_2p2w5"]
-[ext_resource type="Texture2D" uid="uid://sch7noo1il8u" path="res://Scenes/World/Heightmap_0_5.res" id="456_ju2s7"]
-[ext_resource type="Texture2D" uid="uid://c2yj5iu081cck" path="res://Scenes/World/Object_0_5_0.res" id="457_cunwq"]
-[ext_resource type="Texture2D" uid="uid://cstfxmxauf1ha" path="res://Scenes/World/Heightmap_2_4.res" id="457_eijig"]
-[ext_resource type="Texture2D" uid="uid://bcftt2sb7yc3d" path="res://Scenes/World/Object_2_4_0.res" id="458_0y3kq"]
-[ext_resource type="Texture2D" uid="uid://bwub3w8638ond" path="res://Scenes/World/Splatmap_0_5_0.res" id="458_vh0sa"]
-[ext_resource type="Texture2D" uid="uid://bm5v10u7a3uls" path="res://Scenes/World/Splatmap_2_4_0.res" id="459_1dne7"]
-[ext_resource type="Texture2D" uid="uid://bawymgo8u7dq1" path="res://Scenes/World/Splatmap_0_5_1.res" id="459_hh17a"]
-[ext_resource type="Texture2D" uid="uid://kfi0suh5mvjy" path="res://Scenes/World/Splatmap_0_5_2.res" id="460_6cf34"]
-[ext_resource type="Texture2D" uid="uid://b2djps1ry55mu" path="res://Scenes/World/Splatmap_2_4_1.res" id="460_kuox6"]
-[ext_resource type="Texture2D" uid="uid://bcv2iqvi5p2l" path="res://Scenes/World/Splatmap_2_4_2.res" id="461_4ragu"]
-[ext_resource type="Texture2D" uid="uid://dju8ke1402y6" path="res://Scenes/World/Water_0_5.res" id="461_t6evk"]
-[ext_resource type="Texture2D" uid="uid://cq57at8kcyb76" path="res://Scenes/World/Water_2_4.res" id="462_rswu3"]
-[ext_resource type="Texture2D" uid="uid://b3gnp2q4dovrh" path="res://Scenes/World/Foliage_3_4_0.res" id="495_bhnvs"]
-[ext_resource type="Texture2D" uid="uid://whtt44f1g5oy" path="res://Scenes/World/Foliage_3_4_1.res" id="496_87nad"]
-[ext_resource type="Texture2D" uid="uid://g1jpcmnwmgie" path="res://Scenes/World/Heightmap_3_4.res" id="497_dbvgo"]
-[ext_resource type="Texture2D" uid="uid://b6aasubjmibmr" path="res://Scenes/World/Object_3_4_0.res" id="498_8ojji"]
-[ext_resource type="Texture2D" uid="uid://ctlbbvdintupr" path="res://Scenes/World/Splatmap_3_4_0.res" id="499_jnkck"]
-[ext_resource type="Texture2D" uid="uid://dtpt4rdab61im" path="res://Scenes/World/Splatmap_3_4_1.res" id="500_et07f"]
-[ext_resource type="Texture2D" uid="uid://2os3oadr1jjq" path="res://Scenes/World/Splatmap_3_4_2.res" id="501_e4oyy"]
-[ext_resource type="Texture2D" uid="uid://cl5gtcwq43n8y" path="res://Scenes/World/Water_3_4.res" id="502_mjikk"]
-[ext_resource type="Texture2D" uid="uid://fs3x6gwj60u6" path="res://Scenes/World/Foliage_1_-4_0.res" id="503_5vcb7"]
-[ext_resource type="Texture2D" uid="uid://cmm4avrhl5c0" path="res://Scenes/World/Foliage_1_-4_1.res" id="504_psnvo"]
-[ext_resource type="Texture2D" uid="uid://cvviq4mme6j6q" path="res://Scenes/World/Heightmap_1_-4.res" id="505_vpwwq"]
-[ext_resource type="Texture2D" uid="uid://b37bcf5sqd1ui" path="res://Scenes/World/Object_1_-4_0.res" id="506_ctdcb"]
-[ext_resource type="Texture2D" uid="uid://dpclv7ptjm6u7" path="res://Scenes/World/Splatmap_1_-4_0.res" id="507_d61bl"]
-[ext_resource type="Texture2D" uid="uid://blw60q84l7527" path="res://Scenes/World/Splatmap_1_-4_1.res" id="508_chrps"]
-[ext_resource type="Texture2D" uid="uid://oomxluqfecj6" path="res://Scenes/World/Splatmap_1_-4_2.res" id="509_d0cyg"]
-[ext_resource type="Texture2D" uid="uid://cct1anqu4xxqb" path="res://Scenes/World/Water_1_-4.res" id="510_a08uh"]
-[ext_resource type="Texture2D" uid="uid://ce3lp21utlaoe" path="res://Scenes/World/Foliage_2_-4_0.res" id="511_hwbwl"]
-[ext_resource type="Texture2D" uid="uid://bduxw3wbtd4y7" path="res://Scenes/World/Foliage_2_-4_1.res" id="512_grkcp"]
-[ext_resource type="Texture2D" uid="uid://bdfopybh224ud" path="res://Scenes/World/Heightmap_2_-4.res" id="513_bn2d7"]
-[ext_resource type="Texture2D" uid="uid://bkpcc32a3qs08" path="res://Scenes/World/Object_2_-4_0.res" id="514_oly2s"]
-[ext_resource type="Texture2D" uid="uid://b647xr08bgdi" path="res://Scenes/World/Splatmap_2_-4_0.res" id="515_qgvu6"]
-[ext_resource type="Texture2D" uid="uid://bnts0j74bcbu3" path="res://Scenes/World/Splatmap_2_-4_1.res" id="516_huj4r"]
-[ext_resource type="Texture2D" uid="uid://b68tysx228au0" path="res://Scenes/World/Splatmap_2_-4_2.res" id="517_8den3"]
-[ext_resource type="Texture2D" uid="uid://bechfnegh21h1" path="res://Scenes/World/Water_2_-4.res" id="518_3q47c"]
-[ext_resource type="Texture2D" uid="uid://bhrqlchot3l1s" path="res://Scenes/World/Foliage_3_-4_0.res" id="519_emetp"]
-[ext_resource type="Texture2D" uid="uid://bnqghp4rykyfr" path="res://Scenes/World/Foliage_3_-4_1.res" id="520_3cv4h"]
-[ext_resource type="Texture2D" uid="uid://bs14l1icdrh0c" path="res://Scenes/World/Heightmap_3_-4.res" id="521_y5680"]
-[ext_resource type="Texture2D" uid="uid://c1f3ifhythodm" path="res://Scenes/World/Object_3_-4_0.res" id="522_m8wu8"]
-[ext_resource type="Texture2D" uid="uid://bqxs3rs0luog5" path="res://Scenes/World/Splatmap_3_-4_0.res" id="523_qfm1c"]
-[ext_resource type="Texture2D" uid="uid://chxg8nx6n236d" path="res://Scenes/World/Splatmap_3_-4_1.res" id="524_y3ufc"]
-[ext_resource type="Texture2D" uid="uid://d2fxrtmgl0kcw" path="res://Scenes/World/Splatmap_3_-4_2.res" id="525_v1hhv"]
-[ext_resource type="Texture2D" uid="uid://cmy6x74xatmjn" path="res://Scenes/World/Water_3_-4.res" id="526_6vuaf"]
-[ext_resource type="Texture2D" uid="uid://b4xjmxe7a72ph" path="res://Scenes/World/Foliage_4_-4_0.res" id="527_igdum"]
-[ext_resource type="Texture2D" uid="uid://b1frqv4letrjl" path="res://Scenes/World/Foliage_4_-4_1.res" id="528_w2udv"]
-[ext_resource type="Texture2D" uid="uid://cowfmbqhidb3m" path="res://Scenes/World/Heightmap_4_-4.res" id="529_wxgx0"]
-[ext_resource type="Texture2D" uid="uid://dsye4fj2gqwj2" path="res://Scenes/World/Object_4_-4_0.res" id="530_gtlri"]
-[ext_resource type="Texture2D" uid="uid://mu3intpio583" path="res://Scenes/World/Splatmap_4_-4_0.res" id="531_vn4ff"]
-[ext_resource type="Texture2D" uid="uid://ch2dij52psfpq" path="res://Scenes/World/Splatmap_4_-4_1.res" id="532_mj1su"]
-[ext_resource type="Texture2D" uid="uid://unr78qpwf5k1" path="res://Scenes/World/Splatmap_4_-4_2.res" id="533_otbwl"]
-[ext_resource type="Texture2D" uid="uid://b6il5ommnbavm" path="res://Scenes/World/Water_4_-4.res" id="534_8m1ov"]
-[ext_resource type="Texture2D" uid="uid://dddkcfw10uibq" path="res://Scenes/World/Foliage_5_-4_0.res" id="535_d14hf"]
-[ext_resource type="Texture2D" uid="uid://cfw5h077lv4tf" path="res://Scenes/World/Foliage_5_-4_1.res" id="536_n6xuq"]
-[ext_resource type="Texture2D" uid="uid://cy1xxuwxmnscd" path="res://Scenes/World/Heightmap_5_-4.res" id="537_lnwj5"]
-[ext_resource type="Texture2D" uid="uid://0t7jaddklut1" path="res://Scenes/World/Object_5_-4_0.res" id="538_dl4ac"]
-[ext_resource type="Texture2D" uid="uid://g1mm1ur273oi" path="res://Scenes/World/Splatmap_5_-4_0.res" id="539_nrtep"]
-[ext_resource type="Texture2D" uid="uid://ddce3d25to83f" path="res://Scenes/World/Splatmap_5_-4_1.res" id="540_ac0p6"]
-[ext_resource type="Texture2D" uid="uid://cg37qyocxyjya" path="res://Scenes/World/Splatmap_5_-4_2.res" id="541_vssds"]
-[ext_resource type="Texture2D" uid="uid://sjq4a4eca82a" path="res://Scenes/World/Water_5_-4.res" id="542_5g1sp"]
-[ext_resource type="Texture2D" uid="uid://sx2gwnhll3v3" path="res://Scenes/World/Foliage_5_-3_0.res" id="543_bjbpc"]
-[ext_resource type="Texture2D" uid="uid://bf6xfw8o5tglo" path="res://Scenes/World/Foliage_5_-3_1.res" id="544_3g4pn"]
-[ext_resource type="Texture2D" uid="uid://cq6pvtfgum75e" path="res://Scenes/World/Heightmap_5_-3.res" id="545_lfmmf"]
-[ext_resource type="Texture2D" uid="uid://pvhn0p1onasa" path="res://Scenes/World/Object_5_-3_0.res" id="546_xxkor"]
-[ext_resource type="Texture2D" uid="uid://b4kucx7aejlo3" path="res://Scenes/World/Splatmap_5_-3_0.res" id="547_x8aug"]
-[ext_resource type="Texture2D" uid="uid://c4wkekh6yrexe" path="res://Scenes/World/Splatmap_5_-3_1.res" id="548_hxuxb"]
-[ext_resource type="Texture2D" uid="uid://cpkokrn25q1ta" path="res://Scenes/World/Splatmap_5_-3_2.res" id="549_jmspx"]
-[ext_resource type="Texture2D" uid="uid://bnj5j6rksv8ls" path="res://Scenes/World/Water_5_-3.res" id="550_6dcqa"]
-[ext_resource type="Texture2D" uid="uid://bea6qh71utw4a" path="res://Scenes/World/Foliage_6_-3_0.res" id="551_hay76"]
-[ext_resource type="Texture2D" uid="uid://cm68p85xhxf3d" path="res://Scenes/World/Foliage_6_-3_1.res" id="552_qaej7"]
-[ext_resource type="Texture2D" uid="uid://ddekydbhiijbn" path="res://Scenes/World/Heightmap_6_-3.res" id="553_0maae"]
-[ext_resource type="Texture2D" uid="uid://b8ja7dkyhvfia" path="res://Scenes/World/Object_6_-3_0.res" id="554_vsnjo"]
-[ext_resource type="Texture2D" uid="uid://rq3f37qy0o4s" path="res://Scenes/World/Splatmap_6_-3_0.res" id="555_lxyqv"]
-[ext_resource type="Texture2D" uid="uid://gftcx611nolq" path="res://Scenes/World/Splatmap_6_-3_1.res" id="556_4xgq6"]
-[ext_resource type="Texture2D" uid="uid://ccgd5r8gvou6b" path="res://Scenes/World/Splatmap_6_-3_2.res" id="557_w2dii"]
-[ext_resource type="Texture2D" uid="uid://lmi06xd4uomv" path="res://Scenes/World/Water_6_-3.res" id="558_deqtt"]
-[ext_resource type="Texture2D" uid="uid://d1sjv80u8tbb0" path="res://Scenes/World/Foliage_6_-4_0.res" id="559_eckp6"]
-[ext_resource type="Texture2D" uid="uid://3m2h5yh54q3v" path="res://Scenes/World/Foliage_6_-4_1.res" id="560_cf6f6"]
-[ext_resource type="Texture2D" uid="uid://bqpclvbblrxjh" path="res://Scenes/World/Heightmap_6_-4.res" id="561_qpnva"]
-[ext_resource type="Texture2D" uid="uid://jbnj0r2g02ra" path="res://Scenes/World/Object_6_-4_0.res" id="562_eprv7"]
-[ext_resource type="Texture2D" uid="uid://b0klo1gwn5ltl" path="res://Scenes/World/Splatmap_6_-4_0.res" id="563_dteta"]
-[ext_resource type="Texture2D" uid="uid://cjkbau4a5g7wx" path="res://Scenes/World/Splatmap_6_-4_1.res" id="564_fakrj"]
-[ext_resource type="Texture2D" uid="uid://bsx3ow5wgxaon" path="res://Scenes/World/Splatmap_6_-4_2.res" id="565_qi5fj"]
-[ext_resource type="Texture2D" uid="uid://chebc8sn8x2wf" path="res://Scenes/World/Water_6_-4.res" id="566_owosh"]
-[ext_resource type="Texture2D" uid="uid://gcbvs2s8rfje" path="res://Scenes/World/Foliage_6_-2_0.res" id="567_3xs21"]
-[ext_resource type="Texture2D" uid="uid://cvurp3q7xiwbb" path="res://Scenes/World/Foliage_6_-2_1.res" id="568_mf1yy"]
-[ext_resource type="Texture2D" uid="uid://pt0vf8us4kh7" path="res://Scenes/World/Heightmap_6_-2.res" id="569_j2ryv"]
-[ext_resource type="Texture2D" uid="uid://ddsqcfkc2pthp" path="res://Scenes/World/Object_6_-2_0.res" id="570_j6jre"]
-[ext_resource type="Texture2D" uid="uid://d1872lu6fkn58" path="res://Scenes/World/Splatmap_6_-2_0.res" id="571_2r5fb"]
-[ext_resource type="Texture2D" uid="uid://n58ayjtq72cd" path="res://Scenes/World/Splatmap_6_-2_1.res" id="572_ksgdw"]
-[ext_resource type="Texture2D" uid="uid://dm3djbrqml5v5" path="res://Scenes/World/Splatmap_6_-2_2.res" id="573_q7sq8"]
-[ext_resource type="Texture2D" uid="uid://4ebj0igxilra" path="res://Scenes/World/Water_6_-2.res" id="574_7q5v5"]
-[ext_resource type="Texture2D" uid="uid://da06sbcji878e" path="res://Scenes/World/Foliage_6_-1_0.res" id="575_cempl"]
-[ext_resource type="Texture2D" uid="uid://b1ned40n2j27w" path="res://Scenes/World/Foliage_6_-1_1.res" id="576_cuyh2"]
-[ext_resource type="Texture2D" uid="uid://cu867roynkxou" path="res://Scenes/World/Heightmap_6_-1.res" id="577_wkiap"]
-[ext_resource type="Texture2D" uid="uid://cbgvfaxo001yx" path="res://Scenes/World/Object_6_-1_0.res" id="578_slr2e"]
-[ext_resource type="Texture2D" uid="uid://dnubg3aa13amh" path="res://Scenes/World/Splatmap_6_-1_0.res" id="579_ooq35"]
-[ext_resource type="Texture2D" uid="uid://ckybpvu4wb4vt" path="res://Scenes/World/Splatmap_6_-1_1.res" id="580_nekyt"]
-[ext_resource type="Texture2D" uid="uid://gewji0m3wy56" path="res://Scenes/World/Splatmap_6_-1_2.res" id="581_h5qh0"]
-[ext_resource type="Texture2D" uid="uid://dh8oavr7bhqv4" path="res://Scenes/World/Water_6_-1.res" id="582_q6rxq"]
-[ext_resource type="Texture2D" uid="uid://dif7hmu86eya6" path="res://Scenes/World/Foliage_5_0_0.res" id="583_71dnx"]
-[ext_resource type="Texture2D" uid="uid://c8ivx07a5p4iv" path="res://Scenes/World/Foliage_5_0_1.res" id="584_fjik5"]
-[ext_resource type="Texture2D" uid="uid://dpbyo5mswgcnx" path="res://Scenes/World/Heightmap_5_0.res" id="585_e3o2i"]
-[ext_resource type="Texture2D" uid="uid://bwvsf2cx2tclu" path="res://Scenes/World/Object_5_0_0.res" id="586_27pxs"]
-[ext_resource type="Texture2D" uid="uid://crwc57jpfs1ua" path="res://Scenes/World/Splatmap_5_0_0.res" id="587_wkbdr"]
-[ext_resource type="Texture2D" uid="uid://dirvpi7ul1kps" path="res://Scenes/World/Splatmap_5_0_1.res" id="588_1lp8v"]
-[ext_resource type="Texture2D" uid="uid://cimhiqmb0fni4" path="res://Scenes/World/Splatmap_5_0_2.res" id="589_whpr0"]
-[ext_resource type="Texture2D" uid="uid://bfk6n5xdib6ab" path="res://Scenes/World/Water_5_0.res" id="590_tnqpr"]
-[ext_resource type="Texture2D" uid="uid://cnu8taguh7uxm" path="res://Scenes/World/Foliage_6_0_0.res" id="591_ex548"]
-[ext_resource type="Texture2D" uid="uid://cvbpitocc3a5g" path="res://Scenes/World/Foliage_6_0_1.res" id="592_s3pxn"]
-[ext_resource type="Texture2D" uid="uid://dgaur624w177g" path="res://Scenes/World/Heightmap_6_0.res" id="593_5y1yc"]
-[ext_resource type="Texture2D" uid="uid://dfh0pmvttxwyq" path="res://Scenes/World/Object_6_0_0.res" id="594_galry"]
-[ext_resource type="Texture2D" uid="uid://biijotc5naya1" path="res://Scenes/World/Splatmap_6_0_0.res" id="595_1t2n8"]
-[ext_resource type="Texture2D" uid="uid://bmt740hag7bja" path="res://Scenes/World/Splatmap_6_0_1.res" id="596_driau"]
-[ext_resource type="Texture2D" uid="uid://bdaixy7vs8c8m" path="res://Scenes/World/Splatmap_6_0_2.res" id="597_u03gq"]
-[ext_resource type="Texture2D" uid="uid://dsw4x3msm7tef" path="res://Scenes/World/Water_6_0.res" id="598_sedvc"]
-[ext_resource type="Texture2D" uid="uid://3c8wnmykjwby" path="res://Scenes/World/Foliage_5_1_0.res" id="599_mcart"]
-[ext_resource type="Texture2D" uid="uid://b22n21o65gk8c" path="res://Scenes/World/Foliage_5_1_1.res" id="600_olgrs"]
-[ext_resource type="Texture2D" uid="uid://k8swfr1ft37f" path="res://Scenes/World/Heightmap_5_1.res" id="601_nk18c"]
-[ext_resource type="Texture2D" uid="uid://cm5j2jsfmdi2t" path="res://Scenes/World/Object_5_1_0.res" id="602_x1pp7"]
-[ext_resource type="Texture2D" uid="uid://dv3hhc5mu64ni" path="res://Scenes/World/Splatmap_5_1_0.res" id="603_n2t6l"]
-[ext_resource type="Texture2D" uid="uid://uxna5jt68tk" path="res://Scenes/World/Splatmap_5_1_1.res" id="604_jv0no"]
-[ext_resource type="Texture2D" uid="uid://cj0hg7w3qcwjh" path="res://Scenes/World/Splatmap_5_1_2.res" id="605_u0bog"]
-[ext_resource type="Texture2D" uid="uid://bgnqaoce0t13u" path="res://Scenes/World/Water_5_1.res" id="606_opfyl"]
-[ext_resource type="Texture2D" uid="uid://gkgfc18gv2yt" path="res://Scenes/World/Foliage_5_2_0.res" id="607_8qjg6"]
-[ext_resource type="Texture2D" uid="uid://d1uc8fhsq3ywy" path="res://Scenes/World/Foliage_5_2_1.res" id="608_3w7oc"]
-[ext_resource type="Texture2D" uid="uid://5hc6h3ok1tp" path="res://Scenes/World/Heightmap_5_2.res" id="609_4ry2h"]
-[ext_resource type="Texture2D" uid="uid://c7tgc57exk76f" path="res://Scenes/World/Object_5_2_0.res" id="610_1oggr"]
-[ext_resource type="Texture2D" uid="uid://bt7mpwq34x8ua" path="res://Scenes/World/Splatmap_5_2_0.res" id="611_lihpr"]
-[ext_resource type="Texture2D" uid="uid://cp1cxbsuwvlkw" path="res://Scenes/World/Splatmap_5_2_1.res" id="612_ffgry"]
-[ext_resource type="Texture2D" uid="uid://dcpmth7004g5a" path="res://Scenes/World/Splatmap_5_2_2.res" id="613_gpkl2"]
-[ext_resource type="Texture2D" uid="uid://dh51g42egd7g4" path="res://Scenes/World/Water_5_2.res" id="614_usvv1"]
-[ext_resource type="Texture2D" uid="uid://dmmuga3i3ax78" path="res://Scenes/World/Foliage_5_3_0.res" id="615_jnb7b"]
-[ext_resource type="Texture2D" uid="uid://b7jej1sfoi1lt" path="res://Scenes/World/Foliage_5_3_1.res" id="616_8pq5j"]
-[ext_resource type="Texture2D" uid="uid://d1qlp3xwdigo1" path="res://Scenes/World/Heightmap_5_3.res" id="617_nauh2"]
-[ext_resource type="Texture2D" uid="uid://btdlu62jmaamy" path="res://Scenes/World/Object_5_3_0.res" id="618_6vtuf"]
-[ext_resource type="Texture2D" uid="uid://dyapxgpsbyf3u" path="res://Scenes/World/Splatmap_5_3_0.res" id="619_kshtu"]
-[ext_resource type="Texture2D" uid="uid://k1550qbocs0p" path="res://Scenes/World/Splatmap_5_3_1.res" id="620_36ql6"]
-[ext_resource type="Texture2D" uid="uid://cqaivm8qf6cox" path="res://Scenes/World/Splatmap_5_3_2.res" id="621_c1il2"]
-[ext_resource type="Texture2D" uid="uid://cegjeb6eq8ta8" path="res://Scenes/World/Water_5_3.res" id="622_eiolr"]
-[ext_resource type="Texture2D" uid="uid://cd3q8w66m0q2t" path="res://Scenes/World/Foliage_6_3_0.res" id="623_rs4ql"]
-[ext_resource type="Texture2D" uid="uid://rse7pp1vsjd0" path="res://Scenes/World/Foliage_6_3_1.res" id="624_m6pa3"]
-[ext_resource type="Texture2D" uid="uid://b4x5rqur4serd" path="res://Scenes/World/Heightmap_6_3.res" id="625_ohxvb"]
-[ext_resource type="Texture2D" uid="uid://c60obhubilmn1" path="res://Scenes/World/Object_6_3_0.res" id="626_df6de"]
-[ext_resource type="Texture2D" uid="uid://dmqb7q2t61rm4" path="res://Scenes/World/Splatmap_6_3_0.res" id="627_xvn3d"]
-[ext_resource type="Texture2D" uid="uid://dndrxvqfhq0kl" path="res://Scenes/World/Splatmap_6_3_1.res" id="628_00uo7"]
-[ext_resource type="Texture2D" uid="uid://c2yplig560k6l" path="res://Scenes/World/Splatmap_6_3_2.res" id="629_88e4c"]
-[ext_resource type="Texture2D" uid="uid://bonv4k1x54tuq" path="res://Scenes/World/Water_6_3.res" id="630_k1np6"]
-[ext_resource type="Texture2D" uid="uid://dy5y5xrsrqa00" path="res://Scenes/World/Foliage_5_4_0.res" id="631_ovy75"]
-[ext_resource type="Texture2D" uid="uid://bk6v1vjmt447q" path="res://Scenes/World/Foliage_5_4_1.res" id="632_4crfm"]
-[ext_resource type="Texture2D" uid="uid://60vhyxb5chto" path="res://Scenes/World/Heightmap_5_4.res" id="633_1vt27"]
-[ext_resource type="Texture2D" uid="uid://ilxixqptrct0" path="res://Scenes/World/Object_5_4_0.res" id="634_fw18g"]
-[ext_resource type="Texture2D" uid="uid://ciq8rcopcc46t" path="res://Scenes/World/Splatmap_5_4_0.res" id="635_lsd28"]
-[ext_resource type="Texture2D" uid="uid://fg20wv6evqw1" path="res://Scenes/World/Splatmap_5_4_1.res" id="636_ybq4y"]
-[ext_resource type="Texture2D" uid="uid://cauhoryw8p6ho" path="res://Scenes/World/Splatmap_5_4_2.res" id="637_hny15"]
-[ext_resource type="Texture2D" uid="uid://ba8d6cc64vwaw" path="res://Scenes/World/Water_5_4.res" id="638_vefhk"]
-[ext_resource type="Texture2D" uid="uid://dwb2cu1jqhfml" path="res://Scenes/World/Foliage_6_2_0.res" id="639_eg0qp"]
-[ext_resource type="Texture2D" uid="uid://ow6dsh0cxcmg" path="res://Scenes/World/Foliage_6_2_1.res" id="640_k8b3a"]
-[ext_resource type="Texture2D" uid="uid://b5noa6dugxcxe" path="res://Scenes/World/Heightmap_6_2.res" id="641_1du7x"]
-[ext_resource type="Texture2D" uid="uid://bfgm7qi4hc47y" path="res://Scenes/World/Object_6_2_0.res" id="642_c7jgh"]
-[ext_resource type="Texture2D" uid="uid://bqly65uvdi800" path="res://Scenes/World/Splatmap_6_2_0.res" id="643_70yfx"]
-[ext_resource type="Texture2D" uid="uid://dmebnuo64t85d" path="res://Scenes/World/Splatmap_6_2_1.res" id="644_6lwfr"]
-[ext_resource type="Texture2D" uid="uid://b400ph521pgxw" path="res://Scenes/World/Splatmap_6_2_2.res" id="645_v1iwy"]
-[ext_resource type="Texture2D" uid="uid://csoapy5c5jxl8" path="res://Scenes/World/Water_6_2.res" id="646_m8ub2"]
-[ext_resource type="Texture2D" uid="uid://bivn0u5nbdx1e" path="res://Scenes/World/Foliage_6_1_0.res" id="647_qoi2e"]
-[ext_resource type="Texture2D" uid="uid://jp63qfrvmtqq" path="res://Scenes/World/Foliage_6_1_1.res" id="648_xv35m"]
-[ext_resource type="Texture2D" uid="uid://bd4ljmmhcvcls" path="res://Scenes/World/Heightmap_6_1.res" id="649_orv2w"]
-[ext_resource type="Texture2D" uid="uid://bbf5t15rdq0pk" path="res://Scenes/World/Object_6_1_0.res" id="650_3f1n4"]
-[ext_resource type="Texture2D" uid="uid://dwhtqddfledds" path="res://Scenes/World/Splatmap_6_1_0.res" id="651_exj12"]
-[ext_resource type="Texture2D" uid="uid://clirhppgkwjla" path="res://Scenes/World/Splatmap_6_1_1.res" id="652_f7joa"]
-[ext_resource type="Texture2D" uid="uid://c4serc25ukpa1" path="res://Scenes/World/Splatmap_6_1_2.res" id="653_7jeqs"]
-[ext_resource type="Texture2D" uid="uid://cwktx4f5v1isb" path="res://Scenes/World/Water_6_1.res" id="654_1rrf4"]
-[ext_resource type="Texture2D" uid="uid://d2aeij5rs4rnu" path="res://Scenes/World/Foliage_6_4_0.res" id="655_gk75r"]
-[ext_resource type="Texture2D" uid="uid://bnh265fmhoxv2" path="res://Scenes/World/Foliage_6_4_1.res" id="656_vt7bh"]
-[ext_resource type="Texture2D" uid="uid://3woc4f5s67yu" path="res://Scenes/World/Heightmap_6_4.res" id="657_bayeh"]
-[ext_resource type="Texture2D" uid="uid://rxnh2qwabrwk" path="res://Scenes/World/Object_6_4_0.res" id="658_6wd20"]
-[ext_resource type="Texture2D" uid="uid://dnqj42ngriljj" path="res://Scenes/World/Splatmap_6_4_0.res" id="659_0mniy"]
-[ext_resource type="Texture2D" uid="uid://dljvn2tkojern" path="res://Scenes/World/Splatmap_6_4_1.res" id="660_6clg6"]
-[ext_resource type="Texture2D" uid="uid://cv8r2fjuoo8qy" path="res://Scenes/World/Splatmap_6_4_2.res" id="661_k6ivn"]
-[ext_resource type="Texture2D" uid="uid://c55l1qijb1jvb" path="res://Scenes/World/Water_6_4.res" id="662_5vugb"]
-[ext_resource type="Texture2D" uid="uid://ck2v4lp4elicx" path="res://Scenes/World/Foliage_5_5_0.res" id="663_jf5kw"]
-[ext_resource type="Texture2D" uid="uid://ysrffmoofr7s" path="res://Scenes/World/Foliage_5_5_1.res" id="664_wrn8f"]
-[ext_resource type="Texture2D" uid="uid://q140j48kd4kc" path="res://Scenes/World/Heightmap_5_5.res" id="665_k5nib"]
-[ext_resource type="Texture2D" uid="uid://mikakdg4tutj" path="res://Scenes/World/Object_5_5_0.res" id="666_p8g1j"]
-[ext_resource type="Texture2D" uid="uid://b34as52htw2h0" path="res://Scenes/World/Splatmap_5_5_0.res" id="667_gbfpg"]
-[ext_resource type="Texture2D" uid="uid://crps133tji1ta" path="res://Scenes/World/Splatmap_5_5_1.res" id="668_402uq"]
-[ext_resource type="Texture2D" uid="uid://dgitjjuuu5hcm" path="res://Scenes/World/Splatmap_5_5_2.res" id="669_d3bte"]
-[ext_resource type="Texture2D" uid="uid://cn0e51jp8j7yp" path="res://Scenes/World/Water_5_5.res" id="670_xee8a"]
-[ext_resource type="Texture2D" uid="uid://spqy5003xv81" path="res://Scenes/World/Foliage_6_5_0.res" id="671_5a265"]
-[ext_resource type="Texture2D" uid="uid://ddpkdttwgxbau" path="res://Scenes/World/Foliage_6_5_1.res" id="672_kq48y"]
-[ext_resource type="Texture2D" uid="uid://0xo4da1c43qu" path="res://Scenes/World/Heightmap_6_5.res" id="673_jocy5"]
-[ext_resource type="Texture2D" uid="uid://dq3wfnhrdo78x" path="res://Scenes/World/Object_6_5_0.res" id="674_ehit3"]
-[ext_resource type="Texture2D" uid="uid://bg46s68ksdle0" path="res://Scenes/World/Splatmap_6_5_0.res" id="675_pi0s1"]
-[ext_resource type="Texture2D" uid="uid://3y5cpsangk20" path="res://Scenes/World/Splatmap_6_5_1.res" id="676_n7icl"]
-[ext_resource type="Texture2D" uid="uid://ba10nyjdoyt2" path="res://Scenes/World/Splatmap_6_5_2.res" id="677_l8ft1"]
-[ext_resource type="Texture2D" uid="uid://dkvpix2nnwiuf" path="res://Scenes/World/Water_6_5.res" id="678_o4cui"]
-[ext_resource type="Texture2D" uid="uid://n8gsf5lb4ccm" path="res://Scenes/World/Foliage_5_6_0.res" id="679_y8ant"]
-[ext_resource type="Texture2D" uid="uid://6643ql8kpfl2" path="res://Scenes/World/Foliage_5_6_1.res" id="680_7aswr"]
-[ext_resource type="Texture2D" uid="uid://cou316x5c7w33" path="res://Scenes/World/Heightmap_5_6.res" id="681_unbar"]
-[ext_resource type="Texture2D" uid="uid://b67d2syfh3t2v" path="res://Scenes/World/Object_5_6_0.res" id="682_pvwj5"]
-[ext_resource type="Texture2D" uid="uid://068ot4w7jvkr" path="res://Scenes/World/Splatmap_5_6_0.res" id="683_yyaa6"]
-[ext_resource type="Texture2D" uid="uid://dv84mh8rrofgi" path="res://Scenes/World/Splatmap_5_6_1.res" id="684_g5s0g"]
-[ext_resource type="Texture2D" uid="uid://b5rg155y7v1al" path="res://Scenes/World/Splatmap_5_6_2.res" id="685_a4qg5"]
-[ext_resource type="Texture2D" uid="uid://b0pc30oajehuy" path="res://Scenes/World/Water_5_6.res" id="686_7umd3"]
-[ext_resource type="Texture2D" uid="uid://u1a41rfluvaw" path="res://Scenes/World/Foliage_6_6_0.res" id="687_ffi5g"]
-[ext_resource type="Texture2D" uid="uid://nxi1vblg0f3j" path="res://Scenes/World/Foliage_6_6_1.res" id="688_xqef8"]
-[ext_resource type="Texture2D" uid="uid://uxrowe6sjppa" path="res://Scenes/World/Heightmap_6_6.res" id="689_1o7xb"]
-[ext_resource type="Texture2D" uid="uid://blrmudd0jxjhw" path="res://Scenes/World/Object_6_6_0.res" id="690_53su1"]
-[ext_resource type="Texture2D" uid="uid://ddb1ulioq43qc" path="res://Scenes/World/Splatmap_6_6_0.res" id="691_01lip"]
-[ext_resource type="Texture2D" uid="uid://chbixjc02rvrv" path="res://Scenes/World/Splatmap_6_6_1.res" id="692_ovovi"]
-[ext_resource type="Texture2D" uid="uid://b4qicstjehnio" path="res://Scenes/World/Splatmap_6_6_2.res" id="693_joadr"]
-[ext_resource type="Texture2D" uid="uid://djx8yx8dphtwi" path="res://Scenes/World/Water_6_6.res" id="694_hfsm2"]
-[ext_resource type="Texture2D" uid="uid://xefc3e8k5a4a" path="res://Scenes/World/Foliage_-1_6_0.res" id="695_6bq52"]
-[ext_resource type="Texture2D" uid="uid://dcghkyrtk0im3" path="res://Scenes/World/Foliage_-1_6_1.res" id="696_lb3g7"]
-[ext_resource type="Texture2D" uid="uid://dkj3rxrixyfbm" path="res://Scenes/World/Heightmap_-1_6.res" id="697_um22o"]
-[ext_resource type="Texture2D" uid="uid://bwb01qcjyyjvk" path="res://Scenes/World/Object_-1_6_0.res" id="698_1rsmx"]
-[ext_resource type="Texture2D" uid="uid://bgcxww36f8hdn" path="res://Scenes/World/Splatmap_-1_6_0.res" id="699_ndxha"]
-[ext_resource type="Texture2D" uid="uid://bv1tiy14f2q7" path="res://Scenes/World/Splatmap_-1_6_1.res" id="700_h8nux"]
-[ext_resource type="Texture2D" uid="uid://c40p543tlxkka" path="res://Scenes/World/Splatmap_-1_6_2.res" id="701_j0pn8"]
-[ext_resource type="Texture2D" uid="uid://jr05gxnyu8k7" path="res://Scenes/World/Water_-1_6.res" id="702_pqsvq"]
-[ext_resource type="Texture2D" uid="uid://b7677cx8xkecl" path="res://Scenes/World/Foliage_-1_7_0.res" id="703_8fdyb"]
-[ext_resource type="Texture2D" uid="uid://bfdwiuphwellg" path="res://Scenes/World/Foliage_-1_7_1.res" id="704_ak4bo"]
-[ext_resource type="Texture2D" uid="uid://dyv85t673mf3e" path="res://Scenes/World/Heightmap_-1_7.res" id="705_k27mx"]
-[ext_resource type="Texture2D" uid="uid://c7vkug0yh8ph8" path="res://Scenes/World/Object_-1_7_0.res" id="706_nu6xm"]
-[ext_resource type="Texture2D" uid="uid://cvj57p6c1clgj" path="res://Scenes/World/Splatmap_-1_7_0.res" id="707_uel5b"]
-[ext_resource type="Texture2D" uid="uid://b560jrhf7a0ei" path="res://Scenes/World/Splatmap_-1_7_1.res" id="708_xsw1l"]
-[ext_resource type="Texture2D" uid="uid://d0d7p8el05801" path="res://Scenes/World/Splatmap_-1_7_2.res" id="709_smmtc"]
-[ext_resource type="Texture2D" uid="uid://7gvk7pjqccec" path="res://Scenes/World/Water_-1_7.res" id="710_h6cl2"]
-[ext_resource type="Texture2D" uid="uid://ci5pydiksbyls" path="res://Scenes/World/Foliage_0_7_0.res" id="711_efexy"]
-[ext_resource type="Texture2D" uid="uid://bvpx47xvd83od" path="res://Scenes/World/Foliage_0_7_1.res" id="712_vnt17"]
-[ext_resource type="Texture2D" uid="uid://dbfu2ja25knjr" path="res://Scenes/World/Heightmap_0_7.res" id="713_gcpjd"]
-[ext_resource type="Texture2D" uid="uid://dooiss8pl5rxo" path="res://Scenes/World/Object_0_7_0.res" id="714_wwyed"]
-[ext_resource type="Texture2D" uid="uid://20n75ml4kdkg" path="res://Scenes/World/Splatmap_0_7_0.res" id="715_12d0f"]
-[ext_resource type="Texture2D" uid="uid://c7686bxfxh5v" path="res://Scenes/World/Splatmap_0_7_1.res" id="716_8adj8"]
-[ext_resource type="Texture2D" uid="uid://bvnq4o1it2ypo" path="res://Scenes/World/Splatmap_0_7_2.res" id="717_357iw"]
-[ext_resource type="Texture2D" uid="uid://cj4ynbtvpqluh" path="res://Scenes/World/Water_0_7.res" id="718_uya53"]
-[ext_resource type="Texture2D" uid="uid://bvmjmj8287dsg" path="res://Scenes/World/Foliage_-2_6_0.res" id="719_avxxx"]
-[ext_resource type="Texture2D" uid="uid://m5tpbruiau15" path="res://Scenes/World/Foliage_-2_6_1.res" id="720_ytnds"]
-[ext_resource type="Texture2D" uid="uid://ct4aug0kko56t" path="res://Scenes/World/Heightmap_-2_6.res" id="721_q2qu8"]
-[ext_resource type="Texture2D" uid="uid://ch07wsvjx74km" path="res://Scenes/World/Object_-2_6_0.res" id="722_q81n5"]
-[ext_resource type="Texture2D" uid="uid://4rpredga1ti3" path="res://Scenes/World/Splatmap_-2_6_0.res" id="723_ouqmq"]
-[ext_resource type="Texture2D" uid="uid://dab82ao0fbiiq" path="res://Scenes/World/Splatmap_-2_6_1.res" id="724_062nv"]
-[ext_resource type="Texture2D" uid="uid://b12b1an8o6qjn" path="res://Scenes/World/Splatmap_-2_6_2.res" id="725_qjojm"]
-[ext_resource type="Texture2D" uid="uid://dk61yy75pm4yd" path="res://Scenes/World/Water_-2_6.res" id="726_1tefh"]
-[ext_resource type="Texture2D" uid="uid://lfhhpjkir10" path="res://Scenes/World/Foliage_-2_5_0.res" id="727_hbvgq"]
-[ext_resource type="Texture2D" uid="uid://ohovd6nk7x83" path="res://Scenes/World/Foliage_-2_5_1.res" id="728_7j1qe"]
-[ext_resource type="Texture2D" uid="uid://cblp1kn1g71oh" path="res://Scenes/World/Heightmap_-2_5.res" id="729_k8ni5"]
-[ext_resource type="Texture2D" uid="uid://dp7w5a2cvfpac" path="res://Scenes/World/Object_-2_5_0.res" id="730_6l70j"]
-[ext_resource type="Texture2D" uid="uid://cgqnpreyt3phs" path="res://Scenes/World/Splatmap_-2_5_0.res" id="731_ma8p4"]
-[ext_resource type="Texture2D" uid="uid://ithi0fuy2o30" path="res://Scenes/World/Splatmap_-2_5_1.res" id="732_etlfd"]
-[ext_resource type="Texture2D" uid="uid://dhtjwfs7gvpx1" path="res://Scenes/World/Splatmap_-2_5_2.res" id="733_u5aga"]
-[ext_resource type="Texture2D" uid="uid://ctiqd846ti0uw" path="res://Scenes/World/Water_-2_5.res" id="734_pgc7u"]
-[ext_resource type="Texture2D" uid="uid://dm07cv5lu02gj" path="res://Scenes/World/Foliage_-2_-4_0.res" id="823_5f2dd"]
-[ext_resource type="Texture2D" uid="uid://sqd1os5atxbs" path="res://Scenes/World/Foliage_-2_-4_1.res" id="824_i4ohh"]
-[ext_resource type="Texture2D" uid="uid://dpjn05eltwvy3" path="res://Scenes/World/Heightmap_-2_-4.res" id="825_6pe7u"]
-[ext_resource type="Texture2D" uid="uid://dgi06qy5iogpa" path="res://Scenes/World/Object_-2_-4_0.res" id="826_g6yxn"]
-[ext_resource type="Texture2D" uid="uid://cbsxcr65y8w51" path="res://Scenes/World/Splatmap_-2_-4_0.res" id="827_x2pn3"]
-[ext_resource type="Texture2D" uid="uid://1inodoo6mekq" path="res://Scenes/World/Splatmap_-2_-4_1.res" id="828_wifgh"]
-[ext_resource type="Texture2D" uid="uid://cj1g84h7yf22g" path="res://Scenes/World/Splatmap_-2_-4_2.res" id="829_pb7j3"]
-[ext_resource type="Texture2D" uid="uid://cukom0ljkqaa4" path="res://Scenes/World/Water_-2_-4.res" id="830_iyx7u"]
-[ext_resource type="Texture2D" uid="uid://cje7dhds4hee2" path="res://Scenes/World/Foliage_-1_-4_0.res" id="831_i3cl2"]
-[ext_resource type="Texture2D" uid="uid://ddswlvmxurpvd" path="res://Scenes/World/Foliage_-1_-4_1.res" id="832_e5pku"]
-[ext_resource type="Texture2D" uid="uid://bvu4ijryu41x0" path="res://Scenes/World/Heightmap_-1_-4.res" id="833_ojk6a"]
-[ext_resource type="Texture2D" uid="uid://blt45arrdpy3c" path="res://Scenes/World/Object_-1_-4_0.res" id="834_m5el1"]
-[ext_resource type="Texture2D" uid="uid://ctmpr4gxu3rp3" path="res://Scenes/World/Splatmap_-1_-4_0.res" id="835_no33p"]
-[ext_resource type="Texture2D" uid="uid://bo4wvylg8r5s3" path="res://Scenes/World/Splatmap_-1_-4_1.res" id="836_udfrt"]
-[ext_resource type="Texture2D" uid="uid://ck1dao6fbwajc" path="res://Scenes/World/Splatmap_-1_-4_2.res" id="837_6gj7n"]
-[ext_resource type="Texture2D" uid="uid://cygoxo01iuuc2" path="res://Scenes/World/Water_-1_-4.res" id="838_cdq4h"]
-[ext_resource type="Texture2D" uid="uid://drway5r16hdpu" path="res://Scenes/World/Foliage_0_-4_0.res" id="839_io00i"]
-[ext_resource type="Texture2D" uid="uid://fnbur66n4xm" path="res://Scenes/World/Foliage_0_-4_1.res" id="840_fvo4k"]
-[ext_resource type="Texture2D" uid="uid://dv1uvfig8wgun" path="res://Scenes/World/Heightmap_0_-4.res" id="841_0h5i3"]
-[ext_resource type="Texture2D" uid="uid://blqdo1xyndpw" path="res://Scenes/World/Object_0_-4_0.res" id="842_rdvui"]
-[ext_resource type="Texture2D" uid="uid://bhlil4g5s4tua" path="res://Scenes/World/Splatmap_0_-4_0.res" id="843_0ra7e"]
-[ext_resource type="Texture2D" uid="uid://da11tk6qxmd1h" path="res://Scenes/World/Splatmap_0_-4_1.res" id="844_5ho4m"]
-[ext_resource type="Texture2D" uid="uid://cwjoi27thmi3h" path="res://Scenes/World/Splatmap_0_-4_2.res" id="845_ajktn"]
-[ext_resource type="Texture2D" uid="uid://d1s3tdsc5iu07" path="res://Scenes/World/Water_0_-4.res" id="846_wxh06"]
-[ext_resource type="Texture2D" uid="uid://b8l8m40750rhk" path="res://Scenes/World/Foliage_-3_-4_0.res" id="847_7mno5"]
-[ext_resource type="Texture2D" uid="uid://blldd8uexqukg" path="res://Scenes/World/Foliage_-3_-4_1.res" id="848_lthvn"]
-[ext_resource type="Texture2D" uid="uid://d3hvu0fxpi056" path="res://Scenes/World/Heightmap_-3_-4.res" id="849_aujhr"]
-[ext_resource type="Texture2D" uid="uid://oijcsjnic46g" path="res://Scenes/World/Object_-3_-4_0.res" id="850_r5qih"]
-[ext_resource type="Texture2D" uid="uid://bxhsuaw8juh8v" path="res://Scenes/World/Splatmap_-3_-4_0.res" id="851_0qj4b"]
-[ext_resource type="Texture2D" uid="uid://cvvftnn4xxf3p" path="res://Scenes/World/Splatmap_-3_-4_1.res" id="852_c4moq"]
-[ext_resource type="Texture2D" uid="uid://dptsbkdl6ggym" path="res://Scenes/World/Splatmap_-3_-4_2.res" id="853_wi8r7"]
-[ext_resource type="Texture2D" uid="uid://c1v1wcwnfmerq" path="res://Scenes/World/Water_-3_-4.res" id="854_7cg25"]
 [ext_resource type="Texture2D" uid="uid://civfj60coe4pf" path="res://Assets/othermodeltxt/villager/body_Base_color.png" id="913_0rtel"]
 [ext_resource type="Texture2D" uid="uid://bpr2bindf7kds" path="res://Assets/othermodeltxt/villager/arms_Base_color.png" id="914_jhj26"]
 [ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="919_h1utm"]
@@ -971,1248 +80,6 @@ geometry_source_geometry_mode = 1
 geometry_source_group_name = &"Terrain"
 agent_max_slope = 65.0
 filter_baking_aabb = AABB(0, 0, 0, 750, 150, 1250)
-
-[sub_resource type="Resource" id="Resource_ii1jl"]
-script = ExtResource("5_nc3gf")
-Name = "Grass"
-AlbedoTexture = ExtResource("16_rdipx")
-HeightTexture = ExtResource("17_q2rbx")
-Triplanar = true
-metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
-
-[sub_resource type="Resource" id="Resource_xpmv6"]
-script = ExtResource("5_nc3gf")
-Name = "dirt"
-AlbedoTexture = ExtResource("6_r8fd3")
-HeightTexture = ExtResource("17_q2rbx")
-metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
-
-[sub_resource type="Resource" id="Resource_iuhso"]
-script = ExtResource("5_nc3gf")
-Name = "Sand"
-AlbedoTexture = ExtResource("7_h8aoc")
-HeightTexture = ExtResource("17_q2rbx")
-Triplanar = true
-metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
-
-[sub_resource type="Resource" id="Resource_q2rbx"]
-script = ExtResource("5_nc3gf")
-Name = "Grass"
-AlbedoTexture = ExtResource("9_1uftk")
-HeightTexture = ExtResource("17_q2rbx")
-Triplanar = true
-metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
-
-[sub_resource type="Resource" id="Resource_yxesf"]
-script = ExtResource("5_nc3gf")
-Name = "Grass"
-AlbedoTexture = ExtResource("16_rdipx")
-HeightTexture = ExtResource("17_q2rbx")
-Triplanar = true
-metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
-
-[sub_resource type="Resource" id="Resource_agl2t"]
-script = ExtResource("5_nc3gf")
-Name = "Grass"
-AlbedoTexture = ExtResource("16_rdipx")
-HeightTexture = ExtResource("17_q2rbx")
-Triplanar = true
-metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
-
-[sub_resource type="Resource" id="Resource_1tkeb"]
-script = ExtResource("5_nc3gf")
-Name = "Grass"
-AlbedoTexture = ExtResource("16_rdipx")
-HeightTexture = ExtResource("17_q2rbx")
-Triplanar = true
-metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
-
-[sub_resource type="Resource" id="Resource_shr4g"]
-script = ExtResource("5_nc3gf")
-Name = "Grass"
-AlbedoTexture = ExtResource("16_rdipx")
-HeightTexture = ExtResource("17_q2rbx")
-Triplanar = true
-metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
-
-[sub_resource type="Resource" id="Resource_lmwmg"]
-script = ExtResource("5_nc3gf")
-Name = "Grass"
-AlbedoTexture = ExtResource("16_rdipx")
-HeightTexture = ExtResource("17_q2rbx")
-Triplanar = true
-metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
-
-[sub_resource type="Resource" id="Resource_3b0yr"]
-script = ExtResource("5_nc3gf")
-Name = "Grass"
-AlbedoTexture = ExtResource("16_rdipx")
-HeightTexture = ExtResource("17_q2rbx")
-Triplanar = true
-metadata/_custom_type_script = "uid://c2l8t4xcdxwvu"
-
-[sub_resource type="Resource" id="Resource_vbfps"]
-script = ExtResource("15_v02e0")
-TextureSets = [SubResource("Resource_ii1jl"), SubResource("Resource_xpmv6"), SubResource("Resource_iuhso"), SubResource("Resource_q2rbx"), SubResource("Resource_yxesf"), SubResource("Resource_agl2t"), SubResource("Resource_1tkeb"), SubResource("Resource_shr4g"), SubResource("Resource_lmwmg"), SubResource("Resource_3b0yr")]
-metadata/_custom_type_script = "uid://043vjblb04jf"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2t4p"]
-resource_name = "Material.002"
-transparency = 4
-cull_mode = 2
-albedo_texture = ExtResource("16_hs260")
-roughness = 0.5
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_0pcbe"]
-_surfaces = [{
-"aabb": AABB(-1, -0.0677842, -1, 2, 1.37746, 2),
-"format": 34896613377,
-"index_count": 12,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
-"name": "Material.002",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("AAAAAP9/AAD//////38AAP//AAD/fwAAAAD///9/AAD/fwAA//8AAP9///8AAAAA/38AAAAAAAD/f/////8AAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_jajq2"]
-resource_name = "bush_Plane_002"
-_surfaces = [{
-"aabb": AABB(-1, -0.0677842, -1, 2, 1.37746, 2),
-"attribute_data": PackedByteArray("viFUxtbShA3W0lTGviGEDRUsNMRkzVITZM00xBUsUhM="),
-"format": 34896613399,
-"index_count": 12,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
-"material": SubResource("StandardMaterial3D_t2t4p"),
-"name": "Material.002",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("AAAAAP9/AID//////38AgP//AAD/fwCAAAD///9/AID/fwAA////v/9///8AAP+//38AAAAA/7//f///////v/9/////f////3////9/////fwAA/38AAP9/AAD/fwAA")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_0pcbe")
-
-[sub_resource type="Gradient" id="Gradient_yq1aw"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_pyn1s"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m7vjf"]
-noise = SubResource("FastNoiseLite_pyn1s")
-color_ramp = SubResource("Gradient_yq1aw")
-
-[sub_resource type="Resource" id="Resource_no8kt"]
-script = ExtResource("17_rjq1j")
-Mesh = SubResource("ArrayMesh_jajq2")
-MeshScale = Vector3(2, 2, 2)
-NoiseTexture = SubResource("NoiseTexture2D_m7vjf")
-Albedo = Color(0.418809, 0.588644, 0.472147, 1)
-AlbedoTextures = [ExtResource("16_hs260")]
-NearestTextureFilter = true
-CastShadow = true
-UseBrushScale = false
-RandomPlacementRange = 1000.0
-metadata/_custom_type_script = "uid://dgf8vwa2n8r11"
-
-[sub_resource type="Resource" id="Resource_axeuq"]
-script = ExtResource("18_osg54")
-Definition = SubResource("Resource_no8kt")
-metadata/_custom_type_script = "uid://d33x21vao7tj2"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akjvr"]
-resource_name = "grasstexture"
-transparency = 4
-cull_mode = 2
-albedo_texture = ExtResource("26_iuhso")
-roughness = 0.5
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_wigbs"]
-_surfaces = [{
-"aabb": AABB(-0.46418, -0.178487, -0.46418, 0.928361, 0.356975, 0.928361),
-"format": 34896613377,
-"index_count": 12,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
-"name": "grasstexture",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("/3//////AAD/fwAAAAAAAP9/AAD//wAA/3///wAAAAD//////38AAAAAAAD/fwAA//8AAP9/AAAAAP///38AAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_dyk4i"]
-resource_name = "grass_Plane_001"
-_surfaces = [{
-"aabb": AABB(-0.46418, -0.178487, -0.46418, 0.928361, 0.356975, 0.928361),
-"attribute_data": PackedByteArray("iommf///lv9Hi///Qf4+f4qJpn///5b/R4v//0H+Pn8="),
-"format": 34896613399,
-"index_count": 12,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
-"material": SubResource("StandardMaterial3D_akjvr"),
-"name": "grasstexture",
-"primitive": 3,
-"uv_scale": Vector4(1.85276, 1.78257, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("/3///////7//fwAAAAD/v/9/AAD///+//3///wAA/7///////3///wAAAAD/f/////8AAP9///8AAP///3///xOAJwATgCcAE4AnABOAJwDrf+v/63/r/+t/6//rf+v/")
-}]
-blend_shape_mode = 0
-custom_aabb = AABB(0, 0, 0, 0, 19.88, 0)
-shadow_mesh = SubResource("ArrayMesh_wigbs")
-
-[sub_resource type="Resource" id="Resource_xbk3s"]
-script = ExtResource("17_rjq1j")
-Mesh = SubResource("ArrayMesh_dyk4i")
-MeshScale = Vector3(3.75, 4, 3.75)
-WindStrength = 0.3
-NoiseTexture = SubResource("NoiseTexture2D_m7vjf")
-AlbedoTextures = [ExtResource("26_iuhso")]
-NearestTextureFilter = true
-UseGroundColor = true
-CastShadow = true
-RandomPlacementRange = 50.0
-metadata/_custom_type_script = "uid://dgf8vwa2n8r11"
-
-[sub_resource type="Resource" id="Resource_i4fjy"]
-script = ExtResource("18_osg54")
-Definition = SubResource("Resource_xbk3s")
-metadata/_custom_type_script = "uid://d33x21vao7tj2"
-
-[sub_resource type="Gradient" id="Gradient_qebug"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_o2rbt"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m6kd0"]
-noise = SubResource("FastNoiseLite_o2rbt")
-color_ramp = SubResource("Gradient_qebug")
-
-[sub_resource type="Resource" id="Resource_3ua1v"]
-script = ExtResource("22_rabu8")
-ObjectFrequency = 7
-NoiseTexture = SubResource("NoiseTexture2D_m6kd0")
-RandomYRotation = true
-RandomSize = true
-RandomSizeFactorMin = 0.75
-RandomSizeFactorMax = 1.5
-ObjectScenes = [ExtResource("21_rxyfw")]
-LODList = []
-LODMeshes = []
-metadata/_custom_type_script = "uid://cgf61yxk46wa4"
-
-[sub_resource type="Resource" id="Resource_r0ikl"]
-script = ExtResource("23_r0smi")
-Definition = SubResource("Resource_3ua1v")
-metadata/_custom_type_script = "uid://comabiqrwe5u0"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_58dda"]
-noise_type = 0
-seed = 1
-fractal_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nbiyt"]
-noise = SubResource("FastNoiseLite_58dda")
-seamless = true
-
-[sub_resource type="Resource" id="Resource_b7wla"]
-script = ExtResource("25_tjcsd")
-WaterFactor = 10.0
-WaterInnerOffset = 0.3
-WaterColor = Color(0, 0.262061, 0.434977, 1)
-WaterFresnelColor = Color(0, 0.404081, 0.340577, 1)
-WaterMetallic = 1.0
-WaterRoughness = 1.0
-WaterNormalMap = ExtResource("24_nly56")
-WaterStrength = 15.0
-WaterWave = SubResource("NoiseTexture2D_nbiyt")
-WaterColorDeep = Color(0, 0, 0, 1)
-WaterEdgeScale = 1.0
-WaterFar = 1000.0
-metadata/_custom_type_script = "uid://k2tvfxm6feg5"
-
-[sub_resource type="Resource" id="Resource_nnpdm"]
-script = ExtResource("34_rxyfw")
-HeightMapTexture = ExtResource("28_v02e0")
-SplatmapsTexture = [ExtResource("30_rjq1j"), ExtResource("31_osg54"), ExtResource("32_o2cid")]
-FoliagesTexture = [ExtResource("26_n5auh"), ExtResource("27_ejjek")]
-ObjectsTexture = [ExtResource("29_hs260")]
-WaterTexture = ExtResource("33_ve2tm")
-
-[sub_resource type="Resource" id="Resource_sd5fx"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(0, 1)
-HeightMapTexture = ExtResource("86_0p3ye")
-SplatmapsTexture = [ExtResource("88_hdfep"), ExtResource("89_gm54p"), ExtResource("90_d10hb")]
-FoliagesTexture = [ExtResource("84_7raob"), ExtResource("85_x33qj")]
-ObjectsTexture = [ExtResource("87_6y3jj")]
-WaterTexture = ExtResource("91_j1kvn")
-
-[sub_resource type="Resource" id="Resource_jrrcy"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, 1)
-HeightMapTexture = ExtResource("94_m6obd")
-SplatmapsTexture = [ExtResource("96_ns5xa"), ExtResource("97_7wkcv"), ExtResource("98_i7q85")]
-FoliagesTexture = [ExtResource("92_phlb0"), ExtResource("93_yh0mm")]
-ObjectsTexture = [ExtResource("95_4qxu6")]
-WaterTexture = ExtResource("99_soowo")
-
-[sub_resource type="Resource" id="Resource_fa8ee"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, 0)
-HeightMapTexture = ExtResource("38_13etl")
-SplatmapsTexture = [ExtResource("40_n36u0"), ExtResource("41_f1a1r"), ExtResource("42_k7atx")]
-FoliagesTexture = [ExtResource("36_g5cmj"), ExtResource("37_y2u06")]
-ObjectsTexture = [ExtResource("39_gvihv")]
-WaterTexture = ExtResource("43_xxkyo")
-
-[sub_resource type="Resource" id="Resource_anrnj"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, 2)
-HeightMapTexture = ExtResource("214_1f6nm")
-SplatmapsTexture = [ExtResource("216_g632x"), ExtResource("217_whg8j"), ExtResource("218_dru3u")]
-FoliagesTexture = [ExtResource("212_0sgjx"), ExtResource("213_hs43h")]
-ObjectsTexture = [ExtResource("215_slinn")]
-WaterTexture = ExtResource("219_3td5l")
-
-[sub_resource type="Resource" id="Resource_nl4gh"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(1, 1)
-HeightMapTexture = ExtResource("78_2l5oe")
-SplatmapsTexture = [ExtResource("80_enjp3"), ExtResource("81_l87i6"), ExtResource("82_0k8bs")]
-FoliagesTexture = [ExtResource("76_cnlug"), ExtResource("77_1d31q")]
-ObjectsTexture = [ExtResource("79_4tjdn")]
-WaterTexture = ExtResource("83_or0hy")
-
-[sub_resource type="Resource" id="Resource_7xwpq"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(0, -1)
-HeightMapTexture = ExtResource("54_pvlar")
-SplatmapsTexture = [ExtResource("56_nr7af"), ExtResource("57_ym0xd"), ExtResource("58_xyhap")]
-FoliagesTexture = [ExtResource("52_7lsta"), ExtResource("53_81rqo")]
-ObjectsTexture = [ExtResource("55_e2eg3")]
-WaterTexture = ExtResource("59_46020")
-
-[sub_resource type="Resource" id="Resource_s0h5c"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(1, -1)
-HeightMapTexture = ExtResource("62_2rj2p")
-SplatmapsTexture = [ExtResource("64_p2h30"), ExtResource("65_jsh0i"), ExtResource("66_jgbub")]
-FoliagesTexture = [ExtResource("60_of432"), ExtResource("61_wkm1a")]
-ObjectsTexture = [ExtResource("63_wrhnx")]
-WaterTexture = ExtResource("67_r6r1r")
-
-[sub_resource type="Resource" id="Resource_cx2gm"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(1, 0)
-HeightMapTexture = ExtResource("70_v2isk")
-SplatmapsTexture = [ExtResource("72_l4l1r"), ExtResource("73_wg0hf"), ExtResource("74_x5sta")]
-FoliagesTexture = [ExtResource("68_wk3sn"), ExtResource("69_bxpwq")]
-ObjectsTexture = [ExtResource("71_rjbv3")]
-WaterTexture = ExtResource("75_81wgp")
-
-[sub_resource type="Resource" id="Resource_xv778"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-2, 2)
-HeightMapTexture = ExtResource("222_gxpy0")
-SplatmapsTexture = [ExtResource("224_4sp72"), ExtResource("225_5r1vi"), ExtResource("226_t7jka")]
-FoliagesTexture = [ExtResource("220_40afu"), ExtResource("221_chyek")]
-ObjectsTexture = [ExtResource("223_rk4yy")]
-WaterTexture = ExtResource("227_hlhw6")
-
-[sub_resource type="Resource" id="Resource_shbtp"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-2, 3)
-HeightMapTexture = ExtResource("262_og24w")
-SplatmapsTexture = [ExtResource("264_gyhjf"), ExtResource("265_ixuc5"), ExtResource("266_ft6ni")]
-FoliagesTexture = [ExtResource("260_o3s2b"), ExtResource("261_rfxeh")]
-ObjectsTexture = [ExtResource("263_57v73")]
-WaterTexture = ExtResource("267_gyial")
-
-[sub_resource type="Resource" id="Resource_6an2s"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, 3)
-HeightMapTexture = ExtResource("254_hvkk6")
-SplatmapsTexture = [ExtResource("256_gbjvf"), ExtResource("257_e65xy"), ExtResource("258_hdlnl")]
-FoliagesTexture = [ExtResource("252_5f46b"), ExtResource("253_cq35o")]
-ObjectsTexture = [ExtResource("255_lsps4")]
-WaterTexture = ExtResource("259_lpqse")
-
-[sub_resource type="Resource" id="Resource_d4ulm"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-2, 1)
-HeightMapTexture = ExtResource("102_rlxc0")
-SplatmapsTexture = [ExtResource("104_wu4hr"), ExtResource("105_07fgs"), ExtResource("106_0yd4p")]
-FoliagesTexture = [ExtResource("100_lgc0t"), ExtResource("101_1dypy")]
-ObjectsTexture = [ExtResource("103_gumej")]
-WaterTexture = ExtResource("107_q6xjr")
-
-[sub_resource type="Resource" id="Resource_bj83l"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-2, 0)
-HeightMapTexture = ExtResource("110_euvpd")
-SplatmapsTexture = [ExtResource("112_map5x"), ExtResource("113_r1b1d"), ExtResource("114_igk5s")]
-FoliagesTexture = [ExtResource("108_suvwx"), ExtResource("109_nqj5c")]
-ObjectsTexture = [ExtResource("111_gacqc")]
-WaterTexture = ExtResource("115_0ktac")
-
-[sub_resource type="Resource" id="Resource_fasa8"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(0, 2)
-HeightMapTexture = ExtResource("206_cqc0x")
-SplatmapsTexture = [ExtResource("208_86ftq"), ExtResource("209_nupp3"), ExtResource("210_7cc5f")]
-FoliagesTexture = [ExtResource("204_n1bqm"), ExtResource("205_bw50e")]
-ObjectsTexture = [ExtResource("207_joeud")]
-WaterTexture = ExtResource("211_hnsfd")
-
-[sub_resource type="Resource" id="Resource_a3apw"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, 4)
-HeightMapTexture = ExtResource("440_q6xjr")
-SplatmapsTexture = [ExtResource("442_nqj5c"), ExtResource("443_euvpd"), ExtResource("444_gacqc")]
-FoliagesTexture = [ExtResource("438_07fgs"), ExtResource("439_0yd4p")]
-ObjectsTexture = [ExtResource("441_suvwx")]
-WaterTexture = ExtResource("445_map5x")
-
-[sub_resource type="Resource" id="Resource_wisbv"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, -1)
-HeightMapTexture = ExtResource("46_yj2l7")
-SplatmapsTexture = [ExtResource("48_8b3bu"), ExtResource("49_pj1wl"), ExtResource("50_1nepi")]
-FoliagesTexture = [ExtResource("44_jmvp8"), ExtResource("45_nncql")]
-ObjectsTexture = [ExtResource("47_fx6sd")]
-WaterTexture = ExtResource("51_xydo5")
-
-[sub_resource type="Resource" id="Resource_643b0"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, -2)
-HeightMapTexture = ExtResource("134_h133x")
-SplatmapsTexture = [ExtResource("136_dmnga"), ExtResource("137_t3616"), ExtResource("138_tqghj")]
-FoliagesTexture = [ExtResource("132_1cdjv"), ExtResource("133_fu4tr")]
-ObjectsTexture = [ExtResource("135_btk82")]
-WaterTexture = ExtResource("139_grskf")
-
-[sub_resource type="Resource" id="Resource_dq1xa"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(0, -2)
-HeightMapTexture = ExtResource("142_4w4o6")
-SplatmapsTexture = [ExtResource("144_5umxo"), ExtResource("145_px36d"), ExtResource("146_f1m12")]
-FoliagesTexture = [ExtResource("140_4exn6"), ExtResource("141_j38e7")]
-ObjectsTexture = [ExtResource("143_tmt0m")]
-WaterTexture = ExtResource("147_qukh6")
-
-[sub_resource type="Resource" id="Resource_6d7hv"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, -3)
-HeightMapTexture = ExtResource("334_yglyy")
-SplatmapsTexture = [ExtResource("336_6i8sk"), ExtResource("337_jburx"), ExtResource("338_id3w4")]
-FoliagesTexture = [ExtResource("332_wqude"), ExtResource("333_m2qhm")]
-ObjectsTexture = [ExtResource("335_vr5b1")]
-WaterTexture = ExtResource("339_wgsp7")
-
-[sub_resource type="Resource" id="Resource_v86w0"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(0, -3)
-HeightMapTexture = ExtResource("342_448ib")
-SplatmapsTexture = [ExtResource("344_33e24"), ExtResource("345_ijxvc"), ExtResource("346_5nxfk")]
-FoliagesTexture = [ExtResource("340_bkeq0"), ExtResource("341_bjdiu")]
-ObjectsTexture = [ExtResource("343_cjqbs")]
-WaterTexture = ExtResource("347_jv0vl")
-
-[sub_resource type="Resource" id="Resource_g0chq"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(1, -3)
-HeightMapTexture = ExtResource("350_poy7t")
-SplatmapsTexture = [ExtResource("352_hrex7"), ExtResource("353_is2qr"), ExtResource("354_q0fob")]
-FoliagesTexture = [ExtResource("348_mjt34"), ExtResource("349_2ctns")]
-ObjectsTexture = [ExtResource("351_dlygi")]
-WaterTexture = ExtResource("355_4nalf")
-
-[sub_resource type="Resource" id="Resource_7i4pd"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(1, -2)
-HeightMapTexture = ExtResource("150_pcumd")
-SplatmapsTexture = [ExtResource("152_h2qpt"), ExtResource("153_764xv"), ExtResource("154_k08fu")]
-FoliagesTexture = [ExtResource("148_e2slq"), ExtResource("149_0m7x8")]
-ObjectsTexture = [ExtResource("151_w4rlq")]
-WaterTexture = ExtResource("155_s2yc2")
-
-[sub_resource type="Resource" id="Resource_7dafi"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(2, -3)
-HeightMapTexture = ExtResource("358_0tsex")
-SplatmapsTexture = [ExtResource("360_rml0p"), ExtResource("361_sj8d8"), ExtResource("362_p8pqq")]
-FoliagesTexture = [ExtResource("356_4ll4h"), ExtResource("357_ph3qv")]
-ObjectsTexture = [ExtResource("359_oo171")]
-WaterTexture = ExtResource("363_vqhks")
-
-[sub_resource type="Resource" id="Resource_uk4ah"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(2, -2)
-HeightMapTexture = ExtResource("158_8lrhb")
-SplatmapsTexture = [ExtResource("160_j53hi"), ExtResource("161_0veb2"), ExtResource("162_8ihdf")]
-FoliagesTexture = [ExtResource("156_rfmk8"), ExtResource("157_mxcgt")]
-ObjectsTexture = [ExtResource("159_medvj")]
-WaterTexture = ExtResource("163_kn3mn")
-
-[sub_resource type="Resource" id="Resource_suw56"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(3, -3)
-HeightMapTexture = ExtResource("366_q6xnt")
-SplatmapsTexture = [ExtResource("368_jgaq1"), ExtResource("369_dqhsd"), ExtResource("370_kx454")]
-FoliagesTexture = [ExtResource("364_dshqo"), ExtResource("365_rl53u")]
-ObjectsTexture = [ExtResource("367_iimqp")]
-WaterTexture = ExtResource("371_hv7on")
-
-[sub_resource type="Resource" id="Resource_f83po"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(3, -2)
-HeightMapTexture = ExtResource("374_ie8n5")
-SplatmapsTexture = [ExtResource("376_0ap2v"), ExtResource("377_owixw"), ExtResource("378_0v05p")]
-FoliagesTexture = [ExtResource("372_76v7d"), ExtResource("373_6fjhc")]
-ObjectsTexture = [ExtResource("375_stitw")]
-WaterTexture = ExtResource("379_o36du")
-
-[sub_resource type="Resource" id="Resource_f1g14"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(4, -3)
-HeightMapTexture = ExtResource("249_qtthl")
-SplatmapsTexture = [ExtResource("251_677id"), ExtResource("252_70xvq"), ExtResource("253_db4bj")]
-FoliagesTexture = [ExtResource("247_nufjf"), ExtResource("248_h1utm")]
-ObjectsTexture = [ExtResource("250_v8qwt")]
-WaterTexture = ExtResource("254_4wxgn")
-
-[sub_resource type="Resource" id="Resource_oawgc"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(4, -2)
-HeightMapTexture = ExtResource("257_5m6g4")
-SplatmapsTexture = [ExtResource("259_4aw2u"), ExtResource("260_obu7h"), ExtResource("261_qcek0")]
-FoliagesTexture = [ExtResource("255_4psjf"), ExtResource("256_81ace")]
-ObjectsTexture = [ExtResource("258_ptcpy")]
-WaterTexture = ExtResource("262_bkflp")
-
-[sub_resource type="Resource" id="Resource_8yamd"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(5, -2)
-HeightMapTexture = ExtResource("265_ub1ot")
-SplatmapsTexture = [ExtResource("267_5j1yv"), ExtResource("268_ii1jl"), ExtResource("269_xpmv6")]
-FoliagesTexture = [ExtResource("263_654ae"), ExtResource("264_3vgip")]
-ObjectsTexture = [ExtResource("266_byw2m")]
-WaterTexture = ExtResource("270_iuhso")
-
-[sub_resource type="Resource" id="Resource_mwpet"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(4, -1)
-HeightMapTexture = ExtResource("273_agl2t")
-SplatmapsTexture = [ExtResource("275_shr4g"), ExtResource("276_lmwmg"), ExtResource("277_3b0yr")]
-FoliagesTexture = [ExtResource("271_q2rbx"), ExtResource("272_yxesf")]
-ObjectsTexture = [ExtResource("274_1tkeb")]
-WaterTexture = ExtResource("278_rdipx")
-
-[sub_resource type="Resource" id="Resource_bkyuq"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(5, -1)
-HeightMapTexture = ExtResource("281_b64uh")
-SplatmapsTexture = [ExtResource("283_4gw3q"), ExtResource("284_0rtel"), ExtResource("285_jhj26")]
-FoliagesTexture = [ExtResource("279_jlydw"), ExtResource("280_bjbr5")]
-ObjectsTexture = [ExtResource("282_lpj1t")]
-WaterTexture = ExtResource("286_t61ja")
-
-[sub_resource type="Resource" id="Resource_5bdvf"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(4, 0)
-HeightMapTexture = ExtResource("289_hslox")
-SplatmapsTexture = [ExtResource("291_1bqxl"), ExtResource("292_v2dnp"), ExtResource("293_jhl1v")]
-FoliagesTexture = [ExtResource("287_fefhx"), ExtResource("288_h7p5p")]
-ObjectsTexture = [ExtResource("290_us8oc")]
-WaterTexture = ExtResource("294_tqcmk")
-
-[sub_resource type="Resource" id="Resource_xn7kl"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(3, 0)
-HeightMapTexture = ExtResource("390_wpxbi")
-SplatmapsTexture = [ExtResource("392_gtcan"), ExtResource("393_ua4sc"), ExtResource("394_s3pg1")]
-FoliagesTexture = [ExtResource("388_nx3aq"), ExtResource("389_w2nlc")]
-ObjectsTexture = [ExtResource("391_et6nw")]
-WaterTexture = ExtResource("395_uuglo")
-
-[sub_resource type="Resource" id="Resource_v4u2a"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(3, 1)
-HeightMapTexture = ExtResource("398_5av82")
-SplatmapsTexture = [ExtResource("400_htoa0"), ExtResource("401_wfhr6"), ExtResource("402_p8fdf")]
-FoliagesTexture = [ExtResource("396_egcrv"), ExtResource("397_npxt8")]
-ObjectsTexture = [ExtResource("399_dd5us")]
-WaterTexture = ExtResource("403_ujxt1")
-
-[sub_resource type="Resource" id="Resource_ggxlf"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(4, 1)
-HeightMapTexture = ExtResource("313_kkecq")
-SplatmapsTexture = [ExtResource("315_rna7i"), ExtResource("316_1tqb4"), ExtResource("317_3psa0")]
-FoliagesTexture = [ExtResource("311_b2kqp"), ExtResource("312_dtvt8")]
-ObjectsTexture = [ExtResource("314_83jqk")]
-WaterTexture = ExtResource("318_hy64a")
-
-[sub_resource type="Resource" id="Resource_8080r"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(3, 2)
-HeightMapTexture = ExtResource("406_wkvq6")
-SplatmapsTexture = [ExtResource("408_uit06"), ExtResource("409_tqwhd"), ExtResource("410_v8gv0")]
-FoliagesTexture = [ExtResource("404_ny238"), ExtResource("405_ksnvr")]
-ObjectsTexture = [ExtResource("407_7pfrm")]
-WaterTexture = ExtResource("411_7inf7")
-
-[sub_resource type="Resource" id="Resource_v1vhd"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(4, 2)
-HeightMapTexture = ExtResource("329_qxotl")
-SplatmapsTexture = [ExtResource("331_ia4dk"), ExtResource("332_js4bt"), ExtResource("333_x64uv")]
-FoliagesTexture = [ExtResource("327_jchk6"), ExtResource("328_a2g2v")]
-ObjectsTexture = [ExtResource("330_krhxp")]
-WaterTexture = ExtResource("334_r6ih7")
-
-[sub_resource type="Resource" id="Resource_yjgbj"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(4, 3)
-HeightMapTexture = ExtResource("337_t0dp6")
-SplatmapsTexture = [ExtResource("339_8hf5x"), ExtResource("340_b3unv"), ExtResource("341_vx6et")]
-FoliagesTexture = [ExtResource("335_kj5vc"), ExtResource("336_0bt28")]
-ObjectsTexture = [ExtResource("338_ttjsi")]
-WaterTexture = ExtResource("342_kc8h5")
-
-[sub_resource type="Resource" id="Resource_vwdx7"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(4, 4)
-HeightMapTexture = ExtResource("345_3d6th")
-SplatmapsTexture = [ExtResource("347_gf86u"), ExtResource("348_w6day"), ExtResource("349_ofjvm")]
-FoliagesTexture = [ExtResource("343_nem87"), ExtResource("344_bymik")]
-ObjectsTexture = [ExtResource("346_afxwf")]
-WaterTexture = ExtResource("350_8r2vn")
-
-[sub_resource type="Resource" id="Resource_4wskq"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(4, 5)
-HeightMapTexture = ExtResource("353_si2hd")
-SplatmapsTexture = [ExtResource("355_8bjov"), ExtResource("356_dj1gu"), ExtResource("357_ci5dx")]
-FoliagesTexture = [ExtResource("351_0buwe"), ExtResource("352_docne")]
-ObjectsTexture = [ExtResource("354_npgxp")]
-WaterTexture = ExtResource("358_wynec")
-
-[sub_resource type="Resource" id="Resource_1xx48"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(3, 5)
-HeightMapTexture = ExtResource("361_vyr3b")
-SplatmapsTexture = [ExtResource("363_thwgj"), ExtResource("364_cm4iw"), ExtResource("365_o7yo1")]
-FoliagesTexture = [ExtResource("359_rdacl"), ExtResource("360_v77lc")]
-ObjectsTexture = [ExtResource("362_22w84")]
-WaterTexture = ExtResource("366_p2yit")
-
-[sub_resource type="Resource" id="Resource_vctx6"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(3, 6)
-HeightMapTexture = ExtResource("369_2m5w0")
-SplatmapsTexture = [ExtResource("371_nu433"), ExtResource("372_ph6wx"), ExtResource("373_o5wvj")]
-FoliagesTexture = [ExtResource("367_hq7f0"), ExtResource("368_7nmcm")]
-ObjectsTexture = [ExtResource("370_j3s4d")]
-WaterTexture = ExtResource("374_ekmxp")
-
-[sub_resource type="Resource" id="Resource_av47l"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(4, 6)
-HeightMapTexture = ExtResource("377_1vrvr")
-SplatmapsTexture = [ExtResource("379_d5f50"), ExtResource("380_2ry37"), ExtResource("381_657dt")]
-FoliagesTexture = [ExtResource("375_fqqq7"), ExtResource("376_md6jy")]
-ObjectsTexture = [ExtResource("378_6d1yh")]
-WaterTexture = ExtResource("382_t4t42")
-
-[sub_resource type="Resource" id="Resource_5an6s"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(0, 4)
-HeightMapTexture = ExtResource("448_0ktac")
-SplatmapsTexture = [ExtResource("450_ptdsg"), ExtResource("451_3emuh"), ExtResource("452_t3n51")]
-FoliagesTexture = [ExtResource("446_r1b1d"), ExtResource("447_igk5s")]
-ObjectsTexture = [ExtResource("449_s7pwp")]
-WaterTexture = ExtResource("453_k0hdb")
-
-[sub_resource type="Resource" id="Resource_rnxk2"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, 5)
-HeightMapTexture = ExtResource("393_bt1ko")
-SplatmapsTexture = [ExtResource("395_lhkg2"), ExtResource("396_daplo"), ExtResource("397_byw5m")]
-FoliagesTexture = [ExtResource("391_xq62r"), ExtResource("392_t72ud")]
-ObjectsTexture = [ExtResource("394_urens")]
-WaterTexture = ExtResource("398_jbgv1")
-
-[sub_resource type="Resource" id="Resource_0q5mx"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(0, 5)
-HeightMapTexture = ExtResource("456_ju2s7")
-SplatmapsTexture = [ExtResource("458_vh0sa"), ExtResource("459_hh17a"), ExtResource("460_6cf34")]
-FoliagesTexture = [ExtResource("454_uhd2t"), ExtResource("455_wu4mf")]
-ObjectsTexture = [ExtResource("457_cunwq")]
-WaterTexture = ExtResource("461_t6evk")
-
-[sub_resource type="Resource" id="Resource_io0bp"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(1, 5)
-HeightMapTexture = ExtResource("409_auvvl")
-SplatmapsTexture = [ExtResource("411_bxxq6"), ExtResource("412_4tuv7"), ExtResource("413_flpxc")]
-FoliagesTexture = [ExtResource("407_iv66x"), ExtResource("408_gk44o")]
-ObjectsTexture = [ExtResource("410_h8toc")]
-WaterTexture = ExtResource("414_u3fh7")
-
-[sub_resource type="Resource" id="Resource_0ttad"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(0, 6)
-HeightMapTexture = ExtResource("417_yckje")
-SplatmapsTexture = [ExtResource("419_bppyh"), ExtResource("420_sdvil"), ExtResource("421_niho0")]
-FoliagesTexture = [ExtResource("415_7dtkg"), ExtResource("416_8qydd")]
-ObjectsTexture = [ExtResource("418_r3kqk")]
-WaterTexture = ExtResource("422_n2ckw")
-
-[sub_resource type="Resource" id="Resource_67jo4"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(1, 6)
-HeightMapTexture = ExtResource("425_2xmtc")
-SplatmapsTexture = [ExtResource("427_h2hq1"), ExtResource("428_awigb"), ExtResource("429_8kdxt")]
-FoliagesTexture = [ExtResource("423_mqv2g"), ExtResource("424_25cje")]
-ObjectsTexture = [ExtResource("426_hse6p")]
-WaterTexture = ExtResource("430_50r3k")
-
-[sub_resource type="Resource" id="Resource_doppe"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(2, 5)
-HeightMapTexture = ExtResource("433_om0sc")
-SplatmapsTexture = [ExtResource("435_ad74o"), ExtResource("436_1cg4v"), ExtResource("437_uxigg")]
-FoliagesTexture = [ExtResource("431_qvbks"), ExtResource("432_7r2xp")]
-ObjectsTexture = [ExtResource("434_870km")]
-WaterTexture = ExtResource("438_sbehl")
-
-[sub_resource type="Resource" id="Resource_gh1vi"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(2, 6)
-HeightMapTexture = ExtResource("441_rkljy")
-SplatmapsTexture = [ExtResource("443_v28ce"), ExtResource("444_pqvg0"), ExtResource("445_ib60i")]
-FoliagesTexture = [ExtResource("439_0q2e5"), ExtResource("440_n13bc")]
-ObjectsTexture = [ExtResource("442_epqte")]
-WaterTexture = ExtResource("446_d0gmd")
-
-[sub_resource type="Resource" id="Resource_s1hlr"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(1, 4)
-HeightMapTexture = ExtResource("449_apsxd")
-SplatmapsTexture = [ExtResource("451_g6p6h"), ExtResource("452_urqdd"), ExtResource("453_sdqwp")]
-FoliagesTexture = [ExtResource("447_1746f"), ExtResource("448_w5cd0")]
-ObjectsTexture = [ExtResource("450_xyw6j")]
-WaterTexture = ExtResource("454_1msh0")
-
-[sub_resource type="Resource" id="Resource_r8rpl"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(2, 4)
-HeightMapTexture = ExtResource("457_eijig")
-SplatmapsTexture = [ExtResource("459_1dne7"), ExtResource("460_kuox6"), ExtResource("461_4ragu")]
-FoliagesTexture = [ExtResource("455_mgf2m"), ExtResource("456_2p2w5")]
-ObjectsTexture = [ExtResource("458_0y3kq")]
-WaterTexture = ExtResource("462_rswu3")
-
-[sub_resource type="Resource" id="Resource_w8u3n"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(0, 3)
-HeightMapTexture = ExtResource("246_d6sdr")
-SplatmapsTexture = [ExtResource("248_4us8m"), ExtResource("249_8m7o3"), ExtResource("250_sla70")]
-FoliagesTexture = [ExtResource("244_6ts1r"), ExtResource("245_mnx08")]
-ObjectsTexture = [ExtResource("247_bd6i5")]
-WaterTexture = ExtResource("251_35m2y")
-
-[sub_resource type="Resource" id="Resource_yrmv1"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(1, 3)
-HeightMapTexture = ExtResource("238_4qa1w")
-SplatmapsTexture = [ExtResource("240_ekr2v"), ExtResource("241_v3p6u"), ExtResource("242_8qtul")]
-FoliagesTexture = [ExtResource("236_125wo"), ExtResource("237_tc8r4")]
-ObjectsTexture = [ExtResource("239_wkrhb")]
-WaterTexture = ExtResource("243_jlato")
-
-[sub_resource type="Resource" id="Resource_kolvd"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(2, 3)
-HeightMapTexture = ExtResource("230_3d2g6")
-SplatmapsTexture = [ExtResource("232_on75t"), ExtResource("233_p5ni1"), ExtResource("234_ghmfx")]
-FoliagesTexture = [ExtResource("228_lycv8"), ExtResource("229_ife7n")]
-ObjectsTexture = [ExtResource("231_u7fgm")]
-WaterTexture = ExtResource("235_ow66n")
-
-[sub_resource type="Resource" id="Resource_h4o0s"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(3, 3)
-HeightMapTexture = ExtResource("414_sebch")
-SplatmapsTexture = [ExtResource("416_io2m4"), ExtResource("417_nw14b"), ExtResource("418_kto18")]
-FoliagesTexture = [ExtResource("412_i85qj"), ExtResource("413_gd7ms")]
-ObjectsTexture = [ExtResource("415_has30")]
-WaterTexture = ExtResource("419_rjsgy")
-
-[sub_resource type="Resource" id="Resource_yg4ii"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(3, 4)
-HeightMapTexture = ExtResource("497_dbvgo")
-SplatmapsTexture = [ExtResource("499_jnkck"), ExtResource("500_et07f"), ExtResource("501_e4oyy")]
-FoliagesTexture = [ExtResource("495_bhnvs"), ExtResource("496_87nad")]
-ObjectsTexture = [ExtResource("498_8ojji")]
-WaterTexture = ExtResource("502_mjikk")
-
-[sub_resource type="Resource" id="Resource_ybtom"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(1, -4)
-HeightMapTexture = ExtResource("505_vpwwq")
-SplatmapsTexture = [ExtResource("507_d61bl"), ExtResource("508_chrps"), ExtResource("509_d0cyg")]
-FoliagesTexture = [ExtResource("503_5vcb7"), ExtResource("504_psnvo")]
-ObjectsTexture = [ExtResource("506_ctdcb")]
-WaterTexture = ExtResource("510_a08uh")
-
-[sub_resource type="Resource" id="Resource_ovmsd"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(2, -4)
-HeightMapTexture = ExtResource("513_bn2d7")
-SplatmapsTexture = [ExtResource("515_qgvu6"), ExtResource("516_huj4r"), ExtResource("517_8den3")]
-FoliagesTexture = [ExtResource("511_hwbwl"), ExtResource("512_grkcp")]
-ObjectsTexture = [ExtResource("514_oly2s")]
-WaterTexture = ExtResource("518_3q47c")
-
-[sub_resource type="Resource" id="Resource_ph82a"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(3, -4)
-HeightMapTexture = ExtResource("521_y5680")
-SplatmapsTexture = [ExtResource("523_qfm1c"), ExtResource("524_y3ufc"), ExtResource("525_v1hhv")]
-FoliagesTexture = [ExtResource("519_emetp"), ExtResource("520_3cv4h")]
-ObjectsTexture = [ExtResource("522_m8wu8")]
-WaterTexture = ExtResource("526_6vuaf")
-
-[sub_resource type="Resource" id="Resource_kesn2"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(4, -4)
-HeightMapTexture = ExtResource("529_wxgx0")
-SplatmapsTexture = [ExtResource("531_vn4ff"), ExtResource("532_mj1su"), ExtResource("533_otbwl")]
-FoliagesTexture = [ExtResource("527_igdum"), ExtResource("528_w2udv")]
-ObjectsTexture = [ExtResource("530_gtlri")]
-WaterTexture = ExtResource("534_8m1ov")
-
-[sub_resource type="Resource" id="Resource_4ehfs"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(5, -4)
-HeightMapTexture = ExtResource("537_lnwj5")
-SplatmapsTexture = [ExtResource("539_nrtep"), ExtResource("540_ac0p6"), ExtResource("541_vssds")]
-FoliagesTexture = [ExtResource("535_d14hf"), ExtResource("536_n6xuq")]
-ObjectsTexture = [ExtResource("538_dl4ac")]
-WaterTexture = ExtResource("542_5g1sp")
-
-[sub_resource type="Resource" id="Resource_4pw2d"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(5, -3)
-HeightMapTexture = ExtResource("545_lfmmf")
-SplatmapsTexture = [ExtResource("547_x8aug"), ExtResource("548_hxuxb"), ExtResource("549_jmspx")]
-FoliagesTexture = [ExtResource("543_bjbpc"), ExtResource("544_3g4pn")]
-ObjectsTexture = [ExtResource("546_xxkor")]
-WaterTexture = ExtResource("550_6dcqa")
-
-[sub_resource type="Resource" id="Resource_idue8"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(6, -3)
-HeightMapTexture = ExtResource("553_0maae")
-SplatmapsTexture = [ExtResource("555_lxyqv"), ExtResource("556_4xgq6"), ExtResource("557_w2dii")]
-FoliagesTexture = [ExtResource("551_hay76"), ExtResource("552_qaej7")]
-ObjectsTexture = [ExtResource("554_vsnjo")]
-WaterTexture = ExtResource("558_deqtt")
-
-[sub_resource type="Resource" id="Resource_h6erx"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(6, -4)
-HeightMapTexture = ExtResource("561_qpnva")
-SplatmapsTexture = [ExtResource("563_dteta"), ExtResource("564_fakrj"), ExtResource("565_qi5fj")]
-FoliagesTexture = [ExtResource("559_eckp6"), ExtResource("560_cf6f6")]
-ObjectsTexture = [ExtResource("562_eprv7")]
-WaterTexture = ExtResource("566_owosh")
-
-[sub_resource type="Resource" id="Resource_ln07d"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(6, -2)
-HeightMapTexture = ExtResource("569_j2ryv")
-SplatmapsTexture = [ExtResource("571_2r5fb"), ExtResource("572_ksgdw"), ExtResource("573_q7sq8")]
-FoliagesTexture = [ExtResource("567_3xs21"), ExtResource("568_mf1yy")]
-ObjectsTexture = [ExtResource("570_j6jre")]
-WaterTexture = ExtResource("574_7q5v5")
-
-[sub_resource type="Resource" id="Resource_dl1ju"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(6, -1)
-HeightMapTexture = ExtResource("577_wkiap")
-SplatmapsTexture = [ExtResource("579_ooq35"), ExtResource("580_nekyt"), ExtResource("581_h5qh0")]
-FoliagesTexture = [ExtResource("575_cempl"), ExtResource("576_cuyh2")]
-ObjectsTexture = [ExtResource("578_slr2e")]
-WaterTexture = ExtResource("582_q6rxq")
-
-[sub_resource type="Resource" id="Resource_to78q"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(5, 0)
-HeightMapTexture = ExtResource("585_e3o2i")
-SplatmapsTexture = [ExtResource("587_wkbdr"), ExtResource("588_1lp8v"), ExtResource("589_whpr0")]
-FoliagesTexture = [ExtResource("583_71dnx"), ExtResource("584_fjik5")]
-ObjectsTexture = [ExtResource("586_27pxs")]
-WaterTexture = ExtResource("590_tnqpr")
-
-[sub_resource type="Resource" id="Resource_68d03"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(6, 0)
-HeightMapTexture = ExtResource("593_5y1yc")
-SplatmapsTexture = [ExtResource("595_1t2n8"), ExtResource("596_driau"), ExtResource("597_u03gq")]
-FoliagesTexture = [ExtResource("591_ex548"), ExtResource("592_s3pxn")]
-ObjectsTexture = [ExtResource("594_galry")]
-WaterTexture = ExtResource("598_sedvc")
-
-[sub_resource type="Resource" id="Resource_iv20s"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(5, 1)
-HeightMapTexture = ExtResource("601_nk18c")
-SplatmapsTexture = [ExtResource("603_n2t6l"), ExtResource("604_jv0no"), ExtResource("605_u0bog")]
-FoliagesTexture = [ExtResource("599_mcart"), ExtResource("600_olgrs")]
-ObjectsTexture = [ExtResource("602_x1pp7")]
-WaterTexture = ExtResource("606_opfyl")
-
-[sub_resource type="Resource" id="Resource_pqaej"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(5, 2)
-HeightMapTexture = ExtResource("609_4ry2h")
-SplatmapsTexture = [ExtResource("611_lihpr"), ExtResource("612_ffgry"), ExtResource("613_gpkl2")]
-FoliagesTexture = [ExtResource("607_8qjg6"), ExtResource("608_3w7oc")]
-ObjectsTexture = [ExtResource("610_1oggr")]
-WaterTexture = ExtResource("614_usvv1")
-
-[sub_resource type="Resource" id="Resource_e0q3j"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(5, 3)
-HeightMapTexture = ExtResource("617_nauh2")
-SplatmapsTexture = [ExtResource("619_kshtu"), ExtResource("620_36ql6"), ExtResource("621_c1il2")]
-FoliagesTexture = [ExtResource("615_jnb7b"), ExtResource("616_8pq5j")]
-ObjectsTexture = [ExtResource("618_6vtuf")]
-WaterTexture = ExtResource("622_eiolr")
-
-[sub_resource type="Resource" id="Resource_ouux6"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(6, 3)
-HeightMapTexture = ExtResource("625_ohxvb")
-SplatmapsTexture = [ExtResource("627_xvn3d"), ExtResource("628_00uo7"), ExtResource("629_88e4c")]
-FoliagesTexture = [ExtResource("623_rs4ql"), ExtResource("624_m6pa3")]
-ObjectsTexture = [ExtResource("626_df6de")]
-WaterTexture = ExtResource("630_k1np6")
-
-[sub_resource type="Resource" id="Resource_mebdv"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(5, 4)
-HeightMapTexture = ExtResource("633_1vt27")
-SplatmapsTexture = [ExtResource("635_lsd28"), ExtResource("636_ybq4y"), ExtResource("637_hny15")]
-FoliagesTexture = [ExtResource("631_ovy75"), ExtResource("632_4crfm")]
-ObjectsTexture = [ExtResource("634_fw18g")]
-WaterTexture = ExtResource("638_vefhk")
-
-[sub_resource type="Resource" id="Resource_nsm8h"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(6, 2)
-HeightMapTexture = ExtResource("641_1du7x")
-SplatmapsTexture = [ExtResource("643_70yfx"), ExtResource("644_6lwfr"), ExtResource("645_v1iwy")]
-FoliagesTexture = [ExtResource("639_eg0qp"), ExtResource("640_k8b3a")]
-ObjectsTexture = [ExtResource("642_c7jgh")]
-WaterTexture = ExtResource("646_m8ub2")
-
-[sub_resource type="Resource" id="Resource_gyek8"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(6, 1)
-HeightMapTexture = ExtResource("649_orv2w")
-SplatmapsTexture = [ExtResource("651_exj12"), ExtResource("652_f7joa"), ExtResource("653_7jeqs")]
-FoliagesTexture = [ExtResource("647_qoi2e"), ExtResource("648_xv35m")]
-ObjectsTexture = [ExtResource("650_3f1n4")]
-WaterTexture = ExtResource("654_1rrf4")
-
-[sub_resource type="Resource" id="Resource_s6jwa"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(6, 4)
-HeightMapTexture = ExtResource("657_bayeh")
-SplatmapsTexture = [ExtResource("659_0mniy"), ExtResource("660_6clg6"), ExtResource("661_k6ivn")]
-FoliagesTexture = [ExtResource("655_gk75r"), ExtResource("656_vt7bh")]
-ObjectsTexture = [ExtResource("658_6wd20")]
-WaterTexture = ExtResource("662_5vugb")
-
-[sub_resource type="Resource" id="Resource_40pjx"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(5, 5)
-HeightMapTexture = ExtResource("665_k5nib")
-SplatmapsTexture = [ExtResource("667_gbfpg"), ExtResource("668_402uq"), ExtResource("669_d3bte")]
-FoliagesTexture = [ExtResource("663_jf5kw"), ExtResource("664_wrn8f")]
-ObjectsTexture = [ExtResource("666_p8g1j")]
-WaterTexture = ExtResource("670_xee8a")
-
-[sub_resource type="Resource" id="Resource_1ykm7"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(6, 5)
-HeightMapTexture = ExtResource("673_jocy5")
-SplatmapsTexture = [ExtResource("675_pi0s1"), ExtResource("676_n7icl"), ExtResource("677_l8ft1")]
-FoliagesTexture = [ExtResource("671_5a265"), ExtResource("672_kq48y")]
-ObjectsTexture = [ExtResource("674_ehit3")]
-WaterTexture = ExtResource("678_o4cui")
-
-[sub_resource type="Resource" id="Resource_jr812"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(5, 6)
-HeightMapTexture = ExtResource("681_unbar")
-SplatmapsTexture = [ExtResource("683_yyaa6"), ExtResource("684_g5s0g"), ExtResource("685_a4qg5")]
-FoliagesTexture = [ExtResource("679_y8ant"), ExtResource("680_7aswr")]
-ObjectsTexture = [ExtResource("682_pvwj5")]
-WaterTexture = ExtResource("686_7umd3")
-
-[sub_resource type="Resource" id="Resource_sbkpg"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(6, 6)
-HeightMapTexture = ExtResource("689_1o7xb")
-SplatmapsTexture = [ExtResource("691_01lip"), ExtResource("692_ovovi"), ExtResource("693_joadr")]
-FoliagesTexture = [ExtResource("687_ffi5g"), ExtResource("688_xqef8")]
-ObjectsTexture = [ExtResource("690_53su1")]
-WaterTexture = ExtResource("694_hfsm2")
-
-[sub_resource type="Resource" id="Resource_rop4m"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, 6)
-HeightMapTexture = ExtResource("697_um22o")
-SplatmapsTexture = [ExtResource("699_ndxha"), ExtResource("700_h8nux"), ExtResource("701_j0pn8")]
-FoliagesTexture = [ExtResource("695_6bq52"), ExtResource("696_lb3g7")]
-ObjectsTexture = [ExtResource("698_1rsmx")]
-WaterTexture = ExtResource("702_pqsvq")
-
-[sub_resource type="Resource" id="Resource_lv45h"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, 7)
-HeightMapTexture = ExtResource("705_k27mx")
-SplatmapsTexture = [ExtResource("707_uel5b"), ExtResource("708_xsw1l"), ExtResource("709_smmtc")]
-FoliagesTexture = [ExtResource("703_8fdyb"), ExtResource("704_ak4bo")]
-ObjectsTexture = [ExtResource("706_nu6xm")]
-WaterTexture = ExtResource("710_h6cl2")
-
-[sub_resource type="Resource" id="Resource_7m2jm"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(0, 7)
-HeightMapTexture = ExtResource("713_gcpjd")
-SplatmapsTexture = [ExtResource("715_12d0f"), ExtResource("716_8adj8"), ExtResource("717_357iw")]
-FoliagesTexture = [ExtResource("711_efexy"), ExtResource("712_vnt17")]
-ObjectsTexture = [ExtResource("714_wwyed")]
-WaterTexture = ExtResource("718_uya53")
-
-[sub_resource type="Resource" id="Resource_1ltla"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-2, 6)
-HeightMapTexture = ExtResource("721_q2qu8")
-SplatmapsTexture = [ExtResource("723_ouqmq"), ExtResource("724_062nv"), ExtResource("725_qjojm")]
-FoliagesTexture = [ExtResource("719_avxxx"), ExtResource("720_ytnds")]
-ObjectsTexture = [ExtResource("722_q81n5")]
-WaterTexture = ExtResource("726_1tefh")
-
-[sub_resource type="Resource" id="Resource_tehjn"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-2, 5)
-HeightMapTexture = ExtResource("729_k8ni5")
-SplatmapsTexture = [ExtResource("731_ma8p4"), ExtResource("732_etlfd"), ExtResource("733_u5aga")]
-FoliagesTexture = [ExtResource("727_hbvgq"), ExtResource("728_7j1qe")]
-ObjectsTexture = [ExtResource("730_6l70j")]
-WaterTexture = ExtResource("734_pgc7u")
-
-[sub_resource type="Resource" id="Resource_qx545"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-2, 4)
-HeightMapTexture = ExtResource("432_soowo")
-SplatmapsTexture = [ExtResource("434_1dypy"), ExtResource("435_rlxc0"), ExtResource("436_gumej")]
-FoliagesTexture = [ExtResource("430_7wkcv"), ExtResource("431_i7q85")]
-ObjectsTexture = [ExtResource("433_lgc0t")]
-WaterTexture = ExtResource("437_wu4hr")
-
-[sub_resource type="Resource" id="Resource_yhmh7"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-3, 2)
-HeightMapTexture = ExtResource("278_c5p7u")
-SplatmapsTexture = [ExtResource("280_w0pf6"), ExtResource("281_nqiiv"), ExtResource("282_nu3hp")]
-FoliagesTexture = [ExtResource("276_4mbw5"), ExtResource("277_4amgw")]
-ObjectsTexture = [ExtResource("279_vuran")]
-WaterTexture = ExtResource("283_ouy4t")
-
-[sub_resource type="Resource" id="Resource_42nok"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-3, 3)
-HeightMapTexture = ExtResource("270_03drx")
-SplatmapsTexture = [ExtResource("272_0qu5i"), ExtResource("273_honoj"), ExtResource("274_i6lac")]
-FoliagesTexture = [ExtResource("268_5brbo"), ExtResource("269_l0qe3")]
-ObjectsTexture = [ExtResource("271_1m7ww")]
-WaterTexture = ExtResource("275_nv55e")
-
-[sub_resource type="Resource" id="Resource_bxmsx"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-3, 1)
-HeightMapTexture = ExtResource("286_dkonl")
-SplatmapsTexture = [ExtResource("288_bqqba"), ExtResource("289_1722b"), ExtResource("290_bg6oj")]
-FoliagesTexture = [ExtResource("284_ixyha"), ExtResource("285_4pe7v")]
-ObjectsTexture = [ExtResource("287_5i57m")]
-WaterTexture = ExtResource("291_c7grx")
-
-[sub_resource type="Resource" id="Resource_r62ax"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-3, 0)
-HeightMapTexture = ExtResource("294_5t7tj")
-SplatmapsTexture = [ExtResource("296_pxv54"), ExtResource("297_xwtxv"), ExtResource("298_wuivs")]
-FoliagesTexture = [ExtResource("292_4pkxe"), ExtResource("293_i2w7f")]
-ObjectsTexture = [ExtResource("295_iawqp")]
-WaterTexture = ExtResource("299_mi4cr")
-
-[sub_resource type="Resource" id="Resource_yu6qg"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-3, -1)
-HeightMapTexture = ExtResource("302_2lcan")
-SplatmapsTexture = [ExtResource("304_b88qu"), ExtResource("305_20pku"), ExtResource("306_r13e0")]
-FoliagesTexture = [ExtResource("300_qyps4"), ExtResource("301_mmlco")]
-ObjectsTexture = [ExtResource("303_n6qkg")]
-WaterTexture = ExtResource("307_e0dko")
-
-[sub_resource type="Resource" id="Resource_bkb5c"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-2, -1)
-HeightMapTexture = ExtResource("118_3emuh")
-SplatmapsTexture = [ExtResource("120_k0hdb"), ExtResource("121_uhd2t"), ExtResource("122_wu4mf")]
-FoliagesTexture = [ExtResource("116_s7pwp"), ExtResource("117_ptdsg")]
-ObjectsTexture = [ExtResource("119_t3n51")]
-WaterTexture = ExtResource("123_ju2s7")
-
-[sub_resource type="Resource" id="Resource_0d05w"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-3, -2)
-HeightMapTexture = ExtResource("310_pluev")
-SplatmapsTexture = [ExtResource("312_1aqcl"), ExtResource("313_i0ejg"), ExtResource("314_7k5o7")]
-FoliagesTexture = [ExtResource("308_plvv2"), ExtResource("309_3tct4")]
-ObjectsTexture = [ExtResource("311_hfyme")]
-WaterTexture = ExtResource("315_lfajx")
-
-[sub_resource type="Resource" id="Resource_xv1la"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-2, -2)
-HeightMapTexture = ExtResource("126_hh17a")
-SplatmapsTexture = [ExtResource("128_t6evk"), ExtResource("129_vjp4y"), ExtResource("130_gy5ag")]
-FoliagesTexture = [ExtResource("124_cunwq"), ExtResource("125_vh0sa")]
-ObjectsTexture = [ExtResource("127_6cf34")]
-WaterTexture = ExtResource("131_3maoo")
-
-[sub_resource type="Resource" id="Resource_8lvpu"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-3, -3)
-HeightMapTexture = ExtResource("318_2t11w")
-SplatmapsTexture = [ExtResource("320_dgsrl"), ExtResource("321_u844l"), ExtResource("322_3kjt4")]
-FoliagesTexture = [ExtResource("316_33n82"), ExtResource("317_eli1r")]
-ObjectsTexture = [ExtResource("319_tqfs6")]
-WaterTexture = ExtResource("323_hm7dm")
-
-[sub_resource type="Resource" id="Resource_c1d64"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-2, -3)
-HeightMapTexture = ExtResource("326_8r8pr")
-SplatmapsTexture = [ExtResource("328_fybvo"), ExtResource("329_5qykd"), ExtResource("330_d7p1a")]
-FoliagesTexture = [ExtResource("324_fvc0h"), ExtResource("325_f5pl2")]
-ObjectsTexture = [ExtResource("327_jo6f7")]
-WaterTexture = ExtResource("331_r6d16")
-
-[sub_resource type="Resource" id="Resource_bp6m1"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-2, -4)
-HeightMapTexture = ExtResource("825_6pe7u")
-SplatmapsTexture = [ExtResource("827_x2pn3"), ExtResource("828_wifgh"), ExtResource("829_pb7j3")]
-FoliagesTexture = [ExtResource("823_5f2dd"), ExtResource("824_i4ohh")]
-ObjectsTexture = [ExtResource("826_g6yxn")]
-WaterTexture = ExtResource("830_iyx7u")
-
-[sub_resource type="Resource" id="Resource_y6tt4"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-1, -4)
-HeightMapTexture = ExtResource("833_ojk6a")
-SplatmapsTexture = [ExtResource("835_no33p"), ExtResource("836_udfrt"), ExtResource("837_6gj7n")]
-FoliagesTexture = [ExtResource("831_i3cl2"), ExtResource("832_e5pku")]
-ObjectsTexture = [ExtResource("834_m5el1")]
-WaterTexture = ExtResource("838_cdq4h")
-
-[sub_resource type="Resource" id="Resource_pfdvi"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(0, -4)
-HeightMapTexture = ExtResource("841_0h5i3")
-SplatmapsTexture = [ExtResource("843_0ra7e"), ExtResource("844_5ho4m"), ExtResource("845_ajktn")]
-FoliagesTexture = [ExtResource("839_io00i"), ExtResource("840_fvo4k")]
-ObjectsTexture = [ExtResource("842_rdvui")]
-WaterTexture = ExtResource("846_wxh06")
-
-[sub_resource type="Resource" id="Resource_y2vpo"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(-3, -4)
-HeightMapTexture = ExtResource("849_aujhr")
-SplatmapsTexture = [ExtResource("851_0qj4b"), ExtResource("852_c4moq"), ExtResource("853_wi8r7")]
-FoliagesTexture = [ExtResource("847_7mno5"), ExtResource("848_lthvn")]
-ObjectsTexture = [ExtResource("850_r5qih")]
-WaterTexture = ExtResource("854_7cg25")
-
-[sub_resource type="Resource" id="Resource_fuflx"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(2, 0)
-HeightMapTexture = ExtResource("174_jdxg0")
-SplatmapsTexture = [ExtResource("176_4cjq6"), ExtResource("177_qhq7m"), ExtResource("178_0my4s")]
-FoliagesTexture = [ExtResource("172_fqa13"), ExtResource("173_jd0l7")]
-ObjectsTexture = [ExtResource("175_6ccoq")]
-WaterTexture = ExtResource("179_q3kvd")
-
-[sub_resource type="Resource" id="Resource_ohooj"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(2, 1)
-HeightMapTexture = ExtResource("182_nstq3")
-SplatmapsTexture = [ExtResource("184_fwbgc"), ExtResource("185_k4ff6"), ExtResource("186_gdbcs")]
-FoliagesTexture = [ExtResource("180_eehd7"), ExtResource("181_msogf")]
-ObjectsTexture = [ExtResource("183_ibnpc")]
-WaterTexture = ExtResource("187_ajatb")
-
-[sub_resource type="Resource" id="Resource_31l1t"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(1, 2)
-HeightMapTexture = ExtResource("190_h6vpm")
-SplatmapsTexture = [ExtResource("192_6nay0"), ExtResource("193_f1wpr"), ExtResource("194_nm7gi")]
-FoliagesTexture = [ExtResource("188_ahg4v"), ExtResource("189_4o8n3")]
-ObjectsTexture = [ExtResource("191_wxnst")]
-WaterTexture = ExtResource("195_6oub2")
-
-[sub_resource type="Resource" id="Resource_vhxcp"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(2, 2)
-HeightMapTexture = ExtResource("198_j14kg")
-SplatmapsTexture = [ExtResource("200_b4llk"), ExtResource("201_3pkt8"), ExtResource("202_co01k")]
-FoliagesTexture = [ExtResource("196_lvqbu"), ExtResource("197_pmo7h")]
-ObjectsTexture = [ExtResource("199_dgxa5")]
-WaterTexture = ExtResource("203_wiajr")
-
-[sub_resource type="Resource" id="Resource_r4nu6"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(2, -1)
-HeightMapTexture = ExtResource("166_f7he5")
-SplatmapsTexture = [ExtResource("168_7yost"), ExtResource("169_a6nrb"), ExtResource("170_ycr5r")]
-FoliagesTexture = [ExtResource("164_t7rqt"), ExtResource("165_pe2pk")]
-ObjectsTexture = [ExtResource("167_8bon8")]
-WaterTexture = ExtResource("171_pcsbl")
-
-[sub_resource type="Resource" id="Resource_wb4aw"]
-script = ExtResource("34_rxyfw")
-ZonePosition = Vector2i(3, -1)
-HeightMapTexture = ExtResource("382_hs4bn")
-SplatmapsTexture = [ExtResource("384_ruxh4"), ExtResource("385_m351m"), ExtResource("386_crt1i")]
-FoliagesTexture = [ExtResource("380_bcxqa"), ExtResource("381_5wl47")]
-ObjectsTexture = [ExtResource("383_h0loy")]
-WaterTexture = ExtResource("387_tspmx")
-
-[sub_resource type="Resource" id="Resource_6rohr"]
-script = ExtResource("35_rabu8")
-Zones = [SubResource("Resource_nnpdm"), SubResource("Resource_sd5fx"), SubResource("Resource_jrrcy"), SubResource("Resource_fa8ee"), SubResource("Resource_anrnj"), SubResource("Resource_nl4gh"), SubResource("Resource_7xwpq"), SubResource("Resource_s0h5c"), SubResource("Resource_cx2gm"), SubResource("Resource_xv778"), SubResource("Resource_shbtp"), SubResource("Resource_6an2s"), SubResource("Resource_d4ulm"), SubResource("Resource_bj83l"), SubResource("Resource_fasa8"), SubResource("Resource_a3apw"), SubResource("Resource_wisbv"), SubResource("Resource_643b0"), SubResource("Resource_dq1xa"), SubResource("Resource_6d7hv"), SubResource("Resource_v86w0"), SubResource("Resource_g0chq"), SubResource("Resource_7i4pd"), SubResource("Resource_7dafi"), SubResource("Resource_uk4ah"), SubResource("Resource_suw56"), SubResource("Resource_f83po"), SubResource("Resource_f1g14"), SubResource("Resource_oawgc"), SubResource("Resource_8yamd"), SubResource("Resource_mwpet"), SubResource("Resource_bkyuq"), SubResource("Resource_5bdvf"), SubResource("Resource_xn7kl"), SubResource("Resource_v4u2a"), SubResource("Resource_ggxlf"), SubResource("Resource_8080r"), SubResource("Resource_v1vhd"), SubResource("Resource_yjgbj"), SubResource("Resource_vwdx7"), SubResource("Resource_4wskq"), SubResource("Resource_1xx48"), SubResource("Resource_vctx6"), SubResource("Resource_av47l"), SubResource("Resource_5an6s"), SubResource("Resource_rnxk2"), SubResource("Resource_0q5mx"), SubResource("Resource_io0bp"), SubResource("Resource_0ttad"), SubResource("Resource_67jo4"), SubResource("Resource_doppe"), SubResource("Resource_gh1vi"), SubResource("Resource_s1hlr"), SubResource("Resource_r8rpl"), SubResource("Resource_w8u3n"), SubResource("Resource_yrmv1"), SubResource("Resource_kolvd"), SubResource("Resource_h4o0s"), SubResource("Resource_yg4ii"), SubResource("Resource_ybtom"), SubResource("Resource_ovmsd"), SubResource("Resource_ph82a"), SubResource("Resource_kesn2"), SubResource("Resource_4ehfs"), SubResource("Resource_4pw2d"), SubResource("Resource_idue8"), SubResource("Resource_h6erx"), SubResource("Resource_ln07d"), SubResource("Resource_dl1ju"), SubResource("Resource_to78q"), SubResource("Resource_68d03"), SubResource("Resource_iv20s"), SubResource("Resource_pqaej"), SubResource("Resource_e0q3j"), SubResource("Resource_ouux6"), SubResource("Resource_mebdv"), SubResource("Resource_nsm8h"), SubResource("Resource_gyek8"), SubResource("Resource_s6jwa"), SubResource("Resource_40pjx"), SubResource("Resource_1ykm7"), SubResource("Resource_jr812"), SubResource("Resource_sbkpg"), SubResource("Resource_rop4m"), SubResource("Resource_lv45h"), SubResource("Resource_7m2jm"), SubResource("Resource_1ltla"), SubResource("Resource_tehjn"), SubResource("Resource_qx545"), SubResource("Resource_yhmh7"), SubResource("Resource_42nok"), SubResource("Resource_bxmsx"), SubResource("Resource_r62ax"), SubResource("Resource_yu6qg"), SubResource("Resource_bkb5c"), SubResource("Resource_0d05w"), SubResource("Resource_xv1la"), SubResource("Resource_8lvpu"), SubResource("Resource_c1d64"), SubResource("Resource_bp6m1"), SubResource("Resource_y6tt4"), SubResource("Resource_pfdvi"), SubResource("Resource_y2vpo"), SubResource("Resource_fuflx"), SubResource("Resource_ohooj"), SubResource("Resource_31l1t"), SubResource("Resource_vhxcp"), SubResource("Resource_r4nu6"), SubResource("Resource_wb4aw")]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hy64a"]
 albedo_color = Color(0.6029108, 0.64448154, 1, 1)
@@ -2572,9 +439,6 @@ albedo_color = Color(0.26475334, 0.26475334, 0.2647533, 1)
 albedo_texture = ExtResource("914_jhj26")
 texture_filter = 0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_v2dnp"]
-size = Vector3(43.919678, 7.7070313, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1tqb4"]
 albedo_color = Color(0.2285108, 0.2285108, 0.2285108, 1)
 albedo_texture = ExtResource("913_0rtel")
@@ -2587,6 +451,15 @@ texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jhl1v"]
 size = Vector3(3.142334, 3.0273438, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q6643"]
+size = Vector3(26.831009, 11.243042, 3.411438)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tqcmk"]
+size = Vector3(35.94579, 11.243042, 3.411438)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v2dnp"]
+size = Vector3(43.919678, 7.7070313, 1)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_jhj26")
@@ -2664,7 +537,7 @@ radius = 15.230023
 
 [node name="WanderRange" parent="MonsterHolder/RatSpawner2" index="4"]
 radius = 35.638252
-_wanderRange = 2.34
+script = null
 
 [node name="RatSpawner3" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -445.10132, 4.3719983, -76.15527)
@@ -2683,7 +556,7 @@ radius = 14.0
 
 [node name="WanderRange" parent="MonsterHolder/RatSpawner3" index="4"]
 radius = 49.7
-_wanderRange = 3.55
+script = null
 
 [node name="Z1Shrine1EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -518.83124, 1.3142262, -143.62323)
@@ -2697,6 +570,7 @@ radius = 25.98717
 
 [node name="WanderRange" parent="MonsterHolder/Z1Shrine1EnemySpawner" index="4"]
 radius = 38.980755
+script = null
 
 [node name="Z1Shrine2EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -539.85846, 1.687819, -40.037697)
@@ -2710,7 +584,7 @@ radius = 12.092302
 
 [node name="WanderRange" parent="MonsterHolder/Z1Shrine2EnemySpawner" index="4"]
 radius = 39.420906
-_wanderRange = 3.26
+script = null
 
 [node name="Z1Shrine3EnemySpawner" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.00118, 0, 0, 0, 1.00118, 0, 0, 0, 1.00118, -442.2512, 1.6115086, -234.91791)
@@ -2724,7 +598,7 @@ radius = 23.298582
 
 [node name="WanderRange" parent="MonsterHolder/Z1Shrine3EnemySpawner" index="4"]
 radius = 43.10238
-_wanderRange = 1.85
+script = null
 
 [node name="Z1TempTent2" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -415.13425, 1.687819, -310.409)
@@ -2738,7 +612,7 @@ radius = 6.8066907
 
 [node name="WanderRange" parent="MonsterHolder/Z1TempTent2" index="4"]
 radius = 36.415794
-_wanderRange = 5.35
+script = null
 
 [node name="Z1TempTent4" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -570.6078, 0.6889825, 146.39545)
@@ -2752,7 +626,7 @@ radius = 9.212567
 
 [node name="WanderRange" parent="MonsterHolder/Z1TempTent4" index="4"]
 radius = 42.377808
-_wanderRange = 4.6
+script = null
 
 [node name="Z1TempTent5" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -717.36383, 0.6889825, 232.07178)
@@ -2765,7 +639,7 @@ radius = 27.90158
 
 [node name="WanderRange" parent="MonsterHolder/Z1TempTent5" index="4"]
 radius = 72.544106
-_wanderRange = 2.6
+script = null
 
 [node name="Z1EnemySpawner5" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -645.0487, 1.687819, -40.037697)
@@ -2779,6 +653,7 @@ radius = 36.034874
 
 [node name="WanderRange" parent="MonsterHolder/Z1EnemySpawner5" index="4"]
 radius = 54.05231
+script = null
 
 [node name="Z1EnemySpawner10" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -591.7835, 1.687819, 83.22485)
@@ -2792,7 +667,7 @@ radius = 12.088426
 
 [node name="WanderRange" parent="MonsterHolder/Z1EnemySpawner10" index="4"]
 radius = 30.825485
-_wanderRange = 2.55
+script = null
 
 [node name="Z1EnemySpawner11" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -676.4641, 1.687819, 92.971664)
@@ -2805,7 +680,7 @@ radius = 31.61016
 
 [node name="WanderRange" parent="MonsterHolder/Z1EnemySpawner11" index="4"]
 radius = 67.961845
-_wanderRange = 2.15
+script = null
 
 [node name="Z1EnemySpawner12" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -580.42883, 1.687819, 309.22052)
@@ -2818,7 +693,7 @@ radius = 36.26912
 
 [node name="WanderRange" parent="MonsterHolder/Z1EnemySpawner12" index="4"]
 radius = 77.97861
-_wanderRange = 2.15
+script = null
 
 [node name="Z1EnemySpawner13" parent="MonsterHolder" instance=ExtResource("421_wrhnx")]
 transform = Transform3D(1.001144, 0.008492208, 0, -0.008492208, 1.001144, 0, 0, 0, 1.00118, -675.19836, 1.687819, 361.1797)
@@ -2831,7 +706,7 @@ radius = 34.967117
 
 [node name="WanderRange" parent="MonsterHolder/Z1EnemySpawner13" index="4"]
 radius = 75.179306
-_wanderRange = 2.15
+script = null
 
 [node name="Z1Shrine1" parent="MonsterHolder" groups=["Terrain"] instance=ExtResource("6_677id")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -518.7776, -0.5746945, -143.53026)
@@ -2867,17 +742,6 @@ navigation_mesh = SubResource("NavigationMesh_wrhnx")
 navigation_layers = 3
 
 [node name="TerraBrush" type="Node3D" parent="." groups=["Terrain"]]
-script = ExtResource("1_fb5os")
-DataPath = "res://Scenes/World"
-CollisionLayers = -1
-CollisionMask = -1
-TextureSets = SubResource("Resource_vbfps")
-NearestTextureFilter = true
-Foliages = [SubResource("Resource_axeuq"), SubResource("Resource_i4fjy")]
-Objects = [SubResource("Resource_r0ikl")]
-WaterDefinition = SubResource("Resource_b7wla")
-MetaInfoLayers = []
-TerrainZones = SubResource("Resource_6rohr")
 metadata/_custom_type_script = "uid://i5jcj7ukvoen"
 metadata/_edit_lock_ = false
 
@@ -2896,13 +760,13 @@ QuestTitle = "Find Mary's lost cats, Taz, Bridger, and Gnocchi, somewhere in the
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Mary/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9920446, -0.05519999)
-bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
-bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
-bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
-bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
-bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
-bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
+bones/0/position = Vector3(0, 0.9889352, -0.055199996)
+bones/2/rotation = Quaternion(-0.007713546, 0, 0, 0.99997026)
+bones/5/rotation = Quaternion(-0.13182375, 0.0063472837, 0.021755494, 0.9910142)
+bones/25/rotation = Quaternion(0.9721059, 0.016841631, -0.009195448, 0.2337562)
+bones/26/rotation = Quaternion(0.2208617, 0.0015692165, 0.017704898, 0.9751432)
+bones/34/rotation = Quaternion(0.9721059, -0.016841635, 0.009195403, 0.2337562)
+bones/35/rotation = Quaternion(0.2208617, -0.0015692165, -0.017704898, 0.9751432)
 
 [node name="Cube" parent="Mary/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_hy64a")
@@ -2925,13 +789,13 @@ QuestTitle = "Gather firewood around Brittlebay's woods for Elizabeth"
 QuestGoal = "0/15"
 
 [node name="Skeleton3D" parent="Elizabeth/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9920446, -0.05519999)
-bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
-bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
-bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
-bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
-bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
-bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
+bones/0/position = Vector3(0, 0.9889352, -0.055199996)
+bones/2/rotation = Quaternion(-0.007713546, 0, 0, 0.99997026)
+bones/5/rotation = Quaternion(-0.13182375, 0.0063472837, 0.021755494, 0.9910142)
+bones/25/rotation = Quaternion(0.9721059, 0.016841631, -0.009195448, 0.2337562)
+bones/26/rotation = Quaternion(0.2208617, 0.0015692165, 0.017704898, 0.9751432)
+bones/34/rotation = Quaternion(0.9721059, -0.016841635, 0.009195403, 0.2337562)
+bones/35/rotation = Quaternion(0.2208617, -0.0015692165, -0.017704898, 0.9751432)
 
 [node name="Cube" parent="Elizabeth/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_dtvt8")
@@ -2959,13 +823,13 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9920446, -0.05519999)
-bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
-bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
-bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
-bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
-bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
-bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
+bones/0/position = Vector3(0, 0.9889352, -0.055199996)
+bones/2/rotation = Quaternion(-0.007713546, 0, 0, 0.99997026)
+bones/5/rotation = Quaternion(-0.13182375, 0.0063472837, 0.021755494, 0.9910142)
+bones/25/rotation = Quaternion(0.9721059, 0.016841631, -0.009195448, 0.2337562)
+bones/26/rotation = Quaternion(0.2208617, 0.0015692165, 0.017704898, 0.9751432)
+bones/34/rotation = Quaternion(0.9721059, -0.016841635, 0.009195403, 0.2337562)
+bones/35/rotation = Quaternion(0.2208617, -0.0015692165, -0.017704898, 0.9751432)
 
 [node name="Range" parent="Dillon" index="6"]
 radius = 12.0
@@ -2985,13 +849,13 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9920446, -0.05519999)
-bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
-bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
-bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
-bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
-bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
-bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
+bones/0/position = Vector3(0, 0.9889352, -0.055199996)
+bones/2/rotation = Quaternion(-0.007713546, 0, 0, 0.99997026)
+bones/5/rotation = Quaternion(-0.13182375, 0.0063472837, 0.021755494, 0.9910142)
+bones/25/rotation = Quaternion(0.9721059, 0.016841631, -0.009195448, 0.2337562)
+bones/26/rotation = Quaternion(0.2208617, 0.0015692165, 0.017704898, 0.9751432)
+bones/34/rotation = Quaternion(0.9721059, -0.016841635, 0.009195403, 0.2337562)
+bones/35/rotation = Quaternion(0.2208617, -0.0015692165, -0.017704898, 0.9751432)
 
 [node name="Cube" parent="Lukas/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_83jqk")
@@ -3032,13 +896,13 @@ QuestTitle = "Kill creatures that reside in the forest to avenge Martha's family
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9920446, -0.05519999)
-bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
-bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
-bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
-bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
-bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
-bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
+bones/0/position = Vector3(0, 0.9889352, -0.055199996)
+bones/2/rotation = Quaternion(-0.007713546, 0, 0, 0.99997026)
+bones/5/rotation = Quaternion(-0.13182375, 0.0063472837, 0.021755494, 0.9910142)
+bones/25/rotation = Quaternion(0.9721059, 0.016841631, -0.009195448, 0.2337562)
+bones/26/rotation = Quaternion(0.2208617, 0.0015692165, 0.017704898, 0.9751432)
+bones/34/rotation = Quaternion(0.9721059, -0.016841635, 0.009195403, 0.2337562)
+bones/35/rotation = Quaternion(0.2208617, -0.0015692165, -0.017704898, 0.9751432)
 
 [node name="Cube" parent="Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_tqcmk")
@@ -4261,7 +2125,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.226547, 3.2748384, -11.953
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6638823, 3.1487136, -10.200304)
 
 [node name="Player_3d" parent="." instance=ExtResource("36_r0smi")]
-transform = Transform3D(0.67333484, 0, -0.7393374, 0, 1, 0, 0.7393374, 0, 0.67333484, -234.35435, 1.1488787, 769.41046)
+transform = Transform3D(0.67333484, 0, -0.7393374, 0, 1, 0, 0.7393374, 0, 0.67333484, -234.35435, 1.9489733, 769.41046)
 
 [node name="Richard" parent="." instance=ExtResource("421_81rqo")]
 transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, -233.28224, 2.0682552, 768.4027)
@@ -4274,13 +2138,13 @@ IgnoredDialogue = Array[String](["Well good thing you remember, we've got a lot 
 WaitingDialogue = "Check up on that village down the road. I'll get our supplies."
 
 [node name="Skeleton3D" parent="Richard/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9920446, -0.05519999)
-bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
-bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
-bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
-bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
-bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
-bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
+bones/0/position = Vector3(0, 0.9889352, -0.055199996)
+bones/2/rotation = Quaternion(-0.007713546, 0, 0, 0.99997026)
+bones/5/rotation = Quaternion(-0.13182375, 0.0063472837, 0.021755494, 0.9910142)
+bones/25/rotation = Quaternion(0.9721059, 0.016841631, -0.009195448, 0.2337562)
+bones/26/rotation = Quaternion(0.2208617, 0.0015692165, 0.017704898, 0.9751432)
+bones/34/rotation = Quaternion(0.9721059, -0.016841635, 0.009195403, 0.2337562)
+bones/35/rotation = Quaternion(0.2208617, -0.0015692165, -0.017704898, 0.9751432)
 
 [node name="Cube" parent="Richard/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_a2g2v")
@@ -4293,35 +2157,6 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.89464927, 0)
 
 [node name="Range" parent="Richard" index="6"]
 radius = 0.001
-
-[node name="TutorialArea" parent="." instance=ExtResource("951_rdipx")]
-transform = Transform3D(0.64658993, 0, -0.7628377, 0, 1, 0, 0.7628377, 0, 0.64658993, -228.0385, 3.1992393, 765.68195)
-_tutorialMessage = "Press [C/CTRL] For Stealth"
-_displayTime = 4.0
-
-[node name="CollisionShape3D" parent="TutorialArea/Area3D" index="0"]
-transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, 1.1582336, 0.17919922, 0)
-shape = SubResource("BoxShape3D_v2dnp")
-
-[node name="Cutscene2" parent="." instance=ExtResource("951_jlydw")]
-transform = Transform3D(0.64658993, 0, -0.7628377, 0, 1, 0, 0.7628377, 0, 0.64658993, -163.62918, -0.018375397, 722.6081)
-
-[node name="TutorialArea2" parent="." instance=ExtResource("951_rdipx")]
-transform = Transform3D(0.64658993, 0, -0.7628377, 0, 1, 0, 0.7628377, 0, 0.64658993, -210.95476, 3.1992393, 751.20154)
-_tutorialMessage = "Hold [SHIFT] To Sprint"
-
-[node name="CollisionShape3D" parent="TutorialArea2/Area3D" index="0"]
-transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, 1.1582336, 0.17919922, 0)
-shape = SubResource("BoxShape3D_v2dnp")
-
-[node name="TutorialArea3" parent="." instance=ExtResource("951_rdipx")]
-transform = Transform3D(0.64658993, 0, -0.7628377, 0, 1, 0, 0.7628377, 0, 0.64658993, -195.18016, 3.1992393, 737.8308)
-_tutorialMessage = "Keep track of your Health and Stamina in the top left "
-_displayTime = 5.0
-
-[node name="CollisionShape3D" parent="TutorialArea3/Area3D" index="0"]
-transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, 1.1582336, 0.17919922, 0)
-shape = SubResource("BoxShape3D_v2dnp")
 
 [node name="Cutscene3" parent="." instance=ExtResource("953_bjbr5")]
 transform = Transform3D(0.5883499, 0, -0.8086064, 0, 1, 0, 0.8086064, 0, 0.5883499, -165.0943, 0, 718.7757)
@@ -4539,18 +2374,18 @@ script = ExtResource("429_wkm1a")
 NPCName = "Matthew"
 InitialDialogue = ""
 QuestDialogue = Array[String](["Young man, are you alright? You don't look too well...", "From the looks of it, you seem to be an Inquisitor... from the Kingdom's capital!?", "Please excuse my rudeness Master Inquisitor, I only meant to see if you weren't in any harm. You seem to be alright from the looks of it.", "It's such a relief that the King sent over Inquisitors. The island of Saltus is in dire need of your help.", "Please, assist some of my village's townsfolk in their needs, then you'll understand more of what's going on here.", "Oh, and one more thing, Master Inquisitor. Welcome to Brittlebay village. My name is Matthew, and I am the chief of this village. May Her holy light shine upon us all. "])
-AcceptedDialogue = []
-IgnoredDialogue = []
+AcceptedDialogue = Array[String]([])
+IgnoredDialogue = Array[String]([])
 WaitingDialogue = "Please help out the townsfolk. We need your help."
 
 [node name="Skeleton3D" parent="Matthew/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9920446, -0.05519999)
-bones/2/rotation = Quaternion(-0.057703964, 0, 0, 0.9983338)
-bones/5/rotation = Quaternion(-0.08875932, 0.007091122, 0.02177645, 0.9957898)
-bones/25/rotation = Quaternion(0.9737839, 0.016195804, -0.009126015, 0.22671445)
-bones/26/rotation = Quaternion(0.20659943, 0.001574271, 0.01656159, 0.97828424)
-bones/34/rotation = Quaternion(0.9737839, -0.016195808, 0.009125972, 0.22671445)
-bones/35/rotation = Quaternion(0.20659943, -0.0015742708, -0.01656159, 0.97828424)
+bones/0/position = Vector3(0, 0.9889352, -0.055199996)
+bones/2/rotation = Quaternion(-0.007713546, 0, 0, 0.99997026)
+bones/5/rotation = Quaternion(-0.13182375, 0.0063472837, 0.021755494, 0.9910142)
+bones/25/rotation = Quaternion(0.9721059, 0.016841631, -0.009195448, 0.2337562)
+bones/26/rotation = Quaternion(0.2208617, 0.0015692165, 0.017704898, 0.9751432)
+bones/34/rotation = Quaternion(0.9721059, -0.016841635, 0.009195403, 0.2337562)
+bones/35/rotation = Quaternion(0.2208617, -0.0015692165, -0.017704898, 0.9751432)
 
 [node name="Cube" parent="Matthew/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_1tqb4")
@@ -4615,6 +2450,44 @@ visible = false
 
 [node name="DownLeft" parent="Signs/Sign3" index="6"]
 visible = false
+
+[node name="Cutscene2" parent="." instance=ExtResource("951_jlydw")]
+transform = Transform3D(0.64658993, 0, -0.7628377, 0, 1, 0, 0.7628377, 0, 0.64658993, -163.62918, -0.018375397, 722.6081)
+
+[node name="C1" parent="Cutscene2/CHolder" index="0"]
+transform = Transform3D(0.12029278, 0, 0.9927385, 0, 1, 0, -0.9927385, 0, 0.12029278, 20.763027, 0, 5.6459665)
+
+[node name="C3" type="CollisionShape3D" parent="Cutscene2/CHolder" index="1"]
+transform = Transform3D(0.2469652, 0, 0.9690244, 0, 1, 0, -0.9690244, 0, 0.2469652, -24.146257, 0, -13.905965)
+shape = SubResource("BoxShape3D_q6643")
+disabled = true
+
+[node name="C4" type="CollisionShape3D" parent="Cutscene2/CHolder" index="2"]
+transform = Transform3D(0.980512, 0, -0.19645952, 0, 1, 0, 0.19645952, 0, 0.980512, -4.9525456, 0, -26.11667)
+shape = SubResource("BoxShape3D_q6643")
+disabled = true
+
+[node name="C2" type="CollisionShape3D" parent="Cutscene2/CHolder" index="3"]
+transform = Transform3D(0.7070204, 0, -0.70719314, 0, 1, 0, 0.70719314, 0, 0.7070204, -8.239807, 0, 17.181763)
+shape = SubResource("BoxShape3D_tqcmk")
+disabled = true
+
+[node name="TutorialArea2" parent="." instance=ExtResource("951_rdipx")]
+transform = Transform3D(0.64658993, 0, -0.7628377, 0, 1, 0, 0.7628377, 0, 0.64658993, -215.25435, 3.1992393, 754.84595)
+_tutorialMessage = "Hold [SHIFT] To Sprint"
+
+[node name="CollisionShape3D" parent="TutorialArea2/Area3D" index="0"]
+transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, 1.1582336, 0.17919922, 0)
+shape = SubResource("BoxShape3D_v2dnp")
+
+[node name="TutorialArea3" parent="." instance=ExtResource("951_rdipx")]
+transform = Transform3D(0.64658993, 0, -0.7628377, 0, 1, 0, 0.7628377, 0, 0.64658993, -199.0805, 3.1992393, 741.1368)
+_tutorialMessage = "Keep track of your Health and Stamina in the top left "
+_displayTime = 5.0
+
+[node name="CollisionShape3D" parent="TutorialArea3/Area3D" index="0"]
+transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, 1.1582336, 0.17919922, 0)
+shape = SubResource("BoxShape3D_v2dnp")
 
 [editable path="MonsterHolder/RatSpawner"]
 [editable path="MonsterHolder/RatSpawner2"]
@@ -4681,12 +2554,12 @@ visible = false
 [editable path="Overgrown Dimwood Village/dock3"]
 [editable path="Richard"]
 [editable path="Richard/villagerblank"]
-[editable path="TutorialArea"]
-[editable path="TutorialArea2"]
-[editable path="TutorialArea3"]
 [editable path="Cutscene3"]
 [editable path="Matthew"]
 [editable path="Matthew/villagerblank"]
 [editable path="Signs/Sign1"]
 [editable path="Signs/Sign2"]
 [editable path="Signs/Sign3"]
+[editable path="Cutscene2"]
+[editable path="TutorialArea2"]
+[editable path="TutorialArea3"]

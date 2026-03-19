@@ -30,6 +30,7 @@ public partial class tutorialArea : Node3D
         Label tutText = plr.GetNode<Label>("UI/Tutorial");
 		tutText.Visible = true;
 		tutText.Text = tutMessage;
+		GetNode<Area3D>("Area3D").SetDeferred("monitoring", false);
 		await ToSignal(GetTree().CreateTimer(displayTime), "timeout");
 		tutText.Visible = !(tutText.Text == tutMessage);
     }
