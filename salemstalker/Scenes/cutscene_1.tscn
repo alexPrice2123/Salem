@@ -1,8 +1,9 @@
-[gd_scene load_steps=202 format=4 uid="uid://bx56nwvot6ch4"]
+[gd_scene load_steps=205 format=4 uid="uid://bx56nwvot6ch4"]
 
 [ext_resource type="Texture2D" uid="uid://c3m188jvtfp6e" path="res://Assets/3D/props/prop_textures/inquisitor_boat/inquisitorboat_DefaultMaterial_BaseColor.png" id="1_bry56"]
 [ext_resource type="Script" uid="uid://cu5lcqiogq20c" path="res://Scripts/Cutscene1.cs" id="1_jdm0i"]
 [ext_resource type="Shader" uid="uid://dinmtvubgvsy4" path="res://Shaders/daSky.gdshader" id="2_4dgfs"]
+[ext_resource type="PackedScene" uid="uid://bap0k6fax0p86" path="res://Scenes/newWorld.tscn" id="2_qw2jh"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="7_4dgfs"]
 [ext_resource type="Texture2D" uid="uid://bvetwdh4pb7vn" path="res://Assets/2D/Grass.png" id="8_eopnx"]
 [ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="9_e5c71"]
@@ -20,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://duyqji6d5wl4n" path="res://Assets/3D/plants/bush_goodtreebkgdless_kat_px.png" id="21_dfvps"]
 [ext_resource type="Script" uid="uid://dgf8vwa2n8r11" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="22_x8tj2"]
 [ext_resource type="Script" uid="uid://d33x21vao7tj2" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="23_0krlx"]
-[ext_resource type="Texture2D" uid="uid://gmpmmms3rkvy" path="res://Assets/3D/plants/grass3d.png" id="24_nvohj"]
+[ext_resource type="Texture2D" uid="uid://qwr5lnd3231y" path="res://Assets/3D/plants/grass3d.png" id="24_nvohj"]
 [ext_resource type="PackedScene" uid="uid://blt7o2y8rc0lv" path="res://Assets/3D/plants/tree.blend" id="25_t2gsy"]
 [ext_resource type="Shader" uid="uid://c3x6kyifnimul" path="res://Shaders/fogOBJ.gdshader" id="26_72hg8"]
 [ext_resource type="Script" uid="uid://cgf61yxk46wa4" path="res://addons/terrabrush/Scripts/EditorResources/ObjectDefinitionResource.cs" id="26_cac5y"]
@@ -29,104 +30,104 @@
 [ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="28_ugwr4"]
 [ext_resource type="Script" uid="uid://k2tvfxm6feg5" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="29_mjxf3"]
 [ext_resource type="FontFile" uid="uid://ch4fw7pg4ihg0" path="res://Assets/Fonts/AppleGaramond.ttf" id="30_eopnx"]
-[ext_resource type="Texture2D" uid="uid://gwylhugsn76y" path="res://Scenes/cutscene1/Foliage_0_0_0.res" id="30_m3mn5"]
-[ext_resource type="Texture2D" uid="uid://buy0wdytcmk2v" path="res://Scenes/cutscene1/Foliage_0_0_1.res" id="31_iu0yp"]
-[ext_resource type="Texture2D" uid="uid://bboy4nc2mdy7r" path="res://Scenes/cutscene1/Heightmap_0_0.res" id="32_8nim8"]
-[ext_resource type="Texture2D" uid="uid://b2jj8jy5gnwm" path="res://Scenes/cutscene1/Object_0_0_0.res" id="33_x8vbr"]
-[ext_resource type="Texture2D" uid="uid://opa066qimr77" path="res://Scenes/cutscene1/Splatmap_0_0_0.res" id="34_ldtgd"]
-[ext_resource type="Texture2D" uid="uid://bbys3tuuo8cou" path="res://Scenes/cutscene1/Splatmap_0_0_1.res" id="35_juaer"]
-[ext_resource type="Texture2D" uid="uid://c8db6nyouxae3" path="res://Scenes/cutscene1/Splatmap_0_0_2.res" id="36_blg41"]
-[ext_resource type="Texture2D" uid="uid://d3ed8aq8e4akl" path="res://Scenes/cutscene1/Water_0_0.res" id="37_y1q07"]
+[ext_resource type="Texture2D" uid="uid://gwylhugsn76y" path="res://Scenes/Cutscene1/Foliage_0_0_0.res" id="30_m3mn5"]
+[ext_resource type="Texture2D" uid="uid://buy0wdytcmk2v" path="res://Scenes/Cutscene1/Foliage_0_0_1.res" id="31_iu0yp"]
+[ext_resource type="Texture2D" uid="uid://c5s8ierytyj7f" path="res://Scenes/cutscene1/Heightmap_0_0.res" id="32_8nim8"]
+[ext_resource type="Texture2D" uid="uid://b2jj8jy5gnwm" path="res://Scenes/Cutscene1/Object_0_0_0.res" id="33_x8vbr"]
+[ext_resource type="Texture2D" uid="uid://qbkivl2hkgb1" path="res://Scenes/cutscene1/Splatmap_0_0_0.res" id="34_ldtgd"]
+[ext_resource type="Texture2D" uid="uid://dupc7erkl30wh" path="res://Scenes/cutscene1/Splatmap_0_0_1.res" id="35_juaer"]
+[ext_resource type="Texture2D" uid="uid://cy5askrgsuf6x" path="res://Scenes/cutscene1/Splatmap_0_0_2.res" id="36_blg41"]
+[ext_resource type="Texture2D" uid="uid://coa6lfrkhw5lo" path="res://Scenes/cutscene1/Water_0_0.res" id="37_y1q07"]
 [ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="38_fvnjf"]
-[ext_resource type="Texture2D" uid="uid://w3iityxpf1ti" path="res://Scenes/cutscene1/Foliage_0_1_0.res" id="39_w1xnp"]
-[ext_resource type="Texture2D" uid="uid://dpoa3odi1rqtf" path="res://Scenes/cutscene1/Foliage_0_1_1.res" id="40_tcyjv"]
-[ext_resource type="Texture2D" uid="uid://m5gkomcwwfrg" path="res://Scenes/cutscene1/Heightmap_0_1.res" id="41_f1vak"]
-[ext_resource type="Texture2D" uid="uid://bab27jb81vf6b" path="res://Scenes/cutscene1/Object_0_1_0.res" id="42_jo4dd"]
-[ext_resource type="Texture2D" uid="uid://baxi5u7jdgm6e" path="res://Scenes/cutscene1/Splatmap_0_1_0.res" id="43_q7hil"]
-[ext_resource type="Texture2D" uid="uid://7bkitttnlefy" path="res://Scenes/cutscene1/Splatmap_0_1_1.res" id="44_3xfxa"]
-[ext_resource type="Texture2D" uid="uid://bjkm45run06h2" path="res://Scenes/cutscene1/Splatmap_0_1_2.res" id="45_jnf41"]
-[ext_resource type="Texture2D" uid="uid://cb6r6f0nmjstc" path="res://Scenes/cutscene1/Water_0_1.res" id="46_cx3ua"]
-[ext_resource type="Texture2D" uid="uid://bxv21nmj45php" path="res://Scenes/cutscene1/Foliage_1_0_0.res" id="47_xp0kn"]
-[ext_resource type="Texture2D" uid="uid://308k7jh5na0u" path="res://Scenes/cutscene1/Foliage_1_0_1.res" id="48_i7sl6"]
-[ext_resource type="Texture2D" uid="uid://ml2d3ju4g0ls" path="res://Scenes/cutscene1/Heightmap_1_0.res" id="49_b8e74"]
-[ext_resource type="Texture2D" uid="uid://j67req6sv1jx" path="res://Scenes/cutscene1/Object_1_0_0.res" id="50_q4833"]
-[ext_resource type="Texture2D" uid="uid://b75ytasjlxks3" path="res://Scenes/cutscene1/Splatmap_1_0_0.res" id="51_3ylkb"]
-[ext_resource type="Texture2D" uid="uid://dwtasok4easet" path="res://Scenes/cutscene1/Splatmap_1_0_1.res" id="52_mhp8d"]
-[ext_resource type="Texture2D" uid="uid://b4gw8lajxi0cu" path="res://Scenes/cutscene1/Splatmap_1_0_2.res" id="53_nfek2"]
-[ext_resource type="Texture2D" uid="uid://cx6vucoa3yw2u" path="res://Scenes/cutscene1/Water_1_0.res" id="54_jycwe"]
-[ext_resource type="Texture2D" uid="uid://ctb7kiqh33ir3" path="res://Scenes/cutscene1/Foliage_1_1_0.res" id="55_2fvaj"]
-[ext_resource type="Texture2D" uid="uid://da1si2iejrin6" path="res://Scenes/cutscene1/Foliage_1_1_1.res" id="56_qw2jh"]
-[ext_resource type="Texture2D" uid="uid://bagsi4r2ymdan" path="res://Scenes/cutscene1/Heightmap_1_1.res" id="57_olrhv"]
-[ext_resource type="Texture2D" uid="uid://b3k6sx07yrkqx" path="res://Scenes/cutscene1/Object_1_1_0.res" id="58_2wjcy"]
-[ext_resource type="Texture2D" uid="uid://jy83ah501q7u" path="res://Scenes/cutscene1/Splatmap_1_1_0.res" id="59_xr0k8"]
-[ext_resource type="Texture2D" uid="uid://opqmo8cj0sti" path="res://Scenes/cutscene1/Splatmap_1_1_1.res" id="60_7kpvb"]
-[ext_resource type="Texture2D" uid="uid://c2nyhsfsoil5f" path="res://Scenes/cutscene1/Splatmap_1_1_2.res" id="61_50xtx"]
-[ext_resource type="Texture2D" uid="uid://bj4otjkue8f6" path="res://Scenes/cutscene1/Water_1_1.res" id="62_kjct0"]
-[ext_resource type="Texture2D" uid="uid://b3rnfuegqhx2l" path="res://Scenes/cutscene1/Foliage_0_-1_0.res" id="63_kkiaa"]
-[ext_resource type="Texture2D" uid="uid://csdn6fvj712mb" path="res://Scenes/cutscene1/Foliage_0_-1_1.res" id="64_vmgvj"]
-[ext_resource type="Texture2D" uid="uid://cchl02l40hxkv" path="res://Scenes/cutscene1/Heightmap_0_-1.res" id="65_y734x"]
-[ext_resource type="Texture2D" uid="uid://8f0erqr6csty" path="res://Scenes/cutscene1/Object_0_-1_0.res" id="66_qfoeb"]
-[ext_resource type="Texture2D" uid="uid://dtm463v7kxefi" path="res://Scenes/cutscene1/Splatmap_0_-1_0.res" id="67_32bbk"]
-[ext_resource type="Texture2D" uid="uid://cti7cth1arlup" path="res://Scenes/cutscene1/Splatmap_0_-1_1.res" id="68_p6xj0"]
-[ext_resource type="Texture2D" uid="uid://crlfr27mpmx8f" path="res://Scenes/cutscene1/Splatmap_0_-1_2.res" id="69_pd1ba"]
-[ext_resource type="Texture2D" uid="uid://dc6kf48nvk8um" path="res://Scenes/cutscene1/Water_0_-1.res" id="70_vyl8p"]
-[ext_resource type="Texture2D" uid="uid://n0wpais7nrk4" path="res://Scenes/cutscene1/Foliage_1_-1_0.res" id="71_e6c05"]
-[ext_resource type="Texture2D" uid="uid://y3jayacpi6m0" path="res://Scenes/cutscene1/Foliage_1_-1_1.res" id="72_q2211"]
-[ext_resource type="Texture2D" uid="uid://drsir6yikb5gc" path="res://Scenes/cutscene1/Heightmap_1_-1.res" id="73_5tdiu"]
-[ext_resource type="Texture2D" uid="uid://bhlp32f3mahib" path="res://Scenes/cutscene1/Object_1_-1_0.res" id="74_08k3q"]
-[ext_resource type="Texture2D" uid="uid://hoph1vs5ne21" path="res://Scenes/cutscene1/Splatmap_1_-1_0.res" id="75_u7nxp"]
-[ext_resource type="Texture2D" uid="uid://yatvfd0csjfr" path="res://Scenes/cutscene1/Splatmap_1_-1_1.res" id="76_lwjcx"]
-[ext_resource type="Texture2D" uid="uid://bhgsyo2two7pn" path="res://Scenes/cutscene1/Splatmap_1_-1_2.res" id="77_j7uqk"]
-[ext_resource type="Texture2D" uid="uid://bb6anjmmnwvus" path="res://Scenes/cutscene1/Water_1_-1.res" id="78_ghsyk"]
-[ext_resource type="Texture2D" uid="uid://4aoubmyql5uu" path="res://Scenes/cutscene1/Foliage_-1_0_0.res" id="79_mi7rf"]
-[ext_resource type="Texture2D" uid="uid://dfmbh1ngvg1he" path="res://Scenes/cutscene1/Foliage_-1_0_1.res" id="80_hu7n5"]
-[ext_resource type="Texture2D" uid="uid://125nrajro6ae" path="res://Scenes/cutscene1/Heightmap_-1_0.res" id="81_kx667"]
-[ext_resource type="Texture2D" uid="uid://gedgdewdoyil" path="res://Scenes/cutscene1/Object_-1_0_0.res" id="82_37qwx"]
-[ext_resource type="Texture2D" uid="uid://piteo7xfwexx" path="res://Scenes/cutscene1/Splatmap_-1_0_0.res" id="83_ukjmy"]
-[ext_resource type="Texture2D" uid="uid://d0kycdxwdhk57" path="res://Scenes/cutscene1/Splatmap_-1_0_1.res" id="84_3duu4"]
-[ext_resource type="Texture2D" uid="uid://dpw4kt4fhayc3" path="res://Scenes/cutscene1/Splatmap_-1_0_2.res" id="85_3swi2"]
-[ext_resource type="Texture2D" uid="uid://obkfp7ohx4hc" path="res://Scenes/cutscene1/Water_-1_0.res" id="86_ndxol"]
-[ext_resource type="Texture2D" uid="uid://dveoq5hyrmpy5" path="res://Scenes/cutscene1/Foliage_-1_1_0.res" id="87_4irnh"]
-[ext_resource type="Texture2D" uid="uid://cj6ra5yihk6w" path="res://Scenes/cutscene1/Foliage_-1_1_1.res" id="88_qb0sc"]
-[ext_resource type="Texture2D" uid="uid://bba72adsephyw" path="res://Scenes/cutscene1/Heightmap_-1_1.res" id="89_pqj6o"]
-[ext_resource type="Texture2D" uid="uid://bm0wbi8i0842u" path="res://Scenes/cutscene1/Object_-1_1_0.res" id="90_7sm76"]
-[ext_resource type="Texture2D" uid="uid://ctl8hw5wbby0" path="res://Scenes/cutscene1/Splatmap_-1_1_0.res" id="91_4ump5"]
-[ext_resource type="Texture2D" uid="uid://cv5lxnuqubo3f" path="res://Scenes/cutscene1/Splatmap_-1_1_1.res" id="92_0673a"]
-[ext_resource type="Texture2D" uid="uid://cjysaa2ejdu1" path="res://Scenes/cutscene1/Splatmap_-1_1_2.res" id="93_7kv5t"]
-[ext_resource type="Texture2D" uid="uid://3en3k2nisrho" path="res://Scenes/cutscene1/Water_-1_1.res" id="94_q6j6a"]
-[ext_resource type="Texture2D" uid="uid://2xs6vi7rscad" path="res://Scenes/cutscene1/Foliage_-1_-1_0.res" id="95_icrs7"]
-[ext_resource type="Texture2D" uid="uid://tp4quw7gbxlv" path="res://Scenes/cutscene1/Foliage_-1_-1_1.res" id="96_nnkt7"]
-[ext_resource type="Texture2D" uid="uid://bdo35ecewjwiv" path="res://Scenes/cutscene1/Heightmap_-1_-1.res" id="97_thyds"]
-[ext_resource type="Texture2D" uid="uid://qpd6fd8m6y10" path="res://Scenes/cutscene1/Object_-1_-1_0.res" id="98_36k6s"]
-[ext_resource type="Texture2D" uid="uid://2bahjqb8rteh" path="res://Scenes/cutscene1/Splatmap_-1_-1_0.res" id="99_2dw53"]
-[ext_resource type="Texture2D" uid="uid://bm3wfw6psfqjw" path="res://Scenes/cutscene1/Splatmap_-1_-1_1.res" id="100_8ekmv"]
-[ext_resource type="Texture2D" uid="uid://ceavs2gelqq8u" path="res://Scenes/cutscene1/Splatmap_-1_-1_2.res" id="101_o0nwo"]
-[ext_resource type="Texture2D" uid="uid://dtl576ypuc5f2" path="res://Scenes/cutscene1/Water_-1_-1.res" id="102_gyobh"]
-[ext_resource type="Texture2D" uid="uid://3t0rgtmlyhy6" path="res://Scenes/cutscene1/Foliage_-2_0_0.res" id="103_jycwe"]
+[ext_resource type="Texture2D" uid="uid://w3iityxpf1ti" path="res://Scenes/Cutscene1/Foliage_0_1_0.res" id="39_w1xnp"]
+[ext_resource type="Texture2D" uid="uid://dpoa3odi1rqtf" path="res://Scenes/Cutscene1/Foliage_0_1_1.res" id="40_tcyjv"]
+[ext_resource type="Texture2D" uid="uid://m5gkomcwwfrg" path="res://Scenes/Cutscene1/Heightmap_0_1.res" id="41_f1vak"]
+[ext_resource type="Texture2D" uid="uid://bab27jb81vf6b" path="res://Scenes/Cutscene1/Object_0_1_0.res" id="42_jo4dd"]
+[ext_resource type="Texture2D" uid="uid://baxi5u7jdgm6e" path="res://Scenes/Cutscene1/Splatmap_0_1_0.res" id="43_q7hil"]
+[ext_resource type="Texture2D" uid="uid://7bkitttnlefy" path="res://Scenes/Cutscene1/Splatmap_0_1_1.res" id="44_3xfxa"]
+[ext_resource type="Texture2D" uid="uid://bjkm45run06h2" path="res://Scenes/Cutscene1/Splatmap_0_1_2.res" id="45_jnf41"]
+[ext_resource type="Texture2D" uid="uid://cb6r6f0nmjstc" path="res://Scenes/Cutscene1/Water_0_1.res" id="46_cx3ua"]
+[ext_resource type="Texture2D" uid="uid://bxv21nmj45php" path="res://Scenes/Cutscene1/Foliage_1_0_0.res" id="47_xp0kn"]
+[ext_resource type="Texture2D" uid="uid://308k7jh5na0u" path="res://Scenes/Cutscene1/Foliage_1_0_1.res" id="48_i7sl6"]
+[ext_resource type="Texture2D" uid="uid://ml2d3ju4g0ls" path="res://Scenes/Cutscene1/Heightmap_1_0.res" id="49_b8e74"]
+[ext_resource type="Texture2D" uid="uid://j67req6sv1jx" path="res://Scenes/Cutscene1/Object_1_0_0.res" id="50_q4833"]
+[ext_resource type="Texture2D" uid="uid://b75ytasjlxks3" path="res://Scenes/Cutscene1/Splatmap_1_0_0.res" id="51_3ylkb"]
+[ext_resource type="Texture2D" uid="uid://dwtasok4easet" path="res://Scenes/Cutscene1/Splatmap_1_0_1.res" id="52_mhp8d"]
+[ext_resource type="Texture2D" uid="uid://b4gw8lajxi0cu" path="res://Scenes/Cutscene1/Splatmap_1_0_2.res" id="53_nfek2"]
+[ext_resource type="Texture2D" uid="uid://cx6vucoa3yw2u" path="res://Scenes/Cutscene1/Water_1_0.res" id="54_jycwe"]
+[ext_resource type="Texture2D" uid="uid://ctb7kiqh33ir3" path="res://Scenes/Cutscene1/Foliage_1_1_0.res" id="55_2fvaj"]
+[ext_resource type="Texture2D" uid="uid://da1si2iejrin6" path="res://Scenes/Cutscene1/Foliage_1_1_1.res" id="56_qw2jh"]
+[ext_resource type="Texture2D" uid="uid://bagsi4r2ymdan" path="res://Scenes/Cutscene1/Heightmap_1_1.res" id="57_olrhv"]
+[ext_resource type="Texture2D" uid="uid://b3k6sx07yrkqx" path="res://Scenes/Cutscene1/Object_1_1_0.res" id="58_2wjcy"]
+[ext_resource type="Texture2D" uid="uid://jy83ah501q7u" path="res://Scenes/Cutscene1/Splatmap_1_1_0.res" id="59_xr0k8"]
+[ext_resource type="Texture2D" uid="uid://opqmo8cj0sti" path="res://Scenes/Cutscene1/Splatmap_1_1_1.res" id="60_7kpvb"]
+[ext_resource type="Texture2D" uid="uid://c2nyhsfsoil5f" path="res://Scenes/Cutscene1/Splatmap_1_1_2.res" id="61_50xtx"]
+[ext_resource type="Texture2D" uid="uid://bj4otjkue8f6" path="res://Scenes/Cutscene1/Water_1_1.res" id="62_kjct0"]
+[ext_resource type="Texture2D" uid="uid://b3rnfuegqhx2l" path="res://Scenes/Cutscene1/Foliage_0_-1_0.res" id="63_kkiaa"]
+[ext_resource type="Texture2D" uid="uid://csdn6fvj712mb" path="res://Scenes/Cutscene1/Foliage_0_-1_1.res" id="64_vmgvj"]
+[ext_resource type="Texture2D" uid="uid://cchl02l40hxkv" path="res://Scenes/Cutscene1/Heightmap_0_-1.res" id="65_y734x"]
+[ext_resource type="Texture2D" uid="uid://8f0erqr6csty" path="res://Scenes/Cutscene1/Object_0_-1_0.res" id="66_qfoeb"]
+[ext_resource type="Texture2D" uid="uid://dtm463v7kxefi" path="res://Scenes/Cutscene1/Splatmap_0_-1_0.res" id="67_32bbk"]
+[ext_resource type="Texture2D" uid="uid://cti7cth1arlup" path="res://Scenes/Cutscene1/Splatmap_0_-1_1.res" id="68_p6xj0"]
+[ext_resource type="Texture2D" uid="uid://crlfr27mpmx8f" path="res://Scenes/Cutscene1/Splatmap_0_-1_2.res" id="69_pd1ba"]
+[ext_resource type="Texture2D" uid="uid://dc6kf48nvk8um" path="res://Scenes/Cutscene1/Water_0_-1.res" id="70_vyl8p"]
+[ext_resource type="Texture2D" uid="uid://n0wpais7nrk4" path="res://Scenes/Cutscene1/Foliage_1_-1_0.res" id="71_e6c05"]
+[ext_resource type="Texture2D" uid="uid://y3jayacpi6m0" path="res://Scenes/Cutscene1/Foliage_1_-1_1.res" id="72_q2211"]
+[ext_resource type="Texture2D" uid="uid://drsir6yikb5gc" path="res://Scenes/Cutscene1/Heightmap_1_-1.res" id="73_5tdiu"]
+[ext_resource type="Texture2D" uid="uid://bhlp32f3mahib" path="res://Scenes/Cutscene1/Object_1_-1_0.res" id="74_08k3q"]
+[ext_resource type="Texture2D" uid="uid://hoph1vs5ne21" path="res://Scenes/Cutscene1/Splatmap_1_-1_0.res" id="75_u7nxp"]
+[ext_resource type="Texture2D" uid="uid://yatvfd0csjfr" path="res://Scenes/Cutscene1/Splatmap_1_-1_1.res" id="76_lwjcx"]
+[ext_resource type="Texture2D" uid="uid://bhgsyo2two7pn" path="res://Scenes/Cutscene1/Splatmap_1_-1_2.res" id="77_j7uqk"]
+[ext_resource type="Texture2D" uid="uid://bb6anjmmnwvus" path="res://Scenes/Cutscene1/Water_1_-1.res" id="78_ghsyk"]
+[ext_resource type="Texture2D" uid="uid://4aoubmyql5uu" path="res://Scenes/Cutscene1/Foliage_-1_0_0.res" id="79_mi7rf"]
+[ext_resource type="Texture2D" uid="uid://dfmbh1ngvg1he" path="res://Scenes/Cutscene1/Foliage_-1_0_1.res" id="80_hu7n5"]
+[ext_resource type="Texture2D" uid="uid://125nrajro6ae" path="res://Scenes/Cutscene1/Heightmap_-1_0.res" id="81_kx667"]
+[ext_resource type="Texture2D" uid="uid://gedgdewdoyil" path="res://Scenes/Cutscene1/Object_-1_0_0.res" id="82_37qwx"]
+[ext_resource type="Texture2D" uid="uid://piteo7xfwexx" path="res://Scenes/Cutscene1/Splatmap_-1_0_0.res" id="83_ukjmy"]
+[ext_resource type="Texture2D" uid="uid://d0kycdxwdhk57" path="res://Scenes/Cutscene1/Splatmap_-1_0_1.res" id="84_3duu4"]
+[ext_resource type="Texture2D" uid="uid://dpw4kt4fhayc3" path="res://Scenes/Cutscene1/Splatmap_-1_0_2.res" id="85_3swi2"]
+[ext_resource type="Texture2D" uid="uid://obkfp7ohx4hc" path="res://Scenes/Cutscene1/Water_-1_0.res" id="86_ndxol"]
+[ext_resource type="Texture2D" uid="uid://dveoq5hyrmpy5" path="res://Scenes/Cutscene1/Foliage_-1_1_0.res" id="87_4irnh"]
+[ext_resource type="Texture2D" uid="uid://cj6ra5yihk6w" path="res://Scenes/Cutscene1/Foliage_-1_1_1.res" id="88_qb0sc"]
+[ext_resource type="Texture2D" uid="uid://bba72adsephyw" path="res://Scenes/Cutscene1/Heightmap_-1_1.res" id="89_pqj6o"]
+[ext_resource type="Texture2D" uid="uid://bm0wbi8i0842u" path="res://Scenes/Cutscene1/Object_-1_1_0.res" id="90_7sm76"]
+[ext_resource type="Texture2D" uid="uid://ctl8hw5wbby0" path="res://Scenes/Cutscene1/Splatmap_-1_1_0.res" id="91_4ump5"]
+[ext_resource type="Texture2D" uid="uid://cv5lxnuqubo3f" path="res://Scenes/Cutscene1/Splatmap_-1_1_1.res" id="92_0673a"]
+[ext_resource type="Texture2D" uid="uid://cjysaa2ejdu1" path="res://Scenes/Cutscene1/Splatmap_-1_1_2.res" id="93_7kv5t"]
+[ext_resource type="Texture2D" uid="uid://3en3k2nisrho" path="res://Scenes/Cutscene1/Water_-1_1.res" id="94_q6j6a"]
+[ext_resource type="Texture2D" uid="uid://2xs6vi7rscad" path="res://Scenes/Cutscene1/Foliage_-1_-1_0.res" id="95_icrs7"]
+[ext_resource type="Texture2D" uid="uid://tp4quw7gbxlv" path="res://Scenes/Cutscene1/Foliage_-1_-1_1.res" id="96_nnkt7"]
+[ext_resource type="Texture2D" uid="uid://bdo35ecewjwiv" path="res://Scenes/Cutscene1/Heightmap_-1_-1.res" id="97_thyds"]
+[ext_resource type="Texture2D" uid="uid://qpd6fd8m6y10" path="res://Scenes/Cutscene1/Object_-1_-1_0.res" id="98_36k6s"]
+[ext_resource type="Texture2D" uid="uid://2bahjqb8rteh" path="res://Scenes/Cutscene1/Splatmap_-1_-1_0.res" id="99_2dw53"]
+[ext_resource type="Texture2D" uid="uid://bm3wfw6psfqjw" path="res://Scenes/Cutscene1/Splatmap_-1_-1_1.res" id="100_8ekmv"]
+[ext_resource type="Texture2D" uid="uid://ceavs2gelqq8u" path="res://Scenes/Cutscene1/Splatmap_-1_-1_2.res" id="101_o0nwo"]
+[ext_resource type="Texture2D" uid="uid://dtl576ypuc5f2" path="res://Scenes/Cutscene1/Water_-1_-1.res" id="102_gyobh"]
+[ext_resource type="Texture2D" uid="uid://3t0rgtmlyhy6" path="res://Scenes/Cutscene1/Foliage_-2_0_0.res" id="103_jycwe"]
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="103_nasvu"]
-[ext_resource type="Texture2D" uid="uid://dwgnj78tlex6a" path="res://Scenes/cutscene1/Foliage_-2_0_1.res" id="104_2fvaj"]
-[ext_resource type="Texture2D" uid="uid://ps2fb2r8ax4q" path="res://Scenes/cutscene1/Heightmap_-2_0.res" id="105_qw2jh"]
-[ext_resource type="Texture2D" uid="uid://wg50xv6ou4k0" path="res://Scenes/cutscene1/Object_-2_0_0.res" id="106_olrhv"]
-[ext_resource type="Texture2D" uid="uid://sjd2niifauis" path="res://Scenes/cutscene1/Splatmap_-2_0_0.res" id="107_2wjcy"]
-[ext_resource type="Texture2D" uid="uid://b2tbui51yb2dl" path="res://Scenes/cutscene1/Splatmap_-2_0_1.res" id="108_xr0k8"]
-[ext_resource type="Texture2D" uid="uid://dsfq8fvmdsdey" path="res://Scenes/cutscene1/Splatmap_-2_0_2.res" id="109_7kpvb"]
-[ext_resource type="Texture2D" uid="uid://b46kn6q2uexir" path="res://Scenes/cutscene1/Water_-2_0.res" id="110_50xtx"]
-[ext_resource type="Texture2D" uid="uid://1rbr1foy5jbm" path="res://Scenes/cutscene1/Foliage_-2_1_0.res" id="111_kjct0"]
-[ext_resource type="Texture2D" uid="uid://dew0w121ao6cq" path="res://Scenes/cutscene1/Foliage_-2_1_1.res" id="112_kkiaa"]
-[ext_resource type="Texture2D" uid="uid://df5ongcnpd78v" path="res://Scenes/cutscene1/Heightmap_-2_1.res" id="113_vmgvj"]
-[ext_resource type="Texture2D" uid="uid://dhdl7346c4syg" path="res://Scenes/cutscene1/Object_-2_1_0.res" id="114_y734x"]
-[ext_resource type="Texture2D" uid="uid://d1qwisghn700k" path="res://Scenes/cutscene1/Splatmap_-2_1_0.res" id="115_qfoeb"]
-[ext_resource type="Texture2D" uid="uid://chwgi61nniy46" path="res://Scenes/cutscene1/Splatmap_-2_1_1.res" id="116_32bbk"]
-[ext_resource type="Texture2D" uid="uid://c7ruixi5gdk34" path="res://Scenes/cutscene1/Splatmap_-2_1_2.res" id="117_p6xj0"]
-[ext_resource type="Texture2D" uid="uid://cg1tv6m5h6tho" path="res://Scenes/cutscene1/Water_-2_1.res" id="118_pd1ba"]
-[ext_resource type="Texture2D" uid="uid://7a6w1288xegg" path="res://Scenes/cutscene1/Foliage_-2_-1_0.res" id="119_vyl8p"]
-[ext_resource type="Texture2D" uid="uid://eb5017c70elh" path="res://Scenes/cutscene1/Foliage_-2_-1_1.res" id="120_e6c05"]
-[ext_resource type="Texture2D" uid="uid://bj0lvhuiad3il" path="res://Scenes/cutscene1/Heightmap_-2_-1.res" id="121_q2211"]
-[ext_resource type="Texture2D" uid="uid://csiscsqexe2vo" path="res://Scenes/cutscene1/Object_-2_-1_0.res" id="122_5tdiu"]
-[ext_resource type="Texture2D" uid="uid://bq7wgmkg04j1j" path="res://Scenes/cutscene1/Splatmap_-2_-1_0.res" id="123_08k3q"]
-[ext_resource type="Texture2D" uid="uid://dgqqasekb0del" path="res://Scenes/cutscene1/Splatmap_-2_-1_1.res" id="124_u7nxp"]
-[ext_resource type="Texture2D" uid="uid://ba570mqyq3taw" path="res://Scenes/cutscene1/Splatmap_-2_-1_2.res" id="125_lwjcx"]
-[ext_resource type="Texture2D" uid="uid://dg8v6h4kb8t1x" path="res://Scenes/cutscene1/Water_-2_-1.res" id="126_j7uqk"]
+[ext_resource type="Texture2D" uid="uid://dwgnj78tlex6a" path="res://Scenes/Cutscene1/Foliage_-2_0_1.res" id="104_2fvaj"]
+[ext_resource type="Texture2D" uid="uid://ps2fb2r8ax4q" path="res://Scenes/Cutscene1/Heightmap_-2_0.res" id="105_qw2jh"]
+[ext_resource type="Texture2D" uid="uid://wg50xv6ou4k0" path="res://Scenes/Cutscene1/Object_-2_0_0.res" id="106_olrhv"]
+[ext_resource type="Texture2D" uid="uid://sjd2niifauis" path="res://Scenes/Cutscene1/Splatmap_-2_0_0.res" id="107_2wjcy"]
+[ext_resource type="Texture2D" uid="uid://b2tbui51yb2dl" path="res://Scenes/Cutscene1/Splatmap_-2_0_1.res" id="108_xr0k8"]
+[ext_resource type="Texture2D" uid="uid://dsfq8fvmdsdey" path="res://Scenes/Cutscene1/Splatmap_-2_0_2.res" id="109_7kpvb"]
+[ext_resource type="Texture2D" uid="uid://b46kn6q2uexir" path="res://Scenes/Cutscene1/Water_-2_0.res" id="110_50xtx"]
+[ext_resource type="Texture2D" uid="uid://1rbr1foy5jbm" path="res://Scenes/Cutscene1/Foliage_-2_1_0.res" id="111_kjct0"]
+[ext_resource type="Texture2D" uid="uid://dew0w121ao6cq" path="res://Scenes/Cutscene1/Foliage_-2_1_1.res" id="112_kkiaa"]
+[ext_resource type="Texture2D" uid="uid://df5ongcnpd78v" path="res://Scenes/Cutscene1/Heightmap_-2_1.res" id="113_vmgvj"]
+[ext_resource type="Texture2D" uid="uid://dhdl7346c4syg" path="res://Scenes/Cutscene1/Object_-2_1_0.res" id="114_y734x"]
+[ext_resource type="Texture2D" uid="uid://d1qwisghn700k" path="res://Scenes/Cutscene1/Splatmap_-2_1_0.res" id="115_qfoeb"]
+[ext_resource type="Texture2D" uid="uid://chwgi61nniy46" path="res://Scenes/Cutscene1/Splatmap_-2_1_1.res" id="116_32bbk"]
+[ext_resource type="Texture2D" uid="uid://c7ruixi5gdk34" path="res://Scenes/Cutscene1/Splatmap_-2_1_2.res" id="117_p6xj0"]
+[ext_resource type="Texture2D" uid="uid://cg1tv6m5h6tho" path="res://Scenes/Cutscene1/Water_-2_1.res" id="118_pd1ba"]
+[ext_resource type="Texture2D" uid="uid://7a6w1288xegg" path="res://Scenes/Cutscene1/Foliage_-2_-1_0.res" id="119_vyl8p"]
+[ext_resource type="Texture2D" uid="uid://eb5017c70elh" path="res://Scenes/Cutscene1/Foliage_-2_-1_1.res" id="120_e6c05"]
+[ext_resource type="Texture2D" uid="uid://bj0lvhuiad3il" path="res://Scenes/Cutscene1/Heightmap_-2_-1.res" id="121_q2211"]
+[ext_resource type="Texture2D" uid="uid://csiscsqexe2vo" path="res://Scenes/Cutscene1/Object_-2_-1_0.res" id="122_5tdiu"]
+[ext_resource type="Texture2D" uid="uid://bq7wgmkg04j1j" path="res://Scenes/Cutscene1/Splatmap_-2_-1_0.res" id="123_08k3q"]
+[ext_resource type="Texture2D" uid="uid://dgqqasekb0del" path="res://Scenes/Cutscene1/Splatmap_-2_-1_1.res" id="124_u7nxp"]
+[ext_resource type="Texture2D" uid="uid://ba570mqyq3taw" path="res://Scenes/Cutscene1/Splatmap_-2_-1_2.res" id="125_lwjcx"]
+[ext_resource type="Texture2D" uid="uid://dg8v6h4kb8t1x" path="res://Scenes/Cutscene1/Water_-2_-1.res" id="126_j7uqk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eopnx"]
 shader = ExtResource("2_4dgfs")
@@ -384,6 +385,20 @@ shader_parameter/target_color_depth = 4
 shader_parameter/dithering = true
 shader_parameter/scale_resolution = true
 shader_parameter/target_resolution_scale = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_jycwe"]
+font = ExtResource("30_eopnx")
+font_size = 100
+font_color = Color(0.36862746, 0.25490198, 0.4862745, 1)
+outline_size = 15
+outline_color = Color(0.85490197, 0.7647059, 0.8745098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qw2jh"]
+font = ExtResource("30_eopnx")
+font_size = 50
+font_color = Color(0.36862746, 0.25490198, 0.4862745, 1)
+outline_size = 10
+outline_color = Color(0.85490197, 0.7647059, 0.8745098, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_e5c71"]
 font = ExtResource("30_eopnx")
@@ -769,6 +784,7 @@ Zones = [SubResource("Resource_kwju7"), SubResource("Resource_iou78"), SubResour
 
 [node name="Cutscene1" type="Node3D"]
 script = ExtResource("1_jdm0i")
+TargetScene = ExtResource("2_qw2jh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -847,6 +863,45 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="Fade"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameText" type="Label" parent="Fade/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -235.0
+offset_bottom = -264.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("30_eopnx")
+text = "Loading Game"
+label_settings = SubResource("LabelSettings_jycwe")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="NameText2" type="Label" parent="Fade/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -165.0
+offset_bottom = -194.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("30_eopnx")
+text = "This Could Take A Minute"
+label_settings = SubResource("LabelSettings_qw2jh")
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="NameText" type="Label" parent="."]
 anchors_preset = 15
