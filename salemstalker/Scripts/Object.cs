@@ -27,10 +27,10 @@ public partial class Object : CharacterBody3D
 		}
 		if (_player == null){return;}
 		if (Name == "Taz" || Name == "Bridger" || Name == "Rogue" || Name == "Gnocchi")
-        {
-            GetNode<Node3D>("GoalLookAt").LookAt(new Vector3(_player.GlobalPosition.X, GlobalPosition.Y, _player.GlobalPosition.Z), Vector3.Up);
+		{
+			GetNode<Node3D>("GoalLookAt").LookAt(new Vector3(_player.GlobalPosition.X, GlobalPosition.Y, _player.GlobalPosition.Z), Vector3.Up);
 			RotateFunc(delta, GetNode<Node3D>("GoalLookAt"));
-        }
+		}
 		
 
 		if (_player._lastSeen != this)
