@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://csc1wgxwkys3h" path="res://Scripts/CultistHut.cs" id="1_sak6b"]
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_n642y"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_4aca4"]
-[ext_resource type="PackedScene" uid="uid://cunysakvjyg8r" path="res://Assets/3D/buildings/cultistshrineorbtest.blend" id="4_0bcjk"]
+[ext_resource type="PackedScene" uid="uid://cbougraiw7tt1" path="res://Assets/3D/buildings/cultistshrineorbtest.blend" id="4_0bcjk"]
 [ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="5_mqdp6"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7m6cr"]
@@ -198,7 +198,7 @@ material_override = SubResource("StandardMaterial3D_mqdp6")
 material_override = SubResource("StandardMaterial3D_mqdp6")
 
 [node name="Sphere_002" parent="Model" index="4"]
-transform = Transform3D(-0.05405041, -0.022552654, 0.07574394, -0.0054102303, 0.092604905, 0.023712283, -0.07884477, 0.009106074, -0.05355181, -0.00052637234, 1.0754052, 0.0016484503)
+transform = Transform3D(0.09571983, 0, -0.0022199897, 0, 0.095745556, 0, 0.0022199897, 0, 0.09571983, -0.00052637234, 1.0754052, 0.0016484503)
 material_override = SubResource("ShaderMaterial_mqdp6")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Model"]

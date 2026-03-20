@@ -425,29 +425,32 @@ mesh = SubResource("ArrayMesh_0o30b")
 skeleton = NodePath("")
 
 [node name="Bridger" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.084020965, 0, 0, 0, 0.084020965, 0, 0, 0, 0.084020965, -0.25875485, 0.34779269, 0)
+transform = Transform3D(-3.672673e-09, 0, -0.084020965, 0, 0.084020965, 0, 0.084020965, 0, -3.672673e-09, 1.1310534e-08, 0.34779269, -0.25875485)
 visible = false
 mesh = SubResource("ArrayMesh_5r5i4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_fif6b")
 
 [node name="Taz" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.084020965, 0, 0, 0, 0.084020965, 0, 0, 0, 0.084020965, -0.25875485, 0.34779269, 0)
+transform = Transform3D(-3.672673e-09, 0, -0.084020965, 0, 0.084020965, 0, 0.084020965, 0, -3.672673e-09, 1.1310534e-08, 0.34779269, -0.25875485)
 visible = false
 mesh = SubResource("ArrayMesh_5r5i4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_5r5i4")
 
 [node name="Gnocchi" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.084, 0, 0, 0, 0.084, 0, 0, 0, 0.154, -0.25875485, 0.34779269, 0)
+transform = Transform3D(-3.6717567e-09, 0, -0.154, 0, 0.084, 0, 0.084, 0, -6.731554e-09, 1.1310534e-08, 0.34779269, -0.25875485)
 visible = false
 mesh = SubResource("ArrayMesh_5r5i4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_hnyqs")
 
 [node name="Rogue" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.084020965, 0, 0, 0, 0.084020965, 0, 0, 0, 0.084020965, -0.25875485, 0.34779269, 0)
+transform = Transform3D(-3.672673e-09, 0, -0.084020965, 0, 0.084020965, 0, 0.084020965, 0, -3.672673e-09, 1.1310534e-08, 0.34779269, -0.25875485)
 visible = false
 mesh = SubResource("ArrayMesh_5r5i4")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_jrdc7")
+
+[node name="GoalLookAt" type="Node3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
