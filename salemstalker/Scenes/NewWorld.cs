@@ -27,6 +27,7 @@ public partial class NewWorld : Node3D
 
     public void ToggleIcon(Node3D parentNode, string goalGroup, bool toggle)
     {
+        GD.Print(goalGroup);
         foreach (Node3D node in parentNode.GetChildren())
         {
             if (node.IsInGroup(goalGroup))
