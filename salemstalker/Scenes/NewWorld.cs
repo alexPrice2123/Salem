@@ -24,5 +24,17 @@ public partial class NewWorld : Node3D
             GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("VillageMark").GlobalPosition ;
         }
     }
+
+    public void ToggleIcon(Node3D parentNode, string goalGroup, bool toggle)
+    {
+        GD.Print(goalGroup);
+        foreach (Node3D node in parentNode.GetChildren())
+        {
+            if (node.IsInGroup(goalGroup))
+            {
+                node.GetNode<Sprite3D>("Icon").Visible = toggle;
+            }
+        }
+    }
     
 }
