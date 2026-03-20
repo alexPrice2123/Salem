@@ -553,4 +553,9 @@ public partial class Ui : Control
 		_resourceInv.Visible = false;
 		_inv.Visible = true;
 	}
+	private void _on_shop_back_button_up()
+	{
+		GetNode<Control>("BlacksmithShop").Visible = false;
+		Input.MouseMode = Input.MouseModeEnum.Captured;
+	}
 }
