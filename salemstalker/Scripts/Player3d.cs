@@ -810,7 +810,7 @@ public partial class Player3d : CharacterBody3D
 	// Handles the sword attack sequence, damage calculation, and combo logic.
 	private async void Swing() // To be truthful idk what im doing rn im just breaking stuff and hoping it works
 	{
-
+		//put a print in process() for _swing_buffer
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
 		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5 && _swing_buffered == false)
 		{
@@ -846,6 +846,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				//return;
 				//GD.Print("timeout_await"); 
+
 				_swing_buffered = true;
 				GD.Print("cooldown",cooldown.TimeLeft);
 				await ToSignal(cooldown,"timeout");
