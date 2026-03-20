@@ -814,7 +814,7 @@ public partial class Player3d : CharacterBody3D
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
 		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5 && _swing_buffered == false)
 		{
-			GD.Print("Not too early");
+			//GD.Print("Not too early");
 			_rng.Randomize();
 			float tempHorSense = HorCamSense;
 			float tempVerSense = VerCamSense;
@@ -878,7 +878,7 @@ public partial class Player3d : CharacterBody3D
 		}
 		else	
 		{
-			GD.Print(cooldown.TimeLeft - (float)_swordInst.GetMeta("swingSpeed") * 0.5, " Too early!");
+			//GD.Print(cooldown.TimeLeft - (float)_swordInst.GetMeta("swingSpeed") * 0.5, " Too early!");
 		}
 		
 	}
