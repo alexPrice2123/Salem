@@ -241,7 +241,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				if(!GetNode<Sprite2D>("UI/Controls").Visible)
 				{
-					if(!IsInstanceValid(_lastSeen) && !_inv.Visible)
+					if(!IsInstanceValid(_lastSeen) && !_inv.Visible && _swing_buffered == false)
 					{
 						Swing(); // Perform a normal sword swing
 					}
@@ -822,21 +822,25 @@ public partial class Player3d : CharacterBody3D
 		{
 			//GD.Print("Not too early");
 			_rng.Randomize();
+			bool _swing_add = false;
 			float tempHorSense = HorCamSense;
 			float tempVerSense = VerCamSense;
 			float swingTime = (float)_swordInst.GetMeta("swingSpeed");
 			if (Time.GetTicksMsec() - _lastHit > swingTime)
 			{
+				GD.Print("time ",Time.GetTicksMsec() - _lastHit," ",swingTime," ",swingTime * 1000 - 100);
 				if(_comboNum>2 || Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 100)
 				
 				{
-					GD.Print("combo");
+					GD.Print("combo1");
 					_comboNum = 1;
+					//_swing_add = false;
 				}
 				else             
 				{
-					GD.Print("++");
+					GD.Print("++1");
 					_comboNum++;
+					//_swing_add = true;
 				}
 			}
 			else
@@ -849,6 +853,7 @@ public partial class Player3d : CharacterBody3D
 				//return;
 				//GD.Print("timeout_await"); 
 				_swing_buffered = true;
+				GD.Print("cooldown",cooldown.TimeLeft);
 				await ToSignal(cooldown,"timeout");
 			}
 			int tempcool = _comboNum;
@@ -868,19 +873,20 @@ public partial class Player3d : CharacterBody3D
 				_swordInst._crit = true;
 			}
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
-			_swing_buffered = false;
 			_swordInst.ResetMonsterDebounce();
 			_swordInst.swingStat = _comboNum;
 			HorCamSense = tempHorSense;
 			VerCamSense = tempVerSense;
 			cooldown.Start();
 			await ToSignal(cooldown, "timeout");
+			_swing_buffered = false;
 			_lastHit = Time.GetTicksMsec();
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
 			_damage = 0; 
 			await ToSignal(GetTree().CreateTimer((float)_swordInst.GetMeta("swingSpeed") * 0.7), "timeout");
+
 			if(_comboNum == tempcool){_swordInst.swingStat = 0;}
-			GD.Print(_comboNum, " : ", tempcool);
+			GD.Print(_comboNum, " : ", tempcool," : ",_swing_buffered);
 		}
 		else	
 		{
