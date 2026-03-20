@@ -506,7 +506,7 @@ public partial class Player3d : CharacterBody3D
 		_cam.Rotation = _cameraBaseRotation + camRef.ShakeOffsetRotation;
 
 		_currentBiome = "Forest";
-		_inGoalArea = false;
+		_inGoalArea = true;
 
 		if (_overlappingAreas.Contains("Plains")){_currentBiome = "Plains";}
 		if (_overlappingAreas.Contains("Brittlebay Village")){_currentBiome = "Brittlebay Village";}
