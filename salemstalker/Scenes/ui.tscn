@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=66 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://chc6qthr84456" path="res://Assets/UI/voidhbar.png" id="20_jd57c"]
 [ext_resource type="Texture2D" uid="uid://du1ky338dkiqv" path="res://Assets/UI/healbar.png" id="21_jd57c"]
 [ext_resource type="Texture2D" uid="uid://mfl2f3gvrrlv" path="res://Assets/UI/voidbar.png" id="22_85lyl"]
+[ext_resource type="Texture2D" uid="uid://w4vlfctn340n" path="res://Assets/2D/Placeholder/cat4.jpg" id="23_ebfgw"]
 [ext_resource type="Texture2D" uid="uid://c0mv51nrsl3a2" path="res://Assets/UI/stambar.png" id="23_mplvk"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
@@ -611,6 +612,7 @@ _itemImages = Dictionary[String, Texture2D]({
 "heart": ExtResource("14_0o3wc"),
 "log": ExtResource("7_smy1h"),
 "plank": ExtResource("8_lkjmk"),
+"rogue": ExtResource("23_ebfgw"),
 "rottenflesh": ExtResource("17_ipwe8"),
 "scorchedflesh": ExtResource("18_al6qt"),
 "seed": ExtResource("19_mdsrb"),

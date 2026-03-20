@@ -116,7 +116,7 @@ public partial class Player3d : CharacterBody3D
 	private Vector3 _cameraBaseRotation;
 	private Vector3 _cameraBasePosition;
 	private float _demoCount = 30f;
-	private Godot.Collections.Array<string> _pickUpableItems { get; set; } = ["Taz", "Bridger", "Gnocchi"];
+	private Godot.Collections.Array<string> _pickUpableItems { get; set; } = ["Taz", "Bridger", "Gnocchi", "Rogue"];
 	private bool _inCutscene = false; 
 
 	// --- READY ---
@@ -615,9 +615,9 @@ public partial class Player3d : CharacterBody3D
 		{
 			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Mary");
 			// Update the quest objective text
-			int catCount = _itemInv.GetItemCount("taz") + _itemInv.GetItemCount("bridger") + _itemInv.GetItemCount("gnocchi");
-			if (catCount >= 3) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
-			else { (currentQuest.GetNode("Number") as Label).Text = catCount+"/3"; }
+			int catCount = _itemInv.GetItemCount("taz") + _itemInv.GetItemCount("bridger") + _itemInv.GetItemCount("gnocchi") + _itemInv.GetItemCount("rogue");
+			if (catCount >= 4) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			else { (currentQuest.GetNode("Number") as Label).Text = catCount+"/4"; }
 		}
 
 		// [Inventory Camera Transition - Commented Out]
@@ -990,7 +990,7 @@ public partial class Player3d : CharacterBody3D
 		if (_questBox.FindChild(QuestName) != null)
 		{
 			if (QuestName == "Elizabeth"){_itemInv.SubtractResource("log", _itemInv.GetItemCount("log"));}
-			if (QuestName == "Mary"){_itemInv.SubtractResource("taz",1); _itemInv.SubtractResource("bridger",1); _itemInv.SubtractResource("gnocchi",1);}
+			if (QuestName == "Mary"){_itemInv.SubtractResource("taz",1); _itemInv.SubtractResource("bridger",1); _itemInv.SubtractResource("gnocchi",1); _itemInv.SubtractResource("rogue",1);}
 			_questBox.FindChild(QuestName).QueueFree(); // Delete the UI node
 		}
 	}
