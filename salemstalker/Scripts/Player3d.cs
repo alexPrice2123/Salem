@@ -290,6 +290,12 @@ public partial class Player3d : CharacterBody3D
 				_inv.Visible = false;
 				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}
+			else if(_itemInv.Visible == true)
+			{
+				_itemInv.Visible = false;
+				_inv.Visible = false;
+				Input.MouseMode = Input.MouseModeEnum.Captured;
+			}
 			else
 			{
 				// Show inventory, un-capture mouse
