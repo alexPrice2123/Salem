@@ -1065,6 +1065,14 @@ offset_top = -0.14200592
 offset_right = -0.5100708
 offset_bottom = 0.26397705
 
+[node name="ShopBack" type="Button" parent="BlacksmithShop"]
+layout_mode = 0
+offset_left = 698.0
+offset_top = 1.0
+offset_right = 779.0
+offset_bottom = 53.0
+text = "Back"
+
 [node name="ShopTypeOptions" type="OptionButton" parent="BlacksmithShop"]
 layout_mode = 0
 offset_right = 415.0
@@ -1467,6 +1475,7 @@ color = Color(0, 0, 0, 0.5882353)
 [connection signal="button_up" from="Dialogue/AcceptButton" to="." method="_on_accept_button_button_up"]
 [connection signal="button_up" from="Dialogue/Continue" to="." method="_on_continue_button_up"]
 [connection signal="button_up" from="Dialogue/IgnoreButton" to="." method="_on_ignore_button_button_up"]
+[connection signal="button_up" from="BlacksmithShop/ShopBack" to="." method="_on_shop_back_button_up"]
 [connection signal="button_up" from="BlacksmithShop/ShopOption1" to="." method="_on_shop_option1_button_up"]
 [connection signal="button_up" from="BlacksmithShop/ShopOption2" to="." method="_on_shop_option2_button_up"]
 [connection signal="button_up" from="BlacksmithShop/ShopOption3" to="." method="_on_shop_option3_button_up"]
