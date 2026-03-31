@@ -37,7 +37,7 @@
 [ext_resource type="Script" uid="uid://d2qebwt0ednya" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="34_rxyfw"]
 [ext_resource type="Script" uid="uid://nt172hqpx1j5" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="35_rabu8"]
 [ext_resource type="Texture2D" uid="uid://cels2dpuuom03" path="res://Scenes/World/Foliage_-1_0_0.res" id="36_g5cmj"]
-[ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="36_r0smi"]
+[ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Assets/Player_3D.tscn" id="36_r0smi"]
 [ext_resource type="Texture2D" uid="uid://ndwxshctfwxv" path="res://Scenes/World/Foliage_-1_0_1.res" id="37_y2u06"]
 [ext_resource type="Texture2D" uid="uid://bkln8nthucnkb" path="res://Scenes/World/Heightmap_-1_0.res" id="38_13etl"]
 [ext_resource type="PackedScene" uid="uid://dbhqhurkcdks0" path="res://Scenes/Monsters/hollowNormal.tscn" id="38_osg54"]
