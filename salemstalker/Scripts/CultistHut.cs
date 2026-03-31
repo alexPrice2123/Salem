@@ -30,6 +30,11 @@ public partial class CultistHut : Node3D
 	public Godot.Collections.Array<int> _monsterCount { get; set; } = [];
 	public Godot.Collections.Array<int> _currenctMonsterCount { get; set; } = [];
 	private bool _destroyed = false;
+	protected Node3D _hitFX;
+	protected Node3D _body;
+	public bool _canBeHit = true;
+	public float MaxHealth = 125.0f;
+	public float _health;
 
 	// --- READY ---
 	public override void _Ready()
@@ -39,6 +44,8 @@ public partial class CultistHut : Node3D
 		_countdown.WaitTime = _spawnTime + _rng.RandfRange(-1,1);
 		_countdown.Start();                              // Start the spawn timer
 		_currenctMonsterCount = _monsterCount;
+		_health = MaxHealth;
+		_hitFX = GetNode<Node3D>("HitFX"); _body = GetNode<Node3D>("Body");
 
 		_player = this.GetParent().GetParent().GetNode<Player3d>("Player_3d"); // Get the player node (two parents up in the scene tree)
 		_holder = GetNode<Node3D>("MonsterHolder");      // Get the monster holder node
@@ -50,6 +57,37 @@ public partial class CultistHut : Node3D
 	{
 		SpawnMonster();
 		_countdown.WaitTime = _spawnTime + _rng.RandfRange(-1,1);
+	}
+
+	// --- DAMAGE SYSTEM --- //
+	public void Damaged(Area3D body)
+	{
+		if (body.IsInGroup("Weapon") && _canBeHit)
+		{
+			GD.Print("By a player weapon!");
+			GD.Print(_player._damage);
+			DamageHandler(false, _player._damage);
+		}
+		else if (body.IsInGroup("PlayerProj") && _canBeHit)
+		{
+			float damage = MaxHealth * (float)body.GetParent().GetMeta("DamagePer");
+			if (body.GetParent() is StakeBullet sb)
+				sb.CountPierce();
+			DamageHandler(false, damage);
+		}
+	}
+
+	public void _on_hurtbox_area_entered(Area3D body){Damaged(body);}
+
+	private async void DamageHandler(bool knockBack, float damage)
+	{
+		_hitFX.Visible = true;
+		_body.Visible = false;
+		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+		GD.Print(damage);
+		_health -= damage;
+		_hitFX.Visible = false;
+		_body.Visible = true;
 	}
 	
 	private async void SpawnMonster()
@@ -102,14 +140,10 @@ public partial class CultistHut : Node3D
 	// --- PROCESS LOOP ---
 	public override void _Process(double delta)
 	{	
-		if (_holder.GetChildCount() <= 0 && _number >= _maxMonsterCount && _destroyed == false)
+		if (_health <= 0 && _destroyed == false)
         {
             _player._shrinesDestroyed += 1;
-			_destroyed = true;	
-			GetNode<OmniLight3D>("Light").Visible = false;
-			GetNode<GpuParticles3D>("Magic").Emitting = false;
-			GetNode<GpuParticles3D>("Boom").Emitting = true;
-			GetNode<MeshInstance3D>("Model/Sphere_002").Visible = false;
+			QueueFree();
         }
 	}
 

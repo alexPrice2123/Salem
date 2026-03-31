@@ -250,6 +250,10 @@ public partial class NpcVillager : CharacterBody3D
         else
         {
 			_player.GetQuest(QuestTitle, QuestGoal, NPCName);
+			if (Name == "Lukas")
+            {
+                _player.GetParent<NewWorld>().ToggleIcon(_player.GetParent().GetNode<Node3D>("MonsterHolder"), "BrittleShrine", true);
+            }
 			_dialougeIndex = 0;
 			_currentDialouge = "Accepted";
 			_hasTalked = true;
