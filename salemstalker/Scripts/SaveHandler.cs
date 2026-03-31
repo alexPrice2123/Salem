@@ -31,4 +31,9 @@ public partial class SaveHandler : GodotObject
         file.StoreLine(jsonData);
         GD.Print("File set to defaults");
     }
+
+    public static bool checkCompatibility(string savePath)
+    {
+        return(true);
+    }
 }

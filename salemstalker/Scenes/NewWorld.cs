@@ -10,13 +10,13 @@ public partial class NewWorld : Node3D
     // Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {
-        if ( !FileAccess.FileExists(_savePath) )
+        if ( !FileAccess.FileExists(_savePath) || !SaveHandler.checkCompatibility(_savePath))
         {
-            GD.Print("Save file missing");
+            GD.Print("Save file missing/outdated");
             SaveHandler.createSaveFile(_savePath);
             GD.Print("Save file created");
         }
-        else{ GD.Print("Save file exists"); }
+        else{ GD.Print("Save file exists/up-to-date"); }
         data = SaveHandler.LoadFromFile(_savePath);
         GD.Print("Save file loaded");
         if ((bool)data["tutorialComplete"] == true)
