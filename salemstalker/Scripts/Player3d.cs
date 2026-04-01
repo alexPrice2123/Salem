@@ -99,7 +99,7 @@ public partial class Player3d : CharacterBody3D
 	public string _currentBiome = "Village";
 	public string _lastBiome = "Village";
 	private float _backSpeed = 0f;
-
+	public float time_true = 0f;
 	public int _swampMonstersKilled = 0;
 	public int _plainsMonstersKilled = 0;
 	public int _forestMonstersKilled = 0;
@@ -491,6 +491,15 @@ public partial class Player3d : CharacterBody3D
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_swing_buffered == true)
+		{
+			GD.Print(_swing_buffered,time_true);
+		}
+		else
+		{
+			GD.Print(_swing_buffered);
+		}
+		time_true += 1;
 		if (_dead == true){return;}
 		if (_inCutscene){return;}
 		var camRef = (Camera)_cam;
@@ -809,6 +818,7 @@ public partial class Player3d : CharacterBody3D
 
 	// Handles the sword attack sequence, damage calculation, and combo logic.
 	private async void Swing() // To be truthful idk what im doing rn im just breaking stuff and hoping it works
+	// it broke stuff
 	{
 		//put a print in process() for _swing_buffer
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
@@ -822,7 +832,7 @@ public partial class Player3d : CharacterBody3D
 			float swingTime = (float)_swordInst.GetMeta("swingSpeed");
 			if (Time.GetTicksMsec() - _lastHit > swingTime)
 			{
-				GD.Print("time ",Time.GetTicksMsec() - _lastHit," ",swingTime," ",swingTime * 1000 - 100);
+				GD.Print("time ",Time.GetTicksMsec() - _lastHit," ",swingTime);
 				if(_comboNum>2 || Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 100)
 				
 				{
@@ -846,9 +856,10 @@ public partial class Player3d : CharacterBody3D
 			{
 				//return;
 				//GD.Print("timeout_await"); 
-
+				//the longest this statement is true is always 9 frames even at 60 fps
 				_swing_buffered = true;
 				GD.Print("cooldown",cooldown.TimeLeft);
+				time_true = 0;
 				await ToSignal(cooldown,"timeout");
 			}
 			int tempcool = _comboNum;
