@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=67 format=3 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -30,9 +30,10 @@
 [ext_resource type="Texture2D" uid="uid://cgn6ppmfn5m1x" path="res://Assets/UI/resources/deadooze.png" id="20_bsvcc"]
 [ext_resource type="Texture2D" uid="uid://chc6qthr84456" path="res://Assets/UI/voidhbar.png" id="20_jd57c"]
 [ext_resource type="Texture2D" uid="uid://du1ky338dkiqv" path="res://Assets/UI/healbar.png" id="21_jd57c"]
-[ext_resource type="Texture2D" uid="uid://mfl2f3gvrrlv" path="res://Assets/UI/voidbar.png" id="22_85lyl"]
 [ext_resource type="Texture2D" uid="uid://w4vlfctn340n" path="res://Assets/2D/Placeholder/cat4.jpg" id="23_ebfgw"]
 [ext_resource type="Texture2D" uid="uid://c0mv51nrsl3a2" path="res://Assets/UI/stambar.png" id="23_mplvk"]
+[ext_resource type="Texture2D" uid="uid://qy0i11h6p0kv" path="res://Assets/UI/basebaroverlay.png" id="29_mirbq"]
+[ext_resource type="Texture2D" uid="uid://cww7vpm3v6dkn" path="res://Assets/UI/stamoverlay.png" id="32_ipwe8"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whq80"]
 
@@ -264,6 +265,7 @@ grow_vertical = 2
 script = ExtResource("1_smcll")
 
 [node name="Loading" type="ColorRect" parent="."]
+visible = false
 z_index = 4096
 material = SubResource("ShaderMaterial_3r70p")
 layout_mode = 1
@@ -1417,19 +1419,32 @@ offset_right = 270.0
 offset_bottom = 269.0
 mouse_filter = 2
 value = 100.0
-texture_under = ExtResource("20_jd57c")
+texture_over = ExtResource("29_mirbq")
 texture_progress = ExtResource("21_jd57c")
+texture_progress_offset = Vector2(2.28, 3.12)
+
+[node name="Voidhbar" type="Sprite2D" parent="Health"]
+show_behind_parent = true
+position = Vector2(119, 9)
+texture = ExtResource("20_jd57c")
 
 [node name="Stamina" type="TextureProgressBar" parent="."]
 layout_mode = 0
 offset_left = 14.0
-offset_top = 31.000002
+offset_top = 35.0
 offset_right = 270.0
-offset_bottom = 287.0
+offset_bottom = 291.0
 mouse_filter = 2
 value = 100.0
-texture_under = ExtResource("22_85lyl")
+texture_over = ExtResource("32_ipwe8")
 texture_progress = ExtResource("23_mplvk")
+texture_progress_offset = Vector2(3.02, 2.66)
+
+[node name="Voidhbar" type="Sprite2D" parent="Stamina"]
+show_behind_parent = true
+position = Vector2(93, 8)
+scale = Vector2(0.78, 1)
+texture = ExtResource("20_jd57c")
 
 [node name="Controls" type="Sprite2D" parent="."]
 visible = false

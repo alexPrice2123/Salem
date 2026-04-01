@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://5kjeg0hhqll0"]
+
+[ext_resource type="Shader" uid="uid://d34vdwpno340j" path="res://Shaders/water.gdshader" id="1_tutsa"]
+[ext_resource type="Texture2D" uid="uid://tp1btftixdy3" path="res://Assets/2D/water_foam.png" id="2_rb2r7"]
+[ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="3_7utf7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_m0745"]
+seed = 700
+fractal_type = 2
+fractal_lacunarity = 1.0
+fractal_gain = -2.665
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5ai1a"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_m0745")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o3w7l"]
+render_priority = 0
+shader = ExtResource("1_tutsa")
+shader_parameter/wave_speed = 0.05
+shader_parameter/edge_fade_power = 2.0
+shader_parameter/transmittence = 0.04
+shader_parameter/h_dist_trans_weight = 3.0
+shader_parameter/transmit_color = Color(0.18039216, 0.21568628, 0.21960784, 1)
+shader_parameter/depth_fade_distance = 5.0
+shader_parameter/surface_albedo = Color(0.0627451, 0.40784314, 0.5686275, 1)
+shader_parameter/surface_bottom = Color(0.29411766, 0.53333336, 0.67058825, 0.6509804)
+shader_parameter/opacity = 0.8999999798832
+shader_parameter/opacity_floor = 0.2
+shader_parameter/opacity_ceiling = 0.8
+shader_parameter/pixelate = false
+shader_parameter/roughness = 0.4
+shader_parameter/height_scale = 0.25
+shader_parameter/amplitude1 = 2.0
+shader_parameter/amplitude2 = 0.5
+shader_parameter/vertex_noise_big = SubResource("NoiseTexture2D_5ai1a")
+shader_parameter/vertex_noise_big2 = SubResource("NoiseTexture2D_5ai1a")
+shader_parameter/v_noise_tile = 200
+shader_parameter/normal_noise = ExtResource("3_7utf7")
+shader_parameter/normal_noise2 = ExtResource("3_7utf7")
+shader_parameter/normal_noise_size = 51.2
+shader_parameter/normal_noise_speed = 0.05
+shader_parameter/v_normal_scale = 1.0
+shader_parameter/normal_map_w = 256
+shader_parameter/sky_color = Color(0.05882353, 0.34117648, 0.45882353, 1)
+shader_parameter/high_color = Color(0, 0.5411765, 0.5882353, 1)
+shader_parameter/low_color = Color(0, 0.23137255, 0.34117648, 1)
+shader_parameter/wave_color_range = 2.0
+shader_parameter/foamTexture = ExtResource("2_rb2r7")
+shader_parameter/foamScale = 40.0
+shader_parameter/foamScrollSpeed = 0.4
+shader_parameter/foamEdgeBias = 0.1
+shader_parameter/foamFallOffDistance = 0.5000000074506
+shader_parameter/foamEdgeDistance = 0.2
+shader_parameter/shine_strength = 0.17
+shader_parameter/shine_shininess = 18.0
+shader_parameter/shadow = 0.72
+shader_parameter/shadow_width = 0.18
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.199
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.067
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bljb4"]
+size = Vector2(9999, 9999)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_o3w7l")
+mesh = SubResource("PlaneMesh_bljb4")
