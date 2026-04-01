@@ -42,14 +42,6 @@ public partial class titleScreen : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
     {
-        if (_play)
-        {
-            _loadingMaterial.SetShaderParameter("progress", (float)_loadingMaterial.GetShaderParameter("progress")-0.05f);
-			if ((float)_loadingMaterial.GetShaderParameter("progress") <= -1f)
-            {
-                GetTree().ChangeSceneToFile(_nextScene);
-            }
-        }
         if (_playButton.IsHovered() && _playButton.Scale < _baseButtonScale * new Vector2(1.1f, 1.1f)){ScaleButton(_playButton, true);}
         else if (!_playButton.IsHovered() && _playButton.Scale > _baseButtonScale){ScaleButton(_playButton, false);}
 
@@ -69,9 +61,23 @@ public partial class titleScreen : Node3D
         else{button.Scale -= new Vector2(0.01f,0.01f);}
     }
 
-	private void _on_play_button_up()
+	private async void _on_play_button_up()
     {
-        _play = true;
+        if ( !FileAccess.FileExists(_savePath))
+        {
+            GD.Print("Save file missing");
+            SaveHandler.createSaveFile(_savePath);
+            GD.Print("Save file created");
+        }
+        else{ GD.Print("Save file exists"); }
+        GD.Print("Entering save file: ", _savePath);
+        while ((float)_loadingMaterial.GetShaderParameter("progress") >= -1f)
+        {
+            _loadingMaterial.SetShaderParameter("progress", (float)_loadingMaterial.GetShaderParameter("progress")-0.05f);
+            await ToSignal(GetTree().CreateTimer(0.01), "timeout"); 
+        }
+        GetTree().ChangeSceneToFile(_nextScene);
+        
     }
 	private void _on_credits_button_up()
     {

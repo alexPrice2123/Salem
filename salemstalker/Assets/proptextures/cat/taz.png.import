@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyqrakudt8des"
-path.s3tc="res://.godot/imported/shrineicon.png-d36acde1e6e07cb063fe7fbaf6a927d2.s3tc.ctex"
-path.etc2="res://.godot/imported/shrineicon.png-d36acde1e6e07cb063fe7fbaf6a927d2.etc2.ctex"
+uid="uid://bving80s5ttd3"
+path.s3tc="res://.godot/imported/taz.png-6874f9a7e3a21fd9d79969db0c0a53bf.s3tc.ctex"
+path.etc2="res://.godot/imported/taz.png-6874f9a7e3a21fd9d79969db0c0a53bf.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/UI/shrineicon.png"
-dest_files=["res://.godot/imported/shrineicon.png-d36acde1e6e07cb063fe7fbaf6a927d2.s3tc.ctex", "res://.godot/imported/shrineicon.png-d36acde1e6e07cb063fe7fbaf6a927d2.etc2.ctex"]
+source_file="res://Assets/proptextures/cat/taz.png"
+dest_files=["res://.godot/imported/taz.png-6874f9a7e3a21fd9d79969db0c0a53bf.s3tc.ctex", "res://.godot/imported/taz.png-6874f9a7e3a21fd9d79969db0c0a53bf.etc2.ctex"]
 
 [params]
 

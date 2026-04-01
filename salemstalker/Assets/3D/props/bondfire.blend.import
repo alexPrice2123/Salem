@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://fpgfsexof26b"
-path="res://.godot/imported/dock.blend-09a5215cdb594ba3947d30cf5ff994e7.scn"
+uid="uid://v5eedwpanksx"
+path="res://.godot/imported/bondfire.blend-94690c593a214438e68b9f7930dba947.scn"
 
 [deps]
 
-source_file="res://Assets/3D/buildings/dock.blend"
-dest_files=["res://.godot/imported/dock.blend-09a5215cdb594ba3947d30cf5ff994e7.scn"]
+source_file="res://Assets/3D/props/bondfire.blend"
+dest_files=["res://.godot/imported/bondfire.blend-94690c593a214438e68b9f7930dba947.scn"]
 
 [params]
 
@@ -37,20 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"materials": {
-"Material": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/Materials/Wood_Mat.tres",
-"use_external/path": "uid://bo85r54u3k5x5"
-},
-"Material.001": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/Materials/Wood_Mat.tres",
-"use_external/path": "uid://bo85r54u3k5x5"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
