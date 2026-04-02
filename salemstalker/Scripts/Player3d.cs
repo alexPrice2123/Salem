@@ -112,6 +112,7 @@ public partial class Player3d : CharacterBody3D
 	public Node3D _goalPoint;
 	public bool _inWater = false;
 	public bool _dead = false;
+	public bool _swing_buffered = false;
 	private SubViewportContainer _map;
 	private Vector3 _cameraBaseRotation;
 	private Vector3 _cameraBasePosition;
@@ -240,7 +241,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				if(!GetNode<Sprite2D>("UI/Controls").Visible)
 				{
-					if(!IsInstanceValid(_lastSeen) && !_inv.Visible)
+					if(!IsInstanceValid(_lastSeen) && !_inv.Visible && _swing_buffered == false)
 					{
 						Swing(); // Perform a normal sword swing
 					}
@@ -286,6 +287,12 @@ public partial class Player3d : CharacterBody3D
 			if (_inv.Visible == true)
 			{
 				// Hide inventory, capture mouse
+				_inv.Visible = false;
+				Input.MouseMode = Input.MouseModeEnum.Captured;
+			}
+			else if(_itemInv.Visible == true)
+			{
+				_itemInv.Visible = false;
 				_inv.Visible = false;
 				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}
@@ -499,7 +506,7 @@ public partial class Player3d : CharacterBody3D
 		_cam.Rotation = _cameraBaseRotation + camRef.ShakeOffsetRotation;
 
 		_currentBiome = "Forest";
-		_inGoalArea = false;
+		_inGoalArea = true;
 
 		if (_overlappingAreas.Contains("Plains")){_currentBiome = "Plains";}
 		if (_overlappingAreas.Contains("Brittlebay Village")){_currentBiome = "Brittlebay Village";}
@@ -811,25 +818,29 @@ public partial class Player3d : CharacterBody3D
 	{
 
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
-		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5)
+		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5 && _swing_buffered == false)
 		{
-			GD.Print("Not too early");
+			//GD.Print("Not too early");
 			_rng.Randomize();
+			bool _swing_add = false;
 			float tempHorSense = HorCamSense;
 			float tempVerSense = VerCamSense;
 			float swingTime = (float)_swordInst.GetMeta("swingSpeed");
 			if (Time.GetTicksMsec() - _lastHit > swingTime)
 			{
+				GD.Print("time ",Time.GetTicksMsec() - _lastHit," ",swingTime," ",swingTime * 1000 - 100);
 				if(_comboNum>2 || Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 100)
 				
 				{
-					GD.Print("combo");
+					GD.Print("combo1");
 					_comboNum = 1;
+					//_swing_add = false;
 				}
 				else             
 				{
-					GD.Print("++");
+					GD.Print("++1");
 					_comboNum++;
+					//_swing_add = true;
 				}
 			}
 			else
@@ -839,9 +850,11 @@ public partial class Player3d : CharacterBody3D
 			}
 			if (cooldown.TimeLeft > 0)
 			{
-				return;
-				//GD.Print("timeout_await");
-				//await ToSignal(cooldown,"timeout");
+				//return;
+				//GD.Print("timeout_await"); 
+				_swing_buffered = true;
+				GD.Print("cooldown",cooldown.TimeLeft);
+				await ToSignal(cooldown,"timeout");
 			}
 			int tempcool = _comboNum;
 			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
@@ -866,16 +879,18 @@ public partial class Player3d : CharacterBody3D
 			VerCamSense = tempVerSense;
 			cooldown.Start();
 			await ToSignal(cooldown, "timeout");
+			_swing_buffered = false;
 			_lastHit = Time.GetTicksMsec();
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
 			_damage = 0; 
 			await ToSignal(GetTree().CreateTimer((float)_swordInst.GetMeta("swingSpeed") * 0.7), "timeout");
+
 			if(_comboNum == tempcool){_swordInst.swingStat = 0;}
-			GD.Print(_comboNum, " : ", tempcool);
+			GD.Print(_comboNum, " : ", tempcool," : ",_swing_buffered);
 		}
 		else	
 		{
-			GD.Print(cooldown.TimeLeft - (float)_swordInst.GetMeta("swingSpeed") * 0.5, " Too early!");
+			//GD.Print(cooldown.TimeLeft - (float)_swordInst.GetMeta("swingSpeed") * 0.5, " Too early!");
 		}
 		
 	}

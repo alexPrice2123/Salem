@@ -34,7 +34,7 @@ public partial class Monster3d : CharacterBody3D
 	public float MaxLookTime = 1f;
 	public Node3D MultBodyRef = null;
 	public Node3D MultHitRef = null;
-	public bool DebugShapes = true;
+	public bool DebugShapes = false;
 	public bool Disabled = false;               // When true, monster stays idle and ignores everything
 	public bool Cutscene = false;
 
