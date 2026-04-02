@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjurhsgte1wdp"
-path="res://.godot/imported/plains_grass.png-6b93fa0ba52419ed255a7b047aabeeb3.ctex"
+uid="uid://bs7h0cy7a1cng"
+path="res://.godot/imported/plainsgrass.png-751dc25eab362b60e9c3673bc781228b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/2D/plains_grass.png"
-dest_files=["res://.godot/imported/plains_grass.png-6b93fa0ba52419ed255a7b047aabeeb3.ctex"]
+source_file="res://Assets/2D/plainsgrass.png"
+dest_files=["res://.godot/imported/plainsgrass.png-751dc25eab362b60e9c3673bc781228b.ctex"]
 
 [params]
 
@@ -37,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
