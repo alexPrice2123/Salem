@@ -7,6 +7,7 @@ using System.Linq; // For using Dictionary.
 // Defines the player class, inheriting from Godot's 3D physics-based character node.
 public partial class Player3d : CharacterBody3D
 {
+
 	// --- CONSTANTS ---
 	public const float Speed = 3.5f;                 // Base player movement speed (units/second)
 	public const float RunSpeed = 4.5f;              // Additional speed when running
@@ -499,7 +500,7 @@ public partial class Player3d : CharacterBody3D
 	{
 		if (_swing_buffered == true)
 		{
-			GD.Print(_swing_buffered,time_true);
+			GD.Print(_swing_buffered,time_true," ",delta);
 		}
 		else
 		{
@@ -836,7 +837,17 @@ public partial class Player3d : CharacterBody3D
 			float tempHorSense = HorCamSense;
 			float tempVerSense = VerCamSense;
 			float swingTime = (float)_swordInst.GetMeta("swingSpeed");
-			if (Time.GetTicksMsec() - _lastHit > swingTime)
+			if (cooldown.TimeLeft > 0)
+			{
+				//return;
+				//GD.Print("timeout_await"); 
+				//the longest this statement is true is always 9+1 maximum frames even at 30 tps (not 60 because fuck you)
+				_swing_buffered = true;
+				GD.Print("cooldown",cooldown.TimeLeft);
+				time_true = 0;
+				await ToSignal(cooldown,"timeout");
+			}
+			if (true)//Time.GetTicksMsec() - _lastHit > swingTime)
 			{
 				GD.Print("time ",Time.GetTicksMsec() - _lastHit," ",swingTime);
 				if(_comboNum>2 || Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 100)
@@ -858,16 +869,7 @@ public partial class Player3d : CharacterBody3D
 				GD.Print("working?");
 				_comboNum = 1;
 			}
-			if (cooldown.TimeLeft > 0)
-			{
-				//return;
-				//GD.Print("timeout_await"); 
-				//the longest this statement is true is always 9 frames even at 60 fps
-				_swing_buffered = true;
-				GD.Print("cooldown",cooldown.TimeLeft);
-				time_true = 0;
-				await ToSignal(cooldown,"timeout");
-			}
+			
 			int tempcool = _comboNum;
 			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
 			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
