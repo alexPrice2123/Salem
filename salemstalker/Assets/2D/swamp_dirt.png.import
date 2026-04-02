@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccxnvvxyoh10x"
-path="res://.godot/imported/swampdirt.png-a5efbebc0428d7dc4b386a7015adfb56.ctex"
+uid="uid://c2oao6p84hbwj"
+path="res://.godot/imported/swamp_dirt.png-881c2720dd0be60e2d5fa67813d611ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/2D/swampdirt.png"
-dest_files=["res://.godot/imported/swampdirt.png-a5efbebc0428d7dc4b386a7015adfb56.ctex"]
+source_file="res://Assets/2D/swamp_dirt.png"
+dest_files=["res://.godot/imported/swamp_dirt.png-881c2720dd0be60e2d5fa67813d611ba.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
