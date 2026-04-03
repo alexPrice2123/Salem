@@ -73,7 +73,27 @@ public partial class SaveHandler : GodotObject
                 {"priest",0},
                 {"frederick",0},
                 {"stranger",0},
-            }
+                }
+            },
+            {"shrineComplete",new Godot.Collections.Dictionary<string, bool>{
+                {"shrine1",false}
+                }
+            },
+            {"deathBagPos",new Vector3(0,0,0)},
+            {"deathBagCon", new Godot.Collections.Dictionary<string, int>{
+                {"heartT1",0},
+                {"heartT2",0},
+                {"fleshT1",0},
+                {"fleshT2",0},
+                {"fangT1",0},
+                {"fangT2",0},
+                {"oozeT1",0},
+                {"oozeT2",0},
+                {"vesselT1",0},
+                {"vesselT2",0},
+                {"seedT1",0},
+                {"seedT2",0}
+                }
             }
 
         });
