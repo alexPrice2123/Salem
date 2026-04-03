@@ -68,6 +68,8 @@ public partial class NpcVillager : CharacterBody3D
 		// Get reference to relevant nodes.
 		_player = this.GetParent().GetNode<Player3d>("Player_3d");
 		_questPrompt = GetNode<Label3D>("QuestPrompt");
+		GD.Print(_questPrompt);
+		GD.Print(_object);
 		_dialogueBox = _player.GetNode<Label>("UI/Dialogue/DialogueBox");
 		_dialogue = _player.GetNode<Control>("UI/Dialogue");
 		_acceptButton = _player.GetNode<Button>("UI/Dialogue/AcceptButton");

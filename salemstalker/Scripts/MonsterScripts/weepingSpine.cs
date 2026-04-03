@@ -42,12 +42,12 @@ public partial class weepingSpine : Monster3d
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
-		if (this.GetParent().GetParent().GetParent().GetParent().GetNode<Node3D>("HushedTrees") is theHushedBark thb1 && _hushSpawned == true)
+		if (this.GetParent().GetParent().GetParent().GetParent().GetNode<Node3D>("HushedTrees") is theCoiledOne thb1 && _hushSpawned == true)
 		{
-			if (thb1._dead == true)
-            {
-                _health = 0;
-            }
+			//if (thb1._dead == true)
+            //{
+            //    _health = 0;
+            //}
 		}
 		if (_health <= 0)
 		{
@@ -56,9 +56,9 @@ public partial class weepingSpine : Monster3d
 			{
 				if (GetParent().GetParent() is DebugHut dh) { dh._shouldSpawn = true; }
 			}
-			if (this.GetParent().GetParent().GetParent().GetParent().GetNode<Node3D>("HushedTrees") is theHushedBark thb && _hushSpawned == true)
+			if (this.GetParent().GetParent().GetParent().GetParent().GetNode<Node3D>("HushedTrees") is theCoiledOne thb && _hushSpawned == true)
             {
-                thb._weepingCount -= 1;
+                //thb._weepingCount -= 1;
             }
 			_itemDropper.Drop("seed", 0.5f, 3, GlobalPosition);
 			//_itemDropper.Drop("sprout", 0.15f, 2, GlobalPosition);

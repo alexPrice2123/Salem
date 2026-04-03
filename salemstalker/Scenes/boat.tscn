@@ -2,8 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_d82p8"]
 [ext_resource type="Script" uid="uid://bkbppmbat873m" path="res://Scripts/boaT.cs" id="1_g7r5y"]
-[ext_resource type="PackedScene" uid="uid://dho4d6q6y8odo" path="res://Assets/3D/buildings/boatplaceholder.blend" id="3_badgh"]
-[ext_resource type="Texture2D" uid="uid://bujp07xd6gird" path="res://WoodPlank.png" id="4_tcwdh"]
+[ext_resource type="PackedScene" uid="uid://da1jtsxnf3trt" path="res://Assets/3D/buildings/boatplaceholder.blend" id="3_badgh"]
+[ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="4_tcwdh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hmxdp"]
 size = Vector3(4.430908, 0.7119446, 1.6632384)
@@ -53,6 +53,7 @@ shape = SubResource("BoxShape3D_hmxdp")
 
 [node name="QuestPrompt" type="Label3D" parent="."]
 transform = Transform3D(-0.999347, 0, 0.036138, 0, 1, 0, -0.036138, 0, -0.999347, 0, 0.70068824, 0)
+visible = false
 billboard = 1
 no_depth_test = true
 texture_filter = 0

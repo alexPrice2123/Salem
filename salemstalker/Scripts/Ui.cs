@@ -180,11 +180,11 @@ public partial class Ui : Control
 		{
 			_loadingValue = Mathf.Lerp(_loadingValue, _loadingGoal, (float)delta);
 			_loadingMaterial.SetShaderParameter("progress", _loadingValue);
-			if (_loadingValue <= -0.8f && _player._dead == true && _loadingUI.GetNode<Label>("Text").Text == "Loading...")
+			if (_loadingValue <= -0.8f && _player._dead == true)
 			{
 				GetTree().ReloadCurrentScene(); // Reload the scene 
 			}
-			else if (_loadingValue <= -0.8f && _loadingUI.GetNode<Label>("Text").Text == "Loading...")
+			else if (_loadingValue <= -0.8f )
 			{
 				_loadingGoal = 3f;
 				_loadingDone = true;
