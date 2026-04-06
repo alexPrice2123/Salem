@@ -346,14 +346,14 @@ public partial class Player3d : CharacterBody3D
 		else if (Input.IsActionJustPressed("dash"))
 		{
 			// Check if dash cooldown is over and player has enough stamina
-			if (_dashVelocity <= 0.1f && _stamina >= 0.1f * _maxStamina)
-			{
+			if (_dashVelocity <= 0.1f && _stamina >= 0f)//0.1f * _maxStamina)
+			{ 
 				_dashVelocity = _fullDashValue; // Apply max dash speed
 				_stamina -= 20f; // Deduct stamina
 			}
-		}
-
-		// --- Run (Shift Key) ---
+		}   
+       
+		// --- Run (Shift Key) ---        
 		else if (@event is InputEventKey shiftKey && shiftKey.Keycode == Key.Shift)
 		{
 			_running = shiftKey.Pressed; // Set running state based on key press
@@ -498,15 +498,6 @@ public partial class Player3d : CharacterBody3D
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.
 	public override void _PhysicsProcess(double delta)
 	{
-		if (_swing_buffered == true)
-		{
-			GD.Print(_swing_buffered,time_true," ",delta);
-		}
-		else
-		{
-			GD.Print(_swing_buffered);
-		}
-		time_true += 1;
 		if (_dead == true){return;}
 		if (_inCutscene){return;}
 		var camRef = (Camera)_cam;
@@ -841,7 +832,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				//return;
 				//GD.Print("timeout_await"); 
-				//the longest this statement is true is always 9+1 maximum frames even at 30 tps (not 60 because fuck you)
+				//the longest this statement is true is always 9+1 maximum frames even at 30 tps (not 60 because fuck you) [this problem has been solved]
 				_swing_buffered = true;
 				GD.Print("cooldown",cooldown.TimeLeft);
 				time_true = 0;
