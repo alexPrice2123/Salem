@@ -76,7 +76,11 @@ public partial class SaveHandler : GodotObject
                 }
             },
             {"shrineComplete",new Godot.Collections.Dictionary<string, bool>{
-                {"shrine1",false}
+                {"shrine1",false},
+                {"shrine2",false},
+                {"shrine3",false},
+                {"shrine4",false}, 
+                {"shrine5",false}
                 }
             },
             {"deathBagPos",new Vector3(0,0,0)},

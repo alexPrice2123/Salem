@@ -21,7 +21,9 @@ public partial class NewWorld : Node3D
         GD.Print("Save file loaded");
         if ((bool)data["tutorialComplete"] == true)
         {
+            GD.Print("tutorial complete, putting player at village");
             GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("VillageMark").GlobalPosition ;
+            GD.Print("player is at location: ",GetNode<CharacterBody3D>("Player_3d").GlobalPosition == GetNode<Marker3D>("VillageMark").GlobalPosition);
         }
     }
 
