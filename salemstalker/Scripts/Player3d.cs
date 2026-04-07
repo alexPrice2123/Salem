@@ -346,8 +346,9 @@ public partial class Player3d : CharacterBody3D
 		else if (Input.IsActionJustPressed("dash"))
 		{
 			// Check if dash cooldown is over and player has enough stamina
-			if (_dashVelocity <= 0.1f && _stamina >= 0f)//0.1f * _maxStamina)
+			if (_dashVelocity <= 0.1f && _stamina >= 20f)
 			{ 
+				_currentStaminaTimer = _staminaTimer;
 				_dashVelocity = _fullDashValue; // Apply max dash speed
 				_stamina -= 20f; // Deduct stamina
 			}
@@ -498,6 +499,7 @@ public partial class Player3d : CharacterBody3D
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.
 	public override void _PhysicsProcess(double delta)
 	{
+		
 		if (_dead == true){return;}
 		if (_inCutscene){return;}
 		var camRef = (Camera)_cam;
@@ -565,8 +567,9 @@ public partial class Player3d : CharacterBody3D
 		_lantern.OmniRange = (_health / _maxHealth * _maxRange) + _minRange;
 
 		// --- Stamina UI Update ---
-		GetNode<TextureProgressBar>("UI/Stamina").Value = Mathf.Lerp(GetNode<TextureProgressBar>("UI/Stamina").Value, (_stamina/_maxStamina)*100f, (float)delta*2f);
+		//GetNode<TextureProgressBar>("UI/Stamina").Value = Mathf.Lerp(GetNode<TextureProgressBar>("UI/Stamina").Value, (_stamina/_maxStamina)*100f, (float)delta*2f);
 		GetNode<TextureProgressBar>("UI/Health").Value = Mathf.Lerp(GetNode<TextureProgressBar>("UI/Health").Value, (_health/_maxHealth)*100f, (float)delta*2f);
+		GetNode<TextureProgressBar>("UI/Stamina").Value = _stamina;
 
 		// --- Death Condition ---
 		if (_health <= 0)
@@ -647,10 +650,10 @@ public partial class Player3d : CharacterBody3D
 		{
 			// Player is moving
 			_fullDashValue = 10f; // Reset dash value to standard
-			if (_stamina <= 0.02f * _maxStamina)
+			if (_stamina <= 0)//0.02f * _maxStamina)
 			{
 				_running = false; // Force stop running if stamina is too low
-				_stamina = 0f;
+				//_stamina = 0f;
 			}
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
 			velocity.X = direction.X * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (crouchSpeed * Convert.ToInt32(crouching)) + (Mathf.Abs(direction.X) * -_knockVelocity) + _dashVelocity);
@@ -818,11 +821,11 @@ public partial class Player3d : CharacterBody3D
 	private async void Swing() // To be truthful idk what im doing rn im just breaking stuff and hoping it works
 	// it broke stuff
 	{
-		//put a print in process() for _swing_buffer
+		
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
 		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5 && _swing_buffered == false)
 		{
-			//GD.Print("Not too early");
+			
 			_rng.Randomize();
 			bool _swing_add = false;
 			float tempHorSense = HorCamSense;
