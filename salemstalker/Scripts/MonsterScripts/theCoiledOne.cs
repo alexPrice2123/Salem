@@ -7,6 +7,11 @@ public partial class theCoiledOne : Monster3d
 	public Godot.Collections.Array<Node3D> _resinArray { get; set; } = []; 
 	private int _resinCount = 0;
 	private MeshInstance3D _roots;
+	public float _currentDamage = 0;
+	public int _underbrushSpawned = 0;
+	public int _vinetanglerSpanwed = 0;
+	public int _revenantSpawned = 0; 
+
 	public override void _Ready()
 	{
 		// -- Variables -- //
@@ -14,16 +19,16 @@ public partial class theCoiledOne : Monster3d
 		MoveWhileAttack = false;     // Can this monster move while attacking
 		IsObject = true;              // Should gravity be applied to this monster
 		Stationery = true;          // If the monster shouldnt move at all
-		BaseDamage = 12.5f;         // Base damage of the monster000000
+		BaseDamage = 12.5f;         // Base damage of the monster
 		AttackSpeed = 2.5f;         // The time between its attacks
 		AttackRange = 1.5f;           // The distance the monster gets from the player before stopping and attacking
-		MaxHealth = 100.0f;         // Maximum monster health
+		MaxHealth = 200.0f;         // Maximum monster health
 		WanderRange = 35;           // The range the monster can wander from its spawn point
 		AgroFOV = 7.0f;          	// The vision FOV of the monster
 		AgroLength = 5.5f;          // The detection length of the monsters vision
 		WalkRange = 3.5f;	         	// The noise range monsters hear the player walking
 		WalkSpeed = 1f;             // Movement speed when they are wandering
-		RunSpeed = 3.5f;              // Movement speed when they are chasing the player
+		RunSpeed = 3.5f;              // Movement speed when they are chasing the player 
 
 		// -- Other -- //
 		Monster = this;
@@ -44,6 +49,7 @@ public partial class theCoiledOne : Monster3d
         }
 		SpawnResin();
 		_roots = GetNode<MeshInstance3D>("Roots");
+		_roots.Visible = true;
 	}
 
 	public async void ResinBroken()
@@ -60,6 +66,8 @@ public partial class theCoiledOne : Monster3d
 
 	private void SpawnResin()
     {
+		_currentDamage = 0;
+		if (_roots != null){_roots.Visible = true;}
 		_resinCount = 0;
         for (int i = 0; i < 6; i++)
         {
@@ -74,6 +82,14 @@ public partial class theCoiledOne : Monster3d
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
+		if (_roots != null)
+        {
+            if (!_roots.Visible && _currentDamage >= 50f)
+			{
+				SpawnResin();
+			}
+        }
+		
 		if (_health <= 0)
 		{
 			_player.MonsterKilled("theCoiledOne", Biome);
@@ -103,21 +119,6 @@ public partial class theCoiledOne : Monster3d
 				//_itemDropper.Drop("woundedooze", 0.25f, 2, GlobalPosition);
 			}
 			QueueFree();
-		}
-		if (Velocity.LengthSquared() > 0.01f)
-			RotateFunc(delta);
-	}
-
-	private void RotateFunc(double delta)
-	{
-		if (Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) >= 175 || Mathf.RadToDeg(_lookDirection.GlobalRotation.Y) <= -175)
-		{
-			GlobalRotation = new Vector3(GlobalRotation.X, _lookDirection.GlobalRotation.Y, GlobalRotation.Z);
-		}
-		else
-		{
-			float newRotation = Mathf.Lerp(GlobalRotation.Y, _lookDirection.GlobalRotation.Y, (float)delta * 10f);
-			GlobalRotation = new Vector3(GlobalRotation.X, newRotation, GlobalRotation.Z);
 		}
 	}
 

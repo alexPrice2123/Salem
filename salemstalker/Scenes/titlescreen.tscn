@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=4 uid="uid://ugvn3fpfrh3c"]
+[gd_scene load_steps=123 format=4 uid="uid://ugvn3fpfrh3c"]
 
 [ext_resource type="Script" uid="uid://ps4omxss41de" path="res://Scripts/titleScreen.cs" id="1_k87f7"]
 [ext_resource type="Texture2D" uid="uid://bseviq72wt35m" path="res://Assets/UI/title/buttontitleredo.png" id="7_k87f7"]
@@ -47,6 +47,8 @@
 [ext_resource type="PackedScene" uid="uid://bmhgitq1fwfst" path="res://Scenes/enviorment.tscn" id="46_ax5fl"]
 [ext_resource type="PackedScene" uid="uid://dl3y8nfncided" path="res://Scenes/npc_villager.tscn" id="47_ax5fl"]
 [ext_resource type="PackedScene" uid="uid://ds8375k7kpihg" path="res://Scenes/Monsters/sCultist.tscn" id="48_ko6j5"]
+[ext_resource type="PackedScene" uid="uid://ure6f0j6wfrm" path="res://Assets/UI/title/signtitle.blend" id="50_dec1v"]
+[ext_resource type="Texture2D" uid="uid://cmsl20ftvbr13" path="res://Assets/UI/title/sign_Base_color.png" id="51_j7io7"]
 [ext_resource type="Shader" uid="uid://dad6yy25eud5k" path="res://Shaders/magicFist.gdshader" id="52_j7io7"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="53_7ux86"]
 
@@ -128,6 +130,11 @@ shader_parameter/speed = 20.0
 shader_parameter/glow_intensity = 2.0
 shader_parameter/glow_amount = 1.0
 shader_parameter/posMult = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_dec1v"]
+font_color = Color(1, 0, 0, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Shader" id="Shader_ko6j5"]
 code = "shader_type canvas_item;
@@ -737,6 +744,9 @@ shader_parameter/dithering = true
 shader_parameter/scale_resolution = true
 shader_parameter/target_resolution_scale = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ux86"]
+albedo_texture = ExtResource("51_j7io7")
+
 [node name="Title" type="Node3D"]
 script = ExtResource("1_k87f7")
 
@@ -939,78 +949,12 @@ position = Vector2(540, 87)
 scale = Vector2(0.7599988, 0.7599988)
 texture = ExtResource("41_af120")
 
-[node name="creditstxt" type="Label" parent="Buttons"]
-visible = false
-z_index = 1
-layout_mode = 0
-offset_left = 84.0
-offset_top = 379.0
-offset_right = 218.0
-offset_bottom = 457.0
-text = "CREDITS"
-
-[node name="quittxt" type="Label" parent="Buttons"]
-visible = false
-z_index = 1
-layout_mode = 0
-offset_left = 264.0
-offset_top = 490.0
-offset_right = 398.0
-offset_bottom = 568.0
-text = "QUIT"
-
-[node name="playtxt" type="Label" parent="Buttons"]
-visible = false
-z_index = 1
-layout_mode = 0
-offset_left = 263.0
-offset_top = 267.0
-offset_right = 397.0
-offset_bottom = 345.0
-text = "PLAY"
-
-[node name="Play" type="TextureButton" parent="Buttons"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 269.0
-offset_top = 255.0
-offset_right = 576.0
-offset_bottom = 356.0
-scale = Vector2(0.42151138, -0.664232)
-pivot_offset = Vector2(0, 50)
-focus_mode = 0
-mouse_default_cursor_shape = 2
-
-[node name="Credits" type="TextureButton" parent="Buttons"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 86.0
-offset_top = 401.44482
-offset_right = 317.4772
-offset_bottom = 454.77243
-scale = Vector2(0.51840955, 1.3688972)
-pivot_offset = Vector2(0, 50)
-focus_mode = 0
-mouse_default_cursor_shape = 2
-
-[node name="Quit" type="TextureButton" parent="Buttons"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 268.0
-offset_top = 478.99994
-offset_right = 447.16678
-offset_bottom = 583.1667
-scale = Vector2(0.71999955, 0.71999955)
-pivot_offset = Vector2(0, 50)
-focus_mode = 0
-mouse_default_cursor_shape = 2
-
 [node name="Reset save button" type="Button" parent="Buttons"]
 layout_mode = 0
-offset_left = 950.0
-offset_top = 569.0
-offset_right = 1076.0
-offset_bottom = 600.0
+offset_left = 898.0
+offset_top = 566.0
+offset_right = 1070.0
+offset_bottom = 597.0
 text = "reset save data"
 
 [node name="Sprite2D" type="Sprite2D" parent="Buttons"]
@@ -1020,17 +964,57 @@ scale = Vector2(0.20902261, 0.2176714)
 texture = ExtResource("7_k87f7")
 
 [node name="Label" type="Label" parent="Buttons"]
-visible = false
 layout_mode = 0
-offset_left = 764.0
-offset_top = 492.0
-offset_right = 1075.0
-offset_bottom = 567.0
+offset_left = 672.0
+offset_top = 507.0
+offset_right = 1074.0
+offset_bottom = 582.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "SAVE DATA OUT OF DATE
 RESET SAVE DATA NOW
 (everything will DIE and BREAK elsewise)"
+label_settings = SubResource("LabelSettings_dec1v")
 horizontal_alignment = 2
+
+[node name="Play" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 135.0
+offset_top = 224.00002
+offset_right = 683.00964
+offset_bottom = 440.70374
+rotation = 0.095583476
+scale = Vector2(0.42151138, -0.5042369)
+pivot_offset = Vector2(0, 50)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+ignore_texture_size = true
+stretch_mode = 1
+
+[node name="Credits2" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 331.0
+offset_top = 303.0
+offset_right = 601.0
+offset_bottom = 404.0
+scale = Vector2(0.5, 1)
+pivot_offset = Vector2(0, 50)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+ignore_texture_size = true
+stretch_mode = 1
+
+[node name="Quit" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 179.0
+offset_top = 429.00003
+offset_right = 368.0
+offset_bottom = 534.00006
+rotation = -0.11802681
+pivot_offset = Vector2(0, 50)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Loading" type="ColorRect" parent="."]
 z_index = 4096
@@ -1044,6 +1028,7 @@ scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(539, 303)
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="Text" type="Label" parent="Loading"]
 use_parent_material = true
@@ -1152,23 +1137,23 @@ transform = Transform3D(-0.25881916, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.25
 script = null
 
 [node name="Skeleton3D" parent="WarmVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 1.0094128, -0.055199992)
+bones/0/position = Vector3(0, 1.0098705, -0.05519999)
 bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
-bones/2/rotation = Quaternion(-0.076804966, 0, 0, 0.99704623)
-bones/5/rotation = Quaternion(0.08542921, 0.009936507, 0.021448027, 0.9960639)
-bones/8/rotation = Quaternion(-0.20837572, 0.36725628, -0.7273905, 0.5409303)
+bones/2/rotation = Quaternion(-0.07742919, 0, 0, 0.9969979)
+bones/5/rotation = Quaternion(0.086155556, 0.009947823, 0.021445274, 0.99600124)
+bones/8/rotation = Quaternion(-0.2116222, 0.3650628, -0.7285178, 0.5396361)
 bones/9/rotation = Quaternion(0.37500882, 0.2711096, -0.18186662, 0.86763626)
 bones/10/rotation = Quaternion(0.24329028, 0.45849064, 0.45827863, 0.72151023)
 bones/12/rotation = Quaternion(0.24474108, 0.6032071, 0.02517328, 0.7586893)
-bones/15/rotation = Quaternion(-0.2181963, -0.3656181, 0.7380325, 0.5234709)
+bones/15/rotation = Quaternion(-0.21844658, -0.36346406, 0.73766863, 0.52537596)
 bones/16/rotation = Quaternion(0.36446658, -0.25167373, 0.1729833, 0.87971663)
 bones/17/rotation = Quaternion(0.28736565, -0.43814325, -0.4520288, 0.7218875)
 bones/19/rotation = Quaternion(0.29157862, -0.5994292, -0.023846436, 0.745049)
-bones/25/rotation = Quaternion(0.98565626, 0.010929703, -0.008681497, 0.16818729)
-bones/26/rotation = Quaternion(0.08766914, 0.0016029762, 0.0070278123, 0.9961236)
+bones/25/rotation = Quaternion(0.9858353, 0.010836952, -0.008675648, 0.16714074)
+bones/26/rotation = Quaternion(0.0857248, 0.0016032502, 0.0068719466, 0.99629396)
 bones/27/rotation = Quaternion(-0.5135951, -0.057942487, -0.08637086, 0.85170585)
-bones/34/rotation = Quaternion(0.98565626, -0.0109297065, 0.008681455, 0.16818729)
-bones/35/rotation = Quaternion(0.08766914, -0.0016029765, -0.0070278123, 0.9961236)
+bones/34/rotation = Quaternion(0.9858353, -0.010836955, 0.008675604, 0.16714074)
+bones/35/rotation = Quaternion(0.0857248, -0.0016032504, -0.0068719466, 0.99629396)
 bones/36/rotation = Quaternion(-0.5135951, 0.05794249, 0.08637085, 0.85170585)
 bones/37/rotation = Quaternion(-0.018384513, 0.9591089, -0.27506912, -0.064103134)
 
@@ -1188,13 +1173,13 @@ transform = Transform3D(-0.9990978, 0, 0.04246843, 0, 1, 0, -0.04246843, 0, -0.9
 script = null
 
 [node name="Skeleton3D" parent="ColdVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9959521, -0.05519999)
-bones/2/rotation = Quaternion(-0.0761974, 0, 0, 0.99709284)
-bones/5/rotation = Quaternion(-0.07275267, 0.007363484, 0.021773828, 0.99708515)
-bones/25/rotation = Quaternion(0.97611326, 0.015267576, -0.009031881, 0.21653716)
-bones/26/rotation = Quaternion(0.18544614, 0.001581119, 0.0148658855, 0.9825408)
-bones/34/rotation = Quaternion(0.97611326, -0.015267578, 0.009031837, 0.21653716)
-bones/35/rotation = Quaternion(0.18544614, -0.0015811195, -0.0148658855, 0.9825408)
+bones/0/position = Vector3(0, 0.9965148, -0.05519999)
+bones/2/rotation = Quaternion(-0.0773576, 0, 0, 0.99700344)
+bones/5/rotation = Quaternion(-0.071813054, 0.0073794024, 0.021773502, 0.99715316)
+bones/25/rotation = Quaternion(0.9763135, 0.015185914, -0.0090239085, 0.21563882)
+bones/26/rotation = Quaternion(0.18414879, 0.0015815136, 0.014761889, 0.98278624)
+bones/34/rotation = Quaternion(0.9763135, -0.015185917, 0.009023866, 0.21563882)
+bones/35/rotation = Quaternion(0.18414879, -0.0015815143, -0.014761889, 0.98278624)
 
 [node name="QuestPrompt" parent="ColdVillager" index="3"]
 visible = false
@@ -1212,25 +1197,25 @@ transform = Transform3D(-0.9781476, 0, -0.20791161, 0, 1, 0, 0.20791161, 0, -0.9
 script = null
 
 [node name="Skeleton3D" parent="vCultist/Body/metarig" index="0"]
-bones/0/position = Vector3(5.5908367e-10, 0.92797387, -0.06494777)
-bones/1/rotation = Quaternion(-0.053585082, 3.6554617e-11, -1.192228e-08, 0.9985633)
-bones/5/rotation = Quaternion(-0.08778875, 1.1799071e-07, -1.5892315e-08, 0.9961391)
-bones/9/rotation = Quaternion(-0.15923782, 0.46359268, -0.6314744, 0.60080385)
-bones/10/rotation = Quaternion(0.68783295, -0.0037635476, -0.09616214, 0.71946126)
-bones/21/rotation = Quaternion(0.64566284, -0.067807086, 0.34213048, 0.6793148)
-bones/34/rotation = Quaternion(0.96214473, 0.063125506, -0.118104674, 0.23736922)
-bones/35/rotation = Quaternion(0.19440775, 0.00423307, 0.024884377, 0.98059607)
-bones/39/rotation = Quaternion(0.96553296, -0.062464256, 0.07895882, 0.2400209)
-bones/40/rotation = Quaternion(0.20278218, -0.004207534, -0.044066694, 0.97822285)
+bones/0/position = Vector3(1.4139473e-10, 0.92845947, -0.06494777)
+bones/1/rotation = Quaternion(-0.05310297, -1.5507852e-11, -1.3023648e-08, 0.9985891)
+bones/5/rotation = Quaternion(-0.08853342, 1.1875783e-07, -1.0524776e-08, 0.9960732)
+bones/9/rotation = Quaternion(-0.1581076, 0.45827115, -0.6339171, 0.60260993)
+bones/10/rotation = Quaternion(0.70005596, -0.0016983296, -0.124889575, 0.70308)
+bones/21/rotation = Quaternion(0.63283986, -0.063538365, 0.34089035, 0.6922935)
+bones/34/rotation = Quaternion(0.9626021, 0.06266675, -0.118068956, 0.2356478)
+bones/35/rotation = Quaternion(0.1908031, 0.004236183, 0.024422983, 0.9813154)
+bones/39/rotation = Quaternion(0.9659672, -0.06196115, 0.078902684, 0.23841715)
+bones/40/rotation = Quaternion(0.1994328, -0.004210635, -0.043338843, 0.9789436)
 
 [node name="Plane" parent="vCultist/Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, 9.255261e-09, -2.5328886e-10, -9.2451184e-09, 0.99667525, -0.081476286, -5.0169435e-10, 0.081476316, 0.9966753, 9.080109e-10, 1.7451786, -0.00056985207)
+transform = Transform3D(1, 6.6221184e-10, 8.021661e-11, -6.535378e-10, 0.9967182, -0.080948524, -1.3361899e-10, 0.0809485, 0.9967183, 6.2031963e-10, 1.7456604, -0.000121223275)
 
 [node name="arur_l" parent="vCultist/Body/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.0496975, -0.11431876, -0.11614626, 0.1572445, 0.90936464, 0.52607423, 0.042812936, -0.537039, 0.9155213, 0.30308852, 1.4199908, 0.27615553)
+transform = Transform3D(1.0451463, -0.07389635, -0.17502005, 0.15615454, 0.89153033, 0.5560696, 0.10820572, -0.5728322, 0.8880191, 0.29114464, 1.4278473, 0.275095)
 
 [node name="arua_r" parent="vCultist/Body/metarig/Skeleton3D" index="2"]
-transform = Transform3D(0.9789993, 0.00016736984, 0.4122908, -0.0082537085, 1.0620676, 0.019166723, -0.41220838, -0.020867698, 0.97881144, -0.22745878, 1.3000447, 0.16962564)
+transform = Transform3D(0.98706365, 0.0021081865, 0.39258695, 0.0031649321, 1.06218, -0.013662338, -0.39258003, 0.013864569, 0.98697114, -0.23138571, 1.2940475, 0.17075871)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3398342, 28.027174, -7.351434)
@@ -1272,11 +1257,41 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
-[connection signal="button_up" from="Buttons/Play" to="." method="_on_play_button_up"]
-[connection signal="button_up" from="Buttons/Credits" to="." method="_on_credits_button_up"]
-[connection signal="button_up" from="Buttons/Quit" to="." method="_on_quit_button_up"]
+[node name="signtitle" parent="." instance=ExtResource("50_dec1v")]
+transform = Transform3D(0.011178239, 0, 0.004364283, 0, 0.012, 0, -0.004364283, 0, 0.011178239, 2.9845567, 0.14278412, 2.2008462)
+
+[node name="sign" parent="signtitle" index="0"]
+transform = Transform3D(0.93878806, 0, 0.34449568, 0, 1, 0, -0.34449568, 0, 0.93878806, 7.081909, -16.666668, -18.138947)
+surface_material_override/0 = SubResource("StandardMaterial3D_7ux86")
+
+[node name="credits" type="Label3D" parent="signtitle"]
+transform = Transform3D(0.6514125, -0.07909652, 0.2924266, 0.0840357, 1.2615613, -0.062642716, -0.314326, 0.17336021, 0.5892805, 20.509491, 49.25438, -18.307816)
+pixel_size = 0.2761
+modulate = Color(0.8802588, 0.84376526, 0.9453125, 1)
+outline_modulate = Color(0.07257509, 0.013244629, 0.109375, 1)
+text = "CREDITS"
+
+[node name="quit" type="Label3D" parent="signtitle"]
+transform = Transform3D(0.98235, 0.003349688, 0.18704629, -0.034868237, 0.9855982, 0.16547544, -0.18379861, -0.16907549, 0.9683174, -6.4165344, 27.13245, -4.995117)
+pixel_size = 0.2961
+modulate = Color(0.8802588, 0.84376526, 0.9453125, 1)
+outline_modulate = Color(0.07257509, 0.013244629, 0.109375, 1)
+text = "QUIT
+"
+
+[node name="play" type="Label3D" parent="signtitle"]
+transform = Transform3D(0.8752631, 0.14384775, 0.33039743, -0.11253873, 0.97626305, -0.09222932, -0.33615953, 0.047706775, 0.89113677, -5.9110413, 71.78059, -2.8129272)
+pixel_size = 0.3691
+modulate = Color(0.8802588, 0.84376526, 0.9453125, 1)
+outline_modulate = Color(0.07257509, 0.013244629, 0.109375, 1)
+text = "PLAY"
+
 [connection signal="pressed" from="Buttons/Reset save button" to="." method="_on_reset_save_button_pressed"]
+[connection signal="button_up" from="Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="Credits2" to="." method="_on_credits_button_up"]
+[connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]
 [connection signal="button_up" from="Credits/Back" to="." method="_on_back_button_up"]
 
 [editable path="campfire"]
@@ -1287,3 +1302,4 @@ mouse_filter = 2
 [editable path="vCultist"]
 [editable path="vCultist/Body"]
 [editable path="vCultist/HitFX"]
+[editable path="signtitle"]
