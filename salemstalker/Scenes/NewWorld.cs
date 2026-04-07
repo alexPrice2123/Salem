@@ -19,9 +19,12 @@ public partial class NewWorld : Node3D
         else{ GD.Print("Save file exists/up-to-date"); }
         data = SaveHandler.LoadFromFile(_savePath);
         GD.Print("Save file loaded");
+        GD.Print((bool)data["tutorialComplete"] == true, " ohstuffsave");
         if ((bool)data["tutorialComplete"] == true)
         {
+            GD.Print("tutorial complete, putting player at village");
             GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("VillageMark").GlobalPosition ;
+            GD.Print("player is at location: ",GetNode<CharacterBody3D>("Player_3d").GlobalPosition == GetNode<Marker3D>("VillageMark").GlobalPosition);
         }
     }
 

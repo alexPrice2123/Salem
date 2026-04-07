@@ -26,7 +26,7 @@ public partial class SaveHandler : GodotObject
         else{GD.Print("File exists, reseting");}
         using FileAccess file = FileAccess.Open(savePath, FileAccess.ModeFlags.Write);
         string jsonData = Json.Stringify(new Godot.Collections.Dictionary<string, Variant>{
-            { "version", "0.5.1"},
+            { "version", "0.5.3"},
             { "lastLocation", "intro" },
             { "tutorialComplete", false},
             { "mainWeaponUnlocked", new Godot.Collections.Array<string>{
@@ -76,7 +76,11 @@ public partial class SaveHandler : GodotObject
                 }
             },
             {"shrineComplete",new Godot.Collections.Dictionary<string, bool>{
-                {"shrine1",false}
+                {"shrine1",false},
+                {"shrine2",false},
+                {"shrine3",false},
+                {"shrine4",false}, 
+                {"shrine5",false}
                 }
             },
             {"deathBagPos",new Vector3(0,0,0)},
@@ -103,7 +107,9 @@ public partial class SaveHandler : GodotObject
 
     public static bool checkCompatibility(string savePath)
     {
-        if (LoadFromFile(savePath)["version"].Equals("0.5.1")){GD.Print("Save is up to date!"); return(true);}
+        Godot.Collections.Dictionary<string,Variant> data = LoadFromFile(savePath);
+        if(!data.ContainsKey("version")) {GD.Print("Save is not up to date!"); return(false);}
+        if (((string)data["version"]).Equals("0.5.3")){GD.Print("Save is up to date!"); return(true);}
         else{GD.Print("Save is not up to date!"); return(false);}
     }
 }
