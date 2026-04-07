@@ -1,14 +1,14 @@
-[gd_scene load_steps=28 format=4 uid="uid://dcui8f1kbsutw"]
+[gd_scene load_steps=29 format=4 uid="uid://dcui8f1kbsutw"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_tj832"]
 [ext_resource type="Script" uid="uid://dxtkbna84vfji" path="res://Scripts/MonsterScripts/theCoiledOne.cs" id="2_vypes"]
-[ext_resource type="PackedScene" uid="uid://dg47kfe7ur4gx" path="res://Scenes/Monsters/MonsterAssets/spawning_root.tscn" id="3_4kjrw"]
 [ext_resource type="PackedScene" uid="uid://drddqq6dgqbxd" path="res://Assets/3D/charatermodel/coiledmutant.blend" id="4_lbav0"]
-[ext_resource type="PackedScene" uid="uid://cdyf44r2hpl3e" path="res://Scenes/Monsters/vineTangler.tscn" id="4_onvcx"]
 [ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="4_vypes"]
-[ext_resource type="PackedScene" uid="uid://c3gi3vrev7n0x" path="res://Scenes/Monsters/underBrush.tscn" id="5_e0ydn"]
-[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="5_olmvi"]
-[ext_resource type="PackedScene" uid="uid://ygedjap5uefs" path="res://Scenes/Monsters/revenanT.tscn" id="6_ft85t"]
+[ext_resource type="Texture2D" uid="uid://b1c8sfl0pgcoh" path="res://Assets/monstertextures/coiled/coiledmutant_1_Base_color.png" id="5_olmvi"]
+[ext_resource type="Texture2D" uid="uid://c4qqndt008t07" path="res://Assets/monstertextures/coiled/coiledmutant_1_Emissive.png" id="6_4kjrw"]
+[ext_resource type="Texture2D" uid="uid://bllsorsttgo4b" path="res://Assets/monstertextures/coiled/coiledmutant_1_Height.png" id="7_vypes"]
+[ext_resource type="Texture2D" uid="uid://2g5mk7eow71j" path="res://Assets/monstertextures/coiled/eyes_Base_color.png" id="8_onvcx"]
+[ext_resource type="Texture2D" uid="uid://yr8ftmate322" path="res://Assets/monstertextures/coiled/eyes_Emissive.png" id="9_e0ydn"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="11_vv7in"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7ma6"]
@@ -103,15 +103,22 @@ shadow_mesh = SubResource("ArrayMesh_lwo5c")
 [sub_resource type="SphereShape3D" id="SphereShape3D_vypes"]
 radius = 3.1625247
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6mup"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olmvi"]
 albedo_texture = ExtResource("5_olmvi")
+emission_texture = ExtResource("6_4kjrw")
+heightmap_enabled = true
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("7_vypes")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_un2t0"]
+albedo_texture = ExtResource("8_onvcx")
+emission_enabled = true
+emission_texture = ExtResource("9_e0ydn")
+texture_filter = 0
 
 [node name="theCoiledOne" instance=ExtResource("1_tj832")]
 script = ExtResource("2_vypes")
-_spawnRootScene = ExtResource("3_4kjrw")
-_vineTangler = ExtResource("4_onvcx")
-_underBrush = ExtResource("5_e0ydn")
-_revanant = ExtResource("6_ft85t")
 
 [node name="Stunned" type="GPUParticles3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00175359, 1.803534, -0.052372336)
@@ -154,20 +161,20 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 [node name="Skeleton3D" parent="Body/Armature" index="0"]
 bones/1/rotation = Quaternion(0.017611725, 0, 0, 0.9998449)
 bones/2/rotation = Quaternion(0.38477787, 0.011219861, 0.013049711, 0.92284876)
-bones/3/rotation = Quaternion(0.044334684, -0.0035570106, -0.0028263761, 0.99900645)
+bones/3/rotation = Quaternion(0.13210496, -0.004533798, -0.00036263664, 0.9912253)
 bones/4/rotation = Quaternion(0.4530525, -0.0040460397, 0.011167462, 0.8914048)
 bones/5/rotation = Quaternion(-0.05867656, 0.057308123, -0.7768832, 0.6242798)
-bones/6/rotation = Quaternion(0.6288984, -0.34185907, -0.089113206, 0.69258785)
-bones/7/rotation = Quaternion(0.38101503, 0.08253153, 0.28112262, 0.8769187)
+bones/6/rotation = Quaternion(0.6150352, -0.39649007, -0.06853208, 0.67810816)
+bones/7/rotation = Quaternion(0.45770195, 0.07706696, 0.3377043, 0.81885624)
 bones/8/rotation = Quaternion(0.15422982, 6.340274e-11, 3.4864428e-10, 0.988035)
-bones/9/rotation = Quaternion(0.04396691, 0.012849914, 0.056771304, 0.99733585)
-bones/10/rotation = Quaternion(-0.24936679, 0.061865907, 0.09336056, 0.96191096)
-bones/11/rotation = Quaternion(-0.6092384, 0.07807122, -0.14700592, 0.7753211)
-bones/13/rotation = Quaternion(0.43978176, -0.09941854, -0.13349812, 0.8825454)
-bones/14/rotation = Quaternion(-0.49342898, -0.0025990214, -0.004086687, 0.8697726)
+bones/9/rotation = Quaternion(0.04395203, 0.032328226, 0.08353422, 0.9950102)
+bones/10/rotation = Quaternion(-0.24984092, 0.05600487, 0.08006091, 0.9633449)
+bones/11/rotation = Quaternion(-0.6067567, 0.08820438, -0.16531648, 0.7724874)
+bones/13/rotation = Quaternion(0.43828344, -0.11162671, -0.15049574, 0.87908936)
+bones/14/rotation = Quaternion(-0.4653931, -0.002654137, -0.0038031288, 0.88509196)
 bones/15/rotation = Quaternion(-0.10584751, -0.096973844, 0.78224456, 0.60620624)
-bones/16/rotation = Quaternion(0.73640513, 0.32486033, 0.07124559, 0.5891497)
-bones/17/rotation = Quaternion(0.20052238, -0.08634378, -0.1785131, 0.9594106)
+bones/16/rotation = Quaternion(0.7213776, 0.3530434, 0.068949, 0.59179467)
+bones/17/rotation = Quaternion(0.32478198, -0.08071672, -0.28913388, 0.8968853)
 bones/18/position = Vector3(5.259649, 7.570201, -0.7133017)
 bones/18/rotation = Quaternion(0.2782055, -0.56508857, 0.6500782, -0.4250589)
 bones/19/position = Vector3(2.8736162, 1.4981885, 5.214905)
@@ -177,7 +184,8 @@ bones/21/position = Vector3(-2.3859363, 1.2347426, 5.133514)
 bones/21/rotation = Quaternion(0.5590067, 0.05315999, 0.8267279, 0.03473362)
 
 [node name="Cube_001" parent="Body/Armature/Skeleton3D" index="0"]
-material_override = SubResource("StandardMaterial3D_o6mup")
+surface_material_override/0 = SubResource("StandardMaterial3D_olmvi")
+surface_material_override/1 = SubResource("StandardMaterial3D_un2t0")
 
 [node name="HitFX" parent="." index="8" instance=ExtResource("4_lbav0")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
