@@ -66,7 +66,7 @@ public partial class NpcVillager : CharacterBody3D
 	public void InitializeVillager()
 	{
 		// Get reference to relevant nodes.
-		_player = this.GetParent().GetNode<Player3d>("Player_3d");
+		_player = this.GetParent().GetParent().GetParent().GetNode<Player3d>("Player_3d");
 		_questPrompt = GetNode<Label3D>("QuestPrompt");
 		_dialogueBox = _player.GetNode<Label>("UI/Dialogue/DialogueBox");
 		_dialogue = _player.GetNode<Control>("UI/Dialogue");
@@ -80,10 +80,10 @@ public partial class NpcVillager : CharacterBody3D
 		_wanderRange = GetNode<CsgSphere3D>("Range").Radius;
 		GetNode<CsgSphere3D>("Range").QueueFree();
 		if (_object == "None")
-        {
-           _navigationAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
+		{
+		   _navigationAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
 			ChooseNewWander();
-        }
+		}
 		_questPrompt.Text = InitialDialogue;
 
 		// Make sure to not await during _Ready.
@@ -124,9 +124,9 @@ public partial class NpcVillager : CharacterBody3D
 		if (_object != "None")
 		{
 			if (_player._lastSeen != this)
-            {
-                _questPrompt.Visible = false;
-            }
+			{
+				_questPrompt.Visible = false;
+			}
 			return;
 		}
 		// Get the distance between the player and AI
@@ -199,9 +199,9 @@ public partial class NpcVillager : CharacterBody3D
 		// Add safe velocity and move the AI
 		Velocity = velocity;
 		if (!IsOnFloor())
-        {
-            Velocity += new Vector3(0f,-50f,0f) * (float)delta;
-        }
+		{
+			Velocity += new Vector3(0f,-50f,0f) * (float)delta;
+		}
 		
 		MoveAndSlide();
 	}
@@ -225,35 +225,35 @@ public partial class NpcVillager : CharacterBody3D
 	}
 
 	public void EndDialouge()
-    {
+	{
 		if (Name == "Richard")
-        {
-            _questPrompt.Text = WaitingDialogue;
+		{
+			_questPrompt.Text = WaitingDialogue;
 			_player._originalDialouge = WaitingDialogue;
 			_hasTalked = true;
 			_questInProgress = true; 
 			GetNode<tutorialArea>("TutorialArea").Tutorial(_player, "Use [WASD] To Move", 5);
-        }
+		}
 		_player._villager = null;
 		_dialogue.Visible = false;
 		_dialougeIndex = 0;
 		_currentDialouge = "Initial";
 		Input.MouseMode = Input.MouseModeEnum.Captured;  
-    }
+	}
 
 	public void Accepted()
 	{
 		if (_object != "None")
-        {
-            ObjectActivated = true;
-        }
-        else
-        {
+		{
+			ObjectActivated = true;
+		}
+		else
+		{
 			_player.GetQuest(QuestTitle, QuestGoal, NPCName);
 			if (Name == "Lukas")
-            {
-                _player.GetParent<NewWorld>().ToggleIcon(_player.GetParent().GetNode<Node3D>("MonsterHolder"), "BrittleShrine", true);
-            }
+			{
+				_player.GetParent<NewWorld>().ToggleIcon(_player.GetParent().GetNode<Node3D>("MonsterHolder"), "BrittleShrine", true);
+			}
 			_dialougeIndex = 0;
 			_currentDialouge = "Accepted";
 			_hasTalked = true;
@@ -264,26 +264,26 @@ public partial class NpcVillager : CharacterBody3D
 			_dialogue.GetNode<Button>("Continue").Visible = true;
 			_dialogue.GetNode<Button>("AcceptButton").Visible = false;
 			_dialogue.GetNode<Button>("IgnoreButton").Visible = false;   
-        }
+		}
 	}
 
 	public void Ignored()
 	{
 		if (_object != "None")
-        {
+		{
 			
-            EndDialouge();
-        }
-        else
-        {
-           	_dialougeIndex = 0;
+			EndDialouge();
+		}
+		else
+		{
+		   	_dialougeIndex = 0;
 			_currentDialouge = "Ignored";
 			_dialogueBox.Text = IgnoredDialogue[_dialougeIndex];
 			
 			_dialogue.GetNode<Button>("Continue").Visible = true;
 			_dialogue.GetNode<Button>("AcceptButton").Visible = false;
 			_dialogue.GetNode<Button>("IgnoreButton").Visible = false; 
-        }
+		}
 	}
 
 	public void Continue()
@@ -304,31 +304,31 @@ public partial class NpcVillager : CharacterBody3D
 				_dialogueBox.Text = AcceptedDialogue[_dialougeIndex];
 			}
 			else if (_currentDialouge == "Done")
-            {
+			{
 				_dialougeIndex += 1;
 				_dialogueBox.Text = DoneDialogue[_dialougeIndex];
-            }
+			}
 			else if (_currentDialouge == "Ignored")
-            {
+			{
 				_dialougeIndex += 1;
 				_dialogueBox.Text = IgnoredDialogue[_dialougeIndex];
-            }
+			}
 		}
 		else
 		{
 			if (_currentDialouge == "Done")
-            {
+			{
 				_questInProgress = false;
 				_hasTalked = true;
 				_player.RemoveQuest(NPCName);
-            }
+			}
 			else if (_currentDialouge == "Quest" && AcceptedDialogue.Count < 1)
-            {
-                _hasTalked = true;
+			{
+				_hasTalked = true;
 				_questInProgress = true;
 				_questPrompt.Text = WaitingDialogue;
 				_player._originalDialouge = WaitingDialogue;
-            }
+			}
 			EndDialouge();
 		}
 		CheckDialougeIndex();
@@ -337,7 +337,7 @@ public partial class NpcVillager : CharacterBody3D
 	public void Talk()
 	{
 		if (Name != "Richard")
-        {
+		{
 			_dialogue.GetNode<Button>("AcceptButton").Text = "Accept";
 			_dialogue.GetNode<Button>("IgnoreButton").Text = "Ignore";
 		}
