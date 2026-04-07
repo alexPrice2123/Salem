@@ -53,6 +53,10 @@ GoalArea=""
 PlayerHurtbox=""
 BrittleShrine=""
 
+[gui]
+
+theme/custom_font="uid://ca4dsvadgnas2"
+
 [input]
 
 dash={
