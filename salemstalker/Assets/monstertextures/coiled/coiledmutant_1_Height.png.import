@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0v168pudixd8"
-path.s3tc="res://.godot/imported/vine_tangler_Base_color.png-7de0be4679c994bac5d072f312df9e2c.s3tc.ctex"
-path.etc2="res://.godot/imported/vine_tangler_Base_color.png-7de0be4679c994bac5d072f312df9e2c.etc2.ctex"
+uid="uid://bllsorsttgo4b"
+path.s3tc="res://.godot/imported/coiledmutant_1_Height.png-b9a119789a7d54254f923d23c0e267ee.s3tc.ctex"
+path.etc2="res://.godot/imported/coiledmutant_1_Height.png-b9a119789a7d54254f923d23c0e267ee.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/monstertextures/vinetangler/vine_tangler_Base_color.png"
-dest_files=["res://.godot/imported/vine_tangler_Base_color.png-7de0be4679c994bac5d072f312df9e2c.s3tc.ctex", "res://.godot/imported/vine_tangler_Base_color.png-7de0be4679c994bac5d072f312df9e2c.etc2.ctex"]
+source_file="res://Assets/monstertextures/coiled/coiledmutant_1_Height.png"
+dest_files=["res://.godot/imported/coiledmutant_1_Height.png-b9a119789a7d54254f923d23c0e267ee.s3tc.ctex", "res://.godot/imported/coiledmutant_1_Height.png-b9a119789a7d54254f923d23c0e267ee.etc2.ctex"]
 
 [params]
 
