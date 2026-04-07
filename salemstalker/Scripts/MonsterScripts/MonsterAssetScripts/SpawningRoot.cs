@@ -13,7 +13,7 @@ public partial class SpawningRoot : Node3D
 	{
 	}
 
-	public async void SpawnMonster(PackedScene monst)
+	public async void SpawnMonster(PackedScene monst, theCoiledOne snake)
     {
 		await ToSignal(GetTree().CreateTimer(1), "timeout");
 		CharacterBody3D monsterInstance = monst.Instantiate<CharacterBody3D>();
@@ -31,6 +31,7 @@ public partial class SpawningRoot : Node3D
 				monster.SpawnRange = 250;
 				monster._currentSpawnRange = 250;
 				monster._startPos = GlobalPosition;
+				monster._snake = snake;
 			}  
         }
 		QueueFree();

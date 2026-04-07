@@ -44,6 +44,7 @@ public partial class vineTangler : Monster3d
 		if (_health <= 0)
 		{
 			_player.MonsterKilled("vineTangler", Biome);
+			if (_snake != null){_snake._vinetanglerLeft++;}
 			if (Debug == true)
             {
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }

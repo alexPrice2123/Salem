@@ -1,22 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dg47kfe7ur4gx"]
+[gd_scene load_steps=3 format=3 uid="uid://dg47kfe7ur4gx"]
 
-[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="1_nfkcw"]
 [ext_resource type="Script" uid="uid://m6vxo2o31g1i" path="res://Scripts/MonsterScripts/MonsterAssetScripts/SpawningRoot.cs" id="1_xgu83"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgu83"]
-albedo_texture = ExtResource("1_nfkcw")
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_s7fxb"]
+[ext_resource type="PackedScene" uid="uid://xaltre4p7bqp" path="res://Assets/3D/plants/egg.blend" id="2_xgu83"]
 
 [node name="SpawningRoot" type="Node3D"]
 script = ExtResource("1_xgu83")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6609992, 0)
-material_override = SubResource("StandardMaterial3D_xgu83")
-mesh = SubResource("CapsuleMesh_s7fxb")
+[node name="egg" parent="." instance=ExtResource("2_xgu83")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.022172332, 0)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.8528543, 0, 0, 0, 0.43804613, 0, 0, 0, 2.9587603, 0, -0.2748633, 0)
-material_override = SubResource("StandardMaterial3D_xgu83")
-mesh = SubResource("CapsuleMesh_s7fxb")
+[node name="Cube" parent="egg" index="0"]
+transform = Transform3D(0.011853242, -0.092299074, 0.008237737, 0.09241684, 0.0123831425, 0.0057678013, -0.006790463, 0.007417373, 0.09287818, 0, 0, 0)
+
+[node name="Cube_001" parent="egg" index="1"]
+transform = Transform3D(-0.0047582523, 0.055068295, -0.07531483, 0.09301799, 0.008656127, 0.00045243476, 0.0072451546, -0.0749669, -0.05527163, 0, 0, 0)
+
+[node name="Cube_002" parent="egg" index="2"]
+transform = Transform3D(-0.0074006347, 0.046686124, 0.080579884, 0.092546456, 0.0127016, 0.0011406603, -0.010385677, 0.07991593, -0.04725529, 0, 0, 0)
+
+[editable path="egg"]

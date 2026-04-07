@@ -39,6 +39,7 @@ public partial class underBrush : Monster3d
 		if (_health <= 0)
 		{
 			_player.MonsterKilled("underBrush", Biome);
+			if (_snake != null){_snake._underbrushLeft++;}
 			if (Debug == true)
 			{
 				if (GetParent().GetParent() is DebugHut dh) { dh._shouldSpawn = true; }
