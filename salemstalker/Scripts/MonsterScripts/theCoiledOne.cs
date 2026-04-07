@@ -8,9 +8,15 @@ public partial class theCoiledOne : Monster3d
 	private int _resinCount = 0;
 	private MeshInstance3D _roots;
 	public float _currentDamage = 0;
-	public int _underbrushSpawned = 0;
-	public int _vinetanglerSpanwed = 0;
-	public int _revenantSpawned = 0; 
+	public int _underbrushLeft = 2;
+	public int _vinetanglerLeft = 1;
+	public int _revenantLeft = 1; 
+	[Export] public PackedScene _spawnRootScene { get; set; }
+	[Export] public PackedScene _vineTangler { get; set; }
+	[Export] public PackedScene _underBrush { get; set; }
+	[Export] public PackedScene _revanant { get; set; }
+	private CsgSphere3D _rangeObj;
+	private int _spawnCount = 0;
 
 	public override void _Ready()
 	{
@@ -50,6 +56,8 @@ public partial class theCoiledOne : Monster3d
 		SpawnResin();
 		_roots = GetNode<MeshInstance3D>("Roots");
 		_roots.Visible = true;
+		_rangeObj = GetNode<CsgSphere3D>("Range");
+		_rangeObj.Visible = false;
 	}
 
 	public async void ResinBroken()
@@ -79,9 +87,41 @@ public partial class theCoiledOne : Monster3d
         }
     }
 
+	private void SpawnEnemy()
+    {
+        Node3D rootInstance = _spawnRootScene.Instantiate<Node3D>();
+		GetParent().AddChild(rootInstance);
+		float maxRange = _rangeObj.Radius;
+		Vector3 centerPos = _rangeObj.GlobalPosition;
+		rootInstance.GlobalPosition = centerPos + new Vector3(_rng.RandfRange(-maxRange, maxRange), 0, _rng.RandfRange(-maxRange, maxRange));
+		if (rootInstance is SpawningRoot sr)
+        {
+			PackedScene monsterToSpawn = null;
+			if (_vinetanglerLeft != 0 && _revenantLeft != 0)
+            {
+                if (_rng.RandiRange(1,2) == 1)
+                {
+                    monsterToSpawn = _vineTangler;
+					_vinetanglerLeft--;
+                }
+				else{monsterToSpawn = _revanant; _revenantLeft--;}
+            }
+			else if (_vinetanglerLeft > _revenantLeft){monsterToSpawn = _vineTangler; _vinetanglerLeft--;}
+			else if (_vinetanglerLeft < _revenantLeft){monsterToSpawn = _revanant; _revenantLeft--;}
+			else if (_underbrushLeft != 0){monsterToSpawn = _underBrush; _underbrushLeft--;}
+			if (monsterToSpawn != null){sr.SpawnMonster(monsterToSpawn);}else{sr.QueueFree();}
+        }
+    }
+
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
+		_spawnCount++;
+		if (_spawnCount > 200)
+        {
+            _spawnCount = _rng.RandiRange(-200, 25);
+			SpawnEnemy();
+        }
 		if (_roots != null)
         {
             if (!_roots.Visible && _currentDamage >= 50f)
