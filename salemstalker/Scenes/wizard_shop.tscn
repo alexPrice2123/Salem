@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://uarns2ay6ypi"]
+
+[ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_c8wis"]
+[ext_resource type="Script" uid="uid://bydg3x2pcusxt" path="res://Scripts/Object.cs" id="1_n7hws"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q663b"]
+size = Vector3(1.2, 1.1, 1.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s5cxu"]
+size = Vector3(1.2, 1.1, 1.2)
+
+[node name="Cauldron" type="CharacterBody3D" groups=["Interactable"]]
+collision_layer = 2
+script = ExtResource("1_n7hws")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_q663b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_s5cxu")
+skeleton = NodePath("../..")
+
+[node name="Title" type="Label3D" parent="."]
+transform = Transform3D(-0.999347, 0, 0.036138, 0, 1, 0, -0.036138, 0, -0.999347, 0, 0.9658177, 0)
+visible = false
+pixel_size = 0.01
+billboard = 1
+no_depth_test = true
+texture_filter = 0
+text = "E To Open Shop"
+font = ExtResource("1_c8wis")
+font_size = 25
+outline_size = 8
+autowrap_mode = 3
+width = 320.0

@@ -88,6 +88,8 @@ public partial class Ui : Control
 		_loadingUI.Visible = true;
 		_loadingMaterial = _loadingUI.Material as ShaderMaterial;
 		_areaName = GetNode<Label>("Area");
+
+		// -------- IF someon sees this and has an idea on how to make it less terrible tel Mace the ui person PLEAAASE
 		_upgrades.Add("damage1", 2);
 		_upgrades.Add("damage2", 4.5f);
 		_upgrades.Add("damage3", 7.5f);
@@ -153,7 +155,7 @@ public partial class Ui : Control
 			//_shopOption4.Visible = true;
 			_shopOption1.Visible = true;
 		}
-		else if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 1)
+		else
 		{
 			GetNode<Label>("BlacksmithShop/ShopOption1/Label").Text = "Longsword";
 			GetNode<Label>("BlacksmithShop/ShopOption2/Label").Text = "Greatsword";
@@ -161,20 +163,6 @@ public partial class Ui : Control
 			GetNode<Label>("BlacksmithShop/ShopOption4/Label").Text = "Halberd";
 			//_shopOption4.Visible = true;
 			_shopOption1.Visible = false;
-		}
-		else if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 2)
-		{
-			GetNode<Label>("BlacksmithShop/ShopOption1/Label").Text = "Flintlock";
-			GetNode<Label>("BlacksmithShop/ShopOption2/Label").Text = "Stake Launcher";
-			GetNode<Label>("BlacksmithShop/ShopOption3/Label").Text = "Throwables";
-			_shopOption4.Visible = false;
-		}
-		else
-		{
-			GetNode<Label>("BlacksmithShop/ShopOption1").Text = "Shield";
-			GetNode<Label>("BlacksmithShop/ShopOption2").Text = "Chain Hook";
-			GetNode<Label>("BlacksmithShop/ShopOption3").Text = "Holy Relic";
-			_shopOption4.Visible = false;
 		}
 		if (_loaded == true) //Waits 1 second for the game to load before the ui tweens
 		{
@@ -202,34 +190,26 @@ public partial class Ui : Control
 	// --- Blacksmith Shop ---
 	private void _on_shop_option1_button_up()
 	{
-		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
-		{ PlayShopAnim("shortsword"); _shopSelection = "Shortsword"; _player.SwitchPrimaryWeapon(_shopSelection); }
-		/*if (_shopTypeSelection.Selected == 1) { PlayShopAnim("Longsword"); }
-		if (_shopTypeSelection.Selected == 2) { PlayShopAnim("Flintlock"); }
-		if (_shopTypeSelection.Selected == 3) { PlayShopAnim("Shield"); }*/
+		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("shortsword"); _shopSelection = "Shortsword"; _player.SwitchPrimaryWeapon(_shopSelection); }
+		//if (_shopTypeSelection.Selected == 1) { PlayShopAnim("Longsword"); }
 	}
-	private void _on_shop_option2_button_up()
+	/*private void _on_shop_option2_button_up()
 	{
 		//if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
 		//{ PlayShopAnim("falchion"); _shopSelection = "Falchion"; _player.SwitchPrimaryWeapon(_shopSelection); }
-		/*if (_shopTypeSelection.Selected == 1) { PlayShopAnim("Greatsword"); }
-		if (_shopTypeSelection.Selected == 2) { PlayShopAnim("Stake Launcher"); }
-		if (_shopTypeSelection.Selected == 3) { PlayShopAnim("Chain Hook"); }*/ // We only have the first 2 one-handed weapons so they're the only ones that aren't commented out
+		if (_shopTypeSelection.Selected == 1) { PlayShopAnim("Greatsword"); }
 		
 	}
-	/*private void _on_shop_option3_button_up() // We might not have the ability to upgrade secondary weapons so we might not have any _shopOption2 or 3
+	private void _on_shop_option3_button_up() // We might not have the ability to upgrade secondary weapons so we might not have any _shopOption2 or 3
 	{
 		if (_shopTypeSelection.Selected == 0) { PlayShopAnim(""); }
 		if (_shopTypeSelection.Selected == 1) { PlayShopAnim(""); }
-		if (_shopTypeSelection.Selected == 2) { PlayShopAnim(""); }
-	}*/
+	}
 	private void _on_shop_option4_button_up()
 	{
-		//if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
-		//{ PlayShopAnim("dagger"); _shopSelection = "Dagger"; _player.SwitchPrimaryWeapon(_shopSelection); }
-		//if (_shopTypeSelection.Selected == 1) { PlayShopAnim(""); }
-		//if (_shopTypeSelection.Selected == 2) { PlayShopAnim(""); }
-	}
+		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("dagger"); _shopSelection = "Dagger"; _player.SwitchPrimaryWeapon(_shopSelection); }
+		if (_shopTypeSelection.Selected == 1) { PlayShopAnim(""); }
+	}*/ //sometimes I find myself wondering why i am seeing the world through my eyes and not someone elses. Is it just a coincidence due to something like reincarnation or am i genuinely the main character or what
 	private void _on_upgrade_button_up()
 	{
 		//ColorRect _desc = GetNode<ColorRect>("BlacksmithShop/View/WeaponDesc"); <--- For later
@@ -472,7 +452,7 @@ public partial class Ui : Control
 			_prevSelection = item;
 			GetNode<Node3D>("BlacksmithShop/View/PortContainer/Port/ShopPreviewWorld").GetNode<Node3D>(item).GetNode<AnimationPlayer>("PreviewAnim").Play(item.Substr(0, 3).ToLower() + "PreviewAnim");
 		}
-	}
+	} 
 
 	/*private async void _on_slot_4_button_up()
 	{
@@ -553,9 +533,14 @@ public partial class Ui : Control
 		_resourceInv.Visible = false;
 		_inv.Visible = true;
 	}
-	private void _on_shop_back_button_up()
+	private void _on_smithshop_back_button_up()
 	{
 		GetNode<Control>("BlacksmithShop").Visible = false;
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
-}
+	private void _on_wizshop_back_button_up()
+	{
+		GetNode<Control>("WizardShop").Visible = false;
+		Input.MouseMode = Input.MouseModeEnum.Captured;
+	}
+}// some day i will rule the world
