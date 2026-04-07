@@ -10,7 +10,6 @@ public partial class titleScreen : Node3D
 	private TextureButton _creditButton;
 	private TextureButton _quitButton;
 	private TextureButton _backButton;
-	private Vector2 _baseButtonScale;
 	private string _nextScene;
 	public Godot.Collections.Dictionary<string,Variant> data = new Godot.Collections.Dictionary<string,Variant>();
 	public string _savePath = "user://saveData.json";
@@ -23,7 +22,6 @@ public partial class titleScreen : Node3D
 		_creditButton = GetNode<TextureButton>("Buttons/Credits");
 		_quitButton = GetNode<TextureButton>("Buttons/Quit");
 		_backButton = GetNode<TextureButton>("Credits/Back");
-		_baseButtonScale = _playButton.Scale;
 		if ( !FileAccess.FileExists(_savePath) )
 		{
 			GD.Print("Save file missing");
@@ -39,27 +37,6 @@ public partial class titleScreen : Node3D
 		}else{_nextScene = "res://Scenes/cutscene_1.tscn";}
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	//public override void _Process(double delta)
-	//{
-	//	if (_playButton.IsHovered() && _playButton.Scale < _baseButtonScale * new Vector2(1.1f, 1.1f)){ScaleButton(_playButton, true);}
-	//	else if (!_playButton.IsHovered() && _playButton.Scale > _baseButtonScale){ScaleButton(_playButton, false);}
-	//
-	//	if (_creditButton.IsHovered() && _creditButton.Scale < _baseButtonScale * new Vector2(1.1f, 1.1f)){ScaleButton(_creditButton, true);}
-	//	else if (!_creditButton.IsHovered() && _creditButton.Scale > _baseButtonScale){ScaleButton(_creditButton, false);}
-
-	//	if (_quitButton.IsHovered() && _quitButton.Scale < _baseButtonScale * new Vector2(1.1f, 1.1f)){ScaleButton(_quitButton, true);}
-	//	else if (!_quitButton.IsHovered() && _quitButton.Scale > _baseButtonScale){ScaleButton(_quitButton, false);}
-
-	//	if (_backButton.IsHovered() && _backButton.Scale < _baseButtonScale * new Vector2(1.1f, 1.1f)){ScaleButton(_backButton, true);}
-	//	else if (!_backButton.IsHovered() && _backButton.Scale > _baseButtonScale){ScaleButton(_backButton, false);}
-	//}
-
-	//private void ScaleButton(TextureButton button, bool sign)
-	//{
-	//    if (sign){button.Scale += new Vector2(0.01f,0.01f);}
-	//    else{button.Scale -= new Vector2(0.01f,0.01f);}
-	//}
 
 	private async void _on_play_button_up()
 	{
