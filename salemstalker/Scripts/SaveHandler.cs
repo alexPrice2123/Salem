@@ -107,7 +107,9 @@ public partial class SaveHandler : GodotObject
 
     public static bool checkCompatibility(string savePath)
     {
-        if (LoadFromFile(savePath)["version"].Equals("0.5.1")){GD.Print("Save is up to date!"); return(true);}
+        Godot.Collections.Dictionary<string,Variant> data = LoadFromFile(savePath);
+        if(!data.ContainsKey("version")) {GD.Print("Save is not up to date!"); return(false);}
+        if (((string)data["version"]).Equals("0.5.1")){GD.Print("Save is up to date!"); return(true);}
         else{GD.Print("Save is not up to date!"); return(false);}
     }
 }

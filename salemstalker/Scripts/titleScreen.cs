@@ -29,6 +29,7 @@ public partial class titleScreen : Node3D
 			GD.Print("Save file created");
 		}
 		else{ GD.Print("Save file exists"); }
+        if ( !SaveHandler.checkCompatibility(_savePath) ){GetNode<AnimatedSprite2D>("Buttons/FunnyReset").Visible = true ;}
 		data = SaveHandler.LoadFromFile(_savePath);
 		GD.Print("Save file loaded");
 		if ((bool)data["tutorialComplete"] == true)
@@ -74,6 +75,7 @@ public partial class titleScreen : Node3D
 	private void _on_reset_save_button_pressed()
 	{
 		SaveHandler.createSaveFile("user://saveData.json");
+        GetNode<AnimatedSprite2D>("Buttons/FunnyReset").Visible = false ;
 	}
 	
 }
