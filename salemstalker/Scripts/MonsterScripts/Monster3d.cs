@@ -165,6 +165,7 @@ public partial class Monster3d : CharacterBody3D
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		GD.Print(damage);
 		_health -= damage;
+		if (this is theCoiledOne tco){tco._currentDamage += damage;}
 		_hitFX.Visible = false;
 		_body.Visible = true;
 	}
