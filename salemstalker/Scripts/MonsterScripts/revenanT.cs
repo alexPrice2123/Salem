@@ -8,7 +8,7 @@ public partial class revenanT : Monster3d
 	private float _distance;
 	private int _attackAnimSwitch = 1;
 	private int _randomBody; 
-	private int _randomAnim; 
+	private int _randomAnim;
 	public async override void _Ready()
 	{
 		// -- Variables -- //
@@ -59,6 +59,7 @@ public partial class revenanT : Monster3d
 		if (_health <= 0)
 		{
 			_player.MonsterKilled("revenanT", Biome);
+			if (_snake != null){_snake._revenantLeft++;}
 			if (Debug == true)
 			{
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }

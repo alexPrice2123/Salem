@@ -86,6 +86,7 @@ public partial class Monster3d : CharacterBody3D
 	protected bool _looking = false;
 	protected float _lookingTimer = 0f;
 	protected bool _playerInWalkRange = false;
+	public theCoiledOne _snake = null;
 
 	// --- Cached/precomputed state to avoid per-frame allocations ---
 	private bool _cachedInVillage = false;

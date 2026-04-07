@@ -17,6 +17,7 @@ public partial class theCoiledOne : Monster3d
 	[Export] public PackedScene _revanant { get; set; }
 	private CsgSphere3D _rangeObj;
 	private int _spawnCount = 0;
+	private string _animState = "Idle";
 
 	public override void _Ready()
 	{
@@ -87,7 +88,7 @@ public partial class theCoiledOne : Monster3d
         }
     }
 
-	private void SpawnEnemy()
+	private async void SpawnEnemy()
     {
         Node3D rootInstance = _spawnRootScene.Instantiate<Node3D>();
 		GetParent().AddChild(rootInstance);
@@ -109,8 +110,10 @@ public partial class theCoiledOne : Monster3d
 			else if (_vinetanglerLeft > _revenantLeft){monsterToSpawn = _vineTangler; _vinetanglerLeft--;}
 			else if (_vinetanglerLeft < _revenantLeft){monsterToSpawn = _revanant; _revenantLeft--;}
 			else if (_underbrushLeft != 0){monsterToSpawn = _underBrush; _underbrushLeft--;}
-			if (monsterToSpawn != null){sr.SpawnMonster(monsterToSpawn);}else{sr.QueueFree();}
+			if (monsterToSpawn != null){sr.SpawnMonster(monsterToSpawn, this); _animState = "Summon";}else{sr.QueueFree();}
         }
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		_animState = "Idle";
     }
 
 	public override void _Process(double delta)

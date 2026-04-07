@@ -3,7 +3,6 @@ using System;
 public partial class Resin : Monster3d
 {
 	public bool _dead = true;
-	private theCoiledOne _snake;
 
 	public override void _Ready()
 	{
