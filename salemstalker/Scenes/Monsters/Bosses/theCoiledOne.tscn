@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=4 uid="uid://dcui8f1kbsutw"]
+[gd_scene load_steps=24 format=4 uid="uid://dcui8f1kbsutw"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_tj832"]
 [ext_resource type="Script" uid="uid://dxtkbna84vfji" path="res://Scripts/MonsterScripts/theCoiledOne.cs" id="2_vypes"]
 [ext_resource type="PackedScene" uid="uid://drddqq6dgqbxd" path="res://Assets/3D/charatermodel/coiledmutant.blend" id="4_lbav0"]
 [ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="4_vypes"]
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="5_olmvi"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="11_vv7in"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7ma6"]
@@ -44,74 +45,19 @@ scale_curve = SubResource("CurveTexture_ch86k")
 [sub_resource type="SphereShape3D" id="SphereShape3D_lbav0"]
 radius = 3.6600273
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_00oym"]
-animation = &"attack1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v7ma6"]
-animation = &"attack2"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ci7oq"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ht62m"]
-animation = &"run"
+animation = &"ArmatureAction"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ng0vc"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c1rs2"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "velocity.length() > 0.2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ci7oq"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "velocity.length() <= 0.2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m7bjp"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "_attackAnim == true && _attackAnimSwitch == 1"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_00oym"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "_attackAnim == false"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7ma6"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "_attackAnim == true && _attackAnimSwitch == 1"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ch86k"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "_attackAnim == true && _attackAnimSwitch == 2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p1kej"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "_attackAnim == false"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ex21e"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "_attackAnim == true && _attackAnimSwitch == 2"
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nsxmw"]
 states/End/position = Vector2(882.5, 85.9062)
 states/Start/position = Vector2(253.5, 85.75)
-states/attack/node = SubResource("AnimationNodeAnimation_00oym")
-states/attack/position = Vector2(465.35925, 236.25)
-states/attack2/node = SubResource("AnimationNodeAnimation_v7ma6")
-states/attack2/position = Vector2(600, 238.0625)
 states/idle/node = SubResource("AnimationNodeAnimation_ci7oq")
 states/idle/position = Vector2(467, 86.0625)
-states/walking/node = SubResource("AnimationNodeAnimation_ht62m")
-states/walking/position = Vector2(592.562, 85.890594)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_m7bjp"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_00oym"), "walking", "attack", SubResource("AnimationNodeStateMachineTransition_v7ma6"), "walking", "attack2", SubResource("AnimationNodeStateMachineTransition_ch86k"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_p1kej"), "idle", "attack2", SubResource("AnimationNodeStateMachineTransition_ex21e")]
-graph_offset = Vector2(39, -85)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc")]
+graph_offset = Vector2(121, 79)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vypes"]
 albedo_texture = ExtResource("4_vypes")
@@ -153,6 +99,9 @@ shadow_mesh = SubResource("ArrayMesh_lwo5c")
 [sub_resource type="SphereShape3D" id="SphereShape3D_vypes"]
 radius = 3.1625247
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6mup"]
+albedo_texture = ExtResource("5_olmvi")
+
 [node name="theCoiledOne" instance=ExtResource("1_tj832")]
 script = ExtResource("2_vypes")
 
@@ -170,11 +119,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46384525, 0)
 shape = SubResource("SphereShape3D_lbav0")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+root_node = NodePath("../Body")
 tree_root = SubResource("AnimationNodeStateMachine_nsxmw")
 advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../Body/AnimationPlayer")
 
 [node name="Roots" type="MeshInstance3D" parent="." index="4"]
 transform = Transform3D(2.9371042, 0, 0, 0, 1.4079988, 0, 0, 0, 1.305097, -0.32045293, -1.753598, 0.66829705)
+visible = false
 material_override = SubResource("StandardMaterial3D_vypes")
 mesh = SubResource("ArrayMesh_l8sft")
 skeleton = NodePath("")
@@ -189,14 +141,36 @@ shape = SubResource("SphereShape3D_vypes")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0950214, 0)
 
 [node name="Body" parent="." index="7" instance=ExtResource("4_lbav0")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
-[node name="Cube_001" parent="Body" index="0"]
-material_override = SubResource("StandardMaterial3D_vypes")
+[node name="Skeleton3D" parent="Body/Armature" index="0"]
+bones/2/rotation = Quaternion(0.38477787, 0.011219861, 0.013049711, 0.92284876)
+bones/3/rotation = Quaternion(0.074712686, -0.0038977796, -0.0019772365, 0.99719554)
+bones/4/rotation = Quaternion(0.4530525, -0.0040460397, 0.011167462, 0.8914048)
+bones/5/rotation = Quaternion(-0.05867656, 0.057308123, -0.7768832, 0.6242798)
+bones/6/rotation = Quaternion(0.6240691, -0.35987115, -0.08337493, 0.6885341)
+bones/7/rotation = Quaternion(0.41019854, 0.080612384, 0.3026551, 0.85652715)
+bones/9/rotation = Quaternion(0.043664902, -0.052306462, -0.033065382, 0.997128)
+bones/10/rotation = Quaternion(-0.24741046, 0.08123349, 0.13738061, 0.95567554)
+bones/11/rotation = Quaternion(-0.6155084, 0.044116918, -0.08563157, 0.78222144)
+bones/13/rotation = Quaternion(0.44333255, -0.058494005, -0.07653425, 0.8911662)
+bones/15/rotation = Quaternion(-0.10584751, -0.096973844, 0.78224456, 0.60620624)
+bones/16/rotation = Quaternion(0.7300237, 0.3320592, 0.073873214, 0.59274364)
+bones/17/rotation = Quaternion(0.25196588, -0.084380165, -0.2243101, 0.9375918)
+bones/18/rotation = Quaternion(0.2782055, -0.56508857, 0.6500782, -0.4250589)
+bones/19/position = Vector3(2.8736162, 1.4981885, 5.214905)
+bones/19/rotation = Quaternion(0.34567988, -0.13938004, -0.9278143, 0.015468091)
+bones/21/position = Vector3(-2.3859363, 1.2347426, 5.133514)
+bones/21/rotation = Quaternion(0.5590067, 0.05315999, 0.8267279, 0.03473362)
+
+[node name="Cube_001" parent="Body/Armature/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_o6mup")
 
 [node name="HitFX" parent="." index="8" instance=ExtResource("4_lbav0")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 visible = false
 
-[node name="Cube_001" parent="HitFX" index="0"]
+[node name="Cube_001" parent="HitFX/Armature/Skeleton3D" index="0"]
 material_override = ExtResource("11_vv7in")
 
 [node name="Attackbox" parent="." index="9"]
