@@ -7,6 +7,7 @@ using System.Linq; // For using Dictionary.
 // Defines the player class, inheriting from Godot's 3D physics-based character node.
 public partial class Player3d : CharacterBody3D
 {
+
 	// --- CONSTANTS ---
 	public const float Speed = 3.5f;                 // Base player movement speed (units/second)
 	public const float RunSpeed = 4.5f;              // Additional speed when running
@@ -99,7 +100,7 @@ public partial class Player3d : CharacterBody3D
 	public string _currentBiome = "Village";
 	public string _lastBiome = "Village";
 	private float _backSpeed = 0f;
-
+	public float time_true = 0f;
 	public int _swampMonstersKilled = 0;
 	public int _plainsMonstersKilled = 0;
 	public int _forestMonstersKilled = 0;
@@ -345,14 +346,14 @@ public partial class Player3d : CharacterBody3D
 		else if (Input.IsActionJustPressed("dash"))
 		{
 			// Check if dash cooldown is over and player has enough stamina
-			if (_dashVelocity <= 0.1f && _stamina >= 0.1f * _maxStamina)
-			{
+			if (_dashVelocity <= 0.1f && _stamina >= 0f)//0.1f * _maxStamina)
+			{ 
 				_dashVelocity = _fullDashValue; // Apply max dash speed
 				_stamina -= 20f; // Deduct stamina
 			}
-		}
-
-		// --- Run (Shift Key) ---
+		}   
+       
+		// --- Run (Shift Key) ---        
 		else if (@event is InputEventKey shiftKey && shiftKey.Keycode == Key.Shift)
 		{
 			_running = shiftKey.Pressed; // Set running state based on key press
@@ -815,8 +816,9 @@ public partial class Player3d : CharacterBody3D
 
 	// Handles the sword attack sequence, damage calculation, and combo logic.
 	private async void Swing() // To be truthful idk what im doing rn im just breaking stuff and hoping it works
+	// it broke stuff
 	{
-
+		//put a print in process() for _swing_buffer
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
 		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5 && _swing_buffered == false)
 		{
@@ -826,9 +828,19 @@ public partial class Player3d : CharacterBody3D
 			float tempHorSense = HorCamSense;
 			float tempVerSense = VerCamSense;
 			float swingTime = (float)_swordInst.GetMeta("swingSpeed");
-			if (Time.GetTicksMsec() - _lastHit > swingTime)
+			if (cooldown.TimeLeft > 0)
 			{
-				GD.Print("time ",Time.GetTicksMsec() - _lastHit," ",swingTime," ",swingTime * 1000 - 100);
+				//return;
+				//GD.Print("timeout_await"); 
+				//the longest this statement is true is always 9+1 maximum frames even at 30 tps (not 60 because fuck you) [this problem has been solved]
+				_swing_buffered = true;
+				GD.Print("cooldown",cooldown.TimeLeft);
+				time_true = 0;
+				await ToSignal(cooldown,"timeout");
+			}
+			if (true)//Time.GetTicksMsec() - _lastHit > swingTime)
+			{
+				GD.Print("time ",Time.GetTicksMsec() - _lastHit," ",swingTime);
 				if(_comboNum>2 || Time.GetTicksMsec() - _lastHit > swingTime * 1000 - 100)
 				
 				{
@@ -848,14 +860,7 @@ public partial class Player3d : CharacterBody3D
 				GD.Print("working?");
 				_comboNum = 1;
 			}
-			if (cooldown.TimeLeft > 0)
-			{
-				//return;
-				//GD.Print("timeout_await"); 
-				_swing_buffered = true;
-				GD.Print("cooldown",cooldown.TimeLeft);
-				await ToSignal(cooldown,"timeout");
-			}
+			
 			int tempcool = _comboNum;
 			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
 			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}

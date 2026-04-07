@@ -37,6 +37,7 @@ public partial class Monster3d : CharacterBody3D
 	public bool DebugShapes = false;
 	public bool Disabled = false;               // When true, monster stays idle and ignores everything
 	public bool Cutscene = false;
+	public bool IsObject = false;
 
 	// --- NODE REFERENCES ---
 	protected Player3d _player;
@@ -164,6 +165,7 @@ public partial class Monster3d : CharacterBody3D
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		GD.Print(damage);
 		_health -= damage;
+		if (this is theCoiledOne tco){tco._currentDamage += damage;}
 		_hitFX.Visible = false;
 		_body.Visible = true;
 	}
@@ -400,7 +402,7 @@ public partial class Monster3d : CharacterBody3D
 		Velocity = Velocity.Lerp(_targetVelocity, 4f * (float)delta);
 
 		if (Fleeing) { MoveAndSlide(); }
-		else if (_player._inv.Visible || (_stunned && !_attackException) || (_dashVelocity <= 1.01f && _dashAnim)) { _targetVelocity = Vector3.Zero; }
+		else if (_player._inv.Visible || (_stunned && !_attackException) || (_dashVelocity <= 1.01f && _dashAnim) || IsObject == true) { _targetVelocity = Vector3.Zero; }
 		else if (!Chaser && !_attackAnim) { MoveAndSlide(); }
 		else if (_justSpawned || MoveWhileAttack) { MoveAndSlide(); }
 		else if (!_attackAnim && _distanceSqr > AttackRangeSqr && _knockbackVelocity.LengthSquared() < 0.25f) { MoveAndSlide(); }

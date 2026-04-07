@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg47kfe7ur4gx"]
+
+[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="1_nfkcw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgu83"]
+albedo_texture = ExtResource("1_nfkcw")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_s7fxb"]
+
+[node name="SpawningRoot" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67989004, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_xgu83")
+mesh = SubResource("CapsuleMesh_s7fxb")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.8528543, 0, 0, 0, 0.43804613, 0, 0, 0, 2.9587603, 0, -0.9358625, 0)
+material_override = SubResource("StandardMaterial3D_xgu83")
+mesh = SubResource("CapsuleMesh_s7fxb")

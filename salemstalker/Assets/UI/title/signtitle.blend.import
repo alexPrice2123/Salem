@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dwwwv6qf6yrbg"
-path="res://.godot/imported/coiledmutant.blend-7e14f1642a36487dbbaed64e9212adb2.scn"
+uid="uid://ure6f0j6wfrm"
+path="res://.godot/imported/signtitle.blend-750c01f2bbe6f1214df66e2cd1975ec0.scn"
 
 [deps]
 
-source_file="res://Assets/3D/buildings/coiledmutant.blend"
-dest_files=["res://.godot/imported/coiledmutant.blend-7e14f1642a36487dbbaed64e9212adb2.scn"]
+source_file="res://Assets/UI/title/signtitle.blend"
+dest_files=["res://.godot/imported/signtitle.blend-750c01f2bbe6f1214df66e2cd1975ec0.scn"]
 
 [params]
 

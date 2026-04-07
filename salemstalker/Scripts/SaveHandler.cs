@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class SaveHandler : GodotObject
 {
@@ -25,10 +26,84 @@ public partial class SaveHandler : GodotObject
         else{GD.Print("File exists, reseting");}
         using FileAccess file = FileAccess.Open(savePath, FileAccess.ModeFlags.Write);
         string jsonData = Json.Stringify(new Godot.Collections.Dictionary<string, Variant>{
+            { "version", "0.5.1"},
             { "lastLocation", "intro" },
-            { "tutorialComplete", false}
+            { "tutorialComplete", false},
+            { "mainWeaponUnlocked", new Godot.Collections.Array<string>{
+                "shortSword","dagger","longSword" }
+            },
+            { "secondaryWeaponUnlocked", new Godot.Collections.Array<string>{
+                "stakeGun","flintlock","tomahawk" }
+            },
+            {"resourceInventory", new Godot.Collections.Dictionary<string, int>{
+                {"heartT1",0},
+                {"heartT2",0},
+                {"fleshT1",0},
+                {"fleshT2",0},
+                {"fangT1",0},
+                {"fangT2",0},
+                {"oozeT1",0},
+                {"oozeT2",0},
+                {"vesselT1",0},
+                {"vesselT2",0},
+                {"seedT1",0},
+                {"seedT2",0}
+                }
+            },
+            { "questList",new Godot.Collections.Dictionary<string, int>{
+                /* -- 0 : unaccepted, 
+                      1 : accepted with no progress,
+                      2 : in-progress, 
+                      3 : complete -- */
+                {"mary",0},
+                {"elizabeth",0},
+                {"dillon",0},
+                {"lukas",0},
+                {"samuel",0},
+                {"martha",0},
+                {"finn",0},
+                {"matthew1",0},
+                {"matthew2",0},
+                {"sophia",0},
+                {"mason",0},
+                {"donna",0},
+                {"balthasar",0},
+                {"clement",0},
+                {"gabriel",0},
+                {"priest",0},
+                {"frederick",0},
+                {"stranger",0},
+                }
+            },
+            {"shrineComplete",new Godot.Collections.Dictionary<string, bool>{
+                {"shrine1",false}
+                }
+            },
+            {"deathBagPos",new Vector3(0,0,0)},
+            {"deathBagCon", new Godot.Collections.Dictionary<string, int>{
+                {"heartT1",0},
+                {"heartT2",0},
+                {"fleshT1",0},
+                {"fleshT2",0},
+                {"fangT1",0},
+                {"fangT2",0},
+                {"oozeT1",0},
+                {"oozeT2",0},
+                {"vesselT1",0},
+                {"vesselT2",0},
+                {"seedT1",0},
+                {"seedT2",0}
+                }
+            }
+
         });
         file.StoreLine(jsonData);
         GD.Print("File set to defaults");
+    }
+
+    public static bool checkCompatibility(string savePath)
+    {
+        if (LoadFromFile(savePath)["version"].Equals("0.5.1")){GD.Print("Save is up to date!"); return(true);}
+        else{GD.Print("Save is not up to date!"); return(false);}
     }
 }
