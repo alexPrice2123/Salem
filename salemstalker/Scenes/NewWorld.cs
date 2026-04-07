@@ -19,6 +19,7 @@ public partial class NewWorld : Node3D
         else{ GD.Print("Save file exists/up-to-date"); }
         data = SaveHandler.LoadFromFile(_savePath);
         GD.Print("Save file loaded");
+        GD.Print((bool)data["tutorialComplete"] == true, " ohstuffsave");
         if ((bool)data["tutorialComplete"] == true)
         {
             GD.Print("tutorial complete, putting player at village");
