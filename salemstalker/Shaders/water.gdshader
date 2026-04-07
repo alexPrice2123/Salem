@@ -55,7 +55,7 @@ uniform sampler2D foamTexture: repeat_enable;
 uniform float foamScale: hint_range(1.0, 40, 1.0) = 25.0;
 uniform float foamScrollSpeed: hint_range(0.1, 1.0, 0.1) = 0.4;
 uniform float foamEdgeBias: hint_range(0.0, 1.0, 0.1) = 0.1;
-uniform float foamFallOffDistance: hint_range(0.0, 1.0, 0.1) = 0.4;
+uniform float foamFallOffDistance: hint_range(0.0, 1.0, 0.01) = 0.4;
 uniform float foamEdgeDistance: hint_range(0.0, 1.0, 0.1) = 0.2;
 const vec4 edgeFalloffColor = vec4(0.8,0.8,0.8,0.6);
 

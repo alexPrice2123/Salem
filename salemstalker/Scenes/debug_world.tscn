@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cvls06clf6bc5"]
 
-[ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Scenes/Player_3D.tscn" id="1_ostip"]
+[ext_resource type="PackedScene" uid="uid://dpliwvsva3hej" path="res://Assets/Player_3D.tscn" id="1_ostip"]
 [ext_resource type="Shader" uid="uid://bu36lcp8xftmo" path="res://Shaders/starrySky.gdshader" id="1_p5qse"]
 [ext_resource type="Material" uid="uid://cahiyym0yhafq" path="res://Assets/3D/buildings/planks.tres" id="2_kvufb"]
 [ext_resource type="PackedScene" uid="uid://d4ntgvke0mfh3" path="res://Scenes/DebugHut.tscn" id="3_kvufb"]

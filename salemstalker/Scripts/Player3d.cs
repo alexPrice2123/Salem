@@ -77,7 +77,7 @@ public partial class Player3d : CharacterBody3D
 	private float _minRange = 5f; 						// Min range for the lantern light
 	private bool _attackCooldown = false; 				// Flag: prevents attacking during a swing animation
 	public Color _lightColor; 							// Current color of the lantern light
-	private float _maxStamina = 100f; 					// Maximum player stamina
+	private float _maxStamina = 10000f; 					// Maximum player stamina
 	private float _stamina; 							// Current player stamina
 	private float _staminaGoal; 						// Lerp target for stamina (used for UI smooth transition)
 	private Vector3 _baseHeadPosition; 					// The head node's default local position
@@ -1340,20 +1340,20 @@ public partial class Player3d : CharacterBody3D
 	}
 
 	public async void StartCut(float watiTime)
-    {
-        await ToSignal(GetTree().CreateTimer(watiTime), "timeout");
+	{
+		await ToSignal(GetTree().CreateTimer(watiTime), "timeout");
 		if (IsInstanceValid(_lastSeen) && _lastSeen is NpcVillager villager)
 		{
 			villager.Talk();
 		}
-    }//hello it is me, the code. please kill me
+	}//hello it is me, the code. please kill me
 
 	public void CutsceneToggle(bool toggle)
-    {
-        GetNode<Ui>("UI").Visible = !toggle;
+	{
+		GetNode<Ui>("UI").Visible = !toggle;
 		_inCutscene = toggle;
 		Visible = !toggle;
-    }
+	}
 
 	public void CamLookAtPos(Vector3 targetPos)
 	{
