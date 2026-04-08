@@ -77,7 +77,18 @@ public partial class titleScreen : Node3D
 		SaveHandler.createSaveFile("user://saveData.json");
         GetNode<AnimatedSprite2D>("Buttons/FunnyReset").Visible = false ;
 	}
-	
+	private void _on_dev_menu_button_button_up()
+	{
+		GetNode<ColorRect>("DevMenu").Visible = true ;
+	}
+	private void _on_exit_dev_button_up()
+	{
+		GetNode<ColorRect>("DevMenu").Visible = false ;
+	}
+	private void _on_save_dev_button_up()
+	{
+		
+	}
 }
 
 // code code coding code code 1+1=2 code woahhh code woahhhh coding code im adding yaoi to the code yaoi code + yuri code
