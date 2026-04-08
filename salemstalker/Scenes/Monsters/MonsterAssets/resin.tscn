@@ -1,8 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://c1jpcmate77rb"]
+[gd_scene load_steps=36 format=3 uid="uid://c1jpcmate77rb"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_533rq"]
 [ext_resource type="Script" uid="uid://dwvhkeqbmpua7" path="res://Scripts/MonsterScripts/MonsterAssetScripts/Resin.cs" id="2_533rq"]
-[ext_resource type="Texture2D" uid="uid://de3emr5xm26f" path="res://Assets/2D/water-normal.png" id="3_ixuwk"]
 [ext_resource type="PackedScene" uid="uid://dyejc7gh3evnu" path="res://Assets/3D/props/resin.blend" id="3_wufnm"]
 [ext_resource type="Texture2D" uid="uid://brqf3d5v6d4h1" path="res://Assets/monstertextures/coiled/DefaultMaterial_Base_color.png" id="4_ikq4g"]
 [ext_resource type="Texture2D" uid="uid://blbm3p64v425k" path="res://Assets/monstertextures/coiled/DefaultMaterial_Emissive.png" id="5_d8qhg"]
@@ -123,15 +122,6 @@ emission_energy_multiplier = 2.0
 emission_operator = 1
 emission_texture = ExtResource("5_d8qhg")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnmb4"]
-albedo_color = Color(1, 0.36078432, 0, 1)
-roughness = 0.0
-emission_enabled = true
-emission = Color(1, 0.36078432, 0, 1)
-emission_energy_multiplier = 4.0
-normal_enabled = true
-normal_texture = ExtResource("3_ixuwk")
-
 [sub_resource type="Curve" id="Curve_nuy2x"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -225,7 +215,7 @@ visible = false
 
 [node name="Break" type="GPUParticles3D" parent="." index="13"]
 transform = Transform3D(1, 0, 6.82121e-13, 0, 1, 0, -6.82121e-13, 0, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_vnmb4")
+material_override = SubResource("StandardMaterial3D_533rq")
 emitting = false
 amount = 50
 lifetime = 0.5
