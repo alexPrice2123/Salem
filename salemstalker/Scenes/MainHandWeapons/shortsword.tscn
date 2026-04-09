@@ -502,8 +502,8 @@ bones/7/rotation = Quaternion(-0.586, -0.324, -0.335, 0.635)
 bones/8/rotation = Quaternion(-0.28827924, 0.63253677, -0.5684554, 0.44005772)
 bones/9/rotation = Quaternion(0.5499285, 0.0012709559, -0.13263234, 0.82461244)
 bones/17/rotation = Quaternion(-0.59, 0.348, 0.33, 0.649)
-bones/18/rotation = Quaternion(-0.15666276, -0.5139237, 0.6950426, 0.4777605)
-bones/19/rotation = Quaternion(0.5855299, -0.035423007, 0.03425418, 0.80915177)
+bones/18/rotation = Quaternion(-0.15681913, -0.5135902, 0.694882, 0.47830105)
+bones/19/rotation = Quaternion(0.5919601, -0.03551243, 0.03150575, 0.80456793)
 bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
 bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
 bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
@@ -516,7 +516,7 @@ bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.52661896, 0.045003846, 0.8489092, 0.04989455, 0.9985126, -0.021983106, -0.84863555, 0.030779395, -0.528081, -0.18776011, 1.4021511, 0.4194514)
+transform = Transform3D(-0.5265004, 0.047623537, 0.84884006, 0.03664603, 0.9987732, -0.033305492, -0.8493845, 0.013571471, -0.52759945, -0.18776007, 1.4077592, 0.41851747)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -542,6 +542,7 @@ collision_mask = 1025
 [node name="CollisionShape3D" type="CollisionShape3D" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox"]
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_ki2ro")
+disabled = true
 debug_color = Color(0.972146, 0, 0.443071, 0.42)
 
 [node name="Cylinder_001" parent="weaponAnimations" index="1"]
