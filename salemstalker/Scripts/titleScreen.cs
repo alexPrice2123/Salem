@@ -40,6 +40,7 @@ public partial class titleScreen : Node3D
 		{
 			_nextScene = "res://Scenes/cutscene_1.tscn";
 		}
+		GetNode<Label>("Buttons/gameVer").Text = "Beta" + (string)data["version"];
 	}
 
 

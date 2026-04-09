@@ -1,8 +1,9 @@
-[gd_scene load_steps=126 format=4 uid="uid://ugvn3fpfrh3c"]
+[gd_scene load_steps=127 format=4 uid="uid://ugvn3fpfrh3c"]
 
 [ext_resource type="Script" uid="uid://ps4omxss41de" path="res://Scripts/titleScreen.cs" id="1_k87f7"]
 [ext_resource type="Texture2D" uid="uid://bseviq72wt35m" path="res://Assets/UI/title/buttontitleredo.png" id="7_k87f7"]
 [ext_resource type="Texture2D" uid="uid://4x0cmvesp8cj" path="res://Assets/UI/saveDataFire.png" id="8_j7io7"]
+[ext_resource type="FontFile" uid="uid://cbvlel6fm3ddb" path="res://Assets/Fonts/Monolog-free.otf" id="9_k87f7"]
 [ext_resource type="Script" uid="uid://i5jcj7ukvoen" path="res://addons/terrabrush/TerraBrush.cs" id="11_rsi7w"]
 [ext_resource type="Texture2D" uid="uid://bvetwdh4pb7vn" path="res://Assets/2D/Grass.png" id="12_6ay2x"]
 [ext_resource type="Texture2D" uid="uid://cisk1trcjn4p1" path="res://Assets/2D/GrassHeight.png" id="13_8840v"]
@@ -785,8 +786,8 @@ albedo_texture = ExtResource("51_j7io7")
 
 [node name="Title" type="Node3D"]
 script = ExtResource("1_k87f7")
-metadata/_edit_vertical_guides_ = [15.0, 279.0]
-metadata/_edit_horizontal_guides_ = [116.0]
+metadata/_edit_vertical_guides_ = [6.0, 279.0]
+metadata/_edit_horizontal_guides_ = [116.0, 601.0]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5723777, 0.89524734, 3.1989727)
@@ -1030,6 +1031,22 @@ offset_top = 71.0
 offset_right = 233.0
 offset_bottom = 107.0
 flat = true
+
+[node name="gameVerTitle" type="Label" parent="Buttons"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 586.0
+offset_right = 46.0
+offset_bottom = 600.0
+text = "Current game Version:"
+
+[node name="gameVer" type="Label" parent="Buttons"]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 586.0
+offset_right = 407.0
+offset_bottom = 603.0
+theme_override_fonts/font = ExtResource("9_k87f7")
 
 [node name="Play" type="TextureButton" parent="."]
 texture_filter = 1
@@ -1568,23 +1585,23 @@ transform = Transform3D(-0.25881916, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.25
 script = null
 
 [node name="Skeleton3D" parent="WarmVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 1.0028644, -0.0552)
+bones/0/position = Vector3(0, 0.999695, -0.055199992)
 bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
-bones/2/rotation = Quaternion(-0.06791865, 0, 0, 0.997691)
-bones/5/rotation = Quaternion(0.06329225, 0.00958937, 0.021526383, 0.9977168)
-bones/8/rotation = Quaternion(-0.18861727, 0.40763924, -0.7047354, 0.5491829)
+bones/2/rotation = Quaternion(-0.0678719, 0, 0, 0.99769413)
+bones/5/rotation = Quaternion(0.048440922, 0.009354114, 0.021572957, 0.99854934)
+bones/8/rotation = Quaternion(-0.22805238, 0.403471, -0.71068364, 0.529275)
 bones/9/rotation = Quaternion(0.37500882, 0.2711096, -0.18186662, 0.86763626)
 bones/10/rotation = Quaternion(0.24329028, 0.45849064, 0.45827863, 0.72151023)
 bones/12/rotation = Quaternion(0.24474108, 0.6032071, 0.02517328, 0.7586893)
-bones/15/rotation = Quaternion(-0.22855091, -0.40163255, 0.7273854, 0.50731295)
+bones/15/rotation = Quaternion(-0.2334997, -0.40272042, 0.7192153, 0.5157748)
 bones/16/rotation = Quaternion(0.36446658, -0.25167373, 0.1729833, 0.87971663)
 bones/17/rotation = Quaternion(0.28736565, -0.43814325, -0.4520288, 0.7218875)
 bones/19/rotation = Quaternion(0.29157862, -0.5994292, -0.023846436, 0.745049)
-bones/25/rotation = Quaternion(0.98025954, 0.013506253, -0.00887165, 0.1970543)
-bones/26/rotation = Quaternion(0.14658837, 0.001591716, 0.011750938, 0.98912656)
+bones/25/rotation = Quaternion(0.9782334, 0.014386196, -0.008948668, 0.20681494)
+bones/26/rotation = Quaternion(0.16640411, 0.0015866313, 0.013339422, 0.9859662)
 bones/27/rotation = Quaternion(-0.5135951, -0.057942487, -0.08637086, 0.85170585)
-bones/34/rotation = Quaternion(0.98025954, -0.013506256, 0.008871607, 0.19705431)
-bones/35/rotation = Quaternion(0.14658837, -0.001591716, -0.011750938, 0.98912656)
+bones/34/rotation = Quaternion(0.9782334, -0.014386198, 0.008948623, 0.20681494)
+bones/35/rotation = Quaternion(0.16640411, -0.001586631, -0.013339422, 0.9859662)
 bones/36/rotation = Quaternion(-0.5135951, 0.05794249, 0.08637085, 0.85170585)
 bones/37/rotation = Quaternion(-0.018384513, 0.9591089, -0.27506912, -0.064103134)
 
@@ -1604,13 +1621,13 @@ transform = Transform3D(-0.9990978, 0, 0.04246843, 0, 1, 0, -0.04246843, 0, -0.9
 script = null
 
 [node name="Skeleton3D" parent="ColdVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98683184, -0.055199984)
-bones/2/rotation = Quaternion(-0.030669652, 0, 0, 0.9995296)
-bones/5/rotation = Quaternion(-0.112087466, 0.0066901944, 0.021770187, 0.99343735)
-bones/25/rotation = Quaternion(0.97098714, 0.017262548, -0.009242297, 0.2383289)
-bones/26/rotation = Quaternion(0.23005202, 0.0015657718, 0.018441617, 0.9730023)
-bones/34/rotation = Quaternion(0.97098714, -0.017262552, 0.009242252, 0.2383289)
-bones/35/rotation = Quaternion(0.23005205, -0.0015657722, -0.018441617, 0.9730023)
+bones/0/position = Vector3(0, 0.98533106, -0.055199992)
+bones/2/rotation = Quaternion(-0.0029919222, 0, 0, 0.9999955)
+bones/5/rotation = Quaternion(-0.13587788, 0.006276423, 0.021751404, 0.99046695)
+bones/25/rotation = Quaternion(0.96956754, 0.017786462, -0.00930256, 0.2439998)
+bones/26/rotation = Quaternion(0.24131858, 0.001561347, 0.019344775, 0.970252)
+bones/34/rotation = Quaternion(0.96956754, -0.017786462, 0.009302516, 0.2439998)
+bones/35/rotation = Quaternion(0.24131861, -0.0015613473, -0.019344773, 0.970252)
 
 [node name="QuestPrompt" parent="ColdVillager" index="3"]
 visible = false
@@ -1628,25 +1645,25 @@ transform = Transform3D(-0.9781476, 0, -0.20791161, 0, 1, 0, 0.20791161, 0, -0.9
 script = null
 
 [node name="Skeleton3D" parent="vCultist/Body/metarig" index="0"]
-bones/0/position = Vector3(4.720459e-10, 0.934744, -0.06494778)
-bones/1/rotation = Quaternion(-0.050309353, 7.7019e-11, -1.0195922e-08, 0.99873376)
-bones/5/rotation = Quaternion(-0.103765234, 1.1801291e-07, -1.6306794e-08, 0.9946019)
-bones/9/rotation = Quaternion(-0.16011572, 0.46773383, -0.6295507, 0.599378)
-bones/10/rotation = Quaternion(0.6927544, -0.009888837, -0.08209113, 0.7164179)
-bones/21/rotation = Quaternion(0.61750466, -0.053926837, 0.33661896, 0.70884955)
-bones/34/rotation = Quaternion(0.9697135, 0.055104043, -0.11764017, 0.20683345)
-bones/35/rotation = Quaternion(0.13966471, 0.0042737904, 0.017877212, 0.9900283)
-bones/39/rotation = Quaternion(0.97263026, -0.053799305, 0.07810292, 0.21212265)
-bones/40/rotation = Quaternion(0.15289468, -0.004248185, -0.03322563, 0.98767465)
+bones/0/position = Vector3(8.295354e-10, 0.9276595, -0.06494777)
+bones/1/rotation = Quaternion(-0.05389725, 7.026482e-11, -1.1209151e-08, 0.99854654)
+bones/5/rotation = Quaternion(-0.08815732, 1.17672805e-07, -1.8145373e-08, 0.9961066)
+bones/9/rotation = Quaternion(-0.15982595, 0.466366, -0.6301883, 0.599851)
+bones/10/rotation = Quaternion(0.6815608, -0.0051840013, -0.0810763, 0.72723776)
+bones/21/rotation = Quaternion(0.6449808, -0.06773328, 0.34213468, 0.6799675)
+bones/34/rotation = Quaternion(0.96250325, 0.062766194, -0.11807659, 0.23602124)
+bones/35/rotation = Quaternion(0.19146442, 0.0042356253, 0.024507623, 0.9811844)
+bones/39/rotation = Quaternion(0.96587324, -0.06207012, 0.078914724, 0.23876475)
+bones/40/rotation = Quaternion(0.20004669, -0.004210069, -0.043472245, 0.97881246)
 
 [node name="Plane" parent="vCultist/Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, 4.36958e-09, -3.4038344e-10, -4.381777e-09, 0.9984309, -0.055996835, 9.5133484e-11, 0.055996835, 0.9984309, -8.5814367e-10, 1.7522094, -0.0005031405)
+transform = Transform3D(1, 1.2145616e-08, -4.301736e-10, -1.2141024e-08, 0.9967856, -0.0801155, -5.4434107e-10, 0.08011554, 0.9967856, 7.297295e-10, 1.744893, -0.001092047)
 
 [node name="arur_l" parent="vCultist/Body/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.0503839, -0.12800242, -0.09344677, 0.15769206, 0.90664244, 0.530619, 0.015817203, -0.5385523, 0.91549677, 0.30765674, 1.4257613, 0.27532655)
+transform = Transform3D(1.0503153, -0.13437757, -0.08487629, 0.15870598, 0.9173716, 0.51153266, 0.008589536, -0.5184551, 0.9271212, 0.30938792, 1.4160986, 0.27613363)
 
 [node name="arua_r" parent="vCultist/Body/metarig/Skeleton3D" index="2"]
-transform = Transform3D(0.99995846, 0.0009700656, 0.358477, 0.018706262, 1.0606803, -0.055051774, -0.35799003, 0.05813487, 0.9984421, -0.23808296, 1.292177, 0.17354904)
+transform = Transform3D(0.9793035, 0.00039747357, 0.41156784, -0.007996708, 1.06209, 0.018001318, -0.4114905, -0.019693658, 0.9791379, -0.2276065, 1.2995021, 0.16950941)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3398342, 28.027174, -7.351434)
