@@ -29,11 +29,23 @@ public partial class SaveHandler : GodotObject
             { "version", "0.5.3"},
             { "lastLocation", "intro" },
             { "tutorialComplete", false},
-            { "mainWeaponUnlocked", new Godot.Collections.Array<string>{
-                "shortSword","dagger","longSword" }
+            { "mainWeaponUnlocked", new Godot.Collections.Dictionary<string, bool>{
+                {"shortsword",true},
+                {"longsword",false},
+                {"dagger",false},
+                {"flail",false},
+                {"rapier",false}
+                }
             },
-            { "secondaryWeaponUnlocked", new Godot.Collections.Array<string>{
-                "stakeGun","flintlock","tomahawk" }
+            { "secondaryWeaponUnlocked", new Godot.Collections.Dictionary<string, bool>{
+                {"flintlock",true},
+                {"stakegun",false},
+                {"shield",false},
+                {"tomahawk",false},
+                {"throwingknives",false},
+                {"holyrelic",false},
+                {"caltrops",false}
+                }
             },
             {"resourceInventory", new Godot.Collections.Dictionary<string, int>{
                 {"heartT1",0},

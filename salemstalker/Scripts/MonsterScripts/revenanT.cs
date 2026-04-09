@@ -44,10 +44,10 @@ public partial class revenanT : Monster3d
 				GetNode<AnimationTree>("AnimationTree"+i).QueueFree();
 			}
 			else
-            {
-                MultHitRef = GetNode<Node3D>("HitFX"+i);
+			{
+				MultHitRef = GetNode<Node3D>("HitFX"+i);
 				MultBodyRef = GetNode<Node3D>("Body"+i);
-            }
+			}
 		}
 		Initialization();
 	}

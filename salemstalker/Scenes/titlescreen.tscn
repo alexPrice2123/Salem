@@ -785,7 +785,7 @@ albedo_texture = ExtResource("51_j7io7")
 
 [node name="Title" type="Node3D"]
 script = ExtResource("1_k87f7")
-metadata/_edit_vertical_guides_ = [15.0, 600.0]
+metadata/_edit_vertical_guides_ = [15.0, 279.0]
 metadata/_edit_horizontal_guides_ = [116.0]
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -1096,10 +1096,10 @@ anchors_preset = -1
 anchor_right = 0.079
 anchor_bottom = 0.21000001
 offset_left = 11.0
-offset_top = 92.0
-offset_right = -50.241005
-offset_bottom = -11.260002
-text = "Tutorial complete?"
+offset_top = 90.0
+offset_right = 150.759
+offset_bottom = -13.260002
+text = "Tutorial complete"
 
 [node name="ShrinesButtons" type="ColorRect" parent="DevMenu"]
 layout_mode = 1
@@ -1175,9 +1175,9 @@ text = "Shrines Completed"
 [node name="MainWeapons" type="ColorRect" parent="DevMenu"]
 layout_mode = 1
 offset_left = 17.0
-offset_top = 315.0
+offset_top = 298.0
 offset_right = 258.0
-offset_bottom = 475.0
+offset_bottom = 458.0
 color = Color(0.55879974, 0.3404329, 0.608931, 1)
 
 [node name="shortCheck" type="CheckBox" parent="DevMenu/MainWeapons"]
@@ -1242,6 +1242,171 @@ offset_top = 12.0
 offset_right = 204.0
 offset_bottom = 26.0
 text = "Main Weapons"
+
+[node name="deathBag" type="ColorRect" parent="DevMenu"]
+layout_mode = 1
+offset_left = 18.0
+offset_top = 473.0
+offset_right = 259.0
+offset_bottom = 591.08997
+color = Color(0.55879974, 0.3404329, 0.608931, 1)
+
+[node name="Label" type="Label" parent="DevMenu/deathBag"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 12.0
+offset_right = 204.0
+offset_bottom = 26.0
+text = "DeathBag"
+
+[node name="bagCheck" type="CheckBox" parent="DevMenu/deathBag"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.079
+anchor_bottom = 0.21000001
+offset_left = 15.0
+offset_top = 29.0
+offset_right = 195.961
+offset_bottom = 28.201107
+text = "Bag exists?"
+
+[node name="bagPos" type="GridContainer" parent="DevMenu/deathBag"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 55.0
+offset_right = 238.0
+offset_bottom = 108.0
+columns = 3
+
+[node name="X" type="SpinBox" parent="DevMenu/deathBag/bagPos"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+min_value = -100000.0
+max_value = 10000.0
+allow_greater = true
+allow_lesser = true
+
+[node name="Y" type="SpinBox" parent="DevMenu/deathBag/bagPos"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+min_value = -100000.0
+max_value = 10000.0
+allow_greater = true
+allow_lesser = true
+
+[node name="Z" type="SpinBox" parent="DevMenu/deathBag/bagPos"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+min_value = -100000.0
+max_value = 10000.0
+allow_greater = true
+allow_lesser = true
+
+[node name="Label" type="Label" parent="DevMenu/deathBag/bagPos"]
+layout_mode = 2
+text = "X"
+
+[node name="Label2" type="Label" parent="DevMenu/deathBag/bagPos"]
+layout_mode = 2
+text = "y"
+
+[node name="Label3" type="Label" parent="DevMenu/deathBag/bagPos"]
+layout_mode = 2
+text = "Z"
+
+[node name="SecondaryWeapons" type="ColorRect" parent="DevMenu"]
+layout_mode = 1
+offset_left = 279.0
+offset_top = 121.0
+offset_right = 520.0
+offset_bottom = 335.0
+color = Color(0.55879974, 0.3404329, 0.608931, 1)
+
+[node name="flintlockCheck" type="CheckBox" parent="DevMenu/SecondaryWeapons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.079
+anchor_bottom = 0.21000001
+offset_left = 12.0
+offset_top = 27.0
+offset_right = 232.7727
+offset_bottom = 7.0599976
+text = "Flintlock"
+
+[node name="stakegunCheck" type="CheckBox" parent="DevMenu/SecondaryWeapons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.079
+anchor_bottom = 0.21000001
+offset_left = 12.0
+offset_top = 52.0
+offset_right = 232.7727
+offset_bottom = 32.059998
+text = "StakeGun"
+
+[node name="shieldCheck" type="CheckBox" parent="DevMenu/SecondaryWeapons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.079
+anchor_bottom = 0.21000001
+offset_left = 12.0
+offset_top = 77.0
+offset_right = 232.7727
+offset_bottom = 57.059998
+text = "Shield"
+
+[node name="tomahawkCheck" type="CheckBox" parent="DevMenu/SecondaryWeapons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.079
+anchor_bottom = 0.21000001
+offset_left = 12.0
+offset_top = 102.0
+offset_right = 232.7727
+offset_bottom = 82.06
+text = "Tomahawk"
+
+[node name="throwingkCheck" type="CheckBox" parent="DevMenu/SecondaryWeapons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.079
+anchor_bottom = 0.21000001
+offset_left = 12.0
+offset_top = 127.0
+offset_right = 232.7727
+offset_bottom = 107.06
+text = "ThrowingKnives"
+
+[node name="relicCheck" type="CheckBox" parent="DevMenu/SecondaryWeapons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.079
+anchor_bottom = 0.21000001
+offset_left = 12.0
+offset_top = 152.0
+offset_right = 232.7727
+offset_bottom = 132.06
+text = "HolyRelic"
+
+[node name="caltropsCheck" type="CheckBox" parent="DevMenu/SecondaryWeapons"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.079
+anchor_bottom = 0.21000001
+offset_left = 12.0
+offset_top = 177.0
+offset_right = 232.7727
+offset_bottom = 157.06
+text = "Caltrops"
+
+[node name="Label" type="Label" parent="DevMenu/SecondaryWeapons"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 12.0
+offset_right = 204.0
+offset_bottom = 26.0
+text = "Secondary Weapons"
 
 [node name="ExitDev" type="Button" parent="DevMenu"]
 layout_mode = 0
@@ -1380,23 +1545,23 @@ transform = Transform3D(-0.25881916, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, -0.25
 script = null
 
 [node name="Skeleton3D" parent="WarmVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 1.0003257, -0.055199996)
+bones/0/position = Vector3(0, 1.0014415, -0.0552)
 bones/1/rotation = Quaternion(-0.06447639, 0, 0, 0.99791926)
-bones/2/rotation = Quaternion(-0.06749159, 0, 0, 0.99771994)
-bones/5/rotation = Quaternion(0.052329335, 0.009415894, 0.021561228, 0.99835277)
-bones/8/rotation = Quaternion(-0.21781173, 0.40794307, -0.70755374, 0.5343297)
+bones/2/rotation = Quaternion(-0.067021795, 0, 0, 0.9977516)
+bones/5/rotation = Quaternion(0.057905637, 0.009504264, 0.021543836, 0.99804443)
+bones/8/rotation = Quaternion(-0.20227768, 0.40939113, -0.70522547, 0.54234654)
 bones/9/rotation = Quaternion(0.37500882, 0.2711096, -0.18186662, 0.86763626)
 bones/10/rotation = Quaternion(0.24329028, 0.45849064, 0.45827863, 0.72151023)
 bones/12/rotation = Quaternion(0.24474108, 0.6032071, 0.02517328, 0.7586893)
-bones/15/rotation = Quaternion(-0.23333731, -0.40275356, 0.7195337, 0.5153782)
+bones/15/rotation = Quaternion(-0.23140733, -0.4025696, 0.7229034, 0.51166326)
 bones/16/rotation = Quaternion(0.36446658, -0.25167373, 0.1729833, 0.87971663)
 bones/17/rotation = Quaternion(0.28736565, -0.43814325, -0.4520288, 0.7218875)
 bones/19/rotation = Quaternion(0.29157862, -0.5994292, -0.023846436, 0.745049)
-bones/25/rotation = Quaternion(0.9785953, 0.014231921, -0.0089347325, 0.20510744)
-bones/26/rotation = Quaternion(0.16297749, 0.0015875578, 0.013064736, 0.986542)
+bones/25/rotation = Quaternion(0.9793501, 0.013906121, -0.008905886, 0.20149632)
+bones/26/rotation = Quaternion(0.15558916, 0.0015894884, 0.012472469, 0.9877419)
 bones/27/rotation = Quaternion(-0.5135951, -0.057942487, -0.08637086, 0.85170585)
-bones/34/rotation = Quaternion(0.9785953, -0.014231921, 0.00893469, 0.20510744)
-bones/35/rotation = Quaternion(0.16297749, -0.0015875578, -0.013064736, 0.986542)
+bones/34/rotation = Quaternion(0.97935325, -0.013904775, 0.008905742, 0.20148125)
+bones/35/rotation = Quaternion(0.15558916, -0.0015894884, -0.012472469, 0.9877419)
 bones/36/rotation = Quaternion(-0.5135951, 0.05794249, 0.08637085, 0.85170585)
 bones/37/rotation = Quaternion(-0.018384513, 0.9591089, -0.27506912, -0.064103134)
 
@@ -1416,13 +1581,13 @@ transform = Transform3D(-0.9990978, 0, 0.04246843, 0, 1, 0, -0.04246843, 0, -0.9
 script = null
 
 [node name="Skeleton3D" parent="ColdVillager/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.98505056, -0.055199992)
-bones/2/rotation = Quaternion(-0.00982266, 0, 0, 0.9999518)
-bones/5/rotation = Quaternion(-0.13001208, 0.0063789035, 0.021757204, 0.9912532)
-bones/25/rotation = Quaternion(0.96963817, 0.017760674, -0.009299547, 0.24372114)
-bones/26/rotation = Quaternion(0.24110098, 0.0015614347, 0.019327324, 0.97030634)
-bones/34/rotation = Quaternion(0.96963817, -0.017760675, 0.009299503, 0.24372114)
-bones/35/rotation = Quaternion(0.24110098, -0.0015614345, -0.019327324, 0.97030634)
+bones/0/position = Vector3(0, 0.98526365, -0.055199992)
+bones/2/rotation = Quaternion(-0.020234926, 0, 0, 0.9997953)
+bones/5/rotation = Quaternion(-0.12106221, 0.0065346854, 0.021764576, 0.99238485)
+bones/25/rotation = Quaternion(0.9701712, 0.017565059, -0.009276848, 0.24160597)
+bones/26/rotation = Quaternion(0.23669326, 0.0015631918, 0.018973997, 0.97139794)
+bones/34/rotation = Quaternion(0.9701712, -0.017565059, 0.009276804, 0.24160597)
+bones/35/rotation = Quaternion(0.23669326, -0.0015631915, -0.018973997, 0.97139794)
 
 [node name="QuestPrompt" parent="ColdVillager" index="3"]
 visible = false
@@ -1440,25 +1605,25 @@ transform = Transform3D(-0.9781476, 0, -0.20791161, 0, 1, 0, 0.20791161, 0, -0.9
 script = null
 
 [node name="Skeleton3D" parent="vCultist/Body/metarig" index="0"]
-bones/0/position = Vector3(-6.538809e-10, 0.9376271, -0.06494778)
-bones/1/rotation = Quaternion(-0.045854248, -9.307304e-11, -1.3107434e-08, 0.9989482)
-bones/5/rotation = Quaternion(-0.10980756, 1.1927023e-07, -7.616782e-09, 0.99395293)
-bones/9/rotation = Quaternion(-0.15424071, 0.4401474, -0.64199346, 0.60854304)
-bones/10/rotation = Quaternion(0.7287422, -0.0030542852, -0.1464428, 0.66893953)
-bones/21/rotation = Quaternion(0.6281931, -0.03691195, 0.3214855, 0.707572)
-bones/34/rotation = Quaternion(0.97297746, 0.051288504, -0.11754179, 0.19201116)
-bones/35/rotation = Quaternion(0.113297015, 0.004288552, 0.01450212, 0.99344605)
-bones/39/rotation = Quaternion(0.97560364, -0.049832683, 0.07780609, 0.19914924)
-bones/40/rotation = Quaternion(0.13001624, -0.004262922, -0.028253894, 0.9911001)
+bones/0/position = Vector3(-4.620569e-10, 0.9344042, -0.06494778)
+bones/1/rotation = Quaternion(-0.04789483, -7.2243767e-11, -1.3107357e-08, 0.99885243)
+bones/5/rotation = Quaternion(-0.103049904, 1.1913125e-07, -8.414701e-09, 0.9946762)
+bones/9/rotation = Quaternion(-0.15523756, 0.44480762, -0.6399523, 0.60704917)
+bones/10/rotation = Quaternion(0.72331196, 0.00023092289, -0.1580972, 0.6721793)
+bones/21/rotation = Quaternion(0.6215518, -0.044082303, 0.329262, 0.7094482)
+bones/34/rotation = Quaternion(0.9693366, 0.055528443, -0.11765605, 0.20847115)
+bones/35/rotation = Quaternion(0.14257608, 0.0042719794, 0.018249867, 0.98960644)
+bones/39/rotation = Quaternion(0.97228307, -0.054247886, 0.078141354, 0.21358071)
+bones/40/rotation = Quaternion(0.15547958, -0.004246369, -0.033787336, 0.98725206)
 
 [node name="Plane" parent="vCultist/Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(1, -6.7302572e-09, 3.9817616e-10, 6.7419044e-09, 0.99860674, -0.05276799, -4.252702e-11, 0.052768033, 0.99860674, 7.583022e-10, 1.7549698, 0.0038637468)
+transform = Transform3D(1, -4.4561204e-09, 3.3674763e-10, 4.4684487e-09, 0.99806, -0.062259104, -5.878438e-11, 0.062259123, 0.9980599, 7.386835e-10, 1.7517096, 0.00295512)
 
 [node name="arur_l" parent="vCultist/Body/metarig/Skeleton3D" index="1"]
-transform = Transform3D(1.0348246, -0.036871925, -0.23706947, 0.17600532, 0.8299939, 0.6391839, 0.16304481, -0.6619473, 0.8146567, 0.2785186, 1.4574759, 0.27499962)
+transform = Transform3D(1.0316713, -0.023319796, -0.2520586, 0.17015548, 0.8470238, 0.61807865, 0.18741497, -0.64064807, 0.8263584, 0.27541167, 1.4490657, 0.27422214)
 
 [node name="arua_r" parent="vCultist/Body/metarig/Skeleton3D" index="2"]
-transform = Transform3D(1.0130422, -0.0035011172, 0.31961954, 0.013413727, 1.061739, -0.030885458, -0.31935725, 0.033489868, 1.0125773, -0.24564488, 1.2997499, 0.1793306)
+transform = Transform3D(1.0076213, -0.00326854, 0.33632168, 0.01876314, 1.0611147, -0.045902833, -0.33581388, 0.049481563, 1.0065804, -0.24235418, 1.2936124, 0.17667262)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3398342, 28.027174, -7.351434)
@@ -1536,6 +1701,7 @@ text = "PLAY"
 [connection signal="button_up" from="Play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="Credits2" to="." method="_on_credits_button_up"]
 [connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]
+[connection signal="toggled" from="DevMenu/deathBag/bagCheck" to="." method="_on_bag_check_toggled"]
 [connection signal="button_up" from="DevMenu/ExitDev" to="." method="_on_exit_dev_button_up"]
 [connection signal="button_up" from="DevMenu/SaveDev" to="." method="_on_save_dev_button_up"]
 [connection signal="button_up" from="Credits/Back" to="." method="_on_back_button_up"]
