@@ -117,9 +117,7 @@ graph_offset = Vector2(39, -85)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_533rq"]
 albedo_texture = ExtResource("4_ikq4g")
 emission_enabled = true
-emission = Color(0.8334149, 0.5951798, 0.06779945, 1)
-emission_energy_multiplier = 2.0
-emission_operator = 1
+emission_energy_multiplier = 3.5
 emission_texture = ExtResource("5_d8qhg")
 
 [sub_resource type="Curve" id="Curve_nuy2x"]

@@ -1,15 +1,14 @@
-[gd_scene load_steps=32 format=3 uid="uid://2x3s0qfc32yb"]
+[gd_scene load_steps=31 format=3 uid="uid://2x3s0qfc32yb"]
 
 [ext_resource type="Script" uid="uid://c0ajuqqr08phc" path="res://Scripts/MonsterScripts/MonsterAssetScripts/vineUnderground.cs" id="1_qnigb"]
 [ext_resource type="Texture2D" uid="uid://b4pw70e1g68ci" path="res://Assets/2D/dirt.png" id="2_qnigb"]
-[ext_resource type="Texture2D" uid="uid://bjurhsgte1wdp" path="res://Assets/2D/plains_grass.png" id="3_t0cnc"]
-[ext_resource type="PackedScene" uid="uid://d4j6g40iyik0q" path="res://Assets/3D/charatermodel/vine_hands.blend" id="4_cidwa"]
-[ext_resource type="Texture2D" uid="uid://bwa2fkxsnncqd" path="res://Assets/monstertextures/vinetangler/vine_tangler_Base_color.png" id="5_pecx6"]
-[ext_resource type="Texture2D" uid="uid://bnsoje63vr11o" path="res://Assets/monstertextures/vinetangler/vine_tangler_Normal_OpenGL.png" id="6_xhi75"]
-[ext_resource type="Texture2D" uid="uid://c8q4swel875xt" path="res://Assets/monstertextures/vinetangler/vine_tangler_Roughness.png" id="7_ddgl5"]
-[ext_resource type="Texture2D" uid="uid://cmy6ud3a33m35" path="res://Assets/monstertextures/vinetangler/claws_Base_color.png" id="8_hbxjx"]
-[ext_resource type="Texture2D" uid="uid://dunclcvh6g33l" path="res://Assets/monstertextures/vinetangler/claws_Height.png" id="9_jgvkq"]
-[ext_resource type="Texture2D" uid="uid://c54hwwtlud6nh" path="res://Assets/monstertextures/vinetangler/claws_Normal_OpenGL.png" id="10_g2n00"]
+[ext_resource type="PackedScene" uid="uid://y4g2o1wmbt1l" path="res://Assets/3D/charatermodel/vine_hands.blend" id="4_cidwa"]
+[ext_resource type="Texture2D" uid="uid://b0v168pudixd8" path="res://Assets/monstertextures/vinetangler/vine_tangler_Base_color.png" id="5_pecx6"]
+[ext_resource type="Texture2D" uid="uid://c5ghby2ws3nwl" path="res://Assets/monstertextures/vinetangler/vine_tangler_Normal_OpenGL.png" id="6_xhi75"]
+[ext_resource type="Texture2D" uid="uid://bugtgtmhge25a" path="res://Assets/monstertextures/vinetangler/vine_tangler_Roughness.png" id="7_ddgl5"]
+[ext_resource type="Texture2D" uid="uid://dapv34qdv0hi2" path="res://Assets/monstertextures/vinetangler/claws_Base_color.png" id="8_hbxjx"]
+[ext_resource type="Texture2D" uid="uid://djfwb3hslrtrw" path="res://Assets/monstertextures/vinetangler/claws_Height.png" id="9_jgvkq"]
+[ext_resource type="Texture2D" uid="uid://cawch253yt0a1" path="res://Assets/monstertextures/vinetangler/claws_Normal_OpenGL.png" id="10_g2n00"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13aiu"]
 albedo_texture = ExtResource("2_qnigb")
@@ -55,7 +54,6 @@ transparency = 1
 albedo_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2guo"]
-albedo_texture = ExtResource("3_t0cnc")
 
 [sub_resource type="SphereMesh" id="SphereMesh_qnigb"]
 material = SubResource("StandardMaterial3D_l2guo")
