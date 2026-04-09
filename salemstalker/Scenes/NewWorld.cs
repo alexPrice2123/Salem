@@ -20,11 +20,13 @@ public partial class NewWorld : Node3D
 		data = SaveHandler.LoadFromFile(_savePath);
 		GD.Print("Save file loaded");
 		GD.Print((bool)data["tutorialComplete"] == true, " ohstuffsave");
-		if ((bool)data["tutorialComplete"] == true)
+		if (((string)data["lastLocation"]).Equals("village1"))
 		{
-			GD.Print("tutorial complete, putting player at village");
 			GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("VillageMark").GlobalPosition ;
-			GD.Print("player is at location: ",GetNode<CharacterBody3D>("Player_3d").GlobalPosition == GetNode<Marker3D>("VillageMark").GlobalPosition);
+		}
+		else if (((string)data["lastLocation"]).Equals("bossMark"))
+		{
+			GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("BossMark").GlobalPosition ;
 		}
 	}
 
@@ -40,4 +42,20 @@ public partial class NewWorld : Node3D
 		}
 	}
 	
+	private void _on_brittlebay_area_entered(Area3D area)
+	{
+		if (area.IsInGroup("Player"))
+		{
+			data["lastLocation"] = "village1";
+		}
+		SaveHandler.SaveToFile(data,_savePath);
+	}
+	private void _on_brittlebay_area_exited(Area3D area)
+	{
+		if (area.IsInGroup("Player"))
+		{
+			data["lastLocation"] = "village1";
+		}
+		SaveHandler.SaveToFile(data,_savePath);
+	}
 }
