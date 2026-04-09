@@ -499,7 +499,6 @@ public partial class Player3d : CharacterBody3D
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.
 	public override void _PhysicsProcess(double delta)
 	{
-		
 		if (_dead == true){return;}
 		if (_inCutscene){return;}
 		var camRef = (Camera)_cam;
@@ -823,6 +822,7 @@ public partial class Player3d : CharacterBody3D
 	{
 		
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
+		Timer warmup = _sword.GetNode<Timer>("Warmup");
 		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5 && _swing_buffered == false)
 		{
 			
@@ -880,12 +880,17 @@ public partial class Player3d : CharacterBody3D
 				if(_comboNum == 3){_damage *= (float)_sword.GetMeta("cPercent3");}
 				_swordInst._crit = true;
 			}
-			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
+			
 			_swordInst.ResetMonsterDebounce();
 			_swordInst.swingStat = _comboNum;
 			HorCamSense = tempHorSense;
 			VerCamSense = tempVerSense;
 			cooldown.Start();
+			if(_comboNum == 1 || _comboNum == 0){warmup.Start((float)_sword.GetMeta("startDelay1"));}
+			if(_comboNum == 2){warmup.Start((float)_sword.GetMeta("startDelay2"));}
+			if(_comboNum == 3){warmup.Start((float)_sword.GetMeta("startDelay3"));}
+			await ToSignal(warmup, "timeout");
+			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
 			await ToSignal(cooldown, "timeout");
 			_swing_buffered = false;
 			_lastHit = Time.GetTicksMsec();
@@ -908,7 +913,9 @@ public partial class Player3d : CharacterBody3D
 	{
 		_blocking = block;
 		if (block == true)
+
 		{
+			_swordInst.swingStat = 0;
 			_swordInst.blocking = true;
 			await ToSignal(GetTree().CreateTimer(0.05), "timeout"); // Wait for a brief moment
 			_parry = true; // Set parry flag to true (the active parry window)
