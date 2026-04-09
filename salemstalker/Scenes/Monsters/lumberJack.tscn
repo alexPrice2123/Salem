@@ -2,25 +2,25 @@
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_svkx7"]
 [ext_resource type="Script" uid="uid://dh08ixdbg5mdg" path="res://Scripts/MonsterScripts/lumberJack.cs" id="2_svkx7"]
-[ext_resource type="Texture2D" uid="uid://bigi0vf4xpo7d" path="res://Assets/monstertextures/lumberjack/arms_Base_color.png" id="4_6g3aa"]
-[ext_resource type="Texture2D" uid="uid://dstdklbjwbhg1" path="res://Assets/monstertextures/lumberjack/axe _Base_color.png" id="4_phe5b"]
-[ext_resource type="Texture2D" uid="uid://ddqy3ealh5ttk" path="res://Assets/monstertextures/lumberjack/skin_Base_color.png" id="5_fcdp3"]
-[ext_resource type="Texture2D" uid="uid://bqb3yr5gj5plc" path="res://Assets/monstertextures/lumberjack/axe _Roughness.png" id="6_phe5b"]
-[ext_resource type="Texture2D" uid="uid://cn07ayh3m7wud" path="res://Assets/monstertextures/lumberjack/axehand_Base_color.png" id="6_w4rak"]
-[ext_resource type="Texture2D" uid="uid://5u30y6tp6pnr" path="res://Assets/monstertextures/lumberjack/axehand_Metallic.png" id="7_ng6wp"]
-[ext_resource type="Texture2D" uid="uid://bkq5jcsbsvmjb" path="res://Assets/monstertextures/lumberjack/bone_Base_color.png" id="7_phe5b"]
-[ext_resource type="Texture2D" uid="uid://cik3ctx30afj5" path="res://Assets/monstertextures/lumberjack/axehand_Roughness.png" id="8_svkx7"]
-[ext_resource type="Texture2D" uid="uid://c8l4toh52k5lm" path="res://Assets/monstertextures/lumberjack/body_Base_color.png" id="9_ng6wp"]
+[ext_resource type="Texture2D" uid="uid://d4em53uufqf0i" path="res://Assets/monstertextures/lumberjack/arms_Base_color.png" id="4_6g3aa"]
+[ext_resource type="Texture2D" uid="uid://cjtubrp482mci" path="res://Assets/monstertextures/lumberjack/axe _Base_color.png" id="4_phe5b"]
+[ext_resource type="Texture2D" uid="uid://b88xwo72m7mi5" path="res://Assets/monstertextures/lumberjack/skin_Base_color.png" id="5_fcdp3"]
+[ext_resource type="Texture2D" uid="uid://x85e8mveg03w" path="res://Assets/monstertextures/lumberjack/axe _Roughness.png" id="6_phe5b"]
+[ext_resource type="Texture2D" uid="uid://c0n2v4yryklxh" path="res://Assets/monstertextures/lumberjack/axehand_Base_color.png" id="6_w4rak"]
+[ext_resource type="Texture2D" uid="uid://f1hinpe0tt8c" path="res://Assets/monstertextures/lumberjack/axehand_Metallic.png" id="7_ng6wp"]
+[ext_resource type="Texture2D" uid="uid://nov6rjq1al0o" path="res://Assets/monstertextures/lumberjack/bone_Base_color.png" id="7_phe5b"]
+[ext_resource type="Texture2D" uid="uid://csykotrmra4vn" path="res://Assets/monstertextures/lumberjack/axehand_Roughness.png" id="8_svkx7"]
+[ext_resource type="Texture2D" uid="uid://1u67p663v3pf" path="res://Assets/monstertextures/lumberjack/body_Base_color.png" id="9_ng6wp"]
 [ext_resource type="Shader" uid="uid://bf0mb4hsypo15" path="res://Shaders/dissolve.gdshader" id="10_lroce"]
-[ext_resource type="Texture2D" uid="uid://g1482ojlqx8f" path="res://Assets/monstertextures/lumberjack/body_Metallic.png" id="10_oda65"]
-[ext_resource type="Texture2D" uid="uid://brbqnxvuptvwm" path="res://Assets/monstertextures/lumberjack/pants_Base_color.png" id="10_svkx7"]
-[ext_resource type="Texture2D" uid="uid://bvjj5ha2fjujo" path="res://Assets/monstertextures/lumberjack/body_Roughness.png" id="11_o46ts"]
-[ext_resource type="PackedScene" uid="uid://dr1tgcwwdwnen" path="res://Assets/3D/charatermodel/lumberjack.blend" id="11_qoos4"]
-[ext_resource type="Texture2D" uid="uid://bf5swye4inh2d" path="res://Assets/monstertextures/lumberjack/shoes_Base_color.png" id="12_o46ts"]
-[ext_resource type="Texture2D" uid="uid://l6qtrngpxv4b" path="res://Assets/monstertextures/lumberjack/face_Base_color.png" id="14_dqhup"]
-[ext_resource type="Texture2D" uid="uid://bqpncpg50rjke" path="res://Assets/monstertextures/lumberjack/brain_Base_color.png" id="14_qm4y7"]
-[ext_resource type="Texture2D" uid="uid://c7fsyjahpmnr6" path="res://Assets/monstertextures/lumberjack/brain_Height.png" id="15_nd1rw"]
-[ext_resource type="Texture2D" uid="uid://cay06pkg1bmpd" path="res://Assets/monstertextures/lumberjack/brain_Normal_OpenGL.png" id="16_nd1rw"]
+[ext_resource type="Texture2D" uid="uid://b7spg7tu1pflq" path="res://Assets/monstertextures/lumberjack/body_Metallic.png" id="10_oda65"]
+[ext_resource type="Texture2D" uid="uid://dy8cekuyqf0u1" path="res://Assets/monstertextures/lumberjack/pants_Base_color.png" id="10_svkx7"]
+[ext_resource type="Texture2D" uid="uid://cm2u64jm336rg" path="res://Assets/monstertextures/lumberjack/body_Roughness.png" id="11_o46ts"]
+[ext_resource type="PackedScene" uid="uid://bwlhywvlg35ov" path="res://Assets/3D/charatermodel/lumberjack.blend" id="11_qoos4"]
+[ext_resource type="Texture2D" uid="uid://b4hc0y2gq6ue2" path="res://Assets/monstertextures/lumberjack/shoes_Base_color.png" id="12_o46ts"]
+[ext_resource type="Texture2D" uid="uid://dlka4kcpu5x0e" path="res://Assets/monstertextures/lumberjack/face_Base_color.png" id="14_dqhup"]
+[ext_resource type="Texture2D" uid="uid://cueqy1qrn2q40" path="res://Assets/monstertextures/lumberjack/brain_Base_color.png" id="14_qm4y7"]
+[ext_resource type="Texture2D" uid="uid://bhnu70rk4xfiu" path="res://Assets/monstertextures/lumberjack/brain_Height.png" id="15_nd1rw"]
+[ext_resource type="Texture2D" uid="uid://ctj57obqd3erh" path="res://Assets/monstertextures/lumberjack/brain_Normal_OpenGL.png" id="16_nd1rw"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="22_62bk1"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2tc5c"]
@@ -267,33 +267,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0668074, -0.636108)
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
-bones/0/position = Vector3(0.0027987254, 0.91090405, -0.05557244)
+bones/0/position = Vector3(0.002798726, 0.9200721, -0.055572428)
 bones/0/rotation = Quaternion(0.12581961, -1.1826187e-07, -1.4998863e-08, 0.99205315)
-bones/1/rotation = Quaternion(0.10826083, -0.0015231116, 0.0022876349, 0.9941188)
+bones/1/rotation = Quaternion(0.09670651, -0.0014964364, 0.002305175, 0.9953092)
 bones/2/rotation = Quaternion(-0.099120885, -1.1411651e-07, 3.488516e-08, 0.9950754)
 bones/3/rotation = Quaternion(0.00047882143, -8.719007e-11, -1.9394704e-10, 0.9999999)
 bones/5/rotation = Quaternion(-0.1390648, 1.2638655e-07, 4.3198956e-08, 0.99028337)
-bones/6/rotation = Quaternion(-0.14706105, -0.0047203973, 0.008373881, 0.9890808)
+bones/6/rotation = Quaternion(-0.17328475, -0.004601251, 0.007115253, 0.9848353)
 bones/8/position = Vector3(-0.023192815, 0.17969477, -0.025863068)
-bones/8/rotation = Quaternion(-0.60008794, 0.5044906, -0.19262862, 0.59015083)
-bones/9/rotation = Quaternion(-0.027038671, -0.03640511, -0.09469188, 0.9944733)
+bones/8/rotation = Quaternion(-0.6065611, 0.49648827, -0.19827774, 0.5884462)
+bones/9/rotation = Quaternion(-0.018448154, -0.030432085, -0.06503497, 0.99724823)
 bones/10/rotation = Quaternion(-0.17402624, -0.22965972, 0.14502639, 0.9465404)
 bones/11/rotation = Quaternion(0.1265212, 0.014876382, -0.2025176, 0.9709571)
 bones/12/rotation = Quaternion(0.11842387, 0.014475266, -0.23405813, 0.9648747)
 bones/13/rotation = Quaternion(0.13177064, 0.015023818, -0.22555807, 0.9651603)
 bones/14/rotation = Quaternion(0.022091849, 0.023288744, -0.35984576, 0.9324595)
 bones/18/position = Vector3(0.012257193, 0.18032442, -0.009088647)
-bones/18/rotation = Quaternion(0.4966553, 0.61571944, -0.5235134, -0.31647572)
-bones/19/rotation = Quaternion(0.021459777, 0.0047931448, 0.043954212, 0.99879164)
+bones/18/rotation = Quaternion(0.48510584, 0.6153966, -0.5246748, -0.33267963)
+bones/19/rotation = Quaternion(0.018185118, 0.005733518, 0.041457027, 0.9989584)
 bones/20/rotation = Quaternion(9.248819e-08, 0.6961122, 0.717933, -2.1837484e-07)
 bones/21/rotation = Quaternion(9.248819e-08, 0.6961122, 0.717933, -2.1837484e-07)
 bones/22/rotation = Quaternion(-0.31443802, 0.9132158, 0.07670641, -0.24755158)
-bones/24/rotation = Quaternion(0.94166994, -0.053510115, 0.09126323, 0.31947693)
-bones/25/rotation = Quaternion(0.27137145, 0.0064343153, -0.031834155, 0.9619265)
+bones/24/rotation = Quaternion(0.9497009, -0.047987454, 0.0910628, 0.29575863)
+bones/25/rotation = Quaternion(0.23013811, 0.0065067653, -0.02699713, 0.97276175)
 bones/26/rotation = Quaternion(-0.519596, 0.024370516, 0.06484074, 0.8515995)
 bones/28/rotation = Quaternion(-0.62599206, 0.7333399, -0.15466388, -0.21546629)
-bones/29/rotation = Quaternion(0.9409461, 0.071221195, -0.1025663, 0.31468722)
-bones/30/rotation = Quaternion(0.2652629, -0.008064174, 0.0542818, 0.9626131)
+bones/29/rotation = Quaternion(0.9490417, 0.06331753, -0.102035396, 0.29137537)
+bones/30/rotation = Quaternion(0.22422047, -0.008154747, 0.04588311, 0.9734236)
 bones/31/rotation = Quaternion(-0.52186704, -0.01968417, -0.04938208, 0.8513688)
 bones/32/rotation = Quaternion(0.08651459, 0.9612038, -0.26165038, -0.011900038)
 bones/34/position = Vector3(0.16385214, 0.08240292, 0.06290686)
@@ -302,7 +302,7 @@ bones/36/position = Vector3(-0.14978328, 0.08240292, 0.06290686)
 bones/37/position = Vector3(-0.03692506, -0.22712125, 0.5029397)
 
 [node name="hand_L" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(0.7499891, -0.35454753, -0.55840117, -0.5003694, -0.85623896, -0.12839203, -0.432604, 0.37569952, -0.8195746, -0.33314478, 0.9857933, 0.09837872)
+transform = Transform3D(0.7360278, -0.38988873, -0.55339795, -0.5320054, -0.8386585, -0.11671023, -0.41860813, 0.38031277, -0.824699, -0.3364078, 0.9974257, 0.09643537)
 
 [node name="axe" parent="Body/metarig/Skeleton3D/hand_L" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_r6d73")

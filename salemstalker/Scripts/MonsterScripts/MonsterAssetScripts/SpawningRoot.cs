@@ -19,9 +19,10 @@ public partial class SpawningRoot : Node3D
 		CharacterBody3D monsterInstance = monst.Instantiate<CharacterBody3D>();
 		GD.Print(monsterInstance.Name);
 		int amount = 1;
-		if(monsterInstance.Name == "revenanT"){amount = 4;}
+		if(monsterInstance.Name == "revenanT"){amount = snake._revenantLeft; snake._revenantLeft = 0;}
 		for (int i = 0; i < amount; i++)
         {
+			monsterInstance = monst.Instantiate<CharacterBody3D>();
           	GetParent().AddChild(monsterInstance);
 			monsterInstance.GlobalPosition = GlobalPosition;
 			if (monsterInstance is Monster3d monster)

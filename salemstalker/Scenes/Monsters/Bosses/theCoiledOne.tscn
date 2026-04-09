@@ -1,15 +1,21 @@
-[gd_scene load_steps=40 format=4 uid="uid://dcui8f1kbsutw"]
+[gd_scene load_steps=45 format=4 uid="uid://dcui8f1kbsutw"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_tj832"]
 [ext_resource type="Script" uid="uid://dxtkbna84vfji" path="res://Scripts/MonsterScripts/theCoiledOne.cs" id="2_vypes"]
+[ext_resource type="PackedScene" uid="uid://dg47kfe7ur4gx" path="res://Scenes/Monsters/MonsterAssets/spawning_root.tscn" id="3_a2shs"]
+[ext_resource type="PackedScene" uid="uid://cdyf44r2hpl3e" path="res://Scenes/Monsters/vineTangler.tscn" id="4_2eohi"]
 [ext_resource type="PackedScene" uid="uid://drddqq6dgqbxd" path="res://Assets/3D/charatermodel/coiledmutant.blend" id="4_lbav0"]
 [ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="4_vypes"]
 [ext_resource type="Texture2D" uid="uid://b1c8sfl0pgcoh" path="res://Assets/monstertextures/coiled/coiledmutant_1_Base_color.png" id="5_olmvi"]
+[ext_resource type="PackedScene" uid="uid://c3gi3vrev7n0x" path="res://Scenes/Monsters/underBrush.tscn" id="5_t8g15"]
+[ext_resource type="PackedScene" uid="uid://c1jpcmate77rb" path="res://Scenes/Monsters/MonsterAssets/resin.tscn" id="5_vypes"]
 [ext_resource type="Texture2D" uid="uid://c4qqndt008t07" path="res://Assets/monstertextures/coiled/coiledmutant_1_Emissive.png" id="6_4kjrw"]
+[ext_resource type="PackedScene" uid="uid://ygedjap5uefs" path="res://Scenes/Monsters/revenanT.tscn" id="6_gegwn"]
 [ext_resource type="Texture2D" uid="uid://bllsorsttgo4b" path="res://Assets/monstertextures/coiled/coiledmutant_1_Height.png" id="7_vypes"]
 [ext_resource type="Texture2D" uid="uid://2g5mk7eow71j" path="res://Assets/monstertextures/coiled/eyes_Base_color.png" id="8_onvcx"]
 [ext_resource type="Texture2D" uid="uid://yr8ftmate322" path="res://Assets/monstertextures/coiled/eyes_Emissive.png" id="9_e0ydn"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="11_vv7in"]
+[ext_resource type="Shader" uid="uid://dad6yy25eud5k" path="res://Shaders/magicFist.gdshader" id="12_onvcx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7ma6"]
 albedo_color = Color(1, 1, 0, 1)
@@ -55,9 +61,6 @@ animation = &"idle_p1"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4kjrw"]
 animation = &"summon_p1"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vypes"]
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_onvcx"]
 xfade_time = 0.2
 advance_mode = 2
@@ -68,6 +71,9 @@ xfade_time = 0.5
 advance_mode = 2
 advance_expression = "_animState == \"Idle\""
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ft85t"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nsxmw"]
 states/End/position = Vector2(882.5, 85.9062)
 states/Start/position = Vector2(253.5, 85.75)
@@ -75,7 +81,7 @@ states/idle/node = SubResource("AnimationNodeAnimation_ci7oq")
 states/idle/position = Vector2(467, 86.0625)
 states/summon_p1/node = SubResource("AnimationNodeAnimation_4kjrw")
 states/summon_p1/position = Vector2(646.5, 85.828094)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_vypes"), "idle", "summon_p1", SubResource("AnimationNodeStateMachineTransition_onvcx"), "summon_p1", "idle", SubResource("AnimationNodeStateMachineTransition_e0ydn")]
+transitions = ["idle", "summon_p1", SubResource("AnimationNodeStateMachineTransition_onvcx"), "summon_p1", "idle", SubResource("AnimationNodeStateMachineTransition_e0ydn"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_ft85t")]
 graph_offset = Vector2(121, 31)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vypes"]
@@ -121,7 +127,7 @@ radius = 3.1625247
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olmvi"]
 albedo_texture = ExtResource("5_olmvi")
 emission_enabled = true
-emission_energy_multiplier = 6.0
+emission_energy_multiplier = 3.5
 emission_texture = ExtResource("6_4kjrw")
 heightmap_enabled = true
 heightmap_scale = 0.0
@@ -134,59 +140,65 @@ emission_enabled = true
 emission_texture = ExtResource("9_e0ydn")
 texture_filter = 0
 
-[sub_resource type="Curve" id="Curve_5gjnd"]
-_limits = [-2.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_im0l4"]
 
-[sub_resource type="CurveTexture" id="CurveTexture_wjdru"]
-curve = SubResource("Curve_5gjnd")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kviwv"]
+width = 1024
+noise = SubResource("FastNoiseLite_im0l4")
+seamless = true
+invert = true
 
-[sub_resource type="Curve" id="Curve_vodwt"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_onvcx"]
+render_priority = 0
+shader = ExtResource("12_onvcx")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/color_edge = Color(0.7771769, 0.7771769, 0.7771769, 1)
+shader_parameter/emission_strength = 1.0000000475
+shader_parameter/rise_progress = 1.0
+shader_parameter/edge_width = 0.30000001192093
+shader_parameter/noise_scale = 1.00400004443012
+shader_parameter/noise_strength = 0.5
+shader_parameter/time_speed = 1.0000000475
+shader_parameter/fade_softness = 0.79700003715898
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_kviwv")
+shader_parameter/distortion_scale = 0.5
+shader_parameter/top_fade_start = 0.0
+shader_parameter/top_fade_power = 5.0
+shader_parameter/invert_top_fade = false
+shader_parameter/wave_transparency = 0.0
+shader_parameter/wave_frequency = 20.0
+shader_parameter/wave_speed = 5.0
 
-[sub_resource type="CurveTexture" id="CurveTexture_qe7ki"]
-curve = SubResource("Curve_vodwt")
-
-[sub_resource type="Curve" id="Curve_4kjrw"]
+[sub_resource type="Curve" id="Curve_vypes"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_tk3a2"]
-curve = SubResource("Curve_4kjrw")
+[sub_resource type="CurveTexture" id="CurveTexture_onvcx"]
+curve = SubResource("Curve_vypes")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4kjrw"]
-lifetime_randomness = 1.0
-emission_shape_scale = Vector3(0.48, 1, 0.355)
-emission_shape = 1
-emission_sphere_radius = 1.0
-angle_min = 1.07288e-05
-angle_max = 360.0
-direction = Vector3(0, 0, 0)
+lifetime_randomness = 0.1
+direction = Vector3(0, -90, 0)
 spread = 0.0
-orbit_velocity_min = -0.5
-orbit_velocity_max = 0.5
-orbit_velocity_curve = SubResource("CurveTexture_wjdru")
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
 radial_velocity_min = 1.9999776
 radial_velocity_max = 2.9999776
-radial_velocity_curve = SubResource("CurveTexture_qe7ki")
 gravity = Vector3(0, 0, 0)
 scale_min = 0.25
-scale_max = 0.25
-scale_curve = SubResource("CurveTexture_tk3a2")
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_onvcx")
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_vypes"]
-top_radius = 5.0
-bottom_radius = 5.0
-height = 1.0
+[sub_resource type="SphereMesh" id="SphereMesh_onvcx"]
+radius = 10.0
+height = 5.0
 
 [node name="theCoiledOne" instance=ExtResource("1_tj832")]
 script = ExtResource("2_vypes")
-_spawnRootScene = null
-_vineTangler = null
-_underBrush = null
-_revanant = null
+_spawnRootScene = ExtResource("3_a2shs")
+_vineTangler = ExtResource("4_2eohi")
+_underBrush = ExtResource("5_t8g15")
+_revanant = ExtResource("6_gegwn")
 
 [node name="Stunned" type="GPUParticles3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00175359, 1.803534, -0.052372336)
@@ -229,33 +241,40 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 [node name="Skeleton3D" parent="Body/Armature" index="0"]
 bones/1/rotation = Quaternion(0.017611725, 0, 0, 0.9998449)
 bones/2/rotation = Quaternion(0.38477787, 0.011219861, 0.013049711, 0.92284876)
-bones/3/rotation = Quaternion(0.102224246, -0.0042039375, -0.0012049583, 0.9947518)
+bones/3/rotation = Quaternion(0.06466503, -0.0037853837, -0.0022585113, 0.9978973)
 bones/4/rotation = Quaternion(0.4530525, -0.0040460397, 0.011167462, 0.8914048)
 bones/5/rotation = Quaternion(-0.05867656, 0.057308123, -0.7768832, 0.6242798)
-bones/6/rotation = Quaternion(0.61975497, -0.3771736, -0.076828, 0.6839163)
-bones/7/rotation = Quaternion(0.4340739, 0.07889885, 0.32027116, 0.83832055)
+bones/6/rotation = Quaternion(0.6256437, -0.35386264, -0.08540679, 0.68996894)
+bones/7/rotation = Quaternion(0.40085813, 0.08124698, 0.29576346, 0.86327034)
 bones/8/rotation = Quaternion(0.15422982, 6.340274e-11, 3.4864428e-10, 0.988035)
-bones/9/rotation = Quaternion(0.0430849, -0.100801885, -0.100246124, 0.98890525)
-bones/10/rotation = Quaternion(-0.24555603, 0.095667504, 0.17026065, 0.9495058)
-bones/11/rotation = Quaternion(-0.6181928, 0.018454626, -0.039226122, 0.7848302)
-bones/13/rotation = Quaternion(0.43897578, -0.10619136, -0.14292772, 0.88067895)
-bones/14/rotation = Quaternion(-0.49522755, -0.0025953597, -0.0041049095, 0.86874974)
-bones/15/rotation = Quaternion(0.44454074, -0.027546108, -0.033473246, 0.8947091)
-bones/16/rotation = Quaternion(-0.4983207, -0.0025890274, -0.0041362587, 0.86697906)
-bones/17/rotation = Quaternion(-0.10584751, -0.096973844, 0.78224456, 0.60620624)
+bones/9/rotation = Quaternion(0.04334855, -0.08182288, -0.07392193, 0.992956)
+bones/10/rotation = Quaternion(-0.24632539, 0.08999806, 0.15733834, 0.9520866)
+bones/11/rotation = Quaternion(-0.6173447, 0.02856244, -0.0575062, 0.7840682)
+bones/13/rotation = Quaternion(0.44421518, -0.039737593, -0.050434887, 0.89361644)
+bones/14/rotation = Quaternion(-0.49837622, -0.002588913, -0.0041368217, 0.8669472)
+bones/15/rotation = Quaternion(-0.10584751, -0.096973844, 0.78224456, 0.60620624)
+bones/16/rotation = Quaternion(0.7319171, 0.32924536, 0.07355508, 0.5920175)
+bones/17/rotation = Quaternion(0.23637497, -0.08502737, -0.21043052, 0.94478375)
 bones/18/position = Vector3(5.259649, 7.570201, -0.7133017)
-bones/18/rotation = Quaternion(0.72546184, 0.34143177, 0.07270267, 0.59316427)
+bones/18/rotation = Quaternion(0.2782055, -0.56508857, 0.6500782, -0.4250589)
 bones/19/position = Vector3(2.8736162, 1.4981885, 5.214905)
-bones/19/rotation = Quaternion(0.28975108, -0.082614906, -0.25794792, 0.9179771)
-bones/20/position = Vector3(5.259649, 7.570201, -0.7133017)
+bones/19/rotation = Quaternion(0.34567988, -0.13938004, -0.9278143, 0.015468091)
+bones/20/position = Vector3(-4.9393487, 7.934774, -0.9567734)
 bones/20/rotation = Quaternion(0.2782055, -0.56508857, 0.6500782, -0.4250589)
-bones/21/position = Vector3(2.8736162, 1.4981885, 5.214905)
-bones/21/rotation = Quaternion(0.34567988, -0.13938004, -0.9278143, 0.015468091)
-bones/22/position = Vector3(-4.9393487, 7.934774, -0.9567734)
-bones/23/position = Vector3(-2.3859363, 1.2347426, 5.133514)
-bones/23/rotation = Quaternion(0.5590067, 0.05315999, 0.8267279, 0.03473362)
+bones/21/position = Vector3(-2.3859363, 1.2347426, 5.133514)
+bones/21/rotation = Quaternion(0.5590067, 0.05315999, 0.8267279, 0.03473362)
 
-[node name="Cube_001" parent="Body/Armature/Skeleton3D" index="0"]
+[node name="Bone_012" parent="Body/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.99916303, -0.03976023, 0.009608976, 0.0032605394, -0.15674755, -0.98763317, 0.04077478, 0.986838, -0.15648669, 0.042910334, 4.910632, 6.009805)
+
+[node name="Sphere" parent="Body/Armature/Skeleton3D/Bone_012" index="0"]
+visible = false
+
+[node name="Resin" parent="Body/Armature/Skeleton3D/Bone_012" index="1" instance=ExtResource("5_vypes")]
+transform = Transform3D(1.6653876, -0.000422874, 0.06527397, -0.063358106, -0.4114351, 1.6138412, 0.015704144, -1.6150849, -0.41113582, 0.004953455, 0.58599854, -0.3643837)
+script = null
+
+[node name="Cube_001" parent="Body/Armature/Skeleton3D" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_olmvi")
 surface_material_override/1 = SubResource("StandardMaterial3D_un2t0")
 
@@ -263,7 +282,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_un2t0")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 visible = false
 
-[node name="Cube_001" parent="HitFX/Armature/Skeleton3D" index="0"]
+[node name="Cube_001" parent="HitFX/Armature/Skeleton3D" index="1"]
 material_override = ExtResource("11_vv7in")
 
 [node name="Attackbox" parent="." index="9"]
@@ -272,13 +291,14 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.1488323, 0)
 [node name="CollisionShape3D" parent="Attackbox" index="0"]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -0.06680733, -0.61794984)
 
-[node name="Shrined2" type="GPUParticles3D" parent="." index="14"]
-transform = Transform3D(1, 3.057068e-08, 1.19014366e-07, -2.98023e-08, 0.9999799, -0.00645069, -1.19209005e-07, 0.00645069, 0.9999799, 8.10809e-07, 3.6710103, 4.5996265)
-visible = false
-amount = 50
+[node name="Summon" type="GPUParticles3D" parent="." index="14"]
+transform = Transform3D(1, 3.057068e-08, 1.19014366e-07, -1.19209005e-07, 0.006450646, 0.9999799, 2.9802312e-08, -0.9999799, 0.006450646, 8.10809e-07, 3.6710103, 4.5996265)
+material_override = SubResource("ShaderMaterial_onvcx")
+emitting = false
+amount = 10
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_4kjrw")
-draw_pass_1 = SubResource("CylinderMesh_vypes")
+draw_pass_1 = SubResource("SphereMesh_onvcx")
 
 [node name="Range" type="CSGSphere3D" parent="." index="15"]
 transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, 0.4967637, 24.139004)
