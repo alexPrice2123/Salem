@@ -10,7 +10,7 @@ public partial class theCoiledOne : Monster3d
 	public float _currentDamage = 0;
 	public int _underbrushLeft = 2;
 	public int _vinetanglerLeft = 1;
-	public int _revenantLeft = 1; 
+	public int _revenantLeft = 4; 
 	[Export] public PackedScene _spawnRootScene { get; set; }
 	[Export] public PackedScene _vineTangler { get; set; }
 	[Export] public PackedScene _underBrush { get; set; }
@@ -89,32 +89,46 @@ public partial class theCoiledOne : Monster3d
     }
 
 	private async void SpawnEnemy()
+{
+    var scenes = new PackedScene[3];
+    var decrements = new Action[3];
+    int count = 0;
+
+    if (_underbrushLeft > 0)  { scenes[count] = _underBrush;  decrements[count++] = () => _underbrushLeft--; }
+    if (_vinetanglerLeft > 0) { scenes[count] = _vineTangler; decrements[count++] = () => _vinetanglerLeft--; }
+    if (_revenantLeft > 0)    { scenes[count] = _revanant;    decrements[count++] = () => _revenantLeft--; }
+
+    if (count == 0) return;
+
+    int choice = _rng.RandiRange(0, count - 1);
+    PackedScene monsterToSpawn = scenes[choice];
+    decrements[choice]();
+
+    Node3D rootInstance = _spawnRootScene.Instantiate<Node3D>();
+    GetParent().AddChild(rootInstance);
+
+    float maxRange = _rangeObj.Radius;
+    Vector3 centerPos = _rangeObj.GlobalPosition;
+    rootInstance.GlobalPosition = centerPos + new Vector3(
+        _rng.RandfRange(-maxRange, maxRange), 0,
+        _rng.RandfRange(-maxRange, maxRange));
+
+	GD.Print(monsterToSpawn+" Trying");
+    if (rootInstance is not SpawningRoot spawnRoot)
     {
-        Node3D rootInstance = _spawnRootScene.Instantiate<Node3D>();
-		GetParent().AddChild(rootInstance);
-		float maxRange = _rangeObj.Radius;
-		Vector3 centerPos = _rangeObj.GlobalPosition;
-		rootInstance.GlobalPosition = centerPos + new Vector3(_rng.RandfRange(-maxRange, maxRange), 0, _rng.RandfRange(-maxRange, maxRange));
-		if (rootInstance is SpawningRoot sr)
-        {
-			PackedScene monsterToSpawn = null;
-			if (_vinetanglerLeft != 0 && _revenantLeft != 0)
-            {
-                if (_rng.RandiRange(1,2) == 1)
-                {
-                    monsterToSpawn = _vineTangler;
-					_vinetanglerLeft--;
-                }
-				else{monsterToSpawn = _revanant; _revenantLeft--;}
-            }
-			else if (_vinetanglerLeft > _revenantLeft){monsterToSpawn = _vineTangler; _vinetanglerLeft--;}
-			else if (_vinetanglerLeft < _revenantLeft){monsterToSpawn = _revanant; _revenantLeft--;}
-			else if (_underbrushLeft != 0){monsterToSpawn = _underBrush; _underbrushLeft--;}
-			if (monsterToSpawn != null){sr.SpawnMonster(monsterToSpawn, this); _animState = "Summon";}else{sr.QueueFree();}
-        }
-		await ToSignal(GetTree().CreateTimer(2), "timeout");
-		_animState = "Idle";
+        rootInstance.QueueFree();
+        return;
     }
+	GD.Print(monsterToSpawn+" Spawning");
+
+    _animState = "Summon";
+    await ToSignal(GetTree().CreateTimer(1.65), "timeout");
+    GetNode<GpuParticles3D>("Summon").Emitting = true;
+    spawnRoot.SpawnMonster(monsterToSpawn, this);
+    await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+    GetNode<GpuParticles3D>("Summon").Emitting = false;
+    _animState = "Idle";
+}
 
 	public override void _Process(double delta)
 	{
