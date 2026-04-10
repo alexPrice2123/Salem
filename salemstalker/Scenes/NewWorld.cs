@@ -58,4 +58,19 @@ public partial class NewWorld : Node3D
 		}
 		SaveHandler.SaveToFile(data,_savePath);
 	}
+
+	/// <summary>
+	/// Updates the worlds known data of a quest
+	/// </summary>
+	/// <param name="villager">
+	/// The name of the villager
+	/// </param>
+	/// <param name="progress">
+	/// The level of progress for the quest to be changed to 
+	/// -- 0 : unaccepted, 1 : accepted with no progress,2 : in-progress, 3 : complete -- 
+	/// </param>
+	public void updateQuest(string villager,int progress)
+	{
+		data[villager] = progress ;
+	}
 }

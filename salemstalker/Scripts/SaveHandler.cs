@@ -4,6 +4,15 @@ using System.Collections.Generic;
 
 public partial class SaveHandler : GodotObject
 {
+    /// <summary>
+    /// Saves a file
+    /// </summary>
+    /// <param name="toSave">
+    /// The data to be saved
+    /// </param>
+    /// <param name="savePath">
+    /// The path of the save file to be saved
+    /// </param>
     public static void SaveToFile(Godot.Collections.Dictionary<string,Variant> toSave, string savePath)
     {
         GD.Print("Attempting to save to: ", savePath, " with data: ", toSave.ToString());
@@ -13,6 +22,28 @@ public partial class SaveHandler : GodotObject
         GD.Print("Save complete");
     }
 
+    /// <summary>
+    /// Loads and parses a file
+    /// </summary>
+    /// <param name="savePath">
+    /// The path of the save file to be loaded
+    /// </param>
+    /// <returns>
+    /// A dictionary of all data in the save file
+    /// </returns>
+    /// <remarks>
+    /// List of all data:
+    /// version(String)
+    /// lastLocation(String)
+    /// tutorialComplete(Bool)
+    /// mainWeaponUnlocked[String,Bool]
+    /// secondaryWeaponUnlocked[String,Bool]
+    /// resourceInventory[String,Int]
+    /// questList[String,Int]
+    /// shrineComplete[String,Int]
+    /// deathBagPos(vector3)
+    /// deathBagCon(bool)
+    /// </remarks>
     public static Godot.Collections.Dictionary<string,Variant> LoadFromFile(string savePath)
     {
         using FileAccess file = FileAccess.Open(savePath, FileAccess.ModeFlags.Read);
@@ -20,6 +51,12 @@ public partial class SaveHandler : GodotObject
         return (Godot.Collections.Dictionary<string,Variant>)Json.ParseString(content); 
     }
 
+    /// <summary>
+    /// Creates/resets a save file and sets values to default
+    /// </summary>
+    /// <param name="savePath">
+    /// The path of the save file to be created/resetted 
+    /// </param>
     public static void createSaveFile(string savePath)
     {
         if(!FileAccess.FileExists(savePath)){GD.Print("Creating save file");}
