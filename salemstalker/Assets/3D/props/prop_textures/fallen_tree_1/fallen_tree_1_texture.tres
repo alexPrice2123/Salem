@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cgd03oulficwq"]
+
+[ext_resource type="Texture2D" uid="uid://bbgmsbrqyp8r6" path="res://Assets/3D/props/prop_textures/fallen_tree_1/fallen_tree_1_DefaultMaterial_BaseColor.png" id="1_eojpt"]
+
+[resource]
+albedo_texture = ExtResource("1_eojpt")

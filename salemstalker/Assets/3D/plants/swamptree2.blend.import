@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dopp52d46332"
+uid="uid://cyki88j4sl167"
 path="res://.godot/imported/swamptree2.blend-94bbc4bd31c5fa7eccc5817d319c2feb.scn"
 
 [deps]
@@ -56,4 +56,4 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
-gltf/naming_version=0
+gltf/naming_version=2
