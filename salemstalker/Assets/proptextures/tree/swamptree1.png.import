@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck2mer7c0neeb"
-path="res://.godot/imported/QUIT.png-4b6e518f094c3cd8f34bae7d00939e3f.ctex"
+uid="uid://v3eyvf7wmn8g"
+path="res://.godot/imported/swamptree1.png-041ddcd7c33678f4e5c8eb54e997de77.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/title/QUIT.png"
-dest_files=["res://.godot/imported/QUIT.png-4b6e518f094c3cd8f34bae7d00939e3f.ctex"]
+source_file="res://Assets/proptextures/tree/swamptree1.png"
+dest_files=["res://.godot/imported/swamptree1.png-041ddcd7c33678f4e5c8eb54e997de77.ctex"]
 
 [params]
 
