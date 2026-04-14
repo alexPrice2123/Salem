@@ -42,7 +42,6 @@ public partial class Monster3d : CharacterBody3D
 	// --- NODE REFERENCES ---
 	protected Player3d _player;
 	protected NavigationAgent3D _navAgent;
-	protected Node3D _hitFX;
 	protected Node3D _body;
 	protected CollisionShape3D _attackBox;
 	protected Node3D _lookDirection;
@@ -50,6 +49,7 @@ public partial class Monster3d : CharacterBody3D
 	protected Area3D _runArea;
 	protected Area3D _agroArea;
 	protected ItemDropper _itemDropper;
+	protected StandardMaterial3D _hitMat;
 
 	// --- VARIABLES ---
 	public float _health;
@@ -87,6 +87,8 @@ public partial class Monster3d : CharacterBody3D
 	protected float _lookingTimer = 0f;
 	protected bool _playerInWalkRange = false;
 	public theCoiledOne _snake = null;
+	private Godot.Collections.Array<Node3D> _skeleMesh { get; set; } = new Godot.Collections.Array<Node3D>{};
+	
 
 	// --- Cached/precomputed state to avoid per-frame allocations ---
 	private bool _cachedInVillage = false;
@@ -116,8 +118,8 @@ public partial class Monster3d : CharacterBody3D
 			_wanderPos = new Vector3(randX, 0f, randZ);
 		}
 
-		if (MultBodyRef != null) { _hitFX = MultHitRef; _body = MultBodyRef; }
-		else { _hitFX = GetNode<Node3D>("HitFX"); _body = GetNode<Node3D>("Body"); }
+		if (MultBodyRef != null) { _body = MultBodyRef; }
+		else { _body = GetNode<Node3D>("Body"); }
 
 		_currentRot = GlobalRotation;
 		_attackBox = GetNode<CollisionShape3D>("Attackbox/CollisionShape3D");
@@ -127,6 +129,10 @@ public partial class Monster3d : CharacterBody3D
 		_runArea = GetNode<Area3D>("RunRange");
 		_agroArea = GetNode<Area3D>("AgroRange");
 		_itemDropper = _player.GetParent().GetNode<ItemDropper>("MonstItemDropper");
+		GD.Print(_player+" TEST");
+		GD.Print(_itemDropper+" TEST");
+		_hitMat = GD.Load<StandardMaterial3D>("res://Assets/HitFX/hitMat.tres");
+		
 		
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		SetUpRanges();
@@ -157,19 +163,34 @@ public partial class Monster3d : CharacterBody3D
 	{
 		if (_stunned) { damage *= 1.3f; }
 		if (knockBack) { ApplyKnockback(); }
-
-		if (HasChildWithName(_hitFX, "AnimationPlayer"))
-			_hitFX.GetNode<AnimationPlayer>("AnimationPlayer").Play("idle");
-
-		_hitFX.Visible = true;
-		_body.Visible = false;
+		FlashDamage(true);
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+		FlashDamage(false);
 		GD.Print(damage);
 		_health -= damage;
 		if (this is theCoiledOne tco){tco._currentDamage += damage;}
-		_hitFX.Visible = false;
-		_body.Visible = true;
+		
 	}
+	
+	//mace is literally cleavland brown
+
+	private void FlashDamage(bool toggle)
+    {
+       	if (_body.GetNodeOrNull<Skeleton3D>("metarig/Skeleton3D") is Node3D skel1){FlashExecute(skel1, toggle);}
+		else if (_body.GetNodeOrNull<Skeleton3D>("Armature/Skeleton3D") is Node3D skel2){FlashExecute(skel2, toggle);}
+    }
+
+	private void FlashExecute(Node3D skel, bool toggle)
+    {
+        foreach (Node3D checkNode in skel.GetChildren())
+		{
+			if (checkNode is MeshInstance3D mesh)
+            {
+              	if (toggle){mesh.MaterialOverlay = _hitMat;}
+				else{mesh.MaterialOverlay = null;}  
+            }
+		}
+    }
 
 	public async void Bleed(float bleedDamage, float bleedLength) { }
 
@@ -187,6 +208,11 @@ public partial class Monster3d : CharacterBody3D
 	// --- CORE MONSTER AI LOOP --- //
 	public void EveryFrame(double delta)
 	{
+		if (_snake != null){if (_snake._animState == "Stunned")
+            {
+                //_health = 0;
+            }
+        }
 		// Early-out: disabled, debugging, or player dead — go fully idle
 		if (/*Disabled ||*/ Debug || _player._dead)
 		{
@@ -412,19 +438,29 @@ public partial class Monster3d : CharacterBody3D
 	}
 
 
-	// --- SHARED ATTACK HIT HELPER --- //
-	// Call this from every monster's _on_attackbox_area_entered.
-	// The player hurtbox is in group "PlayerHurtbox", NOT "Player" — using the wrong group was the bug.
-	protected bool TryHitPlayer(Node3D body)
+	// --- ATTACK HIT CHECKER --- //
+	protected async void TryHitPlayer(Node3D body, string extraArgs)
 	{
 		if (body is Area3D area && area.IsInGroup("PlayerHurtbox") && !_hasHit)
 		{
-			_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "None");
+			if (this is vCultist vc)
+            {
+                if (vc._charge < 1){vc._charge += 0.34f;}
+				_player.Damaged((BaseDamage + _damageOffset)*(1+(vc._charge/1.5f)), this, "None");
+            }
+            else{_player.Damaged(BaseDamage + _damageOffset, this, extraArgs);}
 			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
 			_hasHit = true;
-			return true;
+			if (this is underBrush ub)
+            {
+                ub._currentAttackOffset += ub._attackOffset;
+				if (_player._blocking == false)
+				{
+					ub._countDown = 5f;
+					if (ub._currentAttackOffset >= 1.311f) { ub._currentAttackOffset = 1.311f; }   
+				}
+            }
 		}
-		return false;
 	}
 
 	// --- ATTACK SYSTEM --- //
@@ -593,7 +629,7 @@ public partial class Monster3d : CharacterBody3D
 
 		Vector3 diff = _player.GlobalPosition - GlobalPosition;
 		GD.Print(diff);
-		if (diff.Length() <= WalkRange)
+		if (diff.Length() <= WalkRange || _snake != null)
         {
             ForceSeePlayer();
         }

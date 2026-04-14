@@ -6,9 +6,9 @@ public partial class underBrush : Monster3d
 	// Called when the node enters the scene tree for the first time.
 
 	private float _distance;
-	private float _attackOffset = 0.437f;
+	public float _attackOffset = 0.437f;
 	public float _currentAttackOffset = 0f;
-	private float _countDown = 5f;
+	public float _countDown = 5f;
 	private int _attackAnimSwitch = 1;
 	public override void _Ready()
 	{
@@ -17,7 +17,7 @@ public partial class underBrush : Monster3d
 		MoveWhileAttack = true;     // Can this monster move while attacking
 		Flying = false;              // Should gravity be applied to this monster
 		Stationery = false;          // If the monster shouldnt move at all
-		BaseDamage = 10.0f;         // Base damage of the monster
+		BaseDamage = 5.0f;         // Base damage of the monster
 		AttackSpeed = 0.5f;         // The time between its attacks
 		AttackRange = 1.5f;           // The distance the monster gets from the player before stopping and attacking
 		MaxHealth = 100.0f;         // Maximum monster health
@@ -44,7 +44,7 @@ public partial class underBrush : Monster3d
 			{
 				if (GetParent().GetParent() is DebugHut dh) { dh._shouldSpawn = true; }
 			}
-			_itemDropper.Drop("seed", 0.5f, 5, GlobalPosition);
+			if (_snake == null){_itemDropper.Drop("seed", 0.5f, 5, GlobalPosition);}
 			//_itemDropper.Drop("sprout", 0.25f, 3, GlobalPosition);
 			QueueFree(); // Destroy monster when health hits zero
 		}
@@ -74,21 +74,7 @@ public partial class underBrush : Monster3d
 		Damaged(body);
 	}
 
-	public void _on_attackbox_area_entered(Node3D body)
-	{
-		if (body.IsInGroup("PlayerHurtbox") && _hasHit == false && body.Name == "Hurtbox")
-		{
-			_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "StaminaDrain");
-			_currentAttackOffset += _attackOffset;
-			if (_player._blocking == false)
-            {
-				_countDown = 5f;
-				if (_currentAttackOffset >= 1.311f) { _currentAttackOffset = 1.311f; }   
-            }
-			_attackBox.Disabled = true;
-			_hasHit = true;
-		}
-	}
+	public void _on_attackbox_area_entered(Node3D body){TryHitPlayer(body, "StaminaDrain");}
 
 	public async void Attack()
 	{

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b5j0pg7gd1xf7" path="res://WoodPlank.png" id="1_w0jxf"]
 [ext_resource type="PackedScene" uid="uid://c1jpcmate77rb" path="res://Scenes/Monsters/MonsterAssets/resin.tscn" id="2_gkc6a"]
-[ext_resource type="PackedScene" uid="uid://bqcen81a1k0mg" path="res://Assets/3D/plants/branchwall.blend" id="3_j6w3g"]
+[ext_resource type="PackedScene" uid="uid://dfjl073j20bd4" path="res://Assets/3D/plants/branchwall.blend" id="3_j6w3g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gkc6a"]
 size = Vector3(8.579834, 6.0361023, 3.0112152)
@@ -13,7 +13,7 @@ albedo_texture = ExtResource("1_w0jxf")
 [node name="RootWall" type="Node3D"]
 
 [node name="Resin1" parent="." instance=ExtResource("2_gkc6a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22880685, 1.0841048, 0.17552865)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22880685, 1.4929428, 0.17552865)
 visible = false
 
 [node name="Resin2" parent="." instance=ExtResource("2_gkc6a")]
@@ -28,9 +28,9 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4258173, 1.1609201, 0.21705693)
 visible = false
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Terrain"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" groups=["Terrain"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28503418, 2.0736542, -1.5105147)
 shape = SubResource("BoxShape3D_gkc6a")
 

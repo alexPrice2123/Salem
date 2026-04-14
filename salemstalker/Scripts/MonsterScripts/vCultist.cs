@@ -9,7 +9,7 @@ public partial class vCultist : Monster3d
 	private float _distance;
 	private bool _smashAnim = false;
 	private bool _attack2Anim = false;
-	private float _charge = 0f;
+	public float _charge = 0f;
 	private ShaderMaterial _auraShader;
 	private MeshInstance3D _leftAura;
 	private MeshInstance3D _rightAura;
@@ -92,18 +92,7 @@ public partial class vCultist : Monster3d
 	{
 		Damaged(body);
 	}
-
-	public void _on_attackbox_area_entered(Node3D body)
-	{
-		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
-		{
-			GD.Print(_charge);
-			if (_charge < 1){_charge += 0.34f;}
-			_player.Damaged((BaseDamage + _damageOffset)*(1+(_charge/1.5f)), this, "None");
-			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-			_hasHit = true;
-		}
-	}
+	public void _on_attackbox_area_entered(Node3D body){TryHitPlayer(body, "None");}
 	public void _on_push_box_area_entered(Node3D body)
 	{
 		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")

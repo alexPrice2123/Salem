@@ -112,7 +112,7 @@ shadow_mesh = SubResource("ArrayMesh_bn8p1")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yh1rl"]
 render_priority = 0
 shader = ExtResource("3_rk76g")
-shader_parameter/baseColor = Color(0.49943948, 0.49943954, 0.49943948, 1)
+shader_parameter/baseColor = Color(0.49803922, 1, 0.49803922, 1)
 shader_parameter/baseColorTexture = ExtResource("4_rk76g")
 shader_parameter/dissolveSlider = 1.5
 shader_parameter/dissolveNoiseScale = 3.72
@@ -229,19 +229,19 @@ _data = {
 script = ExtResource("1_xgu83")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.09342105, 0, 0, 0, 0.093420975, 0, 0, 0, 0.093421035, 1.1920929e-07, 0.005715787, 0)
+transform = Transform3D(0.011853251, -0.092299074, 0.008237741, 0.092416905, 0.0123831425, 0.0057678036, -0.006790468, 0.007417373, 0.092878215, 1.1920929e-07, 0, 0)
 material_override = SubResource("StandardMaterial3D_s7fxb")
 mesh = SubResource("ArrayMesh_ur8na")
 skeleton = NodePath("")
 
 [node name="Cube_001" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.04084258, 0, -0.084020026, 0, 0.09342099, 0, 0.08402002, 0, -0.04084258, 1.1920929e-07, 0.01091196, 0)
+transform = Transform3D(-0.0047582416, 0.055068295, -0.07531483, 0.09301799, 0.008656117, 0.00045244032, 0.0072451495, -0.0749669, -0.05527163, 1.1920929e-07, 0, 0)
 material_override = SubResource("StandardMaterial3D_s7fxb")
 mesh = SubResource("ArrayMesh_sw57v")
 skeleton = NodePath("")
 
 [node name="Cube_002" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.049270447, 0, 0.07937194, 0, 0.09342099, 0, -0.07937192, 0, -0.049270455, 1.1920929e-07, 0.004156931, 0)
+transform = Transform3D(-0.013845113, 0.045558922, 0.08037525, 0.09025227, 0.024048693, 0.0019150279, -0.019756507, 0.07793283, -0.047577675, 1.1920929e-07, 0, 0)
 material_override = SubResource("StandardMaterial3D_s7fxb")
 mesh = SubResource("ArrayMesh_qed8b")
 skeleton = NodePath("")
@@ -252,7 +252,17 @@ material_override = SubResource("ShaderMaterial_yh1rl")
 mesh = SubResource("ArrayMesh_54klv")
 skeleton = NodePath("")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="A1" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dn070")
+}
+
+[node name="A2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dn070")
+}
+
+[node name="A3" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_dn070")
 }

@@ -80,10 +80,7 @@ public partial class hollowNormal : Monster3d
 
 	public void _on_hurtbox_area_entered(Area3D body){Damaged(body);}
 
-	public void _on_attackbox_area_entered(Node3D body)
-	{
-		TryHitPlayer(body);
-	}
+	public void _on_attackbox_area_entered(Node3D body){TryHitPlayer(body, "None");}
 
 	public async void Attack()
 	{
