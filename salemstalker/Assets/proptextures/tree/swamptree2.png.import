@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bseviq72wt35m"
-path="res://.godot/imported/buttontitleredo.png-08af948a71983b64b352deb78df06ee0.ctex"
+uid="uid://dv0gnw4okkhwx"
+path="res://.godot/imported/swamptree2.png-146a37d75b7b9f87673f213351774c12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/title/buttontitleredo.png"
-dest_files=["res://.godot/imported/buttontitleredo.png-08af948a71983b64b352deb78df06ee0.ctex"]
+source_file="res://Assets/proptextures/tree/swamptree2.png"
+dest_files=["res://.godot/imported/swamptree2.png-146a37d75b7b9f87673f213351774c12.ctex"]
 
 [params]
 
