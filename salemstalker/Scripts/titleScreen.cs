@@ -32,14 +32,6 @@ public partial class titleScreen : Node3D
         if ( !SaveHandler.checkCompatibility(_savePath) ){GetNode<AnimatedSprite2D>("Buttons/FunnyReset").Visible = true ;}
 		data = SaveHandler.LoadFromFile(_savePath);
 		GD.Print("Save file loaded");
-		if ((bool)data["tutorialComplete"] == true)
-		{
-			_nextScene = "res://Scenes/super_new_world.tscn";
-		}
-		else
-		{
-			_nextScene = "res://Scenes/cutscene_1.tscn";
-		}
 		GetNode<Label>("Buttons/gameVer").Text = "Beta" + (string)data["version"];
 	}
 
@@ -58,6 +50,14 @@ public partial class titleScreen : Node3D
 		{
 			_loadingMaterial.SetShaderParameter("progress", (float)_loadingMaterial.GetShaderParameter("progress")-0.05f);
 			await ToSignal(GetTree().CreateTimer(0.01), "timeout"); 
+		}
+		if ((bool)data["tutorialComplete"] == true)
+		{
+			_nextScene = "res://Scenes/newWorld.tscn";
+		}
+		else
+		{
+			_nextScene = "res://Scenes/cutscene_1.tscn";
 		}
 		GetTree().ChangeSceneToFile(_nextScene);
 		
