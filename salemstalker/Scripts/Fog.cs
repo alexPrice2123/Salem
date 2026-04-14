@@ -27,16 +27,7 @@ public partial class Fog : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (_player._inGoalArea == false)
-        {
-			_exitFadeTime = 2f;
-            float distance = (_player.GlobalPosition - GetParent().GetNode<Node3D>("GoalArea/GoalPoint").GlobalPosition).Length();
-			_normalFog = ((1-_player._lookingAtGoalPoint)*distance*0.015f)+0.055f;
-        }
-        else
-        {
-            _normalFog = _defaultNormalFog;
-        }
+		_normalFog = _defaultNormalFog;
 		if (_player._hallucinationFactor > 0.1f)
 		{
 			_exitFadeTime = 0.5f;

@@ -24,7 +24,7 @@ public partial class NewWorld : Node3D
 		{
 			GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("VillageMark").GlobalPosition ;
 		}
-		else if (((string)data["lastLocation"]).Equals("bossMark"))
+		else if (((string)data["lastLocation"]).Equals("bossTest"))
 		{
 			GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("BossMark").GlobalPosition ;
 		}

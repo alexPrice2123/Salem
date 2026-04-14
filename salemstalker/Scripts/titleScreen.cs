@@ -53,7 +53,7 @@ public partial class titleScreen : Node3D
 		}
 		if ((bool)data["tutorialComplete"] == true)
 		{
-			_nextScene = "res://Scenes/newWorld.tscn";
+			_nextScene = "res://Scenes/super_new_world.tscn";
 		}
 		else
 		{
