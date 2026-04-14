@@ -40,17 +40,13 @@ public partial class Resin : Monster3d
 
 	public void _on_hurtbox_area_entered(Area3D body){if (Visible && !_dead){Damaged(body);}}
 
-	public void _on_attackbox_area_entered(Node3D body)
-	{
-		TryHitPlayer(body);
-	}
-
 	private async void Die()
     {
         GetNode<Node3D>("Body").Visible = false;
 		_snake._resinArray.Add(this);
 		_snake.ResinBroken();
 		GetNode<GpuParticles3D>("Break").Emitting = true;
+		_snake._animState = "Hit";
 		await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
 		Visible = false;
 		GetNode<Node3D>("Body").Visible = true;

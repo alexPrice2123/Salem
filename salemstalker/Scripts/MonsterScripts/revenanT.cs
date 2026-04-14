@@ -40,12 +40,10 @@ public partial class revenanT : Monster3d
 			if (i != _randomBody)
 			{
 				GetNode<Node3D>("Body"+i).QueueFree();
-				GetNode<Node3D>("HitFX"+i).QueueFree();
 				GetNode<AnimationTree>("AnimationTree"+i).QueueFree();
 			}
 			else
 			{
-				MultHitRef = GetNode<Node3D>("HitFX"+i);
 				MultBodyRef = GetNode<Node3D>("Body"+i);
 			}
 		}
@@ -64,8 +62,11 @@ public partial class revenanT : Monster3d
 			{
 				if (GetParent().GetParent() is DebugHut dh){ dh._shouldSpawn = true; }
 			}
-			_itemDropper.Drop("rottenflesh", 0.5f, 3, GlobalPosition);
-			_itemDropper.Drop("scorchedflesh", 0.15f, 2, GlobalPosition);
+			if (_snake == null)
+			{
+				_itemDropper.Drop("rottenflesh", 0.5f, 3, GlobalPosition);
+				_itemDropper.Drop("scorchedflesh", 0.15f, 2, GlobalPosition);
+			}
 			QueueFree(); // Destroy monster when health hits zero
 		}
 		RotateFunc(delta);
@@ -89,15 +90,7 @@ public partial class revenanT : Monster3d
 		Damaged(body);
 	}
 
-	public void _on_attackbox_area_entered(Node3D body)
-	{
-		if (body.IsInGroup("Player") && _hasHit == false && body.Name == "Hurtbox")
-		{
-			_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "None");
-			_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-			_hasHit = true;
-		}
-	}
+	public void _on_attackbox_area_entered(Node3D body){TryHitPlayer(body, "None");}
 
 	public async void Attack()
 	{

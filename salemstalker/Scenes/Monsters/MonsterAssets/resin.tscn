@@ -1,11 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://c1jpcmate77rb"]
+[gd_scene load_steps=37 format=4 uid="uid://c1jpcmate77rb"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_533rq"]
 [ext_resource type="Script" uid="uid://dwvhkeqbmpua7" path="res://Scripts/MonsterScripts/MonsterAssetScripts/Resin.cs" id="2_533rq"]
-[ext_resource type="PackedScene" uid="uid://dyejc7gh3evnu" path="res://Assets/3D/props/resin.blend" id="3_wufnm"]
 [ext_resource type="Texture2D" uid="uid://brqf3d5v6d4h1" path="res://Assets/monstertextures/coiled/DefaultMaterial_Base_color.png" id="4_ikq4g"]
 [ext_resource type="Texture2D" uid="uid://blbm3p64v425k" path="res://Assets/monstertextures/coiled/DefaultMaterial_Emissive.png" id="5_d8qhg"]
-[ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="6_f85ne"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7ma6"]
 albedo_color = Color(1, 1, 0, 1)
@@ -114,6 +112,38 @@ states/walking/position = Vector2(592.562, 85.890594)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_m7bjp"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_00oym"), "walking", "attack", SubResource("AnimationNodeStateMachineTransition_v7ma6"), "walking", "attack2", SubResource("AnimationNodeStateMachineTransition_ch86k"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_p1kej"), "idle", "attack2", SubResource("AnimationNodeStateMachineTransition_ex21e")]
 graph_offset = Vector2(39, -85)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oiodp"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pf6fw"]
+_surfaces = [{
+"aabb": AABB(-0.71913713, -0.7179676, -0.50032765, 1.4382743, 1.4371048, 1.2142285),
+"format": 34896613377,
+"index_count": 252,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIAAAAFAAMAAAAEAAUAAwAFAAYAAwAHAAEAAwAIAAcAAwAGAAgACAAJAAcACAAGAAkAAQAHAAoABQALAAYAAQAKAAwAAgABAAwABwANAAoABwAJAA0ACgAOAAwACgANAA4AAgAMAA8AEAACAA8ADAARAA8AEAAPABEADAAOABEABAACABAADQASAA4AEwAEABAADQAUABIACQAUAA0AEgAVAA4AFgAOABUAFgARAA4AFQAXABYAFwARABYAFQAYABcAEgAYABUAFwAZABEAGAAZABcAGgAYABIAFAAaABIAGAAbABkAGgAbABgAHAARABkAHAAQABEAHQAZABsAHQAcABkAGwAaAB4AGwAeAB0AFAAfABoAIAAeABoAIAAaAB8AIAAdAB4AHwAUACEAHwAhACAACQAhABQAIAAiAB0AIQAiACAAIwAhAAkAIQAjACIAIwAJACQABgAkAAkAIgAjACUABgAmACQAJgAjACQAJgAlACMACwAmAAYACwAlACYAIgAlAAsACwAdACIACwAnAB0ABQAnAAsABAAnAAUAJwAcAB0ABAAoACcAJwAoABwAKAApABwABAAqACgAKAAqACkABAATACoAHAApACsAKgArACkAKgATACsAHAArABAAEwAQACsA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 44,
+"vertex_data": PackedByteArray("ACfTJvkfAAD/f+R/AAAAAIAT5H/qDAAA/39PE7QXAABJKSojLVgAAP9/AABrUgAAtdYqIy1YAAB+7OR/6gwAAP7Y0yb5HwAAHPuhhbNMAAD+2PXYRg4AAKbGXyyZzAAA/3967CACAAAN3nrs7DoAALqFG/sHQQAAACf12EYOAACVBnKDlk4AAIkkRNgsRQAA9JVt7NazAADfEX4zv28AAGfTXdOkrwAAiWf//3heAACpMxzuNF0AAP050+BtrAAAMWzw7Ge4AABzLn/IF70AAOiTq88D5AAAEWoUy1zkAAB8Ji6BwdMAABJ683n//wAAf5hqmEv/AADxxeXFhNYAALbP0ZP16QAAcezelXC8AAAfy/JpAu4AAPTsEmw1xQAA//9pZ6FtAADa4NQ5Bb0AAB/ufjO/bwAA/39PEwPMAACBOJMwyMsAACoSLWpUvwAAJB/UOQW9AAAAAGlnoW0AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qsps7"]
+resource_name = "resin_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.71913713, -0.7179676, -0.50032765, 1.4382743, 1.4371048, 1.2142285),
+"attribute_data": PackedByteArray("ufzoFOXKPTTu1UUDifz+Pu7VRQMSmqkp9atoA+XKPTTlyj00hprkUxKaqSmswGNlifz+PqzAY2Xlyj00SutjZYgttOzjR9r4TjT0/8JAyOOmc86aO413sUJ4d7E7iMib3xMH/4gttOxONPT/ZBUC8uNH2vjDX63d+16k7MJAyOM6YF+upnPOmkJ4d7GPV5edO413sbOhzpf9qqehO4jIm/2qp6HgoeN2cavBcLOhzpdVgdu0Nn7037l0ZNNGj0yxdkRlmMNf5K3FVzC59lJGmrIwiWsFBmFzKADlZWMmD3lpbsRSRGeiKjdyFzqoYhFZyZR0JjdyFzpEZ6IqBZWeOjQIdNqaKx2+eSEA0S0EKcbCQMjjeSEA0ZorHb6ILbTsO4jIm8V3lmvWhu51pnPOmgJuY/xuZNvNAm5svLxjJe/ZsqWvnLn/3DapNubHvTW7iM8J4DapNuacuf/cN9KA6VIep5bFVzC5misdvnZEZZg30va/nLn/3Me9NbuIzwngsjCJa/kAtD8xNFU9KADlZZorHb7DX63dwkDI48VXMLk3chc6aI0xUmluxFIFlZ462bKlrzZ+9N9Gj0yxNqk25jMAda2aKx2+LQQpxlIep5bgoeN2O4jIm9aG7nWzoc6XMTRVPSgA8SP4MAcc+QC0PzQIdNqILbTsZBUC8nkhANHFd5Zrj1eXnbdHdW+mc86aO2cAAMmUdCZEZ6IquJOuCDCojVrFd5Zrd3rJVHGrwXAlTHxB+DAHHE5INxwxNFU9Nqk25pl4gfU2fvTfYqPM/9dMOyuoYhFZ10weVkRnoio30oDpYqPM/zapNuaoy5T/BUjRbTE0VT0lTHxBsjCJa8hT1QBEZ6Iq10w7KztnAAB3eslUt0d1b7dQul3Fd5Zr"),
+"format": 34896613399,
+"index_count": 252,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcABxAHIAcABzAHEAdAB1AHYAdAB3AHUAeAB5AHoAeAB7AHkAfAB9AH4AfAB/AH0AgACBAIIAgACDAIEAhACFAIYAhACHAIUAiACJAIoAiACLAIkAjACNAI4AjACPAI0AkACRAJIAkACTAJEAlACVAJYAlACXAJUAmACZAJoAmACbAJkAnACdAJ4AnACfAJ0AoAChAKIAoACjAKEApAClAKYApACnAKUA"),
+"material": SubResource("StandardMaterial3D_oiodp"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 168,
+"vertex_data": PackedByteArray("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")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_pf6fw")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_533rq"]
 albedo_texture = ExtResource("4_ikq4g")
 emission_enabled = true
@@ -181,37 +211,35 @@ shape = SubResource("SphereShape3D_tt2f5")
 [node name="Direction" type="Node3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0950214, 0)
 
-[node name="Body" parent="." index="6" instance=ExtResource("3_wufnm")]
+[node name="Body" type="Node3D" parent="." index="6"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
-[node name="Cube" parent="Body" index="0"]
+[node name="metarig" type="Node3D" parent="Body" index="0"]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Body/metarig" index="0"]
+
+[node name="Cube" type="MeshInstance3D" parent="Body/metarig/Skeleton3D" index="0"]
+mesh = SubResource("ArrayMesh_qsps7")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_533rq")
 
-[node name="HitFX" parent="." index="7" instance=ExtResource("3_wufnm")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-visible = false
-
-[node name="Cube" parent="HitFX" index="0"]
-material_override = ExtResource("6_f85ne")
-surface_material_override/0 = SubResource("StandardMaterial3D_533rq")
-
-[node name="Attackbox" parent="." index="8"]
+[node name="Attackbox" parent="." index="7"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.1488323, 0)
 visible = false
 
 [node name="CollisionShape3D" parent="Attackbox" index="0"]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -0.06680733, -0.61794984)
 
-[node name="WalkRange" parent="." index="9"]
+[node name="WalkRange" parent="." index="8"]
 visible = false
 
-[node name="RunRange" parent="." index="10"]
+[node name="RunRange" parent="." index="9"]
 visible = false
 
-[node name="AgroRange" parent="." index="11"]
+[node name="AgroRange" parent="." index="10"]
 visible = false
 
-[node name="Break" type="GPUParticles3D" parent="." index="13"]
+[node name="Break" type="GPUParticles3D" parent="." index="12"]
 transform = Transform3D(1, 0, 6.82121e-13, 0, 1, 0, -6.82121e-13, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_533rq")
 emitting = false
@@ -221,6 +249,3 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_nuy2x")
 draw_pass_1 = SubResource("BoxMesh_wufnm")
-
-[editable path="Body"]
-[editable path="HitFX"]

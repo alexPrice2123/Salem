@@ -2,6 +2,7 @@ using Godot;
 using System;
 public partial class theCoiledOne : Monster3d
 {
+	private const int MaxResin = 1;
 	private float _distance;
 	private int _attackAnimSwitch = 1;
 	public Godot.Collections.Array<Node3D> _resinArray { get; set; } = []; 
@@ -11,13 +12,15 @@ public partial class theCoiledOne : Monster3d
 	public int _underbrushLeft = 2;
 	public int _vinetanglerLeft = 1;
 	public int _revenantLeft = 4; 
+	
 	[Export] public PackedScene _spawnRootScene { get; set; }
 	[Export] public PackedScene _vineTangler { get; set; }
 	[Export] public PackedScene _underBrush { get; set; }
 	[Export] public PackedScene _revanant { get; set; }
 	private CsgSphere3D _rangeObj;
 	private int _spawnCount = 0;
-	private string _animState = "Idle";
+	public string _animState = "Idle";
+	public int _phase = 1;
 
 	public override void _Ready()
 	{
@@ -67,10 +70,12 @@ public partial class theCoiledOne : Monster3d
 		GD.Print(_resinCount+" Resin Left");
 		if (_resinCount <= 0)
         {
-			await ToSignal(GetTree().CreateTimer(1), "timeout");
 			_roots.Visible = false;
+			await ToSignal(GetTree().CreateTimer(1), "timeout");
+			_animState = "Stunned";
             //SpawnResin();
         }
+		else{await ToSignal(GetTree().CreateTimer(1), "timeout"); _animState = "Idle";}
     }
 
 	private void SpawnResin()
@@ -78,7 +83,8 @@ public partial class theCoiledOne : Monster3d
 		_currentDamage = 0;
 		if (_roots != null){_roots.Visible = true;}
 		_resinCount = 0;
-        for (int i = 0; i < 6; i++)
+		if (_phase == 2){return;}
+        for (int i = 0; i < MaxResin; i++)
         {
             if (_resinArray.PickRandom() is Resin resInst)
             {
@@ -89,52 +95,78 @@ public partial class theCoiledOne : Monster3d
     }
 
 	private async void SpawnEnemy()
-{
-    var scenes = new PackedScene[3];
-    var decrements = new Action[3];
-    int count = 0;
+	{
+		var scenes = new PackedScene[3];
+		var decrements = new Action[3];
+		int count = 0;
 
-    if (_underbrushLeft > 0)  { scenes[count] = _underBrush;  decrements[count++] = () => _underbrushLeft--; }
-    if (_vinetanglerLeft > 0) { scenes[count] = _vineTangler; decrements[count++] = () => _vinetanglerLeft--; }
-    if (_revenantLeft > 0)    { scenes[count] = _revanant;    decrements[count++] = () => _revenantLeft--; }
+		if (_underbrushLeft > 0)  { scenes[count] = _underBrush;  decrements[count++] = () => _underbrushLeft--; }
+		if (_vinetanglerLeft > 0) { scenes[count] = _vineTangler; decrements[count++] = () => _vinetanglerLeft--; }
+		if (_revenantLeft > 0)    { scenes[count] = _revanant;    decrements[count++] = () => _revenantLeft--; }
 
-    if (count == 0) return;
+		if (count == 0) return;
 
-    int choice = _rng.RandiRange(0, count - 1);
-    PackedScene monsterToSpawn = scenes[choice];
-    decrements[choice]();
+		int choice = _rng.RandiRange(0, count - 1);
+		PackedScene monsterToSpawn = scenes[choice];
+		decrements[choice]();
 
-    Node3D rootInstance = _spawnRootScene.Instantiate<Node3D>();
-    GetParent().AddChild(rootInstance);
+		Node3D rootInstance = _spawnRootScene.Instantiate<Node3D>();
+		GetParent().AddChild(rootInstance);
 
-    float maxRange = _rangeObj.Radius;
-    Vector3 centerPos = _rangeObj.GlobalPosition;
-    rootInstance.GlobalPosition = centerPos + new Vector3(
-        _rng.RandfRange(-maxRange, maxRange), 0,
-        _rng.RandfRange(-maxRange, maxRange));
+		float maxRange = _rangeObj.Radius;
+		Vector3 centerPos = _rangeObj.GlobalPosition;
+		rootInstance.GlobalPosition = centerPos + new Vector3(
+			_rng.RandfRange(-maxRange, maxRange), 0,
+			_rng.RandfRange(-maxRange, maxRange));
 
-	GD.Print(monsterToSpawn+" Trying");
-    if (rootInstance is not SpawningRoot spawnRoot)
+		GD.Print(monsterToSpawn+" Trying");
+		if (rootInstance is not SpawningRoot spawnRoot)
+		{
+			rootInstance.QueueFree();
+			return;
+		}
+		GD.Print(monsterToSpawn+" Spawning");
+		if (!_roots.Visible){_spawnCount = 0; return;}
+		_animState = "Summon";
+		await ToSignal(GetTree().CreateTimer(1.65), "timeout");
+		GetNode<GpuParticles3D>("Body/Armature/Skeleton3D/Bone_012/Summon").Emitting = true;
+		spawnRoot.SpawnMonster(monsterToSpawn, this);
+		await ToSignal(GetTree().CreateTimer(0.5), "timeout");	
+		GetNode<GpuParticles3D>("Body/Armature/Skeleton3D/Bone_012/Summon").Emitting = false;
+		_animState = "Idle";
+		if (_resinCount <= 0 && _phase == 1)
+        {
+			_roots.Visible = false;
+			_animState = "Stunned";
+        }
+	}
+
+	private void TransitionPhase()
     {
-        rootInstance.QueueFree();
-        return;
+		_phase = 2;
+        foreach (Node3D roots in GetParent().GetParent().GetChildren())
+        {
+            if (((string)roots.Name).Contains("RootWall") && !((string)roots.Name).Contains("Stay"))
+            {
+				roots.QueueFree();
+			}
+			if (((string)roots.Name).Contains("UnderWall"))
+            {
+                roots.GlobalPosition = new Vector3(roots.GlobalPosition.X, -1, roots.GlobalPosition.Z);
+            }
+		}
+		_rangeObj = GetNode<CsgSphere3D>("Range2");
+		_player.GlobalPosition = _rangeObj.GlobalPosition + new Vector3(0, 1, 0);
+		_roots.GlobalPosition = new Vector3(0, -10, 0);
     }
-	GD.Print(monsterToSpawn+" Spawning");
-
-    _animState = "Summon";
-    await ToSignal(GetTree().CreateTimer(1.65), "timeout");
-    GetNode<GpuParticles3D>("Summon").Emitting = true;
-    spawnRoot.SpawnMonster(monsterToSpawn, this);
-    await ToSignal(GetTree().CreateTimer(0.5), "timeout");
-    GetNode<GpuParticles3D>("Summon").Emitting = false;
-    _animState = "Idle";
-}
 
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
-		_spawnCount++;
-		if (_spawnCount > 200)
+		if (_health <= MaxHealth / 2 && _phase == 1){TransitionPhase();}
+
+		if (_roots.Visible){_spawnCount++;}
+		if (_spawnCount > (300 +(Convert.ToInt32(_health < MaxHealth/2)*400)))
         {
             _spawnCount = _rng.RandiRange(-200, 25);
 			SpawnEnemy();
@@ -144,6 +176,7 @@ public partial class theCoiledOne : Monster3d
             if (!_roots.Visible && _currentDamage >= 50f)
 			{
 				SpawnResin();
+				_animState = "Idle";
 			}
         }
 		
@@ -181,10 +214,7 @@ public partial class theCoiledOne : Monster3d
 
 	public void _on_hurtbox_area_entered(Area3D body){if(!_roots.Visible){Damaged(body);}}
 
-	public void _on_attackbox_area_entered(Node3D body)
-	{
-		TryHitPlayer(body);
-	}
+	public void _on_attackbox_area_entered(Node3D body){TryHitPlayer(body, "None");}
 
 	public async void Attack()
 	{

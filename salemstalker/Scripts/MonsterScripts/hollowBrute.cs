@@ -72,15 +72,7 @@ public partial class hollowBrute : Monster3d
 		Damaged(body);
 	}
 
-	public void _on_attackbox_area_entered(Node3D body)
-	{
-		if (body.IsInGroup("PlayerHurtbox") && _hasHit == false && body.Name == "Hurtbox")
-		{
-			_player.Damaged(BaseDamage + _damageOffset, this as Monster3d, "None");
-			_attackBox.Disabled = true;
-			_hasHit = true;
-		}
-	}
+	public void _on_attackbox_area_entered(Node3D body){TryHitPlayer(body, "None");}
 
 	public async void Attack()
 	{

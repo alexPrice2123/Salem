@@ -1,6 +1,10 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://bpu6edb0a8drx"]
 
 [resource]
+transparency = 1
 shading_mode = 0
-albedo_color = Color(0.999802, 0.212713, 0.16403, 1)
+albedo_color = Color(1, 0.21176471, 0.16470589, 0.88235295)
 disable_receive_shadows = true
+stencil_flags = 2
+stencil_color = Color(1, 0, 0, 1)
+stencil_outline_thickness = 0.1

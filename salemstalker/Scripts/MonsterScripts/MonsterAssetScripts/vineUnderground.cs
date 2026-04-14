@@ -7,7 +7,7 @@ public partial class vineUnderground : CharacterBody3D
 	public Player3d _player;
 	public bool _charging = false;
 	private bool _attack = false;
-	private float _count = 1.5f;
+	private float _count = 0.5f;
 	private float _health = 2f;
 	private float _vineCount = 0f;
 	public vineTangler _monster;
