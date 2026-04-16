@@ -39,6 +39,11 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
+"leaves": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://Assets/Materials/invisDebugMat.tres",
+"use_external/path": "uid://yppq7na5mban"
+},
 "tree1": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Assets/Materials/tree1.tres",
