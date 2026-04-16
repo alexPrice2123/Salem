@@ -13,8 +13,10 @@ public partial class TomahawkProj : RigidBody3D
     {
         
     }
-    public void _on_hit_area_3d_body_entered(Node3D body)
+    public void _on_body_entered(Node body)
     {
         if(body.IsInGroup("Terrain")){Freeze = true; Rotation = new Vector3(100f,Rotation.X,Rotation.Z) ;}
     }
+    
+    
 }

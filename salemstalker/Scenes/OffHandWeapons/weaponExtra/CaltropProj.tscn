@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://7y6bipq0jrv6"]
+
+[ext_resource type="Script" uid="uid://c1b2batj8by3w" path="res://Scenes/OffHandWeapons/weaponExtra/CaltropProj.cs" id="1_g4r8k"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_76l5u"]
+points = PackedVector3Array(-0.030126631, -0.096420325, -0.09340011, 0.0028601936, 0.09188597, 0.0028601936, 0.005731927, 0.0690535, 0.0143838925, 0.09340011, -0.096420325, -0.030126631, -0.044985205, -0.09598347, 0.08698267, -0.09657372, -0.09657372, -0.018093392, 0.05937367, -0.095012754, 0.077193215, 0.044985205, -0.09598347, -0.08698267, -0.0897795, -0.09577981, 0.038908202, 0.093411796, -0.09643239, 0.0301304, -0.0028601936, 0.09188597, -0.0028601936, 0.018094182, -0.096577935, 0.096577935, -0.07718408, -0.09500151, -0.059366643, 0.07497795, -0.095986806, -0.06298899, 0.018093392, -0.09657372, -0.09657372, -0.06561869, -0.08558492, 0.06561869, -0.018111318, -0.096568495, 0.096568495, -0.0028601936, 0.09188597, 0.0028601936, 0.0028601936, 0.09188597, -0.0028601936, 0.09258224, -0.08678226, -0.011563718, -0.05937367, -0.095012754, -0.077193215, 0.07718859, -0.095029965, 0.059384424, -0.096577935, -0.096577935, 0.018094182, -0.011563718, -0.08678226, -0.09258224, -0.08976431, -0.095763594, -0.03890162, 0.038908202, -0.09577981, 0.0897795, 0.09657372, -0.09657372, 0.018093392, 0.059366643, -0.09500151, -0.07718408, -0.077193215, -0.095012754, 0.05937367, 0.083337836, -0.0952539, -0.05059198, -0.044992425, -0.095998876, -0.08699663, 0.07417984, -0.06847646, 0.03994162)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5laef"]
+height = 1.0333252
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g4r8k"]
+top_radius = 0.0
+bottom_radius = 0.05
+height = 0.3
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ab1fj"]
+offset = Vector3(-0.6, 0, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pxsow"]
+width = 216
+height = 216
+noise = SubResource("FastNoiseLite_ab1fj")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1sfpj"]
+frequency = 0.0401
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1xi8b"]
+width = 12
+height = 12
+noise = SubResource("FastNoiseLite_1sfpj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbsya"]
+albedo_color = Color(0.427493, 0.42749307, 0.42749307, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness_texture = SubResource("NoiseTexture2D_1xi8b")
+normal_texture = SubResource("NoiseTexture2D_pxsow")
+
+[node name="Caltrops" type="RigidBody3D" groups=["PlayerProj"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.021261051)
+collision_layer = 256
+collision_mask = 256
+mass = 0.2
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_g4r8k")
+metadata/damagePerBoss = 0.0
+metadata/DamagePer = 0.05
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.2, 0)
+shape = SubResource("ConvexPolygonShape3D_76l5u")
+
+[node name="HitArea3D" type="Area3D" parent="." groups=["PlayerProj"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.450581e-09, -0.16171163)
+shape = SubResource("CapsuleShape3D_5laef")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22981662, 0)
+mesh = SubResource("CylinderMesh_g4r8k")
+surface_material_override/0 = SubResource("StandardMaterial3D_jbsya")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5543651, -0.8322736, 0, 0.8322736, -0.5543651, 0, 0, 0, 1, -0.094062924, 0.08949396, 0)
+mesh = SubResource("CylinderMesh_g4r8k")
+surface_material_override/0 = SubResource("StandardMaterial3D_jbsya")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.17915651, 0.2689694, -0.9463395, 0.8322736, -0.5543651, 0, -0.5246176, -0.7876134, -0.32317424, 0.0320528, 0.08949396, -0.08123207)
+mesh = SubResource("CylinderMesh_g4r8k")
+surface_material_override/0 = SubResource("StandardMaterial3D_jbsya")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.048036613, 0.072117895, 0.99623865, 0.8322736, -0.5543651, 2.4817256e-08, 0.55228007, 0.8291433, -0.08665165, 0.0025799125, 0.08949396, 0.09377937)
+mesh = SubResource("CylinderMesh_g4r8k")
+surface_material_override/0 = SubResource("StandardMaterial3D_jbsya")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.07045565, -0.22674999, 0.9714013, 0.88244855, 0.4682237, 0.04529145, -0.46510276, 0.8540206, 0.23308416, -0.024746433, 0.17115638, 0.09330304)
+mesh = SubResource("CylinderMesh_g4r8k")
+surface_material_override/0 = SubResource("StandardMaterial3D_jbsya")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.43155384, -0.7674821, -0.47405955, 0.88244855, 0.4682237, 0.04529145, 0.18720545, -0.43787885, 0.87932706, -0.091208115, 0.17115638, -0.0742318)
+mesh = SubResource("CylinderMesh_g4r8k")
+surface_material_override/0 = SubResource("StandardMaterial3D_jbsya")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.33948225, 0.700531, -0.62770087, 0.8824487, 0.46822372, 0.04529142, 0.3256324, -0.5385383, -0.7771361, 0.06841035, 0.17115638, -0.0742318)
+mesh = SubResource("CylinderMesh_g4r8k")
+surface_material_override/0 = SubResource("StandardMaterial3D_jbsya")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4922851, 0.7390724, 0.4598124, 0.8322736, -0.5543651, 2.3732902e-08, 0.25490394, 0.3826897, -0.8880162, 0.098659664, 0.08949396, 0.048971415)
+mesh = SubResource("CylinderMesh_g4r8k")
+surface_material_override/0 = SubResource("StandardMaterial3D_jbsya")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

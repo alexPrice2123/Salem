@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://if2iurgx7v27"]
+
+[ext_resource type="Script" uid="uid://ce5rvswdrduc8" path="res://Scenes/OffHandWeapons/Caltrops.cs" id="1_8y1qt"]
+
+[node name="Caltrops" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_8y1qt")
+metadata/cooldown = 0.1
+
+[node name="BarrelPos" type="Marker3D" parent="."]
+transform = Transform3D(-0.979869, 0, 0.1996415, 0, 1, 0, -0.1996415, 0, -0.979869, -0.666824, -0.119, -0.64517736)
