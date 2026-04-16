@@ -115,6 +115,7 @@ public partial class Player3d : CharacterBody3D
 	public bool _inWater = false;
 	public bool _dead = false;
 	public bool _swing_buffered = false;
+	public bool _special_attack_available = true;
 	private SubViewportContainer _map;
 	private Vector3 _cameraBaseRotation;
 	private Vector3 _cameraBasePosition;
@@ -205,12 +206,14 @@ public partial class Player3d : CharacterBody3D
 			if (_inv.Visible == true) // pressing escape while the inventory is open will close it.
 			{
 				_inv.Visible = false;
-				Input.MouseMode = Input.MouseModeEnum.Captured;
+			}
+			if (_itemInv.Visible == true) // pressing escape while the inventory is open will close it.
+			{
+				_itemInv.Visible = false;
 			}
 			if (_questBook.Visible == true)
 			{
 				_questBook.Visible = false;
-				Input.MouseMode = Input.MouseModeEnum.Captured;
 			}                                                 // same for the quest and shop UI
 			if (_smithShop.Visible == true)
 			{
@@ -221,7 +224,7 @@ public partial class Player3d : CharacterBody3D
 
 			if (Input.MouseMode == Input.MouseModeEnum.Captured)
 			{
-				// Un-capture mouse, show pause menu, update sensitivity slider to current value
+				// Un-capture mouse, show pause menu, update sensitivity slider to current valueaw
 				Input.MouseMode = Input.MouseModeEnum.Visible;
 				GetTree().Paused = true;
 				Control pauseInst = _pauseMenu.Instantiate<Control>();
@@ -233,7 +236,7 @@ public partial class Player3d : CharacterBody3D
 				{
 					menu._player = this;
 				}
-			}
+			} else {Input.MouseMode = Input.MouseModeEnum.Captured;}
 		}
 		
 		
@@ -355,7 +358,10 @@ public partial class Player3d : CharacterBody3D
 				_stamina -= 20f; // Deduct stamina
 			}
 		}   
-       
+        else if (Input.IsActionJustPressed("sAttack"))
+	   {
+			SpecialSwing();
+	   }
 		// --- Run (Shift Key) ---        
 		else if (@event is InputEventKey shiftKey && shiftKey.Keycode == Key.Shift)
 		{
@@ -917,7 +923,31 @@ public partial class Player3d : CharacterBody3D
 		}
 		
 	}
-
+	private async void SpecialSwing()
+	{
+		if (true)//(_special_attack_available == true)
+		{
+			Timer cooldown = _sword.GetNode<Timer>("sAttackCooldown");
+			_special_attack_available = false;
+			_comboNum = 4;
+			_swordInst.swingStat = _comboNum;
+			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/spaHitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
+			GD.Print("spa_start ",_comboNum,", ",_swordInst.swingStat);
+			await ToSignal(GetTree().CreateTimer(0.4), "timeout");
+			GD.Print("spec_a");
+			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/spaHitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
+			GD.Print("spec_b");
+			cooldown.Start();
+			GD.Print("spec_c");
+			_comboNum = 0;
+			_swordInst.swingStat = _comboNum;
+			GD.Print("spa_end ",_comboNum,", ",_swordInst.swingStat);
+			await ToSignal(cooldown, "timeout");
+			
+			_special_attack_available = true;
+			GD.Print("spa_available");
+		}
+	}
 	// Handles the blocking and parrying mechanic.
 	private async void Block(bool block)
 	{

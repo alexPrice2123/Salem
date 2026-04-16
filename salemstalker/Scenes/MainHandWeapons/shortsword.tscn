@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://3v4hdgpge0v6"]
+[gd_scene load_steps=112 format=3 uid="uid://3v4hdgpge0v6"]
 
 [ext_resource type="Script" uid="uid://b1ax0drvppbgl" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_ckg03"]
 [ext_resource type="PackedScene" uid="uid://c1ixg535pupsm" path="res://Assets/Weapons/shortsword.blend" id="2_pkki5"]
@@ -137,6 +137,9 @@ heightmap_texture = ExtResource("18_3jmbr")
 [sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
 size = Vector3(0.21177, 1.52848, 0.321355)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ujmf"]
+size = Vector3(0.3, 0.7, 0.3)
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kwmjs"]
 animation = &"attack1"
 use_custom_timeline = true
@@ -175,6 +178,9 @@ loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u8y7o"]
 animation = &"block_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2opq7"]
+animation = &"hilt_hit"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ujmf"]
 animation = &"idle"
@@ -429,21 +435,80 @@ xfade_time = 0.1
 advance_mode = 2
 advance_expression = "swingStat == 1 && !blocking"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2uxip"]
+advance_mode = 2
+advance_expression = "swingStat == 4"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_37iw2"]
+advance_mode = 2
+advance_expression = "swingStat == 4"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gjgdo"]
+advance_mode = 2
+advance_expression = "swingStat == 4"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_odpti"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "swingStat == 4"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ayxjl"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "swingStat == 4"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_25yyd"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "swingStat == 4"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f36xm"]
+switch_mode = 1
+advance_mode = 2
+advance_expression = "swingStat == 4"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4g5ih"]
+switch_mode = 1
+advance_mode = 2
+advance_expression = "blocking == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p8tj1"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "swingStat == 1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vqwly"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "swingStat == 0 && running && !walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ceani"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "swingStat == 0 && !running && walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hg7p8"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!walking && !running"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bw8mc"]
 states/End/position = Vector2(1256, 113)
 states/Start/position = Vector2(-364, 42.8125)
 states/attack1/node = SubResource("AnimationNodeAnimation_kwmjs")
-states/attack1/position = Vector2(723.499, 646.8262)
+states/attack1/position = Vector2(717.499, 640.8823)
 states/attack2/node = SubResource("AnimationNodeAnimation_mw22n")
 states/attack2/position = Vector2(862.61414, 641.43854)
 states/attack3/node = SubResource("AnimationNodeAnimation_wvwlr")
-states/attack3/position = Vector2(864.73914, 555)
+states/attack3/position = Vector2(869.73914, 544.8594)
 states/block/node = SubResource("AnimationNodeAnimation_jta0k")
 states/block/position = Vector2(765.459, -327.3501)
 "states/block Reverse/node" = SubResource("AnimationNodeAnimation_pxq68")
 "states/block Reverse/position" = Vector2(922.11414, -247.23828)
 states/block_idle/node = SubResource("AnimationNodeAnimation_u8y7o")
 states/block_idle/position = Vector2(923.11414, -327.03223)
+states/hilt_hit/node = SubResource("AnimationNodeAnimation_2opq7")
+states/hilt_hit/position = Vector2(606.3574, 405.25)
 states/idle/node = SubResource("AnimationNodeAnimation_4ujmf")
 states/idle/position = Vector2(63.09961, 516.39453)
 states/parry1/node = SubResource("AnimationNodeAnimation_x5r1y")
@@ -454,8 +519,8 @@ states/run/node = SubResource("AnimationNodeAnimation_w4qeb")
 states/run/position = Vector2(182.91113, 584.21875)
 states/walk/node = SubResource("AnimationNodeAnimation_0gn6g")
 states/walk/position = Vector2(181.45313, 462.71875)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_kwmjs"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_pxq68"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_u8y7o"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_2opq7"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_34yv5"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_qpqbi"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_3jmbr"), "walk", "block", SubResource("AnimationNodeStateMachineTransition_vooft"), "run", "block", SubResource("AnimationNodeStateMachineTransition_18nq6"), "idle", "block", SubResource("AnimationNodeStateMachineTransition_duntr"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_pn25q"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_klhe2"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_s5sfm"), "run", "attack1", SubResource("AnimationNodeStateMachineTransition_bu7t2"), "walk", "attack1", SubResource("AnimationNodeStateMachineTransition_316gc"), "attack3", "idle", SubResource("AnimationNodeStateMachineTransition_tnnbh"), "attack3", "attack1", SubResource("AnimationNodeStateMachineTransition_vr5u1"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_fvvcl"), "attack1", "idle", SubResource("AnimationNodeStateMachineTransition_2y8h8"), "attack1", "block", SubResource("AnimationNodeStateMachineTransition_843n8"), "attack2", "block", SubResource("AnimationNodeStateMachineTransition_worpy"), "attack3", "block", SubResource("AnimationNodeStateMachineTransition_uxcex"), "attack2", "run", SubResource("AnimationNodeStateMachineTransition_5cavf"), "attack3", "run", SubResource("AnimationNodeStateMachineTransition_jql6y"), "attack3", "walk", SubResource("AnimationNodeStateMachineTransition_jp18e"), "attack1", "run", SubResource("AnimationNodeStateMachineTransition_y1hnr"), "attack1", "walk", SubResource("AnimationNodeStateMachineTransition_un0st"), "attack2", "walk", SubResource("AnimationNodeStateMachineTransition_4ujmf"), "block_idle", "parry2", SubResource("AnimationNodeStateMachineTransition_5pnml"), "block_idle", "parry1", SubResource("AnimationNodeStateMachineTransition_tlhnf"), "parry1", "block_idle", SubResource("AnimationNodeStateMachineTransition_oettj"), "parry2", "block_idle", SubResource("AnimationNodeStateMachineTransition_mkca1"), "block", "block_idle", SubResource("AnimationNodeStateMachineTransition_jwdyb"), "block_idle", "block Reverse", SubResource("AnimationNodeStateMachineTransition_mjkup"), "block", "block Reverse", SubResource("AnimationNodeStateMachineTransition_1vcao"), "block Reverse", "block", SubResource("AnimationNodeStateMachineTransition_6yuuk"), "block Reverse", "run", SubResource("AnimationNodeStateMachineTransition_dvy65"), "block Reverse", "walk", SubResource("AnimationNodeStateMachineTransition_hl6in"), "block Reverse", "idle", SubResource("AnimationNodeStateMachineTransition_fw3lk"), "parry1", "block Reverse", SubResource("AnimationNodeStateMachineTransition_n8x3y"), "parry2", "block Reverse", SubResource("AnimationNodeStateMachineTransition_jd62e"), "block Reverse", "attack1", SubResource("AnimationNodeStateMachineTransition_ru5bm")]
-graph_offset = Vector2(188.35736, 590)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_kwmjs"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_pxq68"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_u8y7o"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_2opq7"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_34yv5"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_qpqbi"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_3jmbr"), "walk", "block", SubResource("AnimationNodeStateMachineTransition_vooft"), "run", "block", SubResource("AnimationNodeStateMachineTransition_18nq6"), "idle", "block", SubResource("AnimationNodeStateMachineTransition_duntr"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_pn25q"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_klhe2"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_s5sfm"), "run", "attack1", SubResource("AnimationNodeStateMachineTransition_bu7t2"), "walk", "attack1", SubResource("AnimationNodeStateMachineTransition_316gc"), "attack3", "idle", SubResource("AnimationNodeStateMachineTransition_tnnbh"), "attack3", "attack1", SubResource("AnimationNodeStateMachineTransition_vr5u1"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_fvvcl"), "attack1", "idle", SubResource("AnimationNodeStateMachineTransition_2y8h8"), "attack1", "block", SubResource("AnimationNodeStateMachineTransition_843n8"), "attack2", "block", SubResource("AnimationNodeStateMachineTransition_worpy"), "attack3", "block", SubResource("AnimationNodeStateMachineTransition_uxcex"), "attack2", "run", SubResource("AnimationNodeStateMachineTransition_5cavf"), "attack3", "run", SubResource("AnimationNodeStateMachineTransition_jql6y"), "attack3", "walk", SubResource("AnimationNodeStateMachineTransition_jp18e"), "attack1", "run", SubResource("AnimationNodeStateMachineTransition_y1hnr"), "attack1", "walk", SubResource("AnimationNodeStateMachineTransition_un0st"), "attack2", "walk", SubResource("AnimationNodeStateMachineTransition_4ujmf"), "block_idle", "parry2", SubResource("AnimationNodeStateMachineTransition_5pnml"), "block_idle", "parry1", SubResource("AnimationNodeStateMachineTransition_tlhnf"), "parry1", "block_idle", SubResource("AnimationNodeStateMachineTransition_oettj"), "parry2", "block_idle", SubResource("AnimationNodeStateMachineTransition_mkca1"), "block", "block_idle", SubResource("AnimationNodeStateMachineTransition_jwdyb"), "block_idle", "block Reverse", SubResource("AnimationNodeStateMachineTransition_mjkup"), "block", "block Reverse", SubResource("AnimationNodeStateMachineTransition_1vcao"), "block Reverse", "block", SubResource("AnimationNodeStateMachineTransition_6yuuk"), "block Reverse", "run", SubResource("AnimationNodeStateMachineTransition_dvy65"), "block Reverse", "walk", SubResource("AnimationNodeStateMachineTransition_hl6in"), "block Reverse", "idle", SubResource("AnimationNodeStateMachineTransition_fw3lk"), "parry1", "block Reverse", SubResource("AnimationNodeStateMachineTransition_n8x3y"), "parry2", "block Reverse", SubResource("AnimationNodeStateMachineTransition_jd62e"), "block Reverse", "attack1", SubResource("AnimationNodeStateMachineTransition_ru5bm"), "walk", "hilt_hit", SubResource("AnimationNodeStateMachineTransition_2uxip"), "idle", "hilt_hit", SubResource("AnimationNodeStateMachineTransition_37iw2"), "run", "hilt_hit", SubResource("AnimationNodeStateMachineTransition_gjgdo"), "attack3", "hilt_hit", SubResource("AnimationNodeStateMachineTransition_odpti"), "attack2", "hilt_hit", SubResource("AnimationNodeStateMachineTransition_ayxjl"), "attack1", "hilt_hit", SubResource("AnimationNodeStateMachineTransition_25yyd"), "block Reverse", "hilt_hit", SubResource("AnimationNodeStateMachineTransition_f36xm"), "hilt_hit", "block", SubResource("AnimationNodeStateMachineTransition_4g5ih"), "hilt_hit", "attack1", SubResource("AnimationNodeStateMachineTransition_p8tj1"), "hilt_hit", "run", SubResource("AnimationNodeStateMachineTransition_vqwly"), "hilt_hit", "walk", SubResource("AnimationNodeStateMachineTransition_ceani"), "hilt_hit", "idle", SubResource("AnimationNodeStateMachineTransition_hg7p8")]
+graph_offset = Vector2(46.35736, 240)
 
 [node name="Shortsword" type="Node3D"]
 transform = Transform3D(-0.41, 0, -1.0394244e-06, 0, 0.41, 0, 1.0394244e-06, 0, -0.41, 0, 0, 0)
@@ -502,8 +567,8 @@ bones/7/rotation = Quaternion(-0.586, -0.324, -0.335, 0.635)
 bones/8/rotation = Quaternion(-0.28827924, 0.63253677, -0.5684554, 0.44005772)
 bones/9/rotation = Quaternion(0.5499285, 0.0012709559, -0.13263234, 0.82461244)
 bones/17/rotation = Quaternion(-0.59, 0.348, 0.33, 0.649)
-bones/18/rotation = Quaternion(-0.15681913, -0.5135902, 0.694882, 0.47830105)
-bones/19/rotation = Quaternion(0.5919601, -0.03551243, 0.03150575, 0.80456793)
+bones/18/rotation = Quaternion(-0.15365106, -0.52026856, 0.6980614, 0.46735683)
+bones/19/rotation = Quaternion(0.61026937, -0.03575638, 0.023568641, 0.79103565)
 bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
 bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
 bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
@@ -516,7 +581,7 @@ bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5265004, 0.047623537, 0.84884006, 0.03664603, 0.9987732, -0.033305492, -0.8493845, 0.013571471, -0.52759945, -0.18776007, 1.4077592, 0.41851747)
+transform = Transform3D(-0.5482057, 0.051612034, 0.83474916, 0.011118077, 0.99845546, -0.054432426, -0.83626914, -0.020559043, -0.5479326, -0.1759448, 1.4164474, 0.41279712)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -545,6 +610,17 @@ shape = SubResource("BoxShape3D_ki2ro")
 disabled = true
 debug_color = Color(0.972146, 0, 0.443071, 0.42)
 
+[node name="spaHitbox" type="Area3D" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder" index="2" groups=["Player", "Stuns", "Weapon"]]
+transform = Transform3D(0.477985, -0.0008707484, -0.0036820173, 0.00087446254, 0.4779989, 0.00047604367, 0.0036810935, -0.0004827492, 0.47798556, 0.0018502623, -0.14724308, -0.0071328357)
+collision_layer = 1025
+collision_mask = 1025
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/spaHitbox"]
+transform = Transform3D(0.87502754, -0.019306282, -0.48368952, 0.034699224, 0.99913555, 0.022892904, 0.48282865, -0.036815584, 0.8749412, -0.0049075484, -0.16011262, -0.0022149906)
+shape = SubResource("BoxShape3D_4ujmf")
+disabled = true
+debug_color = Color(1, 0.6, 0.69803923, 1)
+
 [node name="Cylinder_001" parent="weaponAnimations" index="1"]
 transform = Transform3D(-0.5017525, -0.0032141083, 0.86500525, -0.003631327, 0.99999213, 0.0016093028, -0.8650036, -0.0023336455, -0.5017601, -0.19122489, 1.4032985, -0.4734631)
 visible = false
@@ -565,6 +641,9 @@ one_shot = true
 process_callback = 0
 wait_time = 0.2
 one_shot = true
+
+[node name="sAttackCooldown" type="Timer" parent="."]
+wait_time = 10.0
 
 [connection signal="body_entered" from="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox" to="." method="_on_hitbox_body_entered"]
 
