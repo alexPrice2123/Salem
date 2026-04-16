@@ -121,11 +121,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.422
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15687452, -0.51347226, 0.694825, 0.47849238)
-bones/19/rotation = Quaternion(0.5883302, -0.035462175, 0.03305968, 0.8071661)
+bones/18/rotation = Quaternion(-0.15389895, -0.51975155, 0.6978182, 0.46821272)
+bones/19/rotation = Quaternion(0.60502785, -0.035688177, 0.02585809, 0.7949837)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.52568096, 0.046233766, 0.8494244, 0.04362555, 0.9986732, -0.027359057, -0.8495619, 0.022674594, -0.5270003, -0.1882368, 1.4048891, 0.41916066)
+transform = Transform3D(-0.5459815, 0.05008302, 0.8362987, 0.020809382, 0.9987142, -0.046224102, -0.8375382, -0.007834405, -0.5463217, -0.17716937, 1.4125905, 0.41401768)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")
@@ -196,23 +196,19 @@ shape = SubResource("CapsuleShape3D_df3ch")
 debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0031393766, -2.4216013, -0.004449427)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6445936, -2.29759, 0.8051903)
 mesh = SubResource("SphereMesh_y6jx2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
-visible = false
 mesh = SubResource("SphereMesh_cvtri")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
-visible = false
 mesh = SubResource("SphereMesh_qfumr")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
-visible = false
 mesh = SubResource("SphereMesh_wan02")
 
 [node name="Fade" type="ColorRect" parent="."]
