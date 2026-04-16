@@ -185,7 +185,7 @@ public partial class NpcVillager : CharacterBody3D
 
 			// Face wander target
 			Vector3 moveDirection = Velocity.Normalized(); 
-			if (moveDirection.Length() > 0.1f)
+			if (moveDirection.Length() > 0.1f && GlobalRotation.Round() != _lookDirection.GlobalRotation.Round() )
 			{
 				_lookDirection.LookAt(GlobalTransform.Origin + moveDirection, Vector3.Up);
 				RotateFunc(delta);
