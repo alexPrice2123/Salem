@@ -13,9 +13,9 @@ public partial class TomahawkProj : RigidBody3D
     {
         
     }
-    public void _on_body_entered(Node body)
+    public async void _on_body_entered(Node body)
     {
-        if(body.IsInGroup("Terrain")){Freeze = true; Rotation = new Vector3(100f,Rotation.X,Rotation.Z) ;}
+        if(body.IsInGroup("Terrain")){Freeze = true; Rotation = new Vector3(Mathf.DegToRad(130),Rotation.Y,Rotation.Z) ; await ToSignal(GetTree().CreateTimer(30), "timeout"); QueueFree();}
     }
     
     
