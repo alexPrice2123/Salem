@@ -1,0 +1,22 @@
+using Godot;
+using System;
+
+public partial class CaltropProj : RigidBody3D
+{
+    private float _speed = 2.0f;
+    public override void _Ready()
+    {
+        RandomNumberGenerator _rng = new(); 
+        ApplyCentralImpulse(-GlobalTransform.Basis.Z.Normalized() * _speed * _rng.RandiRange(0,6));  
+        ApplyTorqueImpulse(-GlobalTransform.Basis.X.Normalized() * _rng.RandiRange(1,5));
+        ApplyTorqueImpulse(-GlobalTransform.Basis.Z.Normalized() * _rng.RandiRange(1,5));
+    }
+    public override void _PhysicsProcess(double delta)
+    {
+        
+    }
+    public async void _on_body_entered(Node body)
+    {
+        if(body.IsInGroup("Terrain")){await ToSignal(GetTree().CreateTimer(15), "timeout"); QueueFree(); }
+    }
+}

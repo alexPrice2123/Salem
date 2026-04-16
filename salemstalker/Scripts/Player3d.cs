@@ -43,6 +43,7 @@ public partial class Player3d : CharacterBody3D
 	private PackedScene _flintGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Flintlock.tscn"); // Pre-load Flintlock scene resource
 	private PackedScene _stakeGun = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/stake_gun.tscn"); // Pre-load Stake Gun scene resource
 	private PackedScene _tomahawk = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/Tomahawk.tscn"); // Pre-load Stake Gun scene resource
+	private PackedScene _caltrop = GD.Load<PackedScene>("res://Scenes/OffHandWeapons/caltrops.tscn"); // Pre-load Stake Gun scene resource
 	public Dictionary<string, PackedScene> _weapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 	private Dictionary<string, PackedScene> _secWeapon = new Dictionary<string, PackedScene>(); // Dictionary to store and manage available weapons
 
@@ -164,6 +165,7 @@ public partial class Player3d : CharacterBody3D
 		_secWeapon.Add("FlintGun", _flintGun);
 		_secWeapon.Add("StakeGun", _stakeGun);
 		_secWeapon.Add("Tomahawk",_tomahawk);
+		_secWeapon.Add("Caltrop",_caltrop);
 	}
 
 	// --- INPUT HANDLER ---
@@ -456,17 +458,21 @@ public partial class Player3d : CharacterBody3D
 				{
 					flintchild.specAction();
 				}
-				else if (_eSecWeapon1 is StakeGun stakeChild)
+				else if (_eSecWeapon2 is StakeGun stakeChild)
 				{
 					stakeChild.specAction();
 				}
-				else if (_eSecWeapon1 is Tomahawk hawkChild)
+				else if (_eSecWeapon2 is Tomahawk hawkChild)
 				{
 					hawkChild.specAction();
 				}
-				else if (_eSecWeapon1 is ThrowingKnife knifeChild)
+				else if (_eSecWeapon2 is ThrowingKnife knifeChild)
 				{
 					knifeChild.specAction();
+				}
+				else if (_eSecWeapon2 is Caltrops caltropsChild)
+				{
+					caltropsChild.specAction();
 				}
 			}
 		}
