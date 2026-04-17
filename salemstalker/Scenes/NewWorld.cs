@@ -22,7 +22,7 @@ public partial class NewWorld : Node3D
 		GD.Print((bool)data["tutorialComplete"] == true, " ohstuffsave");
 		if (((string)data["lastLocation"]).Equals("village1"))
 		{
-			GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("VillageMark").GlobalPosition ;
+			GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("Brittlebay Village/VillageMark").GlobalPosition ;
 		}
 		else if (((string)data["lastLocation"]).Equals("bossTest"))
 		{
