@@ -10,7 +10,7 @@ public partial class poisonBall : RigidBody3D
 	private int _count = 0;
 	public void Shoot(float speed)
 	{
-		LookAt(new Vector3(_playerOrb.GlobalPosition.X, GlobalPosition.Y, _playerOrb.GlobalPosition.Z), Vector3.Up);
+		LookAt(new Vector3(_playerOrb.GlobalPosition.X, _playerOrb.GlobalPosition.Y, _playerOrb.GlobalPosition.Z), Vector3.Up);
 		ApplyCentralImpulse(-GlobalTransform.Basis.Z.Normalized() * speed);
 	}
 
@@ -26,10 +26,18 @@ public partial class poisonBall : RigidBody3D
 
 	public async void _on_attackbox_area_entered(Node3D body)
 	{
-		if (body.IsInGroup("Player") && body.Name == "Hurtbox")
+		if (body.IsInGroup("PlayerHurtbox"))
+        {
+         	 _playerOrb.RangedDamaged(_damageOrb, this, "None");
+			GetNode<Area3D>("Attackbox").SetDeferred("monitoring", false);  
+        }
+	}
+	private async void _on_col_box_body_entered(Node3D body)
+    {
+       if (body.Name == "Player_3d")
 		{
-			_playerOrb.RangedDamaged(_damageOrb, this, "Slowed");
-			//GetNode<CollisionShape3D>("Area3D/CollisionShape3D").Disabled = true;
+			_playerOrb.RangedDamaged(_damageOrb, this, "None");
+			GetNode<Area3D>("ColBox").SetDeferred("monitoring", false);
 			LinearVelocity = Vector3.Zero;
 			AngularVelocity = Vector3.Zero;
 			GetNode<GpuParticles3D>("Boom").Emitting = true;
@@ -38,5 +46,17 @@ public partial class poisonBall : RigidBody3D
 			await ToSignal(GetTree().CreateTimer(1), "timeout");
 			QueueFree();
 		}
-	}
+        else
+        {
+			GetNode<Area3D>("ColBox").SetDeferred("monitoring", false);
+			GetNode<Area3D>("Attackbox").SetDeferred("monitoring", true);
+			LinearVelocity = Vector3.Zero;
+			AngularVelocity = Vector3.Zero;
+			GetNode<GpuParticles3D>("Boom").Emitting = true;
+			GetNode<GpuParticles3D>("Magic").Emitting = false;
+			GetNode<MeshInstance3D>("Orb").Visible = false;
+			await ToSignal(GetTree().CreateTimer(2), "timeout");
+			QueueFree();
+        }
+    }
 }

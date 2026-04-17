@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=4 uid="uid://dcui8f1kbsutw"]
+[gd_scene load_steps=121 format=4 uid="uid://dcui8f1kbsutw"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_tj832"]
 [ext_resource type="Script" uid="uid://dxtkbna84vfji" path="res://Scripts/MonsterScripts/theCoiledOne.cs" id="2_vypes"]
@@ -12,9 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://c4qqndt008t07" path="res://Assets/monstertextures/coiled/coiledmutant_1_Emissive.png" id="6_4kjrw"]
 [ext_resource type="PackedScene" uid="uid://ygedjap5uefs" path="res://Scenes/Monsters/revenanT.tscn" id="6_gegwn"]
 [ext_resource type="Texture2D" uid="uid://bllsorsttgo4b" path="res://Assets/monstertextures/coiled/coiledmutant_1_Height.png" id="7_vypes"]
+[ext_resource type="PackedScene" uid="uid://bi60fist1l2nq" path="res://Assets/cutscenes/coiledcam.blend" id="8_a2shs"]
 [ext_resource type="Texture2D" uid="uid://2g5mk7eow71j" path="res://Assets/monstertextures/coiled/eyes_Base_color.png" id="8_onvcx"]
 [ext_resource type="Texture2D" uid="uid://yr8ftmate322" path="res://Assets/monstertextures/coiled/eyes_Emissive.png" id="9_e0ydn"]
 [ext_resource type="Shader" uid="uid://dad6yy25eud5k" path="res://Shaders/magicFist.gdshader" id="12_onvcx"]
+[ext_resource type="PackedScene" uid="uid://dw1q35fnrh0un" path="res://Assets/cutscenes/coiledmutantcutsence.blend" id="17_2eohi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7ma6"]
 albedo_color = Color(1, 1, 0, 1)
@@ -66,7 +68,13 @@ animation = &"attack3_nonparry"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_du3a6"]
 animation = &"attack4_parry"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ikdms"]
+animation = &"cutsecne1"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mtaci"]
+animation = &"hit_p1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2eohi"]
 animation = &"hit_p1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a2shs"]
@@ -145,22 +153,22 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mtaci"]
 xfade_time = 0.2
 advance_mode = 2
-advance_expression = "_animState == \"Attack1\""
+advance_expression = "_animState == \"RightSwipe\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i8osb"]
 xfade_time = 0.2
 advance_mode = 2
-advance_expression = "_animState == \"Attack2\""
+advance_expression = "_animState == \"LeftSwipe\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ikdms"]
 xfade_time = 0.2
 advance_mode = 2
-advance_expression = "_animState == \"Attack3\""
+advance_expression = "_animState == \"Smash\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x8crk"]
 xfade_time = 0.2
 advance_mode = 2
-advance_expression = "_animState == \"Attack4\""
+advance_expression = "_animState == \"Poke\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_31phi"]
 xfade_time = 0.2
@@ -178,22 +186,22 @@ advance_mode = 2
 advance_expression = "_animState == \"Spit\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_732ic"]
-xfade_time = 0.2
+xfade_time = 0.5
 advance_mode = 2
 advance_expression = "_animState == \"Idle\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ci8w0"]
-xfade_time = 0.2
+xfade_time = 0.5
 advance_mode = 2
 advance_expression = "_animState == \"Idle\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hldgb"]
-xfade_time = 0.2
+xfade_time = 0.5
 advance_mode = 2
 advance_expression = "_animState == \"Idle\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ceigc"]
-xfade_time = 0.2
+xfade_time = 0.5
 advance_mode = 2
 advance_expression = "_animState == \"Idle\""
 
@@ -239,21 +247,62 @@ advance_expression = "_animState == \"Idle\""
 advance_mode = 2
 advance_expression = "_animState == \"Stunned\""
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t8g15"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_animState == \"Hit\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gegwn"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_animState == \"Hit\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e8dma"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_animState == \"Hit\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ot5ct"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+advance_expression = "_animState != \"Stunned\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i5xpr"]
+xfade_time = 1.0
+switch_mode = 2
+advance_mode = 2
+advance_expression = "_animState == \"Stunned\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f0qjf"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_animState == \"Cutscene1\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hatbf"]
+xfade_time = 0.5
+advance_mode = 2
+advance_expression = "_animState == \"Idle\""
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nsxmw"]
 states/End/position = Vector2(646, -85.0938)
 states/Start/position = Vector2(253.5, 85.75)
 states/attack1_parry/node = SubResource("AnimationNodeAnimation_e8dma")
 states/attack1_parry/position = Vector2(846.75, 129.5)
 states/attack2_parry/node = SubResource("AnimationNodeAnimation_yim8a")
-states/attack2_parry/position = Vector2(1033.5, 143.5)
+states/attack2_parry/position = Vector2(1025.5, 131)
 states/attack3_nonparry/node = SubResource("AnimationNodeAnimation_0nsh6")
 states/attack3_nonparry/position = Vector2(1129, 262)
 states/attack4_parry/node = SubResource("AnimationNodeAnimation_du3a6")
 states/attack4_parry/position = Vector2(1112, 391.75)
+states/cutsecne1/node = SubResource("AnimationNodeAnimation_ikdms")
+states/cutsecne1/position = Vector2(476.5, -62.5)
 states/hit_p1/node = SubResource("AnimationNodeAnimation_a2shs")
 states/hit_p1/position = Vector2(145.5, 392.1875)
 "states/hit_p1 2/node" = SubResource("AnimationNodeAnimation_mtaci")
 "states/hit_p1 2/position" = Vector2(752.5, 579.5)
+"states/hit_p1 3/node" = SubResource("AnimationNodeAnimation_2eohi")
+"states/hit_p1 3/position" = Vector2(1449, 47.953094)
 states/idle/node = SubResource("AnimationNodeAnimation_ci7oq")
 states/idle/position = Vector2(467, 86.0625)
 states/idle_p2/node = SubResource("AnimationNodeAnimation_t8g15")
@@ -272,34 +321,54 @@ states/summan/node = SubResource("AnimationNodeAnimation_kuj5w")
 states/summan/position = Vector2(1111.75, 551)
 states/summon_p1/node = SubResource("AnimationNodeAnimation_4kjrw")
 states/summon_p1/position = Vector2(646.5, 85.828094)
-transitions = ["idle", "summon_p1", SubResource("AnimationNodeStateMachineTransition_onvcx"), "summon_p1", "idle", SubResource("AnimationNodeStateMachineTransition_e0ydn"), "idle", "hit_p1", SubResource("AnimationNodeStateMachineTransition_2eohi"), "hit_p1", "idle", SubResource("AnimationNodeStateMachineTransition_a2shs"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_ft85t"), "hit_p1", "p1_to_p2", SubResource("AnimationNodeStateMachineTransition_yim8a"), "idle", "p1_to_p2", SubResource("AnimationNodeStateMachineTransition_0nsh6"), "summon_p1", "p1_to_p2", SubResource("AnimationNodeStateMachineTransition_du3a6"), "p1_to_p2", "idle_p2", SubResource("AnimationNodeStateMachineTransition_3a53r"), "idle_p2", "attack1_parry", SubResource("AnimationNodeStateMachineTransition_mtaci"), "idle_p2", "attack2_parry", SubResource("AnimationNodeStateMachineTransition_i8osb"), "idle_p2", "attack3_nonparry", SubResource("AnimationNodeStateMachineTransition_ikdms"), "idle_p2", "attack4_parry", SubResource("AnimationNodeStateMachineTransition_x8crk"), "idle_p2", "stunned", SubResource("AnimationNodeStateMachineTransition_31phi"), "stunned", "stunned_idle", SubResource("AnimationNodeStateMachineTransition_fpmnq"), "idle_p2", "spit", SubResource("AnimationNodeStateMachineTransition_tl61y"), "attack1_parry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_732ic"), "attack2_parry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_ci8w0"), "attack3_nonparry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_hldgb"), "attack4_parry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_ceigc"), "spit", "idle_p2", SubResource("AnimationNodeStateMachineTransition_aa46w"), "stunned_idle", "hit_p1 2", SubResource("AnimationNodeStateMachineTransition_ej55h"), "hit_p1 2", "idle_p2", SubResource("AnimationNodeStateMachineTransition_qde63"), "hit_p1", "stunned_idle_p1", SubResource("AnimationNodeStateMachineTransition_xudcj"), "stunned_idle_p1", "idle", SubResource("AnimationNodeStateMachineTransition_8jj42"), "idle", "stunned_idle_p1", SubResource("AnimationNodeStateMachineTransition_lovdl"), "idle_p2", "summan", SubResource("AnimationNodeStateMachineTransition_tmgri"), "summan", "idle_p2", SubResource("AnimationNodeStateMachineTransition_laun1"), "summon_p1", "stunned_idle_p1", SubResource("AnimationNodeStateMachineTransition_kuj5w")]
-graph_offset = Vector2(425, 65)
+transitions = ["idle", "summon_p1", SubResource("AnimationNodeStateMachineTransition_onvcx"), "summon_p1", "idle", SubResource("AnimationNodeStateMachineTransition_e0ydn"), "idle", "hit_p1", SubResource("AnimationNodeStateMachineTransition_2eohi"), "hit_p1", "idle", SubResource("AnimationNodeStateMachineTransition_a2shs"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_ft85t"), "hit_p1", "p1_to_p2", SubResource("AnimationNodeStateMachineTransition_yim8a"), "idle", "p1_to_p2", SubResource("AnimationNodeStateMachineTransition_0nsh6"), "summon_p1", "p1_to_p2", SubResource("AnimationNodeStateMachineTransition_du3a6"), "p1_to_p2", "idle_p2", SubResource("AnimationNodeStateMachineTransition_3a53r"), "idle_p2", "attack1_parry", SubResource("AnimationNodeStateMachineTransition_mtaci"), "idle_p2", "attack2_parry", SubResource("AnimationNodeStateMachineTransition_i8osb"), "idle_p2", "attack3_nonparry", SubResource("AnimationNodeStateMachineTransition_ikdms"), "idle_p2", "attack4_parry", SubResource("AnimationNodeStateMachineTransition_x8crk"), "idle_p2", "stunned", SubResource("AnimationNodeStateMachineTransition_31phi"), "stunned", "stunned_idle", SubResource("AnimationNodeStateMachineTransition_fpmnq"), "idle_p2", "spit", SubResource("AnimationNodeStateMachineTransition_tl61y"), "attack1_parry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_732ic"), "attack2_parry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_ci8w0"), "attack3_nonparry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_hldgb"), "attack4_parry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_ceigc"), "spit", "idle_p2", SubResource("AnimationNodeStateMachineTransition_aa46w"), "stunned_idle", "hit_p1 2", SubResource("AnimationNodeStateMachineTransition_ej55h"), "hit_p1 2", "idle_p2", SubResource("AnimationNodeStateMachineTransition_qde63"), "hit_p1", "stunned_idle_p1", SubResource("AnimationNodeStateMachineTransition_xudcj"), "stunned_idle_p1", "idle", SubResource("AnimationNodeStateMachineTransition_8jj42"), "idle", "stunned_idle_p1", SubResource("AnimationNodeStateMachineTransition_lovdl"), "idle_p2", "summan", SubResource("AnimationNodeStateMachineTransition_tmgri"), "summan", "idle_p2", SubResource("AnimationNodeStateMachineTransition_laun1"), "summon_p1", "stunned_idle_p1", SubResource("AnimationNodeStateMachineTransition_kuj5w"), "attack1_parry", "hit_p1 3", SubResource("AnimationNodeStateMachineTransition_t8g15"), "attack2_parry", "hit_p1 3", SubResource("AnimationNodeStateMachineTransition_gegwn"), "attack4_parry", "hit_p1 3", SubResource("AnimationNodeStateMachineTransition_e8dma"), "hit_p1 3", "idle_p2", SubResource("AnimationNodeStateMachineTransition_ot5ct"), "hit_p1 3", "stunned", SubResource("AnimationNodeStateMachineTransition_i5xpr"), "idle", "cutsecne1", SubResource("AnimationNodeStateMachineTransition_f0qjf"), "cutsecne1", "idle", SubResource("AnimationNodeStateMachineTransition_hatbf")]
+graph_offset = Vector2(125, -143)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2eohi"]
-animation = &"hit_p1"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x8crk"]
+animation = &"1"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t8g15"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_31phi"]
+animation = &"1_5"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fpmnq"]
+animation = &"2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tl61y"]
+animation = &"3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dwi4m"]
 advance_mode = 2
+advance_expression = "_currentCutscene == \"1\""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gegwn"]
-xfade_time = 1.0
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l3jlw"]
 advance_mode = 2
+advance_expression = "_currentCutscene == \"1.5\""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e8dma"]
-xfade_time = 1.0
-switch_mode = 2
+[sub_resource type="Curve" id="Curve_2eohi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_72okc"]
+xfade_time = 0.5
+xfade_curve = SubResource("Curve_2eohi")
 advance_mode = 2
+advance_expression = "_currentCutscene == \"2\""
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yim8a"]
-states/End/position = Vector2(882.5, 85.9062)
-states/Start/position = Vector2(253.5, 85.75)
-states/hit_p1/node = SubResource("AnimationNodeAnimation_a2shs")
-states/hit_p1/position = Vector2(459.5, 237)
-"states/hit_p1 2/node" = SubResource("AnimationNodeAnimation_2eohi")
-"states/hit_p1 2/position" = Vector2(476.5, 135.5)
-transitions = ["Start", "hit_p1", SubResource("AnimationNodeStateMachineTransition_t8g15"), "hit_p1", "hit_p1 2", SubResource("AnimationNodeStateMachineTransition_gegwn"), "hit_p1 2", "hit_p1", SubResource("AnimationNodeStateMachineTransition_e8dma")]
-graph_offset = Vector2(121, 31)
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w57wx"]
+advance_mode = 2
+advance_expression = "_currentCutscene == \"3\""
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6fulj"]
+states/1/node = SubResource("AnimationNodeAnimation_x8crk")
+states/1/position = Vector2(344.5, 102.625)
+states/1_5/node = SubResource("AnimationNodeAnimation_31phi")
+states/1_5/position = Vector2(446, 103.5)
+states/2/node = SubResource("AnimationNodeAnimation_fpmnq")
+states/2/position = Vector2(542, 102.5)
+states/3/node = SubResource("AnimationNodeAnimation_tl61y")
+states/3/position = Vector2(643.5, 103.5)
+transitions = ["Start", "1", SubResource("AnimationNodeStateMachineTransition_dwi4m"), "1", "1_5", SubResource("AnimationNodeStateMachineTransition_l3jlw"), "1_5", "2", SubResource("AnimationNodeStateMachineTransition_72okc"), "2", "3", SubResource("AnimationNodeStateMachineTransition_w57wx")]
+graph_offset = Vector2(90, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vypes"]
 albedo_texture = ExtResource("4_vypes")
@@ -340,6 +409,61 @@ shadow_mesh = SubResource("ArrayMesh_lwo5c")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vypes"]
 radius = 3.1625247
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2eohi"]
+size = Vector3(1.6586914, 4.850769, 1.8314209)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kuj5w"]
+cull_mode = 2
+albedo_color = Color(0.91905653, 0.6248232, 0.18422163, 1)
+emission_enabled = true
+emission = Color(0.91905653, 0.6248232, 0.18422163, 1)
+use_particle_trails = true
+
+[sub_resource type="Curve" id="Curve_ggalp"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wjdru"]
+curve = SubResource("Curve_ggalp")
+
+[sub_resource type="Curve" id="Curve_nketh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qe7ki"]
+curve = SubResource("Curve_nketh")
+
+[sub_resource type="Curve" id="Curve_ts7b0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_tk3a2"]
+curve = SubResource("Curve_ts7b0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a2shs"]
+lifetime_randomness = 1.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 30.0
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+orbit_velocity_curve = SubResource("CurveTexture_wjdru")
+radial_velocity_min = -3.0000222
+radial_velocity_max = 2.9999776
+radial_velocity_curve = SubResource("CurveTexture_qe7ki")
+scale_min = 0.25
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_tk3a2")
+
+[sub_resource type="Curve" id="Curve_a2shs"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25571278, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_2eohi"]
+curve = SubResource("Curve_a2shs")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_im0l4"]
 
@@ -410,6 +534,24 @@ emission_enabled = true
 emission_texture = ExtResource("9_e0ydn")
 texture_filter = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_t8g15"]
+size = Vector3(6.817383, 2.0540307, 6.916626)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kuj5w"]
+size = Vector3(10.562, 8, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a2shs"]
+size = Vector3(5.3068705, 8, 12.053223)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gegwn"]
+size = Vector3(27.096737, 8, 12.726036)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yim8a"]
+size = Vector3(14.230469, 8, 1.3199463)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e8dma"]
+size = Vector3(11.698185, 8, 4.593994)
+
 [node name="theCoiledOne" instance=ExtResource("1_tj832")]
 script = ExtResource("2_vypes")
 _spawnRootScene = ExtResource("3_a2shs")
@@ -428,6 +570,7 @@ draw_pass_1 = SubResource("BoxMesh_y62gh")
 
 [node name="Collision" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46384525, 0)
+visible = false
 shape = SubResource("SphereShape3D_lbav0")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
@@ -436,9 +579,10 @@ tree_root = SubResource("AnimationNodeStateMachine_nsxmw")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../Body/AnimationPlayer")
 
-[node name="HitFXAnims" type="AnimationTree" parent="." index="3"]
-tree_root = SubResource("AnimationNodeStateMachine_yim8a")
-advance_expression_base_node = NodePath("..")
+[node name="CamTree" type="AnimationTree" parent="." index="3"]
+root_node = NodePath("../Cutscene")
+tree_root = SubResource("AnimationNodeStateMachine_6fulj")
+anim_player = NodePath("../Cutscene/AnimationPlayer")
 
 [node name="Roots" type="MeshInstance3D" parent="." index="5"]
 transform = Transform3D(0.72255707, 0, -0.92649186, 0, 0.70647776, 0, 0.7283053, 0, 0.9191795, 1.8380432, -1.753598, -1.1280801)
@@ -449,6 +593,7 @@ skeleton = NodePath("")
 
 [node name="Hurtbox" parent="." index="6"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.665637, 0)
+visible = false
 
 [node name="CollisionShape3D" parent="Hurtbox" index="0"]
 shape = SubResource("SphereShape3D_vypes")
@@ -456,26 +601,43 @@ shape = SubResource("SphereShape3D_vypes")
 [node name="Direction" type="Node3D" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0950214, 0)
 
-[node name="Body" parent="." index="8" instance=ExtResource("4_lbav0")]
+[node name="coiledcam" parent="." index="8" instance=ExtResource("8_a2shs")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="Armature" parent="coiledcam" index="0"]
+visible = false
+
+[node name="Skeleton3D" parent="coiledcam/Armature" index="0"]
+bones/6/rotation = Quaternion(0.26036152, 0.011329744, -0.028049005, 0.9650372)
+bones/10/rotation = Quaternion(0.049589884, 5.705239e-14, 1.182314e-08, 0.9987697)
+bones/13/rotation = Quaternion(0.5829112, -1.7489511e-14, 1.3897689e-07, 0.8125359)
+
+[node name="Bone_007_l" parent="coiledcam/Armature/Skeleton3D" index="0"]
+transform = Transform3D(-0.14164214, 0.894076, -0.42492944, -0.9068904, -0.2892832, -0.3063741, -0.3968468, 0.34196883, 0.8518039, 4.7635546, 7.5702014, 1.034297)
+
+[node name="Camera" parent="coiledcam" index="1"]
+transform = Transform3D(0.9135455, 0.014194892, 0.40648884, 1.5832484e-08, 0.99939084, -0.034899507, -0.4067366, 0.031882294, 0.912989, 12.437801, 0.97426367, 42.672337)
+
+[node name="Body" parent="." index="9" instance=ExtResource("4_lbav0")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Body/Armature" index="0"]
 bones/1/rotation = Quaternion(0.017611725, 0, 0, 0.9998449)
 bones/2/rotation = Quaternion(0.38477787, 0.011219861, 0.013049711, 0.92284876)
-bones/3/rotation = Quaternion(0.054421395, -0.0036704736, -0.002544846, 0.9985081)
+bones/3/rotation = Quaternion(0.091809824, -0.0040883184, -0.0014976684, 0.9957671)
 bones/4/rotation = Quaternion(0.4530525, -0.0040460397, 0.011167462, 0.8914048)
 bones/5/rotation = Quaternion(-0.05867656, 0.057308123, -0.7768832, 0.6242798)
-bones/6/rotation = Quaternion(0.627259, -0.3477703, -0.087363936, 0.69135344)
-bones/7/rotation = Quaternion(0.39112148, 0.08188792, 0.28857952, 0.87008053)
+bones/6/rotation = Quaternion(0.6213874, -0.3705574, -0.079431966, 0.68575186)
+bones/7/rotation = Quaternion(0.4252957, 0.079544425, 0.31379408, 0.84518015)
 bones/8/rotation = Quaternion(0.15422982, 6.340274e-11, 3.4864428e-10, 0.988035)
-bones/9/rotation = Quaternion(0.04375868, -0.04066187, -0.016974568, 0.99807006)
-bones/10/rotation = Quaternion(-0.24780323, 0.07778292, 0.12952977, 0.9569564)
-bones/11/rotation = Quaternion(-0.61461234, 0.050212186, -0.0966513, 0.78127396)
-bones/13/rotation = Quaternion(0.4428601, -0.06584249, -0.08676099, 0.88995075)
-bones/14/rotation = Quaternion(-0.48345834, -0.002619042, -0.0039857365, 0.87535447)
+bones/9/rotation = Quaternion(0.042788155, -0.118937835, -0.12544098, 0.9840161)
+bones/10/rotation = Quaternion(-0.24476454, 0.10112641, 0.18271238, 0.94682634)
+bones/11/rotation = Quaternion(-0.61875457, 0.008695292, -0.021573858, 0.78524)
+bones/13/rotation = Quaternion(0.4446706, -0.015772764, -0.017095346, 0.8953922)
+bones/14/rotation = Quaternion(-0.44967705, -0.002683468, -0.0036445705, 0.8931799)
 bones/15/rotation = Quaternion(-0.10584751, -0.096973844, 0.78224456, 0.60620624)
-bones/16/rotation = Quaternion(0.73404914, 0.32681483, 0.072689496, 0.5908301)
-bones/17/rotation = Quaternion(0.21915936, -0.08568897, -0.19510451, 0.9521349)
+bones/16/rotation = Quaternion(0.7270966, 0.33764118, 0.07345899, 0.59323937)
+bones/17/rotation = Quaternion(0.27619, -0.083281174, -0.24587546, 0.9253803)
 bones/18/position = Vector3(5.259649, 7.570201, -0.7133017)
 bones/18/rotation = Quaternion(0.2782055, -0.56508857, 0.6500782, -0.4250589)
 bones/19/position = Vector3(2.8736162, 1.4981885, 5.214905)
@@ -484,17 +646,43 @@ bones/20/position = Vector3(-4.9393487, 7.934774, -0.9567734)
 bones/21/position = Vector3(-2.3859363, 1.2347426, 5.133514)
 bones/21/rotation = Quaternion(0.5590067, 0.05315999, 0.8267279, 0.03473362)
 
-[node name="Bone_012" parent="Body/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.9995331, -0.02935024, 0.008496722, 0.0044139633, -0.13646418, -0.9906349, 0.0302349, 0.9902099, -0.13627088, -0.15741989, 5.0156603, 6.0395923)
+[node name="Bone_007_l" parent="Body/Armature/Skeleton3D" index="0"]
+transform = Transform3D(-0.3055665, -0.013439268, -0.95207596, -0.79578, -0.54544556, 0.2631029, -0.52284175, 0.8380384, 0.15597504, 2.9099846, 2.973534, 2.948187)
 
-[node name="Sphere" parent="Body/Armature/Skeleton3D/Bone_012" index="0"]
+[node name="Cube" parent="Body/Armature/Skeleton3D/Bone_007_l" index="0"]
 visible = false
 
-[node name="Resin" parent="Body/Armature/Skeleton3D/Bone_012" index="1" instance=ExtResource("5_vypes")]
+[node name="LeftAttackBox" type="Area3D" parent="Body/Armature/Skeleton3D/Bone_007_l" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0, 0, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox" index="0"]
+transform = Transform3D(0.99999577, 5.9604645e-07, -2.7567148e-07, 8.940697e-08, 0.9999952, 1.7881393e-07, 1.2665987e-07, 2.9802322e-08, 0.99999547, 0.30785608, 1.6183901, -0.22586298)
+shape = SubResource("BoxShape3D_2eohi")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="Bone_012" parent="Body/Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.9986859, -0.050116807, 0.010714935, -5.9314538e-05, -0.2102046, -0.9776573, 0.0512494, 0.97637177, -0.20993155, 0.22214395, 4.6368895, 5.9099092)
+
+[node name="Spit" type="GPUParticles3D" parent="Body/Armature/Skeleton3D/Bone_012" index="0"]
+transform = Transform3D(1.6661475, -0.0414465, 0.0030579101, -0.022470158, -0.795246, 1.4645325, -0.034960706, -1.4641199, -0.7955575, 0.028679352, 1.1756449, 0.5722647)
+material_override = SubResource("StandardMaterial3D_kuj5w")
+emitting = false
+amount = 2000
+lifetime = 2.0
+randomness = 1.0
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_a2shs")
+draw_pass_1 = SubResource("RibbonTrailMesh_2eohi")
+
+[node name="Sphere" parent="Body/Armature/Skeleton3D/Bone_012" index="1"]
+visible = false
+
+[node name="Resin" parent="Body/Armature/Skeleton3D/Bone_012" index="2" instance=ExtResource("5_vypes")]
 transform = Transform3D(1.6653876, -0.000422874, 0.06527397, -0.063358106, -0.4114351, 1.6138412, 0.015704144, -1.6150849, -0.41113582, 0.004953455, 0.58599854, -0.3643837)
 script = null
 
-[node name="Summon" type="GPUParticles3D" parent="Body/Armature/Skeleton3D/Bone_012" index="2"]
+[node name="Summon" type="GPUParticles3D" parent="Body/Armature/Skeleton3D/Bone_012" index="3"]
 transform = Transform3D(1.6665796, -0.0072568534, -0.015361158, -0.0024570823, -1.5940831, 0.4864934, -0.016810397, -0.48644564, -1.5940107, 0.011244252, 1.2398448, 0.6956222)
 material_override = SubResource("ShaderMaterial_onvcx")
 emitting = false
@@ -503,27 +691,128 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_4kjrw")
 draw_pass_1 = SubResource("SphereMesh_onvcx")
 
-[node name="Cube_001" parent="Body/Armature/Skeleton3D" index="1"]
+[node name="Bone_007_r" parent="Body/Armature/Skeleton3D" index="2"]
+transform = Transform3D(-0.41462585, -0.078645945, 0.90658736, 0.6607756, -0.7110014, 0.24052542, 0.6256683, 0.6987786, 0.3467669, -2.1707466, 3.1798074, 3.2222464)
+
+[node name="Cube_002" parent="Body/Armature/Skeleton3D/Bone_007_r" index="0"]
+visible = false
+
+[node name="RightAttackBox" type="Area3D" parent="Body/Armature/Skeleton3D/Bone_007_r" index="1"]
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox" index="0"]
+transform = Transform3D(0.9999945, 6.556511e-07, -3.2782555e-07, 7.1525574e-07, 0.99999416, 1.3411045e-07, 5.662441e-07, -3.874302e-07, 0.9999945, 0.24690723, 1.9184535, -0.27951074)
+shape = SubResource("BoxShape3D_2eohi")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="Cube_001" parent="Body/Armature/Skeleton3D" index="3"]
 surface_material_override/0 = SubResource("StandardMaterial3D_olmvi")
 surface_material_override/1 = SubResource("StandardMaterial3D_un2t0")
 
-[node name="Attackbox" parent="." index="9"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.1488323, 0)
+[node name="Camera" parent="Body" index="1"]
+transform = Transform3D(0.9752439, 0.098970205, -0.19774768, 7.450581e-09, 0.8942528, 0.44756222, 0.22113174, -0.43648234, 0.8721146, -5.445486, 19.762074, 31.743185)
+near = 2.52
+
+[node name="Attackbox" parent="." index="10"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 2.053031, 2.895059)
 
 [node name="CollisionShape3D" parent="Attackbox" index="0"]
-transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -0.06680733, -0.61794984)
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.07766713, -1.4582484, 2.2714615)
+shape = SubResource("BoxShape3D_t8g15")
+debug_color = Color(0.7019608, 1, 0, 0.41960785)
 
-[node name="Range" type="CSGSphere3D" parent="." index="14"]
-transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, 0.4967637, 24.139004)
-radius = 20.76998
-radial_segments = 25
-rings = 3
-
-[node name="Range2" type="CSGSphere3D" parent="." index="15"]
+[node name="Range" type="CSGSphere3D" parent="." index="15"]
 transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, 0.4967637, 24.139004)
 visible = false
 radius = 20.76998
 radial_segments = 25
 rings = 3
 
+[node name="Range2" type="CSGSphere3D" parent="." index="16"]
+transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, 0.4967637, 24.139004)
+visible = false
+radius = 20.76998
+radial_segments = 25
+rings = 3
+
+[node name="RightBox" type="Area3D" parent="." index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7112894, 0, -0.15131998)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightBox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.649881, -0.5, 0.52551556)
+shape = SubResource("BoxShape3D_kuj5w")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="LeftBox" type="Area3D" parent="." index="18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.770583, 0, -0.15131998)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.899887, -0.5, 0.52551556)
+shape = SubResource("BoxShape3D_kuj5w")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="MiddleBox" type="Area3D" parent="." index="19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69516, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MiddleBox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6256104, -0.5, 3.1479492)
+shape = SubResource("BoxShape3D_a2shs")
+debug_color = Color(1, 1, 0, 1)
+
+[node name="SpitBox" type="Area3D" parent="." index="20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69516, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpitBox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7725544, -0.5, 16.562824)
+shape = SubResource("BoxShape3D_gegwn")
+debug_color = Color(1, 1, 0, 1)
+
+[node name="Enter" type="Area3D" parent="." index="21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69516, 0, 22.054373)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enter" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7725544, -0.5, 20.724628)
+shape = SubResource("BoxShape3D_yim8a")
+debug_color = Color(0, 0, 1, 1)
+
+[node name="LeftSpike" type="Area3D" parent="." index="22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.69516, 0, -0.3303194)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftSpike" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9267216, -0.5, 8.116207)
+shape = SubResource("BoxShape3D_e8dma")
+debug_color = Color(1, 1, 1, 1)
+
+[node name="RightSpike" type="Area3D" parent="." index="23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.541319, 0, -0.3303194)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightSpike" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9267216, -0.5, 8.116207)
+shape = SubResource("BoxShape3D_e8dma")
+debug_color = Color(1, 1, 1, 1)
+
+[node name="Cutscene" parent="." index="24" instance=ExtResource("17_2eohi")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="Camera" parent="Cutscene" index="0"]
+transform = Transform3D(0.35484257, 0.14565179, -0.92351085, -1.1920929e-07, 0.9877903, 0.15578958, 0.93492603, -0.05528067, 0.3505101, -8.952287, 2.674072, 6.9965277)
+
+[connection signal="area_entered" from="Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox" to="." method="_on_left_attack_box_area_entered"]
+[connection signal="area_entered" from="Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox" to="." method="_on_right_attack_box_area_entered"]
+[connection signal="area_entered" from="RightBox" to="." method="_on_right_box_area_entered"]
+[connection signal="area_exited" from="RightBox" to="." method="_on_right_box_area_exited"]
+[connection signal="area_entered" from="LeftBox" to="." method="_on_left_box_area_entered"]
+[connection signal="area_exited" from="LeftBox" to="." method="_on_left_box_area_exited"]
+[connection signal="area_entered" from="MiddleBox" to="." method="_on_middle_box_area_entered"]
+[connection signal="area_exited" from="MiddleBox" to="." method="_on_middle_box_area_exited"]
+[connection signal="area_entered" from="SpitBox" to="." method="_on_spit_box_area_entered"]
+[connection signal="area_exited" from="SpitBox" to="." method="_on_spit_box_area_exited"]
+[connection signal="area_entered" from="Enter" to="." method="_on_enter_area_entered"]
+[connection signal="area_entered" from="LeftSpike" to="." method="_on_left_spike_area_entered"]
+[connection signal="area_exited" from="LeftSpike" to="." method="_on_left_spike_area_exited"]
+[connection signal="area_entered" from="RightSpike" to="." method="_on_right_spike_area_entered"]
+[connection signal="area_exited" from="RightSpike" to="." method="_on_right_spike_area_exited"]
+
+[editable path="coiledcam"]
 [editable path="Body"]
+[editable path="Cutscene"]

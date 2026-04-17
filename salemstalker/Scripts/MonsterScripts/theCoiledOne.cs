@@ -1,13 +1,15 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 public partial class theCoiledOne : Monster3d
 {
 	private const int MaxResin = 1;
 	private float _distance;
 	private int _attackAnimSwitch = 1;
 	public Godot.Collections.Array<Node3D> _resinArray { get; set; } = []; 
+	private PackedScene _poisonBall = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/poisonBall.tscn");
 	private int _resinCount = 0;
-	private MeshInstance3D _roots;
+	public MeshInstance3D _roots;
 	public float _currentDamage = 0;
 	public int _underbrushLeft = 2;
 	public int _vinetanglerLeft = 1;
@@ -19,8 +21,12 @@ public partial class theCoiledOne : Monster3d
 	[Export] public PackedScene _revanant { get; set; }
 	private CsgSphere3D _rangeObj;
 	private int _spawnCount = 0;
+	private int _moveCount = -200;
 	public string _animState = "Idle";
 	public int _phase = 1;
+	private Godot.Collections.Array<string> _playerFieldPos { get; set; } = [];
+	public int _parryCounters = 0;
+	
 
 	public override void _Ready()
 	{
@@ -144,6 +150,7 @@ public partial class theCoiledOne : Monster3d
 	private void TransitionPhase()
     {
 		_phase = 2;
+		_currentDamage = 100;
         foreach (Node3D roots in GetParent().GetParent().GetChildren())
         {
             if (((string)roots.Name).Contains("RootWall") && !((string)roots.Name).Contains("Stay"))
@@ -152,7 +159,7 @@ public partial class theCoiledOne : Monster3d
 			}
 			if (((string)roots.Name).Contains("UnderWall"))
             {
-                roots.GlobalPosition = new Vector3(roots.GlobalPosition.X, -1, roots.GlobalPosition.Z);
+                roots.Position = new Vector3(roots.Position.X, -1, roots.Position.Z);
             }
 		}
 		_rangeObj = GetNode<CsgSphere3D>("Range2");
@@ -166,7 +173,13 @@ public partial class theCoiledOne : Monster3d
 		if (_health <= MaxHealth / 2 && _phase == 1){TransitionPhase();}
 
 		if (_roots.Visible){_spawnCount++;}
-		if (_spawnCount > (300 +(Convert.ToInt32(_health < MaxHealth/2)*400)))
+		if (_phase == 2 && !_attacking && _roots.Visible){_moveCount++;}
+		if (_moveCount >= 100)
+        {
+            _moveCount = _rng.RandiRange(-50, 25);
+			ChooseAttack();
+        }
+		if (_spawnCount > (30000*_phase))
         {
             _spawnCount = _rng.RandiRange(-200, 25);
 			SpawnEnemy();
@@ -177,6 +190,7 @@ public partial class theCoiledOne : Monster3d
 			{
 				SpawnResin();
 				_animState = "Idle";
+				_player.Damaged(0, this, "Push");
 			}
         }
 		
@@ -214,23 +228,248 @@ public partial class theCoiledOne : Monster3d
 
 	public void _on_hurtbox_area_entered(Area3D body){if(!_roots.Visible){Damaged(body);}}
 
-	public void _on_attackbox_area_entered(Node3D body){TryHitPlayer(body, "None");}
+	public void _on_attackbox_area_entered(Area3D body){CoiledHitPlayer(body, "Push", 30f);}
 
-	public async void Attack()
-	{
-		if (_attackAnimSwitch == 1) { _attackAnimSwitch = 2; }
-		else { _attackAnimSwitch = 1; }
+	private void _on_right_box_area_entered(Area3D area)
+    {
+		if (area.IsInGroup("PlayerHurtbox")){_playerFieldPos.Add("Right");}
+    }
+	private void _on_right_box_area_exited(Area3D area)
+    {
+		if (area.IsInGroup("PlayerHurtbox")){_playerFieldPos.Remove("Right"); }   
+    }
 
-		_hasHit = false;
-		_attackAnim = true;
-		await ToSignal(GetTree().CreateTimer(0.48), "timeout");
-		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
-		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
-		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-		_canAttack = false;
-		await ToSignal(GetTree().CreateTimer(0.1), "timeout");
-		_attackAnim = false;
-		await ToSignal(GetTree().CreateTimer(AttackSpeed - 0.1f), "timeout");
-		_canAttack = true;
+	private void _on_left_box_area_entered(Area3D area)
+    {
+		if (area.IsInGroup("PlayerHurtbox")){ _playerFieldPos.Add("Left");}
+    }
+	private void _on_left_box_area_exited(Area3D area)
+    {
+		if (area.IsInGroup("PlayerHurtbox")){ _playerFieldPos.Remove("Left");} 
+    }
+
+	private void _on_middle_box_area_entered(Area3D area)
+    {
+		if (area.IsInGroup("PlayerHurtbox")){_playerFieldPos.Add("Middle");} 
+    }
+	private void _on_middle_box_area_exited(Area3D area)
+    {
+		if (area.IsInGroup("PlayerHurtbox")){_playerFieldPos.Remove("Middle");} 
+    }
+	private void _on_spit_box_area_entered(Area3D area)
+    {
+        if (area.IsInGroup("PlayerHurtbox")){_playerFieldPos.Add("Spit");} 
+    }
+
+	private void _on_spit_box_area_exited(Area3D area)
+    {
+        if (area.IsInGroup("PlayerHurtbox")){_playerFieldPos.Remove("Spit");} 
+    }
+
+	private void _on_left_spike_area_entered(Area3D area)
+    {
+        if (area.IsInGroup("PlayerHurtbox")){_playerFieldPos.Add("LeftSpit");} 
+    }
+
+	private void _on_left_spike_area_exited(Area3D area)
+    {
+        if (area.IsInGroup("PlayerHurtbox")){_playerFieldPos.Remove("LeftSpit");} 
+    }
+
+	private void _on_right_spike_area_entered(Area3D area)
+    {
+        if (area.IsInGroup("PlayerHurtbox")){_playerFieldPos.Add("RightSpit");} 
+    }
+
+	private void _on_right_spike_area_exited(Area3D area)
+    {
+        if (area.IsInGroup("PlayerHurtbox")){_playerFieldPos.Remove("RightSpit");} 
+    }
+
+	private void _on_enter_area_entered(Area3D area)
+    {
+        if (area.IsInGroup("PlayerHurtbox")){StartBattle();} 
+    }
+
+	private async void StartBattle()
+    {
+		_player.GlobalPosition = _rangeObj.GlobalPosition + new Vector3(0, 1, 0);
+        foreach (Node3D roots in GetParent().GetParent().GetChildren())
+        {
+            if (((string)roots.Name).Contains("RootWall"))
+            {
+                roots.Position = new Vector3(roots.Position.X, -1, roots.Position.Z);
+            }
+		}
+		_player.CutsceneToggle(true);
+		_player.GetNode<Ui>("UI")._fadeProg = 1;
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		GetNode<Camera3D>("Cutscene/Camera").Current = true;
+		_player.GetNode<Ui>("UI")._fadeProg = 0;
+		GetNode<AnimationPlayer>("Cutscene/AnimationPlayer").Play("1");
+		await ToSignal(GetTree().CreateTimer(1), "timeout");
+		
+		_animState = "Cutscene1";
+		
 	}
+
+	private async void ChooseAttack()
+    {
+		_attacking = true;
+		_hasHit = false;
+        if (_playerFieldPos.Count > 0)
+        {
+            string plrSpot = _playerFieldPos.PickRandom();
+			if (plrSpot == "Right")
+            {
+                int attackChoice = _rng.RandiRange(1,2);
+				if (attackChoice == 1)
+                {
+                    await RightSwipe();
+                }
+                else
+                {
+                    await Poke();
+                }
+            }
+			else if (plrSpot == "Left")
+            {
+                int attackChoice = _rng.RandiRange(1,2);
+				if (attackChoice == 1)
+                {
+                    await LeftSwipe();
+                }
+                else
+                {
+                    await Poke();
+                }
+            }
+            else if (plrSpot == "Middle")
+            {
+                await Smash();
+            }
+            else if (plrSpot == "Spit")
+            {
+                await Spit();
+            }
+			else if (plrSpot == "LeftSpit")
+            {
+                await SpitBall("Poke");
+            }
+			else if (plrSpot == "RightSpit")
+            {
+                await SpitBall("Poke");
+            }
+        }
+        else
+        {
+            
+        }
+		if (_animState != "Hit" && _animState != "Stunned")
+        {
+            _animState = "Idle";
+			_attacking = false;
+        }
+    }
+
+	private async Task<bool> RightSwipe()
+    {
+        _animState = "RightSwipe";
+		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox").SetDeferred("monitoring", true);
+		await ToSignal(GetTree().CreateTimer(1.6), "timeout");
+		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox").SetDeferred("monitoring", false);
+		return true;
+    }
+	private async Task<bool> LeftSwipe()
+    {
+       _animState = "LeftSwipe";
+	   GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox").SetDeferred("monitoring", true);
+	   await ToSignal(GetTree().CreateTimer(1.2), "timeout");
+	   GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox").SetDeferred("monitoring", false);
+		return true;
+    }
+	private async Task<bool> Smash()
+    {
+        _animState = "Smash";
+		await ToSignal(GetTree().CreateTimer(1.33), "timeout");
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
+		await ToSignal(GetTree().CreateTimer(0.07), "timeout");
+		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
+		return true;
+    }
+	private async Task<bool> Poke()
+    {
+        _animState = "Poke";
+		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox").SetDeferred("monitoring", true);
+		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox").SetDeferred("monitoring", true);
+		await ToSignal(GetTree().CreateTimer(1.95), "timeout");
+		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox").SetDeferred("monitoring", false);
+		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox").SetDeferred("monitoring", false);
+		return true;
+    }
+
+	private async Task<bool> SpitBall(string anim)
+    {
+        _animState = anim;
+		RigidBody3D projectileInstance = _poisonBall.Instantiate<RigidBody3D>();
+		_player.GetParent().AddChild(projectileInstance);
+		projectileInstance.GlobalPosition = GetNode<GpuParticles3D>("Body/Armature/Skeleton3D/Bone_012/Spit").GlobalPosition;
+		if (projectileInstance is poisonBall ball)
+		{
+			ball._playerOrb = _player;
+			ball._damageOrb = 10;
+			ball.Shoot(10);
+		}
+		await ToSignal(GetTree().CreateTimer(1.95), "timeout");
+		return true;
+    }
+ 
+	private async Task<bool> Spit()
+    {
+        _animState = "Spit";
+		_moveCount = _rng.RandiRange(-100, -50);
+		await ToSignal(GetTree().CreateTimer(0.67), "timeout");
+		GetNode<GpuParticles3D>("Body/Armature/Skeleton3D/Bone_012/Spit").Emitting = true;
+		for (int i = 0; i < 3; i++)
+        {
+            await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+			if (_playerFieldPos.Contains("Spit") && !_hasHit){_player.Damaged(10, this, "None"); _hasHit = true;}
+        }
+		await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+		GetNode<GpuParticles3D>("Body/Armature/Skeleton3D/Bone_012/Spit").Emitting = false;
+		await ToSignal(GetTree().CreateTimer(0.4), "timeout");
+		return true;
+    }
+
+	private void _on_left_attack_box_area_entered(Area3D area)
+    {
+        CoiledHitPlayer(area, "None", 20);
+    }
+	private void _on_right_attack_box_area_entered(Area3D area)
+    {
+        CoiledHitPlayer(area, "None", 20);
+    }
+
+	private void CoiledHitPlayer(Area3D body, string extraArgs, float damage)
+    {
+        if (body is Area3D area && area.IsInGroup("PlayerHurtbox") && !_hasHit)
+		{
+			_hasHit = true;
+			_player.Damaged(damage, this, extraArgs);
+		}
+    }
+
+	public async void PlayerParried()
+    {
+		if (_animState == "Smash"){return;}
+		else{_parryCounters ++; _hasHit = true; _animState = "Hit"; _attacking = false;}
+		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+		if (_parryCounters >= 3)
+        {
+            _parryCounters = 0;
+			_hasHit = true;
+			_animState = "Stunned";
+			_roots.Visible = false;
+        }
+    }
 }

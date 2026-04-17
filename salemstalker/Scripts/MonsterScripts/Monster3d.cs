@@ -163,12 +163,22 @@ public partial class Monster3d : CharacterBody3D
 	{
 		if (_stunned) { damage *= 1.3f; }
 		if (knockBack) { ApplyKnockback(); }
+		//if (this is theCoiledOne tco){tco.PlayerParried();}
 		FlashDamage(true);
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		FlashDamage(false);
 		GD.Print(damage);
 		_health -= damage;
-		if (this is theCoiledOne tco){tco._currentDamage += damage;}
+		if (this is theCoiledOne tco)
+		{
+			tco._currentDamage += damage;
+			if (tco._animState == "Hit")
+            {
+                tco._animState = "Idle";
+				tco._roots.Visible = true;
+				tco._attacking = false;
+            }
+		}
 		
 	}
 	
@@ -493,6 +503,10 @@ public partial class Monster3d : CharacterBody3D
 			GetNode<GpuParticles3D>("Stunned").Emitting = false;
 			_speedOffset = 0f;
 		}
+		else if (this is theCoiledOne tco)
+        {
+            tco.PlayerParried();
+        }
 		else
 		{
 			if (Monster is underBrush ub) ub._currentAttackOffset = 0f;

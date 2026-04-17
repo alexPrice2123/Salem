@@ -113,6 +113,7 @@ texture = ExtResource("2_cvtri")
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 cull_mask = 1048573
+current = true
 script = ExtResource("2_mawk5")
 
 [node name="Sword" type="Marker3D" parent="Head/Camera3D"]
@@ -121,11 +122,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.422
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15389895, -0.51975155, 0.6978182, 0.46821272)
-bones/19/rotation = Quaternion(0.60502785, -0.035688177, 0.02585809, 0.7949837)
+bones/18/rotation = Quaternion(-0.15543462, -0.5165281, 0.69629085, 0.47351658)
+bones/19/rotation = Quaternion(0.5933794, -0.035531897, 0.030896451, 0.8035445)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5459815, 0.05008302, 0.8362987, 0.020809382, 0.9987142, -0.046224102, -0.8375382, -0.007834405, -0.5463217, -0.17716937, 1.4125905, 0.41401768)
+transform = Transform3D(-0.5351367, 0.047180988, 0.84344685, 0.03871253, 0.99875975, -0.03130741, -0.8438776, 0.015898474, -0.53629935, -0.18309765, 1.4060779, 0.41726995)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")
