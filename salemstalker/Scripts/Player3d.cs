@@ -122,6 +122,7 @@ public partial class Player3d : CharacterBody3D
 	private float _demoCount = 30f;
 	private Godot.Collections.Array<string> _pickUpableItems { get; set; } = ["Taz", "Bridger", "Gnocchi", "Rogue"];
 	private bool _inCutscene = false; 
+	private Vector3 knock_direction = new Vector3(0f, 0f, 14f);
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -361,6 +362,12 @@ public partial class Player3d : CharacterBody3D
         else if (Input.IsActionJustPressed("sAttack"))
 	   {
 			SpecialSwing();
+	   }
+	   else if (Input.IsActionJustPressed("fun"))
+	   {
+		_knockVelocity = 15;
+		GD.Print("knock ",knock_direction.X * -_knockVelocity,knock_direction.Z * -_knockVelocity);
+		GD.Print("vel ",Velocity);
 	   }
 		// --- Run (Shift Key) ---        
 		else if (@event is InputEventKey shiftKey && shiftKey.Keycode == Key.Shift)
@@ -660,9 +667,15 @@ public partial class Player3d : CharacterBody3D
 		Vector2 inputDir = Input.GetVector("left", "right", "forward", "back"); // Get normalized 2D input
 		// Convert 2D input to 3D direction relative to the player's head/facing
 		Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-
+		//GD.Print(velocity);
+		
+		Vector3 new_knock_direction = knock_direction.Normalized().Rotated(new Vector3(1,0,0),Rotation.X); //makes knock_direction normalized and cancels the players rotation.
+		velocity.X = (direction.X * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (crouchSpeed * Convert.ToInt32(crouching))  + _dashVelocity)) + (new_knock_direction.X * -_knockVelocity);
+		velocity.Z = (direction.Z * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (crouchSpeed * Convert.ToInt32(crouching)) + _dashVelocity)) + (new_knock_direction.Z * -_knockVelocity);
+		
 		if (direction != Vector3.Zero)
 		{
+			
 			// Player is moving
 			_fullDashValue = 10f; // Reset dash value to standard
 			if (_stamina <= 0)//0.02f * _maxStamina)
@@ -671,9 +684,8 @@ public partial class Player3d : CharacterBody3D
 				//_stamina = 0f;
 			}
 			// Calculate new velocity: Direction * (BaseSpeed + RunSpeed if running + DashSpeed)
-			velocity.X = direction.X * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (crouchSpeed * Convert.ToInt32(crouching)) + (Mathf.Abs(direction.X) * -_knockVelocity) + _dashVelocity);
-			velocity.Z = direction.Z * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (crouchSpeed * Convert.ToInt32(crouching)) + (Mathf.Abs(direction.Z) * -_knockVelocity) + _dashVelocity);
-
+			
+			//GD.Print(knock_direction.X * -_knockVelocity,knock_direction.Z * -_knockVelocity);
 			if (_running == true)
 			{
 				if (_inCombat == true)
@@ -702,9 +714,9 @@ public partial class Player3d : CharacterBody3D
 				_swordInst.walking = false;
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
-			Vector3 tempvelo = velocity;
-			tempvelo = tempvelo.Lerp(_cam.GlobalTransform.Basis.Z * -1 * (_dashVelocity - _knockVelocity), (float)delta * 10f);
-			velocity = new Vector3(tempvelo.X, velocity.Y, tempvelo.Z);
+			//Vector3 tempvelo = velocity;
+			//tempvelo = tempvelo.Lerp(_cam.GlobalTransform.Basis.Z * -1 * (_dashVelocity - _knockVelocity), (float)delta * 10f);
+			//velocity = new Vector3(tempvelo.X, velocity.Y, tempvelo.Z);
 			if (IsOnFloor())
 			{
 				velocity = new Vector3(velocity.X, 0f, velocity.Z); // Keep Y velocity (gravity/jump) separate
@@ -714,6 +726,7 @@ public partial class Player3d : CharacterBody3D
 		// --- Dash & Knockback Decay and Head Offset ---
 		_dashVelocity = Mathf.Lerp(_dashVelocity, 0f, (float)delta * 6f); // Dash speed smoothly decreases
 		_knockVelocity = Mathf.Lerp(_knockVelocity, 0f, (float)delta * 6f); // Dash speed smoothly decreases
+		if (_knockVelocity <= 0.05f){_knockVelocity = 0f;}
 		// Apply a subtle head 'squash' effect during the dash decay
 		_headOffset = _headOffset.Lerp(new Vector3(0f, -_dashVelocity / 5f, 0f), (float)delta * 6f);
 		_head.Position = _baseHeadPosition + _headOffset;
