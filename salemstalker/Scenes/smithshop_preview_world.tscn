@@ -96,7 +96,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(-2.5, -2.5),
 "update": 0,
-"values": [Vector3(-1.7, -0.11, -1.68), Vector3(-0.24, 0.12, -1.4)]
+"values": [Vector3(-1.7, -0.11, -0.91), Vector3(-0.24, 0.12, -1.4)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -108,7 +108,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(-2.5, -2.5),
 "update": 0,
-"values": [Vector3(-1.20428, 1.90241, 0.837758), Vector3(0, 0, 0)]
+"values": [Vector3(-1.2042772, 2.024582, 1.0471976), Vector3(0, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -171,8 +171,7 @@ _data = {
 &"shoPreviewAnim": SubResource("Animation_7wgxo")
 }
 
-[node name="ShopPreviewWorld" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.136, 0)
+[node name="SmithShopPreviewWorld" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26516, 0)

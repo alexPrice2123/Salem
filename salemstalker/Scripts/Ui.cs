@@ -50,10 +50,14 @@ public partial class Ui : Control
 	public float _fadeProg = 0; //fade progress for fading to black
 	private bool _upgPossible = false;
 
-	// ---------------- MMM SPAGHETTI
+	// ---------------- cover your eyes
 	// shortsword
 	public static string[] _shortswordUpg1Req = { "bleedheart", "deadooze" }; public static int[] _shortswordUpg1Amount = { 3, 3 };
     public static string[] _shortswordUpg2Req = { "deadooze", "fang", "scorchedflesh" }; public static int[] _shortswordUpg2Amount = { 6, 3, 3 };
+
+	// falchion
+	public static string[] _falchionUpg1Req = { "rottenflesh", "bleedheart" }; public static int[] _falchionUpg1Amount = { 3, 3 };
+    public static string[] _falchionUpg2Req = { "bleedheart", "woundedooze", "sprout" }; public static int[] _falchionUpg2Amount = { 6, 3, 3 };
 
 	// dagger
 	public static string[] _daggerUpg1Req = { "emptyves", "seed" }; public static int[] _daggerUpg1Amount = { 3, 3 };
@@ -61,7 +65,7 @@ public partial class Ui : Control
 
 	// longsword
 	public static string[] _longswordUpg1Req = { "deadooze", "chippedfang" }; public static int[] _longswordUpg1Amount = { 5, 5 };
-    public static string[] _longswordUpg2Req = { "chippedfang", "sprout", "heart" }; public static int[] _longsword2Amount = { 8, 5, 5 };
+    public static string[] _longswordUpg2Req = { "chippedfang", "sprout", "heart" }; public static int[] _longswordUpg2Amount = { 8, 5, 5 };
 
 	public override void _Ready()
 	{
@@ -89,7 +93,7 @@ public partial class Ui : Control
 		_loadingMaterial = _loadingUI.Material as ShaderMaterial;
 		_areaName = GetNode<Label>("Area");
 
-		// -------- IF someon sees this and has an idea on how to make it less terrible tel Mace the ui person PLEAAASE
+		// -------- IF someon sees this and has an idea on how to make it less terrible tell Mace the ui person PLEEEASE
 		_upgrades.Add("damage1", 2);
 		_upgrades.Add("damage2", 4.5f);
 		_upgrades.Add("damage3", 7.5f);
@@ -105,20 +109,24 @@ public partial class Ui : Control
 		_upgradeNames.Add("cPercent3", "Heavy Critical Damage");
 		_specialAttacks.Add("Shortsword", "Pommel Strike");
 		//_specialAttacks.Add("Flail", "");
-
+		// upgrade resorce names
 		_requirementRef.Add("shortsword1", _shortswordUpg1Req);
-		_requirementRef.Add("shortsword2", _shortswordUpg1Req);
+		_requirementRef.Add("shortsword2", _shortswordUpg2Req);
+		_requirementRef.Add("falchion1", _falchionUpg1Req);
+		_requirementRef.Add("falchion2", _falchionUpg2Req);
 		_requirementRef.Add("dagger1", _daggerUpg1Req);
-		_requirementRef.Add("dagger2", _daggerUpg1Req);
+		_requirementRef.Add("dagger2", _daggerUpg2Req);
 		_requirementRef.Add("longsword1", _longswordUpg1Req);
-		_requirementRef.Add("longsword2", _longswordUpg1Req);
-
+		_requirementRef.Add("longsword2", _longswordUpg2Req);
+		//upgrade amounts
 		_amountRef.Add("shortsword1", _shortswordUpg1Amount);
-		_amountRef.Add("shortsword2", _shortswordUpg1Amount);
+		_amountRef.Add("shortsword2", _shortswordUpg2Amount);
+		_amountRef.Add("falchion1", _falchionUpg1Amount);
+		_amountRef.Add("falchion2", _falchionUpg2Amount);
 		_amountRef.Add("dagger1", _daggerUpg1Amount);
-		_amountRef.Add("dagger2", _daggerUpg1Amount);
+		_amountRef.Add("dagger2", _daggerUpg2Amount);
 		_amountRef.Add("longsword1", _longswordUpg1Amount);
-		_amountRef.Add("longsword2", _longswordUpg1Amount);
+		_amountRef.Add("longsword2", _longswordUpg2Amount);
 
 		for(int i = 1; i < 30; i++)
         {
@@ -134,7 +142,9 @@ public partial class Ui : Control
 	}
 
 	public override void _Process(double delta)
-	{
+	{ 
+		// I  don't really like programming but the dread that learning how to do another discipline's skills brings outweighs that of being stuck with this
+		// maybe I lowk just hate being in UI genuinely like it was a joke before yet for more I yearn either way
 		GetParent().GetNode<ColorRect>("Fade").Color = GetParent().GetNode<ColorRect>("Fade").Color.Lerp(new Color(0,0,0,_fadeProg), (float)delta*2);
 
 		Color newTransparency = _areaName.Modulate;
@@ -152,8 +162,6 @@ public partial class Ui : Control
 			GetNode<Label>("BlacksmithShop/ShopOption2/Label").Text = "Falchion";
 			GetNode<Label>("BlacksmithShop/ShopOption3/Label").Text = "Rapier";
 			GetNode<Label>("BlacksmithShop/ShopOption4/Label").Text = "Dagger";
-			//_shopOption4.Visible = true;
-			_shopOption1.Visible = true;
 		}
 		else
 		{
@@ -161,8 +169,17 @@ public partial class Ui : Control
 			GetNode<Label>("BlacksmithShop/ShopOption2/Label").Text = "Greatsword";
 			GetNode<Label>("BlacksmithShop/ShopOption3/Label").Text = "Battle Axe";
 			GetNode<Label>("BlacksmithShop/ShopOption4/Label").Text = "Halberd";
-			//_shopOption4.Visible = true;
-			_shopOption1.Visible = false;
+		}
+		//same for wizard shop
+		if (GetNode<OptionButton>("WizardShop/ShopTypeOptions").Selected == 0) 
+		{
+			GetNode<Label>("WizardShop/ShopOption2/Label").Text = "Normal";
+			GetNode<Button>("WizardShop/ShopOption3").Visible = true;
+		}
+		else 
+		{
+			GetNode<Label>("WizardShop/ShopOption2/Label").Text = "Greater";
+			GetNode<Button>("WizardShop/ShopOption3").Visible = false;
 		}
 		if (_loaded == true) //Waits 1 second for the game to load before the ui tweens
 		{
@@ -188,32 +205,32 @@ public partial class Ui : Control
 	private void _on_continue_button_up() { _player.ContinueDialouge(); }
 
 	// --- Blacksmith Shop ---
-	private void _on_shop_option1_button_up()
+	private void _on_sshop_option1_button_up()
 	{
 		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("shortsword"); _shopSelection = "Shortsword"; _player.SwitchPrimaryWeapon(_shopSelection); }
-		//if (_shopTypeSelection.Selected == 1) { PlayShopAnim("Longsword"); }
+		//else { PlayShopAnim("Longsword"); }
 	}
-	/*private void _on_shop_option2_button_up()
+	private void _on_sshop_option2_button_up()
 	{
-		//if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) 
-		//{ PlayShopAnim("falchion"); _shopSelection = "Falchion"; _player.SwitchPrimaryWeapon(_shopSelection); }
-		if (_shopTypeSelection.Selected == 1) { PlayShopAnim("Greatsword"); }
+		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("falchion"); _shopSelection = "Falchion"; _player.SwitchPrimaryWeapon(_shopSelection); }
+		//else { PlayShopAnim("Greatsword"); }
 		
 	}
-	private void _on_shop_option3_button_up() // We might not have the ability to upgrade secondary weapons so we might not have any _shopOption2 or 3
+	private void _on_sshop_option3_button_up()
 	{
 		if (_shopTypeSelection.Selected == 0) { PlayShopAnim(""); }
-		if (_shopTypeSelection.Selected == 1) { PlayShopAnim(""); }
+		else { PlayShopAnim(""); }
 	}
-	private void _on_shop_option4_button_up()
+	private void _on_sshop_option4_button_up()
 	{
 		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("dagger"); _shopSelection = "Dagger"; _player.SwitchPrimaryWeapon(_shopSelection); }
-		if (_shopTypeSelection.Selected == 1) { PlayShopAnim(""); }
-	}*/ //sometimes I find myself wondering why i am seeing the world through my eyes and not someone elses. Is it just a coincidence due to something like reincarnation or am i genuinely the main character or what
+		else { PlayShopAnim(""); }
+	}
 	private void _on_upgrade_button_up()
 	{
 		//ColorRect _desc = GetNode<ColorRect>("BlacksmithShop/View/WeaponDesc"); <--- For later
 		// UI references and sets
+		GetNode<Control>("BlacksmithShop/View").Visible = true;
 		Control _upg = GetNode<Control>("BlacksmithShop/View/UpgradeMenu");
 		Label _details = _upg.GetNode<Label>("Requirements/Details");
 		_upg.GetNode<Label>("UpgradePrompt").Text = "Upgrade\n" + _shopSelection + "?";
@@ -222,25 +239,11 @@ public partial class Ui : Control
 		// sword and spaghetti refrences for resources
 		PackedScene _swordScn = _player._weapon[_shopSelection];
 		itemList _resourceScript = (itemList)_resourceInv;
-		int count = 0;
 		GD.Print(_shopSelection);
 		string[] _requirements = _requirementRef[_shopSelection.ToLower() + ((int)_swordScn.GetMeta("level") + 1)];
 		int[] _amount = _amountRef[_shopSelection.ToLower() + ((int)_swordScn.GetMeta("level") + 1)];
 		GD.Print(_requirements);
 		GD.Print("length = " + _requirements.Length);
-
-		// ----- Checks if you have the resources you need to upgrade it
-		for(int i = 0; i < _requirements.Length; i++)
-		{
-			if(_resourceScript.GetItemCount(_requirements[i]) >= _amount[i])
-			{
-				GD.Print(_requirements[i]);
-				GD.Print("amount of " + _requirements[i] + " = " + _resourceScript.GetItemCount(_requirements[i]));
-				count++;
-			}
-		}
-		GD.Print("count = " + count);
-		if(count >= _requirements.Length) { _upgPossible = true; } else { _upgPossible = false; }
 
 		// ----- Sets the requirements UI
 		_details.Text += "Requirements:\n";
@@ -275,19 +278,24 @@ public partial class Ui : Control
 			_upg.Visible = false;
 		}
 	}
+
+	private void _on_craft_button_up()
+	{
+		
+	}
 	private void _on_upgrade_mouse_entered()
 	{
 		if ((int)_player._weapon[_shopSelection].GetMeta("level") >= 4)
         {
 			GetNode<Label>("BlacksmithShop/View/Warning/Warning").Text = "This weapon is already max level!";
 			GetNode<ColorRect>("BlacksmithShop/View/Warning").Visible = true;
-			GetNode<Button>("BlacksmithShop/View/Upgrade").Disabled = true;
+			GetNode<Button>("BlacksmithShop/Upgrade").Disabled = true;
         }
 	}
 	private void _on_upgrade_mouse_exited()
     {
 		GetNode<ColorRect>("BlacksmithShop/View/Warning").Visible = false;
-		GetNode<Button>("BlacksmithShop/View/Upgrade").Disabled = false;
+		GetNode<Button>("BlacksmithShop/Upgrade").Disabled = false;
     }
 	private void _on_upgrade_conf_mouse_entered()
 	{
@@ -348,10 +356,13 @@ public partial class Ui : Control
 	}
 	private void _on_upgrade_deny_button_up()
 	{
+		GetNode<Control>("BlacksmithShop/View").Visible = false;
 		GetNode<Control>("BlacksmithShop/View/UpgradeMenu").Visible = false;
+		GetNode<Label>("BlacksmithShop/View/UpgradeMenu/Requirements/Details").Text = "";
 	}
 	private void _on_done_button_up()
 	{
+		GetNode<Control>("BlacksmithShop/View").Visible = false;
 		Control _upg = GetNode<Control>("BlacksmithShop/View/UpgradeMenu");
 		_upg.Visible = false;
 		_upg.GetNode<Control>("Results").Visible = false;
@@ -396,7 +407,7 @@ public partial class Ui : Control
 
 	// --- StakeGun ---
 	private void _on_stake_gun_mouse_entered() { PlayInvAnim("StakeGun", true); }
-	private void _on_stake_gun_mouse_exited() { PlayInvAnim("StakeGun", false); }
+	private void _on_stake_gun_mouse_exited() { PlayInvAnim("StakeGun", false); } // son im crane
 	private void _on_stake_gun_button_up()
 	{
 		_secItemSend = "StakeGun";
@@ -441,16 +452,17 @@ public partial class Ui : Control
 
 	}
 	
-	private void PlayShopAnim(string item)
+	private void PlayShopAnim(string item) // Why do I exist dude ts crazy
 	{
+		GD.Print(item.Substr(0, 3).ToLower() + "PreviewAnim");
 		if (_prevSelection != item) // switches from the shown weapon on the preview to the selected weapon
 		{
 			if (_prevSelection != null) 
 			{ 
-				GetNode<Node3D>("BlacksmithShop/View/PortContainer/Port/ShopPreviewWorld").GetNode<Node3D>(_prevSelection).GetNode<AnimationPlayer>("PreviewAnim").PlayBackwards(item.Substr(0, 3).ToLower() + "PreviewAnim");
+				GetNode<AnimationPlayer>("BlacksmithShop/PortContainer/Port/SmithShopPreviewWorld/" + _prevSelection + "/PreviewAnim").PlayBackwards(item.Substr(0, 3).ToLower() + "PreviewAnim");
 			}
 			_prevSelection = item;
-			GetNode<Node3D>("BlacksmithShop/View/PortContainer/Port/ShopPreviewWorld").GetNode<Node3D>(item).GetNode<AnimationPlayer>("PreviewAnim").Play(item.Substr(0, 3).ToLower() + "PreviewAnim");
+			GetNode<AnimationPlayer>("BlacksmithShop/PortContainer/Port/SmithShopPreviewWorld/" + item + "/PreviewAnim").Play(item.Substr(0, 3).ToLower() + "PreviewAnim");
 		}
 	} 
 
@@ -542,5 +554,23 @@ public partial class Ui : Control
 	{
 		GetNode<Control>("WizardShop").Visible = false;
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+	}
+
+	private bool ItemCheck(string[] req, int[] amount)
+	{
+		itemList _resourceScript = (itemList)_resourceInv;
+		int count = 0;
+		// ----- Checks if you have the resources you need to upgrade it
+		for(int i = 0; i < req.Length; i++)
+		{
+			if(_resourceScript.GetItemCount(req[i]) >= amount[i])
+			{
+				GD.Print(req[i]);
+				GD.Print("amount of " + req[i] + " = " + _resourceScript.GetItemCount(req[i]));
+				count++;
+			}
+		}
+		GD.Print("count = " + count);
+		if(count >= req.Length) { return true; } else { return false; }
 	}
 }// some day i will rule the world
