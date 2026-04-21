@@ -230,9 +230,9 @@ public partial class Monster3d : CharacterBody3D
 	// --- CORE MONSTER AI LOOP --- //
 	public void EveryFrame(double delta)
 	{
-		if (_snake != null){if (_snake._animState == "Stunned")
+		if (_snake != null){if (_snake._transitioning == true)
             {
-                //_health = 0;
+                _health = 0;
             }
         }
 		// Early-out: disabled, debugging, or player dead — go fully idle

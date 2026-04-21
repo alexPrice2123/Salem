@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://c1jpcmate77rb"]
+[gd_scene load_steps=38 format=4 uid="uid://c1jpcmate77rb"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_533rq"]
 [ext_resource type="Script" uid="uid://dwvhkeqbmpua7" path="res://Scripts/MonsterScripts/MonsterAssetScripts/Resin.cs" id="2_533rq"]
@@ -112,6 +112,9 @@ states/walking/position = Vector2(592.562, 85.890594)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ng0vc"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_c1rs2"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_ci7oq"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_m7bjp"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_00oym"), "walking", "attack", SubResource("AnimationNodeStateMachineTransition_v7ma6"), "walking", "attack2", SubResource("AnimationNodeStateMachineTransition_ch86k"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_p1kej"), "idle", "attack2", SubResource("AnimationNodeStateMachineTransition_ex21e")]
 graph_offset = Vector2(39, -85)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_6oqr8"]
+radius = 0.29519185
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oiodp"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pf6fw"]
@@ -206,7 +209,7 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.45044523, 0)
 
 [node name="CollisionShape3D" parent="Hurtbox" index="0"]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -0.3456164, 0)
-shape = SubResource("SphereShape3D_tt2f5")
+shape = SubResource("SphereShape3D_6oqr8")
 
 [node name="Direction" type="Node3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0950214, 0)
