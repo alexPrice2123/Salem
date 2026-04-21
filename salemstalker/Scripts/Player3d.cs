@@ -667,7 +667,7 @@ public partial class Player3d : CharacterBody3D
 		Vector2 inputDir = Input.GetVector("left", "right", "forward", "back"); // Get normalized 2D input
 		// Convert 2D input to 3D direction relative to the player's head/facing
 		Vector3 direction = (_head.GlobalTransform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-		//GD.Print(velocity);
+		//GD.Print(velocity);9*
 		
 		Vector3 new_knock_direction = knock_direction.Normalized().Rotated(new Vector3(1,0,0),Rotation.X); //makes knock_direction normalized and cancels the players rotation.
 		velocity.X = (direction.X * (Speed + _speedOffset + _backSpeed + (RunSpeed * Convert.ToInt32(_running)) + (crouchSpeed * Convert.ToInt32(crouching))  + _dashVelocity)) + (new_knock_direction.X * -_knockVelocity);
@@ -938,23 +938,23 @@ public partial class Player3d : CharacterBody3D
 	}
 	private async void SpecialSwing()
 	{
-		if (true)//(_special_attack_available == true)
+		if (_special_attack_available == true)
 		{
 			Timer cooldown = _sword.GetNode<Timer>("sAttackCooldown");
 			_special_attack_available = false;
 			_comboNum = 4;
 			_swordInst.swingStat = _comboNum;
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/spaHitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
-			GD.Print("spa_start ",_comboNum,", ",_swordInst.swingStat);
+			
 			await ToSignal(GetTree().CreateTimer(0.4), "timeout");
-			GD.Print("spec_a");
+			
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/spaHitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
-			GD.Print("spec_b");
+			
 			cooldown.Start();
-			GD.Print("spec_c");
+			
 			_comboNum = 0;
 			_swordInst.swingStat = _comboNum;
-			GD.Print("spa_end ",_comboNum,", ",_swordInst.swingStat);
+			
 			await ToSignal(cooldown, "timeout");
 			
 			_special_attack_available = true;
