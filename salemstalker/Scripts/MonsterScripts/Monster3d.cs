@@ -150,6 +150,11 @@ public partial class Monster3d : CharacterBody3D
 			GD.Print(_player._damage);
 			DamageHandler(false, _player._damage);
 		}
+		if (body.IsInGroup("Stuns") && _canBeHit)
+		{
+			Stunned();
+			GD.Print("working");
+		}
 		else if (body.IsInGroup("PlayerProj") && _canBeHit)
 		{
 			float damage = MaxHealth * (float)body.GetParent().GetMeta("DamagePer");
