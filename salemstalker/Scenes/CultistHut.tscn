@@ -1,12 +1,14 @@
-[gd_scene load_steps=37 format=3 uid="uid://dmgtv0o1qnx6"]
+[gd_scene load_steps=40 format=3 uid="uid://dmgtv0o1qnx6"]
 
 [ext_resource type="Script" uid="uid://csc1wgxwkys3h" path="res://Scripts/CultistHut.cs" id="1_sak6b"]
 [ext_resource type="Material" uid="uid://bo85r54u3k5x5" path="res://Assets/Materials/Wood_Mat.tres" id="2_n642y"]
 [ext_resource type="Shader" uid="uid://d340c7agjccff" path="res://Shaders/magic.gdshader" id="3_4aca4"]
 [ext_resource type="PackedScene" uid="uid://cbougraiw7tt1" path="res://Assets/3D/buildings/cultistshrineorbtest.blend" id="4_0bcjk"]
-[ext_resource type="Texture2D" uid="uid://b22orgf0yx24m" path="res://Assets/2D/Wood.png" id="5_mqdp6"]
+[ext_resource type="Texture2D" uid="uid://cfk3uds7mnnum" path="res://Assets/proptextures/shrine/Wood_Base_color.png" id="5_rnmsy"]
 [ext_resource type="Texture2D" uid="uid://dyqrakudt8des" path="res://Assets/UI/shrineicon.png" id="6_7m6cr"]
 [ext_resource type="Material" uid="uid://bpu6edb0a8drx" path="res://Assets/HitFX/hitMat.tres" id="6_50012"]
+[ext_resource type="Texture2D" uid="uid://din28ijdaj430" path="res://Assets/proptextures/shrine/Cloth_Base_color.png" id="6_nhjty"]
+[ext_resource type="Texture2D" uid="uid://dr2s5godf47mm" path="res://Assets/proptextures/shrine/Rope_Base_color.png" id="7_mdjrw"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7m6cr"]
 seamless = true
@@ -14,13 +16,13 @@ seamless = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7m6cr"]
 render_priority = 0
 shader = ExtResource("3_4aca4")
-shader_parameter/Color = Color(0.313726, 0.188235, 0.921569, 1)
-shader_parameter/glow_color = Color(0.258824, 0.0235294, 0.25098, 1)
+shader_parameter/Color = Color(0.36862746, 0.08627451, 0.45882353, 1)
+shader_parameter/glow_color = Color(0.9882353, 0.1764706, 0.49803922, 1)
 shader_parameter/dist = 2.0
 shader_parameter/speed = 1.0
-shader_parameter/glow_intensity = -0.1
+shader_parameter/glow_intensity = -0.01
 shader_parameter/glow_amount = 10.0
-shader_parameter/posMult = 1.58
+shader_parameter/posMult = 2.13
 shader_parameter/noise = SubResource("NoiseTexture2D_7m6cr")
 
 [sub_resource type="Curve" id="Curve_50012"]
@@ -103,17 +105,17 @@ scale_curve = SubResource("CurveTexture_ag22c")
 
 [sub_resource type="SphereMesh" id="SphereMesh_ve2r1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7m6cr"]
-albedo_texture = ExtResource("5_mqdp6")
-metallic_specular = 0.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve2r1"]
+albedo_texture = ExtResource("5_rnmsy")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50012"]
-albedo_color = Color(0.6613639, 0.46431565, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvpqe"]
+albedo_texture = ExtResource("6_nhjty")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqdp6"]
-albedo_color = Color(0.3572281, 0.24236059, 2.8878452e-07, 1)
-metallic = 1.0
-roughness = 0.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8n7g"]
+albedo_texture = ExtResource("7_mdjrw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyhde"]
+albedo_texture = ExtResource("7_mdjrw")
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdlj8"]
 seamless = true
@@ -121,8 +123,8 @@ seamless = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mqdp6"]
 render_priority = 0
 shader = ExtResource("3_4aca4")
-shader_parameter/Color = Color(0.20829695, 0.09890398, 0.6546388, 1)
-shader_parameter/glow_color = Color(0.3137255, 0.1882353, 0.92156863, 1)
+shader_parameter/Color = Color(0.36862746, 0.08627451, 0.45882353, 1)
+shader_parameter/glow_color = Color(0.9882353, 0.1764706, 0.49803922, 1)
 shader_parameter/dist = 0.375
 shader_parameter/speed = 1.0
 shader_parameter/glow_intensity = -200.0
@@ -208,19 +210,19 @@ draw_pass_1 = SubResource("SphereMesh_ve2r1")
 transform = Transform3D(1.715, 0, 0, 0, 1.715, 0, 0, 0, 1.715, 0, 0, 0)
 
 [node name="Cylinder" parent="Body" index="0"]
-material_override = SubResource("StandardMaterial3D_7m6cr")
+surface_material_override/0 = SubResource("StandardMaterial3D_ve2r1")
 
 [node name="Plane" parent="Body" index="1"]
-material_override = SubResource("StandardMaterial3D_50012")
+surface_material_override/0 = SubResource("StandardMaterial3D_mvpqe")
 
 [node name="BézierCircle" parent="Body" index="2"]
-material_override = SubResource("StandardMaterial3D_mqdp6")
+surface_material_override/0 = SubResource("StandardMaterial3D_w8n7g")
 
 [node name="BézierCircle_001" parent="Body" index="3"]
-material_override = SubResource("StandardMaterial3D_mqdp6")
+surface_material_override/0 = SubResource("StandardMaterial3D_jyhde")
 
 [node name="Sphere_002" parent="Body" index="4"]
-transform = Transform3D(0.038299505, -0.037031543, 0.07955519, -0.0070360084, 0.08522695, 0.043058954, -0.08746917, -0.023070386, 0.03137061, -0.00052637234, 1.0754052, 0.0016484503)
+transform = Transform3D(0.06266435, -0.029830238, 0.0659587, -0.007052659, 0.08430786, 0.044829197, -0.07204618, -0.034198724, 0.052981216, -0.00052637234, 1.0754052, 0.0016484503)
 material_override = SubResource("ShaderMaterial_mqdp6")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Body"]

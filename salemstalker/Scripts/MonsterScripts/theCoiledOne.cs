@@ -21,11 +21,13 @@ public partial class theCoiledOne : Monster3d
 	[Export] public PackedScene _revanant { get; set; }
 	private CsgSphere3D _rangeObj;
 	private int _spawnCount = 0;
-	private int _moveCount = -200;
+	private int _moveCount = 0;
 	public string _animState = "Idle";
+	public string _currentCutscene = "0";
 	public int _phase = 1;
 	private Godot.Collections.Array<string> _playerFieldPos { get; set; } = [];
 	public int _parryCounters = 0;
+	private bool _active = false;
 	
 
 	public override void _Ready()
@@ -90,6 +92,8 @@ public partial class theCoiledOne : Monster3d
 		if (_roots != null){_roots.Visible = true;}
 		_resinCount = 0;
 		if (_phase == 2){return;}
+		_animState = "Idle";
+		_player.Damaged(0, this, "Push");
         for (int i = 0; i < MaxResin; i++)
         {
             if (_resinArray.PickRandom() is Resin resInst)
@@ -147,8 +151,30 @@ public partial class theCoiledOne : Monster3d
         }
 	}
 
-	private void TransitionPhase()
+	private async void DeathPhase()
     {
+		_active = false;
+        _player.MonsterKilled("theCoiledOne", Biome);
+		_player.CutsceneToggle(true);
+		_player.GetNode<Ui>("UI")._fadeProg = 1;
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		GetNode<Camera3D>("Cutscene/Camera").Current = true;
+		_player.GetNode<Ui>("UI")._fadeProg = 0;
+		await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
+		_currentCutscene = "3";
+		_animState = "Dead";
+		await ToSignal(GetTree().CreateTimer(5f), "timeout");
+		_player.GetNode<Ui>("UI")._fadeProg = 1;
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		GetNode<Camera3D>("Cutscene/Camera").Current = true;
+		_player.GetNode<Ui>("UI")._fadeProg = 0;
+		_player.CutsceneToggle(false);
+		QueueFree();
+    }
+
+	private async void TransitionPhase()
+    {
+		_attacking = true;
 		_phase = 2;
 		_currentDamage = 100;
         foreach (Node3D roots in GetParent().GetParent().GetChildren())
@@ -165,6 +191,34 @@ public partial class theCoiledOne : Monster3d
 		_rangeObj = GetNode<CsgSphere3D>("Range2");
 		_player.GlobalPosition = _rangeObj.GlobalPosition + new Vector3(0, 1, 0);
 		_roots.GlobalPosition = new Vector3(0, -10, 0);
+
+		_player.CutsceneToggle(true);
+		_player.GetNode<Ui>("UI")._fadeProg = 1;
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		GetNode<Camera3D>("Cutscene/Camera").Current = true;
+		_player.GetNode<Ui>("UI")._fadeProg = 0;
+		await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
+		_currentCutscene = "1.5";
+		_animState = "Cutscene2";
+		await ToSignal(GetTree().CreateTimer(0.99), "timeout");
+		GetNode<Camera3D>("Cutscene/Camera_001").Current = true;
+		GetNode<Camera3D>("Cutscene/Camera").Current = false;
+		await ToSignal(GetTree().CreateTimer(0.97), "timeout");
+		GetNode<Camera3D>("Cutscene/Camera_002").Current = true;
+		GetNode<Camera3D>("Cutscene/Camera_001").Current = false;
+		await ToSignal(GetTree().CreateTimer(0.84), "timeout");
+		GetNode<Camera3D>("Cutscene/Camera_002").Current = false;
+		GetNode<Camera3D>("Cutscene/Camera").Current = true;
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		_player.GetNode<Ui>("UI")._fadeProg = 1;
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		GetNode<Camera3D>("Cutscene/Camera").Current = false;
+		_player.GetNode<Ui>("UI")._fadeProg = 0;
+		_animState = "Idle";
+		_player.GetNode<Camera3D>("Head/Camera3D").Current = true;
+		_player.CutsceneToggle(false);
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		_attacking = false;
     }
 
 	public override void _Process(double delta)
@@ -172,14 +226,14 @@ public partial class theCoiledOne : Monster3d
 		EveryFrame(delta);
 		if (_health <= MaxHealth / 2 && _phase == 1){TransitionPhase();}
 
-		if (_roots.Visible){_spawnCount++;}
+		if (_roots.Visible && _active){_spawnCount++;}
 		if (_phase == 2 && !_attacking && _roots.Visible){_moveCount++;}
-		if (_moveCount >= 100)
+		if (_moveCount >= 75)
         {
             _moveCount = _rng.RandiRange(-50, 25);
 			ChooseAttack();
         }
-		if (_spawnCount > (30000*_phase))
+		if (_spawnCount > (300*_phase))
         {
             _spawnCount = _rng.RandiRange(-200, 25);
 			SpawnEnemy();
@@ -189,40 +243,12 @@ public partial class theCoiledOne : Monster3d
             if (!_roots.Visible && _currentDamage >= 50f)
 			{
 				SpawnResin();
-				_animState = "Idle";
-				_player.Damaged(0, this, "Push");
 			}
         }
 		
-		if (_health <= 0)
+		if (_health <= 0 && _active)
 		{
-			_player.MonsterKilled("theCoiledOne", Biome);
-			if (Debug == true)
-			{
-				if (GetParent().GetParent() is DebugHut dh) { dh._shouldSpawn = true; }
-			}
-			int i = 0;
-			if(Cutscene)
-			{
-				foreach (Monster3d monst in GetParent().GetChildren())
-				{
-					if (monst != this)
-					{
-						monst.ForceSeePlayer();
-						i++;
-					}
-				}
-				if (i == 0)
-				{
-					_player.GetParent().GetNode<Cutscene3>("Cutscene3").StartCut(_player);
-				}
-			}
-			if(!Cutscene)
-			{
-				//_itemDropper.Drop("deadooze", 0.5f, 3, GlobalPosition);
-				//_itemDropper.Drop("woundedooze", 0.25f, 2, GlobalPosition);
-			}
-			QueueFree();
+			DeathPhase();
 		}
 	}
 
@@ -293,6 +319,7 @@ public partial class theCoiledOne : Monster3d
 
 	private async void StartBattle()
     {
+		GetNode<Area3D>("Enter").SetDeferred("monitoring", false);
 		_player.GlobalPosition = _rangeObj.GlobalPosition + new Vector3(0, 1, 0);
         foreach (Node3D roots in GetParent().GetParent().GetChildren())
         {
@@ -306,11 +333,19 @@ public partial class theCoiledOne : Monster3d
 		await ToSignal(GetTree().CreateTimer(2), "timeout");
 		GetNode<Camera3D>("Cutscene/Camera").Current = true;
 		_player.GetNode<Ui>("UI")._fadeProg = 0;
-		GetNode<AnimationPlayer>("Cutscene/AnimationPlayer").Play("1");
-		await ToSignal(GetTree().CreateTimer(1), "timeout");
-		
+		await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
+		_currentCutscene = "1";
 		_animState = "Cutscene1";
-		
+		await ToSignal(GetTree().CreateTimer(4.3), "timeout");
+		_player.GetNode<Ui>("UI")._fadeProg = 1;
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		GetNode<Camera3D>("Cutscene/Camera").Current = false;
+		_player.GetNode<Ui>("UI")._fadeProg = 0;
+		_animState = "Idle";
+		_player.GetNode<Camera3D>("Head/Camera3D").Current = true;
+		_player.CutsceneToggle(false);
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		_active = true;
 	}
 
 	private async void ChooseAttack()
@@ -464,12 +499,14 @@ public partial class theCoiledOne : Monster3d
 		if (_animState == "Smash"){return;}
 		else{_parryCounters ++; _hasHit = true; _animState = "Hit"; _attacking = false;}
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-		if (_parryCounters >= 3)
+		if (_parryCounters >= 2)
         {
             _parryCounters = 0;
 			_hasHit = true;
 			_animState = "Stunned";
 			_roots.Visible = false;
+			GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox").SetDeferred("monitoring", false);
+			GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox").SetDeferred("monitoring", false);
         }
     }
 }
