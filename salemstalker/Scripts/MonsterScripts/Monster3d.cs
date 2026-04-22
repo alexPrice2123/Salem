@@ -150,6 +150,11 @@ public partial class Monster3d : CharacterBody3D
 			GD.Print(_player._damage);
 			DamageHandler(false, _player._damage);
 		}
+		if (body.IsInGroup("Stuns") && _canBeHit)
+		{
+			Stunned();
+			GD.Print("working");
+		}
 		else if (body.IsInGroup("PlayerProj") && _canBeHit)
 		{
 			float damage = MaxHealth * (float)body.GetParent().GetMeta("DamagePer");
@@ -168,13 +173,7 @@ public partial class Monster3d : CharacterBody3D
 		if (this is theCoiledOne tco)
 		{
 			tco._currentDamage += damage;
-			/*if (tco._animState == "Hit" && tco._phase == 1)
-            {
-                tco._animState = "Idle";
-				tco._roots.Visible = true;
-				tco._attacking = false;
-            }
-			else */if (tco._animState == "Stunned" && tco._phase == 2)
+			if (tco._animState == "Stunned" && tco._phase == 2)
             {
                 tco._animState = "Idle";
 				tco._roots.Visible = true;
@@ -225,9 +224,9 @@ public partial class Monster3d : CharacterBody3D
 	// --- CORE MONSTER AI LOOP --- //
 	public void EveryFrame(double delta)
 	{
-		if (_snake != null){if (_snake._animState == "Stunned")
+		if (_snake != null){if (_snake._transitioning == true)
             {
-                //_health = 0;
+                _health = 0;
             }
         }
 		// Early-out: disabled, debugging, or player dead — go fully idle
