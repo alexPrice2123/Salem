@@ -332,7 +332,7 @@ states/attack1_parry/position = Vector2(846.75, 129.5)
 states/attack2_parry/node = SubResource("AnimationNodeAnimation_yim8a")
 states/attack2_parry/position = Vector2(1028, 130.25)
 states/attack3_nonparry/node = SubResource("AnimationNodeAnimation_0nsh6")
-states/attack3_nonparry/position = Vector2(1129, 262)
+states/attack3_nonparry/position = Vector2(1145, 287.5)
 states/attack4_parry/node = SubResource("AnimationNodeAnimation_du3a6")
 states/attack4_parry/position = Vector2(1112, 391.75)
 states/cutsecne1/node = SubResource("AnimationNodeAnimation_ikdms")
@@ -368,7 +368,7 @@ states/summan/position = Vector2(1111.75, 551)
 states/summon_p1/node = SubResource("AnimationNodeAnimation_4kjrw")
 states/summon_p1/position = Vector2(646.5, 85.828094)
 transitions = ["idle", "summon_p1", SubResource("AnimationNodeStateMachineTransition_onvcx"), "summon_p1", "idle", SubResource("AnimationNodeStateMachineTransition_e0ydn"), "idle", "hit_p1", SubResource("AnimationNodeStateMachineTransition_2eohi"), "hit_p1", "idle", SubResource("AnimationNodeStateMachineTransition_a2shs"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_ft85t"), "idle_p2", "attack1_parry", SubResource("AnimationNodeStateMachineTransition_mtaci"), "idle_p2", "attack2_parry", SubResource("AnimationNodeStateMachineTransition_i8osb"), "idle_p2", "attack3_nonparry", SubResource("AnimationNodeStateMachineTransition_ikdms"), "idle_p2", "attack4_parry", SubResource("AnimationNodeStateMachineTransition_x8crk"), "idle_p2", "stunned", SubResource("AnimationNodeStateMachineTransition_31phi"), "stunned", "stunned_idle", SubResource("AnimationNodeStateMachineTransition_fpmnq"), "idle_p2", "spit", SubResource("AnimationNodeStateMachineTransition_tl61y"), "attack1_parry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_732ic"), "attack2_parry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_ci8w0"), "attack3_nonparry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_hldgb"), "attack4_parry", "idle_p2", SubResource("AnimationNodeStateMachineTransition_ceigc"), "spit", "idle_p2", SubResource("AnimationNodeStateMachineTransition_aa46w"), "stunned_idle", "hit_p1 2", SubResource("AnimationNodeStateMachineTransition_ej55h"), "hit_p1 2", "idle_p2", SubResource("AnimationNodeStateMachineTransition_qde63"), "hit_p1", "stunned_idle_p1", SubResource("AnimationNodeStateMachineTransition_xudcj"), "stunned_idle_p1", "idle", SubResource("AnimationNodeStateMachineTransition_8jj42"), "idle", "stunned_idle_p1", SubResource("AnimationNodeStateMachineTransition_lovdl"), "idle_p2", "summan", SubResource("AnimationNodeStateMachineTransition_tmgri"), "summan", "idle_p2", SubResource("AnimationNodeStateMachineTransition_laun1"), "summon_p1", "stunned_idle_p1", SubResource("AnimationNodeStateMachineTransition_kuj5w"), "attack1_parry", "hit_p1 3", SubResource("AnimationNodeStateMachineTransition_t8g15"), "attack2_parry", "hit_p1 3", SubResource("AnimationNodeStateMachineTransition_gegwn"), "attack4_parry", "hit_p1 3", SubResource("AnimationNodeStateMachineTransition_e8dma"), "hit_p1 3", "idle_p2", SubResource("AnimationNodeStateMachineTransition_ot5ct"), "hit_p1 3", "stunned", SubResource("AnimationNodeStateMachineTransition_i5xpr"), "idle", "cutsecne1", SubResource("AnimationNodeStateMachineTransition_f0qjf"), "cutsecne1", "idle", SubResource("AnimationNodeStateMachineTransition_hatbf"), "p1_to_p2", "p1_to_p2 2", SubResource("AnimationNodeStateMachineTransition_6fulj"), "p1_to_p2 2", "idle_p2", SubResource("AnimationNodeStateMachineTransition_5r44e"), "stunned_idle_p1", "p1_to_p2", SubResource("AnimationNodeStateMachineTransition_yim8a"), "hit_p1 2", "ArmatureAction", SubResource("AnimationNodeStateMachineTransition_0nsh6"), "idle", "p1_to_p2", SubResource("AnimationNodeStateMachineTransition_du3a6"), "idle_p2", "spit_l", SubResource("AnimationNodeStateMachineTransition_t0h8r"), "idle_p2", "spit_r", SubResource("AnimationNodeStateMachineTransition_14xfu"), "spit_l", "idle_p2", SubResource("AnimationNodeStateMachineTransition_55elj"), "spit_r", "idle_p2", SubResource("AnimationNodeStateMachineTransition_ctujf")]
-graph_offset = Vector2(601, 161)
+graph_offset = Vector2(551, 103)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x8crk"]
 animation = &"1"
@@ -686,13 +686,13 @@ skeleton = NodePath("")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
 [node name="Camera" parent="Cutscene" index="0"]
-transform = Transform3D(0.99688166, 0.007726877, -0.07852854, 0.015741292, 0.95571667, 0.29386672, 0.07732169, -0.29418653, 0.95261514, -0.27474928, 5.9479165, 19.279943)
+transform = Transform3D(0.9999997, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Camera_001" parent="Cutscene" index="1"]
-transform = Transform3D(0.99688196, 0.007726877, -0.07852854, 0.015741298, 0.95571667, 0.29386672, 0.077321716, -0.29418653, 0.95261514, -0.27474928, 5.9479165, 19.279943)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Camera_002" parent="Cutscene" index="2"]
-transform = Transform3D(0.99688196, 0.0077268775, -0.07852854, 0.015741298, 0.9557167, 0.29386672, 0.077321716, -0.29418653, 0.95261514, -0.27474928, 5.9479165, 19.279943)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Hurtbox" parent="." index="7"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.665637, 0)
@@ -718,31 +718,32 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Body/Armature" index="0"]
 bones/1/rotation = Quaternion(0.017611725, 0, 0, 0.9998449)
-bones/3/rotation = Quaternion(0.31289098, 0, 0, 0.9497891)
-bones/4/rotation = Quaternion(0.43325686, 1.6102852e-17, 3.1471503e-17, 0.90127057)
-bones/5/rotation = Quaternion(-0.08175238, 0.077880956, -0.7798994, 0.61563635)
-bones/6/rotation = Quaternion(0.49982902, -0.07356689, -0.23555547, 0.8302245)
-bones/7/rotation = Quaternion(0.54601103, 0.06882901, 0.40286094, 0.7313259)
-bones/8/rotation = Quaternion(0.38278043, 8.914383e-17, 1.4257548e-16, 0.92383933)
-bones/9/rotation = Quaternion(-0.013105951, 1.111799e-07, 4.2828162e-08, 0.9999141)
-bones/10/rotation = Quaternion(-0.3082851, 4.307666e-14, -7.350091e-08, 0.95129406)
-bones/11/rotation = Quaternion(-0.48468515, -2.6260271e-14, -1.15557945e-07, 0.8746887)
+bones/2/rotation = Quaternion(0.38477787, 0.011219861, 0.013049711, 0.92284876)
+bones/3/rotation = Quaternion(0.056242652, -0.0036909278, -0.0024939685, 0.9984072)
+bones/4/rotation = Quaternion(0.4530525, -0.0040460397, 0.011167462, 0.8914048)
+bones/5/rotation = Quaternion(-0.05867656, 0.057308123, -0.7768832, 0.6242798)
+bones/6/rotation = Quaternion(0.6269622, -0.34887215, -0.0870203, 0.6911109)
+bones/7/rotation = Quaternion(0.39286998, 0.08177439, 0.28986952, 0.86887395)
+bones/8/rotation = Quaternion(0.15422982, 6.340274e-11, 3.4864428e-10, 0.988035)
+bones/9/rotation = Quaternion(0.04369406, -0.04890594, -0.028364863, 0.997444)
+bones/10/rotation = Quaternion(-0.24752715, 0.08022601, 0.13508798, 0.95605725)
+bones/11/rotation = Quaternion(-0.6152568, 0.045898523, -0.08885268, 0.7819575)
 bones/12/rotation = Quaternion(0.5968312, -0.0026567895, 0.0033799708, 0.8023553)
-bones/13/rotation = Quaternion(0.58291125, -2.340884e-14, 1.3897689e-07, 0.81253594)
-bones/14/rotation = Quaternion(-0.49844545, -0.0025887708, -0.004137523, 0.86690736)
-bones/15/rotation = Quaternion(-0.08175238, -0.077880956, 0.7798994, 0.61563635)
-bones/16/rotation = Quaternion(0.5637734, 0.06300558, 0.25869995, 0.7818339)
-bones/17/rotation = Quaternion(0.4402063, -0.07241229, -0.3918891, 0.8046105)
+bones/13/rotation = Quaternion(0.44320238, -0.06063523, -0.07951409, 0.890827)
+bones/14/rotation = Quaternion(-0.4983904, -0.0025888837, -0.004136965, 0.86693895)
+bones/15/rotation = Quaternion(-0.10584751, -0.096973844, 0.78224456, 0.60620624)
+bones/16/rotation = Quaternion(0.73366106, 0.3272071, 0.07288129, 0.5910714)
+bones/17/rotation = Quaternion(0.22230673, -0.0855721, -0.19790639, 0.9508366)
 bones/18/position = Vector3(5.259649, 7.570201, -0.7133017)
 bones/18/rotation = Quaternion(0.2782055, -0.56508857, 0.6500782, -0.4250589)
-bones/19/position = Vector3(2.8255434, 3.0476406, 2.5635757)
-bones/19/rotation = Quaternion(0.77285725, -0.31929395, -0.51491773, 0.18868724)
+bones/19/position = Vector3(2.8736162, 1.4981885, 5.214905)
+bones/19/rotation = Quaternion(0.34567988, -0.13938004, -0.9278143, 0.015468091)
 bones/20/position = Vector3(-4.9393487, 7.934774, -0.9567734)
-bones/21/position = Vector3(-2.4300199, 2.7705932, 2.619575)
-bones/21/rotation = Quaternion(0.52638006, 0.33091226, 0.74429905, 0.24380347)
+bones/21/position = Vector3(-2.3859363, 1.2347426, 5.133514)
+bones/21/rotation = Quaternion(0.5590067, 0.05315999, 0.8267279, 0.03473362)
 
 [node name="Bone_007_l" parent="Body/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.30935004, -0.099046975, -0.94577605, -0.7423579, -0.5964159, 0.30527472, -0.5943124, 0.7965411, 0.11097282, 3.093575, 4.6607513, 0.4089148)
+transform = Transform3D(-0.3196501, 0.015376419, -0.94741106, -0.76893485, -0.5884708, 0.24988243, -0.5536814, 0.80837226, 0.19992822, 2.832252, 3.0899818, 3.0285702)
 
 [node name="Cube" parent="Body/Armature/Skeleton3D/Bone_007_l" index="0"]
 visible = false
@@ -757,7 +758,7 @@ shape = SubResource("BoxShape3D_2eohi")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="Bone_012" parent="Body/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.99996305, -0.008595033, -0.00022881302, -0.0035329163, -0.38647354, -0.9222934, 0.007838713, 0.92226017, -0.38648957, -1.542495e-07, 5.8545237, 5.0178504)
+transform = Transform3D(0.9994689, -0.031398557, 0.008715623, 0.0042337147, -0.14007476, -0.99013156, 0.032309648, 0.9896426, -0.13986742, -0.1172954, 4.996875, 6.036337)
 
 [node name="Spit" type="GPUParticles3D" parent="Body/Armature/Skeleton3D/Bone_012" index="0"]
 transform = Transform3D(1.6661475, -0.0414465, 0.0030579101, -0.022470158, -0.795246, 1.4645325, -0.034960706, -1.4641199, -0.7955575, 0.028679352, 1.1756449, 0.5722647)
@@ -787,7 +788,7 @@ process_material = SubResource("ParticleProcessMaterial_4kjrw")
 draw_pass_1 = SubResource("SphereMesh_onvcx")
 
 [node name="Bone_007_r" parent="Body/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.3755226, -0.010558367, 0.92675316, 0.67398596, -0.68948376, 0.26524553, 0.6361806, 0.72422403, 0.26603302, -2.401101, 4.656231, 0.6384913)
+transform = Transform3D(-0.4297984, -0.10388294, 0.8969293, 0.6092396, -0.76651967, 0.20316209, 0.6664085, 0.6337633, 0.39273852, -2.101824, 3.3314624, 3.3998833)
 
 [node name="Cube_002" parent="Body/Armature/Skeleton3D/Bone_007_r" index="0"]
 visible = false
@@ -805,7 +806,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_olmvi")
 surface_material_override/1 = SubResource("StandardMaterial3D_un2t0")
 
 [node name="Camera" parent="Body" index="1"]
-transform = Transform3D(0.9135452, 0.014194904, 0.40648887, -4.6566118e-10, 0.99939084, -0.034899496, -0.40673655, 0.031882275, 0.91298896, 12.437801, 0.97426367, 42.672337)
+transform = Transform3D(0.91354513, 0.014194904, 0.40648887, -4.6566112e-10, 0.99939084, -0.034899496, -0.4067365, 0.031882275, 0.91298896, 12.437801, 0.97426367, 42.672337)
 near = 2.52
 
 [node name="Attackbox" parent="." index="11"]
