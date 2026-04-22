@@ -173,13 +173,7 @@ public partial class Monster3d : CharacterBody3D
 		if (this is theCoiledOne tco)
 		{
 			tco._currentDamage += damage;
-			/*if (tco._animState == "Hit" && tco._phase == 1)
-            {
-                tco._animState = "Idle";
-				tco._roots.Visible = true;
-				tco._attacking = false;
-            }
-			else */if (tco._animState == "Stunned" && tco._phase == 2)
+			if (tco._animState == "Stunned" && tco._phase == 2)
             {
                 tco._animState = "Idle";
 				tco._roots.Visible = true;

@@ -161,9 +161,9 @@ public partial class theCoiledOne : Monster3d
 		await ToSignal(GetTree().CreateTimer(2), "timeout");
 		GetNode<Camera3D>("Cutscene/Camera").Current = true;
 		_player.GetNode<Ui>("UI")._fadeProg = 0;
-		_animState = "Dead";
-		await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
 		_currentCutscene = "3";
+		await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
+		_animState = "Dead";
 		foreach (Node3D roots in GetParent().GetParent().GetChildren())
         {
             if (((string)roots.Name).Contains("UnderWallDown"))
@@ -239,7 +239,7 @@ public partial class theCoiledOne : Monster3d
 	{
 		EveryFrame(delta);
 		if (_health <= MaxHealth / 2 && _phase == 1){TransitionPhase();}
-
+		if (_active){_player._inCombat = true;}
 		if (_roots.Visible && _active){_spawnCount++;}
 		if (_phase == 2 && !_attacking && _roots.Visible){_moveCount++;}
 		if (_moveCount >= 75)
@@ -273,7 +273,7 @@ public partial class theCoiledOne : Monster3d
 		}
 	}
 
-	public void _on_hurtbox_area_entered(Area3D body){if(!_roots.Visible){Damaged(body);}}
+	public void _on_hurtbox_area_entered(Area3D body){if(_animState == "Stunned"){Damaged(body);}}
 
 	public void _on_attackbox_area_entered(Area3D body){CoiledHitPlayer(body, "Push", 30f);}
 
