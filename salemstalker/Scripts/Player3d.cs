@@ -2,7 +2,8 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices; // Usually for specific internal compiler needs, less common in game scripts.
 using System.Collections.Generic;
-using System.Linq; // For using Dictionary.
+using System.Linq;
+using System.Collections.Concurrent; // For using Dictionary.
 
 // Defines the player class, inheriting from Godot's 3D physics-based character node.
 public partial class Player3d : CharacterBody3D
@@ -34,6 +35,8 @@ public partial class Player3d : CharacterBody3D
 	private Control _dialogue;                       // Main container for all dialogue UI
 	private Control _smithShop;                      // Main container for all blacksmith shop UI
 	public itemList _itemInv;						//Reference to resource inv
+	public AudioStreamPlayer _sfx; //audio player for sword
+	public AudioStreamPlayer _footStepSfx; //audio player for footsteps
 
 	// --- WEAPON REFERENCES ---
 	private PackedScene _falchion = GD.Load<PackedScene>("res://Scenes/MainHandWeapons/falchion.tscn"); // Pre-load falchion scene resource
@@ -150,7 +153,8 @@ public partial class Player3d : CharacterBody3D
 		_smithShop = GetNode<Control>("UI/BlacksmithShop");
 		_goalPoint = GetParent().GetNode<Node3D>("GoalArea/GoalPoint");
 		_map = GetParent().GetNode<SubViewportContainer>("PaperMap");
-		
+		_sfx = GetNode<AudioStreamPlayer>("SFX");
+		_footStepSfx = GetNode<AudioStreamPlayer>("FootAudio");
 		// Initialize starting values
 		_health = _maxHealth;
 		_stamina = _maxStamina;
@@ -248,7 +252,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				if(!GetNode<Sprite2D>("UI/Controls").Visible)
 				{
-					if(!IsInstanceValid(_lastSeen) && !_inv.Visible && _swing_buffered == false)
+					if(!IsInstanceValid(_lastSeen) && !_inv.Visible && _swing_buffered == false && _blocking == false)
 					{
 						Swing(); // Perform a normal sword swing
 					}
@@ -359,7 +363,7 @@ public partial class Player3d : CharacterBody3D
 				_stamina -= 20f; // Deduct stamina
 			}
 		}   
-        else if (Input.IsActionJustPressed("sAttack"))
+        else if (Input.IsActionJustPressed("sAttack") && _blocking == false)
 	   {
 			SpecialSwing();
 	   }
@@ -493,7 +497,7 @@ public partial class Player3d : CharacterBody3D
 		if (Input.IsActionPressed("back"))
 		{
 			_backSpeed = Speed*(-0.30f);
-			_running = false;
+			//_running = false;
 		}
 		else
 		{
@@ -918,7 +922,9 @@ public partial class Player3d : CharacterBody3D
 			if(_comboNum == 1 || _comboNum == 0){warmup.Start((float)_sword.GetMeta("startDelay1"));}
 			if(_comboNum == 2){warmup.Start((float)_sword.GetMeta("startDelay2"));}
 			if(_comboNum == 3){warmup.Start((float)_sword.GetMeta("startDelay3"));}
+			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry1.ogg"));
 			await ToSignal(warmup, "timeout");
+			
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
 			await ToSignal(cooldown, "timeout");
 			_swing_buffered = false;
@@ -1282,12 +1288,12 @@ public partial class Player3d : CharacterBody3D
 	}
 	public async void play_sfx(AudioStreamOggVorbis soundeffect)
 	{
-		AudioStreamPlayer player = new();
-		AddChild(player);
-		player.Stream = soundeffect;
-		player.Play();
-		await ToSignal(player, "finished");
-		player.QueueFree();
+		//AudioStreamPlayer player = new();
+		//AddChild(player);
+		_sfx.Stream = soundeffect;
+		_sfx.Play();
+		await ToSignal(_sfx, "finished");
+		//player.QueueFree();
 	}
 	public async void play_footstep(float stepSpeed)
 	{
@@ -1298,16 +1304,18 @@ public partial class Player3d : CharacterBody3D
 			int ranStep = _rng.RandiRange(0, 2);
 			if (ranStep == 0)
 			{
-				play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Footstep1.ogg"));
+				_footStepSfx.Stream = GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Footstep1.ogg");
 			}
 			else if (ranStep == 1)
 			{
-				play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Footstep2.ogg"));
+				_footStepSfx.Stream = GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Footstep2.ogg");
 			}
 			else
 			{
-				play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Footstep3.ogg"));
+				_footStepSfx.Stream = GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Footstep3.ogg");
 			}
+			_footStepSfx.Play();
+			//await ToSignal(_footStepSfx, "finished");
 			_inStep = false;
 		}
 		else

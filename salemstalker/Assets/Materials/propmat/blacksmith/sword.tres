@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c0pu6sh0yegu8"]
+
+[ext_resource type="Texture2D" uid="uid://c4ne1pvu0d05f" path="res://Assets/buildingtextures/blacksmith/sword_Base_color.png" id="1_8stod"]
+
+[resource]
+albedo_texture = ExtResource("1_8stod")
+texture_filter = 0

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bwmiy3gfhhgne"
-path="res://.godot/imported/plainstree1.blend-aa7dae42392f00442feed11c92cf01ac.scn"
+uid="uid://bbmva4cylvxj4"
+path="res://.godot/imported/wizardtent.blend-8bed8b3f7461317a61eccbede610eba8.scn"
 
 [deps]
 
-source_file="res://Assets/3D/plants/plainstree1.blend"
-dest_files=["res://.godot/imported/plainstree1.blend-aa7dae42392f00442feed11c92cf01ac.scn"]
+source_file="res://Assets/3D/buildings/wizardtent.blend"
+dest_files=["res://.godot/imported/wizardtent.blend-8bed8b3f7461317a61eccbede610eba8.scn"]
 
 [params]
 
@@ -37,15 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"materials": {
-"Wood": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/Materials/plainstree.tres",
-"use_external/path": "uid://l0h4mp8vqdge"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
@@ -64,4 +56,4 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
-gltf/naming_version=0
+gltf/naming_version=2

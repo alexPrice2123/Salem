@@ -37,7 +37,65 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"hamer": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/blacksmith/hammer.tres",
+"use_external/path": "uid://bnbto2dlyshbm"
+},
+"handle": {
+"use_external/enabled": true,
+"use_external/fallback_path": "",
+"use_external/path": ""
+},
+"metal": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/blacksmith/metal.tres",
+"use_external/path": "uid://coec8ciutvtx3"
+},
+"metalgrabthings": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/blacksmith/metalgrab.tres",
+"use_external/path": "uid://7wvsf4bjx1hv"
+},
+"stick": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/blacksmith/stick.tres",
+"use_external/path": "uid://dc178bn6mxc5k"
+},
+"stone": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/blacksmith/stone.tres",
+"use_external/path": "uid://dy8bncllghkxx"
+},
+"sword": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/blacksmith/sword.tres",
+"use_external/path": "uid://c0pu6sh0yegu8"
+},
+"tablelegs": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/blacksmith/tablelegs.tres",
+"use_external/path": "uid://cy7qsq6y6iol1"
+},
+"tabletop": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/blacksmith/tabletop.tres",
+"use_external/path": "uid://blssty4uuv2pk"
+},
+"tent": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/blacksmith/tent.tres",
+"use_external/path": "uid://3vwmtyop0fwj"
+},
+"wood": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Materials/propmat/blacksmith/wood.tres",
+"use_external/path": "uid://bfq8wwhvll4f4"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
