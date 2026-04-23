@@ -71,6 +71,7 @@ public partial class enemySpawner : Node3D
 		{
 			SpawnMonster();
 		}*/
+		SpawnMonster();
 	}
 	
 	private async void SpawnMonster()

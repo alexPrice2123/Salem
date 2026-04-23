@@ -173,13 +173,7 @@ public partial class Monster3d : CharacterBody3D
 		if (this is theCoiledOne tco)
 		{
 			tco._currentDamage += damage;
-			/*if (tco._animState == "Hit" && tco._phase == 1)
-            {
-                tco._animState = "Idle";
-				tco._roots.Visible = true;
-				tco._attacking = false;
-            }
-			else */if (tco._animState == "Stunned" && tco._phase == 2)
+			if (tco._animState == "Stunned" && tco._phase == 2)
             {
                 tco._animState = "Idle";
 				tco._roots.Visible = true;
@@ -230,9 +224,9 @@ public partial class Monster3d : CharacterBody3D
 	// --- CORE MONSTER AI LOOP --- //
 	public void EveryFrame(double delta)
 	{
-		if (_snake != null){if (_snake._animState == "Stunned")
+		if (_snake != null){if (_snake._transitioning == true)
             {
-                //_health = 0;
+                _health = 0;
             }
         }
 		// Early-out: disabled, debugging, or player dead — go fully idle
@@ -404,8 +398,10 @@ public partial class Monster3d : CharacterBody3D
 				const float turnSpeed = 0.3f;
 				Vector3 currentForward = -_lookDirection.GlobalTransform.Basis.Z;
 				Vector3 lookingForward = currentForward.Rotated(Vector3.Up, turnSpeed * (float)delta);
-				_lookDirection.LookAt(_lookDirection.GlobalTransform.Origin + lookingForward, Vector3.Up);
-
+				if (GlobalRotation.Round() != _lookDirection.GlobalRotation.Round())
+				{
+					_lookDirection.LookAt(_lookDirection.GlobalTransform.Origin + lookingForward, Vector3.Up);
+				}
 				_lookingTimer += (float)delta;
 				if (_lookingTimer >= MaxLookTime) { _looking = false; ChooseNewWander(); }
 			}
