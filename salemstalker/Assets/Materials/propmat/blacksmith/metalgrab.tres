@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://7wvsf4bjx1hv"]
+
+[ext_resource type="Texture2D" uid="uid://ba5mfruf8nd57" path="res://Assets/buildingtextures/blacksmith/metalgrabthings_Base_color.png" id="1_st6p0"]
+
+[resource]
+albedo_texture = ExtResource("1_st6p0")
+texture_filter = 0
