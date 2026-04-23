@@ -1,27 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqjcb30xsr68w"]
+[gd_scene load_steps=7 format=3 uid="uid://bqjcb30xsr68w"]
 
 [ext_resource type="Script" uid="uid://bydg3x2pcusxt" path="res://Scripts/Object.cs" id="1_mv86a"]
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="2_mv86a"]
-[ext_resource type="PackedScene" uid="uid://bel25we4smnqq" path="res://Assets/3D/buildings/anvil.blend" id="2_qb4a8"]
-[ext_resource type="Texture2D" uid="uid://pgglx7r2br55" path="res://Assets/proptextures/box/wood_Base_color.png" id="3_txlve"]
-[ext_resource type="Texture2D" uid="uid://cfalvaa6rxrxl" path="res://Assets/proptextures/anvil/metal_Height.png" id="4_vfi3y"]
-[ext_resource type="Texture2D" uid="uid://rdaewp2vc7ng" path="res://Assets/proptextures/anvil/metal_Metallic.png" id="5_46sbs"]
-[ext_resource type="Texture2D" uid="uid://dxjuqi1jhtor2" path="res://Assets/proptextures/anvil/metal_Normal_OpenGL.png" id="6_t8p37"]
-[ext_resource type="Texture2D" uid="uid://7u3e1g7w0e5n" path="res://Assets/proptextures/anvil/metal_Roughness.png" id="7_8ofmy"]
+[ext_resource type="PackedScene" uid="uid://dkki5fsyor87x" path="res://Assets/3D/buildings/anvil.blend" id="2_qb4a8"]
+[ext_resource type="Texture2D" uid="uid://d2rbf3udgvk7u" path="res://Assets/buildingtextures/blacksmith/anvil.png" id="3_qnkfl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hmxdp"]
 size = Vector3(1, 1.1288452, 0.379028)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hny51"]
-albedo_texture = ExtResource("3_txlve")
-metallic = 1.0
-metallic_texture = ExtResource("5_46sbs")
-roughness_texture = ExtResource("7_8ofmy")
-normal_enabled = true
-normal_texture = ExtResource("6_t8p37")
-heightmap_enabled = true
-heightmap_scale = 0.0
-heightmap_texture = ExtResource("4_vfi3y")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4sg3"]
+albedo_texture = ExtResource("3_qnkfl")
+texture_filter = 0
 
 [node name="Anvil" type="CharacterBody3D" groups=["Interactable"]]
 collision_layer = 2
@@ -35,7 +24,7 @@ shape = SubResource("BoxShape3D_hmxdp")
 transform = Transform3D(-6.1421246e-09, 0, 0.14051543, 0, 0.14051543, 0, -0.14051543, 0, -6.1421246e-09, 0, -0.53671455, 0)
 
 [node name="Cube" parent="CollisionShape3D/anvil" index="0"]
-material_override = SubResource("StandardMaterial3D_hny51")
+surface_material_override/0 = SubResource("StandardMaterial3D_s4sg3")
 
 [node name="Title" type="Label3D" parent="."]
 transform = Transform3D(-0.999347, 0, 0.036138, 0, 1, 0, -0.036138, 0, -0.999347, 0, 0.76215094, 0)

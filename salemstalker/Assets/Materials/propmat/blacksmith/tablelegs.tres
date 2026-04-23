@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cy7qsq6y6iol1"]
+
+[ext_resource type="Texture2D" uid="uid://evvof5ucrx12" path="res://Assets/buildingtextures/blacksmith/tablelegs_Base_color.png" id="1_x74kx"]
+
+[resource]
+albedo_texture = ExtResource("1_x74kx")
+texture_filter = 0
