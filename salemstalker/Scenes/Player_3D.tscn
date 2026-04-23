@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://jtdlrcwrnc4t" path="res://Scripts/Camera.cs" id="2_mawk5"]
 [ext_resource type="PackedScene" uid="uid://3v4hdgpge0v6" path="res://Scenes/MainHandWeapons/shortsword.tscn" id="2_sb0or"]
 [ext_resource type="PackedScene" uid="uid://dwpo6a7lu68jh" path="res://Scenes/ui.tscn" id="3_sb0or"]
-[ext_resource type="PackedScene" uid="uid://dxlqtjlaaksgx" path="res://Scenes/OffHandWeapons/tomahawk.tscn" id="5_y6jx2"]
+[ext_resource type="PackedScene" path="res://Scenes/OffHandWeapons/tomahawk.tscn" id="5_y6jx2"]
 [ext_resource type="PackedScene" uid="uid://if2iurgx7v27" path="res://Scenes/OffHandWeapons/caltrops.tscn" id="6_y6jx2"]
 [ext_resource type="Shader" uid="uid://cur7pcuaupniu" path="res://Shaders/dither.gdshader" id="8_y6jx2"]
 
@@ -33,9 +33,8 @@ radius = 0.295052
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvtri"]
 transparency = 1
 depth_draw_mode = 2
+shading_mode = 0
 albedo_color = Color(0, 0, 0, 0.28235295)
-subsurf_scatter_enabled = true
-subsurf_scatter_strength = 1.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_y6jx2"]
 material = SubResource("StandardMaterial3D_cvtri")
@@ -46,9 +45,8 @@ height = 40.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6jx2"]
 transparency = 1
 depth_draw_mode = 2
+shading_mode = 0
 albedo_color = Color(0, 0, 0, 0.5568628)
-subsurf_scatter_enabled = true
-subsurf_scatter_strength = 1.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_cvtri"]
 material = SubResource("StandardMaterial3D_y6jx2")
@@ -59,9 +57,8 @@ height = 50.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s75qo"]
 transparency = 1
 depth_draw_mode = 2
+shading_mode = 0
 albedo_color = Color(0, 0, 0, 0.6901961)
-subsurf_scatter_enabled = true
-subsurf_scatter_strength = 1.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_qfumr"]
 material = SubResource("StandardMaterial3D_s75qo")
@@ -72,9 +69,8 @@ height = 60.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wan02"]
 transparency = 1
 depth_draw_mode = 2
+shading_mode = 0
 albedo_color = Color(0, 0, 0, 0.94509804)
-subsurf_scatter_enabled = true
-subsurf_scatter_strength = 1.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_wan02"]
 material = SubResource("StandardMaterial3D_wan02")
@@ -122,11 +118,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.422
 [node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15543462, -0.5165281, 0.69629085, 0.47351658)
-bones/19/rotation = Quaternion(0.5933794, -0.035531897, 0.030896451, 0.8035445)
+bones/18/rotation = Quaternion(-0.15639748, -0.5144882, 0.6953143, 0.47684357)
+bones/19/rotation = Quaternion(0.58711356, -0.035445206, 0.03357908, 0.80803084)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5351367, 0.047180988, 0.84344685, 0.03871253, 0.99875975, -0.03130741, -0.8438776, 0.015898474, -0.53629935, -0.18309765, 1.4060779, 0.41726995)
+transform = Transform3D(-0.5026456, -0.017425805, 0.8643168, -0.01144889, 0.9998435, 0.013499927, -0.8644165, -0.0031096488, -0.502766, -0.18723612, 1.4034106, 0.4190243)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_n1nug")
@@ -197,11 +193,13 @@ shape = SubResource("CapsuleShape3D_df3ch")
 debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6445936, -2.29759, 0.8051903)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4405007, -2.2304518, 6.5016317)
+gi_mode = 0
 mesh = SubResource("SphereMesh_y6jx2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+gi_mode = 0
 mesh = SubResource("SphereMesh_cvtri")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
@@ -238,6 +236,12 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.994303, 1.00415)
 mouse_filter = 2
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"
+
+[node name="FootAudio" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
