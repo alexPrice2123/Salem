@@ -398,8 +398,10 @@ public partial class Monster3d : CharacterBody3D
 				const float turnSpeed = 0.3f;
 				Vector3 currentForward = -_lookDirection.GlobalTransform.Basis.Z;
 				Vector3 lookingForward = currentForward.Rotated(Vector3.Up, turnSpeed * (float)delta);
-				_lookDirection.LookAt(_lookDirection.GlobalTransform.Origin + lookingForward, Vector3.Up);
-
+				if (GlobalRotation.Round() != _lookDirection.GlobalRotation.Round())
+				{
+					_lookDirection.LookAt(_lookDirection.GlobalTransform.Origin + lookingForward, Vector3.Up);
+				}
 				_lookingTimer += (float)delta;
 				if (_lookingTimer >= MaxLookTime) { _looking = false; ChooseNewWander(); }
 			}
