@@ -119,6 +119,7 @@ public partial class Player3d : CharacterBody3D
 	public bool _dead = false;
 	public bool _swing_buffered = false;
 	public bool _special_attack_available = true;
+	public bool _can_block = true;
 	private SubViewportContainer _map;
 	private Vector3 _cameraBaseRotation;
 	private Vector3 _cameraBasePosition;
@@ -278,7 +279,8 @@ public partial class Player3d : CharacterBody3D
 		else if (Input.IsActionJustPressed("block")
 				 && _attackCooldown == false
 				 && !IsInstanceValid(_lastSeen)
-				 && _inv.Visible == false)
+				 && _inv.Visible == false
+				 && _can_block == true)
 		{
 			Block(true); // Start blocking/parrying
 		}
@@ -525,7 +527,7 @@ public partial class Player3d : CharacterBody3D
 		if (_dead == true){return;}
 		if (_inCutscene){return;}
 		var camRef = (Camera)_cam;
-
+		GD.Print(_parry);
 		// FINAL camera transform = base + shake
 		_cam.Position = _cameraBasePosition + camRef.ShakeOffsetPosition;
 		_cam.Rotation = _cameraBaseRotation + camRef.ShakeOffsetRotation;
@@ -923,6 +925,7 @@ public partial class Player3d : CharacterBody3D
 			if(_comboNum == 2){warmup.Start((float)_sword.GetMeta("startDelay2"));}
 			if(_comboNum == 3){warmup.Start((float)_sword.GetMeta("startDelay3"));}
 			play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry1.ogg"));
+			_can_block = false;
 			await ToSignal(warmup, "timeout");
 			
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
@@ -931,6 +934,7 @@ public partial class Player3d : CharacterBody3D
 			_lastHit = Time.GetTicksMsec();
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
 			_damage = 0; 
+			_can_block = true;
 			await ToSignal(GetTree().CreateTimer((float)_swordInst.GetMeta("swingSpeed") * 0.7), "timeout");
 
 			if(_comboNum == tempcool){_swordInst.swingStat = 0;}
