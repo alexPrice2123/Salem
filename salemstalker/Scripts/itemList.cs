@@ -60,7 +60,7 @@ public partial class itemList : Control
 			itemSlot.GetNode<Label>("Count").Text = $"{_items[resource]}x";
 			itemSlot.AddToGroup($"{resource}item");
         }
-        worldRef.data["resourceInventory"].AsGodotDictionary<string,int>()[resTranslator["iDtoRes"].AsGodotDictionary<string,string>()[resource]] = amount; 
+        worldRef.data["resourceInventory"].AsGodotDictionary<string,int>()[resTranslator["iDtoRes"].AsGodotDictionary<string,string>()[resource]] = (int)_items[resource]; 
     }
 
 	public int GetItemCount(string resource)
@@ -94,5 +94,6 @@ public partial class itemList : Control
         {
             GD.Print($"Player has no [{resource}]s");
         }
+        worldRef.data["resourceInventory"].AsGodotDictionary<string,int>()[resTranslator["iDtoRes"].AsGodotDictionary<string,string>()[resource]] = (int)_items[resource]; 
     }
 }

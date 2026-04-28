@@ -180,6 +180,8 @@ public partial class Player3d : CharacterBody3D
 		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
 		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
 		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
+
+		//killing chris
 	}
 
 	// --- INPUT HANDLER ---
