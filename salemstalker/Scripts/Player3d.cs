@@ -130,16 +130,13 @@ public partial class Player3d : CharacterBody3D
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
-	public override void _Ready()
+	public async override void _Ready()
 	{
 		Input.MouseMode = Input.MouseModeEnum.Captured;      // Hide and lock the mouse cursor to the center of the screen
 		
 		// Get references to child nodes
 		_head = GetNode<Node3D>("Head");
 		_cam = GetNode<Camera3D>("Head/Camera3D");
-		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
-		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
-		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
 		_itemInv = GetNode<itemList>("UI/ResourceInv");
 		//_eSecWeapon3 = GetNode<Node3D>("Head/Camera3D/Offhand3").GetChild<Node3D>(0);
 		//_eSecWeapon4 = GetNode<Node3D>("Head/Camera3D/Offhand4").GetChild<Node3D>(0);
@@ -160,7 +157,6 @@ public partial class Player3d : CharacterBody3D
 		_health = _maxHealth;
 		_stamina = _maxStamina;
 		_baseHeadPosition = _head.Position;
-		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
 		_cameraBaseRotation = _cam.Rotation;
 		_cameraBasePosition = _cam.Position;
 
@@ -173,6 +169,17 @@ public partial class Player3d : CharacterBody3D
 		_secWeapon.Add("StakeGun", _stakeGun);
 		_secWeapon.Add("Tomahawk",_tomahawk);
 		_secWeapon.Add("Caltrop",_caltrop);
+
+		// Initialize players equipped weapons
+		await ToSignal(GetParent<NewWorld>(), NewWorld.SignalName.loadedData);
+		SwitchPrimaryWeapon((string)GetParent<NewWorld>().data["mainEquipped"]);
+		SwitchSecondaryWeapon((string)GetParent<NewWorld>().data["secEquipped1"],0);
+		SwitchSecondaryWeapon((string)GetParent<NewWorld>().data["secEquipped2"],1);
+
+		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
+		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
+		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
+		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
 	}
 
 	// --- INPUT HANDLER ---
@@ -716,8 +723,9 @@ public partial class Player3d : CharacterBody3D
 		else
 		{
 			// Player is stationary (no directional input)
+			
 			_swordInst.running = false;
-				_swordInst.walking = false;
+			_swordInst.walking = false;
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
 			//Vector3 tempvelo = velocity;
@@ -862,7 +870,6 @@ public partial class Player3d : CharacterBody3D
 		{
 			
 			_rng.Randomize();
-			bool _swing_add = false;
 			float tempHorSense = HorCamSense;
 			float tempVerSense = VerCamSense;
 			float swingTime = (float)_swordInst.GetMeta("swingSpeed");
@@ -892,11 +899,6 @@ public partial class Player3d : CharacterBody3D
 					_comboNum++;
 					//_swing_add = true;
 				}
-			}
-			else
-			{
-				GD.Print("working?");
-				_comboNum = 1;
 			}
 			
 			int tempcool = _comboNum;
@@ -1234,6 +1236,7 @@ public partial class Player3d : CharacterBody3D
 	// Switches the player's equipped primary weapon.
 	public void SwitchPrimaryWeapon(string wepaonName, bool twoHanded = false)
 	{
+		if(string.IsNullOrEmpty(wepaonName)){GD.Print("moreemp");return;}
 		_twoHand = twoHanded;
 		PackedScene weaponScene = _weapon[wepaonName]; // Get the scene resource from the dictionary
 		Node3D holder = GetNode<Marker3D>("Head/Camera3D/Sword");
@@ -1243,29 +1246,31 @@ public partial class Player3d : CharacterBody3D
 		swordInstance.Position = Vector3.Zero;
 		_sword = swordInstance; // Update the main sword reference
 		_swordInst = _sword as SwordHandler; // Update the sword script reference
+		GetParent<NewWorld>().data["mainEquipped"] = wepaonName ;
 	}
 
 	// Switches the player's secondary weapon slots.
 	public void SwitchSecondaryWeapon(string wepaonName, int slot)
 	{ 
+		if(wepaonName == null || wepaonName.Equals("")){GD.Print("moreemp");return;}
 		PackedScene weaponScene = _secWeapon[wepaonName]; // Get the scene resource from the dictionary
 		Node3D holder;
 		if (slot == 0)
 		{
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand1");
 		}
-		else if (slot == 1)
+		else 
 		{
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand2");
 		}
-		else if (slot == 2)
+		/*else if (slot == 2)
 		{
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand3");
 		}
 		else
 		{
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand4");
-		}
+		}*/
 		if (holder.GetChild(0) != null)
 		{
 			holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
@@ -1276,10 +1281,12 @@ public partial class Player3d : CharacterBody3D
 		if (slot == 0)
 		{
 			_eSecWeapon1 = weaponInstance;
+			GetParent<NewWorld>().data["secEquipped1"] = wepaonName ;
 		}
-		else if (slot == 1)
+		else 
 		{
 			_eSecWeapon2 = weaponInstance;
+			GetParent<NewWorld>().data["secEquipped2"] = wepaonName ;
 		}
 		/* else if (slot == 2)
 		{
