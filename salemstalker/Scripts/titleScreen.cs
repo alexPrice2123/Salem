@@ -116,6 +116,11 @@ public partial class titleScreen : Node3D
 		{
 			GetNode<OptionButton>("DevMenu/placeSelect").Selected = 2 ;
 		}
+		foreach(string i in data["resourceInventory"].AsGodotDictionary<string, int>().Keys)
+		{
+			SpinBox tempTester = GetNode<SpinBox>("DevMenu/ResourceInv/ColorRect/ScrollContainer/VBoxContainer/"+i+"/SpinBox") ;
+			tempTester.Value = data["resourceInventory"].AsGodotDictionary<string, int>()[i];
+		}
 	}
 	private void _on_exit_dev_button_up()
 	{
@@ -157,7 +162,13 @@ public partial class titleScreen : Node3D
 		{
 			data["deathBagPos"] = new Vector3((float)GetNode<SpinBox>("DevMenu/deathBag/X").Value,(float)GetNode<SpinBox>("DevMenu/deathBag/Y").Value,(float)GetNode<SpinBox>("DevMenu/deathBag/Z").Value);
 		}
+		foreach(string i in data["resourceInventory"].AsGodotDictionary<string, int>().Keys)
+		{
+			SpinBox tempTester = GetNode<SpinBox>("DevMenu/ResourceInv/ColorRect/ScrollContainer/VBoxContainer/"+i+"/SpinBox") ;
+			tempTester.Value = data["resourceInventory"].AsGodotDictionary<string, int>()[i]= (int)tempTester.Value ;
+		}
 		SaveHandler.SaveToFile(data,_savePath);
+		
 	}
 	private void _on_bag_check_toggled(bool toggled)
 	{
