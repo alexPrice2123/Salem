@@ -9,6 +9,9 @@ public partial class itemList : Control
 	[Export]
 	public Godot.Collections.Dictionary<string, Texture2D> _itemImages { get; set; } = [];
 	private Godot.Collections.Array<string> _keysArray { get; set; } = [];
+    private NewWorld worldRef;
+    private Godot.Collections.Dictionary<string, Variant> resTranslator ;
+    
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
     {
@@ -17,6 +20,8 @@ public partial class itemList : Control
         {
           _keysArray.Add("");
         }
+        worldRef = GetParent().GetParent().GetParent<NewWorld>();
+        resTranslator = SaveHandler.LoadFromFile("res://Scripts/ResourceHelper.json");
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,6 +60,7 @@ public partial class itemList : Control
 			itemSlot.GetNode<Label>("Count").Text = $"{_items[resource]}x";
 			itemSlot.AddToGroup($"{resource}item");
         }
+        worldRef.data["resourceInventory"].AsGodotDictionary<string,int>()[resTranslator["iDtoRes"].AsGodotDictionary<string,string>()[resource]] = (int)_items[resource]; 
     }
 
 	public int GetItemCount(string resource)
@@ -88,5 +94,6 @@ public partial class itemList : Control
         {
             GD.Print($"Player has no [{resource}]s");
         }
+        worldRef.data["resourceInventory"].AsGodotDictionary<string,int>()[resTranslator["iDtoRes"].AsGodotDictionary<string,string>()[resource]] = (int)_items[resource]; 
     }
 }

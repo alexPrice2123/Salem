@@ -21,6 +21,7 @@ public partial class CaltropProj : RigidBody3D
     }
     public async void _on_hit_area_3d_body_entered(Node3D body)
     {
+        GD.Print("blowing my brains out frfr");
         if (body.IsInGroup("Monster"))
         {
             QueueFree();
