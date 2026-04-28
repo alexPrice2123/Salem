@@ -8,11 +8,12 @@ public partial class NewWorld : Node3D
 {
 	public Godot.Collections.Dictionary<string,Variant> data = new Godot.Collections.Dictionary<string,Variant>();
 	public string _savePath = "user://saveData.json";
+	public bool loaded = false;
 	[Signal]
     public delegate void loadedDataEventHandler();
 
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	public async override void _Ready()
 	{
 		if ( !FileAccess.FileExists(_savePath) || !SaveHandler.checkCompatibility(_savePath))
 		{
@@ -23,6 +24,7 @@ public partial class NewWorld : Node3D
 		else{ GD.Print("Save file exists/up-to-date"); }
 		data = SaveHandler.LoadFromFile(_savePath);
 		GD.Print("Save file loaded");
+		loaded = true;
 		EmitSignal(SignalName.loadedData);
 		if (((string)data["lastLocation"]).Equals("village1"))
 		{

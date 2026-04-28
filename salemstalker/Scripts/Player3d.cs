@@ -3,7 +3,8 @@ using System;
 using System.Runtime.CompilerServices; // Usually for specific internal compiler needs, less common in game scripts.
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Concurrent; // For using Dictionary.
+using System.Collections.Concurrent;
+using System.ComponentModel; // For using Dictionary.
 
 // Defines the player class, inheriting from Godot's 3D physics-based character node.
 public partial class Player3d : CharacterBody3D
@@ -117,7 +118,8 @@ public partial class Player3d : CharacterBody3D
 	public Node3D _goalPoint;
 	public bool _inWater = false;
 	public bool _dead = false;
-	public bool _swing_buffered = false;
+	//public bool _swing_buffered = false;
+	public int _swing_buffered = 0; //0 for none, 1 for swing, 2 for block, 3 for special attack
 	public bool _special_attack_available = true;
 	public bool _can_block = true;
 	private SubViewportContainer _map;
@@ -171,7 +173,12 @@ public partial class Player3d : CharacterBody3D
 		_secWeapon.Add("Caltrop",_caltrop);
 
 		// Initialize players equipped weapons
-		await ToSignal(GetParent<NewWorld>(), NewWorld.SignalName.loadedData);
+		if (!GetParent<NewWorld>().loaded)
+		{
+			GD.Print("Await world load");
+			await ToSignal(GetParent<NewWorld>(), NewWorld.SignalName.loadedData);	
+		}
+		GD.Print("World loaded");
 		SwitchPrimaryWeapon((string)GetParent<NewWorld>().data["mainEquipped"]);
 		SwitchSecondaryWeapon((string)GetParent<NewWorld>().data["secEquipped1"],0);
 		SwitchSecondaryWeapon((string)GetParent<NewWorld>().data["secEquipped2"],1);
@@ -262,7 +269,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				if(!GetNode<Sprite2D>("UI/Controls").Visible)
 				{
-					if(!IsInstanceValid(_lastSeen) && !_inv.Visible && _swing_buffered == false && _blocking == false)
+					if(!IsInstanceValid(_lastSeen) && !_inv.Visible && _swing_buffered == 0 && _blocking == false)
 					{
 						Swing(); // Perform a normal sword swing
 					}
@@ -300,7 +307,16 @@ public partial class Player3d : CharacterBody3D
 		{
 			Block(false); // Stop blocking/parrying
 		}
-
+		else if (Input.IsActionJustReleased("block")
+				 && _attackCooldown == false
+				 && !IsInstanceValid(_lastSeen)
+				 && _inv.Visible == false
+				 && _can_block == false
+				 && _swing_buffered == 0)
+		{
+			_swing_buffered = 2;
+			Block(true);
+		}
 		// --- Inventory toggle (Inventory Action) ---
 		else if (Input.IsActionJustPressed("inventory"))
 		{
@@ -868,7 +884,7 @@ public partial class Player3d : CharacterBody3D
 		
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
 		Timer warmup = _sword.GetNode<Timer>("Warmup");
-		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5 && _swing_buffered == false)
+		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5 && _swing_buffered == 0)
 		{
 			
 			_rng.Randomize();
@@ -880,9 +896,8 @@ public partial class Player3d : CharacterBody3D
 				//return;
 				//GD.Print("timeout_await"); 
 				//the longest this statement is true is always 9+1 maximum frames even at 30 tps (not 60 because fuck you) [this problem has been solved]
-				_swing_buffered = true;
+				_swing_buffered = 1;
 				GD.Print("cooldown",cooldown.TimeLeft);
-				time_true = 0;
 				await ToSignal(cooldown,"timeout");
 			}
 			if (true)//Time.GetTicksMsec() - _lastHit > swingTime)
@@ -934,7 +949,7 @@ public partial class Player3d : CharacterBody3D
 			
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
 			await ToSignal(cooldown, "timeout");
-			_swing_buffered = false;
+			_swing_buffered = 0;
 			_lastHit = Time.GetTicksMsec();
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
 			_damage = 0; 
@@ -978,6 +993,12 @@ public partial class Player3d : CharacterBody3D
 	// Handles the blocking and parrying mechanic.
 	private async void Block(bool block)
 	{
+		while (_swing_buffered == 2)
+		{
+			Timer cooldown = _sword.GetNode<Timer>("Cooldown");
+			await ToSignal(cooldown,"timeout");
+
+			}
 		_blocking = block;
 		if (block == true)
 

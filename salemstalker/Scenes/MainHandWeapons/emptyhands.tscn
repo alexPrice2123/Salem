@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://dy4bnfg1ewhsk"]
+[gd_scene load_steps=112 format=3 uid="uid://dbq6eueabh6wv"]
 
 [ext_resource type="Script" uid="uid://b1ax0drvppbgl" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_3o57m"]
 [ext_resource type="PackedScene" uid="uid://qcibdbx6jfkp" path="res://Assets/3D/charatermodel/maincharacterblank.blend" id="2_bcm5b"]

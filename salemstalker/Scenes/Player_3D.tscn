@@ -98,7 +98,7 @@ script = ExtResource("2_mawk5")
 [node name="Sword" type="Marker3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.42244637)
 
-[node name="Shortsword2" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
+[node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
 visible = false
 metadata/hDamage = 0.0
 metadata/damage = 0.0
