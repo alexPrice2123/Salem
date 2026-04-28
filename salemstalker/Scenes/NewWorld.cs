@@ -8,6 +8,7 @@ public partial class NewWorld : Node3D
 {
 	public Godot.Collections.Dictionary<string,Variant> data = new Godot.Collections.Dictionary<string,Variant>();
 	public string _savePath = "user://saveData.json";
+	public bool loaded = false;
 	[Signal]
     public delegate void loadedDataEventHandler();
 
@@ -23,7 +24,7 @@ public partial class NewWorld : Node3D
 		else{ GD.Print("Save file exists/up-to-date"); }
 		data = SaveHandler.LoadFromFile(_savePath);
 		GD.Print("Save file loaded");
-		await ToSignal(GetTree().CreateTimer(2f), "timeout");
+		loaded = true;
 		EmitSignal(SignalName.loadedData);
 		if (((string)data["lastLocation"]).Equals("village1"))
 		{
