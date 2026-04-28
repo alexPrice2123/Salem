@@ -23,7 +23,7 @@ public partial class NewWorld : Node3D
 		else{ GD.Print("Save file exists/up-to-date"); }
 		data = SaveHandler.LoadFromFile(_savePath);
 		GD.Print("Save file loaded");
-		await ToSignal(GetTree().CreateTimer(1f), "timeout");
+		await ToSignal(GetTree().CreateTimer(2f), "timeout");
 		EmitSignal(SignalName.loadedData);
 		if (((string)data["lastLocation"]).Equals("village1"))
 		{
