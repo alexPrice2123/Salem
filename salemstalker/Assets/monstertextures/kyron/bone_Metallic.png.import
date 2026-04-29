@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mp62sen03eqq"
-path="res://.godot/imported/map.png-ae0fc9b9ede66a933e2315716edcb32b.ctex"
+uid="uid://00q1072mnlbo"
+path="res://.godot/imported/bone_Metallic.png-5732924ed5025904e0fef4a54ca35d1e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/map.png"
-dest_files=["res://.godot/imported/map.png-ae0fc9b9ede66a933e2315716edcb32b.ctex"]
+source_file="res://Assets/monstertextures/kyron/bone_Metallic.png"
+dest_files=["res://.godot/imported/bone_Metallic.png-5732924ed5025904e0fef4a54ca35d1e.ctex"]
 
 [params]
 
