@@ -3,7 +3,8 @@ using System;
 using System.Runtime.CompilerServices; // Usually for specific internal compiler needs, less common in game scripts.
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Concurrent; // For using Dictionary.
+using System.Collections.Concurrent;
+using System.ComponentModel; // For using Dictionary.
 
 // Defines the player class, inheriting from Godot's 3D physics-based character node.
 public partial class Player3d : CharacterBody3D
@@ -117,7 +118,8 @@ public partial class Player3d : CharacterBody3D
 	public Node3D _goalPoint;
 	public bool _inWater = false;
 	public bool _dead = false;
-	public bool _swing_buffered = false;
+	//public bool _swing_buffered = false;
+	public int _swing_buffered = 0; //0 for none, 1 for swing, 2 for block, 3 for special attack
 	public bool _special_attack_available = true;
 	public bool _can_block = true;
 	private SubViewportContainer _map;
@@ -130,16 +132,13 @@ public partial class Player3d : CharacterBody3D
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
-	public override void _Ready()
+	public async override void _Ready()
 	{
 		Input.MouseMode = Input.MouseModeEnum.Captured;      // Hide and lock the mouse cursor to the center of the screen
 		
 		// Get references to child nodes
 		_head = GetNode<Node3D>("Head");
 		_cam = GetNode<Camera3D>("Head/Camera3D");
-		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
-		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
-		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
 		_itemInv = GetNode<itemList>("UI/ResourceInv");
 		//_eSecWeapon3 = GetNode<Node3D>("Head/Camera3D/Offhand3").GetChild<Node3D>(0);
 		//_eSecWeapon4 = GetNode<Node3D>("Head/Camera3D/Offhand4").GetChild<Node3D>(0);
@@ -160,7 +159,6 @@ public partial class Player3d : CharacterBody3D
 		_health = _maxHealth;
 		_stamina = _maxStamina;
 		_baseHeadPosition = _head.Position;
-		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
 		_cameraBaseRotation = _cam.Rotation;
 		_cameraBasePosition = _cam.Position;
 
@@ -173,6 +171,24 @@ public partial class Player3d : CharacterBody3D
 		_secWeapon.Add("StakeGun", _stakeGun);
 		_secWeapon.Add("Tomahawk",_tomahawk);
 		_secWeapon.Add("Caltrop",_caltrop);
+
+		// Initialize players equipped weapons
+		if (!GetParent<NewWorld>().loaded)
+		{
+			GD.Print("Await world load");
+			await ToSignal(GetParent<NewWorld>(), NewWorld.SignalName.loadedData);	
+		}
+		GD.Print("World loaded");
+		SwitchPrimaryWeapon((string)GetParent<NewWorld>().data["mainEquipped"]);
+		SwitchSecondaryWeapon((string)GetParent<NewWorld>().data["secEquipped1"],0);
+		SwitchSecondaryWeapon((string)GetParent<NewWorld>().data["secEquipped2"],1);
+
+		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
+		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
+		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
+		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
+
+		//killing chris
 	}
 
 	// --- INPUT HANDLER ---
@@ -253,7 +269,7 @@ public partial class Player3d : CharacterBody3D
 			{
 				if(!GetNode<Sprite2D>("UI/Controls").Visible)
 				{
-					if(!IsInstanceValid(_lastSeen) && !_inv.Visible && _swing_buffered == false && _blocking == false)
+					if(!IsInstanceValid(_lastSeen) && !_inv.Visible && _swing_buffered == 0 && _blocking == false)
 					{
 						Swing(); // Perform a normal sword swing
 					}
@@ -291,7 +307,16 @@ public partial class Player3d : CharacterBody3D
 		{
 			Block(false); // Stop blocking/parrying
 		}
-
+		else if (Input.IsActionJustReleased("block")
+				 && _attackCooldown == false
+				 && !IsInstanceValid(_lastSeen)
+				 && _inv.Visible == false
+				 && _can_block == false
+				 && _swing_buffered == 0)
+		{
+			_swing_buffered = 2;
+			Block(true);
+		}
 		// --- Inventory toggle (Inventory Action) ---
 		else if (Input.IsActionJustPressed("inventory"))
 		{
@@ -716,8 +741,9 @@ public partial class Player3d : CharacterBody3D
 		else
 		{
 			// Player is stationary (no directional input)
+			
 			_swordInst.running = false;
-				_swordInst.walking = false;
+			_swordInst.walking = false;
 			_fullDashValue = 15f; // Increase max dash value for a full boost on next dash
 								  // If dash is active, smoothly move the player forward based on the dash (maintains momentum)
 			//Vector3 tempvelo = velocity;
@@ -858,11 +884,10 @@ public partial class Player3d : CharacterBody3D
 		
 		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
 		Timer warmup = _sword.GetNode<Timer>("Warmup");
-		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5 && _swing_buffered == false)
+		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5 && _swing_buffered == 0)
 		{
 			
 			_rng.Randomize();
-			bool _swing_add = false;
 			float tempHorSense = HorCamSense;
 			float tempVerSense = VerCamSense;
 			float swingTime = (float)_swordInst.GetMeta("swingSpeed");
@@ -871,9 +896,8 @@ public partial class Player3d : CharacterBody3D
 				//return;
 				//GD.Print("timeout_await"); 
 				//the longest this statement is true is always 9+1 maximum frames even at 30 tps (not 60 because fuck you) [this problem has been solved]
-				_swing_buffered = true;
+				_swing_buffered = 1;
 				GD.Print("cooldown",cooldown.TimeLeft);
-				time_true = 0;
 				await ToSignal(cooldown,"timeout");
 			}
 			if (true)//Time.GetTicksMsec() - _lastHit > swingTime)
@@ -892,11 +916,6 @@ public partial class Player3d : CharacterBody3D
 					_comboNum++;
 					//_swing_add = true;
 				}
-			}
-			else
-			{
-				GD.Print("working?");
-				_comboNum = 1;
 			}
 			
 			int tempcool = _comboNum;
@@ -930,7 +949,7 @@ public partial class Player3d : CharacterBody3D
 			
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false; // Enable the hitbox
 			await ToSignal(cooldown, "timeout");
-			_swing_buffered = false;
+			_swing_buffered = 0;
 			_lastHit = Time.GetTicksMsec();
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/Hitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true; // Disable the hitbox
 			_damage = 0; 
@@ -974,6 +993,12 @@ public partial class Player3d : CharacterBody3D
 	// Handles the blocking and parrying mechanic.
 	private async void Block(bool block)
 	{
+		while (_swing_buffered == 2)
+		{
+			Timer cooldown = _sword.GetNode<Timer>("Cooldown");
+			await ToSignal(cooldown,"timeout");
+
+			}
 		_blocking = block;
 		if (block == true)
 
@@ -1234,6 +1259,7 @@ public partial class Player3d : CharacterBody3D
 	// Switches the player's equipped primary weapon.
 	public void SwitchPrimaryWeapon(string wepaonName, bool twoHanded = false)
 	{
+		if(string.IsNullOrEmpty(wepaonName)){GD.Print("moreemp");return;}
 		_twoHand = twoHanded;
 		PackedScene weaponScene = _weapon[wepaonName]; // Get the scene resource from the dictionary
 		Node3D holder = GetNode<Marker3D>("Head/Camera3D/Sword");
@@ -1243,29 +1269,31 @@ public partial class Player3d : CharacterBody3D
 		swordInstance.Position = Vector3.Zero;
 		_sword = swordInstance; // Update the main sword reference
 		_swordInst = _sword as SwordHandler; // Update the sword script reference
+		GetParent<NewWorld>().data["mainEquipped"] = wepaonName ;
 	}
 
 	// Switches the player's secondary weapon slots.
 	public void SwitchSecondaryWeapon(string wepaonName, int slot)
 	{ 
+		if(wepaonName == null || wepaonName.Equals("")){GD.Print("moreemp");return;}
 		PackedScene weaponScene = _secWeapon[wepaonName]; // Get the scene resource from the dictionary
 		Node3D holder;
 		if (slot == 0)
 		{
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand1");
 		}
-		else if (slot == 1)
+		else 
 		{
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand2");
 		}
-		else if (slot == 2)
+		/*else if (slot == 2)
 		{
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand3");
 		}
 		else
 		{
 			holder = GetNode<Node3D>("Head/Camera3D/Offhand4");
-		}
+		}*/
 		if (holder.GetChild(0) != null)
 		{
 			holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
@@ -1276,10 +1304,12 @@ public partial class Player3d : CharacterBody3D
 		if (slot == 0)
 		{
 			_eSecWeapon1 = weaponInstance;
+			GetParent<NewWorld>().data["secEquipped1"] = wepaonName ;
 		}
-		else if (slot == 1)
+		else 
 		{
 			_eSecWeapon2 = weaponInstance;
+			GetParent<NewWorld>().data["secEquipped2"] = wepaonName ;
 		}
 		/* else if (slot == 2)
 		{
