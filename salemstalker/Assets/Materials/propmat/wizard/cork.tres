@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dny3h3st8ldmj"]
+
+[ext_resource type="Texture2D" uid="uid://b5r5dejra43gp" path="res://Assets/buildingtextures/wizard/cork_Base_color.png" id="1_gylpg"]
+
+[resource]
+albedo_texture = ExtResource("1_gylpg")
+texture_filter = 0
