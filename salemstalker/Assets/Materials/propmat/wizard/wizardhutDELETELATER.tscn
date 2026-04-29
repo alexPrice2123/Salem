@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://orx2kdarpqp"]
+
+[ext_resource type="PackedScene" uid="uid://bbmva4cylvxj4" path="res://Assets/3D/buildings/wizardtent.blend" id="1_m7kdl"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="wizardtent" parent="." instance=ExtResource("1_m7kdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21205592, -1.1920929e-07, -0.57700443)
