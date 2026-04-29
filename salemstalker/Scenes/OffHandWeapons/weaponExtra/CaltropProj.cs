@@ -19,7 +19,7 @@ public partial class CaltropProj : RigidBody3D
     {
         if(body.IsInGroup("Terrain")){await ToSignal(GetTree().CreateTimer(15), "timeout"); QueueFree(); }
     }
-    public async void _on_hit_area_3d_body_entered(Node3D body)
+    public void _on_hit_area_3d_body_entered(Node3D body)
     {
         GD.Print("blowing my brains out frfr");
         if (body.IsInGroup("Monster"))

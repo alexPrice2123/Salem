@@ -13,7 +13,7 @@ public partial class NewWorld : Node3D
     public delegate void loadedDataEventHandler();
 
 	// Called when the node enters the scene tree for the first time.
-	public async override void _Ready()
+	public override void _Ready()
 	{
 		if ( !FileAccess.FileExists(_savePath) || !SaveHandler.checkCompatibility(_savePath))
 		{

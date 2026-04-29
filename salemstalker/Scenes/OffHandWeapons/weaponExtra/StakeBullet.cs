@@ -22,7 +22,7 @@ public partial class StakeBullet : RigidBody3D
     }
 
     // Change damage of bullet repsectivly    
-    public async void CountPierce()
+    public void CountPierce()
     {
         _pierceCount += 1;                                              // Tell the code how many enemies have been hit
         SetMeta("DamagePer", (float)GetMeta("DamagePer") - 0.05f);      // Change damage depending how many enemies have been hit
