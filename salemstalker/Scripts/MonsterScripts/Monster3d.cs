@@ -88,6 +88,7 @@ public partial class Monster3d : CharacterBody3D
 	protected bool _playerInWalkRange = false;
 	public theCoiledOne _snake = null;
 	private Godot.Collections.Array<Node3D> _skeleMesh { get; set; } = new Godot.Collections.Array<Node3D>{};
+	private float _rePickCooldown = 5f;
 	
 
 	// --- Cached/precomputed state to avoid per-frame allocations ---
@@ -110,7 +111,7 @@ public partial class Monster3d : CharacterBody3D
 		_player = GetParent().GetParent().GetParent().GetParent().GetNode<Player3d>("Player_3d");
 		_rng.Randomize();
 		_navAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
-
+		_startPos = GlobalPosition;
 		if (!Disabled)
 		{
 			float randZ = _startPos.Z + _rng.RandiRange(-WanderRange, WanderRange);
@@ -183,7 +184,11 @@ public partial class Monster3d : CharacterBody3D
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		FlashDamage(false);
 		GD.Print(damage);
-		_health -= damage;
+		if (this is theKyron tk)
+        {
+            tk._legHealth -= damage;
+        }else{_health -= damage;}
+		
 		
 		
 	}
@@ -352,24 +357,44 @@ public partial class Monster3d : CharacterBody3D
 			else _attacking = false;
 		}
 
-		// FLEEING
-		else if (Fleeing && _canSeePlayer && !_retreating)
+		/*// FLEEING
+		else if ((Fleeing && _canSeePlayer && !_retreating) || this is theKyron)
 		{
-			const float fleeDistance = 8f;
-			Vector3 awayDir = myPos - _cachedPlayerPos;
-			if (awayDir.LengthSquared() < 0.0001f) awayDir = new Vector3(1, 0, 0);
-			if (_navUpdateTimer <= 0f) { _navAgent.TargetPosition = myPos + awayDir.Normalized() * fleeDistance; _navUpdateTimer = NavUpdateInterval; }
+			const float fleeRange     = 15f;   // X/Z range around start pos
+			const float rePickTimerMax = 5f;
+			const float tooCloseSqr   = 5f * 5f; // player within 5 units = repick
+
+			_rePickCooldown -= (float)delta;
+
+			bool playerTooClose  = (_cachedPlayerPos - myPos).LengthSquared() < tooCloseSqr;
+			bool atGoal          = myPos.Snapped(0.5f) == _wanderPos.Snapped(0.5f);
+
+			if (_rePickCooldown <= 0f)
+			{
+				if (playerTooClose || atGoal)
+				{
+					float rx = _startPos.X + _rng.RandfRange(-fleeRange, fleeRange);
+					float rz = _startPos.Z + _rng.RandfRange(-fleeRange, fleeRange);
+					_wanderPos = new Vector3(rx, 0f, rz);
+				}
+				_rePickCooldown = rePickTimerMax;
+			}
+
+			if (_navUpdateTimer <= 0f)
+			{
+				_navAgent.TargetPosition = _wanderPos;
+				_navUpdateTimer = NavUpdateInterval;
+			}
 
 			Vector3 nextPoint = _navAgent.GetNextPathPosition();
-			_targetVelocity = (nextPoint - myPos).Normalized() * (RunSpeed * _dashVelocity + _speedOffset);
+			_targetVelocity   = (nextPoint - myPos).Normalized() * (RunSpeed * _dashVelocity + _speedOffset);
+			Vector3 moveDir   = _targetVelocity.Normalized();
 
-			Vector3 moveDir = _targetVelocity.Normalized();
 			if (Velocity.LengthSquared() > 0.01f)
 				_lookDirection.LookAt(myPos + moveDir, Vector3.Up);
-		}
-
+		}*/
 		// WANDERING (idle)
-		else if (!_attackAnim && (outsideSpawnRange || !_canSeePlayer || _retreating || _cachedInVillage) && !Stationery)
+		else if (this is not theKyron && !_attackAnim && (outsideSpawnRange || !_canSeePlayer || _retreating || _cachedInVillage) && !Stationery)
 		{
 			if (!_looking)
 			{
@@ -405,6 +430,18 @@ public partial class Monster3d : CharacterBody3D
 				_lookingTimer += (float)delta;
 				if (_lookingTimer >= MaxLookTime) { _looking = false; ChooseNewWander(); }
 			}
+		}
+		else if (this is theKyron)
+		{
+			if (_navUpdateTimer <= 0f) { _navAgent.TargetPosition = _wanderPos; _navUpdateTimer = NavUpdateInterval; }
+			Vector3 nextPoint = _navAgent.GetNextPathPosition();
+			_targetVelocity = (nextPoint - myPos).Normalized() * WalkSpeed;
+
+			Vector3 moveDir = Velocity.Normalized();
+			if (Velocity.LengthSquared() > 0.01f)
+				_lookDirection.LookAt(myPos + moveDir, Vector3.Up);
+
+			if (_distanceSqr > SpawnDistance * SpawnDistance) { QueueFree(); return; }
 		}
 
 		// --- WANDER TIMER / LOOK TRIGGER --- //
@@ -443,7 +480,10 @@ public partial class Monster3d : CharacterBody3D
 
 		if (_stunned && !Stationery) { _targetVelocity = _knockbackVelocity; Velocity = _targetVelocity; }
 
-		_targetVelocity = new Vector3(_targetVelocity.X, -9.8f, _targetVelocity.Z);
+		if (!IsOnFloor())
+            {
+                _targetVelocity = new Vector3(_targetVelocity.X, -9.8f, _targetVelocity.Z);
+            }
 		Velocity = Velocity.Lerp(_targetVelocity, 4f * (float)delta);
 
 		if (Fleeing) { MoveAndSlide(); }
@@ -481,7 +521,7 @@ public partial class Monster3d : CharacterBody3D
 		}
 	}
 
-	// --- ATTACK SYSTEM --- //
+	// --- ATTACK SYSTEM --- (yuri)//
 	public void AttackInitilize()
 	{
 		if (_stunned) return;
@@ -553,7 +593,7 @@ public partial class Monster3d : CharacterBody3D
 		_knockbackVelocity.Y = 0f;
 	}
 
-	private void ChooseNewWander()
+	protected void ChooseNewWander()
 	{
 		if (Disabled){_wanderPos = new Vector3(GlobalPosition.X, 0f, GlobalPosition.Z); return;}
 		float randZ = _startPos.Z + _rng.RandiRange(-WanderRange, WanderRange);

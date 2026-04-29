@@ -26,7 +26,7 @@ public partial class theCoiledOne : Monster3d
 	public string _currentCutscene = "0";
 	public int _phase = 1;
 	private Godot.Collections.Array<string> _playerFieldPos { get; set; } = [];
-	public int _parryCounters = 0;
+	public int _parryCounters = 1;
 	private bool _active = false;
 	public bool _transitioning = false;
 	private bool _summoning = false;

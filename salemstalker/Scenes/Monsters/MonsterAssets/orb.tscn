@@ -1,51 +1,28 @@
-[gd_scene load_steps=18 format=3 uid="uid://cwiy7a16ospna"]
+[gd_scene load_steps=29 format=4 uid="uid://cwiy7a16ospna"]
 
 [ext_resource type="Script" uid="uid://dbx0mkf5x3iac" path="res://Scripts/MonsterScripts/MonsterAssetScripts/Orb.cs" id="1_6l8s8"]
-[ext_resource type="Shader" uid="uid://dad6yy25eud5k" path="res://Shaders/magicFist.gdshader" id="3_ibfeq"]
+[ext_resource type="Shader" uid="uid://n64asbnnn8av" path="res://Shaders/fireball.gdshader" id="3_hmh3g"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_im0l4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmh3g"]
+vertex_color_use_as_albedo = true
+emission_enabled = true
+grow_amount = -1.778
+stencil_flags = 2
+stencil_color = Color(0.19411987, 0.2809763, 0.9066724, 1)
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kviwv"]
-width = 1024
-noise = SubResource("FastNoiseLite_im0l4")
-seamless = true
-invert = true
+[sub_resource type="Gradient" id="Gradient_veal7"]
+offsets = PackedFloat32Array(0, 0.44625, 0.5425, 0.63875, 0.78375, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0.0038305472, 1, 0, 0, 0.017138736, 1, 0, 0, 0.07298245, 1, 0, 0, 0.3575, 1, 0, 0.29796153, 0.7292206, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2ibq"]
-render_priority = 0
-shader = ExtResource("3_ibfeq")
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/color_edge = Color(1.92523e-06, 0, 0.6274635, 1)
-shader_parameter/emission_strength = 10.000000475
-shader_parameter/rise_progress = 0.6050000287375
-shader_parameter/edge_width = 0.30000001192093
-shader_parameter/noise_scale = 0.78400003398012
-shader_parameter/noise_strength = 0.5
-shader_parameter/time_speed = 1.0000000475
-shader_parameter/fade_softness = 1.0
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_kviwv")
-shader_parameter/distortion_scale = 0.1690000080275
-shader_parameter/top_fade_start = 1.0
-shader_parameter/top_fade_power = 2.0
-shader_parameter/invert_top_fade = false
-shader_parameter/wave_transparency = 0.0
-shader_parameter/wave_frequency = 1.0
-shader_parameter/wave_speed = 0.0
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wpt5g"]
+gradient = SubResource("Gradient_veal7")
 
-[sub_resource type="Curve" id="Curve_r3x0a"]
-_limits = [-2.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_6l8s8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_im0l4"]
-curve = SubResource("Curve_r3x0a")
-
-[sub_resource type="Curve" id="Curve_gn4ky"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_c1cqh"]
-curve = SubResource("Curve_gn4ky")
+[sub_resource type="CurveTexture" id="CurveTexture_ibfeq"]
+curve = SubResource("Curve_6l8s8")
 
 [sub_resource type="Curve" id="Curve_s3w5g"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -53,23 +30,6 @@ point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_ag22c"]
 curve = SubResource("Curve_s3w5g")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_25wf1"]
-lifetime_randomness = 1.0
-emission_shape = 1
-emission_sphere_radius = 0.31
-angle_min = 1.07288e-05
-angle_max = 360.0
-direction = Vector3(0, 0, 0)
-spread = 0.0
-orbit_velocity_curve = SubResource("CurveTexture_im0l4")
-radial_velocity_curve = SubResource("CurveTexture_c1cqh")
-gravity = Vector3(0, 0, 0)
-scale_min = 0.1
-scale_max = 0.2
-scale_curve = SubResource("CurveTexture_ag22c")
-
-[sub_resource type="SphereMesh" id="SphereMesh_olnk0"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6l8s8"]
 lifetime_randomness = 1.0
@@ -85,55 +45,136 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 0.2
 scale_curve = SubResource("CurveTexture_ag22c")
+color_ramp = SubResource("GradientTexture1D_wpt5g")
+emission_curve = SubResource("CurveTexture_ibfeq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0fhx0"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ao7te"]
+_surfaces = [{
+"aabb": AABB(-0.83950627, -0.8395062, -0.8395062, 1.6790125, 1.6790124, 1.6790124),
+"format": 34896613377,
+"index_count": 144,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIAAwAAAAQAAgABAAUAAwAGAAEAAQAHAAUAAQAGAAcACAAFAAcABgAIAAcAAgAFAAkAAwAKAAYABAACAAsACwACAAkAAwAEAAwACgADAAwADQAEAAsADAAEAA0ACgAOAAYABgAOAAgACgAMAA8ACgAPAA4ADAANABAADwAMABAADQALABEAEAANABEADwAQABIAEQALABMACwAJABMAEQATABQAEAARABUAEgAQABUAFQARABQADwASABYAEgAVABYADwAWAA4AFQAUABcAFwAUABMAFgAVABcADgAWABgAFgAXABgADgAYAAgAFwATABkAGAAXABkAGAAZAAgAGQATAAkACAAZAAUAGQAJAAUA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 26,
+"vertex_data": PackedByteArray("wzPDMzvMAAAAAP9//38AAA4j/3/w3AAADiMOI/9/AAD/fw4j8NwAAA4j8Nz/fwAADiP/fw4jAADDMzvMwzMAAP9/8NwOIwAAwzM7zDvMAADDM8MzwzMAAP9//3///wAA/38AAP9/AAA7zMMzO8wAAP9//38AAAAA/38OIw4jAADw3A4j/38AAPDc/3/w3AAAO8zDM8MzAAD/f/Dc8NwAADvMO8w7zAAA////f/9/AADw3P9/DiMAAPDc8Nz/fwAAO8w7zMMzAAD/f////38AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_oufiw"]
+resource_name = "orb_Mesh"
+_surfaces = [{
+"aabb": AABB(-0.83950627, -0.8395062, -0.8395062, 1.6790125, 1.6790124, 1.6790124),
+"attribute_data": PackedByteArray("2rb//yPJ/+8jyf//2rb/7yPJ//9s2//vbNv//yPJ/+8jyf/vbNv/32zb/+8jyf/f2rb/7yPJ/98jyf/v2rb/39q2/98jyf/PI8n/39q2/88jyf/fbNv/z2zb/98jyf/PI8n/z2zb/79s2//PI8n/v9q2/88jyf+/I8n/z9q2/7/atv+/I8n/ryPJ/7/atv+vI8n/v2zb/69s2/+/I8n/ryPJ/69s2/+fbNv/ryPJ/5/atv+vI8n/nyPJ/6/atv+f2rb/nyPJ/48jyf+f2rb/jyPJ/59s2/+PbNv/nyPJ/48jyf+PbNv/f2zb/48jyf9/2rb/jyPJ/38jyf+P2rb/f0iS/7+RpP+vkaT/v0iS/6+RpP+/2rb/r9q2/7+RpP+vkaT/r9q2/5/atv+vkaT/n0iS/6+RpP+fkaT/r0iS/59s2/+/te3/r7Xt/79s2/+vte3/v////6////+/te3/r7Xt/6////+f////r7Xt/59s2/+vte3/n7Xt/69s2/+f"),
+"format": 34896613399,
+"index_count": 144,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0A"),
+"material": SubResource("StandardMaterial3D_0fhx0"),
+"primitive": 3,
+"uv_scale": Vector4(1.7500002, 2, 0, 0),
+"vertex_count": 96,
+"vertex_data": PackedByteArray("wzPDMzvMsNQAAP9//3+w1A4j/3/w3BXRDiMOI/9/XtgOI/9/8NzYyw4j8Nz/f1bFwzM7zDvMhMgAAP9//3+EyAAA/3//f5XVwzM7zMMzldUOI/Dc/3951w4j/38OI9jTDiMOI/9/YuUOI/9/DiNi5QAA/3//fz/jwzPDM8MzeujDM8MzwzNx//9//38AAHH/DiP/fw4jVv7/fw4jDiNo/w4j/38OI9Xt/3/w3A4jxO3DMzvMwzPD7f9//38AAMPt/3//fwAAcf87zDvMwzNx//9/8NwOI2j/8Nz/fw4jVv7/fw4jDiPE7fDc/38OI9Xt/3//fwAAw+07zMMzwzPD7TvMwzPDM9jT////f/9/edfw3P9/DiPk1fDcDiP/f+TV8Nz/fw4jeujw3PDc/38/4zvMO8zDM9Pl////f/9/0+X///9//3+w1DvMO8w7zLDU8Nzw3P9/Xtjw3P9/8NwV0fDcDiP/f1bF8Nz/f/Dc2Mv///9//3+EyDvMwzM7zITIO8zDMzvMqb//f/9///+pv/Dc/3/w3O+6/38OI/DcacTw3P9/8Nwiyf9/8Nzw3Ju/O8w7zDvMW8T/f/9///9bxP9//3///2nEwzM7zDvM77r/f/Dc8Nx3wA4j/3/w3HfA/38OI/DcjMMOI/9/8NyMw/9//3///5u/wzPDMzvMIsnDM8MzwzMXzv9/AAD/fxfO/38OIw4j+s4OIw4j/39pzf9/DiMOI/bN8NwOI/9/9s07zMMzwzP6zv9/AAD/f2nN/38AAP9/9rM7zMMzO8z2s/DcDiP/f+O0/38OI/DccbMOIw4j/38YtP9/DiPw3Bi0/38AAP9/47TDM8MzO8xxszvMO8zDM57y/3////9/aPj/f/DcDiP99fDc8Nz/f/31/3/w3A4jnvIOI/Dc/39o+MMzO8zDM4D1/3////9/gPX/f////3/n9MMzO8w7zPT8DiPw3P9/PPj/f/Dc8Nw8+PDc8Nz/f+f0/3/w3PDc9Pz/f////3/s+DvMO8w7zOz43dP8493T/OPD0O7lytYm4ujk6M613ajQYeHDz2Hhw89R04HIUdOByFzXrMYiz2bKH86w2B/OsNhgy7La39Hz1S/HkMovx5DKzcPxzRFHp0q4xiO7tb2mwTzCYL48wmC+zzhuNc84bjXtuFe1MTwNMklCWD5GOdtEwj2eQcI9nkHcMJg1oihSOfwrzjf8K843Hy4LKp40TCVRMbYnUTG2JyEsAhwhLAIcNCnYHTsvEBpJIlYvFhsWMZ0eOzCdHjsw9QCqH/UAqh8BA7Yg7wDC4YwcnwJS4PsAQR7qAEEe6gAP/zwe/fxI31//gOBf/4DgbeFj/23hY/+sHwP/cuNf/Qkb5IoJG+SKfRm8hI0c8ZDtC7Nk7QuzZL0EgWbxEHJjzxQjXc8UI12xDt9bSBt7XhQjv5MUI7+TICSwjoMhSJtBSWMDWkN5C7JFQQiyRUEInHxByYV0WsNseDLGbHgyxud3mrJiciSvjnUfsY51H7GbMhcIJS+dDdYw6QrWMOkK")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ao7te")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cp2bc"]
 radius = 0.316207
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibfeq"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ibfeq"]
+noise_type = 2
+fractal_octaves = 1
+fractal_lacunarity = 1.0
+fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ibfeq"]
+noise = SubResource("FastNoiseLite_ibfeq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_veal7"]
 render_priority = 0
-shader = ExtResource("3_ibfeq")
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/color_edge = Color(1.92523e-06, 0, 0.6274635, 1)
-shader_parameter/emission_strength = 10.000000475
-shader_parameter/rise_progress = 0.5950000282625
-shader_parameter/edge_width = 0.30000001192093
-shader_parameter/noise_scale = 0.78400003398012
-shader_parameter/noise_strength = 0.5
-shader_parameter/time_speed = 1.0000000475
-shader_parameter/fade_softness = 1.0
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_kviwv")
-shader_parameter/distortion_scale = 0.150000007125
-shader_parameter/top_fade_start = 1.0
-shader_parameter/top_fade_power = 2.0
-shader_parameter/invert_top_fade = false
-shader_parameter/wave_transparency = 0.0
-shader_parameter/wave_frequency = 1.0
-shader_parameter/wave_speed = 0.0
+shader = ExtResource("3_hmh3g")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_ibfeq")
+shader_parameter/root_color = Color(1.92523e-06, 0, 0.6274635, 1)
+shader_parameter/tip_color = Color(0.005727078, 0.20091549, 0.877436, 1)
+shader_parameter/specular_color = Color(0.0045020543, 0.1764943, 0.7884566, 1)
+shader_parameter/fire_alpha = 1.0
+shader_parameter/fire_speed = Vector2(0.5, 1)
+shader_parameter/fire_aperture = 0.250000011875
+shader_parameter/wave_noise_speed = Vector2(0.42, 0.23)
+shader_parameter/wave_noise_scale = 3.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_veal7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibfeq"]
+albedo_color = Color(0.003921569, 0.1882353, 0.8627451, 1)
+emission_enabled = true
+emission = Color(0.003921569, 0.1882353, 0.8627451, 1)
+stencil_flags = 2
+stencil_color = Color(0.19411987, 0.2809763, 0.9066724, 1)
+
+[sub_resource type="Curve" id="Curve_4pry5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3035c"]
+curve = SubResource("Curve_4pry5")
+
+[sub_resource type="Curve" id="Curve_v1210"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y435e"]
+curve = SubResource("Curve_v1210")
+
+[sub_resource type="Curve" id="Curve_4nauq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bpwxc"]
+curve = SubResource("Curve_4nauq")
+
+[sub_resource type="Curve" id="Curve_sths7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kq52u"]
+curve = SubResource("Curve_sths7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_de7wp"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+orbit_velocity_curve = SubResource("CurveTexture_y435e")
+radial_velocity_min = 0.0999776
+radial_velocity_max = 0.499978
+radial_velocity_curve = SubResource("CurveTexture_bpwxc")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.04
+scale_max = 0.07
+scale_curve = SubResource("CurveTexture_kq52u")
+color_ramp = SubResource("GradientTexture1D_wpt5g")
+emission_curve = SubResource("CurveTexture_3035c")
 
 [node name="Orb" type="RigidBody3D"]
 gravity_scale = 0.0
 script = ExtResource("1_6l8s8")
 
-[node name="Magic" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.509754, 0.196887, 0.832565, 0.0286384, 0.96468, -0.245665, -0.855048, 0.149689, 0.488123, 0.00547312, -0.0699652, 0.0110329)
-material_override = SubResource("ShaderMaterial_o2ibq")
-amount = 100
-lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_25wf1")
-draw_pass_1 = SubResource("SphereMesh_olnk0")
-
 [node name="Boom" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.509754, 0.196887, 0.832565, 0.0286384, 0.96468, -0.245665, -0.855048, 0.149689, 0.488123, 0.00547312, -0.0699652, 0.617419)
-material_override = SubResource("ShaderMaterial_o2ibq")
+material_override = SubResource("StandardMaterial3D_hmh3g")
 emitting = false
 amount = 100
 lifetime = 15.0
-one_shot = true
 speed_scale = 64.0
 process_material = SubResource("ParticleProcessMaterial_6l8s8")
-draw_pass_1 = SubResource("SphereMesh_olnk0")
+draw_pass_1 = SubResource("ArrayMesh_oufiw")
 
 [node name="Attackbox" type="Area3D" parent="."]
 
@@ -141,13 +182,26 @@ draw_pass_1 = SubResource("SphereMesh_olnk0")
 shape = SubResource("SphereShape3D_cp2bc")
 
 [node name="Orb" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_ibfeq")
+transform = Transform3D(0.25, 0, 0, 0, -2.6226834e-08, -0.25, 0, 0.6, -1.0927847e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_veal7")
 mesh = SubResource("SphereMesh_veal7")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Orb"]
 light_color = Color(0.313726, 0.188235, 0.921569, 1)
 light_energy = 5.0
 omni_range = 2.0
+
+[node name="Inner" type="MeshInstance3D" parent="Orb"]
+transform = Transform3D(0.8, 0, 0, 0, 0.79999995, -8.881784e-16, 0, 0, 0.8, 0, 0.07424968, -7.789335e-09)
+material_override = SubResource("StandardMaterial3D_ibfeq")
+mesh = SubResource("SphereMesh_veal7")
+skeleton = NodePath("../..")
+
+[node name="Magic" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_hmh3g")
+amount = 50
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_de7wp")
+draw_pass_1 = SubResource("ArrayMesh_oufiw")
 
 [connection signal="area_entered" from="Attackbox" to="." method="_on_attackbox_area_entered"]
