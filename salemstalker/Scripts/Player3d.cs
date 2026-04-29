@@ -173,7 +173,12 @@ public partial class Player3d : CharacterBody3D
 		_secWeapon.Add("Caltrop",_caltrop);
 
 		// Initialize players equipped weapons
-		await ToSignal(GetParent<NewWorld>(), NewWorld.SignalName.loadedData);
+		if (!GetParent<NewWorld>().loaded)
+		{
+			GD.Print("Await world load");
+			await ToSignal(GetParent<NewWorld>(), NewWorld.SignalName.loadedData);	
+		}
+		GD.Print("World loaded");
 		SwitchPrimaryWeapon((string)GetParent<NewWorld>().data["mainEquipped"]);
 		SwitchSecondaryWeapon((string)GetParent<NewWorld>().data["secEquipped1"],0);
 		SwitchSecondaryWeapon((string)GetParent<NewWorld>().data["secEquipped2"],1);
