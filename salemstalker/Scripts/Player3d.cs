@@ -128,7 +128,7 @@ public partial class Player3d : CharacterBody3D
 	private float _demoCount = 30f;
 	private Godot.Collections.Array<string> _pickUpableItems { get; set; } = ["Taz", "Bridger", "Gnocchi", "Rogue"];
 	private bool _inCutscene = false; 
-	private Vector3 knock_direction = new Vector3(0f, 0f, 14f);
+	private Vector3 knock_direction = new Vector3(0f, 14f, 0f);
 
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
@@ -182,8 +182,7 @@ public partial class Player3d : CharacterBody3D
 		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
 		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
 		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
-
-		//killing chris
+		//killing chris null
 	}
 
 	// --- INPUT HANDLER ---
@@ -302,13 +301,11 @@ public partial class Player3d : CharacterBody3D
 		{
 			Block(false); // Stop blocking/parrying
 		}
-		else if (Input.IsActionJustReleased("block")
-				 && _attackCooldown == false
-				 && !IsInstanceValid(_lastSeen)
-				 && _inv.Visible == false
+		else if (Input.IsActionJustPressed("block")
 				 && _can_block == false
 				 && _swing_buffered == 0)
 		{
+			GD.Print("buffered_that_shit");
 			_swing_buffered = 2;
 			Block(true);
 		}
@@ -389,12 +386,7 @@ public partial class Player3d : CharacterBody3D
 	   {
 			SpecialSwing();
 	   }
-	   else if (Input.IsActionJustPressed("fun"))
-	   {
-		_knockVelocity = 15;
-		GD.Print("knock ",knock_direction.X * -_knockVelocity,knock_direction.Z * -_knockVelocity);
-		GD.Print("vel ",Velocity);
-	   }
+
 		// --- Run (Shift Key) ---        
 		else if (@event is InputEventKey shiftKey && shiftKey.Keycode == Key.Shift)
 		{
@@ -544,10 +536,10 @@ public partial class Player3d : CharacterBody3D
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.
 	public override void _PhysicsProcess(double delta)
 	{
+		GD.Print(_swing_buffered);
 		if (_dead == true){return;}
 		if (_inCutscene){return;}
 		var camRef = (Camera)_cam;
-		GD.Print(_parry);
 		// FINAL camera transform = base + shake
 		_cam.Position = _cameraBasePosition + camRef.ShakeOffsetPosition;
 		_cam.Rotation = _cameraBaseRotation + camRef.ShakeOffsetRotation;
@@ -984,7 +976,7 @@ public partial class Player3d : CharacterBody3D
 			_special_attack_available = true;
 			GD.Print("spa_available");
 		}
-	}
+	} 
 	// Handles the blocking and parrying mechanic.
 	private async void Block(bool block)
 	{
@@ -992,7 +984,7 @@ public partial class Player3d : CharacterBody3D
 		{
 			Timer cooldown = _sword.GetNode<Timer>("Cooldown");
 			await ToSignal(cooldown,"timeout");
-
+			_swing_buffered = 0;
 			}
 		_blocking = block;
 		if (block == true)
