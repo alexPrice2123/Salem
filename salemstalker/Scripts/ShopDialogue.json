@@ -1,0 +1,22 @@
+{"upgradeNames":
+	{"damage":"Damage","hDamage":"Strong Damage",
+"cChance":"Critical Chance","bChance":"Bleed Chance",
+"cPercent1":"Critical Damage","cPercent2":"Critical Damage","cPercent3":"Critical Damage"},
+
+"resourceNames":
+	{"bleedheart":"Bleeding Heart","heart":"Heart",
+"deadooze":"Dead Ooze","woundedooze":"Wounded Ooze",
+"rottenflesh":"Rotten Flesh","scorchedfesh":"Scorched Flesh",
+"seed":"Seed","sprout":"Sprout",
+"chippedfang":"Chipped Fang","fang":"Fang",
+"emptyves":"Empty Vessel","ves":"Vessel"},
+
+"smithResourceRefrences":
+	{"shortsword1":["bleedheart","deadooze"],"shortsword2":["deadooze", "fang", "scorchedflesh"],
+"falchion1":["rottenflesh", "bleedheart"],"falchion2":["bleedheart", "woundedooze", "sprout"],
+"dagger1":["emptyves", "seed"],"dagger2":["seed", "scorchedflesh", "heart"]},
+
+"smithResourceAmounts":
+	{"shortsword1":[3,3],"shortsword2":[6, 3, 3],
+"falchion1":[3, 3],"falchion2":[6, 3, 3],
+"dagger1":[3, 3],"dagger2":[6, 3, 3]}}
