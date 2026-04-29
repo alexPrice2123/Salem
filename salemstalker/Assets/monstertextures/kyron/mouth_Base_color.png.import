@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mp62sen03eqq"
-path="res://.godot/imported/map.png-ae0fc9b9ede66a933e2315716edcb32b.ctex"
+uid="uid://cb12qkcmqcl8a"
+path="res://.godot/imported/mouth_Base_color.png-01fe38dfaa0f71ed48f29ef51a515d26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/map.png"
-dest_files=["res://.godot/imported/map.png-ae0fc9b9ede66a933e2315716edcb32b.ctex"]
+source_file="res://Assets/monstertextures/kyron/mouth_Base_color.png"
+dest_files=["res://.godot/imported/mouth_Base_color.png-01fe38dfaa0f71ed48f29ef51a515d26.ctex"]
 
 [params]
 

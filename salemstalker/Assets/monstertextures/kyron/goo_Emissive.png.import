@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mp62sen03eqq"
-path="res://.godot/imported/map.png-ae0fc9b9ede66a933e2315716edcb32b.ctex"
+uid="uid://bndv05njlu5o4"
+path="res://.godot/imported/goo_Emissive.png-b437db0b8b462af9591fffe28a92a6b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/map.png"
-dest_files=["res://.godot/imported/map.png-ae0fc9b9ede66a933e2315716edcb32b.ctex"]
+source_file="res://Assets/monstertextures/kyron/goo_Emissive.png"
+dest_files=["res://.godot/imported/goo_Emissive.png-b437db0b8b462af9591fffe28a92a6b7.ctex"]
 
 [params]
 
