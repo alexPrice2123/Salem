@@ -1,3 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://c0cxglgrri5us"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c0cxglgrri5us"]
+
+[ext_resource type="Texture2D" uid="uid://db5jrcki208eb" path="res://Assets/buildingtextures/wizard/tent_Base_color.png" id="1_nemw5"]
 
 [resource]
+albedo_texture = ExtResource("1_nemw5")
+texture_filter = 0
