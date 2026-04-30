@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://df840ptst68d3"]
-
-[ext_resource type="Texture2D" uid="uid://dtj1reg3vnfff" path="res://Assets/buildingtextures/wizard/potion2_Base_color.png" id="1_gvshe"]
-
-[resource]
-albedo_texture = ExtResource("1_gvshe")
-emission_enabled = true
-emission = Color(0.1607843, 1, 0.68529415, 1)
-emission_energy_multiplier = 1.38

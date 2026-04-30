@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cexom403gtptl"]
-
-[ext_resource type="Texture2D" uid="uid://clx5f1n5fj8m7" path="res://Assets/buildingtextures/wizard/glass_Base_color.png" id="1_yjlr4"]
-
-[resource]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.7411765)
-albedo_texture = ExtResource("1_yjlr4")
-texture_filter = 0

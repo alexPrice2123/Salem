@@ -719,21 +719,21 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 [node name="Skeleton3D" parent="Body/Armature" index="0"]
 bones/1/rotation = Quaternion(0.017611725, 0, 0, 0.9998449)
 bones/2/rotation = Quaternion(0.38477787, 0.011219861, 0.013049711, 0.92284876)
-bones/3/rotation = Quaternion(0.041568138, -0.0035258369, -0.0029035218, 0.99912524)
+bones/3/rotation = Quaternion(0.056242652, -0.0036909278, -0.0024939685, 0.9984072)
 bones/4/rotation = Quaternion(0.4530525, -0.0040460397, 0.011167462, 0.8914048)
 bones/5/rotation = Quaternion(-0.05867656, 0.057308123, -0.7768832, 0.6242798)
-bones/6/rotation = Quaternion(0.6293384, -0.34031427, -0.089546695, 0.692893)
-bones/7/rotation = Quaternion(0.37828732, 0.08270148, 0.27911007, 0.87872463)
+bones/6/rotation = Quaternion(0.6269622, -0.34887215, -0.0870203, 0.6911109)
+bones/7/rotation = Quaternion(0.39286998, 0.08177439, 0.28986952, 0.86887395)
 bones/8/rotation = Quaternion(0.15422982, 6.340274e-11, 3.4864428e-10, 0.988035)
-bones/9/rotation = Quaternion(0.043957423, 0.029316952, 0.079399586, 0.9954416)
-bones/10/rotation = Quaternion(-0.24977084, 0.056914393, 0.082124114, 0.963136)
-bones/11/rotation = Quaternion(-0.60715914, 0.08663676, -0.16248395, 0.7729494)
+bones/9/rotation = Quaternion(0.04369406, -0.04890594, -0.028364863, 0.997444)
+bones/10/rotation = Quaternion(-0.24752715, 0.08022601, 0.13508798, 0.95605725)
+bones/11/rotation = Quaternion(-0.6152568, 0.045898523, -0.08885268, 0.7819575)
 bones/12/rotation = Quaternion(0.5968312, -0.0026567895, 0.0033799708, 0.8023553)
-bones/13/rotation = Quaternion(0.43852854, -0.10973822, -0.14786622, 0.87965095)
-bones/14/rotation = Quaternion(-0.49842682, -0.0025888092, -0.0041373344, 0.8669181)
+bones/13/rotation = Quaternion(0.44320238, -0.06063523, -0.07951409, 0.890827)
+bones/14/rotation = Quaternion(-0.4983904, -0.0025888837, -0.004136965, 0.86693895)
 bones/15/rotation = Quaternion(-0.10584751, -0.096973844, 0.78224456, 0.60620624)
-bones/16/rotation = Quaternion(0.7370746, 0.32447317, 0.07072791, 0.58858794)
-bones/17/rotation = Quaternion(0.19511941, -0.08652188, -0.1737031, 0.96138954)
+bones/16/rotation = Quaternion(0.73366106, 0.3272071, 0.07288129, 0.5910714)
+bones/17/rotation = Quaternion(0.22230673, -0.0855721, -0.19790639, 0.9508366)
 bones/18/position = Vector3(5.259649, 7.570201, -0.7133017)
 bones/18/rotation = Quaternion(0.2782055, -0.56508857, 0.6500782, -0.4250589)
 bones/19/position = Vector3(2.8736162, 1.4981885, 5.214905)
@@ -743,7 +743,7 @@ bones/21/position = Vector3(-2.3859363, 1.2347426, 5.133514)
 bones/21/rotation = Quaternion(0.5590067, 0.05315999, 0.8267279, 0.03473362)
 
 [node name="Bone_007_l" parent="Body/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.32505667, 0.027196527, -0.9453034, -0.7570474, -0.6065413, 0.24287155, -0.5667604, 0.79458666, 0.21774933, 2.8002286, 3.1388402, 3.0657318)
+transform = Transform3D(-0.3196501, 0.015376419, -0.94741106, -0.76893485, -0.5884708, 0.24988243, -0.5536814, 0.80837226, 0.19992822, 2.832252, 3.0899818, 3.0285702)
 
 [node name="Cube" parent="Body/Armature/Skeleton3D/Bone_007_l" index="0"]
 visible = false
@@ -758,7 +758,7 @@ shape = SubResource("BoxShape3D_2eohi")
 debug_color = Color(1, 0, 0, 1)
 
 [node name="Bone_012" parent="Body/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.9999147, -0.011284386, 0.0065652197, 0.005273328, -0.11092758, -0.99381435, 0.011942981, 0.99376404, -0.1108585, -0.49408635, 5.1486263, 6.019176)
+transform = Transform3D(0.9994689, -0.031398557, 0.008715623, 0.0042337147, -0.14007476, -0.99013156, 0.032309648, 0.9896426, -0.13986742, -0.1172954, 4.996875, 6.036337)
 
 [node name="Spit" type="GPUParticles3D" parent="Body/Armature/Skeleton3D/Bone_012" index="0"]
 transform = Transform3D(1.6661475, -0.0414465, 0.0030579101, -0.022470158, -0.795246, 1.4645325, -0.034960706, -1.4641199, -0.7955575, 0.028679352, 1.1756449, 0.5722647)
@@ -788,7 +788,7 @@ process_material = SubResource("ParticleProcessMaterial_4kjrw")
 draw_pass_1 = SubResource("SphereMesh_onvcx")
 
 [node name="Bone_007_r" parent="Body/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.43632716, -0.11557415, 0.89233494, 0.5833047, -0.79143625, 0.18271409, 0.68510866, 0.60022604, 0.41274014, -2.0704484, 3.3993847, 3.4910452)
+transform = Transform3D(-0.4297984, -0.10388294, 0.8969293, 0.6092396, -0.76651967, 0.20316209, 0.6664085, 0.6337633, 0.39273852, -2.101824, 3.3314624, 3.3998833)
 
 [node name="Cube_002" parent="Body/Armature/Skeleton3D/Bone_007_r" index="0"]
 visible = false

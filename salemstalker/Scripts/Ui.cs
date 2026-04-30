@@ -19,19 +19,18 @@ public partial class Ui : Control
 	private Control _slotSelect;
 	private OptionButton _shopTypeSelection;
 	private int _typeSelection;
+	private TextureButton _shopOption1;
+	private TextureButton _shopOption2;
+	private TextureButton _shopOption3;
+	private TextureButton _shopOption4;
 	private string _shopSelection = "Shortsword";
 	private Label _areaName;
 	public float _areaNameTween = 0f;
 	private Dictionary<string, float> _upgrades = new Dictionary<string, float>();
 	private Dictionary<string, string> _specialAttacks = new Dictionary<string, string>();
-	//private Dictionary<string, string> _upgradeNames = new Dictionary<string, string>();
+	private Dictionary<string, string> _upgradeNames = new Dictionary<string, string>();
 	private Dictionary<string, string[]> _requirementRef = new Dictionary<string, string[]>();
 	private Dictionary<string, int[]> _amountRef = new Dictionary<string, int[]>();
-	private Godot.Collections.Dictionary<string,Variant> _shopDialogue;
-	private Godot.Collections.Dictionary<string,Variant> _upgradeNames;
-	private Godot.Collections.Dictionary<string,Variant> _resourceNames;
-	private Godot.Collections.Dictionary<string,Variant> _resourceRefrences;
-	private Godot.Collections.Dictionary<string,Variant> _resourceAmounts;
 	private float _loadingValue = -1f;
 	public float _loadingGoal = 3f;
 	public bool _loadingDone = false;
@@ -49,15 +48,27 @@ public partial class Ui : Control
 	private Texture2D _invIcon;
 	private Control _inv;
 	public float _fadeProg = 0; //fade progress for fading to black
-	private bool _itemCheck = false;
+	private bool _upgPossible = false;
+
+	// ---------------- cover your eyes
+	// shortsword
+	public static string[] _shortswordUpg1Req = { "bleedheart", "deadooze" }; public static int[] _shortswordUpg1Amount = { 3, 3 };
+    public static string[] _shortswordUpg2Req = { "deadooze", "fang", "scorchedflesh" }; public static int[] _shortswordUpg2Amount = { 6, 3, 3 };
+
+	// falchion
+	public static string[] _falchionUpg1Req = { "rottenflesh", "bleedheart" }; public static int[] _falchionUpg1Amount = { 3, 3 };
+    public static string[] _falchionUpg2Req = { "bleedheart", "woundedooze", "sprout" }; public static int[] _falchionUpg2Amount = { 6, 3, 3 };
+
+	// dagger
+	public static string[] _daggerUpg1Req = { "emptyves", "seed" }; public static int[] _daggerUpg1Amount = { 3, 3 };
+    public static string[] _daggerUpg2Req = { "seed", "scorchedflesh", "heart" }; public static int[] _daggerUpg2Amount = { 6, 3, 3 };
+
+	// longsword
+	public static string[] _longswordUpg1Req = { "deadooze", "chippedfang" }; public static int[] _longswordUpg1Amount = { 5, 5 };
+    public static string[] _longswordUpg2Req = { "chippedfang", "sprout", "heart" }; public static int[] _longswordUpg2Amount = { 8, 5, 5 };
 
 	public override void _Ready()
 	{
-		_shopDialogue = SaveHandler.LoadFromFile("Scripts/ShopDialogue.json");
-		_upgradeNames = _shopDialogue["upgradeNames"].AsGodotDictionary<string,Variant>();
-		_resourceNames = _shopDialogue["resourceNames"].AsGodotDictionary<string,Variant>();
-		_resourceRefrences = _shopDialogue["smithResourceRefrences"].AsGodotDictionary<string,Variant>();
-		_resourceAmounts = _shopDialogue["smithResourceAmounts"].AsGodotDictionary<string,Variant>();
 		Instance = this;
 		if (GetParent() is Player3d player)
 		{
@@ -66,6 +77,10 @@ public partial class Ui : Control
 		_slotSelect = GetNode<Control>("Inv/SubPort/Sub/SlotSelector");
 		_loadingUI = GetNode<Control>("Loading");
 		_shopTypeSelection = GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions");
+		_shopOption1 = GetNode<TextureButton>("BlacksmithShop/ShopOption1");
+		_shopOption2 = GetNode<TextureButton>("BlacksmithShop/ShopOption2");
+		_shopOption3 = GetNode<TextureButton>("BlacksmithShop/ShopOption3");
+		_shopOption4 = GetNode<TextureButton>("BlacksmithShop/ShopOption4");
 		_secProgressBar1 = GetNode<TextureProgressBar>("SecCooldown1");
 		_secProgressBar2 = GetNode<TextureProgressBar>("SecCooldown2");
 		//_secProgressBar3 = GetNode<TextureProgressBar>("SecCooldown3");
@@ -77,6 +92,41 @@ public partial class Ui : Control
 		_loadingUI.Visible = true;
 		_loadingMaterial = _loadingUI.Material as ShaderMaterial;
 		_areaName = GetNode<Label>("Area");
+
+		// -------- IF someon sees this and has an idea on how to make it less terrible tell Mace the ui person PLEEEASE
+		_upgrades.Add("damage1", 2);
+		_upgrades.Add("damage2", 4.5f);
+		_upgrades.Add("damage3", 7.5f);
+		_upgrades.Add("cChance", 0.02f);
+		_upgrades.Add("bChance", 0.015f);
+		_upgrades.Add("cPercent", 0.04f);
+		_upgradeNames.Add("damage", "Damage");
+		_upgradeNames.Add("hDamage", "Strong Damage");
+		_upgradeNames.Add("cChance", "Critical Chance");
+		_upgradeNames.Add("bChance", "Bleed Chance");
+		_upgradeNames.Add("cPercent1", "Critical Damage");
+		_upgradeNames.Add("cPercent2", "Special Critical Damage");
+		_upgradeNames.Add("cPercent3", "Heavy Critical Damage");
+		_specialAttacks.Add("Shortsword", "Pommel Strike");
+		//_specialAttacks.Add("Flail", "");
+		// upgrade resorce names
+		_requirementRef.Add("shortsword1", _shortswordUpg1Req);
+		_requirementRef.Add("shortsword2", _shortswordUpg2Req);
+		_requirementRef.Add("falchion1", _falchionUpg1Req);
+		_requirementRef.Add("falchion2", _falchionUpg2Req);
+		_requirementRef.Add("dagger1", _daggerUpg1Req);
+		_requirementRef.Add("dagger2", _daggerUpg2Req);
+		_requirementRef.Add("longsword1", _longswordUpg1Req);
+		_requirementRef.Add("longsword2", _longswordUpg2Req);
+		//upgrade amounts
+		_amountRef.Add("shortsword1", _shortswordUpg1Amount);
+		_amountRef.Add("shortsword2", _shortswordUpg2Amount);
+		_amountRef.Add("falchion1", _falchionUpg1Amount);
+		_amountRef.Add("falchion2", _falchionUpg2Amount);
+		_amountRef.Add("dagger1", _daggerUpg1Amount);
+		_amountRef.Add("dagger2", _daggerUpg2Amount);
+		_amountRef.Add("longsword1", _longswordUpg1Amount);
+		_amountRef.Add("longsword2", _longswordUpg2Amount);
 
 		for(int i = 1; i < 30; i++)
         {
@@ -176,18 +226,6 @@ public partial class Ui : Control
 		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("dagger"); _shopSelection = "Dagger"; _player.SwitchPrimaryWeapon(_shopSelection); }
 		else { PlayShopAnim(""); }
 	}
-	private void _on_wshop_option1_button_up()
-	{
-		
-	}
-	private void _on_wshop_option2_button_up()
-	{
-		
-	}
-	private void _on_wshop_option3_button_up()
-	{
-		
-	}
 	private void _on_upgrade_button_up()
 	{
 		//ColorRect _desc = GetNode<ColorRect>("BlacksmithShop/View/WeaponDesc"); <--- For later
@@ -199,35 +237,35 @@ public partial class Ui : Control
 		_upg.GetNode<Control>("Requirements").Visible = true;
 
 		// sword and spaghetti refrences for resources
+		PackedScene _swordScn = _player._weapon[_shopSelection];
 		itemList _resourceScript = (itemList)_resourceInv;
-		int lvl = (int)_player._weapon[_shopSelection].GetMeta("level");
-		string upgName;
-		Godot.Collections.Array<string> resRef = _resourceRefrences[_shopSelection.ToLower() + (lvl + 1)].AsGodotArray<string>();
-		Godot.Collections.Array<int> resAmounts = _resourceAmounts[_shopSelection.ToLower() + (lvl + 1)].AsGodotArray<int>();
-		_itemCheck = ItemCheck(resRef, resAmounts);
+		GD.Print(_shopSelection);
+		string[] _requirements = _requirementRef[_shopSelection.ToLower() + ((int)_swordScn.GetMeta("level") + 1)];
+		int[] _amount = _amountRef[_shopSelection.ToLower() + ((int)_swordScn.GetMeta("level") + 1)];
+		GD.Print(_requirements);
+		GD.Print("length = " + _requirements.Length);
+
 		// ----- Sets the requirements UI
 		_details.Text += "Requirements:\n";
-		for (int i = 0; i < resRef.Count; i++)
+		for (int i = 0; i < _requirements.Length; i++)
 		{
-			_details.Text += _resourceNames[resRef[i]] + " (" + _resourceScript.GetItemCount(resRef[i]) + "/" + resAmounts[i] + ")\n";
+			_details.Text += _requirements[i] + " (" + _resourceScript.GetItemCount(_requirements[i]) + "/" + _amount[i] + ")\n";
 		}
 		_details.Text += "\nUpgrades:\n";
 		foreach (string stat in GetUpgrades((Node3D)_player._weapon[_shopSelection].Instantiate()))
 		{
-			upgName = Json.Stringify(_upgradeNames[stat]);
-			string statName = upgName.Substring(1, upgName.Length - 2);
 			if ((int)_player._weapon[_shopSelection].GetMeta("level") < 3)
 			{
 				if (!(stat.IndexOf("Percent") >= 0))
 				{
-					_details.Text += statName + "\n";
+					_details.Text += _upgradeNames[stat] + "\n";
 				}
 			}
 			else
 			{
 				if (stat.IndexOf("Percent") >= 0)
 				{
-					_details.Text += statName + "\n";
+					_details.Text += _upgradeNames[stat] + "\n";
 				}
 			}
 		}
@@ -247,7 +285,7 @@ public partial class Ui : Control
 	}
 	private void _on_upgrade_mouse_entered()
 	{
-		if ((int)_player._weapon[_shopSelection].GetMeta("level") >= 2)
+		if ((int)_player._weapon[_shopSelection].GetMeta("level") >= 4)
         {
 			GetNode<Label>("BlacksmithShop/View/Warning/Warning").Text = "This weapon is already max level!";
 			GetNode<ColorRect>("BlacksmithShop/View/Warning").Visible = true;
@@ -261,7 +299,7 @@ public partial class Ui : Control
     }
 	private void _on_upgrade_conf_mouse_entered()
 	{
-		if (!_itemCheck)
+		if (!_upgPossible)
         {
 			GetNode<Label>("BlacksmithShop/View/Warning/Warning").Text = "You don't have enough resources!";
 			GetNode<ColorRect>("BlacksmithShop/View/Warning").Visible = true;
@@ -281,34 +319,30 @@ public partial class Ui : Control
 		Node3D _swordInst = (Node3D)_swordScn.Instantiate();
 		itemList _resourceScript = (itemList)_resourceInv;
 
+		GD.Print(_shopSelection);
 		_swordScn.SetMeta("level", (int)_swordScn.GetMeta("level") + 1);
-		int lvl = (int)_swordScn.GetMeta("level");
-		string upgName;
-		Godot.Collections.Array<string> resRef = _resourceRefrences[_shopSelection.ToLower() + lvl].AsGodotArray<string>();
-		Godot.Collections.Array<int> resAmounts = _resourceAmounts[_shopSelection.ToLower() + lvl].AsGodotArray<int>();
+		string[] _requirements = _requirementRef[_shopSelection.ToLower() + (int)_swordScn.GetMeta("level")];
+		int[] _amount = _amountRef[_shopSelection.ToLower() + (int)_swordScn.GetMeta("level")];
 
-		if(ItemCheck(resRef, resAmounts))
+		if(_upgPossible)
 		{
-			_itemCheck = ItemCheck(resRef, resAmounts);
-			for(int i = 0; i < resRef.Count; i++)
+			for(int i = 0; i < _requirements.Length; i++)
 			{
-				_resourceScript.SubtractResource(resRef[i], resAmounts[i]);
+				_resourceScript.SubtractResource(_requirements[i], _amount[i]);
 			}
 			foreach (string stat in GetUpgrades(_swordInst))
 			{
-				upgName = Json.Stringify(_upgradeNames[stat]);
-				string statName = upgName.Substring(1, upgName.Length - 2);
-				if ((stat.Equals("cChance") || stat.Equals("bChance")) && lvl < 4)
+				if ((stat.Equals("cChance") || stat.Equals("bChance")) && (int)_swordScn.GetMeta("level") < 4)
 				{
-					SetResults(stat, stat, statName);
+					SetResults(stat, stat, _upgradeNames[stat]);
 				}
-				if ((stat.Equals("damage") || stat.Equals("hDamage")) && lvl < 4)
+				if ((stat.Equals("damage") || stat.Equals("hDamage")) && (int)_swordScn.GetMeta("level") < 4)
 				{
-					SetResults(stat, GetUpgrades(_swordInst)[0] + lvl, statName);
+					SetResults(stat, GetUpgrades(_swordInst)[0] + (int)_swordScn.GetMeta("level"), _upgradeNames[stat]);
 				}
-				if ((stat.Equals("cPercent1") || stat.Equals("cPercent2") || stat.Equals("cPercent3")) && lvl >= 4)
+				if ((stat.Equals("cPercent1") || stat.Equals("cPercent2") || stat.Equals("cPercent3")) && (int)_swordScn.GetMeta("level") >= 4)
 				{
-					SetResults(stat, "cPercent", statName);
+					SetResults(stat, "cPercent", _upgradeNames[stat]);
 				}
 			}
 			GetNode<Control>("BlacksmithShop/View/UpgradeMenu/Requirements").Visible = false;
@@ -522,12 +556,12 @@ public partial class Ui : Control
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
-	private bool ItemCheck(Godot.Collections.Array<string> req, Godot.Collections.Array<int> amount)
+	private bool ItemCheck(string[] req, int[] amount)
 	{
 		itemList _resourceScript = (itemList)_resourceInv;
 		int count = 0;
 		// ----- Checks if you have the resources you need to upgrade it
-		for(int i = 0; i < req.Count; i++)
+		for(int i = 0; i < req.Length; i++)
 		{
 			if(_resourceScript.GetItemCount(req[i]) >= amount[i])
 			{
@@ -537,6 +571,6 @@ public partial class Ui : Control
 			}
 		}
 		GD.Print("count = " + count);
-		if(count >= req.Count) { return true; } else { return false; }
+		if(count >= req.Length) { return true; } else { return false; }
 	}
 }// some day i will rule the world

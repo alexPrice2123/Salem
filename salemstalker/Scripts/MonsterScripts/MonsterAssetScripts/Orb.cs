@@ -26,7 +26,7 @@ public partial class Orb : RigidBody3D
 
 	public async void _on_attackbox_area_entered(Node3D body)
 	{
-		if (body.IsInGroup("PlayerHurtbox") )
+		if (body.IsInGroup("Player") && body.Name == "Hurtbox")
 		{
 			_playerOrb.RangedDamaged(_damageOrb, this, "None");
 			//GetNode<CollisionShape3D>("Area3D/CollisionShape3D").Disabled = true;

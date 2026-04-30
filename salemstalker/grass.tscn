@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bshny7dh3nvfv"]
-
-[ext_resource type="PackedScene" uid="uid://dxk8w7gn2x7rr" path="res://Assets/3D/plants/grass.blend" id="1_kl2qe"]
-
-[node name="grass" instance=ExtResource("1_kl2qe")]
