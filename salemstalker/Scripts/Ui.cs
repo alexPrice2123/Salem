@@ -22,11 +22,6 @@ public partial class Ui : Control
 	private string _shopSelection = "Shortsword";
 	private Label _areaName;
 	public float _areaNameTween = 0f;
-	private Dictionary<string, float> _upgrades = new Dictionary<string, float>();
-	private Dictionary<string, string> _specialAttacks = new Dictionary<string, string>();
-	//private Dictionary<string, string> _upgradeNames = new Dictionary<string, string>();
-	private Dictionary<string, string[]> _requirementRef = new Dictionary<string, string[]>();
-	private Dictionary<string, int[]> _amountRef = new Dictionary<string, int[]>();
 	private Godot.Collections.Dictionary<string,Variant> _shopDialogue;
 	private Godot.Collections.Dictionary<string,Variant> _upgradeNames;
 	private Godot.Collections.Dictionary<string,Variant> _resourceNames;
@@ -489,16 +484,16 @@ public partial class Ui : Control
 		PackedScene _swordScn = _player._weapon[_shopSelection];
 		if (statName.IndexOf("Chance") >= 0 || statName.IndexOf("Percent") >= 0)
 		{
-			_results.GetNode<Label>("Amount").Text += Math.Round((float)_swordScn.GetMeta(statName) * 100, 3) + "%\n";
-			_results.GetNode<Label>("Addition").Text += "+" + Math.Round(_upgrades[specificStatName] * 100, 3) + "%\n";
+			//_results.GetNode<Label>("Amount").Text += Math.Round((float)_swordScn.GetMeta(statName) * 100, 3) + "%\n";
+			_results.GetNode<Label>("Addition").Text += "+" + Math.Round((float)_upgradeNames[specificStatName] * 100, 3) + "%\n";
 		}
 		else
 		{
-			_results.GetNode<Label>("Amount").Text += Math.Round((float)_swordScn.GetMeta(statName), 3) + "\n";
-			_results.GetNode<Label>("Addition").Text += "+" + Math.Round(_upgrades[specificStatName], 3) + "\n";
+			//_results.GetNode<Label>("Amount").Text += Math.Round((float)_swordScn.GetMeta(statName), 3) + "\n";
+			_results.GetNode<Label>("Addition").Text += "+" + Math.Round((float)_upgradeNames[specificStatName], 3) + "\n";
 		}
 		_results.GetNode<Label>("StatName").Text += upgradeName + ".......................................\n";
-		_swordScn.SetMeta(statName, Math.Round((float)_swordScn.GetMeta(statName) + _upgrades[specificStatName], 3));
+		_swordScn.SetMeta(statName, Math.Round((float)_swordScn.GetMeta(statName) + (float)_upgradeNames[specificStatName], 3));
 	}
 
 	private void _on_resource_inv_button_up()
