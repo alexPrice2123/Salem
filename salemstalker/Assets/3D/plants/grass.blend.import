@@ -37,7 +37,15 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"grasstexture": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/3D/plants/grass3d.tres",
+"use_external/path": "uid://dny46p0gel7dk"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
