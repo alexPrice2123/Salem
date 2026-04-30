@@ -16,7 +16,7 @@ public partial class GunBullet : RigidBody3D
         }
     }
     
-    public async void _on_hit_area_3d_body_entered(Node3D body)
+    public void _on_hit_area_3d_body_entered(Node3D body)
     {
         if (body.IsInGroup("Monster"))
         {

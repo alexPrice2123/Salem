@@ -151,7 +151,6 @@ public partial class Player3d : CharacterBody3D
 		_lantern = GetNode<OmniLight3D>("Head/Camera3D/Lantern");
 		_dialogue = GetNode<Control>("UI/Dialogue");
 		_smithShop = GetNode<Control>("UI/BlacksmithShop");
-		_goalPoint = GetParent().GetNode<Node3D>("GoalArea/GoalPoint");
 		_map = GetParent().GetNode<SubViewportContainer>("PaperMap");
 		_sfx = GetNode<AudioStreamPlayer>("SFX");
 		_footStepSfx = GetNode<AudioStreamPlayer>("FootAudio");
@@ -184,8 +183,12 @@ public partial class Player3d : CharacterBody3D
 		SwitchSecondaryWeapon((string)GetParent<NewWorld>().data["secEquipped2"],1);
 
 		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
-		_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
-		_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
+		if (GetNode<Node3D>("Head/Camera3D/Offhand1").GetChildCount() > 0){
+			_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
+		}
+		if (GetNode<Node3D>("Head/Camera3D/Offhand2").GetChildCount() > 0){
+			_eSecWeapon2 = GetNode<Node3D>("Head/Camera3D/Offhand2").GetChild<Node3D>(0);
+		}
 		_swordInst = _sword as SwordHandler; // Cast the sword node to its script type
 		//killing chris null
 	}

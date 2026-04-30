@@ -82,6 +82,7 @@ public partial class titleScreen : Node3D
 		SaveHandler.createSaveFile(_savePath);
         GetNode<AnimatedSprite2D>("Buttons/FunnyReset").Visible = false ;
 		data = SaveHandler.LoadFromFile(_savePath);
+		GetNode<Label>("Buttons/gameVer").Text = "Beta" + (string)data["version"];
 	}
 	private void _on_dev_menu_button_button_up()
 	{

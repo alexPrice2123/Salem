@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using TerraBrush;
 
 public partial class objectSpawner : Node3D
 {
@@ -19,7 +18,6 @@ public partial class objectSpawner : Node3D
 	public PackedScene _object;
 	[Export]
 	public string _objectName;
-	private TerraBrushTool m_terraBrushNode;
 
 	// --- READY ---
 	public override void _Ready()
@@ -29,7 +27,6 @@ public partial class objectSpawner : Node3D
 
 		SpawnRange = GetNode<CsgSphere3D>("Range").Radius;
 		GetNode<CsgSphere3D>("Range").QueueFree();
-		m_terraBrushNode = GetParent().GetNode<TerraBrushTool>("TerraBrush"); 
 
 
 		for (int i = 0; i <= _itemCount; i++)
