@@ -8,8 +8,17 @@ public partial class pullOrb : RigidBody3D
 	public Player3d _playerOrb;
 	public float _damageOrb;
 	private double _count = 0;
-	private Vector3 _goalSize = new Vector3(9, 0.3f, 9);
+	private Vector3 _goalSize = new Vector3(0, 0, 0);
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public async override void _Ready()
+    {
+        GetNode<GpuParticles3D>("HitRange").Emitting = true;
+		await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+		_goalSize = new Vector3(9, 0.3f, 9);
+		GetNode<GpuParticles3D>("Orb/Magic").Emitting = true;
+		await ToSignal(GetTree().CreateTimer(0.25), "timeout");
+		GetNode<Area3D>("Attackbox").SetDeferred("monitoring", true);
+    }
 	public override void _Process(double delta)
     {
 		_count += delta;
@@ -42,7 +51,9 @@ public partial class pullOrb : RigidBody3D
 		_goalSize = new Vector3(0, 0, 0);
 		GetNode<Area3D>("Attackbox").SetDeferred("monitoring", false);
 		_playerOrb.RangedDamaged(0, this, "PullOrbOff");
-		await ToSignal(GetTree().CreateTimer(2.5), "timeout");
+		await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+		GetNode<GpuParticles3D>("Orb/Magic").Emitting = false;
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
 		QueueFree();
     }
 }

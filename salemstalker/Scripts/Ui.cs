@@ -24,6 +24,7 @@ public partial class Ui : Control
 	public float _areaNameTween = 0f;
 	private Godot.Collections.Dictionary<string,Variant> _shopDialogue;
 	private Godot.Collections.Dictionary<string,Variant> _upgradeNames;
+	private Godot.Collections.Dictionary<string,Variant> _upgradeAmounts;
 	private Godot.Collections.Dictionary<string,Variant> _resourceNames;
 	private Godot.Collections.Dictionary<string,Variant> _resourceRefrences;
 	private Godot.Collections.Dictionary<string,Variant> _resourceAmounts;
@@ -50,6 +51,7 @@ public partial class Ui : Control
 	{
 		_shopDialogue = SaveHandler.LoadFromFile("Scripts/ShopDialogue.json");
 		_upgradeNames = _shopDialogue["upgradeNames"].AsGodotDictionary<string,Variant>();
+		_upgradeAmounts = _shopDialogue["upgradeAmounts"].AsGodotDictionary<string,Variant>();
 		_resourceNames = _shopDialogue["resourceNames"].AsGodotDictionary<string,Variant>();
 		_resourceRefrences = _shopDialogue["smithResourceRefrences"].AsGodotDictionary<string,Variant>();
 		_resourceAmounts = _shopDialogue["smithResourceAmounts"].AsGodotDictionary<string,Variant>();
@@ -195,7 +197,8 @@ public partial class Ui : Control
 
 		// sword and spaghetti refrences for resources
 		itemList _resourceScript = (itemList)_resourceInv;
-		int lvl = (int)_player._weapon[_shopSelection].GetMeta("level");
+		Node3D swordScn = _player._sword;
+		int lvl = (int)swordScn.GetMeta("level");
 		string upgName;
 		Godot.Collections.Array<string> resRef = _resourceRefrences[_shopSelection.ToLower() + (lvl + 1)].AsGodotArray<string>();
 		Godot.Collections.Array<int> resAmounts = _resourceAmounts[_shopSelection.ToLower() + (lvl + 1)].AsGodotArray<int>();
@@ -207,11 +210,11 @@ public partial class Ui : Control
 			_details.Text += _resourceNames[resRef[i]] + " (" + _resourceScript.GetItemCount(resRef[i]) + "/" + resAmounts[i] + ")\n";
 		}
 		_details.Text += "\nUpgrades:\n";
-		foreach (string stat in GetUpgrades((Node3D)_player._weapon[_shopSelection].Instantiate()))
+		foreach (string stat in GetUpgrades(swordScn))
 		{
 			upgName = Json.Stringify(_upgradeNames[stat]);
 			string statName = upgName.Substring(1, upgName.Length - 2);
-			if ((int)_player._weapon[_shopSelection].GetMeta("level") < 3)
+			if ((int)swordScn.GetMeta("level") < 3)
 			{
 				if (!(stat.IndexOf("Percent") >= 0))
 				{
@@ -242,7 +245,7 @@ public partial class Ui : Control
 	}
 	private void _on_upgrade_mouse_entered()
 	{
-		if ((int)_player._weapon[_shopSelection].GetMeta("level") >= 2)
+		if ((int)_player._sword.GetMeta("level") >= 2)
         {
 			GetNode<Label>("BlacksmithShop/View/Warning/Warning").Text = "This weapon is already max level!";
 			GetNode<ColorRect>("BlacksmithShop/View/Warning").Visible = true;
@@ -272,12 +275,13 @@ public partial class Ui : Control
 	{
 		GetNode<Label>("BlacksmithShop/View/UpgradeMenu/UpgradePrompt").Text = _shopSelection + "\nUpgraded!";
 		Control _resultsPage = GetNode<Control>("BlacksmithShop/View/UpgradeMenu/Results");
-		PackedScene _swordScn = _player._weapon[_shopSelection];
-		Node3D _swordInst = (Node3D)_swordScn.Instantiate();
+		Node3D _swordScn = _player._sword;
 		itemList _resourceScript = (itemList)_resourceInv;
 
+		GD.Print((int)_swordScn.GetMeta("level"));
 		_swordScn.SetMeta("level", (int)_swordScn.GetMeta("level") + 1);
 		int lvl = (int)_swordScn.GetMeta("level");
+		GD.Print(lvl);
 		string upgName;
 		Godot.Collections.Array<string> resRef = _resourceRefrences[_shopSelection.ToLower() + lvl].AsGodotArray<string>();
 		Godot.Collections.Array<int> resAmounts = _resourceAmounts[_shopSelection.ToLower() + lvl].AsGodotArray<int>();
@@ -289,7 +293,7 @@ public partial class Ui : Control
 			{
 				_resourceScript.SubtractResource(resRef[i], resAmounts[i]);
 			}
-			foreach (string stat in GetUpgrades(_swordInst))
+			foreach (string stat in GetUpgrades(_swordScn))
 			{
 				upgName = Json.Stringify(_upgradeNames[stat]);
 				string statName = upgName.Substring(1, upgName.Length - 2);
@@ -299,11 +303,11 @@ public partial class Ui : Control
 				}
 				if ((stat.Equals("damage") || stat.Equals("hDamage")) && lvl < 4)
 				{
-					SetResults(stat, GetUpgrades(_swordInst)[0] + lvl, statName);
+					SetResults(stat, GetUpgrades(_swordScn)[0] + lvl, statName);
 				}
 				if ((stat.Equals("cPercent1") || stat.Equals("cPercent2") || stat.Equals("cPercent3")) && lvl >= 4)
 				{
-					SetResults(stat, "cPercent", statName);
+					SetResults(stat, "cPercent" + lvl, statName);
 				}
 			}
 			GetNode<Control>("BlacksmithShop/View/UpgradeMenu/Requirements").Visible = false;
@@ -330,6 +334,7 @@ public partial class Ui : Control
 		_upg.GetNode<Label>("Results/StatName").Text = "";
 		_upg.GetNode<Label>("Results/Amount").Text = "";
 		_upg.GetNode<Label>("Results/Addition").Text = "";
+		_upg.GetNode<Label>("Requirements/Details").Text = "";
 	}
 
 
@@ -415,7 +420,6 @@ public partial class Ui : Control
 	
 	private void PlayShopAnim(string item) // Why do I exist dude ts crazy
 	{
-		GD.Print(item.Substr(0, 3).ToLower() + "PreviewAnim");
 		if (_prevSelection != item) // switches from the shown weapon on the preview to the selected weapon
 		{
 			if (_prevSelection != null) 
@@ -481,19 +485,22 @@ public partial class Ui : Control
 	private void SetResults(string statName, string specificStatName, string upgradeName)
 	{
 		Control _results = GetNode<Control>("BlacksmithShop/View/UpgradeMenu/Results");
-		PackedScene _swordScn = _player._weapon[_shopSelection];
+		Node3D _swordScn = _player._sword;
 		if (statName.IndexOf("Chance") >= 0 || statName.IndexOf("Percent") >= 0)
 		{
 			//_results.GetNode<Label>("Amount").Text += Math.Round((float)_swordScn.GetMeta(statName) * 100, 3) + "%\n";
-			_results.GetNode<Label>("Addition").Text += "+" + Math.Round((float)_upgradeNames[specificStatName] * 100, 3) + "%\n";
+			GD.Print(specificStatName);
+			_results.GetNode<Label>("Addition").Text += "+" + Math.Round((float)_upgradeAmounts[specificStatName] * 100, 3) + "%\n";
 		}
 		else
 		{
 			//_results.GetNode<Label>("Amount").Text += Math.Round((float)_swordScn.GetMeta(statName), 3) + "\n";
-			_results.GetNode<Label>("Addition").Text += "+" + Math.Round((float)_upgradeNames[specificStatName], 3) + "\n";
+			GD.Print(specificStatName);
+			_results.GetNode<Label>("Addition").Text += "+" + Math.Round((float)_upgradeAmounts[specificStatName], 3) + "\n";
 		}
 		_results.GetNode<Label>("StatName").Text += upgradeName + ".......................................\n";
-		_swordScn.SetMeta(statName, Math.Round((float)_swordScn.GetMeta(statName) + (float)_upgradeNames[specificStatName], 3));
+		GD.Print(upgradeName);
+		_swordScn.SetMeta(statName, Math.Round((float)_swordScn.GetMeta(statName) + (float)_upgradeAmounts[specificStatName], 3));
 	}
 
 	private void _on_resource_inv_button_up()
@@ -526,12 +533,13 @@ public partial class Ui : Control
 		{
 			if(_resourceScript.GetItemCount(req[i]) >= amount[i])
 			{
-				GD.Print(req[i]);
-				GD.Print("amount of " + req[i] + " = " + _resourceScript.GetItemCount(req[i]));
+				//GD.Print(req[i]);
+				//GD.Print("amount of " + req[i] + " = " + _resourceScript.GetItemCount(req[i]));
 				count++;
 			}
 		}
-		GD.Print("count = " + count);
+		//GD.Print("req = " + req.Count);
+		//GD.Print("count = " + count);
 		if(count >= req.Count) { return true; } else { return false; }
 	}
 }// some day i will rule the world

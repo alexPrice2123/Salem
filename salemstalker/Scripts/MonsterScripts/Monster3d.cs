@@ -431,17 +431,24 @@ public partial class Monster3d : CharacterBody3D
 				if (_lookingTimer >= MaxLookTime) { _looking = false; ChooseNewWander(); }
 			}
 		}
-		else if (this is theKyron)
+		else if (this is theKyron ron)
 		{
-			if (_navUpdateTimer <= 0f) { _navAgent.TargetPosition = _wanderPos; _navUpdateTimer = NavUpdateInterval; }
-			Vector3 nextPoint = _navAgent.GetNextPathPosition();
-			_targetVelocity = (nextPoint - myPos).Normalized() * WalkSpeed;
+			if (!_attacking)
+            {
+              if (_navUpdateTimer <= 0f) { _navAgent.TargetPosition = _wanderPos; _navUpdateTimer = NavUpdateInterval; }
+				Vector3 nextPoint = _navAgent.GetNextPathPosition();
+				_targetVelocity = (nextPoint - myPos).Normalized() * WalkSpeed;
 
-			Vector3 moveDir = Velocity.Normalized();
-			if (Velocity.LengthSquared() > 0.01f)
-				_lookDirection.LookAt(myPos + moveDir, Vector3.Up);
-
-			if (_distanceSqr > SpawnDistance * SpawnDistance) { QueueFree(); return; }
+				Vector3 moveDir = Velocity.Normalized();
+				if (Velocity.LengthSquared() > 0.01f)
+					_lookDirection.LookAt(myPos + moveDir, Vector3.Up);  
+            }
+            else
+            {
+                Velocity = Vector3.Zero;
+				_lookDirection.LookAt(_player.GlobalPosition, Vector3.Up);  
+            }
+			
 		}
 
 		// --- WANDER TIMER / LOOK TRIGGER --- //
