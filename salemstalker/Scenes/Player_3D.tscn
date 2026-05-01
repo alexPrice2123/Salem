@@ -107,6 +107,13 @@ visible = false
 metadata/hDamage = 0.0
 metadata/damage = 0.0
 
+[node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
+bones/18/rotation = Quaternion(-0.1556034, -0.5161715, 0.6961206, 0.4740998)
+bones/19/rotation = Quaternion(0.60344225, -0.035667296, 0.026547879, 0.79616624)
+
+[node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
+transform = Transform3D(-0.50794446, -0.010620803, 0.8613242, -0.041370317, 0.99907106, -0.012077857, -0.8603954, -0.041767858, -0.5079118, -0.18393777, 1.4153607, 0.41532513)
+
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141743, 0, 0)
 target_position = Vector3(0, 0, -5)
@@ -209,3 +216,7 @@ bus = &"Sfx"
 [connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
+
+[editable path="Head/Camera3D/Sword/Shortsword"]
+[editable path="Head/Camera3D/Sword/Shortsword/weaponAnimations"]
+[editable path="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/shortsword"]
