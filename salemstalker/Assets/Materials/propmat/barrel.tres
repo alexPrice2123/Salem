@@ -1,7 +1,8 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b4rbdehumx40y"]
 
-[ext_resource type="Texture2D" uid="uid://bjhvr3lc57ja7" path="res://Assets/proptextures/barrell/barrell_Base_color.png" id="1_khmk2"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vgov2"]
+load_path = "res://.godot/imported/barrell_Base_color.png-90f90487cc7367eb4aa65606ae472be8.s3tc.ctex"
 
 [resource]
-albedo_texture = ExtResource("1_khmk2")
+albedo_texture = SubResource("CompressedTexture2D_vgov2")
 texture_filter = 0

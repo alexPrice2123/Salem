@@ -682,7 +682,8 @@ public partial class Monster3d : CharacterBody3D
 		baseScale.X = AgroLength;
 		baseScale.Y = AgroFOV;
 		baseScale.Z = AgroFOV;
-		_agroArea.Scale = baseScale;
+		_agroArea.GetNode<CollisionShape3D>("CollisionShape3D").Scale = baseScale;
+		_agroArea.GetNode<CollisionShape3D>("Debug").Scale = baseScale;
 
 
 		// Cache squared ranges to avoid sqrt in EveryFrame
