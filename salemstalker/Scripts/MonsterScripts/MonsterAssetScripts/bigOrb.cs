@@ -8,6 +8,7 @@ public partial class bigOrb : RigidBody3D
 	public Player3d _playerOrb;
 	public float _damageOrb;
 	private int _count = 0;
+	private bool _canExplode = true;
 	public void Shoot(float speed)
 	{
 		LookAt(new Vector3(_playerOrb.GlobalPosition.X, _playerOrb.GlobalPosition.Y, _playerOrb.GlobalPosition.Z), Vector3.Up);
@@ -20,7 +21,7 @@ public partial class bigOrb : RigidBody3D
 		_count += 1;
 		if (_count > 250)
         {
-			QueueFree();
+			Explode();
         }
     }
 
@@ -36,28 +37,29 @@ public partial class bigOrb : RigidBody3D
     {
        if (body.Name == "Player_3d")
 		{
-			_playerOrb.RangedDamaged(_damageOrb, this, "None");
-			GetNode<Area3D>("ColBox").SetDeferred("monitoring", false);
-			LinearVelocity = Vector3.Zero;
-			AngularVelocity = Vector3.Zero;
-			GetNode<GpuParticles3D>("Boom").Emitting = true;
-			GetNode<GpuParticles3D>("Magic").Emitting = false;
-			GetNode<MeshInstance3D>("Orb").Visible = false;
-			await ToSignal(GetTree().CreateTimer(1), "timeout");
-			QueueFree();
+			Explode();
 		}
         else
         {
-			GetNode<Area3D>("ColBox").SetDeferred("monitoring", false);
-			GetNode<Area3D>("Attackbox").SetDeferred("monitoring", true);
-			LinearVelocity = Vector3.Zero;
-			AngularVelocity = Vector3.Zero;
-			GetNode<GpuParticles3D>("Boom").Emitting = true;
-			GetNode<GpuParticles3D>("HitRange").Emitting = true;
-			GetNode<GpuParticles3D>("Magic").Emitting = false;
-			GetNode<MeshInstance3D>("Orb").Visible = false;
-			await ToSignal(GetTree().CreateTimer(2), "timeout");
-			QueueFree();
+			Explode();
         }
+    }
+
+	private async void Explode()
+    {
+		if (!_canExplode){return;}
+		_canExplode = false;
+        GetNode<Area3D>("ColBox").SetDeferred("monitoring", false);
+		GetNode<Area3D>("Attackbox").SetDeferred("monitoring", true);
+		LinearVelocity = Vector3.Zero;
+		AngularVelocity = Vector3.Zero;
+		GetNode<GpuParticles3D>("Boom").Emitting = true;
+		GetNode<GpuParticles3D>("HitRange").Emitting = true;
+		GetNode<GpuParticles3D>("Magic").Emitting = false;
+		GetNode<MeshInstance3D>("Orb").Visible = false;
+		await ToSignal(GetTree().CreateTimer(0.5), "timeout");
+		GetNode<Area3D>("Attackbox").SetDeferred("monitoring", false);
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		QueueFree();
     }
 }

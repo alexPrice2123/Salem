@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://s3qvo4p1n3sa"]
+
+[ext_resource type="Texture2D" uid="uid://crsg0bccrv0p3" path="res://Assets/proptextures/monolithboss/monolith2.png" id="1_v85oc"]
+
+[resource]
+albedo_texture = ExtResource("1_v85oc")

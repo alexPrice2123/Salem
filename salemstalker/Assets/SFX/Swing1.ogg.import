@@ -1,14 +1,14 @@
 [remap]
 
-importer="oggvorbisstr"
-type="AudioStreamOggVorbis"
-uid="uid://dkljusedb16br"
-path="res://.godot/imported/Swing1.ogg-e0f79277865b500c32a1c0feee0721da.oggvorbisstr"
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://di3mtact4rcso"
+path="res://.godot/imported/Swing1.ogg-e0f79277865b500c32a1c0feee0721da.mp3str"
 
 [deps]
 
 source_file="res://Assets/SFX/Swing1.ogg"
-dest_files=["res://.godot/imported/Swing1.ogg-e0f79277865b500c32a1c0feee0721da.oggvorbisstr"]
+dest_files=["res://.godot/imported/Swing1.ogg-e0f79277865b500c32a1c0feee0721da.mp3str"]
 
 [params]
 

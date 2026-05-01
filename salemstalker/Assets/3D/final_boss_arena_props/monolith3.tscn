@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://mtew7cicdsy5"]
+
+[ext_resource type="PackedScene" uid="uid://cvfij61c7seo5" path="res://Assets/3D/final_boss_arena_props/monolith3.blend" id="1_rxppt"]
+[ext_resource type="Texture2D" uid="uid://coul4f7ysml5c" path="res://Assets/proptextures/monolithboss/monolith3.png" id="2_iudef"]
+[ext_resource type="Texture2D" uid="uid://bu8bu68452kmc" path="res://Assets/proptextures/monolithboss/monolith3emiss.png" id="3_w3d2c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxppt"]
+albedo_texture = ExtResource("2_iudef")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iudef"]
+albedo_texture = ExtResource("2_iudef")
+emission_enabled = true
+emission_energy_multiplier = 3.24
+emission_texture = ExtResource("3_w3d2c")
+texture_filter = 0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="monolith3" parent="." instance=ExtResource("1_rxppt")]
+
+[node name="Cube" parent="monolith3" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rxppt")
+
+[node name="Sphere" parent="monolith3" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_iudef")
+
+[node name="Sphere_001" parent="monolith3" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_iudef")
+
+[editable path="monolith3"]

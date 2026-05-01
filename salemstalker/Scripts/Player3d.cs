@@ -129,7 +129,8 @@ public partial class Player3d : CharacterBody3D
 	private Godot.Collections.Array<string> _pickUpableItems { get; set; } = ["Taz", "Bridger", "Gnocchi", "Rogue"];
 	private bool _inCutscene = false; 
 	private Vector3 knock_direction = new Vector3(0f, 14f, 0f);
-
+	public Vector3 _pullLocation = new Vector3(0f, -67f, 0f);
+    private float _pullSpeed = 5f;
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
 	public async override void _Ready()
@@ -168,8 +169,8 @@ public partial class Player3d : CharacterBody3D
 		_weapon.Add("dagger", _dagger);
 		_secWeapon.Add("FlintGun", _flintGun);
 		_secWeapon.Add("StakeGun", _stakeGun);
-		_secWeapon.Add("Tomahawk",_tomahawk);
-		_secWeapon.Add("Caltrop",_caltrop);
+		_secWeapon.Add("Tomahawk", _tomahawk);
+		_secWeapon.Add("Caltrop", _caltrop);
 
 		// Initialize players equipped weapons
 		if (!GetParent<NewWorld>().loaded)
@@ -861,6 +862,15 @@ public partial class Player3d : CharacterBody3D
 		// --- Gravity ---
 		if (!IsOnFloor()) { velocity += new Vector3(0f,-3.8f,0f) * (float)delta; } // Apply gravity if not on the floor
 		
+		// ---some bullshit---
+		if (_pullLocation != new Vector3(0, -67, 0))
+        {
+            Vector3 pullDir = (_pullLocation - GlobalPosition).Normalized();
+            velocity.X += pullDir.X * _pullSpeed;
+            velocity.Y += pullDir.Y * _pullSpeed;
+            velocity.Z += pullDir.Z * _pullSpeed;
+        }
+
 		// --- Apply movement ---
 		Velocity = velocity;
 		// Only call MoveAndSlide() if not paused by UI elements (Inventory, Controls, Dialogue)
@@ -914,9 +924,9 @@ public partial class Player3d : CharacterBody3D
 			}
 			
 			int tempcool = _comboNum;
-			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
-			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
-			if(_comboNum == 3){_damage += (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f;}
+			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));}
+			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing2.ogg"));}
+			if(_comboNum == 3){_damage += (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing3.ogg"));}
 			// Damage penalty if stamina is too low
 			if (_stamina <= 0.02f * _maxStamina)
 			{
@@ -966,12 +976,13 @@ public partial class Player3d : CharacterBody3D
 		{
 			Timer cooldown = _sword.GetNode<Timer>("sAttackCooldown");
 			_special_attack_available = false;
+			_can_block = false;
 			_comboNum = 4;
 			_swordInst.swingStat = _comboNum;
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/spaHitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = false;
 			
 			await ToSignal(GetTree().CreateTimer(0.4), "timeout");
-			
+			_can_block = true;
 			_sword.GetNode<Area3D>("weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/spaHitbox").GetNode<CollisionShape3D>("CollisionShape3D").Disabled = true;
 			
 			cooldown.Start();

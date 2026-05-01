@@ -24,6 +24,7 @@ material = SubResource("StandardMaterial3D_cvtri")
 flip_faces = true
 radius = 30.0
 height = 40.0
+rings = 16
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6jx2"]
 transparency = 1
@@ -36,6 +37,7 @@ material = SubResource("StandardMaterial3D_y6jx2")
 flip_faces = true
 radius = 40.0
 height = 50.0
+rings = 16
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s75qo"]
 transparency = 1
@@ -48,6 +50,7 @@ material = SubResource("StandardMaterial3D_s75qo")
 flip_faces = true
 radius = 70.0
 height = 60.0
+rings = 16
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wan02"]
 transparency = 1
@@ -60,6 +63,7 @@ material = SubResource("StandardMaterial3D_wan02")
 flip_faces = true
 radius = 80.0
 height = 70.0
+rings = 16
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wan02"]
 shader = ExtResource("8_y6jx2")
