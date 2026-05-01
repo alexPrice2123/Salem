@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://mtew7cicdsy5"]
+
+[ext_resource type="PackedScene" uid="uid://cvfij61c7seo5" path="res://Assets/3D/final_boss_arena_props/monolith3.blend" id="1_rxppt"]
+[ext_resource type="Texture2D" uid="uid://coul4f7ysml5c" path="res://Assets/proptextures/monolithboss/monolith3.png" id="2_iudef"]
+[ext_resource type="Texture2D" uid="uid://bu8bu68452kmc" path="res://Assets/proptextures/monolithboss/monolith3emiss.png" id="3_w3d2c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rxppt"]
+albedo_texture = ExtResource("2_iudef")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iudef"]
+albedo_texture = ExtResource("2_iudef")
+emission_enabled = true
+emission_energy_multiplier = 3.24
+emission_texture = ExtResource("3_w3d2c")
+texture_filter = 0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="monolith3" parent="." instance=ExtResource("1_rxppt")]
+
+[node name="Cube" parent="monolith3" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rxppt")
+
+[node name="Sphere" parent="monolith3" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_iudef")
+
+[node name="Sphere_001" parent="monolith3" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_iudef")
+
+[node name="lights" type="Node3D" parent="."]
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6066694, 2.742506, 0)
+light_color = Color(0.674821, 0.1303482, 0.99609375, 1)
+light_energy = 2.74
+light_size = 3.1
+light_specular = 0.717
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4212756, 2.742506, -4.810501)
+light_color = Color(0.674821, 0.1303482, 0.99609375, 1)
+light_energy = 2.74
+light_size = 3.1
+light_specular = 0.717
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4212756, 2.742506, 4.6935673)
+light_color = Color(0.674821, 0.1303482, 0.99609375, 1)
+light_energy = 2.74
+light_size = 3.1
+light_specular = 0.717
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8838453, 2.4620056, 0)
+light_color = Color(0.674821, 0.1303482, 0.99609375, 1)
+light_energy = 2.74
+light_size = 3.1
+light_specular = 0.717
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4212756, 20.466097, 3.4181614)
+light_color = Color(0.674821, 0.1303482, 0.99609375, 1)
+light_energy = 2.74
+light_size = 3.1
+light_specular = 0.717
+omni_range = 3.6808634
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4212756, 20.466097, -3.1630487)
+light_color = Color(0.674821, 0.1303482, 0.99609375, 1)
+light_energy = 2.74
+light_size = 3.1
+light_specular = 0.717
+omni_range = 3.6808634
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1135364, 20.466097, 0.011808872)
+light_color = Color(0.674821, 0.1303482, 0.99609375, 1)
+light_energy = 2.74
+light_size = 3.1
+light_specular = 0.717
+omni_range = 3.6808634
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6517339, 20.466097, 0.011808872)
+light_color = Color(0.674821, 0.1303482, 0.99609375, 1)
+light_energy = 2.74
+light_size = 3.1
+light_specular = 0.717
+omni_range = 3.6808634
+
+[editable path="monolith3"]

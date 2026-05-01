@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://6j1bue5xwc1d"
-path="res://.godot/imported/monolith2.blend-8cf52521c8e1c607b80460d827d4c363.scn"
+uid="uid://jnbusit2u74n"
+path="res://.godot/imported/kyronphase2.blend-0bdd8a49c383f7466076cd3939e99ee9.scn"
 
 [deps]
 
-source_file="res://Assets/3D/final_boss_arena_props/monolith2.blend"
-dest_files=["res://.godot/imported/monolith2.blend-8cf52521c8e1c607b80460d827d4c363.scn"]
+source_file="res://Assets/3D/buildings/kyronphase2.blend"
+dest_files=["res://.godot/imported/kyronphase2.blend-0bdd8a49c383f7466076cd3939e99ee9.scn"]
 
 [params]
 
@@ -37,15 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"materials": {
-"Material.001": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/3D/final_boss_arena_props/monolith2.tres",
-"use_external/path": "uid://s3qvo4p1n3sa"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
