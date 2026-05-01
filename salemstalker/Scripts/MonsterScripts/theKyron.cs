@@ -8,6 +8,7 @@ public partial class theKyron : Monster3d
 	private int _attackAnimSwitch = 1;
 	public Godot.Collections.Array<Node3D> _resinArray { get; set; } = [];
 	private PackedScene _darkOrb = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/bigOrb.tscn");
+	private PackedScene _pullOrb = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/pullOrb.tscn");
 	private int _resinCount = 0;
 	public MeshInstance3D _roots;
 	public float _currentDamage = 0;
@@ -208,7 +209,8 @@ public partial class theKyron : Monster3d
 				_moveCount = _rng.RandiRange(-50, 25);
 				ChooseAttack();
 			}
-		}if (_wanderCount == 100)
+		}
+		if (_wanderCount == 100)
         {
             RigidBody3D projectileInstance = _darkOrb.Instantiate<RigidBody3D>(); 
 			_player.GetParent().AddChild(projectileInstance);                                            
@@ -219,6 +221,20 @@ public partial class theKyron : Monster3d
 				ball._damageOrb = BaseDamage + _damageOffset;
 				ball.Shoot(10);
 			}
+        }
+		if (_wanderCount == 150)
+        {
+           RigidBody3D pullInstance = _pullOrb.Instantiate<RigidBody3D>(); 
+			_player.GetParent().AddChild(pullInstance);                                            
+			float randZ = _rng.RandiRange(-10, 10);
+			float randX = _rng.RandiRange(-10, 10);
+			Vector3 spawnPos = new Vector3(_player.GlobalPosition.X + (Mathf.Sign(randX)*10), 0f, _player.GlobalPosition.Z + (Mathf.Sign(randZ)*10));
+			pullInstance.GlobalPosition = spawnPos;
+
+			if (pullInstance is pullOrb pull)
+			{
+				pull._playerOrb = _player;
+			} 
         }
 		if (_wanderCount >= 200)
         {
