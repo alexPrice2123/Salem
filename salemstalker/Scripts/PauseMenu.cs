@@ -9,9 +9,6 @@ public partial class PauseMenu : Control
 	private Dictionary<int,DisplayServer.WindowMode> windowMode;
 	public override void _Ready()
 	{
-		windowMode.Add(0,DisplayServer.WindowMode.Windowed);
-		windowMode.Add(1,DisplayServer.WindowMode.Fullscreen);
-		windowMode.Add(2,DisplayServer.WindowMode.ExclusiveFullscreen);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
