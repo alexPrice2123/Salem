@@ -184,6 +184,7 @@ public partial class Player3d : CharacterBody3D
 		SwitchSecondaryWeapon((string)GetParent<NewWorld>().data["secEquipped2"],1);
 
 		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
+		GD.Print("sword, ",_sword);
 		if (GetNode<Node3D>("Head/Camera3D/Offhand1").GetChildCount() > 0){
 			_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
 		}
@@ -545,7 +546,7 @@ public partial class Player3d : CharacterBody3D
 	// Called every physics frame (usually 60 times per second). Used for movement and physics updates.
 	public override void _PhysicsProcess(double delta)
 	{
-		GD.Print(_swing_buffered);
+		IsInstanceValid(_sword); //DO NOT TOUCH THIS EVER IT WILL KILL EVERYTHING I DONT KNOW WHY
 		if (_dead == true){return;}
 		if (_inCutscene){return;}
 		var camRef = (Camera)_cam;
@@ -886,8 +887,8 @@ public partial class Player3d : CharacterBody3D
 	private async void Swing() // To be truthful idk what im doing rn im just breaking stuff and hoping it works
 	// it broke stuff
 	{
-		
-		Timer cooldown = _sword.GetNode<Timer>("Cooldown");
+		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0);
+		Timer cooldown = _sword.GetNode<Timer>("Cooldown"); //cant access _sword? 
 		Timer warmup = _sword.GetNode<Timer>("Warmup");
 		if(cooldown.TimeLeft < (float)_swordInst.GetMeta("swingSpeed") * 0.5 && _swing_buffered == 0)
 		{
@@ -924,9 +925,9 @@ public partial class Player3d : CharacterBody3D
 			}
 			
 			int tempcool = _comboNum;
-			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));}
-			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing2.ogg"));}
-			if(_comboNum == 3){_damage += (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing3.ogg"));}
+			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry1.ogg"));}
+			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry2.ogg"));}
+			if(_comboNum == 3){_damage += (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry3.ogg"));}
 			// Damage penalty if stamina is too low
 			if (_stamina <= 0.02f * _maxStamina)
 			{
@@ -972,6 +973,12 @@ public partial class Player3d : CharacterBody3D
 	}
 	private async void SpecialSwing()
 	{
+		while (_swing_buffered == 3)
+		{
+			Timer cooldown = _sword.GetNode<Timer>("Cooldown");
+			await ToSignal(cooldown,"timeout");
+			_swing_buffered = 0;
+		}
 		if (_special_attack_available == true)
 		{
 			Timer cooldown = _sword.GetNode<Timer>("sAttackCooldown");
@@ -1269,7 +1276,7 @@ public partial class Player3d : CharacterBody3D
 		_twoHand = twoHanded;
 		PackedScene weaponScene = _weapon[wepaonName]; // Get the scene resource from the dictionary
 		Node3D holder = GetNode<Marker3D>("Head/Camera3D/Sword");
-		holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
+		//holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
 		Node3D swordInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
 		holder.AddChild(swordInstance);                                             // Add new weapon to holder node
 		swordInstance.Position = Vector3.Zero;
