@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4841q4km5a4v"]
+[gd_scene format=3 uid="uid://b4841q4km5a4v"]
 
 [ext_resource type="Script" uid="uid://do03uv46usits" path="res://Scripts/MonsterScripts/MonsterAssetScripts/poisonBall.cs" id="1_uusnt"]
 
@@ -73,29 +73,29 @@ scale_min = 0.25
 scale_max = 0.25
 scale_curve = SubResource("CurveTexture_tk3a2")
 
-[node name="ResinBall" type="RigidBody3D"]
+[node name="ResinBall" type="RigidBody3D" unique_id=123434576]
 gravity_scale = 0.0
 script = ExtResource("1_uusnt")
 
-[node name="Attackbox" type="Area3D" parent="."]
+[node name="Attackbox" type="Area3D" parent="." unique_id=1825214537]
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Attackbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attackbox" unique_id=1949863254]
 shape = SubResource("SphereShape3D_lrgu6")
 
-[node name="ColBox" type="Area3D" parent="."]
+[node name="ColBox" type="Area3D" parent="." unique_id=81769884]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ColBox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColBox" unique_id=1064412423]
 shape = SubResource("SphereShape3D_cp2bc")
 
-[node name="Orb" type="MeshInstance3D" parent="."]
+[node name="Orb" type="MeshInstance3D" parent="." unique_id=429194502]
 transform = Transform3D(0.9999995, 0, 0, 0, 1.0000005, 0, 0, 0, 0.9999995, 0, 0, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_lrgu6")
 mesh = SubResource("SphereMesh_uusnt")
 skeleton = NodePath("../Magic")
 
-[node name="Magic" type="GPUParticles3D" parent="."]
+[node name="Magic" type="GPUParticles3D" parent="." unique_id=1225355676]
 transform = Transform3D(0.9999995, 9.895298e-10, -4.6566107e-10, 5.820769e-10, 1.0000006, 0, 0, 0, 0.9999995, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_lrgu6")
 amount = 250
@@ -104,7 +104,7 @@ trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_f6ei8")
 draw_pass_1 = SubResource("RibbonTrailMesh_me51d")
 
-[node name="Boom" type="GPUParticles3D" parent="."]
+[node name="Boom" type="GPUParticles3D" parent="." unique_id=1990151494]
 transform = Transform3D(0.9999995, 9.895298e-10, -4.6566107e-10, 5.820769e-10, 1.0000006, 0, 0, 0, 0.9999995, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_lrgu6")
 emitting = false
