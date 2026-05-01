@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bamsrvktk2lnv"
-path="res://.godot/imported/stone3.blend-80087cdf8ec5a24e74957c48ca881546.scn"
+uid="uid://jnbusit2u74n"
+path="res://.godot/imported/kyronphase2.blend-0bdd8a49c383f7466076cd3939e99ee9.scn"
 
 [deps]
 
-source_file="res://Assets/3D/props/stone3.blend"
-dest_files=["res://.godot/imported/stone3.blend-80087cdf8ec5a24e74957c48ca881546.scn"]
+source_file="res://Assets/3D/buildings/kyronphase2.blend"
+dest_files=["res://.godot/imported/kyronphase2.blend-0bdd8a49c383f7466076cd3939e99ee9.scn"]
 
 [params]
 
@@ -37,15 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"materials": {
-"rock": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/Materials/rocks/rock3.tres",
-"use_external/path": "uid://dy10rlc4jkfmk"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
