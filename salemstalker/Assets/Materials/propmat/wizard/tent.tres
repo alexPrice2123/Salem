@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://db5jrcki208eb" path="res://Assets/buildingtextures/wizard/tent_Base_color.png" id="1_nemw5"]
 
 [resource]
+cull_mode = 2
 albedo_texture = ExtResource("1_nemw5")
 texture_filter = 0
