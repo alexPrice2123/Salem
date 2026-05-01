@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dxk8w7gn2x7rr"
-path="res://.godot/imported/grass.blend-71c4921b66b6cbc515bc26684dd0870a.scn"
+uid="uid://dgyutf7n7p0gp"
+path="res://.godot/imported/flatOrb.blend-b963d82f028042fa8c0b08de643ad07b.scn"
 
 [deps]
 
-source_file="res://Assets/3D/plants/grass.blend"
-dest_files=["res://.godot/imported/grass.blend-71c4921b66b6cbc515bc26684dd0870a.scn"]
+source_file="res://Assets/3D/coderassets/flatOrb.blend"
+dest_files=["res://.godot/imported/flatOrb.blend-b963d82f028042fa8c0b08de643ad07b.scn"]
 
 [params]
 
@@ -37,15 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"materials": {
-"grasstexture": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/3D/plants/grass3d.tres",
-"use_external/path": "uid://dny46p0gel7dk"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
@@ -64,4 +56,4 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
-gltf/naming_version=0
+gltf/naming_version=2
