@@ -1,26 +1,7 @@
-[gd_scene load_steps=112 format=3 uid="uid://3v4hdgpge0v6"]
+[gd_scene load_steps=89 format=3 uid="uid://3v4hdgpge0v6"]
 
 [ext_resource type="Script" uid="uid://b1ax0drvppbgl" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_ckg03"]
 [ext_resource type="PackedScene" uid="uid://c1ixg535pupsm" path="res://Assets/Weapons/shortsword.blend" id="2_pkki5"]
-[ext_resource type="Texture2D" uid="uid://bokg4rsmfg6jt" path="res://Assets/weapontextures/shortsword/grip_Base_color.png" id="3_iloqm"]
-[ext_resource type="Texture2D" uid="uid://d27gyeeqsxm80" path="res://Assets/weapontextures/shortsword/grip_Height.png" id="4_4ujmf"]
-[ext_resource type="Texture2D" uid="uid://b0sftfsiv4lnu" path="res://Assets/weapontextures/shortsword/grip_Metallic.png" id="5_w4qeb"]
-[ext_resource type="Texture2D" uid="uid://dfi3x1jyse2j8" path="res://Assets/weapontextures/shortsword/grip_Normal_OpenGL.png" id="6_0gn6g"]
-[ext_resource type="Texture2D" uid="uid://crlev8tsdqbxn" path="res://Assets/weapontextures/shortsword/blade_Base_color.png" id="7_kwmjs"]
-[ext_resource type="Texture2D" uid="uid://dxukwfy2g1fwv" path="res://Assets/weapontextures/shortsword/blade_Height.png" id="8_mw22n"]
-[ext_resource type="Texture2D" uid="uid://c4wmiu2tqake7" path="res://Assets/weapontextures/shortsword/blade_Metallic.png" id="9_wvwlr"]
-[ext_resource type="Texture2D" uid="uid://dj5b3e7hqp3y1" path="res://Assets/weapontextures/shortsword/blade_Normal.png" id="10_jta0k"]
-[ext_resource type="Texture2D" uid="uid://dgf1eqb5hog5n" path="res://Assets/weapontextures/shortsword/blade_Roughness.png" id="11_x5r1y"]
-[ext_resource type="Texture2D" uid="uid://cp04ffa553uq0" path="res://Assets/weapontextures/shortsword/hilt_Base_color.png" id="12_floln"]
-[ext_resource type="Texture2D" uid="uid://2tc7t5knphte" path="res://Assets/weapontextures/shortsword/hilt_Height.png" id="13_pxq68"]
-[ext_resource type="Texture2D" uid="uid://upd41o1d0iu3" path="res://Assets/weapontextures/shortsword/hilt_Metallic.png" id="14_u8y7o"]
-[ext_resource type="Texture2D" uid="uid://btrwxmcej16k1" path="res://Assets/weapontextures/shortsword/hilt_Normal.png" id="15_2opq7"]
-[ext_resource type="Texture2D" uid="uid://bx2fugp7sieeo" path="res://Assets/weapontextures/shortsword/hilt_Roughness.png" id="16_34yv5"]
-[ext_resource type="Texture2D" uid="uid://bne57unirf833" path="res://Assets/weapontextures/shortsword/pommel_Base_color.png" id="17_qpqbi"]
-[ext_resource type="Texture2D" uid="uid://bsqynx3y8b0y8" path="res://Assets/weapontextures/shortsword/pommel_Height.png" id="18_3jmbr"]
-[ext_resource type="Texture2D" uid="uid://ccf58htao85c0" path="res://Assets/weapontextures/shortsword/pommel_Metallic.png" id="19_vooft"]
-[ext_resource type="Texture2D" uid="uid://dtlhjroxfkqou" path="res://Assets/weapontextures/shortsword/pommel_Normal.png" id="20_18nq6"]
-[ext_resource type="Texture2D" uid="uid://duf0m6xtj2nor" path="res://Assets/weapontextures/shortsword/pommel_Roughness.png" id="21_duntr"]
 [ext_resource type="PackedScene" uid="uid://qcibdbx6jfkp" path="res://Assets/3D/charatermodel/maincharacterblank.blend" id="22_4ujmf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvryv"]
@@ -93,46 +74,6 @@ scale_curve = SubResource("CurveTexture_wvwlr")
 
 [sub_resource type="BoxMesh" id="BoxMesh_0eq1u"]
 size = Vector3(0.1, 0.1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pnml"]
-albedo_texture = ExtResource("3_iloqm")
-metallic_texture = ExtResource("5_w4qeb")
-normal_enabled = true
-normal_texture = ExtResource("6_0gn6g")
-heightmap_enabled = true
-heightmap_scale = 1.0
-heightmap_texture = ExtResource("4_4ujmf")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlhnf"]
-albedo_texture = ExtResource("7_kwmjs")
-metallic = 1.0
-metallic_texture = ExtResource("9_wvwlr")
-roughness_texture = ExtResource("11_x5r1y")
-normal_enabled = true
-normal_texture = ExtResource("10_jta0k")
-heightmap_enabled = true
-heightmap_texture = ExtResource("8_mw22n")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oettj"]
-albedo_texture = ExtResource("12_floln")
-metallic = 1.0
-metallic_texture = ExtResource("14_u8y7o")
-roughness_texture = ExtResource("16_34yv5")
-normal_enabled = true
-normal_texture = ExtResource("15_2opq7")
-heightmap_enabled = true
-heightmap_texture = ExtResource("13_pxq68")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkca1"]
-albedo_color = Color(0.683077, 0.683077, 0.683077, 1)
-albedo_texture = ExtResource("17_qpqbi")
-metallic = 1.0
-metallic_texture = ExtResource("19_vooft")
-roughness_texture = ExtResource("21_duntr")
-normal_enabled = true
-normal_texture = ExtResource("20_18nq6")
-heightmap_enabled = true
-heightmap_texture = ExtResource("18_3jmbr")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
 size = Vector3(0.21177, 1.52848, 0.321355)
@@ -565,8 +506,8 @@ transform = Transform3D(2.01, 0, 2.2737368e-12, 0, 2.01, 0, -2.2737368e-12, 0, 2
 bones/0/position = Vector3(-3.5527124e-15, 0.9426751, -0.06494778)
 bones/8/rotation = Quaternion(-0.28827924, 0.63253677, -0.5684554, 0.44005772)
 bones/9/rotation = Quaternion(0.5499285, 0.0012709559, -0.13263234, 0.82461244)
-bones/18/rotation = Quaternion(-0.15691055, -0.5133953, 0.6947879, 0.4786169)
-bones/19/rotation = Quaternion(0.5856633, -0.03542487, 0.03419729, 0.80905753)
+bones/18/rotation = Quaternion(-0.15685362, -0.51351684, 0.6948465, 0.47842008)
+bones/19/rotation = Quaternion(0.59024125, -0.0354887, 0.03224237, 0.8058017)
 bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
 bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
 bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
@@ -579,7 +520,7 @@ bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.49931973, -0.017723836, 0.86623627, -0.01026389, 0.99984175, 0.014541, -0.8663566, -0.0016302541, -0.49942234, -0.18905313, 1.4031869, 0.41957575)
+transform = Transform3D(-0.49972042, -0.015599884, 0.8660462, -0.019125998, 0.999793, 0.006972853, -0.8659752, -0.013079464, -0.49991488, -0.18869945, 1.4068315, 0.41869554)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -587,14 +528,6 @@ layers = 0
 
 [node name="shortsword" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder" index="0" instance=ExtResource("2_pkki5")]
 transform = Transform3D(0.478, 1.4316737e-08, 6.263575e-08, -1.43167425e-08, 0.478, 3.5791846e-08, -6.263575e-08, -3.579185e-08, 0.478, 0.00066670775, -0.14706719, -0.003644213)
-
-[node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/shortsword" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_5pnml")
-
-[node name="Sphere_001" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/shortsword" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_tlhnf")
-surface_material_override/1 = SubResource("StandardMaterial3D_oettj")
-surface_material_override/2 = SubResource("StandardMaterial3D_mkca1")
 
 [node name="Hitbox" type="Area3D" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder" index="1" groups=["Player", "Weapon"]]
 transform = Transform3D(-0.26141012, 0.025851231, -0.42251053, 0.0221753, 0.49673802, 0.016672766, 0.42271897, -0.010071728, -0.26215586, 0.019383274, 0.4390214, -0.0037168786)
