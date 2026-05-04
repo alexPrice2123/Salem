@@ -1,4 +1,4 @@
-[gd_scene load_steps=810 format=4 uid="uid://cwmdm3ip8x72g"]
+[gd_scene load_steps=813 format=4 uid="uid://cwmdm3ip8x72g"]
 
 [ext_resource type="Texture2D" uid="uid://bvetwdh4pb7vn" path="res://Assets/2D/Grass.png" id="1_8ec3b"]
 [ext_resource type="Script" uid="uid://bp2gqxihfqjlx" path="res://Scenes/NewWorld.cs" id="1_t4suo"]
@@ -95,6 +95,9 @@
 [ext_resource type="PackedScene" uid="uid://cfsanlfdnp2rb" path="res://Assets/3D/props/stone4.blend" id="89_y6usg"]
 [ext_resource type="PackedScene" uid="uid://dntsp8g7dgaeq" path="res://Assets/3D/buildings/roadlamp.blend" id="90_vf8ix"]
 [ext_resource type="Script" uid="uid://r7alps3n3v1h" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="95_6e3oy"]
+[ext_resource type="PackedScene" uid="uid://clx8vid1jalmm" path="res://Assets/3D/final_boss_arena_props/monolith1.blend" id="96_xgcoe"]
+[ext_resource type="PackedScene" uid="uid://6j1bue5xwc1d" path="res://Assets/3D/final_boss_arena_props/monolith2.blend" id="97_fx00c"]
+[ext_resource type="PackedScene" uid="uid://mtew7cicdsy5" path="res://Assets/3D/final_boss_arena_props/monolith3.tscn" id="98_xgcoe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_51fmf"]
 
@@ -3438,25 +3441,25 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="MonsterHolder/Hold2/Hold/theCoiledOne/Body/Armature" index="0"]
-bones/3/rotation = Quaternion(0.13135125, -0.0045255115, -0.00038392827, 0.99132556)
-bones/6/rotation = Quaternion(0.61508274, -0.39629674, -0.068619736, 0.6781693)
-bones/7/rotation = Quaternion(0.45713228, 0.07711275, 0.3372839, 0.81934327)
-bones/9/rotation = Quaternion(0.043959808, 0.027753346, 0.07725228, 0.9956553)
-bones/10/rotation = Quaternion(-0.24973403, 0.05738614, 0.08319435, 0.9630257)
-bones/11/rotation = Quaternion(-0.6073655, 0.08582298, -0.16101353, 0.7731858)
-bones/13/rotation = Quaternion(0.43865398, -0.10875784, -0.14650117, 0.87993854)
-bones/14/rotation = Quaternion(-0.43341768, -0.00271267, -0.0034808218, 0.9011825)
-bones/16/rotation = Quaternion(0.72126603, 0.35339996, 0.06880856, 0.59173405)
-bones/17/rotation = Quaternion(0.32403144, -0.08076014, -0.28846577, 0.89736784)
+bones/3/rotation = Quaternion(0.12723398, -0.0044802157, -0.0005001985, 0.9918625)
+bones/6/rotation = Quaternion(0.6157661, -0.39350837, -0.06987331, 0.6790442)
+bones/7/rotation = Quaternion(0.45399857, 0.07736337, 0.33497185, 0.82200617)
+bones/9/rotation = Quaternion(0.04395596, 0.0029865298, 0.043202735, 0.9980945)
+bones/10/rotation = Quaternion(-0.24910764, 0.06481552, 0.10005746, 0.9611103)
+bones/11/rotation = Quaternion(-0.6103861, 0.07294426, -0.13774051, 0.77661794)
+bones/13/rotation = Quaternion(0.44046223, -0.0932408, -0.12489757, 0.88413787)
+bones/14/rotation = Quaternion(-0.43015164, -0.0027183979, -0.0034479636, 0.902746)
+bones/16/rotation = Quaternion(0.721833, 0.35160732, 0.069500886, 0.59202975)
+bones/17/rotation = Quaternion(0.31944865, -0.08102264, -0.28438604, 0.90028477)
 
 [node name="Bone_007_l" parent="MonsterHolder/Hold2/Hold/theCoiledOne/Body/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.28797346, -0.046212554, -0.9565228, -0.82300925, -0.498739, 0.27187306, -0.48961926, 0.86551934, 0.105590194, 2.9988132, 2.8470879, 2.8738885)
+transform = Transform3D(-0.2899331, -0.042750537, -0.95609164, -0.8202432, -0.5036086, 0.27125555, -0.4930923, 0.86287355, 0.110946774, 2.989284, 2.8600738, 2.8807204)
 
 [node name="Bone_012" parent="MonsterHolder/Hold2/Hold/theCoiledOne/Body/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.99990946, -0.011722195, 0.0066119866, 0.0029640542, -0.28741634, -0.95780075, 0.013127992, 0.95773375, -0.2873555, -0.48669395, 4.2447677, 5.7672343)
+transform = Transform3D(0.99980414, -0.018381396, 0.00732419, 0.0018964657, -0.27943188, -0.9601634, 0.019695759, 0.95998937, -0.27934217, -0.36862618, 4.2810516, 5.80624)
 
 [node name="Bone_007_r" parent="MonsterHolder/Hold2/Hold/theCoiledOne/Body/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.39721632, -0.05207777, 0.91624653, 0.70721525, -0.653641, 0.2694441, 0.58486384, 0.75501096, 0.296467, -2.243277, 3.0228033, 3.0681374)
+transform = Transform3D(-0.3990862, -0.054891348, 0.915269, 0.7027221, -0.65952206, 0.2668556, 0.58899194, 0.74967825, 0.30177945, -2.2357793, 3.0388, 3.0827024)
 
 [node name="Range" parent="MonsterHolder/Hold2/Hold/theCoiledOne" index="16"]
 transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, 0.4967637, 22.79744)
@@ -4535,13 +4538,13 @@ visible = false
 
 [node name="Skeleton3D" parent="Player_3d/Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
 bones/9/rotation = Quaternion(0.5499285, 0.0012709559, -0.13263234, 0.82461244)
-bones/18/rotation = Quaternion(-0.15570241, -0.5159622, 0.6960207, 0.47444195)
-bones/19/rotation = Quaternion(0.59159297, -0.035507374, 0.03166325, 0.804832)
+bones/18/rotation = Quaternion(-0.15509619, -0.51724154, 0.6966307, 0.47234747)
+bones/19/rotation = Quaternion(0.6067103, -0.035710227, 0.025124757, 0.793723)
 bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
 bones/25/rotation = Quaternion(0.367195, 0.110883325, 0.45397994, 0.80422324)
 
 [node name="Cylinder" parent="Player_3d/Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5071494, -0.015914053, 0.8617111, -0.018055856, 0.9998064, 0.00783775, -0.8616686, -0.011583924, -0.5073381, -0.1847004, 1.4057865, 0.41779318)
+transform = Transform3D(-0.5112429, -0.009680703, 0.8593817, -0.046298996, 0.998795, -0.016291935, -0.858188, -0.04811751, -0.5110747, -0.18209213, 1.417122, 0.4143283)
 
 [node name="Dither" parent="Player_3d" index="10"]
 offset_left = 0.0
@@ -4584,14 +4587,14 @@ QuestTitle = "Find Mary's lost cats in the woods near Brittlebay village "
 QuestGoal = "0/4"
 
 [node name="Skeleton3D" parent="Brittlebay Village/Villagers/Mary/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.993109, -0.055199992)
-bones/2/rotation = Quaternion(-0.06277098, 0, 0, 0.998028)
-bones/5/rotation = Quaternion(-0.084378116, 0.0071658916, 0.021776294, 0.99617016)
+bones/0/position = Vector3(0, 0.9860078, -0.055199996)
+bones/2/rotation = Quaternion(0.003918849, 0, 0, 0.9999924)
+bones/5/rotation = Quaternion(-0.14189377, 0.0061710034, 0.02174466, 0.9896239)
 bones/6/rotation = Quaternion(-0.13483036, -0.0024250487, 0.00017777742, 0.9908657)
-bones/25/rotation = Quaternion(0.97439617, 0.015955545, -0.009101017, 0.2240864)
-bones/26/rotation = Quaternion(0.20131238, 0.0015760553, 0.016137768, 0.97939295)
-bones/34/rotation = Quaternion(0.97439617, -0.015955545, 0.009100975, 0.22408639)
-bones/35/rotation = Quaternion(0.20127746, -0.0015760668, -0.016134968, 0.9794001)
+bones/25/rotation = Quaternion(0.97054946, 0.017425256, -0.00926078, 0.24009244)
+bones/26/rotation = Quaternion(0.23357733, 0.001564412, 0.018724216, 0.97215676)
+bones/34/rotation = Quaternion(0.97054946, -0.017425256, 0.0092607355, 0.24009244)
+bones/35/rotation = Quaternion(0.23357733, -0.0015644118, -0.018724214, 0.97215676)
 
 [node name="Cube" parent="Brittlebay Village/Villagers/Mary/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_xwuis")
@@ -4614,14 +4617,14 @@ QuestTitle = "Gather firewood around Brittlebay's woods for Elizabeth"
 QuestGoal = "0/15"
 
 [node name="Skeleton3D" parent="Brittlebay Village/Villagers/Elizabeth/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.993109, -0.055199992)
-bones/2/rotation = Quaternion(-0.06277098, 0, 0, 0.998028)
-bones/5/rotation = Quaternion(-0.084378116, 0.0071658916, 0.021776294, 0.99617016)
+bones/0/position = Vector3(0, 0.9860078, -0.055199996)
+bones/2/rotation = Quaternion(0.003918849, 0, 0, 0.9999924)
+bones/5/rotation = Quaternion(-0.14189377, 0.0061710034, 0.02174466, 0.9896239)
 bones/6/rotation = Quaternion(-0.13483036, -0.0024250487, 0.00017777742, 0.9908657)
-bones/25/rotation = Quaternion(0.97439617, 0.015955545, -0.009101017, 0.2240864)
-bones/26/rotation = Quaternion(0.20131238, 0.0015760553, 0.016137768, 0.97939295)
-bones/34/rotation = Quaternion(0.97439617, -0.015955545, 0.009100975, 0.22408639)
-bones/35/rotation = Quaternion(0.20127746, -0.0015760668, -0.016134968, 0.9794001)
+bones/25/rotation = Quaternion(0.97054946, 0.017425256, -0.00926078, 0.24009244)
+bones/26/rotation = Quaternion(0.23357733, 0.001564412, 0.018724216, 0.97215676)
+bones/34/rotation = Quaternion(0.97054946, -0.017425256, 0.0092607355, 0.24009244)
+bones/35/rotation = Quaternion(0.23357733, -0.0015644118, -0.018724214, 0.97215676)
 
 [node name="Cube" parent="Brittlebay Village/Villagers/Elizabeth/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_cr15g")
@@ -4649,14 +4652,14 @@ QuestGoal = "0/5"
 _questComplete = true
 
 [node name="Skeleton3D" parent="Brittlebay Village/Villagers/Dillon/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.993109, -0.055199992)
-bones/2/rotation = Quaternion(-0.06277098, 0, 0, 0.998028)
-bones/5/rotation = Quaternion(-0.084378116, 0.0071658916, 0.021776294, 0.99617016)
+bones/0/position = Vector3(0, 0.9860078, -0.055199996)
+bones/2/rotation = Quaternion(0.003918849, 0, 0, 0.9999924)
+bones/5/rotation = Quaternion(-0.14189377, 0.0061710034, 0.02174466, 0.9896239)
 bones/6/rotation = Quaternion(-0.13483036, -0.0024250487, 0.00017777742, 0.9908657)
-bones/25/rotation = Quaternion(0.97439617, 0.015955545, -0.009101017, 0.2240864)
-bones/26/rotation = Quaternion(0.20131238, 0.0015760553, 0.016137768, 0.97939295)
-bones/34/rotation = Quaternion(0.97439617, -0.015955545, 0.009100975, 0.22408639)
-bones/35/rotation = Quaternion(0.20127746, -0.0015760668, -0.016134968, 0.9794001)
+bones/25/rotation = Quaternion(0.97054946, 0.017425256, -0.00926078, 0.24009244)
+bones/26/rotation = Quaternion(0.23357733, 0.001564412, 0.018724216, 0.97215676)
+bones/34/rotation = Quaternion(0.97054946, -0.017425256, 0.0092607355, 0.24009244)
+bones/35/rotation = Quaternion(0.23357733, -0.0015644118, -0.018724214, 0.97215676)
 
 [node name="Range" parent="Brittlebay Village/Villagers/Dillon" index="6"]
 radius = 12.0
@@ -4676,14 +4679,14 @@ QuestTitle = "Destroy the Cultist's shrines found around Brittlebay village"
 QuestGoal = "0/3"
 
 [node name="Skeleton3D" parent="Brittlebay Village/Villagers/Lukas/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.993109, -0.055199992)
-bones/2/rotation = Quaternion(-0.06277098, 0, 0, 0.998028)
-bones/5/rotation = Quaternion(-0.084378116, 0.0071658916, 0.021776294, 0.99617016)
+bones/0/position = Vector3(0, 0.9860078, -0.055199996)
+bones/2/rotation = Quaternion(0.003918849, 0, 0, 0.9999924)
+bones/5/rotation = Quaternion(-0.14189377, 0.0061710034, 0.02174466, 0.9896239)
 bones/6/rotation = Quaternion(-0.13483036, -0.0024250487, 0.00017777742, 0.9908657)
-bones/25/rotation = Quaternion(0.97439617, 0.015955545, -0.009101017, 0.2240864)
-bones/26/rotation = Quaternion(0.20131238, 0.0015760553, 0.016137768, 0.97939295)
-bones/34/rotation = Quaternion(0.97439617, -0.015955545, 0.009100975, 0.22408639)
-bones/35/rotation = Quaternion(0.20127746, -0.0015760668, -0.016134968, 0.9794001)
+bones/25/rotation = Quaternion(0.97054946, 0.017425256, -0.00926078, 0.24009244)
+bones/26/rotation = Quaternion(0.23357733, 0.001564412, 0.018724216, 0.97215676)
+bones/34/rotation = Quaternion(0.97054946, -0.017425256, 0.0092607355, 0.24009244)
+bones/35/rotation = Quaternion(0.23357733, -0.0015644118, -0.018724214, 0.97215676)
 
 [node name="Cube" parent="Brittlebay Village/Villagers/Lukas/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_m8p58")
@@ -4724,14 +4727,14 @@ QuestTitle = "Kill creatures that reside in the forest to avenge Martha's family
 QuestGoal = "Forest: 0/5"
 
 [node name="Skeleton3D" parent="Brittlebay Village/Villagers/Martha/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.993109, -0.055199992)
-bones/2/rotation = Quaternion(-0.06277098, 0, 0, 0.998028)
-bones/5/rotation = Quaternion(-0.084378116, 0.0071658916, 0.021776294, 0.99617016)
+bones/0/position = Vector3(0, 0.9860078, -0.055199996)
+bones/2/rotation = Quaternion(0.003918849, 0, 0, 0.9999924)
+bones/5/rotation = Quaternion(-0.14189377, 0.0061710034, 0.02174466, 0.9896239)
 bones/6/rotation = Quaternion(-0.13483036, -0.0024250487, 0.00017777742, 0.9908657)
-bones/25/rotation = Quaternion(0.97439617, 0.015955545, -0.009101017, 0.2240864)
-bones/26/rotation = Quaternion(0.20131238, 0.0015760553, 0.016137768, 0.97939295)
-bones/34/rotation = Quaternion(0.97439617, -0.015955545, 0.009100975, 0.22408639)
-bones/35/rotation = Quaternion(0.20127746, -0.0015760668, -0.016134968, 0.9794001)
+bones/25/rotation = Quaternion(0.97054946, 0.017425256, -0.00926078, 0.24009244)
+bones/26/rotation = Quaternion(0.23357733, 0.001564412, 0.018724216, 0.97215676)
+bones/34/rotation = Quaternion(0.97054946, -0.017425256, 0.0092607355, 0.24009244)
+bones/35/rotation = Quaternion(0.23357733, -0.0015644118, -0.018724214, 0.97215676)
 
 [node name="Cube" parent="Brittlebay Village/Villagers/Martha/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_4llmb")
@@ -4767,14 +4770,14 @@ IgnoredDialogue = Array[String]([])
 WaitingDialogue = "Please help out the townsfolk. We need your help."
 
 [node name="Skeleton3D" parent="Brittlebay Village/Villagers/Matthew/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.993109, -0.055199992)
-bones/2/rotation = Quaternion(-0.06277098, 0, 0, 0.998028)
-bones/5/rotation = Quaternion(-0.084378116, 0.0071658916, 0.021776294, 0.99617016)
+bones/0/position = Vector3(0, 0.9860078, -0.055199996)
+bones/2/rotation = Quaternion(0.003918849, 0, 0, 0.9999924)
+bones/5/rotation = Quaternion(-0.14189377, 0.0061710034, 0.02174466, 0.9896239)
 bones/6/rotation = Quaternion(-0.13483036, -0.0024250487, 0.00017777742, 0.9908657)
-bones/25/rotation = Quaternion(0.97439617, 0.015955545, -0.009101017, 0.2240864)
-bones/26/rotation = Quaternion(0.20131238, 0.0015760553, 0.016137768, 0.97939295)
-bones/34/rotation = Quaternion(0.97439617, -0.015955545, 0.009100975, 0.22408639)
-bones/35/rotation = Quaternion(0.20127746, -0.0015760668, -0.016134968, 0.9794001)
+bones/25/rotation = Quaternion(0.97054946, 0.017425256, -0.00926078, 0.24009244)
+bones/26/rotation = Quaternion(0.23357733, 0.001564412, 0.018724216, 0.97215676)
+bones/34/rotation = Quaternion(0.97054946, -0.017425256, 0.0092607355, 0.24009244)
+bones/35/rotation = Quaternion(0.23357733, -0.0015644118, -0.018724214, 0.97215676)
 
 [node name="Cube" parent="Brittlebay Village/Villagers/Matthew/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_hmegu")
@@ -5880,14 +5883,14 @@ IgnoredDialogue = Array[String](["Well good thing you remember, we've got a lot 
 WaitingDialogue = "Check up on that village down the road. I'll get our supplies."
 
 [node name="Skeleton3D" parent="Overgrown Dimwood Village/Tutorial/Richard/villagerblank/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.993109, -0.055199992)
-bones/2/rotation = Quaternion(-0.06277098, 0, 0, 0.998028)
-bones/5/rotation = Quaternion(-0.084378116, 0.0071658916, 0.021776294, 0.99617016)
+bones/0/position = Vector3(0, 0.9860078, -0.055199996)
+bones/2/rotation = Quaternion(0.003918849, 0, 0, 0.9999924)
+bones/5/rotation = Quaternion(-0.14189377, 0.0061710034, 0.02174466, 0.9896239)
 bones/6/rotation = Quaternion(-0.13483036, -0.0024250487, 0.00017777742, 0.9908657)
-bones/25/rotation = Quaternion(0.97439617, 0.015955545, -0.009101017, 0.2240864)
-bones/26/rotation = Quaternion(0.20131238, 0.0015760553, 0.016137768, 0.97939295)
-bones/34/rotation = Quaternion(0.97439617, -0.015955545, 0.009100975, 0.22408639)
-bones/35/rotation = Quaternion(0.20127746, -0.0015760668, -0.016134968, 0.9794001)
+bones/25/rotation = Quaternion(0.97054946, 0.017425256, -0.00926078, 0.24009244)
+bones/26/rotation = Quaternion(0.23357733, 0.001564412, 0.018724216, 0.97215676)
+bones/34/rotation = Quaternion(0.97054946, -0.017425256, 0.0092607355, 0.24009244)
+bones/35/rotation = Quaternion(0.23357733, -0.0015644118, -0.018724214, 0.97215676)
 
 [node name="Cube" parent="Overgrown Dimwood Village/Tutorial/Richard/villagerblank/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ci5q8")
@@ -10346,6 +10349,12 @@ script = ExtResource("75_1h2yc")
 negative = true
 shape = SubResource("Resource_efnw1")
 
+[node name="ScatterCache" type="Node3D" parent="."]
+script = ExtResource("95_6e3oy")
+cache_file = "res://addons/proton_scatter/cache/super_new_world_848779932_scatter_cache.res"
+auto_rebuild_cache_when_saving = false
+metadata/_custom_type_script = "uid://r7alps3n3v1h"
+
 [node name="Plains Trees" type="Node3D" parent="." groups=["Terrain"]]
 
 [node name="North Plains" type="Node3D" parent="Plains Trees"]
@@ -10578,11 +10587,143 @@ transform = Transform3D(0.96717465, 0, -0.25411284, 0, 1, 0, 0.25411284, 0, 0.96
 [node name="roadlamp15" parent="World Roadlamps" instance=ExtResource("90_vf8ix")]
 transform = Transform3D(-0.34503645, 0, -0.9385893, 0, 1, 0, 0.9385893, 0, -0.34503645, 360.23434, 1.7329459, 151.95032)
 
-[node name="ScatterCache" type="Node3D" parent="."]
-script = ExtResource("95_6e3oy")
-cache_file = "res://addons/proton_scatter/cache/super_new_world_848779932_scatter_cache.res"
-auto_rebuild_cache_when_saving = false
-metadata/_custom_type_script = "uid://r7alps3n3v1h"
+[node name="Final Boss Arena Props" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -364.53082, 0, -133.98615)
+
+[node name="Broken Monoliths" type="Node3D" parent="Final Boss Arena Props"]
+
+[node name="monolith1" parent="Final Boss Arena Props/Broken Monoliths" instance=ExtResource("96_xgcoe")]
+transform = Transform3D(-3.646588e-08, -0.83424205, -0.5513984, 1, -4.371139e-08, 0, -2.4102388e-08, -0.5513984, 0.83424205, -21.592987, 0.8870907, 30.168)
+
+[node name="monolith2" parent="Final Boss Arena Props/Broken Monoliths" instance=ExtResource("96_xgcoe")]
+transform = Transform3D(0.85383564, -0.122683875, -0.5058787, 0.124654874, 0.9917429, -0.03011804, 0.5053966, -0.037344385, 0.8620786, -34.920013, 2.1051702, -4.5249023)
+
+[node name="monolith3" parent="Final Boss Arena Props/Broken Monoliths" instance=ExtResource("96_xgcoe")]
+transform = Transform3D(0.35141367, 0.7071068, 0.6136029, 0.8677655, -3.7931237e-08, -0.49697396, -0.3514136, 0.7071068, -0.6136029, 36.211304, 0.5588119, -18.307617)
+
+[node name="monolith4" parent="Final Boss Arena Props/Broken Monoliths" instance=ExtResource("96_xgcoe")]
+transform = Transform3D(0.99657995, 0, -0.08263437, 0, 1, 0, 0.08263437, 0, 0.99657995, -9.012787, 4, -35.694016)
+
+[node name="monolith5" parent="Final Boss Arena Props/Broken Monoliths" instance=ExtResource("96_xgcoe")]
+transform = Transform3D(0.9088306, -0.111122034, 0.4020931, 0.101620466, 0.9938068, 0.04495985, -0.4045989, 0, 0.9144943, 23.350311, 0.9337723, 27.981491)
+
+[node name="Normal Monolith" type="Node3D" parent="Final Boss Arena Props"]
+
+[node name="monolith1" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(0.8784838, 0, -0.4777722, 0, 1, 0, 0.4777722, 0, 0.8784838, -28.483154, 0.9, 46.209442)
+
+[node name="monolith2" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(0.75150585, 0, -0.6597263, -0.018581778, 0.9996033, -0.02116683, 0.6594646, 0.028165888, 0.7512077, -39.09607, 0.14711654, 38.31945)
+
+[node name="monolith3" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(0.42932922, 0, -0.90314806, 0, 1, 0, 0.90314806, 0, 0.42932922, -50.46414, 0.9, 20.10894)
+
+[node name="monolith4" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(0.21903805, 0.07198487, -0.9730574, -0.015808439, 0.9974057, 0.0702276, 0.9755883, 0, 0.21960779, -54.404877, 0.6646961, 7.4852676)
+
+[node name="monolith5" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.16756037, 0, -0.9858619, 0, 1, 0, 0.9858619, 0, -0.16756037, -53.72281, 0.9, -14.984665)
+
+[node name="monolith6" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.3808284, 0, -0.9246458, 0.04620031, 0.9987509, -0.01902825, 0.9234908, -0.049965415, -0.38035274, -49.688507, 0.044516444, -27.575089)
+
+[node name="monolith7" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.7052743, -0.038945895, -0.7078639, -0.027488394, 0.9992413, -0.027589325, 0.7084014, 0, -0.7058098, -38.93152, 0.62384593, -42.50006)
+
+[node name="monolith8" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.84464586, 0, -0.5353257, 0, 1, 0, 0.5353257, 0, -0.84464586, -28.372314, 0.9, -50.461853)
+
+[node name="monolith9" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.587327, 0.11110469, 0.8016877, 0.06566131, 0.9938087, -0.08962616, -0.8066821, 0, -0.59098595, 50.205933, -0.114576936, -35.639877)
+
+[node name="monolith10" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.3981476, -0.04531068, 0.9162017, -0.018058887, 0.99897295, 0.041556403, -0.91714364, 0, -0.39855695, 56.442657, 0.59955347, -23.978455)
+
+[node name="monolith11" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.14007169, 0, 0.99014145, 0, 1, 0, -0.99014145, 0, -0.14007169, 59.17993, 0.9, -3.2813568)
+
+[node name="monolith12" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(0.08171248, 0, 0.99665594, 0.10414432, 0.99452555, -0.008538444, -0.9911998, 0.10449375, 0.081265144, 59.17154, 0.4357599, 9.943108)
+
+[node name="monolith13" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(0.6315018, 0, 0.7753745, 0, 1, 0, -0.7753745, 0, 0.6315018, 49.657166, 0.9, 32.205154)
+
+[node name="monolith14" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(0.78693503, 0, 0.6170358, 0, 1, 0, -0.6170358, 0, 0.78693503, 39.946228, 0.9, 41.182083)
+
+[node name="monolith15" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(0.94031197, 0, 0.34031388, 0, 1, 0, -0.34031388, 0, 0.94031197, 16.673157, 0.9, 52.93003)
+
+[node name="monolith16" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(0.99002135, 0.06636098, 0.12431394, -0.08455864, 0.98546207, 0.14735784, -0.112727866, -0.15639924, 0.98123986, 3.7285156, 0.2175945, 55.63614)
+
+[node name="monolith17" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.9609804, -0.038270604, 0.2739562, -0.062380046, 0.99485403, -0.079838805, -0.26949096, -0.09381292, -0.95842254, 23.204224, 0.1993283, -54.789047)
+
+[node name="monolith18" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.87928265, 0, 0.4762996, 0, 1, 0, -0.4762996, 0, -0.87928265, 35.30478, 0.9, -49.45392)
+
+[node name="monolith19" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.97883177, 0, -0.2046666, 0, 1, 0, 0.2046666, 0, -0.97883177, -10.533264, 0.9, -57.20987)
+
+[node name="monolith20" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.99966466, -0.020261692, 0.016120825, -0.020187642, 0.99978507, 0.0047427, -0.016213452, 0.004415668, -0.99985874, 2.6632996, -0.038107514, -58.06839)
+
+[node name="monolith21" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.91457176, 0, 0.40442374, 0, 1, 0, -0.40442374, 0, -0.91457176, 27.014862, 0.9, 26.588913)
+
+[node name="monolith22" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(-0.4640534, 0, 0.88580716, 0, 1, 0, -0.88580716, 0, -0.4640534, 38.650574, 0.9, -22.193893)
+
+[node name="monolith23" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(0.24505398, 0, 0.9695095, 0, 1, 0, -0.9695095, 0, 0.24505398, -30.088196, 0.9, -24.400314)
+
+[node name="monolith24" parent="Final Boss Arena Props/Normal Monolith" instance=ExtResource("97_fx00c")]
+transform = Transform3D(0.24287008, -0.13320781, 0.9608693, 0.03264311, 0.99108815, 0.12914625, -0.9695094, 0, 0.24505396, -27.376343, -0.69035876, 22.898582)
+
+[node name="Purple Glow Monolith" type="Node3D" parent="Final Boss Arena Props"]
+
+[node name="monolith1" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(0.94011885, -0.051063567, -0.33700016, 0.06597812, 0.997277, 0.03294581, 0.3344002, -0.053207625, 0.94092804, -18.247894, -1.430646, 50.645218)
+
+[node name="monolith2" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(0.94055516, 0, -0.33964095, 0, 1, 0, 0.33964095, 0, 0.94055516, -7.8, -0.1, 54.909)
+
+[node name="monolith3" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(0.60633546, 0, -0.79520905, 0, 1, 0, 0.79520905, 0, 0.60633546, -45.796, -0.1, 30.293)
+
+[node name="monolith4" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(-0.0071732407, 1.4549429e-11, -0.99997437, -0.035439298, 0.99937177, 0.00025422114, 0.999346, 0.03544021, -0.0071687335, -54.639893, -1.0492349, -3.8256378)
+
+[node name="monolith5" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(-0.5718452, 0, -0.8203615, 0, 1, 0, 0.8203615, 0, -0.5718452, -44.431, -0.1, -35.619)
+
+[node name="monolith6" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(-0.9302638, 0, -0.36689097, 0, 1, 0, 0.36689097, 0, -0.9302638, -19.562, -0.1, -54.272)
+
+[node name="monolith7" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(-0.9852582, 0.043633875, 0.16541475, 0.052336868, 0.9974449, 0.048622884, -0.1628705, 0.0565634, -0.9850245, 13.111298, -2.5431745, -58.03131)
+
+[node name="monolith8" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(-0.7270662, 0, 0.68656725, 0, 1, 0, -0.68656725, 0, -0.7270662, 43.7, -0.1, -43.634)
+
+[node name="monolith9" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(-0.11016816, 0, 0.99391294, 0, 1, 0, -0.99391294, 0, -0.11016816, 59.189, -0.1, -13.444)
+
+[node name="monolith10" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(0.39389363, 0, 0.91915613, -0.13890544, 0.988515, 0.059526306, -0.9085996, -0.1511228, 0.38936976, 55.422882, -0.6178918, 22.265503)
+
+[node name="monolith11" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(0.8897751, 0, 0.45639944, 0, 1, 0, -0.45639944, 0, 0.8897751, 29.395, -0.1, 48.64)
+
+[node name="monolith12" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(0.8897751, 0, 0.45639944, 0, 1, 0, -0.45639944, 0, 0.8897751, -21.701, -0.1, 24.517)
+
+[node name="monolith14" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(0.76727504, -0.5057629, 0.39432594, 0.45709795, -7.0084827e-09, -0.88941646, 0.4498338, 0.86267257, 0.2311832, -24.731445, 0.39887333, -24.650253)
+
+[node name="monolith13" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
+transform = Transform3D(0.9018717, 0.04278241, -0.42988068, -0.038619604, 0.9990844, 0.018408185, 0.43027464, 0, 0.90269816, 33.7818, -1.9129319, -24.231018)
 
 [connection signal="area_entered" from="Biomes/Villages/Brittlebay" to="." method="_on_brittlebay_area_entered"]
 [connection signal="area_exited" from="Biomes/Villages/Brittlebay" to="." method="_on_brittlebay_area_exited"]
