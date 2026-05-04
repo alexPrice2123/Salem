@@ -1,7 +1,13 @@
-[gd_scene load_steps=89 format=3 uid="uid://3v4hdgpge0v6"]
+[gd_scene load_steps=101 format=3 uid="uid://3v4hdgpge0v6"]
 
 [ext_resource type="Script" uid="uid://b1ax0drvppbgl" path="res://Scenes/MainHandWeapons/Shortsword.cs" id="1_ckg03"]
 [ext_resource type="PackedScene" uid="uid://c1ixg535pupsm" path="res://Assets/Weapons/shortsword.blend" id="2_pkki5"]
+[ext_resource type="Texture2D" uid="uid://bptk1knskkjjd" path="res://Assets/weapontextures/shortsword/grip_Base_color.png" id="3_iloqm"]
+[ext_resource type="Texture2D" uid="uid://cg1bl87cr7b0y" path="res://Assets/weapontextures/shortsword/blade_Base_color.png" id="7_kwmjs"]
+[ext_resource type="Texture2D" uid="uid://bpr2bindf7kds" path="res://Assets/othermodeltxt/villager/arms_Base_color.png" id="8_0eq1u"]
+[ext_resource type="Texture2D" uid="uid://dt2uat3qamj2e" path="res://Assets/othermodeltxt/villager/skin_Base_color.png" id="9_0rtvn"]
+[ext_resource type="Texture2D" uid="uid://bcq4lgphe68ls" path="res://Assets/weapontextures/shortsword/hilt_Base_color.png" id="12_floln"]
+[ext_resource type="Texture2D" uid="uid://bu3oqtugphvhe" path="res://Assets/weapontextures/shortsword/pommel_Base_color.png" id="17_qpqbi"]
 [ext_resource type="PackedScene" uid="uid://qcibdbx6jfkp" path="res://Assets/3D/charatermodel/maincharacterblank.blend" id="22_4ujmf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvryv"]
@@ -75,11 +81,37 @@ scale_curve = SubResource("CurveTexture_wvwlr")
 [sub_resource type="BoxMesh" id="BoxMesh_0eq1u"]
 size = Vector3(0.1, 0.1, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1i4m"]
+albedo_texture = ExtResource("3_iloqm")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cg2tk"]
+albedo_texture = ExtResource("7_kwmjs")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nst8u"]
+albedo_texture = ExtResource("12_floln")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02r2q"]
+albedo_texture = ExtResource("17_qpqbi")
+texture_filter = 0
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ki2ro"]
 size = Vector3(0.21177, 1.52848, 0.321355)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4ujmf"]
 size = Vector3(0.3, 0.7, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rtvn"]
+albedo_color = Color(0.5886112, 0.4474182, 0.70703125, 1)
+albedo_texture = ExtResource("8_0eq1u")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xku55"]
+albedo_color = Color(0.8066406, 0.72608244, 0.6963577, 1)
+albedo_texture = ExtResource("9_0rtvn")
+texture_filter = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kwmjs"]
 animation = &"attack1"
@@ -506,8 +538,8 @@ transform = Transform3D(2.01, 0, 2.2737368e-12, 0, 2.01, 0, -2.2737368e-12, 0, 2
 bones/0/position = Vector3(-3.5527124e-15, 0.9426751, -0.06494778)
 bones/8/rotation = Quaternion(-0.28827924, 0.63253677, -0.5684554, 0.44005772)
 bones/9/rotation = Quaternion(0.5499285, 0.0012709559, -0.13263234, 0.82461244)
-bones/18/rotation = Quaternion(-0.15685362, -0.51351684, 0.6948465, 0.47842008)
-bones/19/rotation = Quaternion(0.59024125, -0.0354887, 0.03224237, 0.8058017)
+bones/18/rotation = Quaternion(-0.1538502, -0.5198533, 0.6978662, 0.46804428)
+bones/19/rotation = Quaternion(0.61174095, -0.03577529, 0.022923369, 0.7899163)
 bones/20/rotation = Quaternion(0.06961127, -0.037877243, -0.24318211, 0.96673787)
 bones/21/rotation = Quaternion(-0.09666414, 0.2582409, 0.32191965, 0.90572375)
 bones/22/rotation = Quaternion(-0.047339365, 0.019785864, 0.29954642, 0.95270115)
@@ -520,7 +552,7 @@ bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.49972042, -0.015599884, 0.8660462, -0.019125998, 0.999793, 0.006972853, -0.8659752, -0.013079464, -0.49991488, -0.18869945, 1.4068315, 0.41869554)
+transform = Transform3D(-0.5192348, -0.00886406, 0.85458565, -0.052459553, 0.9983914, -0.02151819, -0.85301965, -0.056004055, -0.51886415, -0.17770031, 1.4189985, 0.41248634)
 
 [node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D/Cylinder" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -528,6 +560,14 @@ layers = 0
 
 [node name="shortsword" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder" index="0" instance=ExtResource("2_pkki5")]
 transform = Transform3D(0.478, 1.4316737e-08, 6.263575e-08, -1.43167425e-08, 0.478, 3.5791846e-08, -6.263575e-08, -3.579185e-08, 0.478, 0.00066670775, -0.14706719, -0.003644213)
+
+[node name="Cylinder" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/shortsword" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_b1i4m")
+
+[node name="Sphere_001" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/shortsword" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cg2tk")
+surface_material_override/1 = SubResource("StandardMaterial3D_nst8u")
+surface_material_override/2 = SubResource("StandardMaterial3D_02r2q")
 
 [node name="Hitbox" type="Area3D" parent="weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder" index="1" groups=["Player", "Weapon"]]
 transform = Transform3D(-0.26141012, 0.025851231, -0.42251053, 0.0221753, 0.49673802, 0.016672766, 0.42271897, -0.010071728, -0.26215586, 0.019383274, 0.4390214, -0.0037168786)
@@ -551,6 +591,10 @@ transform = Transform3D(0.87502754, -0.019306282, -0.48368952, 0.034699224, 0.99
 shape = SubResource("BoxShape3D_4ujmf")
 disabled = true
 debug_color = Color(1, 0.6, 0.69803923, 1)
+
+[node name="Cube_002" parent="weaponAnimations/metarig/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0rtvn")
+surface_material_override/1 = SubResource("StandardMaterial3D_xku55")
 
 [node name="Cylinder_001" parent="weaponAnimations" index="1"]
 transform = Transform3D(-0.5017525, -0.0032141083, 0.86500525, -0.003631327, 0.99999213, 0.0016093028, -0.8650036, -0.0023336455, -0.5017601, -0.19122489, 1.4032985, -0.4734631)
