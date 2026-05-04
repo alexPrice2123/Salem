@@ -130,7 +130,7 @@ public partial class Player3d : CharacterBody3D
 	private bool _inCutscene = false; 
 	private Vector3 knock_direction = new Vector3(0f, 14f, 0f);
 	public Vector3 _pullLocation = new Vector3(0f, -67f, 0f);
-    private float _pullSpeed = 5f;
+    public float _pullSpeed = 5f;
 	// --- READY ---
 	// Called when the node enters the scene tree for the first time. Used for setup.
 	public async override void _Ready()

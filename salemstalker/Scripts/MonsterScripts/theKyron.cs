@@ -251,7 +251,7 @@ public partial class theKyron : Monster3d
 
 	public void _on_hurtbox_area_entered(Area3D body) { Damaged(body); }
 
-	public void _on_attackbox_area_entered(Area3D body) { CoiledHitPlayer(body, "Push", 30f); }
+	public void _on_attackbox_area_entered(Area3D body) { TryHitPlayer(body, "Push"); }
 
 	/*
 	private void _on_enter_area_entered(Area3D area)
@@ -270,7 +270,12 @@ public partial class theKyron : Monster3d
            	float randNum = _rng.RandiRange(1,2);
 			if (randNum == 1)
 			{SpitBall();}
-			else{WarpHole();} 
+			else
+			{
+				float warpInt = _rng.RandiRange(1,3);
+				if (warpInt == 1){BigWarp();}
+				else{WarpHole();}
+			} 
         }
 	}
 
@@ -304,7 +309,7 @@ public partial class theKyron : Monster3d
 		{
 			ball._playerOrb = _player;
 			ball._damageOrb = BaseDamage + _damageOffset;
-			ball.Shoot(10);
+			ball.Shoot(20);
 		}
     }
 	private async void WarpHole()
@@ -312,18 +317,34 @@ public partial class theKyron : Monster3d
 		ChangeAnimState("Warp", 2.1f);
 		_attacking = true;
 		await ToSignal(GetTree().CreateTimer(1), "timeout");
-		RigidBody3D pullInstance = _pullOrb.Instantiate<RigidBody3D>(); 
-		_player.GetParent().AddChild(pullInstance);                                            
-		float randZ = _rng.RandiRange(-2, 2);
-		float randX = _rng.RandiRange(-2, 2);
-		Vector3 spawnPos = new Vector3(_player.GlobalPosition.X + Mathf.Sign(randZ), 0f, _player.GlobalPosition.Z + Mathf.Sign(randZ));
-		pullInstance.GlobalPosition = spawnPos;
+		SpawnWarp(2);
+	}
 
+	private async void BigWarp()
+    {
+		ChangeAnimState("BigWarp", 2f);
+		_attacking = true;
+		await ToSignal(GetTree().CreateTimer(0.9), "timeout");
+		for (int i = 0; i < 6; i++)
+        {
+            SpawnWarp(14);
+			await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+        }
+	}
+
+	private void SpawnWarp(int _range)
+    {
+        RigidBody3D pullInstance = _pullOrb.Instantiate<RigidBody3D>(); 
+		_player.GetParent().AddChild(pullInstance);                                            
+		float randZ = _rng.RandiRange(-_range, _range);
+		float randX = _rng.RandiRange(-_range, _range);
+		Vector3 spawnPos = new Vector3(_player.GlobalPosition.X + randX, 0f, _player.GlobalPosition.Z + randZ);
+		pullInstance.GlobalPosition = spawnPos;
 		if (pullInstance is pullOrb pull)
 		{
 			pull._playerOrb = _player;
-		} 
-	}
+		}
+    }
 
 	private async void Stomp()
     {
