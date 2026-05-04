@@ -193,6 +193,13 @@ public partial class theKyron : Monster3d
 		_attacking = false;
 	}
 */
+	private async void ChangeAnimState(string anim, float times)
+    {
+        _animState = anim;
+		await ToSignal(GetTree().CreateTimer(times), "timeout");
+		_animState = "Idle";
+		_attacking = false;
+    }
 	public override void _Process(double delta)
 	{
 		EveryFrame(delta);
@@ -207,34 +214,12 @@ public partial class theKyron : Monster3d
 			if (!_summoning && _animState != "Stunned")
 			{
 				_moveCount = _rng.RandiRange(-50, 25);
-				ChooseAttack();
+				//ChooseAttack();
 			}
 		}
-		if (_wanderCount == 100)
+		if (_wanderCount == 50)
         {
-            RigidBody3D projectileInstance = _darkOrb.Instantiate<RigidBody3D>(); 
-			_player.GetParent().AddChild(projectileInstance);                                            
-			projectileInstance.GlobalPosition = GetNode<Node3D>("Body/Armature/Skeleton3D/Pelvis/Head").GlobalPosition;
-			if (projectileInstance is bigOrb ball)
-			{
-				ball._playerOrb = _player;
-				ball._damageOrb = BaseDamage + _damageOffset;
-				ball.Shoot(10);
-			}
-        }
-		if (_wanderCount == 150)
-        {
-           RigidBody3D pullInstance = _pullOrb.Instantiate<RigidBody3D>(); 
-			_player.GetParent().AddChild(pullInstance);                                            
-			float randZ = _rng.RandiRange(-10, 10);
-			float randX = _rng.RandiRange(-10, 10);
-			Vector3 spawnPos = new Vector3(_player.GlobalPosition.X + (Mathf.Sign(randX)*10), 0f, _player.GlobalPosition.Z + (Mathf.Sign(randZ)*10));
-			pullInstance.GlobalPosition = spawnPos;
-
-			if (pullInstance is pullOrb pull)
-			{
-				pull._playerOrb = _player;
-			} 
+            ChooseAttack();
         }
 		if (_wanderCount >= 200)
         {
@@ -271,171 +256,13 @@ public partial class theKyron : Monster3d
 		if (area.IsInGroup("PlayerHurtbox")) { StartBattle(); }
 	}*/
 
-	private async void StartBattle()
-	{
-		GetNode<Area3D>("Enter").SetDeferred("monitoring", false);
-		_player.GlobalPosition = _rangeObj.GlobalPosition + new Vector3(0, 1, 0);
-		foreach (Node3D roots in GetParent().GetParent().GetChildren())
-		{
-			if (((string)roots.Name).Contains("RootWall"))
-			{
-				roots.Position = new Vector3(roots.Position.X, -1, roots.Position.Z);
-			}
-		}
-		_player.CutsceneToggle(true);
-		_player.GetNode<Ui>("UI")._fadeProg = 1;
-		await ToSignal(GetTree().CreateTimer(2), "timeout");
-		GetNode<Camera3D>("Cutscene/Camera").Current = true;
-		_player.GetNode<Ui>("UI")._fadeProg = 0;
-		await ToSignal(GetTree().CreateTimer(0.3f), "timeout");
-		_currentCutscene = "1";
-		_animState = "Cutscene1";
-		await ToSignal(GetTree().CreateTimer(4.3), "timeout");
-		_player.GetNode<Ui>("UI")._fadeProg = 1;
-		await ToSignal(GetTree().CreateTimer(2), "timeout");
-		GetNode<Camera3D>("Cutscene/Camera").Current = false;
-		_player.GetNode<Ui>("UI")._fadeProg = 0;
-		_animState = "Idle";
-		_player.GetNode<Camera3D>("Head/Camera3D").Current = true;
-		_player.CutsceneToggle(false);
-		await ToSignal(GetTree().CreateTimer(2), "timeout");
-		_active = true;
-	}
-
 	private async void ChooseAttack()
 	{
-		if (!_active) { return; }
-		_attacking = true;
-		_hasHit = false;
-		if (_playerFieldPos.Count > 0)
-		{
-			string plrSpot = _playerFieldPos.PickRandom();
-			if (plrSpot == "Right")
-			{
-				int attackChoice = _rng.RandiRange(1, 2);
-				if (attackChoice == 1)
-				{
-					await RightSwipe();
-				}
-				else
-				{
-					await Poke();
-				}
-			}
-			else if (plrSpot == "Left")
-			{
-				int attackChoice = _rng.RandiRange(1, 2);
-				if (attackChoice == 1)
-				{
-					await LeftSwipe();
-				}
-				else
-				{
-					await Poke();
-				}
-			}
-			else if (plrSpot == "Middle")
-			{
-				int attackChoice = _rng.RandiRange(1, 2);
-				if (attackChoice == 1)
-				{
-					await Smash();
-				}
-				else
-				{
-					await Poke();
-				}
-			}
-			else if (plrSpot == "Spit")
-			{
-				await Spit();
-			}
-			else if (plrSpot == "LeftSpit")
-			{
-				await SpitBall("SpitL");
-			}
-			else if (plrSpot == "RightSpit")
-			{
-				await SpitBall("SpitR");
-			}
-		}
-		if (_animState != "Hit" && _animState != "Stunned")
-		{
-			_animState = "Idle";
-			await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
-			_attacking = false;
-		}
-	}
-
-	private async Task<bool> RightSwipe()
-	{
-		_animState = "RightSwipe";
-		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox").SetDeferred("monitoring", true);
-		await ToSignal(GetTree().CreateTimer(1.6), "timeout");
-		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox").SetDeferred("monitoring", false);
-		return true;
-	}
-	private async Task<bool> LeftSwipe()
-	{
-		_animState = "LeftSwipe";
-		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox").SetDeferred("monitoring", true);
-		await ToSignal(GetTree().CreateTimer(1.2), "timeout");
-		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox").SetDeferred("monitoring", false);
-		return true;
-	}
-	private async Task<bool> Smash()
-	{
-		_animState = "Smash";
-		await ToSignal(GetTree().CreateTimer(1.33), "timeout");
-		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", true);
-		GetNode<GpuParticles3D>("Push").Emitting = true;
-		await ToSignal(GetTree().CreateTimer(0.07), "timeout");
-		_attackBox.GetParent<Area3D>().SetDeferred("monitoring", false);
-		return true;
-	}
-	private async Task<bool> Poke()
-	{
-		_animState = "Poke";
-		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox").SetDeferred("monitoring", true);
-		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox").SetDeferred("monitoring", true);
-		await ToSignal(GetTree().CreateTimer(2.1), "timeout");
-		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox").SetDeferred("monitoring", false);
-		GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox").SetDeferred("monitoring", false);
-		return true;
-	}
-
-	private async Task<bool> SpitBall(string anim)
-	{
-		/*_animState = anim;
-		await ToSignal(GetTree().CreateTimer(0.85), "timeout");
-		RigidBody3D projectileInstance = _poisonBall.Instantiate<RigidBody3D>();
-		_player.GetParent().AddChild(projectileInstance);
-		projectileInstance.GlobalPosition = GetNode<GpuParticles3D>("Body/Armature/Skeleton3D/Bone_012/Spit").GlobalPosition;
-		if (projectileInstance is poisonBall ball)
-		{
-			ball._playerOrb = _player;
-			ball._damageOrb = 10;
-			ball.Shoot(10);
-		}
-		await ToSignal(GetTree().CreateTimer(0.2), "timeout");*/
-		return true;
-	}
-
-	private async Task<bool> Spit()
-	{
-		_animState = "Spit";
-		_moveCount = _rng.RandiRange(-100, -50);
-		await ToSignal(GetTree().CreateTimer(0.67), "timeout");
-		GetNode<GpuParticles3D>("Body/Armature/Skeleton3D/Bone_012/Spit").Emitting = true;
-		for (int i = 0; i < 3; i++)
-		{
-			await ToSignal(GetTree().CreateTimer(0.2), "timeout");
-			if (_playerFieldPos.Contains("Spit") && !_hasHit) { _player.Damaged(10, this, "None"); _hasHit = true; }
-		}
-		await ToSignal(GetTree().CreateTimer(0.5), "timeout");
-		GetNode<GpuParticles3D>("Body/Armature/Skeleton3D/Bone_012/Spit").Emitting = false;
-		await ToSignal(GetTree().CreateTimer(0.4), "timeout");
-		return true;
+		float randNum = _rng.RandiRange(1,2);
+		if (randNum == 1)
+        {SpitBall();}
+		else{WarpHole();}
+		
 	}
 
 	private void _on_left_attack_box_area_entered(Area3D area)
@@ -455,6 +282,39 @@ public partial class theKyron : Monster3d
 			_player.Damaged(damage, this, extraArgs);
 		}
 	}
+
+	private async void SpitBall()
+    {
+		ChangeAnimState("Spit", 1.6f);
+		_attacking = true;
+		await ToSignal(GetTree().CreateTimer(1.26f), "timeout");
+        RigidBody3D projectileInstance = _darkOrb.Instantiate<RigidBody3D>(); 
+		_player.GetParent().AddChild(projectileInstance);                                            
+		projectileInstance.GlobalPosition = GetNode<MeshInstance3D>("Body/metarig/Skeleton3D/spine_005/projectile").GlobalPosition;
+		if (projectileInstance is bigOrb ball)
+		{
+			ball._playerOrb = _player;
+			ball._damageOrb = BaseDamage + _damageOffset;
+			ball.Shoot(10);
+		}
+    }
+	private async void WarpHole()
+    {
+		ChangeAnimState("Warp", 2.1f);
+		_attacking = true;
+		await ToSignal(GetTree().CreateTimer(1), "timeout");
+		RigidBody3D pullInstance = _pullOrb.Instantiate<RigidBody3D>(); 
+		_player.GetParent().AddChild(pullInstance);                                            
+		float randZ = _rng.RandiRange(-2, 2);
+		float randX = _rng.RandiRange(-2, 2);
+		Vector3 spawnPos = new Vector3(_player.GlobalPosition.X + Mathf.Sign(randZ), 0f, _player.GlobalPosition.Z + Mathf.Sign(randZ));
+		pullInstance.GlobalPosition = spawnPos;
+
+		if (pullInstance is pullOrb pull)
+		{
+			pull._playerOrb = _player;
+		} 
+}
 
 	public async void PlayerParried()
 	{

@@ -1,0 +1,361 @@
+[gd_scene load_steps=12 format=3 uid="uid://tag6011b55de"]
+
+[ext_resource type="FontFile" uid="uid://h85473eyjlu7" path="res://Assets/Fonts/DumNorm.ttf" id="1_w7eme"]
+[ext_resource type="Texture2D" uid="uid://cygypqe3md1uw" path="res://Scenes/Monsters/Bosses/aura.png" id="2_o2ck0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rge78"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o3enc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwvpe"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0v6ur"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_am1x7"]
+
+[sub_resource type="Animation" id="Animation_x7evd"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/RLeg")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D/LLeg")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D/Pelvis")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.042167664, 2.3911567, -0.4546113)
+
+[sub_resource type="Animation" id="Animation_v6hbm"]
+resource_name = "downed"
+length = 0.5
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/RLeg")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0.707, 0, 0, 0.707)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D/RLeg")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.5810046, 1.00331, -0.4546113, 0.5, 1, 0.581, 0, -1.8)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D/LLeg")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0.707, 0, 0, 0.707)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Armature/Skeleton3D/LLeg")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.49487972, 1.00331, -0.4546113, 0.5, 1, -0.495, 0, -1.8)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Armature/Skeleton3D/Pelvis")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.042167664, 2.3911567, -0.4546113, 0.5, 1, 0.042, 0.05, -0.455)
+
+[sub_resource type="Animation" id="Animation_mrnwp"]
+resource_name = "idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/RLeg")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D/RLeg")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.5810046, 1.00331, -0.4546113)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D/LLeg")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Armature/Skeleton3D/LLeg")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.49487972, 1.00331, -0.4546113)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Armature/Skeleton3D/Pelvis")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.042167664, 2.3911567, -0.4546113, 0.25, 1, 0.042, 2.5, -0.455, 0.483188, 1, 0.042167664, 2.3911567, -0.4546113)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x7evd"]
+_data = {
+&"RESET": SubResource("Animation_x7evd"),
+&"downed": SubResource("Animation_v6hbm"),
+&"idle": SubResource("Animation_mrnwp")
+}
+
+[node name="RON" type="Node3D"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Armature" type="Node3D" parent="."]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
+
+[node name="LLeg" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+transform = Transform3D(0.20542477, 0, 0, 0, 2.9310935, 0, 0, 0, 0.20376077, -0.49487972, 1.00331, -0.4546113)
+mesh = SubResource("BoxMesh_rge78")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armature/Skeleton3D/LLeg"]
+transform = Transform3D(2.030287, 0, 0, 0, 0.051811498, 0, 0, 0, 4.4749384, 0, -0.5221234, 1.3596852)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Armature/Skeleton3D/LLeg"]
+transform = Transform3D(1.2982209, 0, 0, 0, 0.09098541, 0, 0, 0, 1.3088228, 0, 0.08028251, 0)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="Pelvis" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+transform = Transform3D(1.3912095, 0, 0, 0, 0.26668674, 0, 0, 0, 0.26668674, 0.042167664, 2.3911567, -0.4546113)
+mesh = SubResource("BoxMesh_rge78")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(0.19995952, 0, 0, 0, 4.3067045, 0, 0, 0, 1, 0, 2.0745516, -0.39680123)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(7.497658e-09, 0.82557, 0, -0.7301821, 0, 0, 0, 0, 0.6, 0, 5.138955, -0.76256967)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(7.497658e-09, 0.82557, 0, -0.7301821, 0, 0, 0, 0, 0.6, 0, 6.591751, -0.6763897)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(7.497658e-09, 0.82557, 0, -0.7301821, 0, 0, 0, 0, 0.6, 0, 8.201444, -0.56644344)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(-8.250121e-16, -2.0640101e-08, -0.115016505, -0.73018205, 0, 0, 3.91126e-08, 2.4632492, -2.6226834e-08, -0.35759774, 8.201444, 0.5324105)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(7.497657e-09, 0.26345068, 3.1921088e-16, -0.73018205, 0, 0, 2.5941276e-15, 3.7163007e-15, 0.6, -0.26957113, 8.201444, 1.457855)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(-1.2236708e-08, 2.0640107e-08, 0.115016505, 0.73018205, 9.412989e-15, 5.2453668e-08, 3.91126e-08, 2.4632492, -2.6226836e-08, 0.35564855, 8.201444, 0.5324105)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(-1.9734365e-08, -0.26345068, -3.1921082e-16, 0.73018205, -1.2014759e-07, 1.0853268e-22, 2.5941273e-15, 3.716301e-15, 0.6, 0.26762193, 8.201444, 1.457855)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(-8.250121e-16, -2.0640101e-08, -0.115016505, -0.73018205, 0, 0, 3.91126e-08, 2.4632492, -2.6226834e-08, -0.35759774, 6.611149, 0.3899566)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(7.497657e-09, 0.26345068, 3.1921088e-16, -0.73018205, 0, 0, 2.5941276e-15, 3.7163007e-15, 0.6, -0.26957113, 6.611149, 1.3154011)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(-1.2236708e-08, 2.0640107e-08, 0.115016505, 0.73018205, 9.412989e-15, 5.2453668e-08, 3.91126e-08, 2.4632492, -2.6226836e-08, 0.35564855, 6.611149, 0.3899566)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(-1.9734365e-08, -0.26345068, -3.1921082e-16, 0.73018205, -1.2014759e-07, 1.0853268e-22, 2.5941273e-15, 3.716301e-15, 0.6, 0.26762193, 6.611149, 1.3154011)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(-8.250121e-16, -2.0640101e-08, -0.115016505, -0.73018205, 0, 0, 3.91126e-08, 2.4632492, -2.6226834e-08, -0.35759774, 5.1603136, 0.34043074)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(7.497657e-09, 0.26345068, 3.1921088e-16, -0.73018205, 0, 0, 2.5941276e-15, 3.7163007e-15, 0.6, -0.26957113, 5.1603136, 1.2658751)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(-1.2236708e-08, 2.0640107e-08, 0.115016505, 0.73018205, 9.412989e-15, 5.2453668e-08, 3.91126e-08, 2.4632492, -2.6226836e-08, 0.35564855, 5.1603136, 0.34043074)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(-1.9734365e-08, -0.26345068, -3.1921082e-16, 0.73018205, -1.2014759e-07, 1.0853268e-22, 2.5941273e-15, 3.716301e-15, 0.6, 0.26762193, 5.1603136, 1.2658751)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(0.19995949, 0, 0, 0, 4.275944, -0.119305104, 0, 0.5138118, 0.9928576, 0, 6.1085377, -0.10062361)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(0.19995947, 0, 0, 0, 2.863299, -0.314797, 0, 0.9129142, 0.9873411, 0, 9.549306, 0.5525471)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D35" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(-8.740506e-09, 1.4515227, 0, -1.0431172, -3.3098593e-07, 0, 0, 0, 1.0363106, 0, 7.4367113, -0.33827806)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="LArm" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(0.193146, 0.3756818, 0, -0.26997867, 7.3140635, 0, 0, 0, 1.0363106, -0.82359827, 4.1313133, -0.33827806)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="RArm" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(0.193146, -0.37568167, 0, 0.26997843, 7.314063, 0, 0, 0, 1.0363104, 0.80140686, 4.1313133, -0.33827806)
+material_override = SubResource("ShaderMaterial_o3enc")
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="Head" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis"]
+transform = Transform3D(0.718799, 0, 0, 0, 3.7497175, 0, 0, 0, 3.7497175, 0, 12.148173, 1.3012651)
+material_override = SubResource("StandardMaterial3D_pwvpe")
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="QuestPrompt" type="Label3D" parent="Armature/Skeleton3D/Pelvis/Head"]
+transform = Transform3D(-0.79947746, 0, 0.028910374, 0, 0.8, 0, -0.028910374, 0, -0.79947746, 0, 2.04831, 0)
+billboard = 2
+no_depth_test = true
+texture_filter = 1
+text = "Ron"
+font = ExtResource("1_w7eme")
+font_size = 732
+outline_size = 125
+line_spacing = -9.0
+width = 320.0
+
+[node name="MeshInstance3D29" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis/Head"]
+transform = Transform3D(0.2629339, -0.2098228, 0, 0.07045293, 0.7830693, 0, 0, 0, 0.25109732, -0.47066653, 0.52279043, 0.022999287)
+material_override = SubResource("StandardMaterial3D_pwvpe")
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D30" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis/Head"]
+transform = Transform3D(0.18267736, -0.14577761, 0, 0.04894825, 0.5440494, 0, 0, 0, 0.17445372, -0.6011282, 1.0096803, 0.022999287)
+material_override = SubResource("StandardMaterial3D_pwvpe")
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D31" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis/Head"]
+transform = Transform3D(0.11989234, -0.0956748, 0, 0.032125056, 0.35706314, 0, 0, 0, 0.11449511, -0.6882145, 1.3346906, 0.022999287)
+material_override = SubResource("StandardMaterial3D_pwvpe")
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D32" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis/Head"]
+transform = Transform3D(0.26293388, 0.20982276, 0, -0.07045292, 0.78306925, 0, 0, 0, 0.25109732, 0.46508574, 0.52279043, 0.022999287)
+material_override = SubResource("StandardMaterial3D_pwvpe")
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D33" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis/Head"]
+transform = Transform3D(0.18267736, 0.14577758, 0, -0.04894825, 0.5440494, 0, 0, 0, 0.17445374, 0.59554744, 1.0096803, 0.022999287)
+material_override = SubResource("StandardMaterial3D_pwvpe")
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D34" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis/Head"]
+transform = Transform3D(0.11989234, 0.09567477, 0, -0.032125056, 0.3570632, 0, 0, 0, 0.11449513, 0.71055984, 1.4026666, 0.022999287)
+material_override = SubResource("StandardMaterial3D_pwvpe")
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../../..")
+
+[node name="Eye" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis/Head"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.22091235, 0.07088184, 0.5034487)
+material_override = SubResource("StandardMaterial3D_0v6ur")
+mesh = SubResource("SphereMesh_am1x7")
+skeleton = NodePath("../../..")
+
+[node name="Eye2" type="MeshInstance3D" parent="Armature/Skeleton3D/Pelvis/Head"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.061723843, 0.08524656, 0.5034487)
+material_override = SubResource("StandardMaterial3D_0v6ur")
+mesh = SubResource("SphereMesh_am1x7")
+skeleton = NodePath("../../..")
+
+[node name="Decal" type="Decal" parent="Armature/Skeleton3D/Pelvis/Head"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.0022048987, 0.17458248, 0.4982366)
+size = Vector3(1.0028076, 0.0071411133, 1.3487549)
+texture_albedo = ExtResource("2_o2ck0")
+texture_normal = ExtResource("2_o2ck0")
+texture_orm = ExtResource("2_o2ck0")
+texture_emission = ExtResource("2_o2ck0")
+upper_fade = 1e-05
+lower_fade = 1e-05
+
+[node name="RLeg" type="MeshInstance3D" parent="Armature/Skeleton3D"]
+transform = Transform3D(0.20542477, 0, 0, 0, 2.7435005, 0, 0, 0, 0.20376077, 0.5810046, 1.00331, -0.4546113)
+mesh = SubResource("BoxMesh_rge78")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Armature/Skeleton3D/RLeg"]
+transform = Transform3D(2.030287, 0, 0, 0, 0.055354226, 0, 0, 0, 4.4749384, 0, -0.52312267, 1.3596852)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Armature/Skeleton3D/RLeg"]
+transform = Transform3D(1.2982209, 0, 0, 0, 0.09720674, 0, 0, 0, 1.3088228, 0, 0.12369868, 0)
+mesh = SubResource("BoxMesh_rge78")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x7evd")
+}

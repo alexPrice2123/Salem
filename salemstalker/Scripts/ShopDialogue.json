@@ -3,20 +3,29 @@
 "cChance":"Critical Chance","bChance":"Bleed Chance",
 "cPercent1":"Critical Damage","cPercent2":"Critical Damage","cPercent3":"Critical Damage"},
 
+"upgradeAmounts":
+	{"damage1":2,"damage2":4.5,"damage3":7.5,"cChance":0.02,"bChance":0.015},
+
 "resourceNames":
 	{"bleedheart":"Bleeding Heart","heart":"Heart",
 "deadooze":"Dead Ooze","woundedooze":"Wounded Ooze",
-"rottenflesh":"Rotten Flesh","scorchedfesh":"Scorched Flesh",
+"rottenflesh":"Rotten Flesh","scorchedflesh":"Scorched Flesh",
 "seed":"Seed","sprout":"Sprout",
 "chippedfang":"Chipped Fang","fang":"Fang",
 "emptyves":"Empty Vessel","ves":"Vessel"},
 
 "smithResourceRefrences":
 	{"shortsword1":["bleedheart","deadooze"],"shortsword2":["deadooze", "fang", "scorchedflesh"],
+	"shortsword3":["heart"],
 "falchion1":["rottenflesh", "bleedheart"],"falchion2":["bleedheart", "woundedooze", "sprout"],
-"dagger1":["emptyves", "seed"],"dagger2":["seed", "scorchedflesh", "heart"]},
+"falchion3":["sprout"],
+"dagger1":["emptyves", "seed"],"dagger2":["seed", "scorchedflesh", "heart"],
+"dagger3":["ves"]},
 
 "smithResourceAmounts":
 	{"shortsword1":[3,3],"shortsword2":[6, 3, 3],
+	"shortsword3":[6],
 "falchion1":[3, 3],"falchion2":[6, 3, 3],
-"dagger1":[3, 3],"dagger2":[6, 3, 3]}}
+"falchion3":[6],
+"dagger1":[3, 3],"dagger2":[6, 3, 3],
+"dagger3":[6]}}

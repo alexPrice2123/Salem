@@ -1,7 +1,8 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://v8cxd77lvf8a"]
 
-[ext_resource type="Texture2D" uid="uid://ocrsmjc0p0ar" path="res://Assets/proptextures/cart/handles_Base_color.png" id="1_ci4np"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j20dc"]
+load_path = "res://.godot/imported/handles_Base_color.png-a5ed8586272fbee1186535f4f526a57f.s3tc.ctex"
 
 [resource]
-albedo_texture = ExtResource("1_ci4np")
+albedo_texture = SubResource("CompressedTexture2D_j20dc")
 texture_filter = 0
