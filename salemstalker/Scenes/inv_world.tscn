@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=4 uid="uid://dufmkp4txcmvx"]
+[gd_scene load_steps=106 format=4 uid="uid://dufmkp4txcmvx"]
 
 [ext_resource type="Texture2D" uid="uid://ebnfthe7xyj" path="res://Assets/2D/burlap.jpg" id="2_2gl02"]
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_qv3mo"]
@@ -62,8 +62,6 @@
 [ext_resource type="Texture2D" uid="uid://b24p5yavd7a2v" path="res://Assets/weapontextures/stakegun/metal spikey bits_Normal.png" id="41_ow1h0"]
 [ext_resource type="Texture2D" uid="uid://og0h12lrines" path="res://Assets/weapontextures/stakegun/metal spikey bits_Roughness.png" id="42_qjfl3"]
 [ext_resource type="Texture2D" uid="uid://bptk1knskkjjd" path="res://Assets/weapontextures/shortsword/grip_Base_color.png" id="42_vcryd"]
-[ext_resource type="Texture2D" path="res://Assets/weapontextures/shortsword/grip_Height.png" id="43_ow1h0"]
-[ext_resource type="Texture2D" path="res://Assets/weapontextures/shortsword/grip_Normal_OpenGL.png" id="45_psgo6"]
 [ext_resource type="Texture2D" uid="uid://cg1bl87cr7b0y" path="res://Assets/weapontextures/shortsword/blade_Base_color.png" id="46_rxlv6"]
 [ext_resource type="Texture2D" uid="uid://bcq4lgphe68ls" path="res://Assets/weapontextures/shortsword/hilt_Base_color.png" id="51_du14p"]
 [ext_resource type="Texture2D" uid="uid://bu3oqtugphvhe" path="res://Assets/weapontextures/shortsword/pommel_Base_color.png" id="56_7gauh"]
@@ -398,9 +396,7 @@ _data = {
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grmxo"]
 albedo_texture = ExtResource("42_vcryd")
-normal_texture = ExtResource("45_psgo6")
 heightmap_scale = 1.0
-heightmap_texture = ExtResource("43_ow1h0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iovch"]
 albedo_texture = ExtResource("46_rxlv6")

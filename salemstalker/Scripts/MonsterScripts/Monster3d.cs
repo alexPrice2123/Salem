@@ -187,6 +187,7 @@ public partial class Monster3d : CharacterBody3D
 		if (this is theKyron tk)
         {
             tk._legHealth -= damage;
+			GD.Print(damage+" DAMAGE");
         }else{_health -= damage;}
 		
 		
