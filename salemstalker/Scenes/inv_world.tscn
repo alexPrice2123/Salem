@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=4 uid="uid://dufmkp4txcmvx"]
+[gd_scene load_steps=109 format=4 uid="uid://dufmkp4txcmvx"]
 
 [ext_resource type="Texture2D" uid="uid://ebnfthe7xyj" path="res://Assets/2D/burlap.jpg" id="2_2gl02"]
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_qv3mo"]
@@ -61,25 +61,13 @@
 [ext_resource type="Texture2D" uid="uid://c8km4rj2snvfv" path="res://Assets/weapontextures/stakegun/metal spikey bits_Metallic.png" id="40_vcryd"]
 [ext_resource type="Texture2D" uid="uid://b24p5yavd7a2v" path="res://Assets/weapontextures/stakegun/metal spikey bits_Normal.png" id="41_ow1h0"]
 [ext_resource type="Texture2D" uid="uid://og0h12lrines" path="res://Assets/weapontextures/stakegun/metal spikey bits_Roughness.png" id="42_qjfl3"]
-[ext_resource type="Texture2D" uid="uid://bokg4rsmfg6jt" path="res://Assets/weapontextures/shortsword/grip_Base_color.png" id="42_vcryd"]
-[ext_resource type="Texture2D" uid="uid://d27gyeeqsxm80" path="res://Assets/weapontextures/shortsword/grip_Height.png" id="43_ow1h0"]
-[ext_resource type="Texture2D" uid="uid://b0sftfsiv4lnu" path="res://Assets/weapontextures/shortsword/grip_Metallic.png" id="44_qjfl3"]
-[ext_resource type="Texture2D" uid="uid://dfi3x1jyse2j8" path="res://Assets/weapontextures/shortsword/grip_Normal_OpenGL.png" id="45_psgo6"]
-[ext_resource type="Texture2D" uid="uid://crlev8tsdqbxn" path="res://Assets/weapontextures/shortsword/blade_Base_color.png" id="46_rxlv6"]
-[ext_resource type="Texture2D" uid="uid://dxukwfy2g1fwv" path="res://Assets/weapontextures/shortsword/blade_Height.png" id="47_a3sf6"]
-[ext_resource type="Texture2D" uid="uid://c4wmiu2tqake7" path="res://Assets/weapontextures/shortsword/blade_Metallic.png" id="48_pcvt6"]
-[ext_resource type="Texture2D" uid="uid://dj5b3e7hqp3y1" path="res://Assets/weapontextures/shortsword/blade_Normal.png" id="49_wy6uy"]
-[ext_resource type="Texture2D" uid="uid://dgf1eqb5hog5n" path="res://Assets/weapontextures/shortsword/blade_Roughness.png" id="50_g03qv"]
-[ext_resource type="Texture2D" uid="uid://cp04ffa553uq0" path="res://Assets/weapontextures/shortsword/hilt_Base_color.png" id="51_du14p"]
-[ext_resource type="Texture2D" uid="uid://2tc7t5knphte" path="res://Assets/weapontextures/shortsword/hilt_Height.png" id="52_10beb"]
-[ext_resource type="Texture2D" uid="uid://upd41o1d0iu3" path="res://Assets/weapontextures/shortsword/hilt_Metallic.png" id="53_8drnq"]
-[ext_resource type="Texture2D" uid="uid://btrwxmcej16k1" path="res://Assets/weapontextures/shortsword/hilt_Normal.png" id="54_2s127"]
-[ext_resource type="Texture2D" uid="uid://bx2fugp7sieeo" path="res://Assets/weapontextures/shortsword/hilt_Roughness.png" id="55_x3tw4"]
-[ext_resource type="Texture2D" uid="uid://bne57unirf833" path="res://Assets/weapontextures/shortsword/pommel_Base_color.png" id="56_7gauh"]
-[ext_resource type="Texture2D" uid="uid://bsqynx3y8b0y8" path="res://Assets/weapontextures/shortsword/pommel_Height.png" id="57_0n6dt"]
-[ext_resource type="Texture2D" uid="uid://ccf58htao85c0" path="res://Assets/weapontextures/shortsword/pommel_Metallic.png" id="58_mmx5j"]
-[ext_resource type="Texture2D" uid="uid://dtlhjroxfkqou" path="res://Assets/weapontextures/shortsword/pommel_Normal.png" id="59_vk11p"]
-[ext_resource type="Texture2D" uid="uid://duf0m6xtj2nor" path="res://Assets/weapontextures/shortsword/pommel_Roughness.png" id="60_2udlh"]
+[ext_resource type="Texture2D" uid="uid://bptk1knskkjjd" path="res://Assets/weapontextures/shortsword/grip_Base_color.png" id="42_vcryd"]
+[ext_resource type="Texture2D" path="res://Assets/weapontextures/shortsword/grip_Height.png" id="43_ow1h0"]
+[ext_resource type="Texture2D" path="res://Assets/weapontextures/shortsword/grip_Metallic.png" id="44_qjfl3"]
+[ext_resource type="Texture2D" path="res://Assets/weapontextures/shortsword/grip_Normal_OpenGL.png" id="45_psgo6"]
+[ext_resource type="Texture2D" uid="uid://cg1bl87cr7b0y" path="res://Assets/weapontextures/shortsword/blade_Base_color.png" id="46_rxlv6"]
+[ext_resource type="Texture2D" uid="uid://bcq4lgphe68ls" path="res://Assets/weapontextures/shortsword/hilt_Base_color.png" id="51_du14p"]
+[ext_resource type="Texture2D" uid="uid://bu3oqtugphvhe" path="res://Assets/weapontextures/shortsword/pommel_Base_color.png" id="56_7gauh"]
 [ext_resource type="PackedScene" uid="uid://hdyqx2iml8sx" path="res://Scenes/OffHandWeapons/weaponExtra/flintlockmodel.tscn" id="61_wvttw"]
 [ext_resource type="PackedScene" uid="uid://du71670gpsymh" path="res://Assets/Weapons/longsword.blend" id="62_20ekm"]
 
@@ -421,33 +409,21 @@ heightmap_texture = ExtResource("43_ow1h0")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iovch"]
 albedo_texture = ExtResource("46_rxlv6")
 metallic = 1.0
-metallic_texture = ExtResource("48_pcvt6")
-roughness_texture = ExtResource("50_g03qv")
 normal_enabled = true
-normal_texture = ExtResource("49_wy6uy")
 heightmap_enabled = true
-heightmap_texture = ExtResource("47_a3sf6")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4g0tf"]
 albedo_texture = ExtResource("51_du14p")
 metallic = 1.0
-metallic_texture = ExtResource("53_8drnq")
-roughness_texture = ExtResource("55_x3tw4")
 normal_enabled = true
-normal_texture = ExtResource("54_2s127")
 heightmap_enabled = true
-heightmap_texture = ExtResource("52_10beb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjije"]
 albedo_color = Color(0.683077, 0.683077, 0.683077, 1)
 albedo_texture = ExtResource("56_7gauh")
 metallic = 1.0
-metallic_texture = ExtResource("58_mmx5j")
-roughness_texture = ExtResource("60_2udlh")
 normal_enabled = true
-normal_texture = ExtResource("59_vk11p")
 heightmap_enabled = true
-heightmap_texture = ExtResource("57_0n6dt")
 
 [sub_resource type="Animation" id="Animation_2gl02"]
 resource_name = "Hover"
