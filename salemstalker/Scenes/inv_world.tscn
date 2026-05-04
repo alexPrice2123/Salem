@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=4 uid="uid://dufmkp4txcmvx"]
+[gd_scene load_steps=108 format=4 uid="uid://dufmkp4txcmvx"]
 
 [ext_resource type="Texture2D" uid="uid://ebnfthe7xyj" path="res://Assets/2D/burlap.jpg" id="2_2gl02"]
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="2_qv3mo"]
@@ -63,7 +63,6 @@
 [ext_resource type="Texture2D" uid="uid://og0h12lrines" path="res://Assets/weapontextures/stakegun/metal spikey bits_Roughness.png" id="42_qjfl3"]
 [ext_resource type="Texture2D" uid="uid://bptk1knskkjjd" path="res://Assets/weapontextures/shortsword/grip_Base_color.png" id="42_vcryd"]
 [ext_resource type="Texture2D" path="res://Assets/weapontextures/shortsword/grip_Height.png" id="43_ow1h0"]
-[ext_resource type="Texture2D" path="res://Assets/weapontextures/shortsword/grip_Metallic.png" id="44_qjfl3"]
 [ext_resource type="Texture2D" path="res://Assets/weapontextures/shortsword/grip_Normal_OpenGL.png" id="45_psgo6"]
 [ext_resource type="Texture2D" uid="uid://cg1bl87cr7b0y" path="res://Assets/weapontextures/shortsword/blade_Base_color.png" id="46_rxlv6"]
 [ext_resource type="Texture2D" uid="uid://bcq4lgphe68ls" path="res://Assets/weapontextures/shortsword/hilt_Base_color.png" id="51_du14p"]
@@ -399,31 +398,18 @@ _data = {
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grmxo"]
 albedo_texture = ExtResource("42_vcryd")
-metallic_texture = ExtResource("44_qjfl3")
-normal_enabled = true
 normal_texture = ExtResource("45_psgo6")
-heightmap_enabled = true
 heightmap_scale = 1.0
 heightmap_texture = ExtResource("43_ow1h0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iovch"]
 albedo_texture = ExtResource("46_rxlv6")
-metallic = 1.0
-normal_enabled = true
-heightmap_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4g0tf"]
 albedo_texture = ExtResource("51_du14p")
-metallic = 1.0
-normal_enabled = true
-heightmap_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjije"]
-albedo_color = Color(0.683077, 0.683077, 0.683077, 1)
 albedo_texture = ExtResource("56_7gauh")
-metallic = 1.0
-normal_enabled = true
-heightmap_enabled = true
 
 [sub_resource type="Animation" id="Animation_2gl02"]
 resource_name = "Hover"
