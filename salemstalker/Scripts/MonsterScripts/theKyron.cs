@@ -33,6 +33,7 @@ public partial class theKyron : Monster3d
 	private bool _summoning = false;
 	public float _legHealth = 100;
 	private float _wanderCount = 199;
+	private float _stompCountDown = 0;
 
 
 	public override void _Ready()
@@ -198,6 +199,7 @@ public partial class theKyron : Monster3d
         _animState = anim;
 		await ToSignal(GetTree().CreateTimer(times), "timeout");
 		_animState = "Idle";
+		await ToSignal(GetTree().CreateTimer(0.6f), "timeout");
 		_attacking = false;
     }
 	public override void _Process(double delta)
@@ -206,6 +208,7 @@ public partial class theKyron : Monster3d
 		//if (_health <= MaxHealth / 2 && _phase == 1) { TransitionPhase(); }
 		_distance = (GlobalPosition - _player.GlobalPosition).Length();
 		_wanderCount++;
+		_stompCountDown -= (float)delta;
 		if (_active) { _player._inCombat = true; }
 		if (_legHealth <= 0){_animState = "Downed"; _speedOffset = WalkSpeed*-1;}	//drink a bannanannana (yuri and yaoi)
 		if (_phase == 2 && !_attacking) { _moveCount++; }
@@ -217,7 +220,7 @@ public partial class theKyron : Monster3d
 				//ChooseAttack();
 			}
 		}
-		if (_wanderCount == 50)
+		if (_wanderCount == 50 || (_distance <= 5 && !_attacking))
         {
             ChooseAttack();
         }
@@ -248,7 +251,7 @@ public partial class theKyron : Monster3d
 
 	public void _on_hurtbox_area_entered(Area3D body) { Damaged(body); }
 
-	public void _on_attackbox_area_entered(Area3D body) { CoiledHitPlayer(body, "Push", 30f); }
+	public void _on_attackbox_area_entered(Area3D body) { TryHitPlayer(body, "Push"); }
 
 	/*
 	private void _on_enter_area_entered(Area3D area)
@@ -258,11 +261,22 @@ public partial class theKyron : Monster3d
 
 	private async void ChooseAttack()
 	{
-		float randNum = _rng.RandiRange(1,2);
-		if (randNum == 1)
-        {SpitBall();}
-		else{WarpHole();}
-		
+		if (_distance <= 5 && _stompCountDown <= 0)
+        {
+            Stomp();
+        }
+        else
+        {
+           	float randNum = _rng.RandiRange(1,2);
+			if (randNum == 1)
+			{SpitBall();}
+			else
+			{
+				float warpInt = _rng.RandiRange(1,3);
+				if (warpInt == 1){BigWarp();}
+				else{WarpHole();}
+			} 
+        }
 	}
 
 	private void _on_left_attack_box_area_entered(Area3D area)
@@ -295,7 +309,7 @@ public partial class theKyron : Monster3d
 		{
 			ball._playerOrb = _player;
 			ball._damageOrb = BaseDamage + _damageOffset;
-			ball.Shoot(10);
+			ball.Shoot(20);
 		}
     }
 	private async void WarpHole()
@@ -303,18 +317,45 @@ public partial class theKyron : Monster3d
 		ChangeAnimState("Warp", 2.1f);
 		_attacking = true;
 		await ToSignal(GetTree().CreateTimer(1), "timeout");
-		RigidBody3D pullInstance = _pullOrb.Instantiate<RigidBody3D>(); 
-		_player.GetParent().AddChild(pullInstance);                                            
-		float randZ = _rng.RandiRange(-2, 2);
-		float randX = _rng.RandiRange(-2, 2);
-		Vector3 spawnPos = new Vector3(_player.GlobalPosition.X + Mathf.Sign(randZ), 0f, _player.GlobalPosition.Z + Mathf.Sign(randZ));
-		pullInstance.GlobalPosition = spawnPos;
+		SpawnWarp(2);
+	}
 
+	private async void BigWarp()
+    {
+		ChangeAnimState("BigWarp", 2f);
+		_attacking = true;
+		await ToSignal(GetTree().CreateTimer(0.9), "timeout");
+		for (int i = 0; i < 6; i++)
+        {
+            SpawnWarp(14);
+			await ToSignal(GetTree().CreateTimer(0.1), "timeout");
+        }
+	}
+
+	private void SpawnWarp(int _range)
+    {
+        RigidBody3D pullInstance = _pullOrb.Instantiate<RigidBody3D>(); 
+		_player.GetParent().AddChild(pullInstance);                                            
+		float randZ = _rng.RandiRange(-_range, _range);
+		float randX = _rng.RandiRange(-_range, _range);
+		Vector3 spawnPos = new Vector3(_player.GlobalPosition.X + randX, 0f, _player.GlobalPosition.Z + randZ);
+		pullInstance.GlobalPosition = spawnPos;
 		if (pullInstance is pullOrb pull)
 		{
 			pull._playerOrb = _player;
-		} 
-}
+		}
+    }
+
+	private async void Stomp()
+    {
+		ChangeAnimState("Stomp", 1.5f);
+		_attacking = true;
+		await ToSignal(GetTree().CreateTimer(1.23), "timeout");
+		GetNode<GpuParticles3D>("Push").Emitting = true;
+		GetNode<Area3D>("Attackbox").SetDeferred("monitoring", true);
+		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+		GetNode<Area3D>("Attackbox").SetDeferred("monitoring", false);
+	}
 
 	public async void PlayerParried()
 	{

@@ -2,20 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crlev8tsdqbxn"
-path="res://.godot/imported/blade_Base_color.png-d7f2c840098ad3f2aefaddfb621580b7.ctex"
+uid="uid://cg1bl87cr7b0y"
+path.s3tc="res://.godot/imported/blade_Base_color.png-d7f2c840098ad3f2aefaddfb621580b7.s3tc.ctex"
+path.etc2="res://.godot/imported/blade_Base_color.png-d7f2c840098ad3f2aefaddfb621580b7.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/weapontextures/shortsword/blade_Base_color.png"
-dest_files=["res://.godot/imported/blade_Base_color.png-d7f2c840098ad3f2aefaddfb621580b7.ctex"]
+dest_files=["res://.godot/imported/blade_Base_color.png-d7f2c840098ad3f2aefaddfb621580b7.s3tc.ctex", "res://.godot/imported/blade_Base_color.png-d7f2c840098ad3f2aefaddfb621580b7.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
