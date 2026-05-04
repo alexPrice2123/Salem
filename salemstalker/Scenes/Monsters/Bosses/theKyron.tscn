@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://dt2w7nymyi851"]
+[gd_scene load_steps=69 format=4 uid="uid://dt2w7nymyi851"]
 
 [ext_resource type="PackedScene" uid="uid://u7yct1quu07a" path="res://Scenes/Monsters/Monster_3D.tscn" id="1_2708c"]
 [ext_resource type="Script" uid="uid://dx7bmxcb8drij" path="res://Scripts/MonsterScripts/theKyron.cs" id="2_x7evd"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bndv05njlu5o4" path="res://Assets/monstertextures/kyron/goo_Emissive.png" id="8_q4c0w"]
 [ext_resource type="Texture2D" uid="uid://bftnv57rtx61h" path="res://Assets/monstertextures/kyron/teeth_Base_color.png" id="10_20yf4"]
 [ext_resource type="Texture2D" uid="uid://cb12qkcmqcl8a" path="res://Assets/monstertextures/kyron/mouth_Base_color.png" id="11_6frpp"]
+[ext_resource type="Texture2D" uid="uid://ccxnvvxyoh10x" path="res://Assets/2D/swampdirt.png" id="13_q4c0w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7ma6"]
 albedo_color = Color(1, 1, 0, 1)
@@ -109,6 +110,16 @@ xfade_time = 0.5
 advance_mode = 2
 advance_expression = "_animState == \"Idle\""
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6frpp"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "_animState == \"Stomp\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sum6d"]
+xfade_time = 0.5
+advance_mode = 2
+advance_expression = "_animState == \"Idle\""
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nsxmw"]
 states/End/position = Vector2(1034, 40.406197)
 states/Start/position = Vector2(227.5, -84.00783)
@@ -121,15 +132,15 @@ states/idle/position = Vector2(354.5, -84.03908)
 states/spit/node = SubResource("AnimationNodeAnimation_ntnkd")
 states/spit/position = Vector2(525.6094, 22.75)
 states/stomp/node = SubResource("AnimationNodeAnimation_20yf4")
-states/stomp/position = Vector2(525.46875, 274.5)
+states/stomp/position = Vector2(525.5469, -207.5)
 states/stunned/node = SubResource("AnimationNodeAnimation_uqxkg")
 states/stunned/position = Vector2(352.5, 27.5)
 states/teleport/node = SubResource("AnimationNodeAnimation_6frpp")
-states/teleport/position = Vector2(257.46875, 203)
+states/teleport/position = Vector2(880.96875, -84.02344)
 states/walking/node = SubResource("AnimationNodeAnimation_sum6d")
 states/walking/position = Vector2(525.6797, -83.90237)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_mrnwp"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_uqxkg"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_0d0b7"), "walking", "spit", SubResource("AnimationNodeStateMachineTransition_owmhn"), "spit", "walking", SubResource("AnimationNodeStateMachineTransition_q4c0w"), "walking", "circleattack", SubResource("AnimationNodeStateMachineTransition_ntnkd"), "circleattack", "walking", SubResource("AnimationNodeStateMachineTransition_20yf4")]
-graph_offset = Vector2(177, -183)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_mrnwp"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_uqxkg"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_0d0b7"), "walking", "spit", SubResource("AnimationNodeStateMachineTransition_owmhn"), "spit", "walking", SubResource("AnimationNodeStateMachineTransition_q4c0w"), "walking", "circleattack", SubResource("AnimationNodeStateMachineTransition_ntnkd"), "circleattack", "walking", SubResource("AnimationNodeStateMachineTransition_20yf4"), "walking", "stomp", SubResource("AnimationNodeStateMachineTransition_6frpp"), "stomp", "walking", SubResource("AnimationNodeStateMachineTransition_sum6d")]
+graph_offset = Vector2(69, -349)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x8crk"]
 animation = &"1"
@@ -290,10 +301,55 @@ shader_parameter/animation_intensity = 0.2
 radius = 0.63378906
 height = 2.7443848
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_t8g15"]
-size = Vector3(6.817383, 2.0540307, 6.916626)
+[sub_resource type="SphereShape3D" id="SphereShape3D_uqxkg"]
+radius = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntnkd"]
+albedo_texture = ExtResource("13_q4c0w")
+
+[sub_resource type="Curve" id="Curve_20yf4"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ja8if"]
+curve = SubResource("Curve_20yf4")
+
+[sub_resource type="Curve" id="Curve_6frpp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v2reo"]
+curve = SubResource("Curve_6frpp")
+
+[sub_resource type="Curve" id="Curve_sum6d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.504237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fbr85"]
+curve = SubResource("Curve_sum6d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q4c0w"]
+lifetime_randomness = 1.0
+particle_flag_rotate_y = true
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+flatness = 0.971
+orbit_velocity_curve = SubResource("CurveTexture_ja8if")
+radial_velocity_min = 14.999977
+radial_velocity_max = 14.999977
+radial_velocity_curve = SubResource("CurveTexture_v2reo")
+gravity = Vector3(0, 1, 0)
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_fbr85")
+
+[sub_resource type="BoxMesh" id="BoxMesh_0d0b7"]
 
 [node name="theKyron" instance=ExtResource("1_2708c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8119557, 0.9195194, -0.23177052)
 script = ExtResource("2_x7evd")
 _spawnRootScene = null
 _vineTangler = null
@@ -336,18 +392,18 @@ skeleton = NodePath("")
 transform = Transform3D(0.67, 0, 0, 0, 0.67, 0, 0, 0, 0.67, 0, -0.54438233, 1.0872403)
 
 [node name="Skeleton3D" parent="Body/metarig" index="0"]
-bones/0/position = Vector3(4.3146187e-10, 0.8997809, -0.055199992)
+bones/0/position = Vector3(0, 0.75536394, -0.0552)
 bones/1/rotation = Quaternion(-0.07753418, 3.284921e-14, -1.8485583e-08, 0.9969898)
-bones/2/rotation = Quaternion(-0.057911444, -9.353753e-11, -1.5265185e-08, 0.99832183)
+bones/2/rotation = Quaternion(0.32938027, 1.1228813e-09, 1.12533264e-07, 0.9441974)
 bones/3/rotation = Quaternion(0.061051022, -2.3274565e-07, 5.393214e-09, 0.9981347)
 bones/4/rotation = Quaternion(-0.05358393, 9.860693e-08, -1.2806691e-08, 0.99856335)
-bones/5/rotation = Quaternion(0.08297396, 1.5563801e-08, 1.33878055e-08, 0.99655175)
+bones/5/rotation = Quaternion(0.08659394, 1.5612336e-08, 1.3331172e-08, 0.9962437)
 bones/8/rotation = Quaternion(0.4477404, -4.691776e-08, -3.18417e-08, 0.8941636)
 bones/10/rotation = Quaternion(-0.3529601, 8.574229e-08, -1.2477442e-07, 0.9356384)
 bones/11/position = Vector3(0.01830002, 0.17330743, 0.058774218)
 bones/11/rotation = Quaternion(-0.641292, -0.36654198, -0.33481258, 0.58505744)
-bones/12/rotation = Quaternion(-0.2527249, 0.69008017, -0.5196051, 0.43580964)
-bones/13/rotation = Quaternion(0.28551486, -0.07730666, -0.038397152, 0.9544792)
+bones/12/rotation = Quaternion(-0.2173968, 0.590943, -0.595935, 0.49838406)
+bones/13/rotation = Quaternion(0.45596737, -0.13186234, -0.034872364, 0.8794829)
 bones/14/rotation = Quaternion(-0.017748097, 0.039033934, -0.09085387, 0.99494076)
 bones/16/rotation = Quaternion(-0.11603227, -0.24036524, -0.6709065, 0.6918422)
 bones/17/rotation = Quaternion(0.0816329, 0.15324387, -0.7854513, 0.5940696)
@@ -366,8 +422,8 @@ bones/32/rotation = Quaternion(-0.20440164, 0.051860638, -0.53460246, 0.81837076
 bones/33/rotation = Quaternion(-0.37133053, 0.35768858, -0.43819544, 0.73631334)
 bones/34/position = Vector3(-0.018299991, 0.17330745, 0.05877422)
 bones/34/rotation = Quaternion(-0.641292, 0.36654207, 0.33481276, 0.58505726)
-bones/35/rotation = Quaternion(-0.26522648, -0.6855343, 0.5290655, 0.42401335)
-bones/36/rotation = Quaternion(0.29447374, 0.054785293, 0.016453236, 0.9539461)
+bones/35/rotation = Quaternion(-0.22771679, -0.587172, 0.6065463, 0.48525858)
+bones/36/rotation = Quaternion(0.46555808, 0.10646432, 0.010184262, 0.8785314)
 bones/37/rotation = Quaternion(-0.017748164, -0.039033923, 0.09085394, 0.99494076)
 bones/39/rotation = Quaternion(-0.115621105, 0.12307422, 0.74636954, 0.6437523)
 bones/40/rotation = Quaternion(0.08795767, -0.053665724, 0.6915578, 0.7149344)
@@ -385,24 +441,24 @@ bones/54/rotation = Quaternion(0.4553074, -0.032444444, 0.16548185, 0.8742187)
 bones/55/rotation = Quaternion(-0.2316556, 0.0040518334, 0.62205637, 0.74790716)
 bones/56/rotation = Quaternion(-0.38738215, -0.23436324, 0.2849426, 0.84487677)
 bones/58/rotation = Quaternion(9.4040544e-08, 0.73857707, 0.67416906, -5.5761003e-08)
-bones/61/rotation = Quaternion(0.951937, 0.08833813, -0.10189562, 0.27500862)
-bones/62/rotation = Quaternion(0.28399885, 0.0014140034, 0.07294141, 0.95604515)
-bones/63/rotation = Quaternion(-0.68074965, 0.0011846849, 0.008537323, 0.73246557)
+bones/61/rotation = Quaternion(0.88179463, 0.15821269, -0.10910483, 0.43070072)
+bones/62/rotation = Quaternion(0.5837936, 0.0011799214, 0.14993969, 0.7979359)
+bones/63/rotation = Quaternion(-0.67137027, 0.0012810992, 0.008148641, 0.7410762)
 bones/64/rotation = Quaternion(-0.025391527, 0.9895605, -0.14172406, -0.0062920502)
-bones/66/rotation = Quaternion(0.95291215, -0.08285457, 0.09310559, 0.27645087)
-bones/67/rotation = Quaternion(0.28748542, -0.0014123484, -0.073836856, 0.95493364)
-bones/68/rotation = Quaternion(-0.6725653, -0.0018653941, -0.011409821, 0.73994756)
+bones/66/rotation = Quaternion(0.838659, -0.10752453, -0.047027376, 0.531863)
+bones/67/rotation = Quaternion(0.4166823, -0.0013350551, -0.10701936, 0.9027297)
+bones/68/rotation = Quaternion(-0.5657233, 0.005385206, -0.025165651, 0.8241935)
 bones/71/position = Vector3(0.27945203, 0.059080526, -0.016199984)
 bones/72/position = Vector3(0.02180861, -0.29448938, 0.46057114)
 bones/72/rotation = Quaternion(0.9999007, -5.0667865e-08, 0.014091817, -1.7485648e-16)
 bones/72/scale = Vector3(1.0930622, 0.9999999, 1.0002117)
-bones/73/position = Vector3(-0.26880372, 0.059080526, -0.016199993)
-bones/74/position = Vector3(-0.02180861, -0.29448935, 0.46057114)
+bones/73/position = Vector3(-0.26880375, 0.038676575, 0.31728503)
+bones/74/position = Vector3(0.08791214, -0.3131615, 0.45694903)
 bones/74/rotation = Quaternion(0.9999007, 5.0667865e-08, -0.014091817, -1.9660021e-16)
 bones/74/scale = Vector3(1.0930622, 0.9999999, 1.0002117)
 
 [node name="spine_005" parent="Body/metarig/Skeleton3D" index="0"]
-transform = Transform3D(0.9999999, 2.8709382e-09, -5.4397375e-10, -2.9210983e-09, 0.9868591, -0.16158228, 7.28253e-11, 0.1615823, 0.9868589, 1.8138399e-09, 1.6934044, 0.018807111)
+transform = Transform3D(0.9999999, -5.775705e-08, 3.5971496e-08, 6.267899e-08, 0.5761858, -0.81731856, 2.6479592e-08, 0.8173185, 0.5761856, -2.9350133e-08, 1.396034, 0.34872568)
 
 [node name="Cube_010" parent="Body/metarig/Skeleton3D" index="1"]
 surface_material_override/0 = SubResource("ShaderMaterial_uqxkg")
@@ -440,12 +496,11 @@ shape = SubResource("CapsuleShape3D_v6hbm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0950214, 0)
 
 [node name="Attackbox" parent="." index="10"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 2.053031, 2.895059)
-visible = false
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.6742353, -0.8670392, -1.7444086)
 
 [node name="CollisionShape3D" parent="Attackbox" index="0"]
-transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.07766713, -1.4582484, 2.2714615)
-shape = SubResource("BoxShape3D_t8g15")
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0.100855, -0.539078)
+shape = SubResource("SphereShape3D_uqxkg")
 debug_color = Color(0.7019608, 1, 0, 0.41960785)
 
 [node name="Range" type="CSGSphere3D" parent="." index="15"]
@@ -454,6 +509,16 @@ visible = false
 radius = 20.76998
 radial_segments = 25
 rings = 3
+
+[node name="Push" type="GPUParticles3D" parent="." index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7318436, -0.83531964, -1.6735363)
+material_override = SubResource("StandardMaterial3D_ntnkd")
+emitting = false
+amount = 250
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_q4c0w")
+draw_pass_1 = SubResource("BoxMesh_0d0b7")
 
 [editable path="Body"]
 [editable path="Cutscene"]
