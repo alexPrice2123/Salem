@@ -1468,6 +1468,7 @@ public partial class Player3d : CharacterBody3D
 		GetNode<Ui>("UI").Visible = !toggle;
 		_inCutscene = toggle;
 		Visible = !toggle;
+		_cam.Current = !toggle;
 	}
 
 	public void CamLookAtPos(Vector3 targetPos)
