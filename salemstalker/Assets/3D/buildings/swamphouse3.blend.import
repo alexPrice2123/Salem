@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://qjuamhhsvnkq"
-valid=false
+path="res://.godot/imported/swamphouse3.blend-2fdfe5ed25fce52647c0e491c8fda134.scn"
 
 [deps]
 
 source_file="res://Assets/3D/buildings/swamphouse3.blend"
+dest_files=["res://.godot/imported/swamphouse3.blend-2fdfe5ed25fce52647c0e491c8fda134.scn"]
 
 [params]
 
