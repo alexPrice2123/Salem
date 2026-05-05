@@ -184,14 +184,13 @@ public partial class Monster3d : CharacterBody3D
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		FlashDamage(false);
 		GD.Print(damage);
-		if (this is theKyron tk)
+		if (this is theKyron tk )
         {
-            tk._legHealth -= damage;
+			if(tk._animState == "Downed"){_health -= damage;}
+			else{tk._legHealth -= damage;}
 			GD.Print(damage+" DAMAGE");
         }else{_health -= damage;}
-		
-		
-		
+
 	}
 	
 	//mace is literally cleavland brown
@@ -434,11 +433,21 @@ public partial class Monster3d : CharacterBody3D
 		}
 		else if (this is theKyron ron)
 		{
-			if (!_attacking)
+			if (!_attacking && ron._legHealth > 0 && ron._phase == 1)
             {
               if (_navUpdateTimer <= 0f) { _navAgent.TargetPosition = _wanderPos; _navUpdateTimer = NavUpdateInterval; }
 				Vector3 nextPoint = _navAgent.GetNextPathPosition();
 				_targetVelocity = (nextPoint - myPos).Normalized() * WalkSpeed;
+
+				Vector3 moveDir = Velocity.Normalized();
+				if (Velocity.LengthSquared() > 0.01f)
+					_lookDirection.LookAt(myPos + moveDir, Vector3.Up);  
+            }
+			else if (!_attacking && ron._phase == 2)
+            {
+              	if (_navUpdateTimer <= 0f) { _navAgent.TargetPosition = _wanderPos; _navUpdateTimer = NavUpdateInterval; }
+				Vector3 nextPoint = _navAgent.GetNextPathPosition();
+				_targetVelocity = (nextPoint - myPos).Normalized() * (WalkSpeed * _dashVelocity + _speedOffset);
 
 				Vector3 moveDir = Velocity.Normalized();
 				if (Velocity.LengthSquared() > 0.01f)
@@ -449,7 +458,6 @@ public partial class Monster3d : CharacterBody3D
                 Velocity = Vector3.Zero;
 				_lookDirection.LookAt(_player.GlobalPosition, Vector3.Up);  
             }
-			
 		}
 
 		// --- WANDER TIMER / LOOK TRIGGER --- //
@@ -691,7 +699,7 @@ public partial class Monster3d : CharacterBody3D
 		baseScale.Y = AgroFOV;
 		baseScale.Z = AgroFOV;
 		_agroArea.GetNode<CollisionShape3D>("CollisionShape3D").Scale = baseScale;
-		_agroArea.GetNode<CollisionShape3D>("Debug").Scale = baseScale;
+		_agroArea.GetNode<MeshInstance3D>("Debug").Scale = baseScale;
 
 
 		// Cache squared ranges to avoid sqrt in EveryFrame
