@@ -17,17 +17,19 @@ public partial class Ui : Control
 	private Control _loadingUI;
 	private ShaderMaterial _loadingMaterial;
 	private Control _slotSelect;
-	private OptionButton _shopTypeSelection;
+	private OptionButton _sShopTypeSelection;
+	private OptionButton _wShopTypeSelection;
 	private int _typeSelection;
-	private string _shopSelection = "Shortsword";
+	private string _sShopSelection = "Shortsword";
+	private string _wShopSelection = "lHealth";
 	private Label _areaName;
 	public float _areaNameTween = 0f;
 	private Godot.Collections.Dictionary<string,Variant> _shopDialogue;
 	private Godot.Collections.Dictionary<string,Variant> _upgradeNames;
 	private Godot.Collections.Dictionary<string,Variant> _upgradeAmounts;
 	private Godot.Collections.Dictionary<string,Variant> _resourceNames;
-	private Godot.Collections.Dictionary<string,Variant> _resourceRefrences;
-	private Godot.Collections.Dictionary<string,Variant> _resourceAmounts;
+	private Godot.Collections.Dictionary<string,Variant> _sResourceRefrences;
+	private Godot.Collections.Dictionary<string,Variant> _sResourceAmounts;
 	private float _loadingValue = -1f;
 	public float _loadingGoal = 3f;
 	public bool _loadingDone = false;
@@ -53,8 +55,8 @@ public partial class Ui : Control
 		_upgradeNames = _shopDialogue["upgradeNames"].AsGodotDictionary<string,Variant>();
 		_upgradeAmounts = _shopDialogue["upgradeAmounts"].AsGodotDictionary<string,Variant>();
 		_resourceNames = _shopDialogue["resourceNames"].AsGodotDictionary<string,Variant>();
-		_resourceRefrences = _shopDialogue["smithResourceRefrences"].AsGodotDictionary<string,Variant>();
-		_resourceAmounts = _shopDialogue["smithResourceAmounts"].AsGodotDictionary<string,Variant>();
+		_sResourceRefrences = _shopDialogue["smithResourceRefrences"].AsGodotDictionary<string,Variant>();
+		_sResourceAmounts = _shopDialogue["smithResourceAmounts"].AsGodotDictionary<string,Variant>();
 		Instance = this;
 		if (GetParent() is Player3d player)
 		{
@@ -62,7 +64,8 @@ public partial class Ui : Control
 		}
 		_slotSelect = GetNode<Control>("Inv/SubPort/Sub/SlotSelector");
 		_loadingUI = GetNode<Control>("Loading");
-		_shopTypeSelection = GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions");
+		_sShopTypeSelection = GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions");
+		_wShopTypeSelection = GetNode<OptionButton>("WizardShop/ShopTypeOptions");
 		_secProgressBar1 = GetNode<TextureProgressBar>("SecCooldown1");
 		_secProgressBar2 = GetNode<TextureProgressBar>("SecCooldown2");
 		//_secProgressBar3 = GetNode<TextureProgressBar>("SecCooldown3");
@@ -142,7 +145,7 @@ public partial class Ui : Control
 				_loadingDone = true;
 			}
 		}
-		GetNode<ColorRect>("BlacksmithShop/View/Warning").GlobalPosition = GetGlobalMousePosition();
+		GetNode<ColorRect>("BlacksmithShop/Warning").GlobalPosition = GetGlobalMousePosition();
 		GetNode<Sprite2D>("Loading/Load").Rotate(-0.1f);
 	}
 
@@ -154,36 +157,40 @@ public partial class Ui : Control
 	// --- Blacksmith Shop ---
 	private void _on_sshop_option1_button_up()
 	{
-		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("shortsword"); _shopSelection = "Shortsword"; _player.SwitchPrimaryWeapon(_shopSelection); }
+		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("shortsword"); _sShopSelection = "Shortsword"; _player.SwitchPrimaryWeapon(_sShopSelection); }
 		//else { PlayShopAnim("Longsword"); }
 	}
 	private void _on_sshop_option2_button_up()
 	{
-		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("falchion"); _shopSelection = "Falchion"; _player.SwitchPrimaryWeapon(_shopSelection); }
+		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("falchion"); _sShopSelection = "Falchion"; _player.SwitchPrimaryWeapon(_sShopSelection); }
 		//else { PlayShopAnim("Greatsword"); }
 		
 	}
 	private void _on_sshop_option3_button_up()
 	{
-		if (_shopTypeSelection.Selected == 0) { PlayShopAnim(""); }
+		if (_sShopTypeSelection.Selected == 0) { PlayShopAnim(""); }
 		else { PlayShopAnim(""); }
 	}
 	private void _on_sshop_option4_button_up()
 	{
-		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("dagger"); _shopSelection = "Dagger"; _player.SwitchPrimaryWeapon(_shopSelection); }
+		if (GetNode<OptionButton>("BlacksmithShop/ShopTypeOptions").Selected == 0) { PlayShopAnim("dagger"); _sShopSelection = "Dagger"; _player.SwitchPrimaryWeapon(_sShopSelection); }
 		else { PlayShopAnim(""); }
 	}
 	private void _on_wshop_option1_button_up()
 	{
-		
+		if (_wShopTypeSelection.Selected == 0) { _wShopSelection = "lHealth"; }
+		if (_wShopTypeSelection.Selected == 1) { _wShopSelection = "lSpeed"; }
+		if (_wShopTypeSelection.Selected == 2) { _wShopSelection = "lStrength"; }
 	}
 	private void _on_wshop_option2_button_up()
 	{
-		
+		if (_wShopTypeSelection.Selected == 0) { _wShopSelection = "health"; }
+		if (_wShopTypeSelection.Selected == 1) { _wShopSelection = "gSpeed"; }
+		if (_wShopTypeSelection.Selected == 2) { _wShopSelection = "gStrength"; }
 	}
 	private void _on_wshop_option3_button_up()
 	{
-		
+		_wShopSelection = "GHealth";
 	}
 	private void _on_upgrade_button_up()
 	{
@@ -192,16 +199,18 @@ public partial class Ui : Control
 		GetNode<Control>("BlacksmithShop/View").Visible = true;
 		Control _upg = GetNode<Control>("BlacksmithShop/View/UpgradeMenu");
 		Label _details = _upg.GetNode<Label>("Requirements/Details");
-		_upg.GetNode<Label>("UpgradePrompt").Text = "Upgrade\n" + _shopSelection + "?";
+		_upg.GetNode<Label>("UpgradePrompt").Text = "Upgrade\n" + _sShopSelection + "?";
 		_upg.GetNode<Control>("Requirements").Visible = true;
+		_upg.GetNode<Label>("Requirements/Details").Text = "";
 
 		// sword and spaghetti refrences for resources
 		itemList _resourceScript = (itemList)_resourceInv;
-		Node3D swordScn = _player._sword;
-		int lvl = (int)swordScn.GetMeta("level");
+		PackedScene _swordScn = _player._weapon[_sShopSelection];
+		Node3D _swordNode = _swordScn.Instantiate<Node3D>();
+		int lvl = (int)_swordNode.GetMeta("level");
 		string upgName;
-		Godot.Collections.Array<string> resRef = _resourceRefrences[_shopSelection.ToLower() + (lvl + 1)].AsGodotArray<string>();
-		Godot.Collections.Array<int> resAmounts = _resourceAmounts[_shopSelection.ToLower() + (lvl + 1)].AsGodotArray<int>();
+		Godot.Collections.Array<string> resRef = _sResourceRefrences[_sShopSelection.ToLower() + (lvl + 1)].AsGodotArray<string>();
+		Godot.Collections.Array<int> resAmounts = _sResourceAmounts[_sShopSelection.ToLower() + (lvl + 1)].AsGodotArray<int>();
 		_itemCheck = ItemCheck(resRef, resAmounts);
 		// ----- Sets the requirements UI
 		_details.Text += "Requirements:\n";
@@ -210,11 +219,11 @@ public partial class Ui : Control
 			_details.Text += _resourceNames[resRef[i]] + " (" + _resourceScript.GetItemCount(resRef[i]) + "/" + resAmounts[i] + ")\n";
 		}
 		_details.Text += "\nUpgrades:\n";
-		foreach (string stat in GetUpgrades(swordScn))
+		foreach (string stat in GetUpgrades(_swordNode))
 		{
 			upgName = Json.Stringify(_upgradeNames[stat]);
 			string statName = upgName.Substring(1, upgName.Length - 2);
-			if ((int)swordScn.GetMeta("level") < 3)
+			if ((int)_swordNode.GetMeta("level") < 3)
 			{
 				if (!(stat.IndexOf("Percent") >= 0))
 				{
@@ -245,46 +254,45 @@ public partial class Ui : Control
 	}
 	private void _on_upgrade_mouse_entered()
 	{
-		if ((int)_player._sword.GetMeta("level") >= 2)
+		if ((int)_player._weapon[_sShopSelection].Instantiate<Node3D>().GetMeta("level") >= 3)
         {
-			GetNode<Label>("BlacksmithShop/View/Warning/Warning").Text = "This weapon is already max level!";
-			GetNode<ColorRect>("BlacksmithShop/View/Warning").Visible = true;
+			GetNode<Label>("BlacksmithShop/Warning/Warning").Text = "This weapon is already max level!";
+			GetNode<ColorRect>("BlacksmithShop/Warning").Visible = true;
 			GetNode<Button>("BlacksmithShop/Upgrade").Disabled = true;
         }
 	}
 	private void _on_upgrade_mouse_exited()
     {
-		GetNode<ColorRect>("BlacksmithShop/View/Warning").Visible = false;
+		GetNode<ColorRect>("BlacksmithShop/Warning").Visible = false;
 		GetNode<Button>("BlacksmithShop/Upgrade").Disabled = false;
     }
 	private void _on_upgrade_conf_mouse_entered()
 	{
 		if (!_itemCheck)
         {
-			GetNode<Label>("BlacksmithShop/View/Warning/Warning").Text = "You don't have enough resources!";
-			GetNode<ColorRect>("BlacksmithShop/View/Warning").Visible = true;
+			GetNode<Label>("BlacksmithShop/Warning/Warning").Text = "You don't have enough resources!";
+			GetNode<ColorRect>("BlacksmithShop/Warning").Visible = true;
 			GetNode<Button>("BlacksmithShop/View/UpgradeMenu/Requirements/UpgradeConf").Disabled = true;
         }
 	}
 	private void _on_upgrade_conf_mouse_exited()
     {
-		GetNode<ColorRect>("BlacksmithShop/View/Warning").Visible = false;
+		GetNode<ColorRect>("BlacksmithShop/Warning").Visible = false;
 		GetNode<Button>("BlacksmithShop/View/UpgradeMenu/Requirements/UpgradeConf").Disabled = false;
     }
 	private void _on_upgrade_conf_button_up()
 	{
-		GetNode<Label>("BlacksmithShop/View/UpgradeMenu/UpgradePrompt").Text = _shopSelection + "\nUpgraded!";
+		GetNode<Label>("BlacksmithShop/View/UpgradeMenu/UpgradePrompt").Text = _sShopSelection + "\nUpgraded!";
 		Control _resultsPage = GetNode<Control>("BlacksmithShop/View/UpgradeMenu/Results");
-		Node3D _swordScn = _player._sword;
+		PackedScene _swordScn = _player._weapon[_sShopSelection];
+		Node3D _swordNode = _swordScn.Instantiate<Node3D>();
 		itemList _resourceScript = (itemList)_resourceInv;
-
-		GD.Print((int)_swordScn.GetMeta("level"));
-		_swordScn.SetMeta("level", (int)_swordScn.GetMeta("level") + 1);
-		int lvl = (int)_swordScn.GetMeta("level");
-		GD.Print(lvl);
+		_swordNode.SetMeta("level", (int)_swordNode.GetMeta("level") + 1);
+		int nLvl = (int)_swordNode.GetMeta("level");
+		GD.Print(nLvl);
 		string upgName;
-		Godot.Collections.Array<string> resRef = _resourceRefrences[_shopSelection.ToLower() + lvl].AsGodotArray<string>();
-		Godot.Collections.Array<int> resAmounts = _resourceAmounts[_shopSelection.ToLower() + lvl].AsGodotArray<int>();
+		Godot.Collections.Array<string> resRef = _sResourceRefrences[_sShopSelection.ToLower() + nLvl].AsGodotArray<string>();
+		Godot.Collections.Array<int> resAmounts = _sResourceAmounts[_sShopSelection.ToLower() + nLvl].AsGodotArray<int>();
 
 		if(ItemCheck(resRef, resAmounts))
 		{
@@ -293,21 +301,24 @@ public partial class Ui : Control
 			{
 				_resourceScript.SubtractResource(resRef[i], resAmounts[i]);
 			}
-			foreach (string stat in GetUpgrades(_swordScn))
+			foreach (string stat in GetUpgrades(_swordNode))
 			{
 				upgName = Json.Stringify(_upgradeNames[stat]);
 				string statName = upgName.Substring(1, upgName.Length - 2);
-				if ((stat.Equals("cChance") || stat.Equals("bChance")) && lvl < 4)
+				if ((stat.Equals("cChance") || stat.Equals("bChance")) && nLvl < 4)
 				{
-					SetResults(stat, stat, statName);
+					(string, float) metaSet = SetResults(stat, stat, statName, _swordNode);
+					
 				}
-				if ((stat.Equals("damage") || stat.Equals("hDamage")) && lvl < 4)
+				if ((stat.Equals("damage") || stat.Equals("hDamage")) && nLvl < 4)
 				{
-					SetResults(stat, GetUpgrades(_swordScn)[0] + lvl, statName);
+					(string, float) metaSet = SetResults(stat, GetUpgrades(_swordNode)[0] + nLvl, statName, _swordNode);
+					_swordNode.SetMeta(metaSet.Item1, metaSet.Item2);
 				}
-				if ((stat.Equals("cPercent1") || stat.Equals("cPercent2") || stat.Equals("cPercent3")) && lvl >= 4)
+				if ((stat.Equals("cPercent1") || stat.Equals("cPercent2") || stat.Equals("cPercent3")) && nLvl >= 4)
 				{
-					SetResults(stat, "cPercent" + lvl, statName);
+					(string, float) metaSet = SetResults(stat, "cPercent" + nLvl, statName, _swordNode);
+					_swordNode.SetMeta(metaSet.Item1, metaSet.Item2);
 				}
 			}
 			GetNode<Control>("BlacksmithShop/View/UpgradeMenu/Requirements").Visible = false;
@@ -318,6 +329,7 @@ public partial class Ui : Control
 			GetNode<Control>("BlacksmithShop/View/UpgradeMenu/Requirements").Visible = false;
 			_resultsPage.Visible = true;
 		}
+		_swordScn.Pack(_swordNode);
 	}
 	private void _on_upgrade_deny_button_up()
 	{
@@ -482,10 +494,9 @@ public partial class Ui : Control
 		return _weaponAttributes;
 	}
 
-	private void SetResults(string statName, string specificStatName, string upgradeName)
+	private (string, float) SetResults(string statName, string specificStatName, string upgradeName, Node3D _swordNode)
 	{
 		Control _results = GetNode<Control>("BlacksmithShop/View/UpgradeMenu/Results");
-		Node3D _swordScn = _player._sword;
 		if (statName.IndexOf("Chance") >= 0 || statName.IndexOf("Percent") >= 0)
 		{
 			//_results.GetNode<Label>("Amount").Text += Math.Round((float)_swordScn.GetMeta(statName) * 100, 3) + "%\n";
@@ -500,7 +511,9 @@ public partial class Ui : Control
 		}
 		_results.GetNode<Label>("StatName").Text += upgradeName + ".......................................\n";
 		GD.Print(upgradeName);
-		_swordScn.SetMeta(statName, Math.Round((float)_swordScn.GetMeta(statName) + (float)_upgradeAmounts[specificStatName], 3));
+		//_swordNode.SetMeta(statName, Math.Round((float)_swordNode.GetMeta(statName) + (float)_upgradeAmounts[specificStatName], 3));
+		return (statName, (float)Math.Round((float)_swordNode.GetMeta(statName) + (float)_upgradeAmounts[specificStatName], 3));
+		//_swordScn.Pack(_swordNode);
 	}
 
 	private void _on_resource_inv_button_up()

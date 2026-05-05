@@ -1,10 +1,10 @@
-[gd_scene format=4 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=80 format=4 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
-[ext_resource type="Shader" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
+[ext_resource type="Shader" uid="uid://cdhocti5ssful" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
 [ext_resource type="PackedScene" uid="uid://dufmkp4txcmvx" path="res://Scenes/inv_world.tscn" id="3_nf4gj"]
-[ext_resource type="Shader" path="res://Shaders/border.gdshader" id="4_4vbiv"]
+[ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 [ext_resource type="Texture2D" uid="uid://c8lsaswuoorux" path="res://Assets/UI/loadingtemp.png" id="6_0o3wc"]
 [ext_resource type="Script" uid="uid://b351y65ve7t5e" path="res://Scripts/itemList.cs" id="6_kuui0"]
@@ -350,15 +350,6 @@ style_name = "Regular"
 subpixel_positioning = 0
 msdf_pixel_range = 8
 msdf_size = 128
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 15.0
 cache/0/16/0/descent = 4.0
 cache/0/16/0/underline_position = 2.3125
@@ -1071,7 +1062,7 @@ font_size = 24
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="UI" type="Control" unique_id=2041381351]
+[node name="UI" type="Control"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -1085,7 +1076,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_smcll")
 
-[node name="Loading" type="ColorRect" parent="." unique_id=1245692053]
+[node name="Loading" type="ColorRect" parent="."]
 visible = false
 z_index = 4096
 material = SubResource("ShaderMaterial_3r70p")
@@ -1102,7 +1093,7 @@ pivot_offset = Vector2(539, 303)
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Q" type="Label" parent="Loading" unique_id=135939962]
+[node name="Q" type="Label" parent="Loading"]
 visible = false
 use_parent_material = true
 layout_mode = 1
@@ -1118,7 +1109,7 @@ label_settings = SubResource("LabelSettings_pmm21")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="NameText" type="Label" parent="Loading" unique_id=2143983789]
+[node name="NameText" type="Label" parent="Loading"]
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
@@ -1134,13 +1125,13 @@ label_settings = SubResource("LabelSettings_ebfgw")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Load" type="Sprite2D" parent="Loading" unique_id=992319147]
+[node name="Load" type="Sprite2D" parent="Loading"]
 use_parent_material = true
 position = Vector2(542.63635, 425.72726)
 scale = Vector2(0.9090909, 0.9090909)
 texture = ExtResource("6_0o3wc")
 
-[node name="Dead" type="ColorRect" parent="." unique_id=166694307]
+[node name="Dead" type="ColorRect" parent="."]
 visible = false
 z_index = 4000
 layout_mode = 1
@@ -1153,7 +1144,7 @@ scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(539, 303)
 color = Color(0, 0, 0, 1)
 
-[node name="Text" type="Label" parent="Dead" unique_id=1041811311]
+[node name="Text" type="Label" parent="Dead"]
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
@@ -1167,7 +1158,7 @@ label_settings = SubResource("LabelSettings_85lyl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="R" type="Label" parent="Dead" unique_id=206508107]
+[node name="R" type="Label" parent="Dead"]
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
@@ -1184,7 +1175,7 @@ text = "'R' to try again"
 label_settings = SubResource("LabelSettings_mplvk")
 vertical_alignment = 2
 
-[node name="Q" type="Label" parent="Dead" unique_id=181347313]
+[node name="Q" type="Label" parent="Dead"]
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 15
@@ -1202,7 +1193,7 @@ label_settings = SubResource("LabelSettings_mplvk")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="Border" type="ColorRect" parent="." unique_id=251261580]
+[node name="Border" type="ColorRect" parent="."]
 z_index = 100
 material = SubResource("ShaderMaterial_8fs27")
 layout_mode = 1
@@ -1215,7 +1206,7 @@ scale = Vector2(1, 1.01247)
 pivot_offset = Vector2(539, 303)
 mouse_filter = 2
 
-[node name="SecCooldown1" type="TextureProgressBar" parent="." unique_id=1079445666]
+[node name="SecCooldown1" type="TextureProgressBar" parent="."]
 clip_children = 2
 layout_mode = 0
 offset_left = 95.0
@@ -1226,7 +1217,7 @@ value = 100.0
 fill_mode = 4
 tint_progress = Color(1, 1, 1, 0.84313726)
 
-[node name="SecCooldown2" type="TextureProgressBar" parent="." unique_id=467040354]
+[node name="SecCooldown2" type="TextureProgressBar" parent="."]
 clip_children = 2
 layout_mode = 0
 offset_left = 171.0
@@ -1237,7 +1228,7 @@ fill_mode = 4
 texture_progress = SubResource("CompressedTexture2D_kuui0")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
-[node name="SecCooldown3" type="TextureProgressBar" parent="." unique_id=1964252926]
+[node name="SecCooldown3" type="TextureProgressBar" parent="."]
 visible = false
 clip_children = 2
 layout_mode = 0
@@ -1249,7 +1240,7 @@ fill_mode = 4
 texture_progress = SubResource("CompressedTexture2D_smy1h")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
-[node name="SecCooldown4" type="TextureProgressBar" parent="." unique_id=332339338]
+[node name="SecCooldown4" type="TextureProgressBar" parent="."]
 visible = false
 clip_children = 2
 layout_mode = 0
@@ -1261,7 +1252,7 @@ fill_mode = 4
 texture_progress = SubResource("CompressedTexture2D_lkjmk")
 tint_progress = Color(1, 1, 1, 0.84313726)
 
-[node name="Inv" type="Control" parent="." unique_id=1579505784]
+[node name="Inv" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -1270,7 +1261,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubPort" type="SubViewportContainer" parent="Inv" unique_id=2077612594]
+[node name="SubPort" type="SubViewportContainer" parent="Inv"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -1278,13 +1269,13 @@ anchor_bottom = 1.002
 offset_right = -4.0
 offset_bottom = -0.296082
 
-[node name="Sub" type="SubViewport" parent="Inv/SubPort" unique_id=160460721]
+[node name="Sub" type="SubViewport" parent="Inv/SubPort"]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1080, 605)
 render_target_update_mode = 0
 
-[node name="longsword" type="Button" parent="Inv/SubPort/Sub" unique_id=1885216983]
+[node name="longsword" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 37.0
 offset_top = 35.0
 offset_right = 606.0
@@ -1293,7 +1284,17 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="ResourceInv" type="Button" parent="Inv/SubPort/Sub" unique_id=86132873]
+[node name="Potions" type="Button" parent="Inv/SubPort/Sub"]
+offset_left = 800.0
+offset_top = 454.0
+offset_right = 880.0001
+offset_bottom = 534.00037
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Potions"
+autowrap_mode = 2
+
+[node name="ResourceInv" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 895.0
 offset_top = 346.0
 offset_right = 975.0
@@ -1303,7 +1304,7 @@ mouse_default_cursor_shape = 2
 text = "Resource Inv"
 autowrap_mode = 2
 
-[node name="dagger" type="Button" parent="Inv/SubPort/Sub" unique_id=1130598447]
+[node name="dagger" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 249.0
 offset_top = 321.0
 offset_right = 297.0
@@ -1312,7 +1313,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="Falchion" type="Button" parent="Inv/SubPort/Sub" unique_id=1577738408]
+[node name="Falchion" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 86.0
 offset_top = 183.0
 offset_right = 94.0
@@ -1322,7 +1323,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="StakeGun" type="Button" parent="Inv/SubPort/Sub" unique_id=711297729]
+[node name="StakeGun" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 795.0
 offset_top = 97.0
 offset_right = 803.0
@@ -1332,7 +1333,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="FlintGun" type="Button" parent="Inv/SubPort/Sub" unique_id=1030080393]
+[node name="FlintGun" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 690.0
 offset_top = 97.0
 offset_right = 701.0
@@ -1342,7 +1343,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="Tomahawk" type="Button" parent="Inv/SubPort/Sub" unique_id=311645281]
+[node name="Tomahawk" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 690.0
 offset_top = 350.0
 offset_right = 753.0
@@ -1351,7 +1352,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="ThrowingKnife" type="Button" parent="Inv/SubPort/Sub" unique_id=416803631]
+[node name="ThrowingKnife" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 760.0
 offset_top = 350.0
 offset_right = 823.00006
@@ -1360,7 +1361,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="Caltrop" type="Button" parent="Inv/SubPort/Sub" unique_id=1129573543]
+[node name="Caltrop" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 700.0
 offset_top = 468.87
 offset_right = 840.6097
@@ -1369,7 +1370,7 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="Shortsword" type="Button" parent="Inv/SubPort/Sub" unique_id=918363970]
+[node name="Shortsword" type="Button" parent="Inv/SubPort/Sub"]
 offset_left = 167.0
 offset_top = 175.0
 offset_right = 175.0
@@ -1379,9 +1380,9 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="InvWorld" parent="Inv/SubPort/Sub" unique_id=802846239 instance=ExtResource("3_nf4gj")]
+[node name="InvWorld" parent="Inv/SubPort/Sub" instance=ExtResource("3_nf4gj")]
 
-[node name="SlotSelector" type="Control" parent="Inv/SubPort/Sub" unique_id=1985330064]
+[node name="SlotSelector" type="Control" parent="Inv/SubPort/Sub"]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -1390,7 +1391,7 @@ offset_top = 87.0
 offset_right = 765.0
 offset_bottom = 537.0
 
-[node name="Slot1" type="Button" parent="Inv/SubPort/Sub/SlotSelector" unique_id=1960000731]
+[node name="Slot1" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 0.074
@@ -1402,7 +1403,7 @@ rotation = 0.785398
 text = "Slot1
 "
 
-[node name="Slot3" type="Button" parent="Inv/SubPort/Sub/SlotSelector" unique_id=2010192477]
+[node name="Slot3" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 0.074
@@ -1412,7 +1413,7 @@ offset_bottom = 116.7
 rotation = 0.785398
 text = "Slot3"
 
-[node name="Slot2" type="Button" parent="Inv/SubPort/Sub/SlotSelector" unique_id=1263696993]
+[node name="Slot2" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 0.074
@@ -1423,7 +1424,7 @@ offset_bottom = 226.7
 rotation = 0.785398
 text = "Slot2"
 
-[node name="Slot4" type="Button" parent="Inv/SubPort/Sub/SlotSelector" unique_id=1331282378]
+[node name="Slot4" type="Button" parent="Inv/SubPort/Sub/SlotSelector"]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 0.074
@@ -1434,7 +1435,7 @@ offset_bottom = 226.7
 rotation = 0.785398
 text = "Slot4"
 
-[node name="Label" type="Label" parent="Inv/SubPort/Sub/SlotSelector" unique_id=1341840662]
+[node name="Label" type="Label" parent="Inv/SubPort/Sub/SlotSelector"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.089
@@ -1443,7 +1444,7 @@ offset_right = -0.0499992
 offset_bottom = 0.0499992
 text = "Select weapon slot"
 
-[node name="ResourceInv" type="Control" parent="." unique_id=1432737122]
+[node name="ResourceInv" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -1469,7 +1470,7 @@ _itemImages = Dictionary[String, Texture2D]({
 "taz": ExtResource("9_fe2sg")
 })
 
-[node name="GridContainer" type="GridContainer" parent="ResourceInv" unique_id=1629641779]
+[node name="GridContainer" type="GridContainer" parent="ResourceInv"]
 z_index = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1483,12 +1484,12 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 6
 
-[node name="InvSlot1" type="Panel" parent="ResourceInv/GridContainer" unique_id=193664824]
+[node name="InvSlot1" type="Panel" parent="ResourceInv/GridContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 
-[node name="Image" type="TextureRect" parent="ResourceInv/GridContainer/InvSlot1" unique_id=1737674339]
+[node name="Image" type="TextureRect" parent="ResourceInv/GridContainer/InvSlot1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1497,7 +1498,7 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 
-[node name="Count" type="Label" parent="ResourceInv/GridContainer/InvSlot1" unique_id=548845255]
+[node name="Count" type="Label" parent="ResourceInv/GridContainer/InvSlot1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1509,7 +1510,7 @@ label_settings = SubResource("LabelSettings_kjfio")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="SubPort" type="SubViewportContainer" parent="ResourceInv" unique_id=455674819]
+[node name="SubPort" type="SubViewportContainer" parent="ResourceInv"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1523,16 +1524,16 @@ offset_bottom = 288.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sub" type="SubViewport" parent="ResourceInv/SubPort" unique_id=872927893]
+[node name="Sub" type="SubViewport" parent="ResourceInv/SubPort"]
 transparent_bg = true
 handle_input_locally = false
 use_occlusion_culling = true
 size = Vector2i(585, 571)
 render_target_update_mode = 0
 
-[node name="RW" parent="ResourceInv/SubPort/Sub" unique_id=459704539 instance=ExtResource("6_whq80")]
+[node name="RW" parent="ResourceInv/SubPort/Sub" instance=ExtResource("6_whq80")]
 
-[node name="Back" type="Button" parent="ResourceInv" unique_id=915961261]
+[node name="Back" type="Button" parent="ResourceInv"]
 z_index = -1
 layout_mode = 0
 offset_left = 181.0
@@ -1545,7 +1546,7 @@ theme_override_font_sizes/font_size = 24
 text = "Back"
 alignment = 0
 
-[node name="Quest" type="Control" parent="." unique_id=1921804337]
+[node name="Quest" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -1554,7 +1555,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="QuestBox" type="VBoxContainer" parent="Quest" unique_id=1270219794]
+[node name="QuestBox" type="VBoxContainer" parent="Quest"]
 layout_direction = 2
 layout_mode = 0
 offset_left = 198.0
@@ -1563,7 +1564,7 @@ offset_right = 764.0
 offset_bottom = 1000.0
 scale = Vector2(0.5, 0.5)
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Quest" unique_id=874268852]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Quest"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -1571,16 +1572,16 @@ anchor_bottom = 1.002
 offset_right = -4.0
 offset_bottom = -0.296082
 
-[node name="SubViewport" type="SubViewport" parent="Quest/SubViewportContainer" unique_id=457004479]
+[node name="SubViewport" type="SubViewport" parent="Quest/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
 use_occlusion_culling = true
 size = Vector2i(1079, 606)
 render_target_update_mode = 0
 
-[node name="QuestWorld" parent="Quest/SubViewportContainer/SubViewport" unique_id=1806137510 instance=ExtResource("6_ryf15")]
+[node name="QuestWorld" parent="Quest/SubViewportContainer/SubViewport" instance=ExtResource("6_ryf15")]
 
-[node name="QuestHeader" type="Label" parent="Quest" unique_id=19297486]
+[node name="QuestHeader" type="Label" parent="Quest"]
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -1597,7 +1598,7 @@ label_settings = SubResource("LabelSettings_jxero")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DescriptionHeader" type="Label" parent="Quest" unique_id=114884044]
+[node name="DescriptionHeader" type="Label" parent="Quest"]
 visible = false
 z_index = 1
 layout_mode = 1
@@ -1616,7 +1617,7 @@ label_settings = SubResource("LabelSettings_jxero")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Quest" unique_id=1308052896]
+[node name="Description" type="Label" parent="Quest"]
 layout_mode = 0
 offset_left = 582.268
 offset_top = 125.392
@@ -1626,7 +1627,7 @@ scale = Vector2(0.75, 0.75)
 theme_override_fonts/font = ExtResource("1_qdvrb")
 horizontal_alignment = 1
 
-[node name="Combat" type="Label" parent="." unique_id=233629004]
+[node name="Combat" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.002
@@ -1641,7 +1642,7 @@ label_settings = SubResource("LabelSettings_qdvrb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TutTextComb" type="Label" parent="." unique_id=589463638]
+[node name="TutTextComb" type="Label" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1659,7 +1660,7 @@ label_settings = SubResource("LabelSettings_0o3wc")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="FPS" type="Label" parent="." unique_id=457305771]
+[node name="FPS" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.002
@@ -1675,7 +1676,7 @@ label_settings = SubResource("LabelSettings_pmm21")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Area" type="Label" parent="." unique_id=1082750272]
+[node name="Area" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -1691,7 +1692,7 @@ label_settings = SubResource("LabelSettings_d42i4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Tutorial" type="Label" parent="." unique_id=862624269]
+[node name="Tutorial" type="Label" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1707,7 +1708,7 @@ label_settings = SubResource("LabelSettings_d42i4")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="DemoWarning" type="Label" parent="." unique_id=276418120]
+[node name="DemoWarning" type="Label" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1724,7 +1725,7 @@ label_settings = SubResource("LabelSettings_8fs27")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Light" type="Label" parent="DemoWarning" unique_id=2061296751]
+[node name="Light" type="Label" parent="DemoWarning"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.002
@@ -1739,7 +1740,7 @@ label_settings = SubResource("LabelSettings_dx4fu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InvButton" type="Button" parent="." unique_id=71541322]
+[node name="InvButton" type="Button" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1757,7 +1758,7 @@ theme_override_fonts/font = ExtResource("1_qdvrb")
 theme_override_font_sizes/font_size = 30
 text = "i for Inventory"
 
-[node name="Mouse" type="ColorRect" parent="." unique_id=714396897]
+[node name="Mouse" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_m78vo")
 layout_mode = 1
 anchors_preset = 8
@@ -1773,7 +1774,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(1.5, 1)
 
-[node name="Container" type="Control" parent="." unique_id=756081942]
+[node name="Container" type="Control" parent="."]
 visible = false
 anchors_preset = 0
 offset_left = 100.0
@@ -1781,21 +1782,21 @@ offset_top = -398.0
 offset_right = 742.0
 offset_bottom = -101.0
 
-[node name="QuestTemplate" type="VBoxContainer" parent="Container" unique_id=1818911871]
+[node name="QuestTemplate" type="VBoxContainer" parent="Container"]
 layout_mode = 0
 offset_top = 84.0
 offset_right = 295.0
 offset_bottom = 181.0
 scale = Vector2(0.55, 0.55)
 
-[node name="Quest" type="Label" parent="Container/QuestTemplate" unique_id=532585930]
+[node name="Quest" type="Label" parent="Container/QuestTemplate"]
 z_index = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "Quest"
 label_settings = SubResource("LabelSettings_jxero")
 
-[node name="QuestButton" type="Button" parent="Container/QuestTemplate/Quest" unique_id=168775293]
+[node name="QuestButton" type="Button" parent="Container/QuestTemplate/Quest"]
 layout_mode = 0
 offset_top = 12.685
 offset_right = 295.0
@@ -1805,14 +1806,14 @@ pivot_offset = Vector2(147.5, 50)
 mouse_default_cursor_shape = 2
 flat = true
 
-[node name="Number" type="Label" parent="Container/QuestTemplate" unique_id=1011864604]
+[node name="Number" type="Label" parent="Container/QuestTemplate"]
 z_index = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_qdvrb")
 text = "Number"
 label_settings = SubResource("LabelSettings_m78vo")
 
-[node name="Dialogue" type="Control" parent="." unique_id=1360105187]
+[node name="Dialogue" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchor_left = 0.057
@@ -1824,7 +1825,7 @@ offset_top = -0.35199
 offset_right = 0.186951
 offset_bottom = 0.149963
 
-[node name="DialogueBox" type="Label" parent="Dialogue" unique_id=477345083]
+[node name="DialogueBox" type="Label" parent="Dialogue"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.22700001
@@ -1842,7 +1843,7 @@ d"
 label_settings = SubResource("LabelSettings_nt8jn")
 autowrap_mode = 2
 
-[node name="NameText" type="Label" parent="Dialogue/DialogueBox" unique_id=1761579189]
+[node name="NameText" type="Label" parent="Dialogue/DialogueBox"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -1.044
@@ -1856,7 +1857,7 @@ text = "Name"
 label_settings = SubResource("LabelSettings_g0wmg")
 vertical_alignment = 2
 
-[node name="AcceptButton" type="Button" parent="Dialogue" unique_id=252894385]
+[node name="AcceptButton" type="Button" parent="Dialogue"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.802
@@ -1871,7 +1872,7 @@ theme_override_fonts/font = ExtResource("17_fe2sg")
 theme_override_font_sizes/font_size = 22
 text = "Accept"
 
-[node name="Continue" type="Button" parent="Dialogue" unique_id=1519429668]
+[node name="Continue" type="Button" parent="Dialogue"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1888,7 +1889,7 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 22
 flat = true
 
-[node name="IgnoreButton" type="Button" parent="Dialogue" unique_id=1653945143]
+[node name="IgnoreButton" type="Button" parent="Dialogue"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.178
@@ -1905,7 +1906,7 @@ theme_override_fonts/font = ExtResource("17_fe2sg")
 theme_override_font_sizes/font_size = 22
 text = "Ignore"
 
-[node name="BlacksmithShop" type="Control" parent="." unique_id=1193347129]
+[node name="BlacksmithShop" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchor_left = 0.059
@@ -1917,7 +1918,7 @@ offset_top = -0.14200592
 offset_right = 125.48993
 offset_bottom = 0.26397705
 
-[node name="ShopTypeOptions" type="OptionButton" parent="BlacksmithShop" unique_id=259173779]
+[node name="ShopTypeOptions" type="OptionButton" parent="BlacksmithShop"]
 layout_mode = 0
 offset_right = 350.0
 offset_bottom = 40.0
@@ -1931,7 +1932,7 @@ popup/item_1/text = "Two-Handed Primary"
 popup/item_1/id = 1
 popup/item_1/disabled = true
 
-[node name="SmithShopBack" type="Button" parent="BlacksmithShop" unique_id=1619243091]
+[node name="SmithShopBack" type="Button" parent="BlacksmithShop"]
 layout_mode = 0
 offset_left = 355.0
 offset_right = 420.0
@@ -1940,7 +1941,7 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 26
 text = "Back"
 
-[node name="ShopOption1" type="TextureButton" parent="BlacksmithShop" unique_id=354904796]
+[node name="ShopOption1" type="TextureButton" parent="BlacksmithShop"]
 layout_mode = 0
 offset_top = 50.0
 offset_right = 415.0
@@ -1949,7 +1950,7 @@ texture_normal = ExtResource("12_kuui0")
 texture_pressed = ExtResource("12_kuui0")
 texture_hover = ExtResource("12_kuui0")
 
-[node name="Label" type="Label" parent="BlacksmithShop/ShopOption1" unique_id=885286101]
+[node name="Label" type="Label" parent="BlacksmithShop/ShopOption1"]
 layout_mode = 0
 offset_left = 33.0
 offset_right = 400.0
@@ -1959,7 +1960,7 @@ label_settings = SubResource("LabelSettings_wc4t8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShopOption2" type="TextureButton" parent="BlacksmithShop" unique_id=1638714710]
+[node name="ShopOption2" type="TextureButton" parent="BlacksmithShop"]
 layout_mode = 0
 offset_top = 150.0
 offset_right = 415.0
@@ -1968,7 +1969,7 @@ texture_normal = ExtResource("12_kuui0")
 texture_pressed = ExtResource("12_kuui0")
 texture_hover = ExtResource("12_kuui0")
 
-[node name="Label" type="Label" parent="BlacksmithShop/ShopOption2" unique_id=353447721]
+[node name="Label" type="Label" parent="BlacksmithShop/ShopOption2"]
 layout_mode = 0
 offset_left = 33.0
 offset_right = 400.0
@@ -1978,7 +1979,7 @@ label_settings = SubResource("LabelSettings_wc4t8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShopOption3" type="TextureButton" parent="BlacksmithShop" unique_id=1563074422]
+[node name="ShopOption3" type="TextureButton" parent="BlacksmithShop"]
 visible = false
 layout_mode = 0
 offset_top = 250.0
@@ -1988,7 +1989,7 @@ texture_normal = ExtResource("12_kuui0")
 texture_pressed = ExtResource("12_kuui0")
 texture_hover = ExtResource("12_kuui0")
 
-[node name="Label" type="Label" parent="BlacksmithShop/ShopOption3" unique_id=1195701638]
+[node name="Label" type="Label" parent="BlacksmithShop/ShopOption3"]
 layout_mode = 0
 offset_left = 33.0
 offset_right = 400.0
@@ -1998,7 +1999,7 @@ label_settings = SubResource("LabelSettings_wc4t8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShopOption4" type="TextureButton" parent="BlacksmithShop" unique_id=2099322645]
+[node name="ShopOption4" type="TextureButton" parent="BlacksmithShop"]
 layout_mode = 0
 offset_top = 350.0
 offset_right = 415.0
@@ -2007,7 +2008,7 @@ texture_normal = ExtResource("12_kuui0")
 texture_pressed = ExtResource("12_kuui0")
 texture_hover = ExtResource("12_kuui0")
 
-[node name="Label" type="Label" parent="BlacksmithShop/ShopOption4" unique_id=2009891868]
+[node name="Label" type="Label" parent="BlacksmithShop/ShopOption4"]
 layout_mode = 0
 offset_left = 33.0
 offset_right = 400.0
@@ -2017,21 +2018,21 @@ label_settings = SubResource("LabelSettings_wc4t8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PortContainer" type="SubViewportContainer" parent="BlacksmithShop" unique_id=537916334]
+[node name="PortContainer" type="SubViewportContainer" parent="BlacksmithShop"]
 layout_mode = 0
 offset_left = 438.0
 offset_right = 680.0
 offset_bottom = 422.0
 
-[node name="Port" type="SubViewport" parent="BlacksmithShop/PortContainer" unique_id=1428704194]
+[node name="Port" type="SubViewport" parent="BlacksmithShop/PortContainer"]
 handle_input_locally = false
 size = Vector2i(242, 422)
 render_target_update_mode = 0
 
-[node name="SmithShopPreviewWorld" parent="BlacksmithShop/PortContainer/Port" unique_id=2014588472 instance=ExtResource("12_whq80")]
+[node name="SmithShopPreviewWorld" parent="BlacksmithShop/PortContainer/Port" instance=ExtResource("12_whq80")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.51964, -10.136, 0)
 
-[node name="Upgrade" type="Button" parent="BlacksmithShop" unique_id=1344722980]
+[node name="Upgrade" type="Button" parent="BlacksmithShop"]
 z_index = 1
 layout_mode = 0
 offset_left = 602.0
@@ -2042,7 +2043,7 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 21
 text = "Upgrade"
 
-[node name="ViewButton" type="Button" parent="BlacksmithShop" unique_id=1281572066]
+[node name="ViewButton" type="Button" parent="BlacksmithShop"]
 visible = false
 z_index = 1
 layout_mode = 0
@@ -2054,24 +2055,17 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 21
 text = "View"
 
-[node name="View" type="Control" parent="BlacksmithShop" unique_id=979482604]
-visible = false
-anchors_preset = 0
-offset_left = 138.0
-offset_right = 560.0
-offset_bottom = 422.0
-
-[node name="Warning" type="ColorRect" parent="BlacksmithShop/View" unique_id=1817235197]
+[node name="Warning" type="ColorRect" parent="BlacksmithShop"]
 visible = false
 z_index = 3
 layout_mode = 0
-offset_left = 29.0
+offset_left = 167.0
 offset_top = 54.0
-offset_right = 174.0
+offset_right = 312.0
 offset_bottom = 99.0
 color = Color(0.29411766, 0.29411766, 0.29411766, 0.9254902)
 
-[node name="Warning" type="Label" parent="BlacksmithShop/View/Warning" unique_id=1697482087]
+[node name="Warning" type="Label" parent="BlacksmithShop/Warning"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.027
@@ -2083,7 +2077,14 @@ text = "This weapon is already max level!"
 label_settings = SubResource("LabelSettings_nbcfj")
 autowrap_mode = 2
 
-[node name="WeaponDesc" type="ColorRect" parent="BlacksmithShop/View" unique_id=431735614]
+[node name="View" type="Control" parent="BlacksmithShop"]
+visible = false
+anchors_preset = 0
+offset_left = 138.0
+offset_right = 560.0
+offset_bottom = 422.0
+
+[node name="WeaponDesc" type="ColorRect" parent="BlacksmithShop/View"]
 visible = false
 z_index = 1
 layout_mode = 0
@@ -2093,7 +2094,7 @@ offset_right = 236.0
 offset_bottom = 416.0
 color = Color(0.760784, 0.760784, 0.760784, 1)
 
-[node name="ViewWeapon" type="Label" parent="BlacksmithShop/View/WeaponDesc" unique_id=825071465]
+[node name="ViewWeapon" type="Label" parent="BlacksmithShop/View/WeaponDesc"]
 z_index = 2
 layout_mode = 0
 offset_left = 5.0
@@ -2105,7 +2106,7 @@ text = "Greatsword"
 label_settings = SubResource("LabelSettings_smy1h")
 horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="BlacksmithShop/View/WeaponDesc" unique_id=1594863822]
+[node name="Description" type="Label" parent="BlacksmithShop/View/WeaponDesc"]
 z_index = 2
 layout_mode = 0
 offset_left = 5.0
@@ -2119,20 +2120,20 @@ Its special attack blocks and pushes enemies, stunning them briefly."
 label_settings = SubResource("LabelSettings_lkjmk")
 autowrap_mode = 3
 
-[node name="UpgradeMenu" type="Control" parent="BlacksmithShop/View" unique_id=1287166548]
+[node name="UpgradeMenu" type="Control" parent="BlacksmithShop/View"]
 visible = false
 anchors_preset = 0
 offset_right = 422.0
 offset_bottom = 422.0
 
-[node name="ColorRect" type="ColorRect" parent="BlacksmithShop/View/UpgradeMenu" unique_id=335194518]
+[node name="ColorRect" type="ColorRect" parent="BlacksmithShop/View/UpgradeMenu"]
 z_index = 2
 layout_mode = 0
 offset_right = 422.0
 offset_bottom = 422.0
 color = Color(0.762404, 0.762404, 0.762404, 1)
 
-[node name="UpgradePrompt" type="Label" parent="BlacksmithShop/View/UpgradeMenu" unique_id=1145900147]
+[node name="UpgradePrompt" type="Label" parent="BlacksmithShop/View/UpgradeMenu"]
 z_index = 2
 layout_mode = 0
 offset_right = 422.0
@@ -2143,12 +2144,12 @@ Shortsword?"
 label_settings = SubResource("LabelSettings_whq80")
 horizontal_alignment = 1
 
-[node name="Requirements" type="Control" parent="BlacksmithShop/View/UpgradeMenu" unique_id=1877599388]
+[node name="Requirements" type="Control" parent="BlacksmithShop/View/UpgradeMenu"]
 anchors_preset = 0
 offset_right = 422.0
 offset_bottom = 422.0
 
-[node name="Details" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Requirements" unique_id=1899174796]
+[node name="Details" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
 z_index = 2
 layout_mode = 0
 offset_left = 11.0
@@ -2159,7 +2160,7 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 label_settings = SubResource("LabelSettings_kuui0")
 horizontal_alignment = 1
 
-[node name="UpgradeDeny" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Requirements" unique_id=1189937314]
+[node name="UpgradeDeny" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
 z_index = 2
 layout_mode = 0
 offset_left = 219.0
@@ -2168,7 +2169,7 @@ offset_right = 409.0
 offset_bottom = 412.0
 text = "No"
 
-[node name="UpgradeConf" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Requirements" unique_id=1132988280]
+[node name="UpgradeConf" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
 z_index = 2
 layout_mode = 0
 offset_left = 14.0
@@ -2177,7 +2178,7 @@ offset_right = 204.0
 offset_bottom = 412.0
 text = "Yes"
 
-[node name="CraftConf" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Requirements" unique_id=1860612061]
+[node name="CraftConf" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Requirements"]
 visible = false
 z_index = 2
 layout_mode = 0
@@ -2187,14 +2188,14 @@ offset_right = 218.0
 offset_bottom = 789.0
 text = "Yes"
 
-[node name="Results" type="Control" parent="BlacksmithShop/View/UpgradeMenu" unique_id=1812824539]
+[node name="Results" type="Control" parent="BlacksmithShop/View/UpgradeMenu"]
 visible = false
 z_index = 1
 anchors_preset = 0
 offset_right = 422.0
 offset_bottom = 422.0
 
-[node name="Results" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results" unique_id=562286878]
+[node name="Results" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
 z_index = 2
 layout_mode = 0
 offset_left = 7.0
@@ -2205,7 +2206,7 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 text = "Results:"
 label_settings = SubResource("LabelSettings_fcexb")
 
-[node name="Unlocks" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results" unique_id=1731992701]
+[node name="Unlocks" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
 visible = false
 z_index = 2
 layout_mode = 0
@@ -2220,7 +2221,7 @@ label_settings = SubResource("LabelSettings_3g2cg")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="StatName" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results" unique_id=1080736246]
+[node name="StatName" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
 z_index = 2
 layout_mode = 0
 offset_left = 11.0
@@ -2231,7 +2232,7 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 label_settings = SubResource("LabelSettings_v4f2e")
 text_overrun_behavior = 1
 
-[node name="Amount" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results" unique_id=161724469]
+[node name="Amount" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
 visible = false
 z_index = 2
 layout_mode = 0
@@ -2243,7 +2244,7 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 label_settings = SubResource("LabelSettings_fe2sg")
 text_overrun_behavior = 1
 
-[node name="Addition" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results" unique_id=785538862]
+[node name="Addition" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
 z_index = 2
 layout_mode = 0
 offset_left = 337.0
@@ -2254,7 +2255,7 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 label_settings = SubResource("LabelSettings_jd57c")
 autowrap_mode = 1
 
-[node name="Done" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Results" unique_id=1474490636]
+[node name="Done" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Results"]
 z_index = 2
 layout_mode = 0
 offset_left = 14.0
@@ -2263,7 +2264,7 @@ offset_right = 408.0
 offset_bottom = 412.0
 text = "All Done"
 
-[node name="WizardShop" type="Control" parent="." unique_id=224872855]
+[node name="WizardShop" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchor_left = 0.171
@@ -2275,7 +2276,7 @@ offset_top = -0.23600006
 offset_right = -1.0690308
 offset_bottom = 0.29595947
 
-[node name="ShopTypeOptions" type="OptionButton" parent="WizardShop" unique_id=1752963255]
+[node name="ShopTypeOptions" type="OptionButton" parent="WizardShop"]
 layout_mode = 0
 offset_right = 270.0
 offset_bottom = 40.0
@@ -2290,7 +2291,7 @@ popup/item_1/id = 1
 popup/item_2/text = "Strength Potions"
 popup/item_2/id = 2
 
-[node name="WizShopBack" type="Button" parent="WizardShop" unique_id=1622750106]
+[node name="WizShopBack" type="Button" parent="WizardShop"]
 layout_mode = 0
 offset_left = 276.0
 offset_right = 336.0
@@ -2299,13 +2300,13 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 25
 text = "Back"
 
-[node name="ShopOption1" type="Button" parent="WizardShop" unique_id=1643076857]
+[node name="ShopOption1" type="Button" parent="WizardShop"]
 layout_mode = 0
 offset_top = 50.0
 offset_right = 336.0
 offset_bottom = 180.0
 
-[node name="Label" type="Label" parent="WizardShop/ShopOption1" unique_id=1947770624]
+[node name="Label" type="Label" parent="WizardShop/ShopOption1"]
 layout_mode = 0
 offset_left = 28.0
 offset_right = 308.0
@@ -2315,13 +2316,13 @@ label_settings = SubResource("LabelSettings_wc4t8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShopOption2" type="Button" parent="WizardShop" unique_id=1281425127]
+[node name="ShopOption2" type="Button" parent="WizardShop"]
 layout_mode = 0
 offset_top = 196.0
 offset_right = 336.0
 offset_bottom = 326.0
 
-[node name="Label" type="Label" parent="WizardShop/ShopOption2" unique_id=1328408063]
+[node name="Label" type="Label" parent="WizardShop/ShopOption2"]
 layout_mode = 0
 offset_left = 33.0
 offset_right = 313.0
@@ -2331,13 +2332,13 @@ label_settings = SubResource("LabelSettings_wc4t8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShopOption3" type="Button" parent="WizardShop" unique_id=1545305721]
+[node name="ShopOption3" type="Button" parent="WizardShop"]
 layout_mode = 0
 offset_top = 342.0
 offset_right = 336.0
 offset_bottom = 472.0
 
-[node name="Label" type="Label" parent="WizardShop/ShopOption3" unique_id=612574227]
+[node name="Label" type="Label" parent="WizardShop/ShopOption3"]
 layout_mode = 0
 offset_left = 33.0
 offset_right = 313.0
@@ -2347,13 +2348,13 @@ label_settings = SubResource("LabelSettings_wc4t8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PotionView" type="Control" parent="WizardShop" unique_id=890570687]
+[node name="PotionView" type="Control" parent="WizardShop"]
 anchors_preset = 0
 offset_left = 430.0
 offset_right = 690.0
 offset_bottom = 232.0
 
-[node name="PotionView" type="SubViewportContainer" parent="WizardShop/PotionView" unique_id=2110170368]
+[node name="PotionView" type="SubViewportContainer" parent="WizardShop/PotionView"]
 z_index = -1
 layout_mode = 0
 offset_left = -80.0
@@ -2361,14 +2362,14 @@ offset_right = 260.0
 offset_bottom = 250.0
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="WizardShop/PotionView/PotionView" unique_id=36682734]
+[node name="SubViewport" type="SubViewport" parent="WizardShop/PotionView/PotionView"]
 handle_input_locally = false
 size = Vector2i(340, 250)
 render_target_update_mode = 0
 
-[node name="WizShopPreviewWorld" parent="WizardShop/PotionView/PotionView/SubViewport" unique_id=679523974 instance=ExtResource("29_ipwe8")]
+[node name="WizShopPreviewWorld" parent="WizardShop/PotionView/PotionView/SubViewport" instance=ExtResource("29_ipwe8")]
 
-[node name="PotionMenu" type="Control" parent="WizardShop" unique_id=1316042611]
+[node name="PotionMenu" type="Control" parent="WizardShop"]
 z_index = 1
 anchors_preset = 0
 offset_left = 350.0
@@ -2376,7 +2377,14 @@ offset_top = 260.0
 offset_right = 689.99976
 offset_bottom = 472.0
 
-[node name="Prompt" type="Label" parent="WizardShop/PotionMenu" unique_id=1779549577]
+[node name="ColorRect" type="ColorRect" parent="WizardShop/PotionMenu"]
+z_index = 1
+layout_mode = 0
+offset_right = 340.0
+offset_bottom = 212.0
+color = Color(0.756691, 0.7547321, 0.81161565, 1)
+
+[node name="Prompt" type="Label" parent="WizardShop/PotionMenu"]
 z_index = 2
 layout_mode = 0
 offset_right = 340.0
@@ -2387,7 +2395,7 @@ text = "Greater Strength"
 label_settings = SubResource("LabelSettings_whq80")
 horizontal_alignment = 1
 
-[node name="PotionDesc" type="Label" parent="WizardShop/PotionMenu" unique_id=2091157785]
+[node name="PotionDesc" type="Label" parent="WizardShop/PotionMenu"]
 z_index = 2
 layout_mode = 0
 offset_left = 7.0
@@ -2399,7 +2407,7 @@ label_settings = SubResource("LabelSettings_ipwe8")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Craft" type="Button" parent="WizardShop/PotionMenu" unique_id=2008274137]
+[node name="Craft" type="Button" parent="WizardShop/PotionMenu"]
 z_index = 3
 layout_mode = 0
 offset_left = 20.0
@@ -2410,14 +2418,7 @@ theme_override_fonts/font = ExtResource("10_nt8jn")
 theme_override_font_sizes/font_size = 25
 text = "Craft"
 
-[node name="ColorRect" type="ColorRect" parent="WizardShop/PotionMenu" unique_id=1466082892]
-z_index = 1
-layout_mode = 0
-offset_right = 340.0
-offset_bottom = 212.0
-color = Color(0.756691, 0.7547321, 0.81161565, 1)
-
-[node name="WizardBag" type="Control" parent="." unique_id=93673951]
+[node name="WizardBag" type="Control" parent="."]
 visible = false
 anchors_preset = 0
 offset_left = 184.0
@@ -2426,7 +2427,7 @@ offset_right = 599.0
 offset_bottom = 536.0
 script = ExtResource("6_kuui0")
 
-[node name="GridContainer" type="GridContainer" parent="WizardBag" unique_id=59864266]
+[node name="GridContainer" type="GridContainer" parent="WizardBag"]
 z_index = 1
 layout_mode = 1
 anchors_preset = 15
@@ -2440,12 +2441,12 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 6
 
-[node name="BagSlot1" type="Panel" parent="WizardBag/GridContainer" unique_id=988730407]
+[node name="BagSlot1" type="Panel" parent="WizardBag/GridContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 
-[node name="Image" type="TextureRect" parent="WizardBag/GridContainer/BagSlot1" unique_id=1497533119]
+[node name="Image" type="TextureRect" parent="WizardBag/GridContainer/BagSlot1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2454,7 +2455,7 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 
-[node name="Count" type="Label" parent="WizardBag/GridContainer/BagSlot1" unique_id=967040015]
+[node name="Count" type="Label" parent="WizardBag/GridContainer/BagSlot1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2466,13 +2467,13 @@ label_settings = SubResource("LabelSettings_kjfio")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="ColorRect" type="ColorRect" parent="WizardBag" unique_id=4081359]
+[node name="ColorRect" type="ColorRect" parent="WizardBag"]
 layout_mode = 0
 offset_right = 415.0
 offset_bottom = 472.0
 color = Color(0.75686276, 0.7529412, 0.8117647, 1)
 
-[node name="Health" type="TextureProgressBar" parent="." unique_id=678591416]
+[node name="Health" type="TextureProgressBar" parent="."]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 13.0
@@ -2484,12 +2485,12 @@ texture_over = ExtResource("29_mirbq")
 texture_progress = ExtResource("21_jd57c")
 texture_progress_offset = Vector2(2.28, 3.12)
 
-[node name="Voidhbar" type="Sprite2D" parent="Health" unique_id=1070031045]
+[node name="Voidhbar" type="Sprite2D" parent="Health"]
 show_behind_parent = true
 position = Vector2(119, 9)
 texture = ExtResource("20_jd57c")
 
-[node name="Stamina" type="TextureProgressBar" parent="." unique_id=1944875422]
+[node name="Stamina" type="TextureProgressBar" parent="."]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 35.0
@@ -2501,19 +2502,19 @@ texture_over = ExtResource("32_ipwe8")
 texture_progress = ExtResource("23_mplvk")
 texture_progress_offset = Vector2(3.02, 2.66)
 
-[node name="Voidhbar" type="Sprite2D" parent="Stamina" unique_id=362933390]
+[node name="Voidhbar" type="Sprite2D" parent="Stamina"]
 show_behind_parent = true
 position = Vector2(93, 8)
 scale = Vector2(0.78, 1)
 texture = ExtResource("20_jd57c")
 
-[node name="Controls" type="Sprite2D" parent="." unique_id=687513200]
+[node name="Controls" type="Sprite2D" parent="."]
 z_index = 5
 position = Vector2(539, 306)
 scale = Vector2(0.56, 0.56)
 texture = ExtResource("14_8fs27")
 
-[node name="ColorRect" type="ColorRect" parent="Controls" unique_id=1353669208]
+[node name="ColorRect" type="ColorRect" parent="Controls"]
 z_index = -1
 offset_left = -1023.21423
 offset_top = -628.5714
@@ -2525,6 +2526,7 @@ color = Color(0, 0, 0, 0.5882353)
 [connection signal="button_up" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_mouse_entered"]
 [connection signal="mouse_exited" from="Inv/SubPort/Sub/longsword" to="." method="_on_longsword_mouse_exited"]
+[connection signal="button_up" from="Inv/SubPort/Sub/Potions" to="." method="_on_potions_button_up"]
 [connection signal="button_up" from="Inv/SubPort/Sub/ResourceInv" to="." method="_on_resource_inv_button_up"]
 [connection signal="button_up" from="Inv/SubPort/Sub/dagger" to="." method="_on_dagger_button_up"]
 [connection signal="mouse_entered" from="Inv/SubPort/Sub/dagger" to="." method="_on_dagger_mouse_entered"]
