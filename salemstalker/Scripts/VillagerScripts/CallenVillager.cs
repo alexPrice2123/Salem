@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class SamualVillager /*Replace with script name*/ : NpcVillager
+public partial class CallenVillager /*Replace with script name*/ : NpcVillager
 {
 	public override void _Ready()
 	{
