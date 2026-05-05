@@ -184,7 +184,7 @@ public partial class Player3d : CharacterBody3D
 		SwitchSecondaryWeapon((string)GetParent<NewWorld>().data["secEquipped2"],1);
 
 		_sword = GetNode<Node3D>("Head/Camera3D/Sword").GetChild<Node3D>(0); // Get the first child of the 'Sword' node (the actual equipped weapon)
-		GD.Print("sword, ",_sword);
+		GD.Print("sword, ",_sword.Name);
 		if (GetNode<Node3D>("Head/Camera3D/Offhand1").GetChildCount() > 0){
 			_eSecWeapon1 = GetNode<Node3D>("Head/Camera3D/Offhand1").GetChild<Node3D>(0);
 		}
@@ -1270,25 +1270,28 @@ public partial class Player3d : CharacterBody3D
 	}
 
 	// Switches the player's equipped primary weapon.
-	public void SwitchPrimaryWeapon(string wepaonName, bool twoHanded = false)
+	public async void SwitchPrimaryWeapon(string wepaonName, bool twoHanded = false)
 	{
-		if(string.IsNullOrEmpty(wepaonName)){GD.Print("moreemp");return;}
+		if(wepaonName.Equals("") || wepaonName == null){GD.Print("moreemp");return;}
 		_twoHand = twoHanded;
 		PackedScene weaponScene = _weapon[wepaonName]; // Get the scene resource from the dictionary
 		Node3D holder = GetNode<Marker3D>("Head/Camera3D/Sword");
-		//holder.GetChild<Node3D>(0).QueueFree(); // Delete the old weapon
+		holder.GetChild(0).QueueFree(); // Delete the old weapon
+		await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+		GD.Print("weaponDis,", holder.GetChildCount());
 		Node3D swordInstance = weaponScene.Instantiate<Node3D>(); // Create new weapon instance
 		holder.AddChild(swordInstance);                                             // Add new weapon to holder node
 		swordInstance.Position = Vector3.Zero;
 		_sword = swordInstance; // Update the main sword reference
 		_swordInst = _sword as SwordHandler; // Update the sword script reference
+		GD.Print("weaponDis2,", holder.GetChildCount());
 		GetParent<NewWorld>().data["mainEquipped"] = wepaonName ;
 	}
 
 	// Switches the player's secondary weapon slots.
 	public void SwitchSecondaryWeapon(string wepaonName, int slot)
 	{ 
-		if(wepaonName == null || wepaonName.Equals("")){GD.Print("moreemp");return;}
+		if(wepaonName == null || wepaonName.Equals("")){GD.Print("moreemp sec",slot+1);return;}
 		PackedScene weaponScene = _secWeapon[wepaonName]; // Get the scene resource from the dictionary
 		Node3D holder;
 		if (slot == 0)

@@ -102,19 +102,17 @@ script = ExtResource("2_mawk5")
 [node name="Sword" type="Marker3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, -0.23120898, -0.42244637)
 
-[node name="Shortsword" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
+[node name="EmptyHands" parent="Head/Camera3D/Sword" instance=ExtResource("2_sb0or")]
+visible = false
 metadata/hDamage = 0.0
 metadata/damage = 0.0
 
-[node name="Skeleton3D" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig" index="0"]
-bones/9/rotation = Quaternion(0.023057815, 0.068592764, -0.12911308, 0.98898596)
-bones/18/rotation = Quaternion(-0.32880828, -0.32931826, 0.8698606, 0.16363761)
-bones/19/rotation = Quaternion(0.14655632, -0.03110624, 0.039895397, 0.98790795)
-bones/20/rotation = Quaternion(-0.15204035, -0.20685674, -0.37812608, 0.88944626)
-bones/25/rotation = Quaternion(0.13627075, 0.09074122, 0.31506467, 0.9348425)
+[node name="Skeleton3D" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig" index="0"]
+bones/18/rotation = Quaternion(-0.15681054, -0.5136087, 0.6948908, 0.47827134)
+bones/19/rotation = Quaternion(0.59206975, -0.035513926, 0.031458713, 0.8044891)
 
-[node name="Cylinder" parent="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.66074103, 0.0033098161, 0.7506065, 0.70715517, 0.33806664, 0.6210011, -0.25169927, 0.9411165, -0.225715, 0.20406607, 1.2360662, 0.34137082)
+[node name="Cylinder" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig/Skeleton3D" index="0"]
+transform = Transform3D(-0.50001687, -0.014768973, 0.86588955, -0.022610232, 0.9997366, 0.003995158, -0.8657201, -0.017580219, -0.5002187, -0.18848623, 1.408251, 0.41832012)
 
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141743, 0, 0)
@@ -165,20 +163,24 @@ debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4405007, -2.2304518, 6.5016317)
+visible = false
 gi_mode = 0
 mesh = SubResource("SphereMesh_y6jx2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+visible = false
 gi_mode = 0
 mesh = SubResource("SphereMesh_cvtri")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+visible = false
 mesh = SubResource("SphereMesh_qfumr")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
+visible = false
 mesh = SubResource("SphereMesh_wan02")
 
 [node name="Fade" type="ColorRect" parent="."]
@@ -219,6 +221,6 @@ bus = &"Sfx"
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
 
-[editable path="Head/Camera3D/Sword/Shortsword"]
-[editable path="Head/Camera3D/Sword/Shortsword/weaponAnimations"]
-[editable path="Head/Camera3D/Sword/Shortsword/weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/shortsword"]
+[editable path="Head/Camera3D/Sword/EmptyHands"]
+[editable path="Head/Camera3D/Sword/EmptyHands/weaponAnimations"]
+[editable path="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig/Skeleton3D/Cylinder/Cylinder/shortsword"]
