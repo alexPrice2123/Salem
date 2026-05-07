@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://dwpo6a7lu68jh"]
+[gd_scene load_steps=84 format=4 uid="uid://dwpo6a7lu68jh"]
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
@@ -32,6 +32,10 @@
 [ext_resource type="Texture2D" uid="uid://du1ky338dkiqv" path="res://Assets/UI/healbar.png" id="21_jd57c"]
 [ext_resource type="Texture2D" uid="uid://w4vlfctn340n" path="res://Assets/2D/Placeholder/cat4.jpg" id="23_ebfgw"]
 [ext_resource type="Texture2D" uid="uid://c0mv51nrsl3a2" path="res://Assets/UI/stambar.png" id="23_mplvk"]
+[ext_resource type="Texture2D" uid="uid://oqy7mnugpyl3" path="res://Assets/UI/resources/cryingflower.png" id="24_u8gt4"]
+[ext_resource type="Texture2D" uid="uid://our2vbpunt2t" path="res://Assets/UI/resources/emptyves.png" id="25_r6b04"]
+[ext_resource type="Texture2D" uid="uid://dbu5g42fr0utj" path="res://Assets/UI/resources/ves.png" id="26_1xsrr"]
+[ext_resource type="Texture2D" uid="uid://dquge1rwd4iy7" path="res://Assets/UI/resources/woundedooze.png" id="27_ivk8b"]
 [ext_resource type="PackedScene" uid="uid://deufi3l5pvmp5" path="res://Scenes/wizshop_preview_world.tscn" id="29_ipwe8"]
 [ext_resource type="Texture2D" uid="uid://qy0i11h6p0kv" path="res://Assets/UI/basebaroverlay.png" id="29_mirbq"]
 [ext_resource type="Texture2D" uid="uid://cww7vpm3v6dkn" path="res://Assets/UI/stamoverlay.png" id="32_ipwe8"]
@@ -221,10 +225,22 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_fcexb"]
 line_spacing = 3.08
-font = ExtResource("1_qdvrb")
+font = ExtResource("10_nt8jn")
 font_size = 25
-font_color = Color(0.85882354, 0.8117647, 0.89411765, 1)
 outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v4f2e"]
+line_spacing = -3.0
+font_size = 22
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jd57c"]
+line_spacing = -3.0
+font_size = 22
+font_color = Color(0.5540922, 0.84772754, 0.40119067, 1)
+outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3g2cg"]
@@ -234,22 +250,9 @@ font_size = 20
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_v4f2e"]
-line_spacing = -3.0
-font_size = 18
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_fe2sg"]
 line_spacing = -5.0
 font_size = 20
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_jd57c"]
-line_spacing = -5.0
-font_size = 19
-font_color = Color(0.5540922, 0.84772754, 0.40119067, 1)
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
@@ -1285,6 +1288,7 @@ mouse_default_cursor_shape = 2
 flat = true
 
 [node name="Potions" type="Button" parent="Inv/SubPort/Sub"]
+visible = false
 offset_left = 800.0
 offset_top = 454.0
 offset_right = 880.0001
@@ -1457,7 +1461,9 @@ _itemImages = Dictionary[String, Texture2D]({
 "bleedheart": ExtResource("13_kjfio"),
 "bridger": ExtResource("10_jd57c"),
 "chippedfang": ExtResource("15_ebfgw"),
+"cryingflower": ExtResource("24_u8gt4"),
 "deadooze": ExtResource("20_bsvcc"),
+"emptyves": ExtResource("25_r6b04"),
 "fang": ExtResource("16_mirbq"),
 "gnocchi": ExtResource("11_85lyl"),
 "heart": ExtResource("14_0o3wc"),
@@ -1467,7 +1473,9 @@ _itemImages = Dictionary[String, Texture2D]({
 "rottenflesh": ExtResource("17_ipwe8"),
 "scorchedflesh": ExtResource("18_al6qt"),
 "seed": ExtResource("19_mdsrb"),
-"taz": ExtResource("9_fe2sg")
+"taz": ExtResource("9_fe2sg"),
+"ves": ExtResource("26_1xsrr"),
+"woundedooze": ExtResource("27_ivk8b")
 })
 
 [node name="GridContainer" type="GridContainer" parent="ResourceInv"]
@@ -1961,6 +1969,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ShopOption2" type="TextureButton" parent="BlacksmithShop"]
+visible = false
 layout_mode = 0
 offset_top = 150.0
 offset_right = 415.0
@@ -2145,6 +2154,7 @@ label_settings = SubResource("LabelSettings_whq80")
 horizontal_alignment = 1
 
 [node name="Requirements" type="Control" parent="BlacksmithShop/View/UpgradeMenu"]
+visible = false
 anchors_preset = 0
 offset_right = 422.0
 offset_bottom = 422.0
@@ -2153,9 +2163,9 @@ offset_bottom = 422.0
 z_index = 2
 layout_mode = 0
 offset_left = 11.0
-offset_top = 132.0
+offset_top = 104.0
 offset_right = 412.0
-offset_bottom = 241.0
+offset_bottom = 213.0
 theme_override_fonts/font = ExtResource("10_nt8jn")
 label_settings = SubResource("LabelSettings_kuui0")
 horizontal_alignment = 1
@@ -2198,13 +2208,35 @@ offset_bottom = 422.0
 [node name="Results" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
 z_index = 2
 layout_mode = 0
-offset_left = 7.0
+offset_left = 52.0
 offset_top = 209.0
-offset_right = 113.0
+offset_right = 158.0
 offset_bottom = 250.0
 theme_override_fonts/font = ExtResource("10_nt8jn")
 text = "Results:"
 label_settings = SubResource("LabelSettings_fcexb")
+
+[node name="StatName" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
+z_index = 2
+layout_mode = 0
+offset_left = 56.0
+offset_top = 244.0
+offset_right = 287.0
+offset_bottom = 373.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+label_settings = SubResource("LabelSettings_v4f2e")
+text_overrun_behavior = 1
+
+[node name="Addition" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
+z_index = 2
+layout_mode = 0
+offset_left = 282.0
+offset_top = 244.0
+offset_right = 347.0
+offset_bottom = 373.0
+theme_override_fonts/font = ExtResource("10_nt8jn")
+label_settings = SubResource("LabelSettings_jd57c")
+autowrap_mode = 1
 
 [node name="Unlocks" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
 visible = false
@@ -2221,17 +2253,6 @@ label_settings = SubResource("LabelSettings_3g2cg")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="StatName" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
-z_index = 2
-layout_mode = 0
-offset_left = 11.0
-offset_top = 244.0
-offset_right = 180.0
-offset_bottom = 373.0
-theme_override_fonts/font = ExtResource("10_nt8jn")
-label_settings = SubResource("LabelSettings_v4f2e")
-text_overrun_behavior = 1
-
 [node name="Amount" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
 visible = false
 z_index = 2
@@ -2243,17 +2264,6 @@ offset_bottom = 373.0
 theme_override_fonts/font = ExtResource("10_nt8jn")
 label_settings = SubResource("LabelSettings_fe2sg")
 text_overrun_behavior = 1
-
-[node name="Addition" type="Label" parent="BlacksmithShop/View/UpgradeMenu/Results"]
-z_index = 2
-layout_mode = 0
-offset_left = 337.0
-offset_top = 244.0
-offset_right = 402.0
-offset_bottom = 373.0
-theme_override_fonts/font = ExtResource("10_nt8jn")
-label_settings = SubResource("LabelSettings_jd57c")
-autowrap_mode = 1
 
 [node name="Done" type="Button" parent="BlacksmithShop/View/UpgradeMenu/Results"]
 z_index = 2
