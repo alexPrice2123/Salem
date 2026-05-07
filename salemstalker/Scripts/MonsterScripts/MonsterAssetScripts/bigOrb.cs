@@ -29,7 +29,7 @@ public partial class bigOrb : RigidBody3D
 	{
 		if (body.IsInGroup("PlayerHurtbox"))
         {
-         	 _playerOrb.RangedDamaged(20, this, "None");
+         	_playerOrb.RangedDamaged(20, this, "None");
 			GetNode<Area3D>("Attackbox").SetDeferred("monitoring", false);  
         }
 	}
