@@ -58,7 +58,7 @@ public partial class hollowNormal : Monster3d
 			if(!Cutscene)
 			{
 				_itemDropper.Drop("deadooze", 0.5f, 3, GlobalPosition);
-				//_itemDropper.Drop("woundedooze", 0.25f, 2, GlobalPosition);
+				_itemDropper.Drop("woundedooze", 0.25f, 2, GlobalPosition);
 			}
 			QueueFree();
 		}

@@ -6,11 +6,11 @@
 	"fangT1":"chippedfang",
 	"fangT2":"fang",
 	"oozeT1":"deadooze",
-	"oozeT2":"",
-	"vesselT1":"",
-	"vesselT2":"",
+	"oozeT2":"woundedooze",
+	"vesselT1":"emptyves",
+	"vesselT2":"ves",
 	"seedT1":"seed",
-	"seedT2":""
+	"seedT2":"cryingflower"
 },
 "iDtoRes":{
 	"bleedheart":"heartT1",
@@ -20,9 +20,9 @@
 	"chippedfang":"fangT1",
 	"fang":"fangT2",
 	"deadooze":"oozeT1",
-	"oozeT2":"oozeT2",
-	"vesselT1":"vesselT1",
-	"vesselT2":"vesselT2",
+	"woundedooze":"oozeT2",
+	"emptyves":"vesselT1",
+	"ves":"vesselT2",
 	"seed":"seedT1",
-	"seedT2":"seedT2"
+	"cryingflower":"seedT2"
 }}

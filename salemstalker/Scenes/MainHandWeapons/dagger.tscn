@@ -360,7 +360,7 @@ shadow_mesh = SubResource("ArrayMesh_m2q6r")
 [sub_resource type="BoxShape3D" id="BoxShape3D_gopbf"]
 size = Vector3(0.21177, 0.65658045, 0.321355)
 
-[node name="dagger" type="Node3D"]
+[node name="Dagger" type="Node3D"]
 transform = Transform3D(0.49, 0, 0, 0, 0.49, 0, 0, 0, 0.49, 0, 0, 0)
 script = ExtResource("1_yfl0d")
 metadata/swingSpeed = 0.375

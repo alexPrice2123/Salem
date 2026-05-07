@@ -300,6 +300,7 @@ public partial class Ui : Control
 			for(int i = 0; i < resRef.Count; i++)
 			{
 				_resourceScript.SubtractResource(resRef[i], resAmounts[i]);
+				GD.Print(resRef[i]);
 			}
 			foreach (string stat in GetUpgrades(_swordNode))
 			{
@@ -308,9 +309,9 @@ public partial class Ui : Control
 				if ((stat.Equals("cChance") || stat.Equals("bChance")) && nLvl < 4)
 				{
 					(string, float) metaSet = SetResults(stat, stat, statName, _swordNode);
-					
+					_swordNode.SetMeta(metaSet.Item1, metaSet.Item2);
 				}
-				if ((stat.Equals("damage") || stat.Equals("hDamage")) && nLvl < 4)
+				if (stat.Equals("damage") && nLvl < 4)
 				{
 					(string, float) metaSet = SetResults(stat, GetUpgrades(_swordNode)[0] + nLvl, statName, _swordNode);
 					_swordNode.SetMeta(metaSet.Item1, metaSet.Item2);
@@ -482,7 +483,7 @@ public partial class Ui : Control
 
 	private List<string> GetUpgrades(Node3D weapon) // Just gets the available stats of a weapon for upgrading
 	{
-		string[] _allAttributes = { "damage", "hDamage", "cChance", "cPercent1", "cPercent2", "cPercent3", "bChance" };
+		string[] _allAttributes = { "damage", "cChance", "cPercent1", "cPercent2", "cPercent3", "bChance" };
 		List<string> _weaponAttributes = new List<string>();
 		foreach (string stat in _allAttributes)
 		{
