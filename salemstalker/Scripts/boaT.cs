@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 public partial class boaT /*Replace with script name*/ : NpcVillager
-{
+{/*
 	[Export]
 	public string _teleportPoint = "None";
 	
@@ -32,5 +32,15 @@ public partial class boaT /*Replace with script name*/ : NpcVillager
 			GD.Print(_teleportPoint);
 			_player.GlobalPosition = GetParent().GetNode<Node3D>("TeleportPoints/"+_teleportPoint).GlobalPosition;
         }
-	}
+	}*/
+	[Export]
+	public string _teleportPoint = "None";
+	private void _on_area_3d_area_entered(Area3D body)
+    {
+		GD.Print(body+"BDOY");
+        if (body.IsInGroup("PlayerHurtbox"))
+        {
+            _player.GlobalPosition = GetParent().GetNode<Node3D>(_teleportPoint).GlobalPosition;
+        }
+    }
 }

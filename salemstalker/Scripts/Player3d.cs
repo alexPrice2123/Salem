@@ -165,8 +165,8 @@ public partial class Player3d : CharacterBody3D
 		// Populate the weapon dictionary
 		_weapon.Add("Shortsword", _shortSword);
 		_weapon.Add("Falchion", _falchion);
-		_weapon.Add("longsword", _longsword);
-		_weapon.Add("dagger", _dagger);
+		_weapon.Add("Longsword", _longsword);
+		_weapon.Add("Dagger", _dagger);
 		_secWeapon.Add("FlintGun", _flintGun);
 		_secWeapon.Add("StakeGun", _stakeGun);
 		_secWeapon.Add("Tomahawk", _tomahawk);

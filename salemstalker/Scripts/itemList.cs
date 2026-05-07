@@ -86,6 +86,7 @@ public partial class itemList : Control
                 currentSlot.RemoveFromGroup($"{resource}item");
 				currentSlot.GetNode<Label>("Count").Text = "";
 				currentSlot.GetNode<TextureRect>("Image").Texture = null;
+                worldRef.data["resourceInventory"].AsGodotDictionary<string,int>()[resTranslator["iDtoRes"].AsGodotDictionary<string,string>()[resource]] = (int)_items[resource]; 
 				_items.Remove(resource);
 				_keysArray[_keysArray.IndexOf(resource)] = "";
             }
@@ -94,6 +95,5 @@ public partial class itemList : Control
         {
             GD.Print($"Player has no [{resource}]s");
         }
-        worldRef.data["resourceInventory"].AsGodotDictionary<string,int>()[resTranslator["iDtoRes"].AsGodotDictionary<string,string>()[resource]] = (int)_items[resource]; 
     }
 }
