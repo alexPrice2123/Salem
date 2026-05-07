@@ -23,6 +23,7 @@ texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbwhk"]
 albedo_texture = ExtResource("4_wwj40")
+texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msi1l"]
 albedo_texture = ExtResource("5_hvdos")
@@ -243,7 +244,6 @@ libraries = {
 
 [node name="dagger" parent="." instance=ExtResource("3_8uyb0")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
-visible = false
 
 [node name="PreviewAnim" type="AnimationPlayer" parent="dagger"]
 libraries = {
