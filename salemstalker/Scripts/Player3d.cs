@@ -74,7 +74,7 @@ public partial class Player3d : CharacterBody3D
 	public string _originalDialouge;                 	// Stores an NPC's default dialogue to restore it after interaction
 	public CharacterBody3D _lastSeen;               	// Reference to the last interactable object the raycast hit
 	public int _monstersKilled = 0;                  	// Counter for monsters killed (for quest tracking)
-	public float _maxHealth = 300f;					 	// Maximum player health
+	public float _maxHealth = 100f;					 	// Maximum player health
 	public float _health; 								// Current player health
 	public Color _maxHealthColor = new Color(244f / 255f, 224f / 255f, 138f / 255f); // Goldish color for high health light
 	public Color _minHealthColor = new Color(255f / 255f, 0f, 0f); // Red color for low health light

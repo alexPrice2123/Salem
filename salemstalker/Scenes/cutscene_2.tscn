@@ -3259,4 +3259,9 @@ libraries = {
 shape = SubResource("BoxShape3D_q6643")
 disabled = true
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3085747, 2.4586706, 4.6872125)
+light_color = Color(0.9917714, 1, 0.842207, 1)
+omni_range = 10.0
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

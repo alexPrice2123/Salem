@@ -61,7 +61,6 @@ public partial class Cutscene3 : Node3D
 		plr.GetNode<Ui>("UI")._fadeProg = 1; 
 		plr.StartCut(2f);
 		await ToSignal(GetTree().CreateTimer(1.5), "timeout");
-
 		plr.GetParent<NewWorld>().data["tutorialComplete"] = true;
 		SaveHandler.SaveToFile(plr.GetParent<NewWorld>().data,plr.GetParent<NewWorld>()._savePath);
 		GetNode<Node3D>("Waking").Visible = false;

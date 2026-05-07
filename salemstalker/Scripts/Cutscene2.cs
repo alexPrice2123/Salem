@@ -55,6 +55,7 @@ public partial class Cutscene2 : Node3D
 					if (i < 3){monster.Disabled = true;}
 					monster.Cutscene = true;
 					monster.MaxHealth += i*10;
+					if (i == 3){monster.MaxHealth += 100;}
 				}
 				GetParent().GetNode<Node3D>("MonsterHolder/Hold2/Hold").AddChild(monsterInstance);    
 				monsterInstance.GlobalPosition = spawnPos;
