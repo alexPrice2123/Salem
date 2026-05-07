@@ -1,8 +1,32 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6vrp768yxybg"]
+[gd_scene load_steps=19 format=3 uid="uid://b6vrp768yxybg"]
 
 [ext_resource type="PackedScene" uid="uid://c1ixg535pupsm" path="res://Assets/Weapons/shortsword.blend" id="1_542hg"]
+[ext_resource type="Texture2D" uid="uid://cjrn82wnf31ao" path="res://Assets/2D/paper.png" id="1_oxjrl"]
 [ext_resource type="PackedScene" uid="uid://dmrknludrvs2j" path="res://Assets/Weapons/falchion.blend" id="2_8uyb0"]
+[ext_resource type="Texture2D" uid="uid://bptk1knskkjjd" path="res://Assets/weapontextures/shortsword/grip_Base_color.png" id="2_ksw8g"]
 [ext_resource type="PackedScene" uid="uid://b4eeswlddd5tj" path="res://Assets/Weapons/dagger.blend" id="3_8uyb0"]
+[ext_resource type="Texture2D" uid="uid://cg1bl87cr7b0y" path="res://Assets/weapontextures/shortsword/blade_Base_color.png" id="3_wwj40"]
+[ext_resource type="Texture2D" uid="uid://bcq4lgphe68ls" path="res://Assets/weapontextures/shortsword/hilt_Base_color.png" id="4_wwj40"]
+[ext_resource type="Texture2D" uid="uid://bu3oqtugphvhe" path="res://Assets/weapontextures/shortsword/pommel_Base_color.png" id="5_hvdos"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cjai"]
+albedo_texture = ExtResource("1_oxjrl")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvdos"]
+albedo_texture = ExtResource("2_ksw8g")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxjrl"]
+albedo_texture = ExtResource("3_wwj40")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbwhk"]
+albedo_texture = ExtResource("4_wwj40")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msi1l"]
+albedo_texture = ExtResource("5_hvdos")
+texture_filter = 0
 
 [sub_resource type="Animation" id="Animation_542hg"]
 length = 0.001
@@ -190,10 +214,19 @@ omni_attenuation = 0.5
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2795897, -1.7596618)
+material_override = SubResource("StandardMaterial3D_7cjai")
 size = Vector3(4.15332, 2.99432, 0.185547)
 
 [node name="shortsword" parent="." instance=ExtResource("1_542hg")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="Cylinder" parent="shortsword" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hvdos")
+
+[node name="Sphere_001" parent="shortsword" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_oxjrl")
+surface_material_override/1 = SubResource("StandardMaterial3D_cbwhk")
+surface_material_override/2 = SubResource("StandardMaterial3D_msi1l")
 
 [node name="PreviewAnim" type="AnimationPlayer" parent="shortsword"]
 libraries = {
@@ -210,8 +243,11 @@ libraries = {
 
 [node name="dagger" parent="." instance=ExtResource("3_8uyb0")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+visible = false
 
 [node name="PreviewAnim" type="AnimationPlayer" parent="dagger"]
 libraries = {
 &"": SubResource("AnimationLibrary_8uyb0")
 }
+
+[editable path="shortsword"]
