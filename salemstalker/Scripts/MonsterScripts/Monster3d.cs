@@ -187,8 +187,8 @@ public partial class Monster3d : CharacterBody3D
 		GD.Print(damage);
 		if (this is theKyron tk )
         {
-			if(tk._animState == "Downed" || tk._phase == 2){_health -= 29;}
-			else{tk._legHealth -= 29;}
+			if(tk._animState == "Downed" || tk._phase == 2){_health -= damage;}
+			else{tk._legHealth -= damage;}
         }else{_health -= damage;}
 
 	}

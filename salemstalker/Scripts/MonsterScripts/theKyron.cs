@@ -63,7 +63,7 @@ public partial class theKyron : Monster3d
 		_rangeObj.Visible = false;
 		WanderRange = (int)_rangeObj.Radius;           // The range the monster can wander from its spawn point
 		_body = GetNode<Node3D>("Body");
-		_startPos = GlobalPosition;
+		_startPos = new Vector3(-361.30554f, 0, -133.52759f);
 
 		foreach (var node in GetNode<Skeleton3D>("Body/metarig/Skeleton3D").GetChildren())
         {

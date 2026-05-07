@@ -1,8 +1,8 @@
-[gd_scene load_steps=814 format=4 uid="uid://cwmdm3ip8x72g"]
+[gd_scene load_steps=815 format=4 uid="uid://cwmdm3ip8x72g"]
 
 [ext_resource type="Texture2D" uid="uid://bvetwdh4pb7vn" path="res://Assets/2D/Grass.png" id="1_8ec3b"]
 [ext_resource type="Script" uid="uid://bp2gqxihfqjlx" path="res://Scenes/NewWorld.cs" id="1_t4suo"]
-[ext_resource type="Script" uid="uid://cjic8mgeelm2q" path="res://Scenes/terrain_3d.gd" id="2_cdqyu"]
+[ext_resource type="Script" path="res://Scenes/terrain_3d.gd" id="2_cdqyu"]
 [ext_resource type="PackedScene" uid="uid://bw2fjllusx7kw" path="res://Scenes/enemy_spawner.tscn" id="2_l7tua"]
 [ext_resource type="Script" uid="uid://dbndw8p05yam7" path="res://addons/terrain_3d/utils/terrain_3d_objects.gd" id="3_g28l0"]
 [ext_resource type="Texture2D" uid="uid://chu6uwfbaqyat" path="res://Assets/2D/sand.png" id="3_siqjx"]
@@ -55,6 +55,7 @@
 [ext_resource type="Script" uid="uid://vys12rdau4rt" path="res://Scripts/VillagerScripts/MaryVillager.cs" id="29_my6m3"]
 [ext_resource type="Texture2D" uid="uid://dfu1cnas1i1gs" path="res://Assets/buildingtextures/house1/door_Base_color.png" id="30_0wx6m"]
 [ext_resource type="PackedScene" uid="uid://dghyarcbk4mvk" path="res://Scenes/cutscene_2.tscn" id="31_2n1ai"]
+[ext_resource type="PackedScene" uid="uid://cfhk0ja1rxejm" path="res://Scenes/cutscene_3.tscn" id="31_ay51x"]
 [ext_resource type="PackedScene" uid="uid://dspyi0ujanve1" path="res://Assets/3D/charatermodel/long_fence.blend" id="31_letml"]
 [ext_resource type="Script" uid="uid://bwc5be1j0grxx" path="res://Scripts/VillagerScripts/ElizabethVillager.cs" id="32_1bw0t"]
 [ext_resource type="PackedScene" uid="uid://cacxdfd610dnh" path="res://Assets/3D/plants/bush.blend" id="32_mdtip"]
@@ -101,7 +102,7 @@
 [ext_resource type="Script" uid="uid://r7alps3n3v1h" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="95_6e3oy"]
 [ext_resource type="PackedScene" uid="uid://clx8vid1jalmm" path="res://Assets/3D/final_boss_arena_props/monolith1.blend" id="96_xgcoe"]
 [ext_resource type="PackedScene" uid="uid://6j1bue5xwc1d" path="res://Assets/3D/final_boss_arena_props/monolith2.blend" id="97_fx00c"]
-[ext_resource type="PackedScene" uid="uid://mtew7cicdsy5" path="res://Assets/3D/final_boss_arena_props/monolith3.tscn" id="98_xgcoe"]
+[ext_resource type="PackedScene" path="res://Assets/3D/final_boss_arena_props/monolith3.tscn" id="98_xgcoe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_51fmf"]
 
@@ -3428,25 +3429,25 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="MonsterHolder/Hold2/Hold/theCoiledOne/Body/Armature" index="0"]
-bones/3/rotation = Quaternion(0.04248208, -0.0035361378, -0.0028780391, 0.99908686)
-bones/6/rotation = Quaternion(0.62918824, -0.34083974, -0.0894004, 0.69279015)
-bones/7/rotation = Quaternion(0.37918738, 0.08264556, 0.27977413, 0.8781305)
-bones/9/rotation = Quaternion(0.04396466, 0.023662768, 0.07163331, 0.9961807)
-bones/10/rotation = Quaternion(-0.24963614, 0.05861874, 0.08599093, 0.9627312)
-bones/11/rotation = Quaternion(-0.60789627, 0.08369445, -0.15716735, 0.7737932)
-bones/13/rotation = Quaternion(0.43897548, -0.10619353, -0.14293076, 0.8806783)
-bones/14/rotation = Quaternion(-0.4952281, -0.002595359, -0.0041049155, 0.86874944)
-bones/16/rotation = Quaternion(0.7368756, 0.3245883, 0.070882104, 0.58875513)
-bones/17/rotation = Quaternion(0.19692345, -0.08646301, -0.17530915, 0.96073514)
+bones/3/rotation = Quaternion(0.051704306, -0.003639941, -0.002620723, 0.9986524)
+bones/6/rotation = Quaternion(0.62769514, -0.3461743, -0.08785009, 0.6916968)
+bones/7/rotation = Quaternion(0.388465, 0.08205921, 0.2866195, 0.8719005)
+bones/9/rotation = Quaternion(0.04384321, -0.027603395, 0.0010516135, 0.99865645)
+bones/10/rotation = Quaternion(-0.24822085, 0.073912054, 0.12072682, 0.958305)
+bones/11/rotation = Quaternion(-0.6134921, 0.05702809, -0.10897273, 0.78006434)
+bones/13/rotation = Quaternion(0.44224662, -0.07405874, -0.09819633, 0.88842046)
+bones/14/rotation = Quaternion(-0.48609978, -0.0026137822, -0.00401247, 0.87389016)
+bones/16/rotation = Quaternion(0.7346555, 0.32621524, 0.072380304, 0.59044564)
+bones/17/rotation = Quaternion(0.21436974, -0.0858633, -0.19084051, 0.95407176)
 
 [node name="Bone_007_l" parent="MonsterHolder/Hold2/Hold/theCoiledOne/Body/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.32472813, 0.026501954, -0.945436, -0.7577671, -0.6054709, 0.24329725, -0.5659864, 0.79542613, 0.21669564, 2.802226, 3.1357813, 3.0633376)
+transform = Transform3D(-0.32135966, 0.018976808, -0.94676715, -0.7653036, -0.5940339, 0.24785896, -0.55770826, 0.80421615, 0.20542154, 2.8222716, 3.1049976, 3.0396235)
 
 [node name="Bone_012" parent="MonsterHolder/Hold2/Hold/theCoiledOne/Body/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.9998946, -0.012857752, 0.00673358, 0.0052414387, -0.11274627, -0.9936098, 0.013534833, 0.99354047, -0.112667024, -0.46731722, 5.1392126, 6.0238514)
+transform = Transform3D(0.99962586, -0.02611119, 0.008150566, 0.004659442, -0.1310733, -0.9913615, 0.02695401, 0.9910286, -0.13090262, -0.2208802, 5.0437546, 6.042187)
 
 [node name="Bone_007_r" parent="MonsterHolder/Hold2/Hold/theCoiledOne/Body/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.43591025, -0.11472058, 0.8926488, 0.58500904, -0.78983873, 0.18417189, 0.6839199, 0.60248995, 0.41141155, -2.0722098, 3.3949668, 3.4850879)
+transform = Transform3D(-0.431772, -0.107319266, 0.89557576, 0.6016702, -0.7739867, 0.19732639, 0.6719866, 0.624041, 0.39875653, -2.0923734, 3.3519871, 3.4264114)
 
 [node name="Range" parent="MonsterHolder/Hold2/Hold/theCoiledOne" index="16"]
 transform = Transform3D(1, 0, 0, 0, 0.001, 0, 0, 0, 1, 0, 0.4967637, 22.79744)
@@ -4516,7 +4517,7 @@ navigation_layers = 3
 data_directory = "res://Scenes/supernewworld"
 material = SubResource("Terrain3DMaterial_cdqyu")
 assets = SubResource("Terrain3DAssets_bu5bu")
-collision_mode = 3
+collision_mode = 4
 collision_layer = 4294443007
 collision_mask = 3
 mesh_lods = 10
@@ -4530,6 +4531,57 @@ metadata/_custom_type_script = "uid://dbndw8p05yam7"
 
 [node name="Cutscene2" parent="." instance=ExtResource("31_2n1ai")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -439, 0, 118.00009)
+
+[node name="Fight" parent="Cutscene2" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9622498, 0, -0.07727051)
+
+[node name="Cube" parent="Cutscene2/Fight/metarig/Skeleton3D" index="0"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
+surface_material_override/3 = null
+surface_material_override/4 = null
+
+[node name="Cube_002" parent="Cutscene2/Fight/metarig/Skeleton3D" index="1"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Cube_003" parent="Cutscene2/Fight/metarig/Skeleton3D" index="2"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Cube_001" parent="Cutscene2/Fight/metarig_001/Skeleton3D" index="0"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
+surface_material_override/3 = null
+surface_material_override/4 = null
+
+[node name="Cube_004" parent="Cutscene2/Fight/metarig_001/Skeleton3D" index="1"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Cube_005" parent="Cutscene2/Fight/metarig_001/Skeleton3D" index="2"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Cube_006" parent="Cutscene2/Fight/metarig_002/Skeleton3D" index="0"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+surface_material_override/2 = null
+surface_material_override/3 = null
+surface_material_override/4 = null
+
+[node name="Cube_007" parent="Cutscene2/Fight/metarig_002/Skeleton3D" index="1"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Cube_008" parent="Cutscene2/Fight/metarig_002/Skeleton3D" index="2"]
+surface_material_override/0 = null
+surface_material_override/1 = null
+
+[node name="Camera" parent="Cutscene2/Fight" index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.99452186, 0.10452821, 0, -0.1045282, 0.9945219, -0.005888529, 1.6698339, 5.5118904)
 
 [node name="C1" parent="Cutscene2/CHolder" index="0"]
 transform = Transform3D(0.9929076, 0, -0.118889205, 0, 1, 0, 0.118889205, 0, 0.9929076, 4, 0, 17.49617)
@@ -4549,8 +4601,54 @@ transform = Transform3D(0.45546722, 0, -0.8902526, 0, 1, 0, 0.8902526, 0, 0.4554
 shape = SubResource("BoxShape3D_q6643")
 disabled = true
 
+[node name="Cutscene3" parent="." instance=ExtResource("31_ay51x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -437.5075, 0, 121.857)
+
+[node name="Drag" parent="Cutscene3" index="0"]
+transform = Transform3D(0.33620778, 0, 0.94178784, 0, 1, 0, -0.94178784, 0, 0.33620778, -76.03595, -5.9320107, -11.818405)
+
+[node name="Camera" parent="Cutscene3/Drag" index="0"]
+transform = Transform3D(-0.3250913, -9.63913e-15, -2.8161082e-07, 2.7536304e-22, 0.32509127, -1.1127402e-08, 2.8161082e-07, -1.1127402e-08, -0.32509127, 1.7272658, 6.413222, 12.41835)
+
+[node name="Waking" parent="Cutscene3" index="1"]
+transform = Transform3D(-0.8660254, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660254, -295.97406, -0.07454085, -71.842766)
+
+[node name="metarig_001" parent="Cutscene3/Waking" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.022979438, 0)
+
+[node name="Skeleton3D" parent="Cutscene3/Waking/metarig_001" index="0"]
+bones/0/position = Vector3(-3.5527124e-15, 0.9426751, -0.06494778)
+bones/0/rotation = Quaternion(0.12581961, 1.1826192e-07, 1.4998868e-08, 0.99205315)
+bones/1/rotation = Quaternion(-0.042766016, 2.203394e-14, -1.0196213e-08, 0.9990851)
+bones/2/rotation = Quaternion(-0.099120885, -1.1862224e-07, -1.1816131e-08, 0.9950754)
+bones/3/rotation = Quaternion(0.00047881724, -1.08799154e-14, -1.2014137e-17, 0.9999999)
+bones/6/rotation = Quaternion(-0.03301015, -1.1914435e-07, -3.9351136e-09, 0.99945503)
+bones/8/rotation = Quaternion(-0.1981547, 0.65547884, -0.5178553, 0.51274574)
+bones/9/rotation = Quaternion(0.03841127, -0.0043002553, 0.018825244, 0.9990754)
+bones/10/rotation = Quaternion(0.05102113, -0.2120525, 0.095896706, 0.97120255)
+bones/11/rotation = Quaternion(-0.033571564, 8.2717804e-08, -0.06399538, 0.9973854)
+bones/12/rotation = Quaternion(-0.06309739, 0.019820416, -0.15302943, 0.986006)
+bones/13/rotation = Quaternion(-0.012974036, -0.024613796, -0.0068663927, 0.99958926)
+bones/14/rotation = Quaternion(0.24868117, -0.09416568, -0.26102605, 0.9279849)
+bones/15/rotation = Quaternion(-0.20784114, 0.06874574, 0.12904152, 0.9671734)
+bones/16/rotation = Quaternion(0.025080653, 0.01258005, 0.11781117, 0.99263954)
+bones/18/rotation = Quaternion(-0.19795798, -0.6481506, 0.528289, 0.5114921)
+bones/19/rotation = Quaternion(0.03373823, 0.0051061157, -0.015554406, 0.9992966)
+bones/20/rotation = Quaternion(0.080469534, -0.02424947, -0.21176815, 0.9736996)
+bones/21/rotation = Quaternion(-0.057895903, -0.0020114803, 0.1726739, 0.983274)
+bones/22/rotation = Quaternion(0.019992081, 0.0082473215, 0.105404645, 0.99419427)
+bones/23/rotation = Quaternion(-0.060485803, -0.012738474, 0.065323696, 0.9959479)
+bones/24/rotation = Quaternion(0.35936347, 0.09913032, 0.3207386, 0.8707226)
+bones/26/rotation = Quaternion(-0.07485237, -0.002781031, -0.19852783, 0.9772289)
+
+[node name="spine_006" parent="Cutscene3/Waking/metarig_001/Skeleton3D" index="0"]
+transform = Transform3D(1, -5.3290705e-15, -8.526513e-14, 2.6645353e-14, 0.99964523, 0.026627421, 1.4210855e-14, -0.026627362, 0.9996452, -1.4551996e-14, 1.688588, -0.0018516255)
+
+[node name="Cursed" parent="Cutscene3" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -202.32343, -4.2039056, -60.791954)
+
 [node name="Player_3d" parent="." instance=ExtResource("4_g28l0")]
-transform = Transform3D(-0.26165012, 0, -0.9651628, 0, 1, 0, 0.9651628, 0, -0.26165012, -433.68872, 2, 145.95717)
+transform = Transform3D(0.9999957, 0, -0.0029320428, 0, 1, 0, 0.0029320428, 0, 0.9999957, -414.4993, 1, 171.12018)
 
 [node name="Ocean Stuff" type="Node3D" parent="."]
 
@@ -4576,26 +4674,26 @@ transform = Transform3D(0.9928366, 0, -0.119478375, 0, 1, 0, 0.119478375, 0, 0.9
 script = ExtResource("29_my6m3")
 
 [node name="Skeleton3D" parent="Brittlebay Village/Villagers/Kat/Dress/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9956525, -0.05519999)
-bones/2/rotation = Quaternion(-0.07446542, 0, 0, 0.9972236)
-bones/5/rotation = Quaternion(-0.074190736, 0.0073391036, 0.021774288, 0.99697936)
-bones/25/rotation = Quaternion(0.9759145, 0.015348353, -0.009039816, 0.21742533)
-bones/26/rotation = Quaternion(0.18772241, 0.0015804201, 0.015048357, 0.9821057)
-bones/34/rotation = Quaternion(0.9759145, -0.015348358, 0.009039772, 0.21742533)
-bones/35/rotation = Quaternion(0.18772241, -0.0015804195, -0.015048358, 0.9821057)
+bones/0/position = Vector3(0, 0.987344, -0.055199996)
+bones/2/rotation = Quaternion(0.0011883973, 0, 0, 0.9999993)
+bones/5/rotation = Quaternion(-0.13946554, 0.006213593, 0.021747483, 0.98996866)
+bones/25/rotation = Quaternion(0.9712285, 0.017172351, -0.009232113, 0.23735048)
+bones/26/rotation = Quaternion(0.22795536, 0.0015665712, 0.018273538, 0.9734988)
+bones/34/rotation = Quaternion(0.9712285, -0.017172351, 0.00923207, 0.23735048)
+bones/35/rotation = Quaternion(0.22795536, -0.0015665707, -0.018273538, 0.9734988)
 
 [node name="Lukas" parent="Brittlebay Village/Villagers" instance=ExtResource("28_51fmf")]
 transform = Transform3D(0.9928366, 0, -0.119478375, 0, 1, 0, 0.119478375, 0, 0.9928366, -4.1161804, 1.9490459, -10.68811)
 script = ExtResource("34_rjyyt")
 
 [node name="Skeleton3D" parent="Brittlebay Village/Villagers/Lukas/Dress/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9956525, -0.05519999)
-bones/2/rotation = Quaternion(-0.07446542, 0, 0, 0.9972236)
-bones/5/rotation = Quaternion(-0.074190736, 0.0073391036, 0.021774288, 0.99697936)
-bones/25/rotation = Quaternion(0.9759145, 0.015348353, -0.009039816, 0.21742533)
-bones/26/rotation = Quaternion(0.18772241, 0.0015804201, 0.015048357, 0.9821057)
-bones/34/rotation = Quaternion(0.9759145, -0.015348358, 0.009039772, 0.21742533)
-bones/35/rotation = Quaternion(0.18772241, -0.0015804195, -0.015048358, 0.9821057)
+bones/0/position = Vector3(0, 0.987344, -0.055199996)
+bones/2/rotation = Quaternion(0.0011883973, 0, 0, 0.9999993)
+bones/5/rotation = Quaternion(-0.13946554, 0.006213593, 0.021747483, 0.98996866)
+bones/25/rotation = Quaternion(0.9712285, 0.017172351, -0.009232113, 0.23735048)
+bones/26/rotation = Quaternion(0.22795536, 0.0015665712, 0.018273538, 0.9734988)
+bones/34/rotation = Quaternion(0.9712285, -0.017172351, 0.00923207, 0.23735048)
+bones/35/rotation = Quaternion(0.22795536, -0.0015665707, -0.018273538, 0.9734988)
 
 [node name="Cube" parent="Brittlebay Village/Villagers/Lukas/Pants/metarig_001/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_xhjbt")
@@ -4615,13 +4713,13 @@ transform = Transform3D(0.9928366, 0, -0.119478375, 0, 1, 0, 0.119478375, 0, 0.9
 script = ExtResource("36_pycxb")
 
 [node name="Skeleton3D" parent="Brittlebay Village/Villagers/Martha/Dress/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9956525, -0.05519999)
-bones/2/rotation = Quaternion(-0.07446542, 0, 0, 0.9972236)
-bones/5/rotation = Quaternion(-0.074190736, 0.0073391036, 0.021774288, 0.99697936)
-bones/25/rotation = Quaternion(0.9759145, 0.015348353, -0.009039816, 0.21742533)
-bones/26/rotation = Quaternion(0.18772241, 0.0015804201, 0.015048357, 0.9821057)
-bones/34/rotation = Quaternion(0.9759145, -0.015348358, 0.009039772, 0.21742533)
-bones/35/rotation = Quaternion(0.18772241, -0.0015804195, -0.015048358, 0.9821057)
+bones/0/position = Vector3(0, 0.987344, -0.055199996)
+bones/2/rotation = Quaternion(0.0011883973, 0, 0, 0.9999993)
+bones/5/rotation = Quaternion(-0.13946554, 0.006213593, 0.021747483, 0.98996866)
+bones/25/rotation = Quaternion(0.9712285, 0.017172351, -0.009232113, 0.23735048)
+bones/26/rotation = Quaternion(0.22795536, 0.0015665712, 0.018273538, 0.9734988)
+bones/34/rotation = Quaternion(0.9712285, -0.017172351, 0.00923207, 0.23735048)
+bones/35/rotation = Quaternion(0.22795536, -0.0015665707, -0.018273538, 0.9734988)
 
 [node name="Range" parent="Brittlebay Village/Villagers/Martha" index="8"]
 radius = 8.0
@@ -4631,13 +4729,13 @@ transform = Transform3D(0, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 0, -26.992249, 
 script = ExtResource("38_50yta")
 
 [node name="Skeleton3D" parent="Brittlebay Village/Villagers/Matthew/Dress/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9956525, -0.05519999)
-bones/2/rotation = Quaternion(-0.07446542, 0, 0, 0.9972236)
-bones/5/rotation = Quaternion(-0.074190736, 0.0073391036, 0.021774288, 0.99697936)
-bones/25/rotation = Quaternion(0.9759145, 0.015348353, -0.009039816, 0.21742533)
-bones/26/rotation = Quaternion(0.18772241, 0.0015804201, 0.015048357, 0.9821057)
-bones/34/rotation = Quaternion(0.9759145, -0.015348358, 0.009039772, 0.21742533)
-bones/35/rotation = Quaternion(0.18772241, -0.0015804195, -0.015048358, 0.9821057)
+bones/0/position = Vector3(0, 0.987344, -0.055199996)
+bones/2/rotation = Quaternion(0.0011883973, 0, 0, 0.9999993)
+bones/5/rotation = Quaternion(-0.13946554, 0.006213593, 0.021747483, 0.98996866)
+bones/25/rotation = Quaternion(0.9712285, 0.017172351, -0.009232113, 0.23735048)
+bones/26/rotation = Quaternion(0.22795536, 0.0015665712, 0.018273538, 0.9734988)
+bones/34/rotation = Quaternion(0.9712285, -0.017172351, 0.00923207, 0.23735048)
+bones/35/rotation = Quaternion(0.22795536, -0.0015665707, -0.018273538, 0.9734988)
 
 [node name="CollisionShape3D" parent="Brittlebay Village/Villagers/Matthew" index="4"]
 transform = Transform3D(0.5999944, 0, 0, 0, 0.6, 0, 0, 0, 0.5999944, 0, 0.9397664, 0)
@@ -5068,13 +5166,13 @@ transform = Transform3D(-0.41043234, 0, 0.9118909, 0, 1, 0, -0.9118909, 0, -0.41
 script = ExtResource("32_1bw0t")
 
 [node name="Skeleton3D" parent="Elderstraud Village/Villagers/Elizabeth/Dress/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9956525, -0.05519999)
-bones/2/rotation = Quaternion(-0.07446542, 0, 0, 0.9972236)
-bones/5/rotation = Quaternion(-0.074190736, 0.0073391036, 0.021774288, 0.99697936)
-bones/25/rotation = Quaternion(0.9759145, 0.015348353, -0.009039816, 0.21742533)
-bones/26/rotation = Quaternion(0.18772241, 0.0015804201, 0.015048357, 0.9821057)
-bones/34/rotation = Quaternion(0.9759145, -0.015348358, 0.009039772, 0.21742533)
-bones/35/rotation = Quaternion(0.18772241, -0.0015804195, -0.015048358, 0.9821057)
+bones/0/position = Vector3(0, 0.987344, -0.055199996)
+bones/2/rotation = Quaternion(0.0011883973, 0, 0, 0.9999993)
+bones/5/rotation = Quaternion(-0.13946554, 0.006213593, 0.021747483, 0.98996866)
+bones/25/rotation = Quaternion(0.9712285, 0.017172351, -0.009232113, 0.23735048)
+bones/26/rotation = Quaternion(0.22795536, 0.0015665712, 0.018273538, 0.9734988)
+bones/34/rotation = Quaternion(0.9712285, -0.017172351, 0.00923207, 0.23735048)
+bones/35/rotation = Quaternion(0.22795536, -0.0015665707, -0.018273538, 0.9734988)
 
 [node name="Range" parent="Elderstraud Village/Villagers/Elizabeth" index="8"]
 radius = 8.0
@@ -5084,13 +5182,13 @@ transform = Transform3D(-0.41043234, 0, 0.9118909, 0, 1, 0, -0.9118909, 0, -0.41
 script = ExtResource("67_3yls0")
 
 [node name="Skeleton3D" parent="Elderstraud Village/Villagers/Alexander/Dress/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9956525, -0.05519999)
-bones/2/rotation = Quaternion(-0.07446542, 0, 0, 0.9972236)
-bones/5/rotation = Quaternion(-0.074190736, 0.0073391036, 0.021774288, 0.99697936)
-bones/25/rotation = Quaternion(0.9759145, 0.015348353, -0.009039816, 0.21742533)
-bones/26/rotation = Quaternion(0.18772241, 0.0015804201, 0.015048357, 0.9821057)
-bones/34/rotation = Quaternion(0.9759145, -0.015348358, 0.009039772, 0.21742533)
-bones/35/rotation = Quaternion(0.18772241, -0.0015804195, -0.015048358, 0.9821057)
+bones/0/position = Vector3(0, 0.987344, -0.055199996)
+bones/2/rotation = Quaternion(0.0011883973, 0, 0, 0.9999993)
+bones/5/rotation = Quaternion(-0.13946554, 0.006213593, 0.021747483, 0.98996866)
+bones/25/rotation = Quaternion(0.9712285, 0.017172351, -0.009232113, 0.23735048)
+bones/26/rotation = Quaternion(0.22795536, 0.0015665712, 0.018273538, 0.9734988)
+bones/34/rotation = Quaternion(0.9712285, -0.017172351, 0.00923207, 0.23735048)
+bones/35/rotation = Quaternion(0.22795536, -0.0015665707, -0.018273538, 0.9734988)
 
 [node name="Range" parent="Elderstraud Village/Villagers/Alexander" index="8"]
 radius = 8.0
@@ -5100,13 +5198,13 @@ transform = Transform3D(-0.41043234, 0, 0.9118909, 0, 1, 0, -0.9118909, 0, -0.41
 script = ExtResource("68_2n1ai")
 
 [node name="Skeleton3D" parent="Elderstraud Village/Villagers/Christopher/Dress/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9956525, -0.05519999)
-bones/2/rotation = Quaternion(-0.07446542, 0, 0, 0.9972236)
-bones/5/rotation = Quaternion(-0.074190736, 0.0073391036, 0.021774288, 0.99697936)
-bones/25/rotation = Quaternion(0.9759145, 0.015348353, -0.009039816, 0.21742533)
-bones/26/rotation = Quaternion(0.18772241, 0.0015804201, 0.015048357, 0.9821057)
-bones/34/rotation = Quaternion(0.9759145, -0.015348358, 0.009039772, 0.21742533)
-bones/35/rotation = Quaternion(0.18772241, -0.0015804195, -0.015048358, 0.9821057)
+bones/0/position = Vector3(0, 0.987344, -0.055199996)
+bones/2/rotation = Quaternion(0.0011883973, 0, 0, 0.9999993)
+bones/5/rotation = Quaternion(-0.13946554, 0.006213593, 0.021747483, 0.98996866)
+bones/25/rotation = Quaternion(0.9712285, 0.017172351, -0.009232113, 0.23735048)
+bones/26/rotation = Quaternion(0.22795536, 0.0015665712, 0.018273538, 0.9734988)
+bones/34/rotation = Quaternion(0.9712285, -0.017172351, 0.00923207, 0.23735048)
+bones/35/rotation = Quaternion(0.22795536, -0.0015665707, -0.018273538, 0.9734988)
 
 [node name="Range" parent="Elderstraud Village/Villagers/Christopher" index="8"]
 radius = 8.0
@@ -5116,13 +5214,13 @@ transform = Transform3D(-0.41043234, 0, 0.9118909, 0, 1, 0, -0.9118909, 0, -0.41
 script = ExtResource("69_ay51x")
 
 [node name="Skeleton3D" parent="Elderstraud Village/Villagers/Isaac/Dress/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9956525, -0.05519999)
-bones/2/rotation = Quaternion(-0.07446542, 0, 0, 0.9972236)
-bones/5/rotation = Quaternion(-0.074190736, 0.0073391036, 0.021774288, 0.99697936)
-bones/25/rotation = Quaternion(0.9759145, 0.015348353, -0.009039816, 0.21742533)
-bones/26/rotation = Quaternion(0.18772241, 0.0015804201, 0.015048357, 0.9821057)
-bones/34/rotation = Quaternion(0.9759145, -0.015348358, 0.009039772, 0.21742533)
-bones/35/rotation = Quaternion(0.18772241, -0.0015804195, -0.015048358, 0.9821057)
+bones/0/position = Vector3(0, 0.987344, -0.055199996)
+bones/2/rotation = Quaternion(0.0011883973, 0, 0, 0.9999993)
+bones/5/rotation = Quaternion(-0.13946554, 0.006213593, 0.021747483, 0.98996866)
+bones/25/rotation = Quaternion(0.9712285, 0.017172351, -0.009232113, 0.23735048)
+bones/26/rotation = Quaternion(0.22795536, 0.0015665712, 0.018273538, 0.9734988)
+bones/34/rotation = Quaternion(0.9712285, -0.017172351, 0.00923207, 0.23735048)
+bones/35/rotation = Quaternion(0.22795536, -0.0015665707, -0.018273538, 0.9734988)
 
 [node name="Range" parent="Elderstraud Village/Villagers/Isaac" index="8"]
 radius = 8.0
@@ -5132,13 +5230,13 @@ transform = Transform3D(-0.41043234, 0, 0.9118909, 0, 1, 0, -0.9118909, 0, -0.41
 script = ExtResource("33_ne20o")
 
 [node name="Skeleton3D" parent="Elderstraud Village/Villagers/Dillon/Dress/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9956525, -0.05519999)
-bones/2/rotation = Quaternion(-0.07446542, 0, 0, 0.9972236)
-bones/5/rotation = Quaternion(-0.074190736, 0.0073391036, 0.021774288, 0.99697936)
-bones/25/rotation = Quaternion(0.9759145, 0.015348353, -0.009039816, 0.21742533)
-bones/26/rotation = Quaternion(0.18772241, 0.0015804201, 0.015048357, 0.9821057)
-bones/34/rotation = Quaternion(0.9759145, -0.015348358, 0.009039772, 0.21742533)
-bones/35/rotation = Quaternion(0.18772241, -0.0015804195, -0.015048358, 0.9821057)
+bones/0/position = Vector3(0, 0.987344, -0.055199996)
+bones/2/rotation = Quaternion(0.0011883973, 0, 0, 0.9999993)
+bones/5/rotation = Quaternion(-0.13946554, 0.006213593, 0.021747483, 0.98996866)
+bones/25/rotation = Quaternion(0.9712285, 0.017172351, -0.009232113, 0.23735048)
+bones/26/rotation = Quaternion(0.22795536, 0.0015665712, 0.018273538, 0.9734988)
+bones/34/rotation = Quaternion(0.9712285, -0.017172351, 0.00923207, 0.23735048)
+bones/35/rotation = Quaternion(0.22795536, -0.0015665707, -0.018273538, 0.9734988)
 
 [node name="Range" parent="Elderstraud Village/Villagers/Dillon" index="8"]
 radius = 8.0
@@ -5807,17 +5905,17 @@ transform = Transform3D(1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, 1, 1.15
 shape = SubResource("BoxShape3D_s1vse")
 
 [node name="Richard" parent="Overgrown Dimwood Village/Tutorial" instance=ExtResource("28_51fmf")]
-transform = Transform3D(-0.0192848, 0, 0.99981505, 0, 1, 0, -0.99981505, 0, -0.0192848, -49.320313, 2.0682552, 40.24823)
+transform = Transform3D(-0.0192848, 0, 0.99981517, 0, 1, 0, -0.99981517, 0, -0.0192848, -49.320313, 0.2710445, 40.24823)
 script = ExtResource("65_s1vse")
 
 [node name="Skeleton3D" parent="Overgrown Dimwood Village/Tutorial/Richard/Dress/metarig_001" index="0"]
-bones/0/position = Vector3(0, 0.9956525, -0.05519999)
-bones/2/rotation = Quaternion(-0.07446542, 0, 0, 0.9972236)
-bones/5/rotation = Quaternion(-0.074190736, 0.0073391036, 0.021774288, 0.99697936)
-bones/25/rotation = Quaternion(0.9759145, 0.015348353, -0.009039816, 0.21742533)
-bones/26/rotation = Quaternion(0.18772241, 0.0015804201, 0.015048357, 0.9821057)
-bones/34/rotation = Quaternion(0.9759145, -0.015348358, 0.009039772, 0.21742533)
-bones/35/rotation = Quaternion(0.18772241, -0.0015804195, -0.015048358, 0.9821057)
+bones/0/position = Vector3(0, 0.987344, -0.055199996)
+bones/2/rotation = Quaternion(0.0011883973, 0, 0, 0.9999993)
+bones/5/rotation = Quaternion(-0.13946554, 0.006213593, 0.021747483, 0.98996866)
+bones/25/rotation = Quaternion(0.9712285, 0.017172351, -0.009232113, 0.23735048)
+bones/26/rotation = Quaternion(0.22795536, 0.0015665712, 0.018273538, 0.9734988)
+bones/34/rotation = Quaternion(0.9712285, -0.017172351, 0.00923207, 0.23735048)
+bones/35/rotation = Quaternion(0.22795536, -0.0015665707, -0.018273538, 0.9734988)
 
 [node name="CollisionShape3D" parent="Overgrown Dimwood Village/Tutorial/Richard" index="4"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.89464927, 0)
@@ -10646,6 +10744,9 @@ transform = Transform3D(0.8150336, -0.502362, 0.28870732, 0.3264761, -0.01347799
 [node name="monolith13" parent="Final Boss Arena Props/Purple Glow Monolith" instance=ExtResource("98_xgcoe")]
 transform = Transform3D(0.9018717, 0.04278241, -0.42988068, -0.038619604, 0.9990844, 0.018408185, 0.43027464, 0, 0.90269816, 33.7818, -1.9129319, -24.231018)
 
+[node name="PlayerSpawnAfterCut" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -739.8831, 1.2654448, 44.95108)
+
 [connection signal="area_entered" from="Biomes/Villages/Brittlebay" to="." method="_on_brittlebay_area_entered"]
 [connection signal="area_exited" from="Biomes/Villages/Brittlebay" to="." method="_on_brittlebay_area_exited"]
 
@@ -10712,6 +10813,7 @@ transform = Transform3D(0.9018717, 0.04278241, -0.42988068, -0.038619604, 0.9990
 [editable path="SouthPlains Mob Swawners/Spawner3"]
 [editable path="SouthPlains Mob Swawners/Spawner4"]
 [editable path="Cutscene2"]
+[editable path="Cutscene3"]
 [editable path="Brittlebay Village/Villagers/Kat"]
 [editable path="Brittlebay Village/Villagers/Kat/Dress"]
 [editable path="Brittlebay Village/Villagers/Kat/Hood"]

@@ -49,7 +49,8 @@ public partial class hollowNormal : Monster3d
 						i++;
 					}
 				}
-				if (i == 0)
+				GD.Print(i+"CUTSCNE");
+				if (i == 1)
 				{
 					_player.GetParent().GetNode<Cutscene3>("Cutscene3").StartCut(_player);
 				}

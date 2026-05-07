@@ -20,7 +20,7 @@ public partial class kyronArena : Node3D
 		{
 			GetNode<Area3D>("Area3D").SetDeferred("monitoring", false);
 			theKyron kyronInstance = _kyron.Instantiate<theKyron>(); 
-			GetParent().AddChild(kyronInstance);                                            
+			GetParent().GetNode<Node3D>("MonsterHolder/Hold2/Hold").AddChild(kyronInstance);                                            
 			kyronInstance.GlobalPosition = GetNode<Marker3D>("SpawnPos").GlobalPosition;
 			GD.Print(GlobalPosition+ "POS");
 		}
