@@ -143,6 +143,7 @@ public partial class Monster3d : CharacterBody3D
 	// --- DAMAGE SYSTEM --- //
 	public void Damaged(Area3D body)
 	{
+		if (this is theKyron ron){if (ron._teleporting == true){return;}}
 		GD.Print("I was hit");
 		GD.Print(_canBeHit);
 		if (body.IsInGroup("Weapon") && _canBeHit)
@@ -168,7 +169,7 @@ public partial class Monster3d : CharacterBody3D
 	private async void DamageHandler(bool knockBack, float damage)
 	{
 		if (_stunned) { damage *= 1.3f; }
-		if (knockBack) { ApplyKnockback(); }
+		if (knockBack) { ApplyKnockback(_player._knockbackStrength); }
 		//if (this is theCoiledOne tco){tco.PlayerParried();}
 		FlashDamage(true);
 		if (this is theCoiledOne tco)
@@ -186,9 +187,8 @@ public partial class Monster3d : CharacterBody3D
 		GD.Print(damage);
 		if (this is theKyron tk )
         {
-			if(tk._animState == "Downed"){_health -= damage;}
-			else{tk._legHealth -= damage;}
-			GD.Print(damage+" DAMAGE");
+			if(tk._animState == "Downed" || tk._phase == 2){_health -= 29;}
+			else{tk._legHealth -= 29;}
         }else{_health -= damage;}
 
 	}
@@ -433,8 +433,9 @@ public partial class Monster3d : CharacterBody3D
 		}
 		else if (this is theKyron ron)
 		{
-			if (!_attacking && ron._legHealth > 0 && ron._phase == 1)
+			if (!_attacking && ron._legHealth > 0 && ron._phase == 1 && ron._distance > 3)
             {
+				//_player._inCombat = true;
               if (_navUpdateTimer <= 0f) { _navAgent.TargetPosition = _wanderPos; _navUpdateTimer = NavUpdateInterval; }
 				Vector3 nextPoint = _navAgent.GetNextPathPosition();
 				_targetVelocity = (nextPoint - myPos).Normalized() * WalkSpeed;
@@ -443,9 +444,10 @@ public partial class Monster3d : CharacterBody3D
 				if (Velocity.LengthSquared() > 0.01f)
 					_lookDirection.LookAt(myPos + moveDir, Vector3.Up);  
             }
-			else if (!_attacking && ron._phase == 2)
+			else if (!_attacking && ron._phase == 2 && ron._distance > 3)
             {
-              	if (_navUpdateTimer <= 0f) { _navAgent.TargetPosition = _wanderPos; _navUpdateTimer = NavUpdateInterval; }
+              	//_player._inCombat = true;
+				if (_navUpdateTimer <= 0f) { _navAgent.TargetPosition = _cachedPlayerPos; _navUpdateTimer = NavUpdateInterval; }
 				Vector3 nextPoint = _navAgent.GetNextPathPosition();
 				_targetVelocity = (nextPoint - myPos).Normalized() * (WalkSpeed * _dashVelocity + _speedOffset);
 
@@ -455,8 +457,16 @@ public partial class Monster3d : CharacterBody3D
             }
             else
             {
-                Velocity = Vector3.Zero;
-				_lookDirection.LookAt(_player.GlobalPosition, Vector3.Up);  
+				if (_knockbackVelocity.LengthSquared() > 0.25f)  
+				{
+					_targetVelocity = _knockbackVelocity;
+					Velocity = _targetVelocity;
+				}
+                else
+                {
+                   Velocity = Vector3.Zero; 
+                }
+				_lookDirection.LookAt(ron._goalLookPos, Vector3.Up);  
             }
 		}
 
@@ -559,6 +569,7 @@ public partial class Monster3d : CharacterBody3D
 	// --- STUN EFFECT --- //
 	public async void Stunned()
 	{
+		if (this is theKyron){return;}
 		if (Monster is flyingPesk)
 		{
 			_speedOffset = -3.5f;
@@ -576,7 +587,7 @@ public partial class Monster3d : CharacterBody3D
 			if (Monster is underBrush ub) ub._currentAttackOffset = 0f;
 			_stunned = true;
 			_attackException = true;
-			ApplyKnockback();
+			ApplyKnockback(_player._knockbackStrength);
 			GetNode<GpuParticles3D>("Stunned").Emitting = true;
 			await ToSignal(GetTree().CreateTimer(1f), "timeout");
 			GetNode<GpuParticles3D>("Stunned").Emitting = false;
@@ -602,10 +613,10 @@ public partial class Monster3d : CharacterBody3D
 
 
 	// --- KNOCKBACK --- //
-	private void ApplyKnockback()
+	protected void ApplyKnockback(float strength)
 	{
 		Vector3 knockbackDir = (GlobalPosition - _player.Position).Normalized();
-		_knockbackVelocity = knockbackDir * _player._knockbackStrength;
+		_knockbackVelocity = knockbackDir * strength;
 		_knockbackVelocity.Y = 0f;
 	}
 

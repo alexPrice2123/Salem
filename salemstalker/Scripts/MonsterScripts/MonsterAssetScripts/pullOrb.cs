@@ -27,7 +27,6 @@ public partial class pullOrb : RigidBody3D
         {
 			Close();
         }
-		_playerOrb._pullSpeed = (5-(float)_count)*2;
     }
 
 	public async void _on_attackbox_area_entered(Node3D body)
@@ -36,7 +35,7 @@ public partial class pullOrb : RigidBody3D
         {
          	_playerOrb._pullLocation = GlobalPosition;
 			_count = 0;
-			_playerOrb._pullSpeed = 10;
+			_playerOrb._pullSpeed = 6;
         }
 	}
 

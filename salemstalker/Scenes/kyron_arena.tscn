@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgwqkjwvy8111"]
+
+[ext_resource type="Script" uid="uid://gwpdpnqk7gf3" path="res://Scripts/kyronArena.cs" id="1_f2ybo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iqx2c"]
+size = Vector3(15.584106, 11.47937, 4.560974)
+
+[node name="KyronArena" type="Node3D"]
+script = ExtResource("1_f2ybo")
+
+[node name="SpawnPos" type="Marker3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_iqx2c")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

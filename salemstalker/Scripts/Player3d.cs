@@ -19,7 +19,7 @@ public partial class Player3d : CharacterBody3D
 	public const float BobAmp = 0.06f;               // Amplitude (intensity) of the camera head-bob effect
 
 	// --- NODE REFERENCES ---
-	private Node3D _head;                            // Player head node, controls vertical camera movement/head-bob offset
+	public Node3D _head;                            // Player head node, controls vertical camera movement/head-bob offset
 	private Camera3D _cam;                           // Player camera node (handles up/down rotation and FOV)
 	private Control _interface;                      // Reference to the main Pause menu UI
 	private Slider _senseBar;                        // Slider control within the pause menu for adjusting sensitivity
@@ -74,7 +74,7 @@ public partial class Player3d : CharacterBody3D
 	public string _originalDialouge;                 	// Stores an NPC's default dialogue to restore it after interaction
 	public CharacterBody3D _lastSeen;               	// Reference to the last interactable object the raycast hit
 	public int _monstersKilled = 0;                  	// Counter for monsters killed (for quest tracking)
-	public float _maxHealth = 100f;					 	// Maximum player health
+	public float _maxHealth = 300f;					 	// Maximum player health
 	public float _health; 								// Current player health
 	public Color _maxHealthColor = new Color(244f / 255f, 224f / 255f, 138f / 255f); // Goldish color for high health light
 	public Color _minHealthColor = new Color(255f / 255f, 0f, 0f); // Red color for low health light
@@ -82,7 +82,7 @@ public partial class Player3d : CharacterBody3D
 	private float _minRange = 5f; 						// Min range for the lantern light
 	private bool _attackCooldown = false; 				// Flag: prevents attacking during a swing animation
 	public Color _lightColor; 							// Current color of the lantern light
-	private float _maxStamina = 100f; 					// Maximum player stamina
+	private float _maxStamina = 175f; 					// Maximum player stamina
 	private float _stamina; 							// Current player stamina
 	private float _staminaGoal; 						// Lerp target for stamina (used for UI smooth transition)
 	private Vector3 _baseHeadPosition; 					// The head node's default local position
@@ -1466,10 +1466,11 @@ public partial class Player3d : CharacterBody3D
 		}
 	}//hello it is me, the code. please kill me
 
-	public void CutsceneToggle(bool toggle)
+	public async void CutsceneToggle(bool toggle)
 	{
-		GetNode<Ui>("UI").Visible = !toggle;
 		_inCutscene = toggle;
+		if (toggle){await ToSignal(GetTree().CreateTimer(2), "timeout");}
+		GetNode<Ui>("UI").Visible = !toggle;
 		Visible = !toggle;
 		_cam.Current = !toggle;
 	}

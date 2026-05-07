@@ -9,9 +9,9 @@ public partial class bigOrb : RigidBody3D
 	public float _damageOrb;
 	private int _count = 0;
 	private bool _canExplode = true;
-	public void Shoot(float speed)
+	public void Shoot(float speed, Vector3 goalPos)
 	{
-		LookAt(new Vector3(_playerOrb.GlobalPosition.X, _playerOrb.GlobalPosition.Y, _playerOrb.GlobalPosition.Z), Vector3.Up);
+		LookAt(goalPos, Vector3.Up);
 		ApplyCentralImpulse(-GlobalTransform.Basis.Z.Normalized() * speed);
 	}
 
@@ -29,7 +29,7 @@ public partial class bigOrb : RigidBody3D
 	{
 		if (body.IsInGroup("PlayerHurtbox"))
         {
-         	 _playerOrb.RangedDamaged(_damageOrb, this, "None");
+         	 _playerOrb.RangedDamaged(20, this, "None");
 			GetNode<Area3D>("Attackbox").SetDeferred("monitoring", false);  
         }
 	}
@@ -39,7 +39,7 @@ public partial class bigOrb : RigidBody3D
 		{
 			Explode();
 		}
-        else
+        else if (!body.GetGroups().Contains("Monster"))
         {
 			Explode();
         }

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public partial class theKyron : Monster3d
 {
 	private const int MaxResin = 6;
-	private float _distance;
+	public float _distance;
 	private int _attackAnimSwitch = 1;
 	public Godot.Collections.Array<Node3D> _resinArray { get; set; } = [];
 	private PackedScene _darkOrb = GD.Load<PackedScene>("res://Scenes/Monsters/MonsterAssets/bigOrb.tscn");
@@ -34,7 +34,8 @@ public partial class theKyron : Monster3d
 	public float _legHealth = 100;
 	private float _wanderCount = 199;
 	private float _stompCountDown = 0;
-	private Node3D _currentBody;
+	public Vector3 _goalLookPos;
+	public bool _teleporting = false;
 
 	public override void _Ready()
 	{
@@ -46,7 +47,7 @@ public partial class theKyron : Monster3d
 		BaseDamage = 12.5f;         // Base damage of the monster
 		AttackSpeed = 2.5f;         // The time between its attacks
 		AttackRange = 1.5f;           // The distance the monster gets from the player before stopping and attacking
-		MaxHealth = 700.0f;         // Maximum monster health
+		MaxHealth = 800.0f;         // Maximum monster health
 		
 		AgroFOV = 7.0f;             // The vision FOV of the monster
 		AgroLength = 5.5f;          // The detection length of the monsters vision
@@ -61,7 +62,8 @@ public partial class theKyron : Monster3d
 		_rangeObj = GetNode<CsgSphere3D>("Range");
 		_rangeObj.Visible = false;
 		WanderRange = (int)_rangeObj.Radius;           // The range the monster can wander from its spawn point
-		_currentBody = GetNode<Node3D>("Body");
+		_body = GetNode<Node3D>("Body");
+		_startPos = GlobalPosition;
 
 		foreach (var node in GetNode<Skeleton3D>("Body/metarig/Skeleton3D").GetChildren())
         {
@@ -72,11 +74,18 @@ public partial class theKyron : Monster3d
 					if (!_matArray.Contains(mesh.GetSurfaceOverrideMaterial(i) as ShaderMaterial))
                     {
                         _matArray.Add(mesh.GetSurfaceOverrideMaterial(i) as ShaderMaterial);
-						GD.Print(mesh.GetSurfaceOverrideMaterial(i)+" MAT ARRAY");
                     }
 				}
             }
         }
+		MeshInstance3D swordMesh = GetNode<MeshInstance3D>("Body2/metarig/Skeleton3D/hand_R/Cube");
+		for (int i = 0; i < swordMesh.GetSurfaceOverrideMaterialCount(); i++)
+		{
+			if (!_matArray.Contains(swordMesh.GetSurfaceOverrideMaterial(i) as ShaderMaterial))
+			{
+				_matArray.Add(swordMesh.GetSurfaceOverrideMaterial(i) as ShaderMaterial);
+			}
+		}
 	}
 
 	private async void DeathPhase()
@@ -165,18 +174,44 @@ public partial class theKyron : Monster3d
 
 	private async void TransitionPhase()
     {
+		_phase = 2;
+		_attacking = true;
+		TweenMat(GetNode<MeshInstance3D>("Body2/metarig/Skeleton3D/hand_R/Cube").GetSurfaceOverrideMaterial(1) as ShaderMaterial, true);
+		Node3D trans = GetNode<Node3D>("Transition");
         GetNode<Node3D>("Body").Visible = false;
+		trans.Visible = true;
+		trans.GetNode<AnimationPlayer>("AnimationPlayer").Play("ArmatureAction");
+		trans.GetNode<AnimationPlayer>("AnimationPlayer2").Play("Armature_001Action");
+		trans.GetNode<AnimationPlayer>("AnimationPlayer3").Play("metarigAction");
+		await ToSignal(GetTree().CreateTimer(8.91), "timeout");
+		TweenMat(GetNode<MeshInstance3D>("Body2/metarig/Skeleton3D/hand_R/Cube").GetSurfaceOverrideMaterial(1) as ShaderMaterial, false);
+		await ToSignal(GetTree().CreateTimer(1.2), "timeout");
+		trans.Visible = false;
 		GetNode<Node3D>("Body2").Visible = true;
-		_currentBody = GetNode<Node3D>("Body2");
+		ChangeHitbox(false);
+		_body = GetNode<Node3D>("Body2");
+		_legHealth = 100;
+		_animState = "Idle";
+		Teleport(Vector3.Zero, -1);
+    }
 
+	private void ChangeHitbox(bool toggle)// true is hurtbox1 false is hurtbox2
+    {
+        GetNode<Area3D>("Hurtbox").SetDeferred("monitoring", toggle);
+		GetNode<Area3D>("Hurtbox2").SetDeferred("monitoring", !toggle);
+		GetNode<CollisionShape3D>("Collision").SetDeferred("disabled", !toggle);
+		GetNode<CollisionShape3D>("Collision2").SetDeferred("disabled", toggle);
     }
 	private async void ChangeAnimState(string anim, float times)
     {
+		_goalLookPos = _player.GlobalPosition;
         _animState = anim;
 		await ToSignal(GetTree().CreateTimer(times), "timeout");
+		if (_legHealth <= 0){return;}
 		_animState = "Idle";
-		await ToSignal(GetTree().CreateTimer(0.6f), "timeout");
-		_attacking = false;
+		GetNode<GpuParticles3D>("Stunned").Emitting = false;
+		await ToSignal(GetTree().CreateTimer(1), "timeout");
+		if (_legHealth > 0){_attacking = false;}
     }
 	public override void _Process(double delta)
 	{
@@ -186,14 +221,14 @@ public partial class theKyron : Monster3d
 		_wanderCount++;
 		_stompCountDown -= (float)delta;
 		if (_active) { _player._inCombat = true; }
-		if (_health <= 300 && _phase == 1){_phase = 2; TransitionPhase();}
-		if (_legHealth <= 0 && !_attacking && _phase == 1){_animState = "Downed";}	//drink a bannanannana (yuri and yaoi)
-		if (_legHealth <= 0 && !_attacking && _phase == 1) { _downCount += (float)delta; }
+		if (_health <= 450 && _phase == 1){TransitionPhase();}
+		if (_legHealth <= 0 && !_teleporting && _phase == 1){_animState = "Downed"; _downCount += (float)delta;}	//drink a bannanannana (yuri and yaoi)
+		if (_distance <= 5 && !_attacking){_goalLookPos = _player.GlobalPosition;}
 		if (_downCount >= 4)
 		{
-			Teleport();
+			Teleport(Vector3.Zero, -1);
 		}
-		if (_wanderCount == 50 || (_distance <= 5 && !_attacking))
+		if (!_attacking && (_wanderCount == 50 || (_distance <= 5 && _stompCountDown <= 0)))
         {
             ChooseAttack();
         }
@@ -211,7 +246,6 @@ public partial class theKyron : Monster3d
 			DeathPhase();
 		}
 		RotateFunc(delta);
-		_legHealth -= 0.2f;
 	}
 
 	private void RotateFunc(double delta)
@@ -229,7 +263,16 @@ public partial class theKyron : Monster3d
 
 	public void _on_hurtbox_area_entered(Area3D body) { Damaged(body); }
 
-	public void _on_attackbox_area_entered(Area3D body) { TryHitPlayer(body, "Push"); }
+	public void _on_attackbox_area_entered(Area3D body) { KyronHitPlayer(body, "Push"); }
+	public void _on_jump_sword_area_entered(Area3D body) { KyronHitPlayer(body, "Push"); }
+
+	private async void KyronHitPlayer(Node3D body, string extraArgs)
+	{
+		if (body is Area3D area && area.IsInGroup("PlayerHurtbox") && !_hasHit)
+		{
+            _player.Damaged(BaseDamage, this, extraArgs);
+		}
+	}
 
 	/*
 	private void _on_enter_area_entered(Area3D area)
@@ -242,7 +285,7 @@ public partial class theKyron : Monster3d
 		if (_phase == 1)
         {
            if (_legHealth <= 0){return;}
-			if (_distance <= 5 && _stompCountDown <= 0)
+			if (_distance <= 5 && _stompCountDown <= 0 && _animState == "Idle")
 			{
 				Stomp();
 			}
@@ -250,10 +293,10 @@ public partial class theKyron : Monster3d
 			{
 				float randNum = _rng.RandiRange(1,2);
 				if (randNum == 1)
-				{SpitBall();}
+				{SpitBall(1.6f, 1.26f);}
 				else
 				{
-					float warpInt = _rng.RandiRange(1,3);
+					float warpInt = _rng.RandiRange(1,4);
 					if (warpInt == 1){BigWarp();}
 					else{WarpHole();}
 				} 
@@ -261,24 +304,96 @@ public partial class theKyron : Monster3d
         }
         else
         {
-            
+            if (_distance <= 5 && _stompCountDown <= 0)
+			{
+				float randNum = _rng.RandiRange(1,2);
+				if (randNum == 1)
+				{MeleeAttack("JumpAttack", 1.6f, 1.25f, 0.2f);}
+				else{MeleeAttack("Slice", 1.6f, 0.62f, 0.87f);}
+			}
+			else if (_distance > 15)
+			{
+				TPCombo();
+			}
+			else
+			{
+				float randNum = _rng.RandiRange(1,3);
+				if (randNum > 1)
+				{SpitBall(0.875f, 0.62f);}
+				else
+				{
+					Lunge();
+				} 
+			} 
         }
 		
 	}
 
-	private async void SpitBall()
+	private async void MeleeAttack(string anim, float totalLength, float initialWait, float hitboxToggle)
     {
-		ChangeAnimState("Spit", 1.6f);
+		ChangeAnimState(anim, totalLength);
 		_attacking = true;
-		await ToSignal(GetTree().CreateTimer(1.26f), "timeout");
+		if (anim == "JumpAttack"){BaseDamage = 25;}else{BaseDamage = 10;}
+		_stompCountDown = 5;
+		await ToSignal(GetTree().CreateTimer(initialWait), "timeout");
+        GetNode<Area3D>("Body2/metarig/Skeleton3D/hand_R/JumpSword").SetDeferred("monitoring", true);
+		await ToSignal(GetTree().CreateTimer(hitboxToggle), "timeout");
+		GetNode<Area3D>("Body2/metarig/Skeleton3D/hand_R/JumpSword").SetDeferred("monitoring", false);
+		Teleport(Vector3.Zero, 0);
+    }
+
+	private async void Lunge()
+    {
+		ChangeAnimState("Lunge", 1.6f);
+		_attacking = true;
+		BaseDamage = 30;
+		await ToSignal(GetTree().CreateTimer(1), "timeout");
+        GetNode<Area3D>("Body2/metarig/Skeleton3D/hand_R/JumpSword").SetDeferred("monitoring", true);
+		_goalLookPos = _player.GlobalPosition;
+		ApplyKnockback(-40);
+		await ToSignal(GetTree().CreateTimer(0.6), "timeout");
+		GetNode<Area3D>("Body2/metarig/Skeleton3D/hand_R/JumpSword").SetDeferred("monitoring", false);
+		await ToSignal(GetTree().CreateTimer(0.6), "timeout");
+		MeleeAttack("Slice", 1.6f, 0.62f, 0.87f);
+    }
+
+	private async void TPCombo()
+    {
+		Teleport(_player.GlobalPosition, 4);
+		await ToSignal(GetTree().CreateTimer(0.4), "timeout");
+		ChangeAnimState("JumpThrust", 6f);
+		_goalLookPos = _player.GlobalPosition;
+		_attacking = true;
+		BaseDamage = 15;
+		await ToSignal(GetTree().CreateTimer(1.25f), "timeout");
+        GetNode<Area3D>("Body2/metarig/Skeleton3D/hand_R/JumpSword").SetDeferred("monitoring", true);
+		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+		GetNode<Area3D>("Body2/metarig/Skeleton3D/hand_R/JumpSword").SetDeferred("monitoring", false);
+		Teleport(_player.GlobalPosition, 15);
+		BaseDamage = 30;
+		await ToSignal(GetTree().CreateTimer(1.3), "timeout");
+		_goalLookPos = _player.GlobalPosition;
+		ApplyKnockback(-50);
+		GetNode<Area3D>("Body2/metarig/Skeleton3D/hand_R/JumpSword").SetDeferred("monitoring", true);
+		await ToSignal(GetTree().CreateTimer(0.8), "timeout");
+		GetNode<Area3D>("Body2/metarig/Skeleton3D/hand_R/JumpSword").SetDeferred("monitoring", false);
+		_animState = "Done";
+		GetNode<GpuParticles3D>("Stunned").Emitting = true;
+    }
+
+	private async void SpitBall(float totalLength, float firstWait)
+    {
+		ChangeAnimState("Spit", totalLength);
+		_attacking = true;
+		await ToSignal(GetTree().CreateTimer(firstWait), "timeout");
         RigidBody3D projectileInstance = _darkOrb.Instantiate<RigidBody3D>(); 
 		_player.GetParent().AddChild(projectileInstance);                                            
-		projectileInstance.GlobalPosition = _currentBody.GetNode<MeshInstance3D>("metarig/Skeleton3D/spine_005/projectile").GlobalPosition;
+		projectileInstance.GlobalPosition = _body.GetNode<MeshInstance3D>("metarig/Skeleton3D/spine_005/projectile").GlobalPosition;
 		if (projectileInstance is bigOrb ball)
 		{
 			ball._playerOrb = _player;
 			ball._damageOrb = BaseDamage + _damageOffset;
-			ball.Shoot(20);
+			ball.Shoot(20, _goalLookPos);
 		}
     }
 	private async void WarpHole()
@@ -305,24 +420,52 @@ public partial class theKyron : Monster3d
         }
 	}
 
-	private async void Teleport()
+	private async void Teleport(Vector3 pos, float dist)
     {
 		_attacking = true;
-		GD.Print(_matArray.Count+" MAT COUNT");
+		_teleporting = true;
 		foreach (ShaderMaterial mat in _matArray){TweenMat(mat, true);}
 		_downCount = 0;
 		await ToSignal(GetTree().CreateTimer(1.3), "timeout");
 		_animState = "Idle";
-		GD.Print(_animState);
-		float randZ = _startPos.Z + _rng.RandiRange(-WanderRange, WanderRange);
-		float randX = _startPos.X + _rng.RandiRange(-WanderRange, WanderRange);
-		GlobalPosition = new Vector3(randX, 0f, randZ);
-
+		if (pos != Vector3.Zero)
+        {
+           	GlobalPosition = _player.GlobalPosition + (-_player._head.GlobalTransform.Basis.Z.Normalized() * dist);
+        }
+        else
+        {
+			if (_phase == 1)
+            {
+                GlobalPosition = RandPosInRadius(new Vector3(_startPos.X, 0, _startPos.Z), 15);
+				GD.Print(GlobalPosition);
+				GD.Print(_startPos);
+            }
+            else
+            {
+                GlobalPosition = RandPosInRadius(_player.GlobalPosition, 15);
+            }
+            
+        }
+		
 		foreach (ShaderMaterial mat in _matArray){TweenMat(mat, false);}
 		await ToSignal(GetTree().CreateTimer(0.5), "timeout");
-		_legHealth = 100;
-		_health -= 400;
-		_attacking = false;
+		_teleporting = false;
+		if (dist == -1)
+        {
+            _legHealth = 100;
+			//_health -= 400;
+			_attacking = false;
+        }
+	}
+
+	private Vector3 RandPosInRadius(Vector3 pos, float radius)
+	{
+		float angle = _rng.Randf() * Mathf.Tau; // random angle 0-360
+		return pos + new Vector3(
+			Mathf.Cos(angle) * radius,
+			0f,
+			Mathf.Sin(angle) * radius
+		);
 	}
 
 	private async void TweenMat(ShaderMaterial mat, bool toggle)// true = dissolve, false = undissolve
@@ -332,8 +475,7 @@ public partial class theKyron : Monster3d
         	for (float i = -1; i < 1.5; i += 0.1f)
 			{
 				mat.SetShaderParameter("dissolveSlider", i);
-				GD.Print(mat.GetShaderParameter("dissolveSlider")+" MAT VAL");
-				await ToSignal(GetTree().CreateTimer(0.05), "timeout");
+				await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 			}
         }
         else
@@ -341,7 +483,7 @@ public partial class theKyron : Monster3d
             for (float i = 1.5f; i > -1; i -= 0.1f)
 			{
 				mat.SetShaderParameter("dissolveSlider", i);
-				await ToSignal(GetTree().CreateTimer(0.05), "timeout");
+				await ToSignal(GetTree().CreateTimer(0.01), "timeout");
 			} 
         }
         
@@ -363,28 +505,19 @@ public partial class theKyron : Monster3d
 
 	private async void Stomp()
     {
-		ChangeAnimState("Stomp", 1.5f);
+		ChangeAnimState("Stomp", 4f);
+		_stompCountDown = 5;
+		BaseDamage = 20;
 		_attacking = true;
 		await ToSignal(GetTree().CreateTimer(1.23), "timeout");
 		GetNode<GpuParticles3D>("Push").Emitting = true;
 		GetNode<Area3D>("Attackbox").SetDeferred("monitoring", true);
 		await ToSignal(GetTree().CreateTimer(0.2), "timeout");
 		GetNode<Area3D>("Attackbox").SetDeferred("monitoring", false);
+		GetNode<GpuParticles3D>("Stunned2").Emitting = true;
+		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		GetNode<GpuParticles3D>("Stunned2").Emitting = false;
+		if (_legHealth > 0){Teleport(Vector3.Zero, 0);}
 	}
 
-	public async void PlayerParried()
-	{
-		if (_animState == "Smash") { return; }
-		else { _parryCounters++; _hasHit = true; _animState = "Hit"; _attacking = false; }
-		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-		if (_parryCounters >= 2)
-		{
-			_parryCounters = 0;
-			_hasHit = true;
-			_animState = "Stunned";
-			_roots.Visible = false;
-			GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_r/RightAttackBox").SetDeferred("monitoring", false);
-			GetNode<Area3D>("Body/Armature/Skeleton3D/Bone_007_l/LeftAttackBox").SetDeferred("monitoring", false);
-		}
-	}
 }
