@@ -681,6 +681,13 @@ public partial class Player3d : CharacterBody3D
 			else { (currentQuest.GetNode("Number") as Label).Text = catCount+"/4"; }
 		}
 
+		if (_questBox.FindChild("Callen") != null)
+		{
+			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Callen");
+			// Update the quest objective text
+			if (_itemInv.GetItemCount("deadooze") >= 4 && _itemInv.GetItemCount("bleedheart") >= 3 && _itemInv.GetItemCount("seed") >= 2) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			else { (currentQuest.GetNode("Number") as Label).Text = "Bleeding Heart: "+_itemInv.GetItemCount("bleedheart")+"/3"+", Dead Ooze: "+_itemInv.GetItemCount("deadooze")+"/4"+", Seed: "+_itemInv.GetItemCount("seed")+"/2"; }
+		}
 		// [Inventory Camera Transition - Commented Out]
 
 		// --- Update sensitivity from pause menu ---
@@ -1101,10 +1108,10 @@ public partial class Player3d : CharacterBody3D
 		{
 			VBoxContainer currentQuest = _questBox.GetNode<VBoxContainer>("Martha");
 			// Update the quest objective text
-			if (/*_swampMonstersKilled >= 5 && _plainsMonstersKilled >=5 && */_forestMonstersKilled >= 5) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
+			if (_swampMonstersKilled >= 5 && _plainsMonstersKilled >=5 && _forestMonstersKilled >= 5) { (currentQuest.GetNode("Number") as Label).Text = "Complete!"; }
 			else { (currentQuest.GetNode("Number") as Label).Text = "Forest: "+_forestMonstersKilled + "/5 \n"
-			//+"Swamp: "+_swampMonstersKilled+ "/5 \n"
-			/*+"Plains: "+_plainsMonstersKilled+ "/5 \n"*/; }
+			+"Swamp: "+_swampMonstersKilled+ "/5 \n"
+			+"Plains: "+_plainsMonstersKilled+ "/5 \n"; }
 		}
 		else if (_questBox.FindChild("Dillon") != null)
 		{
