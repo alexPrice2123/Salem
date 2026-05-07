@@ -154,7 +154,7 @@ public partial class SaveHandler : GodotObject
                 {"seedT2",0}
                 }
             },
-            {"mainEquipped",""},
+            {"mainEquipped","shortsword"},
             {"secEquipped1",""},
             {"secEquipped2",""}
 

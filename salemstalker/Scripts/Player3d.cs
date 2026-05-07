@@ -932,9 +932,9 @@ public partial class Player3d : CharacterBody3D
 			}
 			
 			int tempcool = _comboNum;
-			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry1.ogg"));}
-			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry2.ogg"));}
-			if(_comboNum == 3){_damage += (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry3.ogg"));}
+			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;} //play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry1.ogg"));}
+			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;} //play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry2.ogg"));}
+			if(_comboNum == 3){_damage += (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f;} //play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Parry3.ogg"));}
 			// Damage penalty if stamina is too low
 			if (_stamina <= 0.02f * _maxStamina)
 			{
@@ -1168,6 +1168,7 @@ public partial class Player3d : CharacterBody3D
 	// Handles damage taken by the player from a Monster3d (melee damage).
 	public void Damaged(float takenDamage, Monster3d monster, string effect)
 	{
+		GD.Print(monster);
 		if (effect == "Hallucinate")
 		{
 			_hallucinationFactor = 1f;
@@ -1186,7 +1187,7 @@ public partial class Player3d : CharacterBody3D
 		}
 		float shakeFade = 1f;
 		if (takenDamage > _maxHealth/3){shakeFade = 0.5f;}
-		if (_blocking == true && _parry == false)
+		if (_blocking == true && (_parry == false || _parry == false))
 		{
 			// Regular block: reduce damage, deduct stamina, play block animation
 			takenDamage *= 0.5f;
@@ -1201,7 +1202,7 @@ public partial class Player3d : CharacterBody3D
 			}
 			
 		}
-		else if (_blocking == true && _parry == true)
+		else if (_blocking == true && _parry == true && _parry == true)
 		{
 			// Successful parry: restore stamina, negate damage, stun the monster, set parried flag
 			_stamina += 0.20f * _maxStamina;
@@ -1241,7 +1242,7 @@ public partial class Player3d : CharacterBody3D
 		}
 		float shakeFade = 1f;
 		if (takenDamage > _maxHealth/3){shakeFade = 0.5f;}
-		if (_blocking == true && _parry == false)
+		if (_blocking == true && (_parry == false || projectile is bigOrb))
 		{
 			// Regular block: reduce damage, deduct stamina, play block animation, destroy projectile
 			takenDamage *= 0.5f;
@@ -1255,7 +1256,7 @@ public partial class Player3d : CharacterBody3D
 			}
 			_swordInst.parryStat = 0;
 		}
-		else if (_blocking == true && _parry == true)
+		else if (_blocking == true && _parry == true && projectile is not bigOrb)
 		{
 			// Successful parry: restore stamina, negate damage, destroy projectile, set parried flag
 			_stamina += 0.15f * _maxStamina;
