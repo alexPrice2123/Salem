@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://dn0ebpsn5dkw4"]
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://dn0ebpsn5dkw4"]
 
 [sub_resource type="AudioEffectPhaser" id="AudioEffectPhaser_j3pel"]
 resource_name = "Phaser"
@@ -7,7 +7,15 @@ resource_name = "Phaser"
 resource_name = "Reverb"
 room_size = 1.0
 
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
+resource_name = "HighPassFilter"
+cutoff_hz = 1000.0
+
 [resource]
+bus/0/send = &"footstep"
 bus/1/name = &"Ambience"
 bus/1/solo = false
 bus/1/mute = false
@@ -18,9 +26,13 @@ bus/2/name = &"Sfx"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = 0.0
+bus/2/volume_db = -1.0237408
 bus/2/send = &"Master"
 bus/2/effect/0/effect = SubResource("AudioEffectPhaser_j3pel")
-bus/2/effect/0/enabled = true
+bus/2/effect/0/enabled = false
 bus/2/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
 bus/2/effect/1/enabled = false
+bus/2/effect/2/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/2/effect/2/enabled = false
+bus/2/effect/3/effect = SubResource("AudioEffectHighPassFilter_j3pel")
+bus/2/effect/3/enabled = true

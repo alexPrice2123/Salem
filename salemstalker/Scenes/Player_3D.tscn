@@ -108,11 +108,11 @@ metadata/hDamage = 0.0
 metadata/damage = 0.0
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15681054, -0.5136087, 0.6948908, 0.47827134)
-bones/19/rotation = Quaternion(0.59206975, -0.035513926, 0.031458713, 0.8044891)
+bones/18/rotation = Quaternion(-0.15696146, -0.5132867, 0.6947355, 0.47879282)
+bones/19/rotation = Quaternion(0.5836244, -0.035396148, 0.035064775, 0.8104937)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.50001687, -0.014768973, 0.86588955, -0.022610232, 0.9997366, 0.003995158, -0.8657201, -0.017580219, -0.5002187, -0.18848623, 1.408251, 0.41832012)
+transform = Transform3D(-0.49898186, -0.018651947, 0.8664116, -0.006413415, 0.99982065, 0.017830152, -0.8665882, 0.0033404976, -0.4990116, -0.18929638, 1.4016143, 0.41996723)
 
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141743, 0, 0)
