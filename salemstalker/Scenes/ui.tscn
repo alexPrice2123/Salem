@@ -2,9 +2,9 @@
 
 [ext_resource type="FontFile" uid="uid://bnt8fse5o4gd2" path="res://Assets/Fonts/PirataOne-Regular.ttf" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://bohnpibsn6nhk" path="res://Scripts/Ui.cs" id="1_smcll"]
-[ext_resource type="Shader" uid="uid://cdhocti5ssful" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
+[ext_resource type="Shader" path="res://Shaders/transitioni.gdshader" id="2_g0wmg"]
 [ext_resource type="PackedScene" uid="uid://dufmkp4txcmvx" path="res://Scenes/inv_world.tscn" id="3_nf4gj"]
-[ext_resource type="Shader" uid="uid://b5sjcu1jhhbrb" path="res://Shaders/border.gdshader" id="4_4vbiv"]
+[ext_resource type="Shader" path="res://Shaders/border.gdshader" id="4_4vbiv"]
 [ext_resource type="Shader" uid="uid://brmi6q5vjlu8t" path="res://Shaders/invert.gdshader" id="5_q7pk6"]
 [ext_resource type="Texture2D" uid="uid://c8lsaswuoorux" path="res://Assets/UI/loadingtemp.png" id="6_0o3wc"]
 [ext_resource type="Script" uid="uid://b351y65ve7t5e" path="res://Scripts/itemList.cs" id="6_kuui0"]
@@ -1080,7 +1080,6 @@ grow_vertical = 2
 script = ExtResource("1_smcll")
 
 [node name="Loading" type="ColorRect" parent="."]
-visible = false
 z_index = 4096
 material = SubResource("ShaderMaterial_3r70p")
 layout_mode = 1

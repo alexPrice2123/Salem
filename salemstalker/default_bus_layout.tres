@@ -15,7 +15,6 @@ resource_name = "HighPassFilter"
 cutoff_hz = 1000.0
 
 [resource]
-bus/0/send = &"footstep"
 bus/1/name = &"Ambience"
 bus/1/solo = false
 bus/1/mute = false

@@ -108,11 +108,11 @@ metadata/hDamage = 0.0
 metadata/damage = 0.0
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15696146, -0.5132867, 0.6947355, 0.47879282)
-bones/19/rotation = Quaternion(0.5836244, -0.035396148, 0.035064775, 0.8104937)
+bones/18/rotation = Quaternion(-0.15378532, -0.5199886, 0.6979299, 0.46782044)
+bones/19/rotation = Quaternion(0.61168617, -0.035774574, 0.022947391, 0.78995806)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.49898186, -0.018651947, 0.8664116, -0.006413415, 0.99982065, 0.017830152, -0.8665882, 0.0033404976, -0.4990116, -0.18929638, 1.4016143, 0.41996723)
+transform = Transform3D(-0.51964146, -0.0089607015, 0.85433716, -0.05214277, 0.99841374, -0.021243531, -0.85279137, -0.05558633, -0.51928407, -0.17748468, 1.4188347, 0.41246197)
 
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141743, 0, 0)
@@ -163,24 +163,20 @@ debug_color = Color(0.874163, 0.339904, 0.168264, 0.42)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4405007, -2.2304518, 6.5016317)
-visible = false
 gi_mode = 0
 mesh = SubResource("SphereMesh_y6jx2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
-visible = false
 gi_mode = 0
 mesh = SubResource("SphereMesh_cvtri")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
-visible = false
 mesh = SubResource("SphereMesh_qfumr")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.425035, 0)
-visible = false
 mesh = SubResource("SphereMesh_wan02")
 
 [node name="Fade" type="ColorRect" parent="."]

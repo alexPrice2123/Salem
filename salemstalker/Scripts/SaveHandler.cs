@@ -63,7 +63,7 @@ public partial class SaveHandler : GodotObject
         else{GD.Print("File exists, reseting");}
         using FileAccess file = FileAccess.Open(savePath, FileAccess.ModeFlags.Write);
         string jsonData = Json.Stringify(new Godot.Collections.Dictionary<string, Variant>{
-            { "version", "0.6.0"},
+            { "version", "0.6.1a"},
             { "lastLocation", "intro" },
             { "tutorialComplete", false},
             { "mainWeaponUnlocked", new Godot.Collections.Dictionary<string, int>{
@@ -154,7 +154,7 @@ public partial class SaveHandler : GodotObject
                 {"seedT2",0}
                 }
             },
-            {"mainEquipped","shortsword"},
+            {"mainEquipped","Shortsword"},
             {"secEquipped1",""},
             {"secEquipped2",""}
 
@@ -167,7 +167,7 @@ public partial class SaveHandler : GodotObject
     {
         Godot.Collections.Dictionary<string,Variant> data = LoadFromFile(savePath);
         if(!data.ContainsKey("version")) {GD.Print("Save is not up to date!"); return(false);}
-        if (((string)data["version"]).Equals("0.6.0")){GD.Print("Save is up to date!"); return(true);}
+        if (((string)data["version"]).Equals("0.6.1a")){GD.Print("Save is up to date!"); return(true);}
         else{GD.Print("Save is not up to date!"); return(false);}
     }
 }
