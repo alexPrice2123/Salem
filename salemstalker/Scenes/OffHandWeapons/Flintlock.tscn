@@ -1,61 +1,36 @@
-[gd_scene load_steps=39 format=3 uid="uid://c3ix37nxvhxo5"]
+[gd_scene load_steps=29 format=3 uid="uid://c3ix37nxvhxo5"]
 
 [ext_resource type="Script" uid="uid://dxkew2fckxi71" path="res://Scenes/OffHandWeapons/Flintlock.cs" id="1_wv7ev"]
 [ext_resource type="Shader" uid="uid://yffbi77k33ow" path="res://Shaders/gunSmoke.gdshader" id="2_cwoc6"]
 [ext_resource type="PackedScene" uid="uid://cyf8c2ed65om1" path="res://Assets/Weapons/weapon_animtions/flinklock_animtions.blend" id="2_rfx4h"]
-[ext_resource type="Texture2D" uid="uid://b4wnkvav254r7" path="res://Assets/weapontextures/flintlock/wood_Base_color.png" id="3_auwyg"]
-[ext_resource type="Texture2D" uid="uid://c0rxvadhjwmdy" path="res://Assets/weapontextures/flintlock/wood_Height.png" id="4_421hv"]
-[ext_resource type="Texture2D" uid="uid://dgyxtud58a5yi" path="res://Assets/weapontextures/flintlock/wood_Metallic.png" id="5_o8rmr"]
-[ext_resource type="Texture2D" uid="uid://bnudyxguh0eb7" path="res://Assets/weapontextures/flintlock/wood_Normal.png" id="6_mj1vj"]
-[ext_resource type="Texture2D" uid="uid://3gbfuonvx86" path="res://Assets/weapontextures/flintlock/wood_Roughness.png" id="7_2cuss"]
-[ext_resource type="Texture2D" uid="uid://ddm5up7ge1r56" path="res://Assets/weapontextures/flintlock/metal_Base_color.png" id="8_htodh"]
-[ext_resource type="Texture2D" uid="uid://dgsui4n2ntdr1" path="res://Assets/weapontextures/flintlock/metal_Height.png" id="9_sekho"]
-[ext_resource type="Texture2D" uid="uid://4jkhgu1j3st" path="res://Assets/weapontextures/flintlock/metal_Metallic.png" id="10_k3wer"]
-[ext_resource type="Texture2D" uid="uid://dtlltpaoty1p0" path="res://Assets/weapontextures/flintlock/metal_Normal.png" id="11_l7pn4"]
-[ext_resource type="Texture2D" uid="uid://c57cqywwjmsv4" path="res://Assets/weapontextures/flintlock/metal_Roughness.png" id="12_najfp"]
-[ext_resource type="Texture2D" uid="uid://du7ptsnaih468" path="res://Assets/weapontextures/flintlock/barrel metal_Base_color.png" id="13_fsj2j"]
-[ext_resource type="Texture2D" uid="uid://blxfb1uvk2ckp" path="res://Assets/weapontextures/flintlock/barrel metal_Height.png" id="14_gqytl"]
-[ext_resource type="Texture2D" uid="uid://g3o0jaoh5uhm" path="res://Assets/weapontextures/flintlock/barrel metal_Metallic.png" id="15_ldm53"]
-[ext_resource type="Texture2D" uid="uid://cs6dis61kax40" path="res://Assets/weapontextures/flintlock/barrel metal_Normal.png" id="16_eswxn"]
-[ext_resource type="Texture2D" uid="uid://clxg8lxqtvhdl" path="res://Assets/weapontextures/flintlock/barrel metal_Roughness.png" id="17_18sh8"]
+[ext_resource type="Texture2D" uid="uid://colxcoxddj4gn" path="res://Assets/weapontextures/flintlock/wood_Base_color.png" id="3_auwyg"]
+[ext_resource type="Texture2D" uid="uid://cvlcmpv4ppdqf" path="res://Assets/weapontextures/flintlock/barrel_Base_color.png" id="5_c0xgx"]
+[ext_resource type="Texture2D" uid="uid://bpr2bindf7kds" path="res://Assets/othermodeltxt/villager/arms_Base_color.png" id="6_h8bgw"]
+[ext_resource type="Texture2D" uid="uid://dt2uat3qamj2e" path="res://Assets/othermodeltxt/villager/skin_Base_color.png" id="7_h8bgw"]
+[ext_resource type="Texture2D" uid="uid://ceyjd6g5t34i7" path="res://Assets/weapontextures/flintlock/metal_Base_color.png" id="8_htodh"]
 [ext_resource type="ArrayMesh" uid="uid://d4am8wbjwvr6f" path="res://Assets/3D/coderassets/smoke.obj" id="19_auwyg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4t8y"]
 albedo_texture = ExtResource("3_auwyg")
-metallic = 1.0
-metallic_texture = ExtResource("5_o8rmr")
-roughness = 0.0
-roughness_texture = ExtResource("7_2cuss")
-normal_enabled = true
-normal_texture = ExtResource("6_mj1vj")
-heightmap_enabled = true
-heightmap_texture = ExtResource("4_421hv")
+texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lr1eo"]
 albedo_texture = ExtResource("8_htodh")
-metallic = 1.0
-metallic_texture = ExtResource("10_k3wer")
-roughness_texture = ExtResource("12_najfp")
-normal_enabled = true
-normal_texture = ExtResource("11_l7pn4")
-heightmap_enabled = true
-heightmap_texture = ExtResource("9_sekho")
+texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnisw"]
-albedo_texture = ExtResource("13_fsj2j")
-metallic = 1.0
-metallic_texture = ExtResource("15_ldm53")
-roughness_texture = ExtResource("17_18sh8")
-normal_enabled = true
-normal_texture = ExtResource("16_eswxn")
-heightmap_enabled = true
-heightmap_texture = ExtResource("14_gqytl")
+albedo_texture = ExtResource("5_c0xgx")
+texture_filter = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwoc6"]
-albedo_color = Color(0.295447, 0.143942, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25pwb"]
+albedo_color = Color(0.7285156, 0.55065536, 0.6211121, 1)
+albedo_texture = ExtResource("6_h8bgw")
+texture_filter = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xgjh"]
-albedo_color = Color(0.999999, 0.760996, 0.549659, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yh06a"]
+albedo_color = Color(0.6464844, 0.60318875, 0.5631485, 1)
+albedo_texture = ExtResource("7_h8bgw")
+texture_filter = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rfx4h"]
 animation = &"armed"
@@ -197,8 +172,8 @@ surface_material_override/1 = SubResource("StandardMaterial3D_lr1eo")
 surface_material_override/2 = SubResource("StandardMaterial3D_pnisw")
 
 [node name="Cube_002" parent="flinklock_animtions/metarig/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_cwoc6")
-surface_material_override/1 = SubResource("StandardMaterial3D_6xgjh")
+surface_material_override/0 = SubResource("StandardMaterial3D_25pwb")
+surface_material_override/1 = SubResource("StandardMaterial3D_yh06a")
 
 [node name="AnimationPlayer" parent="flinklock_animtions" index="1"]
 deterministic = true
