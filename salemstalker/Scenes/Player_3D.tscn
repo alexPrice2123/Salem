@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=19 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
 [ext_resource type="Texture2D" uid="uid://cmfaxccf8ffss" path="res://Assets/UI/player.png" id="2_cvtri"]
@@ -9,6 +9,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_mawk5"]
+exposure_multiplier = 2.0
+auto_exposure_enabled = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df3ch"]
 radius = 0.295052
@@ -96,6 +100,7 @@ texture = ExtResource("2_cvtri")
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 cull_mask = 1048573
+attributes = SubResource("CameraAttributesPractical_mawk5")
 current = true
 script = ExtResource("2_mawk5")
 
@@ -108,11 +113,11 @@ metadata/hDamage = 0.0
 metadata/damage = 0.0
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15617763, -0.5149553, 0.6955385, 0.4760839)
-bones/19/rotation = Quaternion(0.5989541, -0.035607517, 0.028493548, 0.7994838)
+bones/18/rotation = Quaternion(-0.15360607, -0.52036226, 0.6981054, 0.46720138)
+bones/19/rotation = Quaternion(0.60857034, -0.035734426, 0.02431231, 0.79232204)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.50418764, -0.012113079, 0.86350924, -0.034250036, 0.9993956, -0.0059788413, -0.8629143, -0.032589585, -0.5042974, -0.18606412, 1.4127278, 0.41659117)
+transform = Transform3D(-0.5207052, -0.010472372, 0.8536721, -0.045283407, 0.9988561, -0.015367843, -0.85253423, -0.046659082, -0.52058345, -0.17699641, 1.4159235, 0.4130663)
 
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141743, 0, 0)
