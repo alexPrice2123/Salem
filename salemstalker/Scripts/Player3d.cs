@@ -852,9 +852,9 @@ public partial class Player3d : CharacterBody3D
 			_cam.Transform = camTransformGoal;
 
 			// Calculate a separate, more subtle bob for the lantern light
-			Transform3D lightTransformGoal = _lantern.Transform;
+			/*Transform3D lightTransformGoal = _lantern.Transform;
 			lightTransformGoal.Origin = LightBob(_bobTime);
-			_lantern.Transform = lightTransformGoal;
+			_lantern.Transform = lightTransformGoal;*/
 		}
 
 		if (_stamina <= 0)

@@ -31,7 +31,7 @@ public partial class Fog : Node3D
 		if (_player._hallucinationFactor > 0.1f)
 		{
 			_exitFadeTime = 0.5f;
-			GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity = Mathf.Lerp(GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity, _thickFog, (float)delta);
+			//GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity = Mathf.Lerp(GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity, _thickFog, (float)delta);
 			if (_spawned == false)
 			{
 				StartCountdown();
@@ -43,7 +43,7 @@ public partial class Fog : Node3D
 		}
 		else
 		{
-			GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity = Mathf.Lerp(GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity, _normalFog, (float)delta*_exitFadeTime);
+			//GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity = Mathf.Lerp(GetNode<WorldEnvironment>("WorldEnvironment").Environment.VolumetricFogDensity, _normalFog, (float)delta*_exitFadeTime);
 		}
 	}
 	
