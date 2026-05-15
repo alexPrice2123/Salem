@@ -1,20 +1,8 @@
-[gd_scene load_steps=24 format=4 uid="uid://hdyqx2iml8sx"]
+[gd_scene load_steps=12 format=4 uid="uid://hdyqx2iml8sx"]
 
-[ext_resource type="Texture2D" uid="uid://b4wnkvav254r7" path="res://Assets/weapontextures/flintlock/wood_Base_color.png" id="1_ivyjc"]
-[ext_resource type="Texture2D" uid="uid://c0rxvadhjwmdy" path="res://Assets/weapontextures/flintlock/wood_Height.png" id="2_df3kx"]
-[ext_resource type="Texture2D" uid="uid://dgyxtud58a5yi" path="res://Assets/weapontextures/flintlock/wood_Metallic.png" id="3_no7an"]
-[ext_resource type="Texture2D" uid="uid://bnudyxguh0eb7" path="res://Assets/weapontextures/flintlock/wood_Normal.png" id="4_h043l"]
-[ext_resource type="Texture2D" uid="uid://3gbfuonvx86" path="res://Assets/weapontextures/flintlock/wood_Roughness.png" id="5_646pf"]
-[ext_resource type="Texture2D" uid="uid://ddm5up7ge1r56" path="res://Assets/weapontextures/flintlock/metal_Base_color.png" id="6_iyc2t"]
-[ext_resource type="Texture2D" uid="uid://dgsui4n2ntdr1" path="res://Assets/weapontextures/flintlock/metal_Height.png" id="7_8jd6f"]
-[ext_resource type="Texture2D" uid="uid://4jkhgu1j3st" path="res://Assets/weapontextures/flintlock/metal_Metallic.png" id="8_8yc03"]
-[ext_resource type="Texture2D" uid="uid://dtlltpaoty1p0" path="res://Assets/weapontextures/flintlock/metal_Normal.png" id="9_j6ll2"]
-[ext_resource type="Texture2D" uid="uid://c57cqywwjmsv4" path="res://Assets/weapontextures/flintlock/metal_Roughness.png" id="10_2s52u"]
-[ext_resource type="Texture2D" uid="uid://du7ptsnaih468" path="res://Assets/weapontextures/flintlock/barrel metal_Base_color.png" id="11_m66ut"]
-[ext_resource type="Texture2D" uid="uid://blxfb1uvk2ckp" path="res://Assets/weapontextures/flintlock/barrel metal_Height.png" id="12_6ovvx"]
-[ext_resource type="Texture2D" uid="uid://g3o0jaoh5uhm" path="res://Assets/weapontextures/flintlock/barrel metal_Metallic.png" id="13_n0q2w"]
-[ext_resource type="Texture2D" uid="uid://cs6dis61kax40" path="res://Assets/weapontextures/flintlock/barrel metal_Normal.png" id="14_15qth"]
-[ext_resource type="Texture2D" uid="uid://clxg8lxqtvhdl" path="res://Assets/weapontextures/flintlock/barrel metal_Roughness.png" id="15_qnb1l"]
+[ext_resource type="Texture2D" uid="uid://colxcoxddj4gn" path="res://Assets/weapontextures/flintlock/wood_Base_color.png" id="1_ivyjc"]
+[ext_resource type="Texture2D" uid="uid://cvlcmpv4ppdqf" path="res://Assets/weapontextures/flintlock/barrel_Base_color.png" id="3_ondyi"]
+[ext_resource type="Texture2D" uid="uid://ceyjd6g5t34i7" path="res://Assets/weapontextures/flintlock/metal_Base_color.png" id="6_iyc2t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sydk8"]
 resource_name = "wood"
@@ -116,39 +104,17 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_k7yt1")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1rgn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4t8y"]
 albedo_texture = ExtResource("1_ivyjc")
-metallic = 1.0
-metallic_texture = ExtResource("3_no7an")
-roughness = 0.0
-roughness_texture = ExtResource("5_646pf")
-normal_enabled = true
-normal_texture = ExtResource("4_h043l")
-heightmap_enabled = true
-heightmap_scale = 0.0
-heightmap_texture = ExtResource("2_df3kx")
+texture_filter = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj6s"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lr1eo"]
 albedo_texture = ExtResource("6_iyc2t")
-metallic = 1.0
-metallic_texture = ExtResource("8_8yc03")
-roughness_texture = ExtResource("10_2s52u")
-normal_enabled = true
-normal_texture = ExtResource("9_j6ll2")
-heightmap_enabled = true
-heightmap_scale = 0.0
-heightmap_texture = ExtResource("7_8jd6f")
+texture_filter = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mcxb0"]
-albedo_texture = ExtResource("11_m66ut")
-metallic = 1.0
-metallic_texture = ExtResource("13_n0q2w")
-roughness_texture = ExtResource("15_qnb1l")
-normal_enabled = true
-normal_texture = ExtResource("14_15qth")
-heightmap_enabled = true
-heightmap_scale = 0.0
-heightmap_texture = ExtResource("12_6ovvx")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnisw"]
+albedo_texture = ExtResource("3_ondyi")
+texture_filter = 0
 
 [node name="flintlockmodel" type="Node3D"]
 
@@ -156,6 +122,6 @@ heightmap_texture = ExtResource("12_6ovvx")
 transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
 mesh = SubResource("ArrayMesh_uook6")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_o1rgn")
-surface_material_override/1 = SubResource("StandardMaterial3D_jbj6s")
-surface_material_override/2 = SubResource("StandardMaterial3D_mcxb0")
+surface_material_override/0 = SubResource("StandardMaterial3D_h4t8y")
+surface_material_override/1 = SubResource("StandardMaterial3D_lr1eo")
+surface_material_override/2 = SubResource("StandardMaterial3D_pnisw")

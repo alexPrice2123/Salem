@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=19 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
 [ext_resource type="Texture2D" uid="uid://cmfaxccf8ffss" path="res://Assets/UI/player.png" id="2_cvtri"]
@@ -9,6 +9,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_mawk5"]
+exposure_multiplier = 2.0
+auto_exposure_enabled = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df3ch"]
 radius = 0.295052
@@ -96,6 +100,7 @@ texture = ExtResource("2_cvtri")
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 cull_mask = 1048573
+attributes = SubResource("CameraAttributesPractical_mawk5")
 current = true
 script = ExtResource("2_mawk5")
 
@@ -108,11 +113,11 @@ metadata/hDamage = 0.0
 metadata/damage = 0.0
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15378532, -0.5199886, 0.6979299, 0.46782044)
-bones/19/rotation = Quaternion(0.61168617, -0.035774574, 0.022947391, 0.78995806)
+bones/18/rotation = Quaternion(-0.15360607, -0.52036226, 0.6981054, 0.46720138)
+bones/19/rotation = Quaternion(0.60857034, -0.035734426, 0.02431231, 0.79232204)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.51964146, -0.0089607015, 0.85433716, -0.05214277, 0.99841374, -0.021243531, -0.85279137, -0.05558633, -0.51928407, -0.17748468, 1.4188347, 0.41246197)
+transform = Transform3D(-0.5207052, -0.010472372, 0.8536721, -0.045283407, 0.9988561, -0.015367843, -0.85253423, -0.046659082, -0.52058345, -0.17699641, 1.4159235, 0.4130663)
 
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141743, 0, 0)
@@ -123,9 +128,14 @@ collide_with_areas = true
 [node name="Lantern" type="OmniLight3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265332, -0.769787, -0.313106)
 light_color = Color(0.625, 0.397501, 0.17700195, 1)
-light_energy = 2.76
+light_energy = 3.0
+light_indirect_energy = 3.0
 light_volumetric_fog_energy = 10.0
 omni_range = 25.0
+
+[node name="Lantern2" type="OmniLight3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004201025, -0.18541151, 0.44072467)
+light_color = Color(0.625, 0.397501, 0.17700195, 1)
 
 [node name="Offhand1" type="Node3D" parent="Head/Camera3D"]
 

@@ -34,6 +34,14 @@ public partial class NewWorld : Node3D
 		{
 			GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("BossMark").GlobalPosition ;
 		}
+		else if (((string)data["lastLocation"]).Equals("village2"))
+		{
+			GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("Elderstraud Village/VillageMark").GlobalPosition ;
+		}
+		else if (((string)data["lastLocation"]).Equals("kyronTest"))
+		{
+			GetNode<CharacterBody3D>("Player_3d").GlobalPosition = GetNode<Marker3D>("KyronMark").GlobalPosition ;
+		}
 		Godot.Collections.Dictionary<string, Variant> tempResTranslator = SaveHandler.LoadFromFile("res://Scripts/ResourceHelper.json");
 		foreach(string i in data["resourceInventory"].AsGodotDictionary<string, int>().Keys)
 		{
@@ -73,6 +81,22 @@ public partial class NewWorld : Node3D
 		if (area.IsInGroup("Player"))
 		{
 			data["lastLocation"] = "village1";
+		}
+		SaveHandler.SaveToFile(data,_savePath);
+	}
+	private void _on_elderstraud_village_area_entered(Area3D area)
+	{
+		if (area.IsInGroup("Player"))
+		{
+			data["lastLocation"] = "village2";
+		}
+		SaveHandler.SaveToFile(data,_savePath);
+	}
+	private void _on_elderstraud_village_area_exited(Area3D area)
+	{
+		if (area.IsInGroup("Player"))
+		{
+			data["lastLocation"] = "village2";
 		}
 		SaveHandler.SaveToFile(data,_savePath);
 	}

@@ -2377,6 +2377,7 @@ size = Vector2i(340, 250)
 render_target_update_mode = 0
 
 [node name="WizShopPreviewWorld" parent="WizardShop/PotionView/PotionView/SubViewport" instance=ExtResource("29_ipwe8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.029161, 0)
 
 [node name="PotionMenu" type="Control" parent="WizardShop"]
 z_index = 1

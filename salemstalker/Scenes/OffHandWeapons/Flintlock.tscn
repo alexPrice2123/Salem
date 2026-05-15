@@ -1,61 +1,36 @@
-[gd_scene load_steps=45 format=3 uid="uid://c3ix37nxvhxo5"]
+[gd_scene load_steps=29 format=3 uid="uid://c3ix37nxvhxo5"]
 
 [ext_resource type="Script" uid="uid://dxkew2fckxi71" path="res://Scenes/OffHandWeapons/Flintlock.cs" id="1_wv7ev"]
 [ext_resource type="Shader" uid="uid://yffbi77k33ow" path="res://Shaders/gunSmoke.gdshader" id="2_cwoc6"]
 [ext_resource type="PackedScene" uid="uid://cyf8c2ed65om1" path="res://Assets/Weapons/weapon_animtions/flinklock_animtions.blend" id="2_rfx4h"]
-[ext_resource type="ArrayMesh" uid="uid://c03p1wq8x7grl" path="res://Assets/3D/Mesh.tres" id="3_6xgjh"]
-[ext_resource type="Texture2D" uid="uid://b4wnkvav254r7" path="res://Assets/weapontextures/flintlock/wood_Base_color.png" id="3_auwyg"]
-[ext_resource type="Texture2D" uid="uid://c0rxvadhjwmdy" path="res://Assets/weapontextures/flintlock/wood_Height.png" id="4_421hv"]
-[ext_resource type="Texture2D" uid="uid://dgyxtud58a5yi" path="res://Assets/weapontextures/flintlock/wood_Metallic.png" id="5_o8rmr"]
-[ext_resource type="Texture2D" uid="uid://bnudyxguh0eb7" path="res://Assets/weapontextures/flintlock/wood_Normal.png" id="6_mj1vj"]
-[ext_resource type="Texture2D" uid="uid://3gbfuonvx86" path="res://Assets/weapontextures/flintlock/wood_Roughness.png" id="7_2cuss"]
-[ext_resource type="Texture2D" uid="uid://ddm5up7ge1r56" path="res://Assets/weapontextures/flintlock/metal_Base_color.png" id="8_htodh"]
-[ext_resource type="Texture2D" uid="uid://dgsui4n2ntdr1" path="res://Assets/weapontextures/flintlock/metal_Height.png" id="9_sekho"]
-[ext_resource type="Texture2D" uid="uid://4jkhgu1j3st" path="res://Assets/weapontextures/flintlock/metal_Metallic.png" id="10_k3wer"]
-[ext_resource type="Texture2D" uid="uid://dtlltpaoty1p0" path="res://Assets/weapontextures/flintlock/metal_Normal.png" id="11_l7pn4"]
-[ext_resource type="Texture2D" uid="uid://c57cqywwjmsv4" path="res://Assets/weapontextures/flintlock/metal_Roughness.png" id="12_najfp"]
-[ext_resource type="Texture2D" uid="uid://du7ptsnaih468" path="res://Assets/weapontextures/flintlock/barrel metal_Base_color.png" id="13_fsj2j"]
-[ext_resource type="Texture2D" uid="uid://blxfb1uvk2ckp" path="res://Assets/weapontextures/flintlock/barrel metal_Height.png" id="14_gqytl"]
-[ext_resource type="Texture2D" uid="uid://g3o0jaoh5uhm" path="res://Assets/weapontextures/flintlock/barrel metal_Metallic.png" id="15_ldm53"]
-[ext_resource type="Texture2D" uid="uid://cs6dis61kax40" path="res://Assets/weapontextures/flintlock/barrel metal_Normal.png" id="16_eswxn"]
-[ext_resource type="Texture2D" uid="uid://clxg8lxqtvhdl" path="res://Assets/weapontextures/flintlock/barrel metal_Roughness.png" id="17_18sh8"]
+[ext_resource type="Texture2D" uid="uid://colxcoxddj4gn" path="res://Assets/weapontextures/flintlock/wood_Base_color.png" id="3_auwyg"]
+[ext_resource type="Texture2D" uid="uid://cvlcmpv4ppdqf" path="res://Assets/weapontextures/flintlock/barrel_Base_color.png" id="5_c0xgx"]
+[ext_resource type="Texture2D" uid="uid://bpr2bindf7kds" path="res://Assets/othermodeltxt/villager/arms_Base_color.png" id="6_h8bgw"]
+[ext_resource type="Texture2D" uid="uid://dt2uat3qamj2e" path="res://Assets/othermodeltxt/villager/skin_Base_color.png" id="7_h8bgw"]
+[ext_resource type="Texture2D" uid="uid://ceyjd6g5t34i7" path="res://Assets/weapontextures/flintlock/metal_Base_color.png" id="8_htodh"]
+[ext_resource type="ArrayMesh" uid="uid://d4am8wbjwvr6f" path="res://Assets/3D/coderassets/smoke.obj" id="19_auwyg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4t8y"]
 albedo_texture = ExtResource("3_auwyg")
-metallic = 1.0
-metallic_texture = ExtResource("5_o8rmr")
-roughness = 0.0
-roughness_texture = ExtResource("7_2cuss")
-normal_enabled = true
-normal_texture = ExtResource("6_mj1vj")
-heightmap_enabled = true
-heightmap_texture = ExtResource("4_421hv")
+texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lr1eo"]
 albedo_texture = ExtResource("8_htodh")
-metallic = 1.0
-metallic_texture = ExtResource("10_k3wer")
-roughness_texture = ExtResource("12_najfp")
-normal_enabled = true
-normal_texture = ExtResource("11_l7pn4")
-heightmap_enabled = true
-heightmap_texture = ExtResource("9_sekho")
+texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnisw"]
-albedo_texture = ExtResource("13_fsj2j")
-metallic = 1.0
-metallic_texture = ExtResource("15_ldm53")
-roughness_texture = ExtResource("17_18sh8")
-normal_enabled = true
-normal_texture = ExtResource("16_eswxn")
-heightmap_enabled = true
-heightmap_texture = ExtResource("14_gqytl")
+albedo_texture = ExtResource("5_c0xgx")
+texture_filter = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwoc6"]
-albedo_color = Color(0.295447, 0.143942, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25pwb"]
+albedo_color = Color(0.7285156, 0.55065536, 0.6211121, 1)
+albedo_texture = ExtResource("6_h8bgw")
+texture_filter = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xgjh"]
-albedo_color = Color(0.999999, 0.760996, 0.549659, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yh06a"]
+albedo_color = Color(0.6464844, 0.60318875, 0.5631485, 1)
+albedo_texture = ExtResource("7_h8bgw")
+texture_filter = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rfx4h"]
 animation = &"armed"
@@ -94,35 +69,10 @@ states/fire/node = SubResource("AnimationNodeAnimation_cwoc6")
 states/fire/position = Vector2(504, 156)
 transitions = ["Start", "armed", SubResource("AnimationNodeStateMachineTransition_6xgjh"), "armed 2", "fire", SubResource("AnimationNodeStateMachineTransition_h4t8y"), "armed", "armed 2", SubResource("AnimationNodeStateMachineTransition_c0xgx"), "fire", "armed 2", SubResource("AnimationNodeStateMachineTransition_rfx4h")]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cwoc6"]
-
-[sub_resource type="Gradient" id="Gradient_cwoc6"]
-offsets = PackedFloat32Array(0.00155763, 0.107477)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_6xgjh"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h4t8y"]
-noise = SubResource("FastNoiseLite_6xgjh")
-color_ramp = SubResource("Gradient_cwoc6")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_lr1eo"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c0xgx"]
-noise = SubResource("FastNoiseLite_lr1eo")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cwoc6"]
 render_priority = 0
 shader = ExtResource("2_cwoc6")
-shader_parameter/Color = Color(0.402604, 0.402604, 0.402604, 1)
-shader_parameter/Color_Gradiant = SubResource("NoiseTexture2D_h4t8y")
-shader_parameter/Vor_Noise = SubResource("NoiseTexture2D_c0xgx")
-shader_parameter/Alpha_Curve = SubResource("NoiseTexture2D_cwoc6")
-shader_parameter/Fernal_Power = 0.0
-shader_parameter/Vor_Scale = 0.86
-shader_parameter/Vor_Speed = 1.0
-shader_parameter/Emmision_Power = 0.1
-shader_parameter/Alpha_Clip = 1.0
+shader_parameter/color = Color(0.34117648, 0.37254903, 0.43137255, 0.99607843)
 
 [sub_resource type="Curve" id="Curve_6xgjh"]
 _data = [Vector2(0, 0), 0.0, 1.02364, 0, 0, Vector2(0.450893, 0.669049), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.971069, 0.0, 0, 0]
@@ -154,11 +104,11 @@ gravity = Vector3(0, 0.2, 0)
 linear_accel_min = -2.23517e-06
 linear_accel_max = 0.999998
 scale_min = 0.25
-scale_max = 0.25
+scale_max = 0.35
 scale_curve = SubResource("CurveTexture_wxifh")
 alpha_curve = SubResource("CurveTexture_acbqd")
-hue_variation_min = -2.23517e-08
-hue_variation_max = 0.02
+hue_variation_min = 0.24999997
+hue_variation_max = 0.24999997
 turbulence_enabled = true
 turbulence_noise_scale = 0.1
 collision_mode = 1
@@ -190,15 +140,15 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.149
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0031770244, -1.7192955, 0.022668958)
 
 [node name="Skeleton3D" parent="flinklock_animtions/metarig" index="0"]
-bones/8/rotation = Quaternion(-0.29716015, 0.6603882, -0.5432395, 0.42482266)
-bones/9/rotation = Quaternion(0.10121383, 0.060014803, -0.13217439, 0.9842174)
-bones/10/rotation = Quaternion(0.024919773, -0.2100672, 0.10091673, 0.97214544)
-bones/11/rotation = Quaternion(0.17976402, -0.20663744, 0.16775073, 0.94701934)
+bones/8/rotation = Quaternion(-0.3039815, 0.5951711, -0.6205913, 0.4101624)
+bones/9/rotation = Quaternion(0.1632557, 0.05904771, -0.13289073, 0.97580785)
+bones/10/rotation = Quaternion(-0.03865682, -0.21278863, 0.07799449, 0.9732131)
+bones/11/rotation = Quaternion(0.17976402, -0.20663747, 0.16775072, 0.94701934)
 bones/12/rotation = Quaternion(-0.3082795, 0.1973927, -0.35761988, 0.8591321)
-bones/13/rotation = Quaternion(-0.36613148, -0.10245915, -0.24928343, 0.8906783)
-bones/15/rotation = Quaternion(0.21346803, -0.05530236, -0.40708378, 0.88637227)
-bones/16/rotation = Quaternion(-0.15249363, 0.0324545, 0.34006724, 0.92738706)
-bones/17/rotation = Quaternion(0.034487158, -0.045876056, 0.26540962, 0.962426)
+bones/13/rotation = Quaternion(-0.3661315, -0.10245913, -0.24928345, 0.89067817)
+bones/15/rotation = Quaternion(0.1640689, -0.093246795, -0.43299505, 0.8814203)
+bones/16/rotation = Quaternion(-0.15249369, 0.032454494, 0.34006718, 0.92738706)
+bones/17/rotation = Quaternion(0.034487143, -0.045876052, 0.26540962, 0.962426)
 bones/19/rotation = Quaternion(-0.21922302, -0.6732264, 0.5859349, 0.39419255)
 bones/20/rotation = Quaternion(0.16670354, -0.099851385, 0.14108498, 0.9707393)
 bones/21/rotation = Quaternion(0.06961127, -0.037877247, -0.24318211, 0.96673787)
@@ -213,7 +163,7 @@ bones/40/rotation = Quaternion(-0.061385617, 0.959714, -0.26865867, -0.054803994
 bones/41/rotation = Quaternion(-0.63208157, 0.7247701, -0.18002333, -0.20681576)
 
 [node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.014787305, 2.3283064e-09, -0.00061123725, -0.00055183494, 0.006364515, 0.013350144, 0.00026285928, 0.013361542, -0.0063590836, 0.22204852, 0.84092027, 0.11601922)
+transform = Transform3D(-0.014643073, 0.0006828946, 0.0020376723, 0.0020550983, 0.008553564, 0.011901724, -0.00062849326, 0.012058526, -0.008557731, 0.12419078, 0.8886316, 0.2627433)
 
 [node name="Cube" parent="flinklock_animtions/metarig/Skeleton3D/Cube" index="0"]
 transform = Transform3D(1, -1.86265e-09, 4.65661e-10, 0, 1, 8.9407e-08, -9.31323e-10, 0, 1, 0, 0, 0)
@@ -222,8 +172,8 @@ surface_material_override/1 = SubResource("StandardMaterial3D_lr1eo")
 surface_material_override/2 = SubResource("StandardMaterial3D_pnisw")
 
 [node name="Cube_002" parent="flinklock_animtions/metarig/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_cwoc6")
-surface_material_override/1 = SubResource("StandardMaterial3D_6xgjh")
+surface_material_override/0 = SubResource("StandardMaterial3D_25pwb")
+surface_material_override/1 = SubResource("StandardMaterial3D_yh06a")
 
 [node name="AnimationPlayer" parent="flinklock_animtions" index="1"]
 deterministic = true
@@ -240,13 +190,13 @@ material_override = SubResource("ShaderMaterial_cwoc6")
 transparency = 0.87
 cast_shadow = 0
 emitting = false
-amount = 50
+amount = 70
 lifetime = 6.0
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 trail_lifetime = 0.2
 process_material = SubResource("ParticleProcessMaterial_lr1eo")
-draw_pass_1 = ExtResource("3_6xgjh")
+draw_pass_1 = ExtResource("19_auwyg")
 
 [editable path="flinklock_animtions"]

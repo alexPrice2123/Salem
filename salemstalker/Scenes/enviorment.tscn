@@ -2,33 +2,43 @@
 
 [ext_resource type="Script" uid="uid://cqbhjkh8fdspc" path="res://Scripts/Fog.cs" id="1_s37ah"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_keuyo"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ked6b"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+sky_energy_multiplier = 0.0
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_keuyo"]
-sky_material = SubResource("ProceduralSkyMaterial_keuyo")
+[sub_resource type="Sky" id="Sky_xaqug"]
+sky_material = SubResource("ProceduralSkyMaterial_ked6b")
 
-[sub_resource type="Environment" id="Environment_s37ah"]
+[sub_resource type="Environment" id="Environment_secms"]
 background_mode = 2
-sky = SubResource("Sky_keuyo")
+background_color = Color(0.3365879, 0.0044485326, 0.41354492, 1)
+sky = SubResource("Sky_xaqug")
+ambient_light_source = 2
 tonemap_mode = 2
-glow_enabled = true
+tonemap_exposure = 2.0
+ssil_enabled = true
+ssil_intensity = 3.0
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
+fog_sun_scatter = 0.21
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.1
-volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_density = 0.5
+volumetric_fog_albedo = Color(0.049776644, 0.04977665, 0.049776614, 1)
+volumetric_fog_emission = Color(0.016123425, 6.808997e-06, 0.029703695, 1)
+volumetric_fog_anisotropy = 0.6
 volumetric_fog_length = 1024.0
+volumetric_fog_ambient_inject = 0.1
 
 [node name="Enviorment" type="Node3D"]
 script = ExtResource("1_s37ah")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(0.9411765, 0.9411765, 1, 1)
-light_energy = 0.5
+light_color = Color(0.9181626, 0.7100819, 1, 1)
+light_energy = 0.1
 shadow_enabled = true
+sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_s37ah")
+environment = SubResource("Environment_secms")
