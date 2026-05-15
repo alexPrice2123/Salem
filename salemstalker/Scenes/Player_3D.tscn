@@ -113,11 +113,11 @@ metadata/hDamage = 0.0
 metadata/damage = 0.0
 
 [node name="Skeleton3D" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig" index="0"]
-bones/18/rotation = Quaternion(-0.15360607, -0.52036226, 0.6981054, 0.46720138)
-bones/19/rotation = Quaternion(0.60857034, -0.035734426, 0.02431231, 0.79232204)
+bones/18/rotation = Quaternion(-0.15646762, -0.5143391, 0.6952425, 0.47708604)
+bones/19/rotation = Quaternion(0.5867035, -0.03543947, 0.03375401, 0.80832154)
 
 [node name="Cylinder" parent="Head/Camera3D/Sword/EmptyHands/weaponAnimations/metarig/Skeleton3D" index="0"]
-transform = Transform3D(-0.5207052, -0.010472372, 0.8536721, -0.045283407, 0.9988561, -0.015367843, -0.85253423, -0.046659082, -0.52058345, -0.17699641, 1.4159235, 0.4130663)
+transform = Transform3D(-0.5021905, -0.017563954, 0.86457837, -0.010867879, 0.9998433, 0.013999093, -0.86468834, -0.0023658276, -0.5023022, -0.18749125, 1.4032062, 0.41913858)
 
 [node name="Ray" type="RayCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0141743, 0, 0)
@@ -136,6 +136,13 @@ omni_range = 25.0
 [node name="Lantern2" type="OmniLight3D" parent="Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004201025, -0.18541151, 0.44072467)
 light_color = Color(0.625, 0.397501, 0.17700195, 1)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.265332, -0.064046204, 0.22562969)
+light_color = Color(1, 0.7350757, 0.5202968, 1)
+light_energy = 6.0
+light_volumetric_fog_energy = 10.0
+spot_range = 9.017155
 
 [node name="Offhand1" type="Node3D" parent="Head/Camera3D"]
 
