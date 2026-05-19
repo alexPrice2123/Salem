@@ -932,9 +932,9 @@ public partial class Player3d : CharacterBody3D
 			}
 			
 			int tempcool = _comboNum;
-			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
-			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f;}
-			if(_comboNum == 3){_damage += (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f;}
+			if(_comboNum == 1 || _comboNum == 0){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));}
+			if(_comboNum == 2){_damage += (float)_sword.GetMeta("damage"); HorCamSense /= 2.5f; VerCamSense /= 3f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing2.ogg"));}
+			if(_comboNum == 3){_damage += (float)_sword.GetMeta("hDamage"); HorCamSense /= 3f; VerCamSense /= 3.5f; play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing3.ogg"));}
 			// Damage penalty if stamina is too low
 			if (_stamina <= 0.02f * _maxStamina)
 			{
@@ -953,9 +953,9 @@ public partial class Player3d : CharacterBody3D
 			HorCamSense = tempHorSense;
 			VerCamSense = tempVerSense;
 			cooldown.Start();
-			if(_comboNum == 1 || _comboNum == 0){warmup.Start((float)_sword.GetMeta("startDelay1")); play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing1.ogg"));}
-			if(_comboNum == 2){warmup.Start((float)_sword.GetMeta("startDelay2")); play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing2.ogg"));}
-			if(_comboNum == 3){warmup.Start((float)_sword.GetMeta("startDelay3")); play_sfx(GD.Load<AudioStreamOggVorbis>("res://Assets/SFX/Swing3.ogg"));}
+			if(_comboNum == 1 || _comboNum == 0){warmup.Start((float)_sword.GetMeta("startDelay1"));}
+			if(_comboNum == 2){warmup.Start((float)_sword.GetMeta("startDelay2"));}
+			if(_comboNum == 3){warmup.Start((float)_sword.GetMeta("startDelay3"));}
 			_can_block = false;
 			await ToSignal(warmup, "timeout");
 			
