@@ -113,17 +113,9 @@ public partial class titleScreen : Node3D
 		{
 			GetNode<OptionButton>("DevMenu/placeSelect").Selected = 1 ;
 		}
-		else if(((string)data["lastLocation"]).Equals("village2"))
-		{
-			GetNode<OptionButton>("DevMenu/placeSelect").Selected = 2 ;
-		}
 		else if(((string)data["lastLocation"]).Equals("bossTest"))
 		{
-			GetNode<OptionButton>("DevMenu/placeSelect").Selected = 3 ;
-		}
-		else if(((string)data["lastLocation"]).Equals("kyronTest"))
-		{
-			GetNode<OptionButton>("DevMenu/placeSelect").Selected = 4 ;
+			GetNode<OptionButton>("DevMenu/placeSelect").Selected = 2 ;
 		}
 		foreach(string i in data["resourceInventory"].AsGodotDictionary<string, int>().Keys)
 		{
@@ -165,15 +157,7 @@ public partial class titleScreen : Node3D
 		}
 		else if(GetNode<OptionButton>("DevMenu/placeSelect").Selected == 2)
 		{
-			data["lastLocation"] = "village2" ;
-		}
-		else if(GetNode<OptionButton>("DevMenu/placeSelect").Selected == 3)
-		{
 			data["lastLocation"] = "bossTest" ;
-		}
-		else if(GetNode<OptionButton>("DevMenu/placeSelect").Selected == 4)
-		{
-			data["lastLocation"] = "kyronTest" ;
 		}
 		if (GetNode<CheckBox>("DevMenu/deathBag/bagCheck").ButtonPressed)
 		{

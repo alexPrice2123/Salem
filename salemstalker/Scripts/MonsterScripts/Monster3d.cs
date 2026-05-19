@@ -144,6 +144,8 @@ public partial class Monster3d : CharacterBody3D
 	public void Damaged(Area3D body)
 	{
 		if (this is theKyron ron){if (ron._teleporting == true){return;}}
+		GD.Print("I was hit");
+		GD.Print(_canBeHit);
 		if (body.IsInGroup("Weapon") && _canBeHit)
 		{
 			GD.Print("By a player weapon!");
