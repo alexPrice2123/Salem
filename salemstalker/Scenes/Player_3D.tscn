@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpliwvsva3hej"]
+[gd_scene load_steps=19 format=3 uid="uid://dpliwvsva3hej"]
 
 [ext_resource type="Script" uid="uid://su3cykfq7jsc" path="res://Scripts/Player3d.cs" id="1_df3ch"]
 [ext_resource type="Texture2D" uid="uid://cmfaxccf8ffss" path="res://Assets/UI/player.png" id="2_cvtri"]
@@ -9,6 +9,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6lgym"]
 radius = 0.25
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_mawk5"]
+exposure_multiplier = 2.0
+auto_exposure_enabled = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df3ch"]
 radius = 0.295052
@@ -78,11 +82,11 @@ shader_parameter/dithering = true
 shader_parameter/scale_resolution = true
 shader_parameter/target_resolution_scale = 2
 
-[node name="Player_3d" type="CharacterBody3D" groups=["Player"]]
+[node name="Player_3d" type="CharacterBody3D"]
 floor_max_angle = 1.134464
 script = ExtResource("1_df3ch")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_6lgym")
 
 [node name="Head" type="Node3D" parent="."]
@@ -96,6 +100,7 @@ texture = ExtResource("2_cvtri")
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 cull_mask = 1048573
+attributes = SubResource("CameraAttributesPractical_mawk5")
 current = true
 script = ExtResource("2_mawk5")
 
@@ -136,6 +141,16 @@ light_color = Color(0.625, 0.397501, 0.17700195, 1)
 
 [node name="Offhand2" type="Node3D" parent="Head/Camera3D"]
 
+[node name="InvCam" type="CSGBox3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.39412)
+visible = false
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Cam" type="CSGBox3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00668174, 0)
+visible = false
+size = Vector3(0.1, 0.1, 0.1)
+
 [node name="TripSpawn" type="Node3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0305719, -10.8766)
 
@@ -148,7 +163,7 @@ offset_bottom = 0.0
 [node name="Skeleton3D" type="Skeleton3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161286, 0.441923, -0.298717)
 
-[node name="Hurtbox" type="Area3D" parent="." groups=["Player", "PlayerHurtbox"]]
+[node name="Hurtbox" type="Area3D" parent="." groups=["PlayerHurtbox"]]
 collision_layer = 1025
 collision_mask = 1025
 

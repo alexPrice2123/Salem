@@ -73,16 +73,16 @@ public partial class NewWorld : Node3D
 		if (area.IsInGroup("Player"))
 		{
 			data["lastLocation"] = "village1";
-			SaveHandler.SaveToFile(data,_savePath);
 		}
+		SaveHandler.SaveToFile(data,_savePath);
 	}
 	private void _on_brittlebay_area_exited(Area3D area)
 	{
 		if (area.IsInGroup("Player"))
 		{
 			data["lastLocation"] = "village1";
-			SaveHandler.SaveToFile(data,_savePath);
 		}
+		SaveHandler.SaveToFile(data,_savePath);
 	}
 	private void _on_elderstraud_village_area_entered(Area3D area)
 	{
